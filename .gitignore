@@ -9,4 +9,5 @@
 *.gz
 *.toc
 *.bbl
+*.blg
 .venv
