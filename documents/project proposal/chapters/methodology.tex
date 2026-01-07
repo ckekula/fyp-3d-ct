@@ -1,5 +1,6 @@
 \chapter{Methodology}
 The research consists of main phases
+
 Overall methodology Diagram
 
 % \begin{figure}[h!]
@@ -54,7 +55,8 @@ We will formulate LC-KSVD to jointly optimize three key objectives:
     \item Consistency of sparse representations within the same disease class.
     \item Effective classification of lung conditions based on the sparse codes.
 \end{enumerate}
-Appropriate weighting will be applied to balance these objectives, and hyperparameters will be selected through validation experiments to ensure stable and meaningful learning.
+Appropriate weighting will be applied to balance these objectives, and hyperparameters will be selected through validation experiments to
+ensure stable and meaningful learning.
 
 \section{Classification and Disease Diagnosis}
 Support Vector Machine (SVM) use as the final disease classification model because of several features:
@@ -62,7 +64,8 @@ Support Vector Machine (SVM) use as the final disease classification model becau
 2. Effectiveness when the number of features is much larger than the number of samples
 3. Strong generalization due to the maximum-margin principle
 
-SVMs are also known to be robust when dealing with limited and imbalanced medical data, making them a suitable choice for disease classification tasks in chest CT analysis.
+SVMs are also known to be robust when dealing with limited and imbalanced medical data, making them a suitable choice for disease
+classification tasks in chest CT analysis.
 
 The model will be implemented using the scikit-learn library in Python and will
 receive the sparse codes generated from the learned dictionary as input features.
@@ -71,16 +74,28 @@ A linear kernel will be used as the initial choice due to its effectiveness with
 The classifier will predict multiple disease categories, with the number of output classes matching the labeling structure of the CT-RATE dataset.
 
 \section{Interpretability Analysis and Visualization}
-To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an intuitive UI/UX design that incorporates 3D rendering techniques
-Each dictionary atom will be mapped back to the original CT image space, allowing us to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.
+To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an intuitive UI/UX
+design that incorporates 3D rendering techniques
+Each dictionary atom will be mapped back to the original CT image space, allowing us to see which anatomical regions or pathological patterns
+the model has learned to represent. This mapping is guided by the ReXGroundingCT annotations, which provide precise spatial localization of
+abnormalities within the 3D imaging volume.
 
 \section{Volumetric Feature Extraction and Quantification}
-Ground-glass opacities (GGO) will be identified based on their characteristic intensity patterns in CT images, measured using Hounsfield Units (HU). GGO regions are defined as lung areas with attenuation values.then captures the partially aerated lung tissue associated with GGOs while excluding normal lung parenchyma and denser consolidations.
+Ground-glass opacities (GGO) will be identified based on their characteristic intensity patterns in CT images, measured using Hounsfield Units
+(HU). GGO regions are defined as lung areas with attenuation values.then captures the partially aerated lung tissue associated with GGOs
+while excluding normal lung parenchyma and denser consolidations.
 
 
 
 \section{Baseline Comparisons and Benchmarking}
-To demonstrate the effectiveness of the proposed method, it will be compared against well established baseline approaches commonly used in current medical imaging research. These baselines are chosen to represent both traditional machine learning techniques and modern deep learning models
-Standard K-SVD is included as a baseline to highlight the advantage of incorporating label information through LC-KSVD. By comparing these two sparse representation methods, the contribution of label consistent dictionary learning to disease classification performance can be assessed.
-In addition, several 3D CNN architectures will be used as deep learning baselines, as they are considered state-of-the-art for volumetric CT analysis. These models are capable of learning complex spatial patterns across multiple slices and therefore provide a strong benchmark against which the proposed method can be evaluated. Existing implementations of these networks will be adopted to ensure reliability and consistency.
-All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational demands of CNN-based approaches.
+To demonstrate the effectiveness of the proposed method, it will be compared against well established baseline approaches commonly used in
+current medical imaging research. These baselines are chosen to represent both traditional machine learning techniques and modern deep
+learning models
+Standard K-SVD is included as a baseline to highlight the advantage of incorporating label information through LC-KSVD. By comparing these
+two sparse representation methods, the contribution of label consistent dictionary learning to disease classification performance can be
+assessed.
+In addition, several 3D CNN architectures will be used as deep learning baselines, as they are considered state-of-the-art for volumetric CT
+analysis. These models are capable of learning complex spatial patterns across multiple slices and therefore provide a strong benchmark against
+which the proposed method can be evaluated. Existing implementations of these networks will be adopted to ensure reliability and consistency.
+All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational
+demands of CNN-based approaches.
