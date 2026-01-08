@@ -84,13 +84,13 @@ abnormalities within the 3D imaging volume.
 Ground-glass opacities (GGO) will be identified based on their characteristic intensity patterns in CT images, measured using Hounsfield Units
 (HU). GGO regions are defined as lung areas with attenuation values.then captures the partially aerated lung tissue associated with GGOs
 while excluding normal lung parenchyma and denser consolidations.
-
+Ground-glass opacities (GGO) localization will be handled implicitly through the dictionary learning and annotation guided validation framework.
 
 
 \section{Baseline Comparisons and Benchmarking}
 To demonstrate the effectiveness of the proposed method, it will be compared against well established baseline approaches commonly used in
 current medical imaging research. These baselines are chosen to represent both traditional machine learning techniques and modern deep
-learning models
+learning models.All methods will be implemented using suitable and widely adopted frameworks, including scikit-learn for classical machine learning and sparse coding methods, and PyTorch or TensorFlow for deep learning based models.
 Standard K-SVD is included as a baseline to highlight the advantage of incorporating label information through LC-KSVD. By comparing these
 two sparse representation methods, the contribution of label consistent dictionary learning to disease classification performance can be
 assessed.
@@ -99,3 +99,6 @@ analysis. These models are capable of learning complex spatial patterns across m
 which the proposed method can be evaluated. Existing implementations of these networks will be adopted to ensure reliability and consistency.
 All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational
 demands of CNN-based approaches.
+
+\section{Evaluation Metrics and Validation Strategy}
+The performance of the proposed model will be evaluated using accuracy, precision, recall, F1-score, and AUC-ROC, which are standard and widely accepted metrics in medical image analysis. Greater emphasis will be placed on accuracy and recall, as they are especially important in a clinical context to ensure overall reliability and to minimize missed disease cases, while the remaining metrics provide additional insight into class-wise performance and discriminative ability.
