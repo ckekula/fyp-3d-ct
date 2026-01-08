@@ -1,14 +1,12 @@
 \chapter{Methodology}
-The research consists of main phases
+The research consists of 7 main phases as shown in figure \ref{fig:Overall}
 
-Overall methodology Diagram
-
-% \begin{figure}[h!]
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{microgrid-architecture.png} % Replace with your image file
-%     \caption{This is an example image.}
-%     \label{fig:example}
-% \end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{overallpic.png} % Replace with your image file
+    \caption{Overall Methodology Diagram}
+    \label{fig:Overall}
+\end{figure}
 
 % As shown in Figure \ref{fig:example}, the image is centered and has a caption.
 
@@ -47,9 +45,7 @@ While the normal dictionary remains frozen, it will contribute to the sparse cod
 model to efficiently learn only the new pathological features.
 
 We extend the dictionary learning approach using LC-KSVD  to improve the discriminative power of the learned sparse representations.
-The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category.
-
-We will formulate LC-KSVD to jointly optimize three key objectives:
+The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category. We will formulate LC-KSVD to jointly optimize three key objectives:
 \begin{enumerate}
     \item Accurate reconstruction of CT image patches using the learned dictionary.
     \item Consistency of sparse representations within the same disease class.
@@ -59,6 +55,15 @@ Appropriate weighting will be applied to balance these objectives, and hyperpara
 ensure stable and meaningful learning.
 
 \section{Classification and Disease Diagnosis}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{ModelTraining.png}
+    \caption{Model Training Workflow}
+    \label{fig:Training}
+\end{figure}
+
+
 Support Vector Machine (SVM) use as the final disease classification model because of several features:
 1. Ability to handle high-dimensional sparse features produced by dictionary learning and LC-KSVD
 2. Effectiveness when the number of features is much larger than the number of samples
@@ -72,6 +77,8 @@ receive the sparse codes generated from the learned dictionary as input features
 A linear kernel will be used as the initial choice due to its effectiveness with sparse representations.
 
 The classifier will predict multiple disease categories, with the number of output classes matching the labeling structure of the CT-RATE dataset.
+
+
 
 \section{Interpretability Analysis and Visualization}
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an intuitive UI/UX
