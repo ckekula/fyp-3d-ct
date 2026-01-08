@@ -1,0 +1,13 @@
+# LaTeX intermediate files
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.gz
+*.toc
+*.bbl
+*.blg
+.venv
