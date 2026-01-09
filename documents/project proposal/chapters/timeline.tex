@@ -1,56 +1,46 @@
-\chapter{Timeline and Resource Required}
+\chapter{Timeline and Resources Required}
 
-\begin{table}[ht]
+\section{Timeline}
+The project will be carried out within 2 semesters (24 weeks) according to the timeline given in table \ref{timeplan}
+
+\section{Resources Required}
+State the resource required for the project and estimate the budget for the resources required.
+
+\begin{sidewaystable}[ht]
     \centering
     \small
-    \setlength{\tabcolsep}{3pt} % smaller column spacing for many columns
-    \caption{Overall project time plan}
-    \label{overallTimeplan}
+    \setlength{\tabcolsep}{3pt}
+    \caption{Overall Project Time Plan}
+    \label{timeplan}
 
+    \resizebox{\textwidth}{!}{%
     \begin{tabular}{|c|*{12}{c|}*{12}{c|}}
         \hline
-            \textbf{Project Task} & \multicolumn{12}{c|}{\textbf{Semester 07}} & \multicolumn{12}{c|}{\textbf{Semester 08}} \\
-            \cline{2-25}
-            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 
-            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
-            \hline
-            Dataset acquisition 
+        \textbf{Project Task} & \multicolumn{12}{c|}{\textbf{Semester 07}} & \multicolumn{12}{c|}{\textbf{Semester 08}} \\
+        \cline{2-25}
+        & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 
+        & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+        \hline
+        \makecell[c]{Dataset acquisition \\ \& preprocessing}  
             & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &  
-                &  &  &  &  &  &  &  &  &  &  &  &  \\
-            \& preprocessing  
-                & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &  
-                &  &  &  &  &  &  &  &  &  &  &  &  \\
-            \hline
-            
-            Implement frozen dictionary  
+            &  &  &  &  &  &  &  &  &  &  &  &  \\
+        \hline
+        \makecell[c]{Implement frozen dictionary + LC-KSVD \\ \& initial experiments}
             &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} 
-                &  &  &  &  &  &  &  &  &  &  &  &  \\
-            + LC-KSVD \& initial experiments
-                &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} 
-                &  &  &  &  &  &  &  &  &  &  &  &  \\
-            \hline
-            Implement volumetric analysis 
+            &  &  &  &  &  &  &  &  &  &  &  &  \\
+        \hline
+        \makecell[c]{Implement volumetric analysis \\ \& feature extraction}
             &  &  &  &  &  &  &  &  &  &  &  &  
-                & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &
-                \\ \& feature extraction
-                &  &  &  &  &  &  &  &  &  &  &  &  
-                & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &  \\
-            \hline
-            Clinical validation, 
+            & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &  \\
+        \hline
+        \makecell[c]{Clinical validation, \\ comparative experiments}
             &  &  &  &  &  &  &  &  &  &  &  &  
-                &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &
-                \\
-            comparative experiments
-                &  &  &  &  &  &  &  &  &  &  &  &  
-                &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  \\
-            \hline
-            Final experiments,  
+            &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  \\
+        \hline
+        \makecell[c]{Final experiments, \\ project documentation}
             &  &  &  &  &  &  &  &  &  &  &  &  
-                &  &  &  &  &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} \\
-            project documentation
-                &  &  &  &  &  &  &  &  &  &  &  &  
-                &  &  &  &  &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} \\
-            \hline
-           
-    \end{tabular}
-\end{table}
+            &  &  &  &  &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} \\
+        \hline           
+    \end{tabular}%
+    }
+\end{sidewaystable}

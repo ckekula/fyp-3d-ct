@@ -72,7 +72,17 @@ to see which anatomical regions or pathological patterns the model has learned t
 annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.
 
 \section{Volumetric Feature Extraction and Quantification}
+Volumetric quantification of pulmonary patterns will be performed using HU-based segmentation to differentiate between GGO and
+consolidation regions. GGO will be identified using HU thresholds in the range of -700 to -500 HU, where increased attenuation
+preserves underlying vascular structures. Consolidation will be segmented using thresholds between -500 and 100 HU, corresponding to
+homogeneous opacification that obscures bronchial and vascular margins. The segmented regions will be extracted from the 3D CT volumes
+to calculate the total volume of each pattern type.
 
+The C/G ratio will be computed by dividing the total volume of consolidation by the total volume of GGO across the entire lung parenchyma.
+This quantitative metric provides an objective measure of disease severity and progression, with higher ratios indicating more
+advanced pathological states. The calculated C/G ratios will be compared against model predictions and clinical thresholds to validate
+the diagnostic utility of the learned dictionary representations. These volumetric features will complement the sparse coding analysis,
+enabling a more comprehensive evaluation of the model's ability to capture clinically relevant patterns.
 
 \section{Baseline Comparisons and Benchmarking}
 The proposed method will be compared against well established baseline approaches commonly used in medical imaging research. These
