@@ -2,7 +2,7 @@
 
 \section{Previous Work}
 
-\subsection{Deep Learning for Lung Disease Diagnosis from Medical Imaging}
+\subsection{Deep Learning for Lung Disease Diagnosis}
 Numerous techiniques have emerged in the field of automated lung disease diagnosis, each attempting to balance accuracy with computational
 feasibility. Early approaches relied on manual feature engineering and classical classifiers like Support Vector Machines (SVM) and Random Forests.\cite{al2024deep}
 While these methods provided strong interpretability, they often lacked the flexibility to handle the noise and variance found in CT data\cite{rai2025explainable}. The
@@ -17,13 +17,14 @@ emergence of deep learning fundamentally changed the landscape of \ac{CT} analys
 
 Convolutional Neural Networks (CNNs) have emerged as the dominant paradigm for automated analysis of \ac{CT} scans.\cite{jones2019ml}~\cite{litjens2017survey}
 Recent surveys indicate that deep learning models achieve classification accuracy exceeding 98\% for multi-disease detection tasks\cite{liu2022deep},
+
 representing a signficant improvement over traditional machine learning approaches.
 Contemporary research has increasingly focused on 3D CNN architectures that treat CT scans as complete volumetric data rather than independent
 2D slices. This volumetric approach captures spatial relationships within lung tissue more effectively, leading to improved sensitivity in
 detecting subtle pathological changes. Li et al. (2024)\cite{li2023multi} demonstrated that preprocessing techniques such as lung region extraction, combined
 with advanced backbone architectures like ResNeSt50, significantly enhance classification performance for multiple lung pathologies \cite{wang2024resnest}.
 
-\subsection{Sparse Dictionary Learning in Medical Image Analysis}
+\subsection{Sparse Dictionary Learning in CT Analysis}
 Sparse dictionary learning represents an unsupervised machine learning paradigm for extracting interpretable features from medical
 images. This technique learns a set of dictionary elements or basis vectors that represent data in a sparse manner. In the context of 3D
 CT, a volumetric patch $y \in \mathbb{R}$ can be approximated by $y \sim Dx$, where $D \in \mathbb{R^{nxK}}$ is the dictionary and $x \in \mathbb{R^k}$
@@ -48,16 +49,15 @@ networks creates significant barriers for clinical adaptation. Physicians need t
 accountability and patient safety. [9][10].
 To address these challenges, a range of explainable artificial intelligence (XAI) techniques have been developed to provide insight
 into model decision-making. Predominant XAI approaches in medical imaging include:
-\begin{itemize}
-    \item Perturbation-Based Methods: These techniques evaluate feature importance by systematically altering specific image regions
+\begin{description}
+    \item [Perturbation-Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
     and observing how these changes affect the model's output.
-    \item Gradient-Based Methods: Utilizing backpropagation gradients, these methods highlight image areas that most significantly
+    \item [Gradient-Based Methods:] These methods highlight image areas that most significantly utilizing backpropagation gradients
     influence a classification. Grad-CAM is particularly predominant because it is applicable to nearly any network architecture.
-    \item Decomposition-Based Methods: Techniques like Layer-Wise Relevance Propagation (LRP) distribute the output of the final
+    \item [Decomposition-Based Methods:] Techniques like Layer-Wise Relevance Propagation (LRP) distribute the output of the final
     layer back through the network recursively. This process calculates a relevance score for each neuron, generating a heatmap
     that provides a clearer distinction of feature contribution.
-    \item 
-\end{itemize}
+\end{description}
 
 These explainability techniques greatly increase clinician comprehension and confidence in adapting AI-driven diagnostic results,
 making it easier to integrate with conventional radiological workflows while maintaining regulatory compliance [14].
@@ -73,7 +73,51 @@ and using HU thresholding, the percentage of lung tissue affected can be calcula
 is the C/G ratio. Clinical data shows that as GGO progresses to consolidation, the severity of the patient's condition increases.
 
 \section{Gaps in Literature}
-The proposed solution is designed to address several gaps in the current literature, as summarized in table 1:
+The proposed solution is designed to address several gaps in the current literature, as summarized in \ref{gapsTable}:
+
+\begin{table}[ht]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \caption{Gaps addressed by proposed approach vs existing solutions}
+    \label{gapsTable}
+
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Aspect & Existing Solutions & Proposed Solution \\
+        \hline
+        Interpretability
+            & \makecell[c]{Post-hoc explanations (Grad-CAM, LIME, SHAP); \\ Black-box features with no semantic meaning}
+            & \makecell[c]{Inherently interpretable dictionary atoms \\ representing concrete anatomical structures \\ (nodules, GGO, consolidations)} \\
+        \hline
+        \makecell[c]{3D Volumetric \\ Analysis}
+            & \makecell[c]{Limited integration of interpretability with \\ full 3D data; mostly 2D slice-by-slice or \\ post-hoc 3D explanations}
+            & \makecell[c]{Full 3D volumetric analysis with interpretable \\ sparse representations} \\
+        \hline
+        \makecell[c]{Feature \\ Representation}
+            & \makecell[c]{Black-box features with no semantic meaning}
+            & \makecell[c]{Dictionary atoms represent concrete, visualizable \\ anatomical structures (nodules, GGO, \\ consolidations)} \\
+        \hline
+        \makecell[c]{Label \\ Consistency}
+            & \makecell[c]{Standard K-SVD focuses only on \\ reconstruction error, lacks discriminative power}
+            & \makecell[c]{Dictionary learning with sparse representations \\ is more efficient than deep 3D CNNs} \\
+        \hline
+        \makecell[c]{Clinical Metrics \\ Integration}
+            & \makecell[c]{Often limited to classification accuracy; \\ lacks integration of domain-specific \\ quantitative metrics}
+            & \makecell[c]{Integrates HU-based segmentation for GGO/ \\ consolidation detection and C/G ratio calculation} \\
+        \hline
+        \makecell[c]{Clinical Metrics \\ Integration}
+            & \makecell[c]{Deep learning requires large labeled datasets}
+            & \makecell[c]{Dictionary learning is effective with limited \\ labeled data; particularly valuable for \\ rare diseases} \\
+        \hline
+        \makecell[c]{Handling Class \\ Imbalance}
+            & \makecell[c]{Requires synthetic data generation, complex \\ loss weighting, or meta-learning}
+            & \makecell[c]{Sparse dictionary learning naturally handles \\ few-shot scenarios for rare diseases} \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
 
 \subsection{Inherently Interpretable Architectures}
 
