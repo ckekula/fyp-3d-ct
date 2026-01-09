@@ -9,7 +9,7 @@ The research consists of 7 main phases as shown in figure \ref{fig:Overall}:
 \end{figure}
 
 \section{Data acquisition and pre-processing}
-We selected two publicly available chest CT datasets, CT-RATE\cite{jones2019ml} and ReXGroundingCT[citation], for training and evaluation
+We selected two publicly available chest CT datasets, CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct}, for training and evaluation
 due to their complementary nature. CT-RATE is an open-source dataset of 50,188 reconstructed 3D chest CT volumes with their
 corresponding radiology reports. Each volume is annotated with 18 abnormalities, supporting extensive validation and fine-tuning.
 ReXGroundingCT extends CT RATE by providing expert annotated 3D segmentation masks that highlight the exact image regions
@@ -21,14 +21,14 @@ normalization, and lung segmentation, shall be implemented before feeding the da
 allow use for non-commercial academic research.
 
 \section{Model Training}
-Model training will be implemented using a two-phase frozen dictionary learning approach to capture both normal and pathological
+Model training will be implemented using a two-phase frozen dictionary learning approach\cite{ksvd} to capture both normal and pathological
 patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.
 
 \begin{description}[style=nextline]
     \item[Phase 1: Learning the Normal Dictionary]
     A dictionary is trained using only healthy or normal samples, enabling the model to capture typical lung anatomy.
     \item[Phase 2: Learning Pathological Atoms]
-    With the normal dictionary fixed, additional atoms are learned to represent disease-specific pathological features while
+    With the normal dictionary fixed, additional atoms are learned\cite{LCKSVD} to represent disease-specific pathological features while
     leveraging the frozen dictionary during sparse coding.
 \end{description}
 
@@ -53,7 +53,7 @@ Appropriate weighting will be applied to balance these objectives and hyperparam
 
 SVM will be used as the final disease classification model due to the following reasons:
 \begin{enumerate}
-    \item Ability to handle high-dimensional sparse features produced by dictionary learning and \ac{LCKSVD}
+    \item Ability to handle high-dimensional sparse features\cite{SVM} produced by dictionary learning and \ac{LCKSVD}
     \item Effectiveness when the number of features is much larger than the number of samples
     \item Strong generalization due to the maximum-margin principle
 \end{enumerate}
