@@ -1,53 +1,46 @@
 \chapter{Methodology}
-The research consists of 7 main phases as shown in figure \ref{fig:Overall}
+The research consists of 7 main phases as shown in figure \ref{fig:Overall}:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.95\textwidth]{overallpic.png} % Replace with your image file
-    \caption{Overall Methodology Diagram}
+    \includegraphics[width=0.95\textwidth]{overallpic.png}
+    \caption{Overall Methodology}
     \label{fig:Overall}
 \end{figure}
 
-% As shown in Figure \ref{fig:example}, the image is centered and has a caption.
-
 \section{Data acquisition and pre-processing}
-We selected two publicly available chest CT datasets, CT-RATE[citation] and ReXGroundingCT[citation], for training and evaluation.
-due to their complementary nature. CT-RATE is an open-source dataset of 50,188 reconstructed 3D chest CT volumes
-with their corresponding radiology reports. Each volume is annotated with 18 abnormalities, supporting extensive
-validation and fine-tuning. ReXGroundingCT extends CT RATE by providing expert annotated 3D segmentation masks that
-highlight the exact image regions referenced in the radiology reports. The dataset contains 3,142 chest CT scans
-across 14 abnormality categories. Both datasets are released under MIT licenses that allow their use for
-non-commercial academic research.
+We selected two publicly available chest CT datasets, CT-RATE\cite{jones2019ml} and ReXGroundingCT[citation], for training and evaluation
+due to their complementary nature. CT-RATE is an open-source dataset of 50,188 reconstructed 3D chest CT volumes with their
+corresponding radiology reports. Each volume is annotated with 18 abnormalities, supporting extensive validation and fine-tuning.
+ReXGroundingCT extends CT RATE by providing expert annotated 3D segmentation masks that highlight the exact image regions
+referenced in the radiology reports. The dataset contains 3,142 chest CT scans across 14 abnormality categories. 
 
-Data pre-procesising corrections such as intensity normalization and spacing adjustments have already
-been implemented directly in the provided NIfTI files. If further pre-processing is required, we will
-apply standard techniques such as resampling to a uniform voxel size, intensity normalization, and
-lung segmentation, before feeding the data into our model.
+Data pre-procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
+the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
+normalization, and lung segmentation, shall be implemented before feeding the data into the model. Both datasets are released under MIT licenses that
+allow use for non-commercial academic research.
 
 \section{Model Training}
+Model training will be implemented using a two-phase frozen dictionary learning approach to capture both normal and pathological
+patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.
 
-Model training will be implemented using a two-phase frozen dictionary learning approach to capture both normal
-and pathological patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.
+\begin{description}[style=nextline]
+    \item[Phase 1: Learning the Normal Dictionary]
+    A dictionary is trained using only healthy or normal samples, enabling the model to capture typical lung anatomy.
+    \item[Phase 2: Learning Pathological Atoms]
+    With the normal dictionary fixed, additional atoms are learned to represent disease-specific pathological features while
+    leveraging the frozen dictionary during sparse coding.
+\end{description}
 
-Phase 1: Learning the Normal Dictionary
-We will first train a dictionary using only healthy or normal samples from the dataset. This step will allow
-the system to learn the typical structures of the lungs
-
-Phase 2: Learning Pathological Atoms
-After the normal dictionary is established and fixed, we will train additional dictionary atoms to capture
-disease-specific or pathological features
-While the normal dictionary remains frozen, it will contribute to the sparse coding process, allowing the
-model to efficiently learn only the new pathological features.
-
-We extend the dictionary learning approach using LC-KSVD  to improve the discriminative power of the learned sparse representations.
-The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category. We will formulate LC-KSVD to jointly optimize three key objectives:
+We extend the dictionary learning approach using \ac{LCKSVD} to improve the discriminative power of the learned sparse representations.
+The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category. \ac{LCKSVD}
+will be formulated to jointly optimize three key objectives:
 \begin{enumerate}
     \item Accurate reconstruction of CT image patches using the learned dictionary.
     \item Consistency of sparse representations within the same disease class.
     \item Effective classification of lung conditions based on the sparse codes.
 \end{enumerate}
-Appropriate weighting will be applied to balance these objectives, and hyperparameters will be selected through validation experiments to
-ensure stable and meaningful learning.
+Appropriate weighting will be applied to balance these objectives and hyperparameters will be selected through validation experiments.
 
 \section{Classification and Disease Diagnosis}
 
@@ -58,49 +51,43 @@ ensure stable and meaningful learning.
     \label{fig:Training}
 \end{figure}
 
-
-Support Vector Machine (SVM) use as the final disease classification model because of several features:
-1. Ability to handle high-dimensional sparse features produced by dictionary learning and LC-KSVD
-2. Effectiveness when the number of features is much larger than the number of samples
-3. Strong generalization due to the maximum-margin principle
+SVM will be used as the final disease classification model due to the following reasons:
+\begin{enumerate}
+    \item Ability to handle high-dimensional sparse features produced by dictionary learning and \ac{LCKSVD}
+    \item Effectiveness when the number of features is much larger than the number of samples
+    \item Strong generalization due to the maximum-margin principle
+\end{enumerate}
 
 SVMs are also known to be robust when dealing with limited and imbalanced medical data, making them a suitable choice for disease
-classification tasks in chest CT analysis.
+classification tasks.
 
-The model will be implemented using the scikit-learn library in Python and will
-receive the sparse codes generated from the learned dictionary as input features.
-A linear kernel will be used as the initial choice due to its effectiveness with sparse representations.
-
+The model will be implemented using the scikit-learn library in Python and will receive the sparse codes generated from the learned
+dictionary as input features. A linear kernel will be used as the initial choice due to its effectiveness with sparse representations.
 The classifier will predict multiple disease categories, with the number of output classes matching the labeling structure of the CT-RATE dataset.
 
-
-
 \section{Interpretability Analysis and Visualization}
-To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an intuitive UI/UX
-design that incorporates 3D rendering techniques
-Each dictionary atom will be mapped back to the original CT image space, allowing us to see which anatomical regions or pathological patterns
-the model has learned to represent. This mapping is guided by the ReXGroundingCT annotations, which provide precise spatial localization of
-abnormalities within the 3D imaging volume.
+To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
+user interface utilizing 3D rendering techniques. Each dictionary atom will be mapped back to the original CT image space, allowing us
+to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT
+annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.
 
 \section{Volumetric Feature Extraction and Quantification}
-Ground-glass opacities (GGO) will be identified based on their characteristic intensity patterns in CT images, measured using Hounsfield Units
-(HU). GGO regions are defined as lung areas with attenuation values.then captures the partially aerated lung tissue associated with GGOs
-while excluding normal lung parenchyma and denser consolidations.
-Ground-glass opacities (GGO) localization will be handled implicitly through the dictionary learning and annotation guided validation framework.
 
 
 \section{Baseline Comparisons and Benchmarking}
-To demonstrate the effectiveness of the proposed method, it will be compared against well established baseline approaches commonly used in
-current medical imaging research. These baselines are chosen to represent both traditional machine learning techniques and modern deep
-learning models.All methods will be implemented using suitable and widely adopted frameworks, including scikit-learn for classical machine learning and sparse coding methods, and PyTorch or TensorFlow for deep learning based models.
-Standard K-SVD is included as a baseline to highlight the advantage of incorporating label information through LC-KSVD. By comparing these
+The proposed method will be compared against well established baseline approaches commonly used in medical imaging research. These
+baselines are chosen to represent both traditional machine learning techniques and modern deep learning models. Standard K-SVD is included as a baseline to highlight the advantage of incorporating label information through LC-KSVD. By comparing these
 two sparse representation methods, the contribution of label consistent dictionary learning to disease classification performance can be
 assessed.
+
 In addition, several 3D CNN architectures will be used as deep learning baselines, as they are considered state-of-the-art for volumetric CT
 analysis. These models are capable of learning complex spatial patterns across multiple slices and therefore provide a strong benchmark against
 which the proposed method can be evaluated. Existing implementations of these networks will be adopted to ensure reliability and consistency.
 All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational
 demands of CNN-based approaches.
+
+All methods will be implemented using suitable and widely adopted frameworks, including scikit-learn for classical machine learning
+and sparse coding methods, and PyTorch or TensorFlow for deep learning based models.
 
 \section{Evaluation Metrics and Validation Strategy}
 The performance of the proposed model will be evaluated using accuracy, precision, recall, F1-score, and AUC-ROC, which are standard
