@@ -15,7 +15,7 @@ structural details not visible in standard chest radiographs.
 A defining characteristic of a CT scan is the Hounsfield Unit (HU)\cite{Hounsfield1973}, a quantitative scale of radiodensity that allows tissue properties
 to be measured.
 In pulmonary imaging, HU values allow for the objective differentiation of tissues such as normal parenchyma, Ground-Glass
-Opacity (GGO), and consolidation that might appear visually similar. GGO appears as hazy increased opacity of lung, with
+Opacity (GGO), and consolidation that might appear visually similar (figure )\ref{fig:GGO}). GGO appears as hazy increased opacity of lung, with
 preservation of bronchial and vascular margins.
 Consolidation is more opaque, and appears as a homogeneous increase in pulmonary parenchymal attenuation that obscures the margins
 of vessels and airway walls\cite{Bankier2024}. While \ac{GGO} often suggests a reversible or early-stage condition, consolidation
@@ -23,22 +23,23 @@ usually indicates a more aggressive or advanced stage. The Consolidation-to-GGO 
 the volume or area of consolidation by the volume or area of GGO within a lesion or throughout the lungs.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.95\textwidth]{GGO.jpg}
+    \includegraphics[width=0.75\textwidth]{GGO.jpg}
     \caption{
-        Examples of GGO and CONS on axial slices of lung CT scans from COVID-19 patients. Arrows point to the areas affected by the infection. Left: GGO Right: CONS.
+        Examples of GGO and consolidation on axial slices of lung CT scans from COVID-19 patients\cite{GgoAndCons}. Arrows point to the areas affected by
+        the infection. Left: GGO Right: Consolidation.
     }
     \label{fig:GGO}
 \end{figure}
 
-The traditional approach for CT analysis relies on a "slice-by-slice" approach where a radiologist views a series of axial
+The traditional approach for CT analysis relies on a slice-by-slice approach where a radiologist views a series of axial
 cross-sections and identifies the index slice (the single image where a pathology appears at its largest diameter)\cite{Gierada2016QuantitativeCT}.
 A 2D slice only captures a small fraction of a 3D structure. If a nodule is irregularly shaped, the largest slice may not
-represent the true extent of the disease. Studies show that 2D measurements are highly sensitive to the patient’s
+represent the true extent of the disease. Studies show that 2D measurements are highly sensitive to the patient's
 orientation and the specific slice chosen, leading to high inter-observer variability\cite{Gierada2016QuantitativeCT}. 2D models also
-treat each slice as an independent data point, losing the "spatial continuity" between adjacent tissues.
+treat each slice as an independent data point, losing the spatial continuity between adjacent tissues.
 
 3D volumetric analysis represents a quantitative shift wherein the entire dataset is used to reconstruct the lung's anatomy as a
-solid volume. This enables more accurate characterization of lesion size, shape, and spatial distribution, while reducing
+solid volume (figure \ref{fig:3Dvs2DCT}). This enables more accurate characterization of lesion size, shape, and spatial distribution, while reducing
 sensitivity to slice selection and viewing angle. 3D representations better capture disease morphology
 and progression, providing a more robust foundation for quantitative analysis and automated learning-based methods.
 \begin{figure}[h!]
@@ -55,7 +56,7 @@ chest X-rays\cite{Najjar2023Redefining}. However, the exponential increase in da
 for human interpretation and computational analysis. While the prevailing research trend has focused heavily on the deployment of
 3D deep learning architectures, such as Convolutional Neural Networks (CNNs), these models frequently encounter significant hurdles
 regarding computational overhead, data scarcity, and a critical lack of interpretability. The research proposed herein advocates
-for a departure from these "black box" paradigms, suggesting that sparse representation methods offer a more intutive framework for the
+for a departure from these black box paradigms, suggesting that sparse representation methods offer a more intutive framework for the
 volumetric identification of lung diseases by ensuring clinical interpretability.
 
 \section{Problem Statement}

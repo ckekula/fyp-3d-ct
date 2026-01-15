@@ -166,13 +166,13 @@ such as deep dictionary learning\cite{tariyal2016deep}, have mainly been applied
 
 \subsection{Frozen Dictionary Learning for Pathological Differentiation}
 
-A primary innovation of the proposed system is the utilization of "frozen" dictionary learning. In conventional dictionary learning, all
-atoms are updated simultaneously, which can lead to a phenomenon where "normal" atoms inadvertently absorb pathological features~\cite{aharon2006ksvd}, reducing
+A primary innovation of the proposed system is the utilization of frozen dictionary learning. In conventional dictionary learning, all
+atoms are updated simultaneously, which can lead to a phenomenon where normal atoms inadvertently absorb pathological features~\cite{aharon2006ksvd}, reducing
 the model's ability to clearly isolate anomalies. Frozen dictionary learning addresses this by employing a staged training strategy that
 partitions the dictionary into anatomically standard and pathologically specific components~\cite{nika2014change} .
 
 The first phase involves learning a base dictionary using only healthy lung data~\cite{xu2012lowdose}. These atoms capture the expected appearance of
-lung parenchyma, bronchi, and pulmonary vasculature. Once this base dictionary is optimized, it is "frozen" (its atoms are held
+lung parenchyma, bronchi, and pulmonary vasculature. Once this base dictionary is optimized, it is frozen (its atoms are held
 constant and are no longer updated)~\cite{nika2014change}. In the second phase, additional dictionary atoms are introduced and trained specifically on
 anomalous data such as CT scans containing viral pneumonia or adenocarcinoma. Because the standard anatomical features are already
 accounted for by the frozen atoms, the new atoms are forced to capture only the unique variations or lesions that represent the
@@ -180,7 +180,7 @@ disease state.
 
 When a query 3D patch is analyzed, the resulting sparse coefficient vector reveals exactly which atoms ~\cite{jiang2013label}. If the
 representation relies heavily on the anomalous portion of the dictionary, the clinician can identify the specific type of pathology
-present by mapping those atoms back to their visual counterparts in the original signal domain. This "feature separation" ensures
+present by mapping those atoms back to their visual counterparts in the original signal domain. This feature separation ensures
 that the diagnostic process is transparent and verifiable, moving away from the hidden logic of deep neural networks. 
 
 \subsection{Handling Class Imbalance with Interpretable Models}
