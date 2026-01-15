@@ -1,14 +1,14 @@
 \chapter{Introduction}
 
 \section{Background}
-Lung disease remains a leading cause of global morbidity and mortality. In the diagnosis of lung disease, assessing the pattern,
+Lung disease remains a leading cause of global morbidity and mortality\cite{Zhai2025Global}. In the diagnosis of lung disease, assessing the pattern,
 location, and regional distribution of involvement is the domain of radiology. Chest X-rays (CXR) are commonly used as the first 
 imaging test due to its low cost and low radiation exposure. However, their diagnostic sensitivity is limited, as they capture
 only a two-dimensional image of the chest. This causes anatomical superposition, where overlapping tissues and organs are projected
-onto a single plane, allowing visualization of only about 70 of the lung volume\cite{Wielpuetz2014}.
+onto a single plane, allowing visualization of only about 70\% of the lung volume\cite{Wielpuetz2014}.
 
 Computed Tomography (CT) is a radiographic technology that combines X-ray technology with computer reconstruction to produce 
-images of cross sections of the human body\cite{Kasban2015}. This overcomes many of the limitations radiography by eliminating
+images of cross sections of the human body\cite{Kasban2015}. This overcomes many of the limitations of radiography by eliminating
 anatomical superposition and enabling full volumetric assessment of the lungs. CT produces high-resolution slices that reveal fine
 structural details not visible in standard chest radiographs.
 
@@ -67,13 +67,19 @@ that are interpretable by design, where the internal logic is clear from the out
 
 \subsection{Objectives}
 
-The primary goal of this project is to address the limitations of existing AI-based lung disease diagnosis systems, specifically high computational overhead and lack of clinical interpretability, by developing an inherently interpretable and computationally efficient dictionary learning framework for lung disease classification from 3D chest CT scans. Rather than treating diagnosis as a black-box prediction task, the proposed approach aims to enable transparent, anatomically grounded decision-making, where each classification outcome can be traced back to specific 3D pathological patterns. This aligns with clinical reasoning and supports trust, verification, and adoption in radiological workflows.
+The primary goal of this project is to address the limitations of existing AI-based lung disease diagnosis systems, specifically
+high computational overhead and lack of clinical interpretability, by developing an inherently interpretable and computationally
+efficient dictionary learning framework. The proposed approach aims to enable transparent, anatomically grounded decision-making,
+where each classification outcome can be traced back to specific pathological patterns. This aligns with clinical reasoning and
+facillitates validation and adoption in radiological workflows.
 
 \begin{enumerate}
     \item Develop an interpretable dictionary learning framework for lung disease classification from 3D chest CT scans
         \begin{itemize}
             \item Implement a two-phase training strategy to learn normal and pathological dictionary atoms
-            \item Integrate label-consistent \ac{KSVD} to improve class discrimination while maintaining interpretability
+            using a publicly available annotated 3D chest CT dataset
+            \item Integrate label-consistentency to improve class discrimination while maintaining
+            interpretability
         \end{itemize}
 
     \item Improve model interpretability through visualization of learned dictionary atoms
@@ -97,10 +103,13 @@ The primary goal of this project is to address the limitations of existing AI-ba
 
 
 \subsection{Scope}
+The scope of this study focuses on the development and evaluation of a dictionary learning-based framework
+for lung disease classification using volumetric 3D chest CT data, with the following limitations:
+
 \begin{itemize}
     \item The proposed solution is limited to volumetric CT scans of the thorax and does not consider other imaging modalities
     such as chest X-rays, MRI, or PET scans.
-    \item The methodology is restricted to dictionary learning–based approaches, with particular emphasis on KSVD and LC-KSVD
+    \item The methodology is restricted to dictionary learning-based approaches, with particular emphasis on KSVD and LC-KSVD
     End-to-end deep dearning models such as CNNs are not the primary focus of this work and are included only as baseline
     comparators for performance benchmarking.
     \item Clinically, the analysis is confined to the characterization of lung parenchymal abnormalities, specifically GGO and

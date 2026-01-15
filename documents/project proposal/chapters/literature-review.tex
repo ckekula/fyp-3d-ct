@@ -27,17 +27,31 @@ with advanced backbone architectures like ResNeSt50, significantly enhance class
 Sparse dictionary learning represents an unsupervised machine learning paradigm for extracting interpretable features from medical
 images. This technique learns a set of dictionary elements or basis vectors that represent data in a sparse manner. In the context of 3D
 CT, a volumetric patch $y \in \mathbb{R}$ can be approximated by $y \sim Dx$, where $D \in \mathbb{R^{nxK}}$ is the dictionary and $x \in \mathbb{R^k}$
-is a sparse vector containing only a small number of non-zero coefficients.
+is a sparse vector containing only a small number of non-zero coefficients (figure \ref{fig:Sparse}).
 The strength of dictionary learning lies in its ability to extract local, structural information from noisy medical images while requiring
 less labeled data than purely supervised deep learning approaches. This characteristic is particularly valuable for rare diseases with limited
 training samples\cite{zhao2014survey}.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{sparse_representation}
+    \caption{
+        Brief overview of the sparse representation. (a) Sparse linear combination Dx approximating y,
+        where $||x||_0=6$ and (b) two matrices D and X calculated in K-SVD algorithm 36 from Y, where D
+        is a dictionary matrix, X is a matrix including representation coefficient vectors, and Y is a
+        matrix including target signals.
+    }
+    \label{fig:Sparse}
+\end{figure}
+
+
 The success of these models hinges on the quality of the learned dictionary. Traditional methods like \ac{KSVD} focus primarily on
 minimizing the reconstruction error, which is effective for image denoising and super-resolution but lacks the discriminative
-power required for classification\cite{aharon2006ksvd}. To address this, supervised dictionary learning techniques have emerged, which incorporate label
-information directly into the dictionary construction process.
-The \ac{LCKSVD} algorithm enhances the traditional \ac{KSVD} by adding a label consistency constraint and a classification error term to the objective
-function\cite{aharon2006ksvd}. This approach forces images from the same class to have similar sparse codes, thereby increasing the discriminative power of the model.
+power required for classification\cite{aharon2006ksvd}. To address this, supervised dictionary learning techniques have emerged,
+which incorporate label information directly into the dictionary construction process.
+The \ac{LCKSVD} algorithm enhances the traditional \ac{KSVD} by adding a label consistency constraint and a classification error
+term to the objective function\cite{aharon2006ksvd}. This approach forces images from the same class to have similar sparse codes,
+thereby increasing the discriminative power of the model.
 
 Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks.
 In histopathological analysis, Discriminative Feature-oriented Dictionary Learning (DFDL) has shown the ability to learn

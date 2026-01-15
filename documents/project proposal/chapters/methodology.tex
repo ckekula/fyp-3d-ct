@@ -9,11 +9,45 @@ The research consists of 7 main phases as shown in figure \ref{fig:Overall}:
 \end{figure}
 
 \section{Data acquisition and pre-processing}
-We selected two publicly available chest CT datasets, CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct}, for training and evaluation
-due to their complementary nature. CT-RATE is an open-source dataset of 50,188 reconstructed 3D chest CT volumes with their
-corresponding radiology reports. Each volume is annotated with 18 abnormalities, supporting extensive validation and fine-tuning.
-ReXGroundingCT extends CT RATE by providing expert annotated 3D segmentation masks that highlight the exact image regions
-referenced in the radiology reports. The dataset contains 3,142 chest CT scans across 14 abnormality categories. 
+We selected two publicly available 3D chest CT datasets, CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct}, for training and
+evaluation due to their complementary nature. Their characteristics are summarized in table \ref{datasetTable}:
+
+
+\begin{table}[ht]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \caption{Characteristics of CT-RATE and RexGroundingCT datasets}
+    \label{datasetTable}
+
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Feature & CT-RATE dataset & RexGroundingCT dataset \\
+        \hline
+        \makecell[c]{Type of Data}
+            & \makecell[c]{3D non-contrast chest CT volumes with \\ corresponding radiology text reports and \\ multi-abnormality labels}
+            & \makecell[c]{Subset of CT-RATE scans paired with free-text \\ findings and pixel-level 3D segmentation masks} \\
+        \hline
+        \makecell[c]{Number of Scans}
+            & \makecell[c]{25,692 non-contrast chest CT studies \\ (50,188 volumes after reconstruction)}
+            & \makecell[c]{3,142 non-contrast chest CT scans} \\
+        \hline
+        \makecell[c]{Number of patients}
+            & \makecell[c]{21,304 unique patients.}
+            & \makecell[c]{Subset selected from CT-RATE} \\
+        \hline
+        \makecell[c]{Associated Reports}
+            & \makecell[c]{Full radiology reports (findings and \\ impressions) with structured multi- \\ abnormality labels (18 categories)}
+            & \makecell[c]{Standardized radiology reports from \\ CT-RATE used to extract free-text findings} \\
+        \hline
+        \makecell[c]{Annotations}
+            & \makecell[c]{Text-image pairs with structured labels; \\ no voxel-wise ground truth segmentations}
+            & \makecell[c]{Manual pixel-level 3D segmentations \\ of findings extracted from reports \\ (8,028 findings; 16,301 entities)} \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
 
 Data pre-procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
 the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
