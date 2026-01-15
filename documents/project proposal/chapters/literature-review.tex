@@ -6,7 +6,7 @@
 Numerous techiniques have emerged in the field of automated lung disease diagnosis, each attempting to balance accuracy with computational
 feasibility. Early approaches relied on manual feature engineering and classical classifiers like Support Vector Machines (SVM) and Random Forests.\cite{al2024deep}
 While these methods provided strong interpretability, they often lacked the flexibility to handle the noise and variance found in CT data\cite{rai2025explainable}. The
-emergence of deep learning fundamentally changed the landscape of \ac{CT} analysis, especially in areas such as;
+emergence of deep learning fundamentally changed the landscape of \ac{CT} analysis, especially in areas such as\cite{singh20203ddeeplearningmedical};
 
 \begin{itemize}
     \item Image Segmentation and Classification
@@ -36,7 +36,7 @@ training samples\cite{zhao2014survey}.
     \centering
     \includegraphics[width=0.95\textwidth]{sparse_representation}
     \caption{
-        Brief overview of the sparse representation. (a) Sparse linear combination Dx approximating y,
+        Brief overview of the sparse representation\cite{sparseRep}. (a) Sparse linear combination Dx approximating y,
         where $||x||_0=6$ and (b) two matrices D and X calculated in K-SVD algorithm 36 from Y, where D
         is a dictionary matrix, X is a matrix including representation coefficient vectors, and Y is a
         matrix including target signals.
@@ -70,11 +70,11 @@ Similarly, sparse representation methods have achieved 95.4\% accuracy in classi
 effectively handling the high variety and complexity of patterns\cite{sparsedld}.
 
 \subsection{Explainable AI in Medical Imaging}
-Clinical radiology requires an understandable method for determining how the disease occurs. The "black-box" nature of deep neural
+Clinical radiology requires an understandable method for determining how the disease occurs. The black-box nature of deep neural
 networks creates significant barriers for clinical adaptation. Physicians need to understand diagnostic reasoning to ensure
 accountability and patient safety. ~\cite{van2024unveiling}.
 To address these challenges, a range of explainable artificial intelligence (XAI) techniques have been developed to provide insight
-into model decision-making. Predominant XAI approaches in medical imaging include:
+into model decision-making. Predominant XAI approaches in medical imaging include\cite{bhati2024survey}:
 \begin{description}
     \item [Perturbation-Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
     and observing how these changes affect the model's output.
