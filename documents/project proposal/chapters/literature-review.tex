@@ -26,8 +26,8 @@ with advanced backbone architectures like ResNeSt50, significantly enhance class
 \subsection{Sparse Dictionary Learning in Medical Imaging}
 Sparse dictionary learning represents an unsupervised machine learning paradigm for extracting interpretable features from medical
 images. This technique learns a set of dictionary elements or basis vectors that represent data in a sparse manner. In the context of 3D
-CT, a volumetric patch $y \in \mathbb{R}$ can be approximated by $y \sim Dx$, where $D \in \mathbb{R^{nxK}}$ is the dictionary and $x \in \mathbb{R^k}$
-is a sparse vector containing only a small number of non-zero coefficients (figure \ref{fig:Sparse}).
+CT, a volumetric patch $y \in \mathbb{R}$ can be approximated by $y \sim Dx$, where $D \in \mathbb{R^{\mathrm{n} \times \mathrm{K}}}$ is
+the dictionary and $x \in \mathbb{{R}^\mathrm{k}}$ is a sparse vector containing only a small number of non-zero coefficients (figure \ref{fig:Sparse}).
 The strength of dictionary learning lies in its ability to extract local, structural information from noisy medical images while requiring
 less labeled data than purely supervised deep learning approaches. This characteristic is particularly valuable for rare diseases with limited
 training samples\cite{zhao2014survey}.

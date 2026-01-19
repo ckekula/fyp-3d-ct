@@ -85,19 +85,12 @@ Appropriate weighting will be applied to balance these objectives and hyperparam
     \label{fig:Training}
 \end{figure}
 
-SVM will be used as the final disease classification model due to the following reasons:
-\begin{enumerate}
-    \item Ability to handle high-dimensional sparse features\cite{SVM} produced by dictionary learning and \ac{LCKSVD}
-    \item Effectiveness when the number of features is much larger than the number of samples
-    \item Strong generalization due to the maximum-margin principle
-\end{enumerate}
-
-SVMs are also known to be robust when dealing with limited and imbalanced medical data, making them a suitable choice for disease
-classification tasks.
-
-The model will be implemented using the scikit-learn library in Python and will receive the sparse codes generated from the learned
-dictionary as input features. A linear kernel will be used as the initial choice due to its effectiveness with sparse representations.
-The classifier will predict multiple disease categories, with the number of output classes matching the labeling structure of the CT-RATE dataset.
+Disease classification will be performed using a low-order linear classifier operating on the sparse representations produced by the
+learned dictionary. In particular, classification is achieved by applying a linear projection to the sparse codes, followed by a
+softmax-based decision rule. This approach enables multi-class prediction while maintaining a small number
+of trainable parameters. Class imbalance is addressed through the use of class-weighted loss functions during training.
+The classification module will be implemented in Python using scikit-learn, and its performance will be evaluated
+across all disease categories defined in the CT-RATE dataset.
 
 \section{Interpretability Analysis and Visualization}
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
