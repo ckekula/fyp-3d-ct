@@ -114,32 +114,32 @@ The proposed solution is designed to address several gaps in the current literat
         Aspect & Existing Solutions & Proposed Solution \\
         \hline
         Interpretability
-            & \makecell[c]{Post-hoc explanations (Grad-CAM, LIME, SHAP); \\ Black-box features with no semantic meaning}
-            & \makecell[c]{Inherently interpretable dictionary atoms \\ representing concrete anatomical structures \\ (nodules, GGO, consolidations)} \\
+            & \makecell[c]{Post-hoc explanations (Grad-CAM, LIME, SHAP); \\ Black-box features with no semantic meaning\cite{bhati2024survey}}
+            & \makecell[c]{Inherently interpretable dictionary atoms \\ representing concrete anatomical structures \\ (nodules, GGO, consolidations)\cite{zhao2014survey}} \\
         \hline
         \makecell[c]{3D Volumetric \\ Analysis}
-            & \makecell[c]{Limited integration of interpretability with \\ full 3D data; mostly 2D slice-by-slice or \\ post-hoc 3D explanations}
-            & \makecell[c]{Full 3D volumetric analysis with interpretable \\ sparse representations} \\
+            & \makecell[c]{Limited integration of interpretability with \\ full 3D data; mostly 2D slice-by-slice or \\ post-hoc 3D explanations\cite{li2021volumetric}}
+            & \makecell[c]{Full 3D volumetric analysis with interpretable \\ sparse representations\cite{sparsedld}} \\
         \hline
         \makecell[c]{Feature \\ Representation}
-            & \makecell[c]{Black-box features with no semantic meaning}
-            & \makecell[c]{Dictionary atoms represent concrete, visualizable \\ anatomical structures (nodules, GGO, \\ consolidations)} \\
+            & \makecell[c]{Black-box features with no semantic meaning\cite{litjens2017survey}}
+            & \makecell[c]{Dictionary atoms represent concrete, visualizable \\ anatomical structures (nodules, GGO, \\ consolidations)\cite{dfdlhisto}} \\
         \hline
         \makecell[c]{Label \\ Consistency}
-            & \makecell[c]{Standard K-SVD focuses only on \\ reconstruction error, lacks discriminative power}
-            & \makecell[c]{Dictionary learning with sparse representations \\ is more efficient than deep 3D CNNs} \\
+            & \makecell[c]{Standard K-SVD focuses only on \\ reconstruction error, lacks discriminative power\cite{aharon2006ksvd}}
+            & \makecell[c]{Dictionary learning with sparse representations \\ is more efficient than deep 3D CNNs\cite{covidct}} \\
         \hline
         \makecell[c]{Clinical Metrics \\ Integration}
-            & \makecell[c]{Often limited to classification accuracy; \\ lacks integration of domain-specific \\ quantitative metrics}
-            & \makecell[c]{Integrates HU-based segmentation for GGO/ \\ consolidation detection and C/G ratio calculation} \\
+            & \makecell[c]{Often limited to classification accuracy; \\ lacks integration of domain-specific \\ quantitative metrics\cite{webb2014fundamentals}}
+            & \makecell[c]{Integrates HU-based segmentation for GGO/ \\ consolidation detection and C/G ratio calculation\cite{Tanaka2025ConsolidationToGGO}} \\
         \hline
         \makecell[c]{Clinical Metrics \\ Integration}
-            & \makecell[c]{Deep learning requires large labeled datasets}
-            & \makecell[c]{Dictionary learning is effective with limited \\ labeled data; particularly valuable for \\ rare diseases} \\
+            & \makecell[c]{Deep learning requires large labeled datasets\cite{liu2022deep}}
+            & \makecell[c]{Dictionary learning is effective with limited \\ labeled data; particularly valuable for \\ rare diseases\cite{zhao2014survey}} \\
         \hline
         \makecell[c]{Handling Class \\ Imbalance}
-            & \makecell[c]{Requires synthetic data generation, complex \\ loss weighting, or meta-learning}
-            & \makecell[c]{Sparse dictionary learning naturally handles \\ few-shot scenarios for rare diseases} \\
+            & \makecell[c]{Requires synthetic data generation, complex \\ loss weighting, or meta-learning\cite{johnson2019survey}}
+            & \makecell[c]{Sparse dictionary learning naturally handles \\ few-shot scenarios for rare diseases\cite{covidct}} \\
         \hline
     \end{tabular}%
     }
