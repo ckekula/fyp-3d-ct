@@ -49,22 +49,16 @@ evaluation due to their complementary nature. Their characteristics are summariz
     }
 \end{table}
 
-Data pre-procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
+Data pre procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
 the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
 normalization, and lung segmentation, shall be implemented before feeding the data into the model. Both datasets are released under MIT licenses that
 allow use for non-commercial academic research.
 
 \section{Model Training}
 Model training will be implemented using a two-phase frozen dictionary learning approach\cite{ksvd} to capture both normal and pathological
-patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.
-
-\begin{description}[style=nextline]
-    \item[Phase 1: Learning the Normal Dictionary]
-    A dictionary is trained using only healthy or normal samples, enabling the model to capture typical lung anatomy.
-    \item[Phase 2: Learning Pathological Atoms]
-    With the normal dictionary fixed, additional atoms are learned\cite{LCKSVD} to represent disease-specific pathological features while
-    leveraging the frozen dictionary during sparse coding.
-\end{description}
+patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.The approach first learns a dictionary from
+healthy lung scans to model normal anatomical patterns, and then, while keeping this normal representation fixed, incrementally learns
+additional atoms to capture disease specific pathological features during sparse coding.
 
 We extend the dictionary learning approach using \ac{LCKSVD} to improve the discriminative power of the learned sparse representations.
 The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category. \ac{LCKSVD}
@@ -96,7 +90,9 @@ across all disease categories defined in the CT-RATE dataset.
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
 user interface utilizing 3D rendering techniques. Each dictionary atom will be mapped back to the original CT image space, allowing us
 to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT
-annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.
+annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.Interpretability is measured using 
+semantic coherence, atom-to-pattern correspondence, reconstruction fidelity, and segmentation accuracy, which together evaluate how 
+meaningfully each learned atom represents clinically relevant structures when mapped back to the original 3D CT space.
 
 \section{Volumetric Feature Extraction and Quantification}
 Volumetric quantification of pulmonary patterns will be performed using HU-based segmentation to differentiate between GGO and
