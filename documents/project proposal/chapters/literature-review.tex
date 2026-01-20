@@ -36,26 +36,25 @@ training samples\cite{zhao2014survey}.
     \centering
     \includegraphics[width=0.95\textwidth]{sparse_representation}
     \caption[Visualization of Sparse Representation]{
-        Brief overview of the sparse representation\cite{sparseRep}. (a) Sparse linear combination Dx approximating y,
+        Brief overview of the sparse representation\cite{sparseRep}. "(a) Sparse linear combination Dx approximating y,
         where $||x||_0=6$ and (b) two matrices D and X calculated in K-SVD algorithm 36 from Y, where D
         is a dictionary matrix, X is a matrix including representation coefficient vectors, and Y is a
-        matrix including target signals.
+        matrix including target signals".
     }
     \label{fig:Sparse}
 \end{figure}
-
 
 The success of these models hinges on the quality of the learned dictionary. Traditional methods like \ac{KSVD} focus primarily on
 minimizing the reconstruction error, which is effective for image denoising and super-resolution but lacks the discriminative
 power required for classification\cite{aharon2006ksvd}. To address this, supervised dictionary learning techniques have emerged,
 which incorporate label information directly into the dictionary construction process.
 The \ac{LCKSVD} algorithm enhances the traditional \ac{KSVD} by adding a label consistency constraint and a classification error
-term to the objective function\cite{aharon2006ksvd}. This approach forces images from the same class to have similar sparse codes,
+term to the objective function\cite{StructuredDictionaryLearning}. This approach forces images from the same class to have similar sparse codes,
 thereby increasing the discriminative power of the model.
 
 Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks.
 In histopathological analysis, Discriminative Feature-oriented Dictionary Learning (DFDL) has shown the ability to learn
-class-specific dictionaries that achieve high classification accuracy even with limited training data—a critical advantage when generous
+class specific dictionaries that achieve high classification accuracy even with limited training data—a critical advantage when generous
 training samples are not available\cite{dfdlhisto}. In neuroimaging, multi-feature kernel supervised dictionary learning approaches
 have demonstrated superior performance in distinguishing Alzheimer's disease patients from cognitively unimpaired individuals,
 achieving 98.18\% classification accuracy while maintaining fast testing times\cite{mkscddlad}.
@@ -74,15 +73,15 @@ Clinical radiology requires an understandable method for determining how the dis
 networks creates significant barriers for clinical adaptation. Physicians need to understand diagnostic reasoning to ensure
 accountability and patient safety. ~\cite{van2024unveiling}.
 To address these challenges, a range of explainable artificial intelligence (XAI) techniques have been developed to provide insight
-into model decision-making. Predominant XAI approaches in medical imaging include\cite{bhati2024survey}:
+into model decision-making. Predominant XAI approaches in medical imaging include:
 \begin{description}
     \item [Perturbation-Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
-    and observing how these changes affect the model's output.
+    and observing how these changes affect the model's output\cite{bhati2024survey}.
     \item [Gradient-Based Methods:] These methods highlight image areas that most significantly utilizing backpropagation gradients
-    influence a classification. Grad-CAM is particularly predominant because it is applicable to nearly any network architecture~\cite{singh2024explainable}.
+    influence a classification. Grad-CAM is particularly predominant because it is applicable to nearly any network architecture~\cite{bhati2024survey}\cite{singh2024explainable}.
     \item [Decomposition-Based Methods:] Techniques like Layer-Wise Relevance Propagation (LRP) distribute the output of the final
     layer back through the network recursively. This process calculates a relevance score for each neuron, generating a heatmap
-    that provides a clearer distinction of feature contribution.
+    that provides a clearer distinction of feature contribution\cite{bhati2024survey}.
 \end{description}
 
 These explainability techniques greatly increase clinician comprehension and confidence in adapting AI-driven diagnostic results,
