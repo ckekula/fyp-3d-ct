@@ -66,7 +66,6 @@ as it lacks the accountability necessary for legal and ethical compliance. This 
 models that are interpretable by design, where the internal logic is clear from the beginning.
 
 \section{Objectives and Scope}
-
 \subsection{Objectives}
 
 The primary goal of this project is to address the limitations of existing AI-based lung disease diagnosis systems, specifically
@@ -76,26 +75,24 @@ where each classification outcome can be traced back to specific pathological pa
 facilitates validation and adoption in radiological workflows. The specific objectives are as follows:
 
 \begin{enumerate}
-    \item Develop an interpretable dictionary learning framework for lung disease classification from 3D chest CT scans
+    \item Develop a Dictionary Learning framework for Interpretable Lung Disease Classification from 3D Chest CT
         \begin{itemize}
             \item Implement a training strategy to learn normal and pathological dictionary atoms
             using a publicly available annotated 3D chest CT dataset
             \item Integrate label consistency to improve class discrimination
         \end{itemize}
-
-    \item Improve model interpretability through visualization of learned dictionary atoms
+    \item Visualize dictionary atoms and map them to anatomical features
         \begin{itemize}
-            \item Visualize dictionary atoms in 3D and map them to anatomical and pathological lung features
-            \item Analyze and compare sparse coefficient patterns across different disease classes
+            \item Compare sparse coefficient patterns across disease classes
+            \item Visulaize dictionary atoms using an interactive 3D interface
+            \item Demonstrate atom-to-pathology correspondence
         \end{itemize}
-
-    \item Evaluate the effectiveness of the proposed framework
+    \item Benchmark against baseline models
         \begin{itemize}
-            \item Benchmark performance against standard \ac{KSVD} without label consistency
-            \item Compare results with a 3D \ac{CNN} baseline (3D-ResNet)
+            \item Compare with standard \ac{KSVD} without label consistency constraint
+            \item Compare with 3D \ac{CNN} baseline (3D-ResNet)
         \end{itemize}
-
-    \item Integrate clinically relevant volumetric features into the analysis
+    \item Integrate clinical metrics for volumetric analysis
         \begin{itemize}
             \item Perform segmentation to identify radiological features such as GGO and consolidation
             \item Compute the Consolidation-to-GGO (C/G) ratio and relate model predictions to clinical thresholds
@@ -108,7 +105,6 @@ facilitates validation and adoption in radiological workflows. The specific obje
         \end{itemize}
 
 \end{enumerate}
-
 
 \subsection{Scope}
 The scope of this study focuses on the development and evaluation of a dictionary learning-based framework
