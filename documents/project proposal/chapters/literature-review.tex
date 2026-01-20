@@ -37,7 +37,7 @@ training samples\cite{zhao2014survey}.
     \includegraphics[width=0.95\textwidth]{sparse_representation}
     \caption[Visualization of Sparse Representation]{
         Brief overview of the sparse representation\cite{sparseRep}. (a) Sparse linear combination Dx approximating y,
-        where $||x||_0=6$ and (b) two matrices D and X calculated in K-SVD algorithm 36 from Y, where D
+        where $||x||_0=6$ and (b) two matrices D and X calculated in K-SVD algorithm from Y, where D
         is a dictionary matrix, X is a matrix including representation coefficient vectors, and Y is a
         matrix including target signals.
     }
@@ -46,7 +46,7 @@ training samples\cite{zhao2014survey}.
 
 
 The success of these models hinges on the quality of the learned dictionary. Traditional methods like \ac{KSVD} focus primarily on
-minimizing the reconstruction error, which is effective for image denoising and super-resolution but lacks the discriminative
+minimizing the reconstruction error, which is effective for image denoising and super resolution but lacks the discriminative
 power required for classification\cite{aharon2006ksvd}. To address this, supervised dictionary learning techniques have emerged,
 which incorporate label information directly into the dictionary construction process.
 The \ac{LCKSVD} algorithm enhances the traditional \ac{KSVD} by adding a label consistency constraint and a classification error
@@ -54,14 +54,14 @@ term to the objective function\cite{aharon2006ksvd}. This approach forces images
 thereby increasing the discriminative power of the model.
 
 Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks.
-In histopathological analysis, Discriminative Feature-oriented Dictionary Learning (DFDL) has shown the ability to learn
-class-specific dictionaries that achieve high classification accuracy even with limited training data—a critical advantage when generous
-training samples are not available\cite{dfdlhisto}. In neuroimaging, multi-feature kernel supervised dictionary learning approaches
+In histopathological analysis, Discriminative Feature oriented Dictionary Learning (DFDL) has shown the ability to learn
+class specific dictionaries that achieve high classification accuracy even with limited training data a critical advantage when generous
+training samples are not available\cite{dfdlhisto}. In neuroimaging, multi feature kernel supervised dictionary learning approaches
 have demonstrated superior performance in distinguishing Alzheimer's disease patients from cognitively unimpaired individuals,
 achieving 98.18\% classification accuracy while maintaining fast testing times\cite{mkscddlad}.
 
 Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images.
-One approach utilized both frozen dictionary learning and label-consistent LC-KSVD to classify COVID-19 CT scans, achieving
+One approach utilized both frozen dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving
 89\% accuracy on the CC-CCII dataset\cite{covidct}.
 The framework's key advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original
 input signal domain. This work demonstrates that sparse representation methods offer an effective balance between performance and
@@ -74,18 +74,18 @@ Clinical radiology requires an understandable method for determining how the dis
 networks creates significant barriers for clinical adaptation. Physicians need to understand diagnostic reasoning to ensure
 accountability and patient safety. ~\cite{van2024unveiling}.
 To address these challenges, a range of explainable artificial intelligence (XAI) techniques have been developed to provide insight
-into model decision-making. Predominant XAI approaches in medical imaging include\cite{bhati2024survey}:
+into model decision making. Predominant XAI approaches in medical imaging include\cite{bhati2024survey}:
 \begin{description}
-    \item [Perturbation-Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
+    \item [Perturbation Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
     and observing how these changes affect the model's output.
-    \item [Gradient-Based Methods:] These methods highlight image areas that most significantly utilizing backpropagation gradients
+    \item [Gradient Based Methods:] These methods highlight image areas that most significantly utilizing backpropagation gradients
     influence a classification. Grad-CAM is particularly predominant because it is applicable to nearly any network architecture~\cite{singh2024explainable}.
-    \item [Decomposition-Based Methods:] Techniques like Layer-Wise Relevance Propagation (LRP) distribute the output of the final
+    \item [Decomposition Based Methods:] Techniques like Layer Wise Relevance Propagation (LRP) distribute the output of the final
     layer back through the network recursively. This process calculates a relevance score for each neuron, generating a heatmap
     that provides a clearer distinction of feature contribution.
 \end{description}
 
-These explainability techniques greatly increase clinician comprehension and confidence in adapting AI-driven diagnostic results,
+These explainability techniques greatly increase clinician comprehension and confidence in adapting AI driven diagnostic results,
 making it easier to integrate with conventional radiological workflows while maintaining regulatory compliance~\cite{singh2024explainable}.
 
 \subsection{Volumetric Clinical Feature Extraction}
@@ -114,15 +114,15 @@ The proposed solution is designed to address several gaps in the current literat
         Aspect & Existing Solutions & Proposed Solution \\
         \hline
         Interpretability
-            & \makecell[c]{Post-hoc explanations (Grad-CAM, LIME, SHAP); \\ Black-box features with no semantic meaning\cite{bhati2024survey}}
+            & \makecell[c]{Post hoc explanations (Grad CAM, LIME, SHAP); \\ Black box features with no semantic meaning\cite{bhati2024survey}}
             & \makecell[c]{Inherently interpretable dictionary atoms \\ representing concrete anatomical structures \\ (nodules, GGO, consolidations)\cite{zhao2014survey}} \\
         \hline
         \makecell[c]{3D Volumetric \\ Analysis}
-            & \makecell[c]{Limited integration of interpretability with \\ full 3D data; mostly 2D slice-by-slice or \\ post-hoc 3D explanations\cite{li2021volumetric}}
+            & \makecell[c]{Limited integration of interpretability with \\ full 3D data; mostly 2D slice by slice or \\ post hoc 3D explanations\cite{li2021volumetric}}
             & \makecell[c]{Full 3D volumetric analysis with interpretable \\ sparse representations\cite{sparsedld}} \\
         \hline
         \makecell[c]{Feature \\ Representation}
-            & \makecell[c]{Black-box features with no semantic meaning\cite{litjens2017survey}}
+            & \makecell[c]{Black box features with no semantic meaning\cite{litjens2017survey}}
             & \makecell[c]{Dictionary atoms represent concrete, visualizable \\ anatomical structures (nodules, GGO, \\ consolidations)\cite{dfdlhisto}} \\
         \hline
         \makecell[c]{Label \\ Consistency}
@@ -148,12 +148,12 @@ The proposed solution is designed to address several gaps in the current literat
 \subsection{Inherently Interpretable Architectures}
 
 While 3D CNNs have demonstrated superior performance for lung disease classification from CT scans, the majority of explainability
-research has focused on 2D imaging modalities (chest X-rays) or individual CT slices analyzed independently~\cite{li2021volumetric}. There remains a
+research has focused on 2D imaging modalities (chest X rays) or individual CT slices analyzed independently~\cite{li2021volumetric}. There remains a
 significant gap in developing inherently interpretable feature representations specifically designed for full 3D volumetric data~\cite{huang2022survey}.
 
-Modern XAI methodologies (e.g., 3D Grad-CAM) frequently utilize post-hoc explanations to visualize important regions but do not
+Modern XAI methodologies (e.g., 3D Grad-CAM) frequently utilize post hoc explanations to visualize important regions but do not
 provide semantically meaningful feature representations that clinicians can directly relate to pathological patterns~\cite{huang2022survey}.
-These approaches explain model decisions after they are made but fail to tackle their underlying black-box nature.
+These approaches explain model decisions after they are made but fail to tackle their underlying black box nature.
 The extension of 3D saliency maps to interpretable concepts such as specific lesion types, textural patterns, or anatomical
 landmarks remains largely unexplored. This gap is particularly significant, because pulmonary pathology often manifests as
 spatial patterns spanning multiple CT slices (e.g., centrilobular versus panlobular emphysema distributions).
@@ -187,10 +187,10 @@ that the diagnostic process is transparent and verifiable, moving away from the 
 Rare lung pathologies such as certain cancer subtypes (e.g., large cell carcinoma, carcinoid tumors), uncommon ILD patterns
 (e.g., pleuroparenchymal fibroelastosis), and emerging infectious diseases present severe class ~\cite{liu2022deep}. Deep learning
 research has addressed this through weighted loss functions, oversampling strategies, synthetic data generation (e.g., progressive
-growing GANs), and meta-learning approaches~\cite{johnson2019survey}. However, the application of class imbalance mitigation techniques within sparse
+growing GANs), and meta learning approaches~\cite{johnson2019survey}. However, the application of class imbalance mitigation techniques within sparse
 representation frameworks for 3D CT analysis is underexplored~\cite{zhao2014survey}. Dictionary learning methods that can effectively learn representative
 atoms for rare categories while maintaining interpretability for common pathologies require further development~\cite{jiang2013label}.
 
-The few-shot learning capabilities of sparse dictionary approaches offer potential advantages for rare disease applications, but have
+The few shot learning capabilities of sparse dictionary approaches offer potential advantages for rare disease applications, but have
 not been systematically evaluated in pulmonary imaging contexts. DFDL approaches have shown promise in histopathological image classification under class imbalance
 conditions~\cite{dfdlhisto}, demonstrating improved recognition of rare tumor categories while maintaining interpretability.

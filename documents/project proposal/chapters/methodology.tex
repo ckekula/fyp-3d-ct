@@ -26,33 +26,33 @@ evaluation due to their complementary nature. Their characteristics are summariz
         Feature & CT-RATE dataset & RexGroundingCT dataset \\
         \hline
         \makecell[c]{Type of Data}
-            & \makecell[c]{3D non-contrast chest CT volumes with \\ corresponding radiology text reports and \\ multi-abnormality labels}
-            & \makecell[c]{Subset of CT-RATE scans paired with free-text \\ findings and pixel-level 3D segmentation masks} \\
+            & \makecell[c]{3D non contrast chest CT volumes with \\ corresponding radiology text reports and \\ multi-abnormality labels}
+            & \makecell[c]{Subset of CT-RATE scans paired with free-text \\ findings and pixel level 3D segmentation masks} \\
         \hline
         \makecell[c]{Number of Scans}
-            & \makecell[c]{25,692 non-contrast chest CT studies \\ (50,188 volumes after reconstruction)}
-            & \makecell[c]{3,142 non-contrast chest CT scans} \\
+            & \makecell[c]{25,692 non contrast chest CT studies \\ (50,188 volumes after reconstruction)}
+            & \makecell[c]{3,142 non contrast chest CT scans} \\
         \hline
         \makecell[c]{Number of patients}
             & \makecell[c]{21,304 unique patients.}
             & \makecell[c]{Subset selected from CT-RATE} \\
         \hline
         \makecell[c]{Associated Reports}
-            & \makecell[c]{Full radiology reports (findings and \\ impressions) with structured multi- \\ abnormality labels (18 categories)}
-            & \makecell[c]{Standardized radiology reports from \\ CT-RATE used to extract free-text findings} \\
+            & \makecell[c]{Full radiology reports (findings and \\ impressions) with structured multi \\ abnormality labels (18 categories)}
+            & \makecell[c]{Standardized radiology reports from \\ CT-RATE used to extract free text findings} \\
         \hline
         \makecell[c]{Annotations}
-            & \makecell[c]{Text-image pairs with structured labels; \\ no voxel-wise ground truth segmentations}
-            & \makecell[c]{Manual pixel-level 3D segmentations \\ of findings extracted from reports \\ (8,028 findings; 16,301 entities)} \\
+            & \makecell[c]{Text image pairs with structured labels; \\ no voxel wise ground truth segmentations}
+            & \makecell[c]{Manual pixel level 3D segmentations \\ of findings extracted from reports \\ (8,028 findings; 16,301 entities)} \\
         \hline
     \end{tabular}%
     }
 \end{table}
 
-Data pre-processing corrections such as intensity normalization and spacing adjustments have already been implemented directly in
-the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
+Data pre processing corrections such as intensity normalization and spacing adjustments have already been implemented directly in
+the dataset. If further pre processing is required, standard techniques such as resampling to a uniform voxel size, intensity
 normalization, and lung segmentation, shall be implemented before feeding the data into the model. Both datasets are released under MIT licenses that
-allow use for non-commercial academic research.
+allow use for non commercial academic research.
 
 \section{Model Training}
 
@@ -82,7 +82,7 @@ Appropriate weighting will be applied to balance these objectives and hyperparam
 
 Disease classification will be performed using a low-order linear classifier operating on the sparse representations produced by the
 learned dictionary. In particular, classification is achieved by applying a linear projection to the sparse codes, followed by a
-softmax-based decision rule. This approach enables multi-class prediction while maintaining a small number of trainable parameters.
+softmax based decision rule. This approach enables multi class prediction while maintaining a small number of trainable parameters.
 The classification module will be implemented in Python using scikit-learn.
 
 Diagnostic Hypotheses will be done for the following 10 disease classes:
@@ -104,7 +104,7 @@ To improve interpretability and clinical relevance, the learned dictionary atoms
 user interface utilizing 3D rendering techniques. Each dictionary atom will be mapped back to the original CT image space, allowing us
 to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT
 annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.Interpretability is measured using 
-semantic coherence, atom-to-pattern correspondence, reconstruction fidelity, and segmentation accuracy, which together evaluate how 
+semantic coherence, atom to pattern correspondence, reconstruction fidelity, and segmentation accuracy, which together evaluate how 
 meaningfully each learned atom represents clinically relevant structures when mapped back to the original 3D CT space.
 
 \section{Volumetric Feature Extraction and Quantification}
@@ -139,4 +139,4 @@ and sparse coding methods, and PyTorch or TensorFlow for deep learning based mod
 The performance of the proposed model will be evaluated using accuracy, precision, recall, F1-score, and AUC-ROC, which are standard
 and widely accepted metrics in medical image analysis. Greater emphasis will be placed on accuracy and recall, as they are especially
 important in a clinical context to ensure overall reliability and to minimize missed disease cases, while the remaining metrics
-provide additional insight into class-wise performance and discriminative ability.
+provide additional insight into class wise performance and discriminative ability.
