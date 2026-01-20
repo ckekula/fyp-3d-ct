@@ -1,16 +1,17 @@
 \chapter{Conclusion}
 This proposal presents a sparse dictionary learning framework for interpretable lung disease diagnosis from 3D chest CT scans.
-By employing frozen dictionary learning with LC-KSVD, the proposed approach addresses fundamental limitations of existing deep
-learning methods: computational complexity, data scarcity, and lack of clinical interpretability. The two phase training strategy
-ensures clear separation between normal anatomical features and pathological patterns, enabling transparent diagnostic reasoning that
-clinicians can verify and trust.
+By using frozen dictionary learning with LC-KSVD, the proposed system addresses fundamental limitations of existing deep
+learning methods like computational complexity, data scarcity, and lack of clinical interpretability. Label consistency
+ensures a clear separation between normal anatomical features and pathological patterns, which enables transparent diagnostic
+reasoning that clinicians can verify and trust.
 
-The integration of volumetric clinical metrics bridges the gap between
-machine learning predictions and established radiological practice. Dictionary atoms provide semantically meaningful representations
-that map directly to observable pathological structures, moving beyond post hoc explanations toward inherently interpretable models.
+The integration of volumetric clinical metrics bridges the gap between machine learning predictions and established radiological
+practice. Dictionary atoms provide semantically meaningful representations
+that map directly to pathological structures which can be visualized. This approach moved beyond post hoc explanations
+towards demonstrating the feasibility of inherently interpretable models.
 
-Benchmarking against K-SVD and 3D CNN baselines will validate the effectiveness of label consistent dictionary learning for medical
-image classification. The use of publicly available datasets (CT-RATE and ReXGroundingCT) ensures reproducibility and facilitates
+Benchmarking against K-SVD and 3D CNN baselines will validate the effectiveness of our approach for medical
+image classification. The use of publicly available datasets (CT-RATE and ReXGroundingCT) ensures reproducibility for
 future research extensions.
-Ultimately, this work contributes to the development of open book AI systems that prioritize clinical transparency alongside
-diagnostic performance, offering a viable alternative to black box deep learning approaches in high-stakes medical applications.
+Ultimately, this work contributes to the development of transparent AI systems that prioritize clinical interpretability alongside
+diagnostic performance, offering a viable alternative to deep learning and other black box approaches in high stakes medical applications.
