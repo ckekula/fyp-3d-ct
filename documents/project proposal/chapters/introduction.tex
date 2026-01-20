@@ -14,7 +14,7 @@ Opacity (GGO), and consolidation (figure \ref{fig:GGO}).
 The traditional approach for CT analysis relies on a slice by slice approach where a radiologist views a series of axial
 cross sections and identifies the index slice (the single image where a pathology appears at its largest diameter)\cite{Gierada2016QuantitativeCT}.
 A 2D slice only captures a small fraction of a 3D structure. Studies show that 2D measurements are highly sensitive to the patient's
-orientation and the specific slice chosen, leading to high inter-observer variability\cite{Gierada2016QuantitativeCT}. 2D models also
+orientation and the specific slice chosen, leading to high inter observer variability\cite{Gierada2016QuantitativeCT}. 2D models also
 treat each slice as an independent data point, losing the spatial continuity between adjacent tissues.
 \begin{figure}[h!]
     \centering
@@ -45,22 +45,22 @@ challenge for human interpretation and computational analysis. The prevailing re
 3D deep learning architectures, such as Convolutional Neural Networks (CNNs), achieving remarkable success in
 tasks such as segmenting suspected infection regions and differentiating between various types of carcinoma\cite{Tiwari2023Comprehensive}.
 Despite these advancements, these models frequently encounter challenges regarding computational complexity, data scarcity, and
-a lack of interpretability. The research proposed herein advocates for a departure from these black-box paradigms, suggesting that
+a lack of interpretability. The research proposed herein advocates for a departure from these black box paradigms, suggesting that
 sparse representation methods offer a more intutive framework for the volumetric identification of lung diseases by ensuring clinical interpretability.
 
 \section{Problem Statement}
 
 \subsection{Computational Complexity}
 Processing a 3D CT scan involves treating stacked 2D slices as a single volumetric matrix, which demands significantly more GPU
-memory and processing power than standard image analysis. Unlike ordinary RGB images, CT scans consist of single-channel data with
+memory and processing power than standard image analysis. Unlike ordinary RGB images, CT scans consist of single channel data with
 varying voxel dimensions and resolution, making spatial alignment and generalizability across different scanners more difficult.
 Furthermore, the curse of dimensionality remains an issue; as the network depth increases to capture global features,
 the risk of gradient explosion and slow convergence becomes significant.
 
 \subsection{Interpretability Bottleneck}
 Beyond computational limits, the clinical utility of deep learning is hindered by a lack of interpretability. While tools like
-Grad CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post-hoc explanations are often insufficient for
-medical professionals who require a granular understanding of the model's decision-making process. In high stakes environments, a
+Grad CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post hoc explanations are often insufficient for
+medical professionals who require a granular understanding of the model's decision making process. In high stakes environments, a
 model that produces a diagnosis without transparency in its reasoning is difficult to integrate into standard workflows,
 as it lacks the accountability necessary for legal and ethical compliance. This transparency gap has led to a renewed interest in
 models that are interpretable by design, where the internal logic is clear from the beginning.
