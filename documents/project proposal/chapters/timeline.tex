@@ -1,10 +1,10 @@
 \chapter{Timeline and Resources Required}
 
 \section{Timeline}
-The project will be carried out within 2 semesters (24 weeks) according to the timeline given in table \ref{timeplan}
+The project will be carried out within 2 semesters (24 weeks) according to the timeline given in table \ref{timeplan}.
 
 \section{Resources Required}
-State the resource required for the project and estimate the budget for the resources required.
+The project requires several Hardware and Software resources as summarized in table \ref{resources}.
 
 \begin{sidewaystable}[ht]
     \centering
@@ -33,14 +33,74 @@ State the resource required for the project and estimate the budget for the reso
             &  &  &  &  &  &  &  &  &  &  &  &  
             & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  &  &  &  \\
         \hline
-        \makecell[c]{Clinical validation, \\ comparative experiments}
+        \makecell[c]{Clinical validation \\ \& comparative experiments}
             &  &  &  &  &  &  &  &  &  &  &  &  
             &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} &  &  \\
         \hline
-        \makecell[c]{Final experiments, \\ project documentation}
+        \makecell[c]{Final experiments \\ \& visualization}
             &  &  &  &  &  &  &  &  &  &  &  &  
             &  &  &  &  &  &  &  &  &  & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} \\
         \hline           
     \end{tabular}%
     }
 \end{sidewaystable}
+\begin{table}[ht]
+    \centering
+    \caption{Resources Required for the Project}
+    \label{resources}
+
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Resource Category} & \textbf{Specification} & \textbf{Availability} & \textbf{Cost} \\ \hline
+
+        \multicolumn{4}{|l|}{\textbf{Hardware}} \\ \hline
+        GPU &
+        \makecell[l]{NVIDIA GPU (minimum 16GB VRAM) \\ for training 3D CNN baselines and \\ processing volumetric CT data} &
+        Institutional &
+        N/A \\ \hline
+
+        CPU &
+        \makecell[l]{Multi-core processor (minimum 8 cores) \\ for dictionary learning algorithms} &
+        Institutional &
+        N/A \\ \hline
+
+        RAM &
+        \makecell[l]{Minimum 32GB for handling large 3D CT \\ volumes in memory} &
+        Institutional &
+        N/A \\ \hline
+
+        Storage &
+        \makecell[l]{Minimum 500GB for storing CT-RATE \\ and ReXGroundingCT datasets} &
+        Existing &
+        N/A \\ \hline
+
+        \multicolumn{4}{|l|}{\textbf{Software \& Libraries}} \\ \hline
+        ML Frameworks &
+        \makecell[l]{PyTorch or TensorFlow for 3D CNNs \\ scikit-learn for SVM classification} &
+        Open Source &
+        Free \\ \hline
+
+        Medical Imaging &
+        \makecell[l]{SimpleITK or NiBabel for CT processing \\ PyDicom for DICOM handling \\ scikit-image for preprocessing} &
+        Open Source &
+        Free \\ \hline
+
+        Visualization &
+        \makecell[l]{Three.js or VTK for 3D visualization \\ ITK-SNAP or 3D Slicer for qualitative analysis} &
+        Open Source &
+        Free \\ \hline
+
+        \multicolumn{4}{|l|}{\textbf{Datasets}} \\ \hline
+        CT-RATE &
+        \makecell[l]{50,188 3D chest CT volumes with \\ radiology reports} &
+        \makecell[l]{Open Source \\ (MIT License)} &
+        Free \\ \hline
+
+        ReXGroundingCT &
+        \makecell[l]{3,142 chest CT scans with annotated \\ 3D segmentation masks} &
+        \makecell[l]{Open Source \\ (MIT License)} &
+        Free \\ \hline
+    \end{tabular}%
+    }
+\end{table}
