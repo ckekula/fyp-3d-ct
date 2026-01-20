@@ -56,15 +56,9 @@ allow use for non-commercial academic research.
 
 \section{Model Training}
 Model training will be implemented using a two-phase frozen dictionary learning approach\cite{ksvd} to capture both normal and pathological
-patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.
-
-\begin{description}[style=nextline]
-    \item[Phase 1: Learning the Normal Dictionary]
-    A dictionary is trained using only healthy or normal samples, enabling the model to capture typical lung anatomy.
-    \item[Phase 2: Learning Pathological Atoms]
-    With the normal dictionary fixed, additional atoms are learned\cite{LCKSVD} to represent disease-specific pathological features while
-    leveraging the frozen dictionary during sparse coding.
-\end{description}
+patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.The approach first learns a dictionary from
+healthy lung scans to model normal anatomical patterns, and then, while keeping this normal representation fixed, incrementally learns
+additional atoms to capture disease specific pathological features during sparse coding.
 
 We extend the dictionary learning approach using \ac{LCKSVD} to improve the discriminative power of the learned sparse representations.
 The label consistency constraint will produce similar sparse codes for CT samples belonging to the same disease category. \ac{LCKSVD}
