@@ -49,15 +49,23 @@ evaluation due to their complementary nature. Their characteristics are summariz
     }
 \end{table}
 
-Data pre procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
+Data pre-processing corrections such as intensity normalization and spacing adjustments have already been implemented directly in
 the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
 normalization, and lung segmentation, shall be implemented before feeding the data into the model. Both datasets are released under MIT licenses that
 allow use for non-commercial academic research.
 
 \section{Model Training}
-Model training will be implemented using a two-phase frozen dictionary learning approach\cite{ksvd} to capture both normal and pathological
-patterns in chest CT scans. The dataset will be divided into train,test, and validation sets.The approach first learns a dictionary from
-healthy lung scans to model normal anatomical patterns, and then, while keeping this normal representation fixed, incrementally learns
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{ModelTraining.png}
+    \caption{Model Training Workflow}
+    \label{fig:Training}
+\end{figure}
+
+Model training will be implemented using a frozen dictionary learning approach to capture both normal and pathological
+patterns in chest CT scans. The dataset will be divided into train, test and validation sets. The approach first learns a dictionary from
+healthy lung scans to model normal anatomical patterns. Then, while keeping this normal representation fixed, incrementally learns
 additional atoms to capture disease specific pathological features during sparse coding.
 
 We extend the dictionary learning approach using \ac{LCKSVD} to improve the discriminative power of the learned sparse representations.
@@ -72,19 +80,25 @@ Appropriate weighting will be applied to balance these objectives and hyperparam
 
 \section{Classification and Disease Diagnosis}
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.7\textwidth,height=0.6\textheight,keepaspectratio]{ModelTraining.png}
-    \caption{Model Training Workflow}
-    \label{fig:Training}
-\end{figure}
-
 Disease classification will be performed using a low-order linear classifier operating on the sparse representations produced by the
 learned dictionary. In particular, classification is achieved by applying a linear projection to the sparse codes, followed by a
 softmax-based decision rule. This approach enables multi-class prediction while maintaining a small number
 of trainable parameters. Class imbalance is addressed through the use of class-weighted loss functions during training.
-The classification module will be implemented in Python using scikit-learn, and its performance will be evaluated
-across all disease categories defined in the CT-RATE dataset.
+The classification module will be implemented in Python using scikit-learn.
+
+Diagnostic Hypotheses will be done for the following 10 disease classes:
+\begin{enumerate}
+    \item COPD or Emphysema
+    \item Heart Failure or Cardiomyopathy
+    \item Pericarditis
+    \item Atherosclerotic Cardiovascular Disease
+    \item Pneumonia (Viral, bacterial, Tuberculosis, COVID-19)
+    \item Bronchiectasis
+    \item Lung Cancer (Primary or Metastatic)
+    \item Lymphoma or Sarcoidosis
+    \item Hiatal Hernia
+    \item Pulmonary Embolism
+\end{enumerate}
 
 \section{Interpretability Analysis and Visualization}
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
