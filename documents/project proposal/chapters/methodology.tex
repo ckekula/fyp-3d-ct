@@ -109,7 +109,7 @@ meaningfully each learned atom represents clinically relevant structures when ma
 
 \section{Volumetric Feature Extraction and Quantification}
 Volumetric quantification of pulmonary patterns will be performed using segmentation to differentiate between the 18 radiological abnormalities
-defined in the CT-RATE dataset. Particular focus will be placed on quantifying consolidation and ground-glass opacities (GGO), as these patterns
+defined in the CT-RATE dataset. Particular focus will be placed on quantifying consolidation and ground glass opacities (GGO), as these patterns
 are critical indicators of disease severity in various pulmonary conditions. Using the segmentation masks provided in the ReXGroundingCT dataset,
 the total volumes of consolidation and GGO will be calculated for each CT scan.
 The C/G ratio will be computed by dividing the total volume of consolidation by the total volume of GGO across the entire lung parenchyma.
@@ -132,11 +132,11 @@ which the proposed method can be evaluated. Existing implementations of these ne
 All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational
 demands of CNN based approaches.
 
-All methods will be implemented using suitable and widely adopted frameworks, including scikit-learn for classical machine learning
+All methods will be implemented using suitable and widely adopted frameworks, including scikit learn for classical machine learning
 and sparse coding methods, and PyTorch or TensorFlow for deep learning based models.
 
 \section{Evaluation Metrics and Validation Strategy}
-The performance of the proposed model will be evaluated using accuracy, precision, recall, F1 score, and AUC-ROC, which are standard
+The performance of the proposed model will be evaluated using accuracy, precision, recall, F1 score, and AUC ROC, which are standard
 and widely accepted metrics in medical image analysis. Greater emphasis will be placed on accuracy and recall, as they are especially
 important in a clinical context to ensure overall reliability and to minimize missed disease cases, while the remaining metrics
 provide additional insight into class wise performance and discriminative ability.
