@@ -1,17 +1,15 @@
 \chapter*{Abstract}
 Lung disease diagnosis from 3D chest CT scans faces critical challenges in computational efficiency and clinical interpretability.
 Traditional 3D Convolutional Neural Networks require extensive labeled data and GPU resources, while post-hoc explainability methods
-like Grad CAM provide insufficient granularity for medical decision making.
+like Grad-CAM provide insufficient granularity for medical decision making.
 While deep learning models achieve high accuracy, their black box nature and substantial computational demands limit clinical
 adoption. This project proposes a sparse dictionary learning framework that addresses these limitations through inherently
-interpretable feature representations. The methodology employs a two phase frozen dictionary learning approach combined with
+interpretable feature representations. The methodology uses frozen dictionary learning approach combined with
 Label-Consistent K-SVD (LC-KSVD) to capture both normal anatomical patterns and disease-specific pathological features. Dictionary
 atoms are mapped to clinically meaningful structures such as Ground-Glass Opacity (GGO) and consolidation, enabling transparent
 diagnostic reasoning. Each dictionary atom corresponds to specific volumetric patterns, allowing clinicians to trace classification
 decisions back to anatomical features rather than relying on post-hoc visualization techniques.
-Building on this inherently interpretable representation, volumetric quantification using Hounsfield Unit (HU)-based segmentation
-and Consolidation-to-GGO (C/G) ratio calculation integrates domain specific clinical metrics into the classification pipeline. The
-proposed system will be benchmarked against standard K-SVD and 3D CNN baselines using CT-RATE and ReXGroundingCT datasets.
+The proposed system will be benchmarked against standard K-SVD and 3D CNN baselines using the CT-RATE and ReXGroundingCT datasets.
 The sparse representation framework naturally handles class imbalance and requires fewer training samples than deep learning
 approaches, making it particularly suited for rare pathologies. This research aims to demonstrate that sparse representation
 methods can provide clinically interpretable lung disease classification while maintaining competitive performance with reduced computational overhead.
