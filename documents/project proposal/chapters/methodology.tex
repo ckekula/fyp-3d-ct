@@ -49,7 +49,7 @@ evaluation due to their complementary nature. Their characteristics are summariz
     }
 \end{table}
 
-Data pre-procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
+Data pre procesising corrections such as intensity normalization and spacing adjustments have already been implemented directly in
 the dataset. If further pre-processing is required, standard techniques such as resampling to a uniform voxel size, intensity
 normalization, and lung segmentation, shall be implemented before feeding the data into the model. Both datasets are released under MIT licenses that
 allow use for non-commercial academic research.
@@ -103,7 +103,9 @@ The classifier will predict multiple disease categories, with the number of outp
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
 user interface utilizing 3D rendering techniques. Each dictionary atom will be mapped back to the original CT image space, allowing us
 to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT
-annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.
+annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.Interpretability is measured using 
+semantic coherence, atom-to-pattern correspondence, reconstruction fidelity, and segmentation accuracy, which together evaluate how 
+meaningfully each learned atom represents clinically relevant structures when mapped back to the original 3D CT space.
 
 \section{Volumetric Feature Extraction and Quantification}
 Volumetric quantification of pulmonary patterns will be performed using HU-based segmentation to differentiate between GGO and
