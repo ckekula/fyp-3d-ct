@@ -102,21 +102,15 @@ Diagnostic Hypotheses will be done for the following 10 disease classes:
 \section{Interpretability Analysis and Visualization}
 To improve interpretability and clinical relevance, the learned dictionary atoms will be visualized and analyzed through an interactive
 user interface utilizing 3D rendering techniques. Each dictionary atom will be mapped back to the original CT image space, allowing us
-to see which anatomical regions or pathological patterns the model has learned to represent. This mapping is guided by the ReXGroundingCT
-annotations, which provide precise spatial localization of abnormalities within the 3D imaging volume.Interpretability is measured using 
-semantic coherence, atom to pattern correspondence, reconstruction fidelity, and segmentation accuracy, which together evaluate how 
-meaningfully each learned atom represents clinically relevant structures when mapped back to the original 3D CT space.
-
-\section{Volumetric Feature Extraction and Quantification}
-Volumetric quantification of pulmonary patterns will be performed using segmentation to differentiate between the 18 radiological abnormalities
-defined in the CT-RATE dataset. Particular focus will be placed on quantifying consolidation and ground glass opacities (GGO), as these patterns
-are critical indicators of disease severity in various pulmonary conditions. Using the segmentation masks provided in the ReXGroundingCT dataset,
-the total volumes of consolidation and GGO will be calculated for each CT scan.
-The C/G ratio will be computed by dividing the total volume of consolidation by the total volume of GGO across the entire lung parenchyma.
-This quantitative metric provides an objective measure of disease severity and progression, with higher ratios indicating more
-advanced pathological states. The calculated C/G ratios will be compared against model predictions and clinical thresholds to validate
-the diagnostic utility of the learned dictionary representations. These volumetric features will complement the sparse coding analysis,
-enabling a more comprehensive evaluation of the model's ability to capture clinically relevant patterns.
+to see which pathological patterns the model has learned. We will utilize the ReXGroundingCT annotations, which provide accurate spatial
+localization of abnormalities within the 3D volume. Interpretability will be measured using the following metrics:
+\begin{itemize}
+    \item Semantic coherence
+    \item Atom to pattern correspondence
+    \item Reconstruction fidelity
+    \item Segmentation accuracy
+\end{itemize}
+Together, these metrics evaluate how meaningfully each learned atom represents clinically relevant structures when mapped back to the original 3D CT space.
 
 \section{Baseline Comparisons and Benchmarking}
 The proposed method will be compared against well established baseline approaches commonly used in medical imaging research. These
