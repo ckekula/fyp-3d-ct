@@ -59,8 +59,8 @@ the risk of gradient explosion and slow convergence becomes significant.
 
 \subsection{Interpretability Bottleneck}
 Beyond computational limits, the clinical utility of deep learning is hindered by a lack of interpretability. While tools like
-Grad-CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post-hoc explanations are often insufficient for
-medical professionals who require a granular understanding of the model's decision-making process. In high-stakes environments, a
+Grad CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post-hoc explanations are often insufficient for
+medical professionals who require a granular understanding of the model's decision-making process. In high stakes environments, a
 model that produces a diagnosis without transparency in its reasoning is difficult to integrate into standard workflows,
 as it lacks the accountability necessary for legal and ethical compliance. This transparency gap has led to a renewed interest in
 models that are interpretable by design, where the internal logic is clear from the beginning.
@@ -70,7 +70,7 @@ models that are interpretable by design, where the internal logic is clear from 
 
 The primary goal of this project is to address the limitations of existing AI-based lung disease diagnosis systems, specifically
 high computational complexity and lack of clinical interpretability, by developing an inherently interpretable and
-efficient dictionary learning framework. The proposed approach aims to enable transparent, anatomically-grounded decision making,
+efficient dictionary learning framework. The proposed approach aims to enable transparent, anatomically grounded decision making,
 where each classification outcome can be traced back to specific pathological patterns. This aligns with clinical reasoning and
 facilitates validation and adoption in radiological workflows. The specific objectives are as follows:
 
@@ -84,18 +84,18 @@ facilitates validation and adoption in radiological workflows. The specific obje
     \item Visualize dictionary atoms and map them to anatomical features
         \begin{itemize}
             \item Compare sparse coefficient patterns across disease classes
-            \item Visulaize dictionary atoms using an interactive 3D interface
-            \item Demonstrate atom-to-pathology correspondence
+            \item Visualize dictionary atoms using an interactive 3D interface
+            \item Demonstrate atom to pathology correspondence
         \end{itemize}
     \item Benchmark against baseline models
         \begin{itemize}
             \item Compare with standard \ac{KSVD} without label consistency constraint
-            \item Compare with 3D \ac{CNN} baseline (3D-ResNet)
+            \item Compare with 3D \ac{CNN} baseline (3D ResNet)
         \end{itemize}
     \item Integrate clinical metrics for volumetric analysis
         \begin{itemize}
             \item Perform segmentation to identify radiological features such as GGO and consolidation
-            \item Compute the Consolidation-to-GGO (C/G) ratio and relate model predictions to clinical thresholds
+            \item Compute the Consolidation to GGO (C/G) ratio and relate model predictions to clinical thresholds
         \end{itemize}
     
     \item Optionally include verification from radiologists to support the analysis
@@ -107,7 +107,7 @@ facilitates validation and adoption in radiological workflows. The specific obje
 \end{enumerate}
 
 \subsection{Scope}
-The scope of this study focuses on the development and evaluation of a dictionary learning-based framework
+The scope of this study focuses on the development and evaluation of a dictionary learning based framework
 for diagnostic hypotheses using volumetric 3D chest CT data, with the following limitations:
 
 \begin{itemize}
@@ -119,7 +119,7 @@ for diagnostic hypotheses using volumetric 3D chest CT data, with the following 
     \item Clinically, the analysis is confined to the diagnostic hypotheses of 14 disease categories, based on the
     18 abnormalities annotated in the CT-RATE dataset. This list does not include all possible differentials but covers the most
     clinically relevant categories for an AI diagnostic model. The study does not address disease prognosis or treatment outcome prediction.
-    \item The scope excludes real-time clinical deployment, cross-institutional generalization studies, and regulatory validation.
+    \item The scope excludes real time clinical deployment, cross institutional generalization studies, and regulatory validation.
     The findings are intended to demonstrate the feasibility and interpretability of sparse representation learning for 3D lung
     disease analysis rather than to provide a clinically deployable diagnostic system.
 \end{itemize}

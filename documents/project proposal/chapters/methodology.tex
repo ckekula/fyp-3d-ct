@@ -27,7 +27,7 @@ evaluation due to their complementary nature. Their characteristics are summariz
         \hline
         \makecell[c]{Type of Data}
             & \makecell[c]{3D non contrast chest CT volumes with \\ corresponding radiology text reports and \\ multi abnormality labels}
-            & \makecell[c]{Subset of CT-RATE scans paired with free-text \\ findings and pixel level 3D segmentation masks} \\
+            & \makecell[c]{Subset of CT-RATE scans paired with free text \\ findings and pixel level 3D segmentation masks} \\
         \hline
         \makecell[c]{Number of Scans}
             & \makecell[c]{25,692 non contrast chest CT studies \\ (50,188 volumes after reconstruction)}
@@ -130,13 +130,13 @@ as they are considered state of the art for volumetric CT analysis\cite{Tiwari20
 These models are capable of learning complex spatial patterns across multiple slices and therefore provide a strong benchmark against
 which the proposed method can be evaluated. Existing implementations of these networks will be adopted to ensure reliability and consistency.
 All models will be trained and tested using the same dataset, although training strategies may differ due to the higher data and computational
-demands of CNN-based approaches.
+demands of CNN based approaches.
 
 All methods will be implemented using suitable and widely adopted frameworks, including scikit-learn for classical machine learning
 and sparse coding methods, and PyTorch or TensorFlow for deep learning based models.
 
 \section{Evaluation Metrics and Validation Strategy}
-The performance of the proposed model will be evaluated using accuracy, precision, recall, F1-score, and AUC-ROC, which are standard
+The performance of the proposed model will be evaluated using accuracy, precision, recall, F1 score, and AUC-ROC, which are standard
 and widely accepted metrics in medical image analysis. Greater emphasis will be placed on accuracy and recall, as they are especially
 important in a clinical context to ensure overall reliability and to minimize missed disease cases, while the remaining metrics
 provide additional insight into class wise performance and discriminative ability.
