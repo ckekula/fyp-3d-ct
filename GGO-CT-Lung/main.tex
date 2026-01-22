@@ -26,12 +26,16 @@
     {\large \textbf{EE7204 / EC7205}}\\[1.5cm]
     
    % Centered student and project info
-    {\large \textbf{Project Title}}\\[0.8cm]
-    {\large \textbf{Student Name 1}}\\[0.4cm]
-    {\large \textbf{Student Name 2}}\\[0.4cm]
-    {\large \textbf{Student Name 3}}\\[0.4cm]
-    {\large \textbf{Student Name 4}}\\[2cm]
-    {\large \textbf{Submission date}}\\[2cm]
+    {\large \textbf{Interactive 3D Lung Visualization and GGO Highlighting Tool}}\\[0.8cm]
+    \begin{center}
+    \begin{tabular}{ l c l }
+        \textbf{K.R.C.S. Kekulawala} & - & \textbf{EG/2021/4609} \\
+        \textbf{B.P.G.L. Thejana} & - & \textbf{EG/2021/4828} \\
+        \textbf{M.D.Y.B. Kularathne} & - & \textbf{EG/2021/4620} \\
+        \textbf{B.G.P.U. Thilakshana} & - & \textbf{EG/2021/4831} \\
+    \end{tabular}
+    \end{center}
+    {\large \textbf{23/02/2026}}\\[2cm]
     
     
     
@@ -51,84 +55,26 @@
 \tableofcontents
 \clearpage
 
-% --------- Sections ---------
 
-\section{Problem Statement}
-
-Ground Glass Opacities (GGOs) are faint cloudy areas seen in lung CT scans. They can be early signs of diseases such as pneumonia, lung infections, or even cancer. Finding these areas by hand is difficult and takes a lot of time because GGOs have low contrast and spread out gradually in the lungs. Different doctors may also interpret them differently, which can affect diagnosis accuracy.
-
-Although deep learning methods are used in medical imaging, many existing systems mainly focus on identifying whether a disease is present, rather than clearly showing where GGOs are located in the CT scan.
-
-This project proposes an image processing and computer vision based tool that automatically highlights GGO regions in lung CT scans. The system processes raw CT images and converts them into clear and easy to understand visual outputs. This tool is designed to support radiologists by improving the accuracy of interpretation and helping with early detection and monitoring of lung abnormalities.  
-
-\newpage
-\section{Objectives }
-\begin{itemize}
-    \item Improve the quality of the chest CT scans by removing the noise, normalizing the image intensity values, and converting the data into a format suitable for processing.
-    
-    \item Segmentation of the lung regions from the CT volumes using basic intensity based methods, and morphological image processing techniques 
-    
-    \item Show the detected GGO areas on the CT images by overlaying them visually or using pseudo coloring enhancement to highlight their visibility.
-    
-    \item Test the efficiency of the proposed image processing workflow on a publicly available chest CT dataset.
-    
-    \item Evaluate the effectiveness of the proposed image processing pipeline using a publicly available chest CT dataset.
-    
-    \item Design and show a simple prototype application which focuses on clear image visualization and the ease of interpretation of the results.
-\end{itemize}
-
-
-\hyperref[contents]{\small Back to Table of Contents}
-\newpage
-\section{Literature Review }
-(Minimum word limit: 1000 words) 
-Briefly summarize 3–6 previous research works, projects, or academic papers related to your topic.  
-Discuss what methods they used, their strengths and limitations, and how your proposed project will differ from or improve upon them.
-
-Example structure:
-\begin{itemize}
-    \item \textbf{Study 1:} Summary of method and result.
-    \item \textbf{Study 2:} Summary of technique and limitation.
-    \item \textbf{Gap:} Highlight what your project adds beyond existing work.
-\end{itemize}
-
-\hyperref[contents]{\small Back to Table of Contents}
-\newpage
-\section{Methodology }
-(Minimum word limit: 1000 words)
-Describe the approach, tools, and algorithms you will use.  
-Mention the main image processing or computer vision techniques (e.g., segmentation, feature extraction, classification) and the software frameworks (e.g., OpenCV, MATLAB, TensorFlow).
-
-\hyperref[contents]{\small Back to Table of Contents}
-
-\newpage
-\section{Dataset / Data Collection}
-(Maximum word limit: 100 words)
-Provide details of the data its source, number of images, format, and characteristics.  
-If you plan to collect your own data, explain how you will ensure data quality, diversity, and ethical use.
-
-\hyperref[contents]{\small Back to Table of Contents}
-\newpage
-\section{Expected Outcomes }
-(Maximum word limit: 100 words)
-Summarize the expected outputs (eq: demo, code files, presentation) and performance metrics (e.g., accuracy, clarity, speed).  
-Explain how your results will demonstrate the effectiveness of your image processing or computer vision approach. Write the outcomes in point form.
-
-\hyperref[contents]{\small Back to Table of Contents}
-\newpage
-\section{Percentage of Image Processing \& Computer Vision Involvement 
-}
-(Approximately 50–100 words)
-State clearly how your project satisfies the requirement of at least 65\% image processing and computer vision components.  
-For example, describe which parts involve preprocessing, segmentation, or model development etc. And if you are planning to use any tools may be you can mention.
-
-
-\hyperref[contents]{\small Back to Table of Contents}
-\newpage
+% --------- Sections (from chapters) ---------
+\clearpage
+\input{chapters/problem-statement}
+\clearpage
+\input{chapters/objectives}
+\clearpage
+\input{chapters/literature-review}
+\clearpage
+\input{chapters/methodology}
+\clearpage
+\input{chapters/dataset}
+\clearpage
+\input{chapters/expected-outcomes}
+\clearpage
+\input{chapters/percentage-involvement}
+\clearpage
 
 \bibliographystyle{ieeetr} 
 \bibliography{references}
-A minimum of ten (10) references must be included in the References section.
 
 
 \end{document}
