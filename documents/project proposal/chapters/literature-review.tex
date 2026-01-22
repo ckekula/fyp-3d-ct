@@ -3,10 +3,10 @@
 \section{Previous Work}
 
 \subsection{Deep Learning for Lung Disease Diagnosis}
-Numerous techiniques have emerged in the field of automated lung disease diagnosis, each attempting to balance accuracy with computational
+A number of techniques have emerged in the field of automated lung disease diagnosis, attempting to balance accuracy with computational
 feasibility. Early approaches relied on manual feature engineering and classical classifiers like Support Vector Machines (SVM) and Random Forests.\cite{al2024deep}
-While these methods provided strong interpretability, they often lacked the flexibility to handle the noise and variance found in CT data\cite{rai2025explainable}. The
-emergence of deep learning fundamentally changed the landscape of \ac{CT} analysis, especially in areas such as\cite{singh20203ddeeplearningmedical};
+While these methods provided strong interpretability, they lacked the flexibility to handle the noise and variance found in CT data\cite{rai2025explainable}.
+The emergence of deep learning fundamentally changed the landscape of \ac{CT} analysis, especially in areas such as\cite{singh20203ddeeplearningmedical};
 
 \begin{itemize}
     \item Image Segmentation and Classification
@@ -15,16 +15,16 @@ emergence of deep learning fundamentally changed the landscape of \ac{CT} analys
     \item Workflow Optimisation Using AI
 \end{itemize}
 
-Convolutional Neural Networks (CNNs) have emerged as the dominant paradigm for automated analysis of \ac{CT} scans\cite{litjens2017survey}.
+Convolutional Neural Networks (CNNs) have emerged as the dominant architecture for automated analysis of \ac{CT}\cite{litjens2017survey}.
 Recent surveys indicate that deep learning models achieve classification accuracy exceeding 98\% for multi disease detection tasks\cite{liu2022deep},
 representing a signficant improvement over traditional machine learning approaches.
 Contemporary research has increasingly focused on 3D CNN architectures that treat CT scans as complete volumetric data rather than independent
 2D slices. This volumetric approach captures spatial relationships within lung tissue more effectively, leading to improved sensitivity in
 detecting subtle pathological changes. Li et al. (2024)\cite{li2023multi} demonstrated that preprocessing techniques such as lung region extraction, combined
-with advanced backbone architectures like ResNeSt50, significantly enhance classification performance for multiple lung pathologies \cite{wang2024resnest}.
+with advanced architectures like ResNeSt50, significantly enhance classification performance for multiple lung pathologies \cite{wang2024resnest}.
 
 \subsection{Sparse Dictionary Learning in Medical Imaging}
-Sparse dictionary learning represents an unsupervised machine learning paradigm for extracting interpretable features from medical
+Sparse dictionary learning is an unsupervised machine learning paradigm that can be used for extracting interpretable features from medical
 images. This technique learns a set of dictionary elements or basis vectors that represent data in a sparse manner. In the context of 3D
 CT, a volumetric patch $y \in \mathbb{R}$ can be approximated by $y \sim Dx$, where $D \in \mathbb{R^{\mathrm{n} \times \mathrm{K}}}$ is
 the dictionary and $x \in \mathbb{{R}^\mathrm{k}}$ is a sparse vector containing only a small number of non zero coefficients (figure \ref{fig:Sparse}).
@@ -44,7 +44,7 @@ training samples\cite{zhao2014survey}.
     \label{fig:Sparse}
 \end{figure}
 
-The success of these models hinges on the quality of the learned dictionary. Traditional methods like \ac{KSVD} focus primarily on
+The success of these models hinges on the quality of the learned dictionary. Traditional methods like \ac{KSVD} mainly focus on
 minimizing the reconstruction error, which is effective for image denoising and super resolution but lacks the discriminative
 power required for classification\cite{aharon2006ksvd}. To address this, supervised dictionary learning techniques have emerged,
 which incorporate label information directly into the dictionary construction process.
@@ -62,23 +62,22 @@ achieving 98.18\% classification accuracy while maintaining fast testing times\c
 Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images.
 One approach utilized both frozen dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving
 89\% accuracy on the CC-CCII dataset\cite{covidct}.
-The framework's key advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original
+The framework's advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original
 input signal domain. This work demonstrates that sparse representation methods offer an effective balance between performance and
 explainability for lung disease classification tasks, providing clear feature representations while maintaining competitive accuracy.
 Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease patterns on HRCT images,
 effectively handling the high variety and complexity of patterns\cite{sparsedld}.
 
 \subsection{Explainable AI in Medical Imaging}
-Clinical radiology requires an understandable method for determining how the disease occurs. The black box nature of deep neural
-networks creates significant barriers for clinical adaptation. Physicians need to understand diagnostic reasoning to ensure
-accountability and patient safety. ~\cite{van2024unveiling}.
+Physicians need to understand diagnostic reasoning to ensure accountability and patient safety. ~\cite{van2024unveiling}.
+The black box nature of deep neural networks creates a significant barrier for clinical adaptation.
 To address these challenges, a range of explainable artificial intelligence (XAI) techniques have been developed to provide insight
 into model decision-making. Predominant XAI approaches in medical imaging include:
 \begin{description}
     \item [Perturbation-Based Methods:] These techniques evaluate feature importance by systematically altering specific image regions
     and observing how these changes affect the model's output\cite{bhati2024survey}.
-    \item [Gradient-Based Methods:] These methods highlight image areas that most significantly utilizing backpropagation gradients
-    influence a classification. Grad-CAM is particularly predominant because it is applicable to nearly any network architecture~\cite{bhati2024survey}\cite{singh2024explainable}.
+    \item [Gradient-Based Methods:] These methods highlight image areas that most significantly utilize backpropagation gradients to
+    influence a classification. Grad-CAM is particularly important because it is applicable to nearly any network architecture~\cite{bhati2024survey}\cite{singh2024explainable}.
     \item [Decomposition-Based Methods:] Techniques like Layer-Wise Relevance Propagation (LRP) distribute the output of the final
     layer back through the network recursively. This process calculates a relevance score for each neuron, generating a heatmap
     that provides a clearer distinction of feature contribution\cite{bhati2024survey}.
@@ -153,15 +152,14 @@ significant gap in developing inherently interpretable feature representations s
 Modern XAI methodologies (e.g., 3D Grad-CAM) frequently utilize post hoc explanations to visualize important regions but do not
 provide semantically meaningful feature representations that clinicians can directly relate to pathological patterns~\cite{huang2022survey}.
 These approaches explain model decisions after they are made but fail to tackle their underlying black box nature.
-The extension of 3D saliency maps to interpretable concepts such as specific lesion types, textural patterns, or anatomical
-landmarks remains largely unexplored. This gap is particularly significant, because pulmonary pathology often manifests as
-spatial patterns spanning multiple CT slices (e.g., centrilobular versus panlobular emphysema distributions).
+The extension of 3D maps to specific lesion types, textural patterns, or anatomical landmarks remains largely unexplored. This
+gap is particularly significant because pulmonary pathology often manifests as spatial patterns spanning multiple CT slices.
 
-Sparse dictionary learning presents an alternative approach where learned dictionary elements can represent interpretable features
-such as nodules, GGO, consolidations, etc~\cite{zhao2014survey}. Every classification decision links to particular, tangible dictionary components,
-offering inherent rather than post implementation clarity. Despite the integration of sparse dictionary learning principles with
-contemporary 3D deep learning models, significant exploration in 3D CT analysis is still lacking~\cite{gu2018deepdictionary}. The existing hybrid methods,
-such as deep dictionary learning\cite{tariyal2016deep}, have mainly been applied to 2D natural images rather than to volumetric medical imaging.
+Sparse dictionary learning presents an alternative approach where learned dictionary elements can represent anatomical features
+such as nodules, GGO, consolidations, etc~\cite{zhao2014survey}. Every classification decision links to particular set of dictionary
+atoms. Despite the integration of dictionary learning principles with contemporary deep learning models, there is a lack of exploration in 3D CT
+analysis~\cite{gu2018deepdictionary}. The existing hybrid methods, such as deep dictionary learning\cite{tariyal2016deep},
+have mainly been applied to 2D natural images rather than to volumetric medical imaging.
 
 \subsection{Frozen Dictionary Learning for Pathological Differentiation}
 
@@ -180,7 +178,7 @@ disease state.
 When a query 3D patch is analyzed, the resulting sparse coefficient vector reveals exactly which atoms ~\cite{jiang2013label}. If the
 representation relies heavily on the anomalous portion of the dictionary, the clinician can identify the specific type of pathology
 present by mapping those atoms back to their visual counterparts in the original signal domain. This feature separation ensures
-that the diagnostic process is transparent and verifiable, moving away from the hidden logic of deep neural networks. 
+that the diagnostic process is transparent and verifiable.
 
 \subsection{Handling Class Imbalance with Interpretable Models}
 Rare lung pathologies such as certain cancer subtypes (e.g., large cell carcinoma, carcinoid tumors), uncommon ILD patterns
