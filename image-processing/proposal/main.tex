@@ -51,29 +51,27 @@
 % --------- Sections ---------
 
 \section{Problem Statement}
+Ground Glass Opacities (GGOs) appear as faint cloudy areas seen in lung CT scans\cite{Bankier2024}. They can be early signs of diseases such as pneumonia,
+lung infections, or even cancer. Finding these areas by hand is difficult and consumes a large amount of time because GGOs are low contrast areas
+and spread out gradually in the lungs. This could result in different radiologists interpreting the same CT scan differently, which may affect diagnosis accuracy.
 
-Ground Glass Opacities (GGOs) are faint cloudy areas seen in lung CT scans. They can be early signs of diseases such as pneumonia,
-lung infections, or even cancer. Finding these areas by hand is difficult and takes a lot of time because GGOs have low contrast and
-spread out gradually in the lungs. Different doctors may also interpret them differently, which can affect diagnosis accuracy.
-
-Traditional methods do not have clear and standard ways to measure GGOs, Because of this, it is very hard to accurately track how a 
-disease changes over time or to compare scans taken before and after treatment.medical images stored in DICOM format are often handled inefficiently,
+Traditional methods do not have clear and standard ways to measure GGOs. Because of this, it is very hard to accurately track how a 
+disease changes over time or to compare scans taken before and after treatment. Medical images stored in DICOM format are often handled inefficiently,
 windowing settings (brightness and contrast) vary between hospitals, and many steps are still done manually instead of automatically.
 These issues make it difficult to interpret CT scans in a consistent and standardized way.
 
 
-
 \newpage
 \section{Objectives}
+The main objectives of this project are:
 \begin{itemize}
-    \item Improve the quality of the chest CT scans by removing the noise, normalizing the image intensity values, and converting data into a format suitable for processing.
-    \item To accurately segment lung regions using HU based thresholding, morphological operations, and edge filling techniques while removing background artifacts.
-    \item To detect Ground Glass Opacity regions within the segmented lung area using HU based thresholding criteria.
+    \item Improve the quality of the original chest CT scans by performing various image processing steps.
+    \item Accurately segment lung regions using HU based thresholding, morphological operations, and edge filling techniques while removing background artifacts.
+    \item Detect Ground Glass Opacity regions within the segmented lung area using HU based thresholding criteria.
     \item Test the efficiency of the proposed image processing workflow on a publicly available chest CT dataset.
     \item Evaluate the effectiveness of the proposed image processing pipeline using a publicly available chest CT dataset.
     \item Design and show a simple prototype application which focuses on clear image visualization.
 \end{itemize}
-
 
 \hyperref[contents]{\small Back to Table of Contents}
 
@@ -92,7 +90,7 @@ The key statistics of the dataset are summarized as follows:
     \item \textbf{Nodules $\geq 3$ mm:} 2,669 lesions identified as clinically significant nodules
 \end{itemize}
 
-\noindent\textbf{Images:} linical thoracic CT scans in DICOM format.
+\noindent\textbf{Images:} Clinical thoracic CT scans in DICOM format.
 
 \noindent\textbf{Annotations:} Provided in XML files containing the coordinates of nodule boundaries (contours) and associated radiological characteristic ratings.
 
