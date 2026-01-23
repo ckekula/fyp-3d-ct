@@ -1,4 +1,6 @@
-\section{Study 1: Hounsfield Unit-Based Lung Segmentation}
+\section{Literature Review}
+
+\subsection{Study 1: Hounsfield Unit-Based Lung Segmentation}
 
 Early automated lung segmentation methods primarily relied on intensity thresholding, exploiting the low radiodensity of air-filled
 lung parenchyma relative to surrounding thoracic tissues. Attenuation values expressed in Hounsfield units (HU) provide characteristic
@@ -17,7 +19,7 @@ workflow using fixed HU thresholds followed by morphological closing applied sep
 Processing the lungs independently prevented artificial fusion near the mediastinum, where anatomical proximity often confounds
 binary segmentation. These frameworks emphasize accessibility and rapid prototyping while maintaining anatomical plausibility.
 
-\section{Study 2: Advanced Segmentation for Diseased Lungs}
+\subsection{Study 2: Advanced Segmentation for Diseased Lungs}
 
 Segmentation becomes significantly more challenging in diseased lungs due to fibrosis, consolidation, or interstitial abnormalities
 that disrupt normal intensity patterns. To address this, researchers have combined intensity-based methods with texture analysis.
@@ -32,7 +34,7 @@ fuzzy clustering with morphological hole filling, dilation, and reconstruction t
 adhere to the chest wall \cite{biomedical2017}. Morphological reconstruction selectively preserved anatomically meaningful boundaries
 while filling incomplete regions. These methods proved effective when disease obscured normal lung-chest wall interfaces.
 
-\section{Study 3: Ground Glass Opacity Detection Algorithms}
+\subsection{Study 3: Ground Glass Opacity Detection Algorithms}
 
 After lung segmentation, identifying ground glass opacities (GGOs) requires distinguishing subtle increases in attenuation from
 normal lung parenchyma. Probabilistic spatial models have been widely adopted for this purpose. Markov random field (MRF)-based
@@ -60,7 +62,7 @@ GGO segmentation achieved up to 98\% classification accuracy and 92\% intersecti
 were used to quantify shape anisotropy and morphological complexity, enabling differentiation between GGO subtypes based on
 three-dimensional structure.
 
-\section{Study 4: Pulmonary Vessel Segmentation and Suppression}
+\subsection{Study 4: Pulmonary Vessel Segmentation and Suppression}
 
 Pulmonary vessels pose a major challenge for GGO detection because their attenuation values overlap with those of ground glass
 regions. Multiscale vessel enhancement filters based on Hessian matrix eigenvalue analysis have become a standard solution. Frangi
@@ -76,7 +78,7 @@ Vessel segmentation has also been explored for quantitative analysis. Studies fo
 thresholding followed by morphological closing and Hessian-based enhancement filters \cite{pmc2014}. Distance transform techniques
 were then used to quantify vessel proximity, providing spatial context that can inform region-specific vessel suppression strategies.
 
-\section{Gap Analysis}
+\subsection{Gap Analysis}
 
 Despite substantial progress, several limitations remain in current GGO detection systems. First, most methods operate as fully
 automated pipelines with limited user interaction, preventing clinicians from adjusting parameters based on patient-specific
