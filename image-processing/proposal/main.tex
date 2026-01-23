@@ -93,7 +93,11 @@ The key statistics of the dataset are summarized as follows:
     \item \textbf{Nodules $\geq 3$ mm:} 2,669 lesions identified as clinically significant nodules
 \end{itemize}
 
-lesions in three categories
+\noindent\textbf{Images:} Clinical thoracic CT scans in DICOM format.
+
+\noindent\textbf{Annotations:} Provided in XML files containing the coordinates of nodule boundaries (contours) and associated radiological characteristic ratings.
+
+\noindent\textbf{Tools:} The Python library \texttt{pylidc} is used to query, process, and visualize the LIDC-IDRI dataset.
 
 
 
@@ -104,18 +108,27 @@ lesions in three categories
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
 \section{Expected Outcomes }
-(Maximum word limit: 100 words)
-Summarize the expected outputs (eq: demo, code files, presentation) and performance metrics (e.g., accuracy, clarity, speed).  
-Explain how your results will demonstrate the effectiveness of your image processing or computer vision approach. Write the outcomes in point form.
+
+The expected outcomes of this project include:
+\begin{itemize}
+    \item A Python based image processing pipeline for lung CT analysis
+    \item A GUI application for loading, visualizing, and navigating CT slices
+    \item Accurate lung segmentation masks
+    \item Highlighted Ground Glass Opacity (GGO) regions with color overlays
+    \item Quantitative outputs such as GGO count, area, and estimated volume
+    \item Adjustable HU threshold controls for experimentation
+    \item Side by side visualization of original and processed images
+\end{itemize}
+
 
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
 \section{Percentage of Image Processing \& Computer Vision Involvement 
 }
 (Approximately 50–100 words)
-State clearly how your project satisfies the requirement of at least 65\% image processing and computer vision components.  
-For example, describe which parts involve preprocessing, segmentation, or model development etc. And if you are planning to use any tools may be you can mention.
-
+Core components include DICOM loading, Hounsfield Unit extraction, lung windowing, threshold-based lung segmentation, morphological operations, 
+connected component analysis, flood fill, and GGO detection using HU ranges. Vessel suppression is performed using structural morphology and region-based filtering. 
+Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or computer vision techniques.
 
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
