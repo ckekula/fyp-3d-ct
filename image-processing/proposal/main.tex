@@ -54,25 +54,18 @@
 Ground Glass Opacities (GGOs) appear as faint cloudy areas seen in lung CT scans\cite{Bankier2024}. They can be early signs of diseases such as pneumonia,
 lung infections, or even cancer. Finding these areas by hand is difficult and consumes a large amount of time because GGOs are low contrast areas
 and spread out gradually in the lungs. This could result in different radiologists interpreting the same CT scan differently, which may affect diagnosis accuracy.
-
-Ground Glass Opacities (GGOs) are faint cloudy areas seen in lung CT scans. They can be early signs of diseases such as pneumonia,
-lung infections, or even cancer. Finding these areas by hand is difficult and takes a lot of time because GGOs have low contrast and
-spread out gradually in the lungs. Different doctors may also interpret them differently, which can affect diagnosis accuracy.
 Without a well organized preprocessing pipeline, steps like segmenting the lungs, detecting GGOs, and measuring their size can
 cause inconsistent results, which makes it hard to perform reliable automated analysis.
-
-
 
 \newpage
 \section{Objectives}
 The main objectives of this project are:
 \begin{itemize}
-    \item Improve the quality of the original chest CT scans by performing various image processing steps.
-    \item Accurately segment lung regions using HU based thresholding, morphological operations, and edge filling techniques while removing background artifacts.
+    \item Improve the quality of the original chest CT scans by using various image processing techniques.
+    \item Accurately segment lung regions using HU based thresholding and morphological operations while removing noise.
     \item Detect Ground Glass Opacity regions within the segmented lung area using HU based thresholding criteria.
-    \item Test the efficiency of the proposed image processing workflow on a publicly available chest CT dataset.
     \item Evaluate the effectiveness of the proposed image processing pipeline using a publicly available chest CT dataset.
-    \item Design and show a simple prototype application which focuses on clear image visualization.
+    \item Design a simple prototype application which focuses on clear GGO visualization.
 \end{itemize}
 
 \hyperref[contents]{\small Back to Table of Contents}
