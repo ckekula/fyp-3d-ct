@@ -66,12 +66,12 @@ These issues make it difficult to interpret CT scans in a consistent and standar
 \newpage
 \section{Objectives}
 \begin{itemize}
-    \item Improve the quality of the chest CT scans by removing the noise, normalizing the image intensity values, and converting the data into a format suitable for processing.
-    \item To accurately segment lung regions using HU-based thresholding, morphological operations, and edge filling techniques while removing background artifacts.
+    \item Improve the quality of the chest CT scans by removing the noise, normalizing the image intensity values, and converting data into a format suitable for processing.
+    \item To accurately segment lung regions using HU based thresholding, morphological operations, and edge filling techniques while removing background artifacts.
     \item To detect Ground Glass Opacity regions within the segmented lung area using HU based thresholding criteria.
     \item Test the efficiency of the proposed image processing workflow on a publicly available chest CT dataset.
     \item Evaluate the effectiveness of the proposed image processing pipeline using a publicly available chest CT dataset.
-    \item Design and show a simple prototype application which focuses on clear image visualization and the ease of interpretation of the results.
+    \item Design and show a simple prototype application which focuses on clear image visualization.
 \end{itemize}
 
 
@@ -82,7 +82,6 @@ These issues make it difficult to interpret CT scans in a consistent and standar
 
 \newpage
 \section{Dataset / Data Collection}
-(Maximum word limit: 100 words)
 This project utilizes the LIDC-IDRI dataset obtained from The Cancer Imaging Archive (TCIA). 
 The dataset consists of over 1,000 chest CT scans stored in DICOM format. 
 The key statistics of the dataset are summarized as follows:
@@ -125,7 +124,7 @@ The expected outcomes of this project include:
 \newpage
 \section{Percentage of Image Processing \& Computer Vision Involvement 
 }
-(Approximately 50–100 words)
+
 Core components include DICOM loading, Hounsfield Unit extraction, lung windowing, threshold-based lung segmentation, morphological operations, 
 connected component analysis, flood fill, and GGO detection using HU ranges. Vessel suppression is performed using structural morphology and region-based filtering. 
 Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or computer vision techniques.
