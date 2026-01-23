@@ -1,4 +1,4 @@
-\section{Introduction}
+\section{Literature Review}
 
 Computed tomography has become indispensable for pulmonary diagnostics.
 It enables visualization of subtle parenchymal abnormalities including ground glass opacities.
@@ -7,7 +7,7 @@ Manual GGO identification demands considerable radiologist time while introducin
 This review examines established preprocessing methodologies, lung parenchyma isolation techniques, GGO detection algorithms, and vessel suppression methods.
 It ultimately identifies research gaps necessitating interactive visualization tools.
 
-\section{Study 1: Hounsfield Unit Based Lung Segmentation}
+\subsection{Study 1: Hounsfield Unit Based Lung Segmentation}
 
 Initial automated lung isolation relied upon intensity thresholding exploiting the distinct radiodensity of air filled pulmonary tissue.
 Foundational work established that attenuation values measured in Hounsfield units provide well defined ranges for different tissue components on CT images \cite{radiographics2015}.
@@ -24,7 +24,7 @@ One tutorial demonstrated lung segmentation using Hounsfield ranges between -100
 The separate processing proved essential for maintaining anatomical accuracy, particularly near the mediastinum where left and right lungs approximate closely.
 These workflows typically employ Python based libraries offering rapid prototyping capabilities.
 
-\section{Study 2: Advanced Segmentation for Diseased Lungs}
+\subsection{Study 2: Advanced Segmentation for Diseased Lungs}
 
 Pathological conditions substantially complicate automated segmentation since disease processes alter normal tissue characteristics.
 Research addressing severe interstitial lung disease employed CT value thresholding combined with texture feature images derived from co occurrence matrices \cite{pmc2009}.
@@ -37,7 +37,7 @@ The fuzzy clustering accommodated gradual transitions rather than imposing hard 
 Morphological reconstruction selectively filled gaps while preserving anatomically meaningful boundaries.
 These techniques proved particularly valuable when consolidative or fibrotic changes obscured normal lung tissue boundaries.
 
-\section{Study 3: Ground Glass Opacity Detection Algorithms}
+\subsection{Study 3: Ground Glass Opacity Detection Algorithms}
 
 Identifying GGO regions within segmented lungs requires distinguishing subtle density increases from normal parenchymal attenuation.
 Probabilistic spatial modeling through Markov random field based algorithms achieved 86.94\% sensitivity and 94.33\% specificity by incorporating contextual relationships between neighboring voxels \cite{pmc_mrf}.
@@ -66,7 +66,7 @@ PointNet++ architecture applied to volumetric GGO analysis achieved 98\% evaluat
 These mathematical descriptors captured shape anisotropy and complexity beyond simple volume measurements.
 The geometric characterization enabled differentiation between GGO subtypes based on three dimensional morphological features, potentially correlating with underlying pathophysiology.
 
-\section{Study 4: Pulmonary Vessel Segmentation and Suppression}
+\subsection{Study 4: Pulmonary Vessel Segmentation and Suppression}
 
 Vascular structures present a significant challenge for GGO detection since vessels and ground glass opacities share overlapping Hounsfield value ranges.
 Multiscale filtering techniques analyzing Hessian matrix eigenvalues have become standard for vessel enhancement.
@@ -84,7 +84,7 @@ Studies examining vessel tortuosity implemented automatic segmentation using gra
 The enhancement filters selectively amplified tubular patterns across varying contrast conditions.
 Distance transform techniques subsequently enabled quantification of vessel proximity, informing region specific processing strategies.
 
-\section{Gap Analysis}
+\subsection{Gap Analysis}
 
 Despite considerable research progress, several critical limitations persist in current GGO detection methodologies.
 First, most published systems function as automated processing pipelines lacking interactive user control during intermediate stages.
