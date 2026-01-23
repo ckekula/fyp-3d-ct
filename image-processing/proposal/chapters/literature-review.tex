@@ -1,50 +1,93 @@
 \section{Literature Review}
 
-\subsection*{Study 1: Texture based adaptive multiple feature method for pulmonary parenchyma evaluation~\cite{uppaluri1997}}
-Introduced an adaptive multiple feature method (AMFM) using multiple statistical and fractal texture features extracted from CT images to quantify emphysema and related parenchymal abnormalities.
-The approach divided slices into regions (ventral to dorsal) and applied texture analysis to discriminate normal from abnormal tissue, outperforming simpler mean lung density or histogram percentile methods.
-It achieved high accuracy (up to 100\% globally, $\sim$98\% regionally) in separating normal and emphysematous areas.
-Strengths included objective, quantitative assessment without heavy reliance on fixed thresholds and good regional discrimination.
-Limitations were its focus on emphysema rather than GGO specifically, computational demands for texture computation at the time, and sensitivity to slice orientation or scanner differences.
-Relation to our project: We extend intensity and texture concepts to GGO specific ranges ($-700$ to $-500$ HU) with added morphological refinement and 3D reconstruction for better spatial context, while keeping the pipeline computationally efficient and interpretable.
+Computed tomography is a cornerstone of pulmonary diagnostics.
+It reveals subtle parenchymal changes, especially ground glass opacities.
+Ground glass opacities are faintly hazy areas indicating inflammation or early neoplastic processes.
+Manual identification of ground glass opacities is the reference standard.
+Manual identification is time intensive and has inter observer variability.
+This review surveys major approaches: preprocessing, segmentation, detection, and vessel suppression.
+It highlights limitations that suggest a need for interactive visualization tools.
 
-\subsection*{Study 2: Region growing and morphological operations for abnormality isolation in CT~\cite{song2001}}
-Approaches in this era used seeded region growing within initial lung masks (often from thresholding) to isolate ground glass attenuation areas, combined with morphological opening and closing to smooth boundaries and remove noise.
-These methods correlated CT patterns like ground glass opacification with functional abnormalities in conditions such as hypersensitivity pneumonitis.
-Strengths lay in improved handling of fuzzy edges and noise compared to pure thresholding, plus integration of local context for better abnormality delineation.
-Limitations included parameter sensitivity (seed selection, growth criteria) leading to variability across scans, reduced performance on diffuse or faint GGO, and limited 3D volumetric processing.
-Relation to our project: Our pipeline incorporates connected component analysis post thresholding and advanced morphological operations (erosion, dilation, closing) for robust lung and GGO mask refinement, addressing initialization issues through adaptive HU windows and adding true 3D volume rendering for enhanced visualization.
+\subsection{Study 1: Hounsfield Unit Based Lung Segmentation}
 
-\subsection*{Study 3: Hybrid lung segmentation with error detection and morphological refinement~\cite{murphy2009}}
-Hybrid methods combined rule based segmentation (e.g., thresholding and edge detection) with pixel classification or morphological post processing to segment lung fields, often in chest radiographs but adaptable to CT.
-These included error detection mechanisms to switch strategies when initial segmentation failed.
-Strengths were robustness to variations (noise, pathology) and high accuracy ($\sim$94--97\%) through complementary techniques.
-Limitations involved complexity in hybrid rules, potential for residual errors in severe abnormalities, and less emphasis on GGO specific sub segmentation or interactive 3D views.
-Relation to our project: We adopt a similar hybrid philosophy   starting with HU thresholding for lung extraction, followed by connected components and morphology   but extend it to full volumetric 3D processing with GGO candidate highlighting and interactive overlays, prioritizing transparency over classification-heavy hybrids.
+Early automated lung segmentation used intensity thresholding.
+Air filled lung tissue has different radiodensity than surrounding structures.
+Hounsfield unit ranges provide reliable boundaries for tissue types \cite{radiographics2015}.
+Simple binary separation distinguishes lung parenchyma from other thoracic components.
+A 3D approach combined thresholding, dynamic programming, and morphological operations \cite{ieee2001}.
+Dynamic programming helps in regions with faint intensity gradients.
+Morphological steps remove artifacts like disconnected fragments and incomplete contours.
+These techniques set early performance standards for segmentation.
+Accessible implementation recipes followed.
+One workflow used Hounsfield thresholds of -1000 to -500 HU and morphological closing \cite{hartmann2020}.
+Processing lungs independently preserves anatomy in the hilar region.
+Such pipelines use Python libraries for experimentation and adaptation.
 
-\subsection*{Study 4: Markov random field-based segmentation for GGO in lung CT~\cite{example_mrf_2012}}
-Probabilistic frameworks using Markov random fields modeled pixel relationships after initial thresholding (e.g., $-374$ HU or adjusted) and morphological lung boundary refinement (median filtering, opening/closing, erosion).
-Energy minimization labeled GGO regions with high sensitivity/specificity ($\sim$87--94\%).
-Strengths included effective handling of fuzzy boundaries and noise reduction via probabilistic context.
-Limitations were computational cost for optimization, need for parameter tuning, and challenges with very subtle or heterogeneous GGO patterns.
-Relation to our project: While we avoid probabilistic optimization for speed and simplicity, we incorporate similar preprocessing (noise filters, morphology) and HU-based candidate extraction, enhanced by local texture variance checks and interactive 3D pseudo-color rendering to improve clinical interpretability without added complexity.
+\subsection{Study 2: Advanced Segmentation for Diseased Lungs}
 
-\subsection*{Study 5: Threshold-based GGO candidate detection with density masks~\cite{example_density_2005}}
-Density mask techniques applied fixed HU thresholds (e.g., $-750$ to $-300$ HU) to quantify opacities, sometimes compared to neural networks for sensitivity gains.
-These methods segmented GGO areas post-lung isolation and reported high sensitivity but lower specificity due to false positives.
-Strengths were extreme efficiency and direct radiological alignment (HU-based).
-Limitations included noise susceptibility, partial volume effects, and poor specificity without refinement, often detecting 17\%+ extraneous areas.
-Relation to our project: We use targeted HU ranges ($-700$ to $-500$) for GGO but add morphological false-positive reduction and texture discrimination, plus full 3D interactive visualization with overlays addressing specificity and usability gaps in basic density approaches.
+Disease alters tissue attenuation and texture, challenging thresholding.
+Interstitial lung disease segmentation combined thresholding and texture maps \cite{pmc2009}.
+Texture maps use gray level co occurrence matrices for spatial arrangement.
+This method reached 82\% overlap with expert outlines.
+Hybrid strategies integrate fuzzy clustering and morphological refinement.
+Fuzzy c-means clustering is followed by hole filling, dilation, and reconstruction \cite{biomedical2017}.
+Attention is given to juxtapleural nodules blending into the chest wall.
+Fuzzy clustering handles gradual density transitions better than crisp thresholds.
+Morphological reconstruction closes gaps without distorting boundaries.
+These steps help when consolidation or fibrosis obscures lung margins.
 
-\subsection*{Study 6: Semi-automated GGO segmentation with radiomics and threshold tools~\cite{example_radiomics_2021}}
-Semi-automated pipelines used threshold tools (e.g., $-1350$ to $-700$ HU) in software like 3D Slicer, followed by manual correction and morphological/logical operations for lung/GGO ROIs.
-These supported radiomics feature extraction for differentiation (e.g., COVID-19 vs. other diseases).
-Strengths included high control and integration with quantification tools.
-Limitations were partial automation, user dependency, and less focus on fully interactive 3D prototypes.
-Relation to our project: Our fully automated yet editable pipeline (with annotation/measurement tools) builds on threshold foundations but emphasizes end-to-end interactivity, 3D rendering, and visual explainability without requiring manual ROI tweaks for initial results.
+\subsection{Study 3: Ground Glass Opacity Detection Algorithms}
 
-\subsection*{Gap Analysis and Project Contributions}
-Existing works excel in foundational thresholding, morphological refinement, and texture analysis for lung/GGO tasks but often lack seamless 3D interactive visualization, color-coded opacity highlighting, and user-friendly annotation/measurement in one tool.
-Many remain 2D-focused or parameter-sensitive without strong emphasis on reproducibility and clinician control.
-Our project integrates these classical CV/IP elements ($>65\%$ focus) into a comprehensive prototype: DICOM preprocessing, adaptive lung segmentation, precise GGO detection with texture/morphology filters, and interactive 3D volume rendering with overlays.
-This advances interpretability, accessibility, and practical utility for monitoring subtle abnormalities on public datasets.
+After segmentation, the task is to separate ground glass density from normal tissue.
+Markov random field models use spatial context among voxels \cite{pmc_mrf}.
+They achieved 86.94\% sensitivity and 94.33\% specificity.
+Morphological vessel removal reduces false positives.
+Other groups use statistical characterization of candidate regions.
+First order statistics describe intensity distributions for classification \cite{iet2022}.
+Entropy is especially discriminative for ground glass texture.
+Texture oriented classifiers work well for nodular ground glass opacities.
+Boosted k-nearest-neighbor and density estimation create texture likelihood maps \cite{pubmed2007}.
+This method detected all test nodules with few false positives.
+COVID-19 increased demand for computationally lean methods.
+Attention thresholding improved Dice scores by 8.9\% with low computational cost \cite{sciencedirect2022}.
+It focuses computation on diagnostically salient regions.
+Volumetric geometric analysis enables new characterization.
+PointNet++ achieved 98\% accuracy and 92\% IoU for 3D ground glass regions \cite{plos2022}.
+Minkowski tensors provide shape descriptors for ground glass opacities.
+Geometric features allow finer subtyping and may correlate with disease mechanisms.
+
+\subsection{Study 4: Pulmonary Vessel Segmentation and Suppression}
+
+Pulmonary vessels confound ground glass detection due to similar attenuation.
+Multiscale Hessian based filtering enhances vessels.
+A 3D multiscale framework segmented the vascular tree with 96.2–97.0\% accuracy \cite{pmc2008}.
+Eigenvalue signatures of tubular geometry are used across scales.
+Dynamic contour evolution applies geometric constraints.
+Morphological processing and elliptical fitting use vessel aspect ratios \cite{pmc2021}.
+Edge tracking maintains continuity along vessel paths.
+Tubular morphology helps reject non vascular detections.
+Comprehensive pipelines combine thresholding, closing, and Hessian filters.
+Distance transform processing quantifies vessel proximity \cite{pmc2014}.
+These tools support region aware vessel suppression.
+
+\subsection{Gap Analysis}
+
+Important limitations remain despite progress.
+Most GGO detection systems are fully automatic with little user intervention.
+Radiologists cannot fine tune parameters for individual anatomy or disease.
+This limits clinical integration.
+Vessel suppression uses globally uniform settings.
+Vascular density varies from hilar region to lung periphery.
+Uniform parameters cause under suppression centrally or tissue loss peripherally.
+Validation studies focus on overall metrics, not failure modes.
+Clinicians lack guidance on where improvements are needed.
+Few methods offer volumetric quantification with slice by slice navigation.
+Direct correlation between 3D extent and clinical severity is limited.
+Transparency control for overlay visualization is rarely addressed.
+Efficiency evaluations focus on algorithmic steps, not end to end workflow.
+Total processing time determines clinical realism.
+These limitations motivate interactive visualization tools.
+Tools should provide adjustable parameters and regionally adaptive processing.
+Detailed failure mode analysis and volumetric navigation are needed.
+Overlay transparency control and workflow optimization are important.
+Such capabilities would bridge research automation and clinical utility.
