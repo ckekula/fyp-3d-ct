@@ -55,10 +55,12 @@ Ground Glass Opacities (GGOs) appear as faint cloudy areas seen in lung CT scans
 lung infections, or even cancer. Finding these areas by hand is difficult and consumes a large amount of time because GGOs are low contrast areas
 and spread out gradually in the lungs. This could result in different radiologists interpreting the same CT scan differently, which may affect diagnosis accuracy.
 
-Traditional methods do not have clear and standard ways to measure GGOs. Because of this, it is very hard to accurately track how a 
-disease changes over time or to compare scans taken before and after treatment. Medical images stored in DICOM format are often handled inefficiently,
-windowing settings (brightness and contrast) vary between hospitals, and many steps are still done manually instead of automatically.
-These issues make it difficult to interpret CT scans in a consistent and standardized way.
+Ground Glass Opacities (GGOs) are faint cloudy areas seen in lung CT scans. They can be early signs of diseases such as pneumonia,
+lung infections, or even cancer. Finding these areas by hand is difficult and takes a lot of time because GGOs have low contrast and
+spread out gradually in the lungs. Different doctors may also interpret them differently, which can affect diagnosis accuracy.
+Without a well organized preprocessing pipeline, steps like segmenting the lungs, detecting GGOs, and measuring their size can
+cause inconsistent results, which makes it hard to perform reliable automated analysis.
+
 
 
 \newpage
