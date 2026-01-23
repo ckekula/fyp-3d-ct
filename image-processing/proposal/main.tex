@@ -82,7 +82,6 @@ These issues make it difficult to interpret CT scans in a consistent and standar
 
 \newpage
 \section{Dataset / Data Collection}
-(Maximum word limit: 100 words)
 This project utilizes the LIDC-IDRI dataset obtained from The Cancer Imaging Archive (TCIA). 
 The dataset consists of over 1,000 chest CT scans stored in DICOM format. 
 The key statistics of the dataset are summarized as follows:
@@ -93,7 +92,7 @@ The key statistics of the dataset are summarized as follows:
     \item \textbf{Nodules $\geq 3$ mm:} 2,669 lesions identified as clinically significant nodules
 \end{itemize}
 
-\noindent\textbf{Images:} Clinical thoracic CT scans in DICOM format.
+\noindent\textbf{Images:} linical thoracic CT scans in DICOM format.
 
 \noindent\textbf{Annotations:} Provided in XML files containing the coordinates of nodule boundaries (contours) and associated radiological characteristic ratings.
 
@@ -123,9 +122,7 @@ The expected outcomes of this project include:
 
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
-\section{Percentage of Image Processing \& Computer Vision Involvement 
-}
-(Approximately 50–100 words)
+\section{Percentage of Image Processing \& Computer Vision Involvement}
 Core components include DICOM loading, Hounsfield Unit extraction, lung windowing, threshold-based lung segmentation, morphological operations, 
 connected component analysis, flood fill, and GGO detection using HU ranges. Vessel suppression is performed using structural morphology and region-based filtering. 
 Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or computer vision techniques.
@@ -135,7 +132,5 @@ Dataset preprocessing and visualization parts of the pipeline are the only compo
 
 \bibliographystyle{ieeetr} 
 \bibliography{references}
-A minimum of ten (10) references must be included in the References section.
-
 
 \end{document}
