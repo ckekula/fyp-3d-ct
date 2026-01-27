@@ -109,9 +109,17 @@ The expected outcomes of this project include:
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
 \section{Percentage of Image Processing \& Computer Vision Involvement}
-Core components include DICOM loading, Hounsfield Unit extraction, lung windowing, threshold-based lung segmentation, morphological operations, 
-connected component analysis, flood fill, and GGO detection using HU ranges. Vessel suppression is performed using structural morphology and region-based filtering. 
-Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or computer vision techniques.
+Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or
+computer vision techniques.
+Core components include:
+\begin{itemize}
+    \item DICOM loading and metadata extraction
+    \item Image windowing, resampling, and normalization
+    \item Noise reduction using filtering techniques
+    \item Threshold-based lung segmentation, morphological operations
+    \item GGO detection using HU ranges
+    \item Vessel suppression using structural morphology and region-based filtering
+\end{itemize}
 
 \hyperref[contents]{\small Back to Table of Contents}
 \newpage
