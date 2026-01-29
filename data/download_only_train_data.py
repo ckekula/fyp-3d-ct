@@ -7,8 +7,12 @@ directory_name = "dataset/train/"
 token = os.environ.get("HF_TOKEN")
 
 data = pd.read_csv("train_labels.csv")
+
+segmentations_folder_path = r"C:\Users\chamu\D\UOR\S7\FYP\fyp\data\ct-rate\data_segmentations\segmentations"
+
 files = [
-    "train_10000_a_1.nii.gz",
+    f for f in os.listdir(segmentations_folder_path)
+    if os.path.isfile(os.path.join(segmentations_folder_path, f))
 ]
 
 failed = []
