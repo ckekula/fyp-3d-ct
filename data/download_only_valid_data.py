@@ -2,7 +2,7 @@ from huggingface_hub import hf_hub_download
 import pandas as pd
 
 repo_id = "ibrahimhamamci/CT-RATE" 
-directory_name = "dataset/valid/"
+directory_name = "dataset/valid_fixed/"
 
 data=pd.read_csv("valid_labels.csv")
 

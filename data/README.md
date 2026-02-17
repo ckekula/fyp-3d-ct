@@ -1,3 +1,5 @@
+# Folder Structure
+
 # Download script for CT-RATE dataset
 This is an example download script to download CT-RATE dataset
 

@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 repo_id = "ibrahimhamamci/CT-RATE"
-directory_name = "dataset/train/"
+directory_name = "dataset/train_fixed/"
 token = os.environ.get("HF_TOKEN")
 
 data = pd.read_csv("train_labels.csv")
