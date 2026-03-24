@@ -1,3 +1,4 @@
+import time
 from huggingface_hub import hf_hub_download
 import pandas as pd
 import os
@@ -6,43 +7,67 @@ repo_id = "ibrahimhamamci/CT-RATE"
 directory_name = "dataset/train_fixed/"
 token = os.environ.get("HF_TOKEN")
 
-data = pd.read_csv("train_labels.csv")
+segmentations_folder_path = r"/home/chest_ct/code/data/segmentations/segmentations"
 
-segmentations_folder_path = r"C:\Users\chamu\D\UOR\S7\FYP\fyp\data\ct-rate\segmentations\segmentations"
-
-files = [
+segmentations = [
     f for f in os.listdir(segmentations_folder_path)
     if os.path.isfile(os.path.join(segmentations_folder_path, f))
 ]
 
+# Load the train_labels.csv
+train_labels = pd.read_csv("/home/chest_ct/code/data/ct-rate/train_labels.csv")
+
+# Initialize an empty list to store the VolumeNames
+files = []
+
+# Iterate over the rows of the dataframe
+for index, row in train_labels.iterrows():
+    if row["Consolidation"] == 1 or row["Atelectasis"] == 1 or row["Bronchiectasis"] == 1 or row["Arterial wall calcification"] == 1 or row["Coronary artery wall calcification"] == 1:
+        if row["VolumeName"] in segmentations:
+            files.append(row["VolumeName"])
+
 failed = []
 
-for name in data["VolumeName"]: # Use files to download specific files
-    try:
-        if not isinstance(name, str):
-            raise ValueError("VolumeName is not a string")
+# Retry logic
+max_retries = 3
+retry_delay = 5  # seconds between retries
 
-        parts = name.split("_")
-        if len(parts) < 3:
-            raise ValueError(f"Unexpected filename format: {name}")
+for name in files:
+    attempts = 0
+    while attempts < max_retries:
+        try:
+            if not isinstance(name, str):
+                raise ValueError("VolumeName is not a string")
 
-        folder = f"{parts[0]}_{parts[1]}"
-        subfolder = f"{directory_name}{folder}/{folder}_{parts[2]}"
+            parts = name.split("_")
+            if len(parts) < 3:
+                raise ValueError(f"Unexpected filename format: {name}")
 
-        hf_hub_download(
-            repo_id=repo_id,
-            repo_type="dataset",
-            subfolder=subfolder,
-            filename=name,
-            local_dir="data_volumes",
-            token=token,
-        )
+            folder = f"{parts[0]}_{parts[1]}"
+            subfolder = f"{directory_name}{folder}/{folder}_{parts[2]}"
 
-        print(f"✅ Downloaded {name}")
+            hf_hub_download(
+                repo_id=repo_id,
+                repo_type="dataset",
+                subfolder=subfolder,
+                filename=name,
+                local_dir="data_volumes",
+                token=token,
+            )
 
-    except Exception as e:
-        print(f"❌ Failed {name}: {e}")
-        failed.append((name, str(e)))
+            print(f"✅ Downloaded {name}")
+            break  # If successful, break out of the retry loop
+
+        except Exception as e:
+            attempts += 1
+            print(f"❌ Attempt {attempts} failed for {name}: {e}")
+
+            if attempts >= max_retries:
+                print(f"❌ Failed to download {name} after {max_retries} attempts.")
+                failed.append((name, str(e)))
+            else:
+                print(f"⏳ Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
 
 # Save failures for later retry
 pd.DataFrame(failed, columns=["VolumeName", "Error"]).to_csv("failed_downloads.csv", index=False)
