@@ -8,7 +8,7 @@ token = os.environ.get("HF_TOKEN")
 
 data = pd.read_csv("train_labels.csv")
 
-segmentations_folder_path = r"C:\Users\chamu\D\UOR\S7\FYP\fyp\data\ct-rate\data_segmentations\segmentations"
+segmentations_folder_path = r"C:\Users\chamu\D\UOR\S7\FYP\fyp\data\ct-rate\segmentations\segmentations"
 
 files = [
     f for f in os.listdir(segmentations_folder_path)

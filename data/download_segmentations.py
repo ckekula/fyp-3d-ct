@@ -21,13 +21,13 @@ print(f"Found {len(seg_files)} segmentation files")
 failed = []
 
 # 3. Download using FULL PATH as filename
-for file_path in seg_files[1000:3000]:
+for file_path in seg_files[3000:]:
     try:
         hf_hub_download(
             repo_id=repo_id,
             repo_type="dataset",
-            filename=file_path,      # ✅ full path
-            local_dir="data_segmentations",
+            filename=file_path,
+            local_dir="segmentations",
             resume_download=True,
             token=token,
         )

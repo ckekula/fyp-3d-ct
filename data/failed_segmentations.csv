@@ -1,0 +1,3 @@
+file,error
+segmentations/valid_874_a_2.nii.gz,"Cannot send a request, as the client has been closed."
+segmentations/valid_888_a_2.nii.gz,"Cannot send a request, as the client has been closed."
