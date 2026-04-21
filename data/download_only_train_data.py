@@ -14,23 +14,19 @@ segmentations = [
     if os.path.isfile(os.path.join(segmentations_folder_path, f))
 ]
 
-# Load the train_labels.csv
 train_labels = pd.read_csv("/home/chest_ct/code/data/ct-rate/train_labels.csv")
 
-# Initialize an empty list to store the VolumeNames
 files = []
-
 # Iterate over the rows of the dataframe
 for index, row in train_labels.iterrows():
-    if row["Consolidation"] == 1 or row["Atelectasis"] == 1 or row["Bronchiectasis"] == 1 or row["Arterial wall calcification"] == 1 or row["Coronary artery wall calcification"] == 1:
+    if row["Lung nodule"] == 1 or row["Lung opacity"] == 1:
         if row["VolumeName"] in segmentations:
             files.append(row["VolumeName"])
 
 failed = []
 
-# Retry logic
 max_retries = 3
-retry_delay = 5  # seconds between retries
+retry_delay = 5
 
 for name in files:
     attempts = 0
@@ -70,4 +66,4 @@ for name in files:
                 time.sleep(retry_delay)
 
 # Save failures for later retry
-pd.DataFrame(failed, columns=["VolumeName", "Error"]).to_csv("failed_downloads.csv", index=False)
+pd.DataFrame(failed, columns=["VolumeName", "Error"]).to_csv("failed_train_downloads.csv", index=False)
