@@ -1,0 +1,33 @@
+{
+    "Lung": {
+        "pulmonary parenchyma": [
+            "Atelectasis",
+            "Incomplete lung expansion",
+            "Pulmonary consolidation",
+            "Pulmonary ground-glass opacities ",
+            "Pulmonary emphysema",
+            " Pulmonary solitary nodule or mass",
+            " Pulmonary diffusely distributed multiple nodules",
+            "Pulmonary parenchymal fibrosis",
+            " Pulmonary thin-walled cavitation",
+            " Pulmonary thick-walled cavities",
+            " Pulmonary cystic mass"
+        ],
+        "Bronchi": [
+            "Bronchiectasis",
+            "Bronchial wall thickening, stenosis, or occlusion.",
+            "Bronchial foreign body"
+        ],
+        "Lung interstitial": [
+            "Lung interstitial fibrosis and thickening",
+            "Honeycomb lung"
+        ],
+        "Pleura": [
+            "Pleural thickening",
+            "Pleural effusion",
+            "Pneumothorax",
+            "Pleural calcification",
+            "Pleural soft tissue mass"
+        ]
+    }
+}
