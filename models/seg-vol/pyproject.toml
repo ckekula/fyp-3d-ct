@@ -1,0 +1,15 @@
+[project]
+name = "seg-vol"
+version = "0.1.0"
+description = "Implementation of Seg-Vol"
+requires-python = ">=3.12"
+dependencies = [
+    "einops>=0.8.2",
+    "matplotlib>=3.10.9",
+    "monai>=1.5.2",
+    "transformers>=5.7.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

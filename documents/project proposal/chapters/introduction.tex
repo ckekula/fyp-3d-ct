@@ -1,138 +1,125 @@
 \chapter{Introduction}
 
 \section{Background}
-Lung disease remains a leading cause of global morbidity and mortality\cite{Zhai2025Global}. In the diagnosis of lung disease, assessing the pattern,
-location, and regional distribution of involvement is the domain of radiology. Chest X-rays (CXR) are commonly used as the first 
-imaging test due to its low cost and low radiation exposure. However, their diagnostic sensitivity is limited, as they capture
-only a two-dimensional image of the chest. This causes anatomical superposition, where overlapping tissues and organs are projected
-onto a single plane, allowing visualization of only about 70\% of the lung volume\cite{Wielpuetz2014}.
-
+Lung disease remains a leading cause of global morbidity and mortality\cite{Zhai2025Global}. In the diagnosis of lung disease,
+Chest X-rays (CXR) are commonly used as the first imaging test due to its low cost and low radiation exposure. However, their
+diagnostic sensitivity is limited by their two dimensional nature, which causes anatomical superposition, allowing visualization
+of only about 70\% of the lung volume\cite{Wielpuetz2014}.
 Computed Tomography (CT) is a radiographic technology that combines X-ray technology with computer reconstruction to produce 
 images of cross sections of the human body\cite{Kasban2015}. This overcomes many of the limitations of radiography by eliminating
-anatomical superposition and enabling full volumetric assessment of the lungs. CT produces high-resolution slices that reveal fine
-structural details not visible in standard chest radiographs.
+anatomical superposition and enabling full volumetric assessment of the lungs.
 
-A defining characteristic of a CT scan is the Hounsfield Unit (HU)\cite{Hounsfield1973}, a quantitative scale of radiodensity that allows tissue properties
-to be measured.
-In pulmonary imaging, HU values allow for the objective differentiation of tissues such as normal parenchyma, Ground-Glass
-Opacity (GGO), and consolidation that might appear visually similar (figure )\ref{fig:GGO}). GGO appears as hazy increased opacity of lung, with
-preservation of bronchial and vascular margins.
-Consolidation is more opaque, and appears as a homogeneous increase in pulmonary parenchymal attenuation that obscures the margins
-of vessels and airway walls\cite{Bankier2024}. While \ac{GGO} often suggests a reversible or early-stage condition, consolidation
-usually indicates a more aggressive or advanced stage. The Consolidation-to-GGO (C/G) ratio is a quantitative metric calculated by dividing
-the volume or area of consolidation by the volume or area of GGO within a lesion or throughout the lungs.
+CT produces high resolution slices that reveal fine structural details such as normal parenchyma, Ground Glass
+Opacity (GGO), and consolidation (figure \ref{fig:GGO}).
+The traditional approach for CT analysis relies on a slice by slice approach where a radiologist views a series of axial
+cross sections and identifies the index slice (the single image where a pathology appears at its largest diameter)\cite{Gierada2016QuantitativeCT}.
+A 2D slice only captures a small portion of a 3D structure. Studies show that 2D CTs are highly sensitive to the patient's
+orientation and the specific slice chosen, leading to high inter-observer variability\cite{Gierada2016QuantitativeCT}. 2D models also
+treat each slice as an independent data point\cite{Li2026_MedImageAnalysis}, losing the spatial continuity between adjacent tissues.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.75\textwidth]{GGO.jpg}
+    \includegraphics[width=0.65\textwidth]{GGO.jpg}
     \caption[Examples of GGO and consolidation]{
-        Examples of GGO and consolidation on axial slices of lung CT scans from COVID-19 patients\cite{GgoAndCons}. Arrows point to the areas affected by
-        the infection. Left: GGO Right: Consolidation.
+        Examples of GGO and consolidation on axial slices of lung CT scans from COVID-19 patients. Arrows point to the areas affected by
+        the infection. Left: GGO Right: Consolidation~\cite{interactiveSegmentationCovid19}.
     }
     \label{fig:GGO}
 \end{figure}
 
-The traditional approach for CT analysis relies on a slice-by-slice approach where a radiologist views a series of axial
-cross-sections and identifies the index slice (the single image where a pathology appears at its largest diameter)\cite{Gierada2016QuantitativeCT}.
-A 2D slice only captures a small fraction of a 3D structure. If a nodule is irregularly shaped, the largest slice may not
-represent the true extent of the disease. Studies show that 2D measurements are highly sensitive to the patient's
-orientation and the specific slice chosen, leading to high inter-observer variability\cite{Gierada2016QuantitativeCT}. 2D models also
-treat each slice as an independent data point, losing the spatial continuity between adjacent tissues.
-
-3D volumetric analysis represents a quantitative shift wherein the entire dataset is used to reconstruct the lung's anatomy as a
-solid volume (figure \ref{fig:3Dvs2DCT}). This enables more accurate characterization of lesion size, shape, and spatial distribution, while reducing
-sensitivity to slice selection and viewing angle. 3D representations better capture disease morphology
-and progression, providing a more robust foundation for quantitative analysis and automated learning-based methods.
+3D volumetric analysis represents a shift in CT imaging, wherein the entire dataset is used to reconstruct the lung's anatomy
+as a solid volume (figure \ref{fig:3Dvs2DCT}). This enables more accurate characterization of lesion size, shape, and spatial
+distribution, while reducing sensitivity to slice selection and viewing angle. 3D representations capture disease morphology
+and progression better, providing a more robust visualization for analysis.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.95\textwidth]{2Dvs3D.jpeg}
     \caption{
-        3D CT Imaging and visualization process of the craniofacial region.
+        3D CT Imaging and visualization process of the craniofacial region~\cite{ct3dreviewfig}.
     }
     \label{fig:3Dvs2DCT}
 \end{figure}
 
-Modern radiology increasingly relies on Artificial Intelligence (AI) to streamline the acquisition of radiologist analyses on
-chest X-rays\cite{Najjar2023Redefining}. However, the exponential increase in data volume generated by 3D CT scanners presents a profound challenge
-for human interpretation and computational analysis. While the prevailing research trend has focused heavily on the deployment of
-3D deep learning architectures, such as Convolutional Neural Networks (CNNs), these models frequently encounter significant hurdles
-regarding computational overhead, data scarcity, and a critical lack of interpretability. The research proposed herein advocates
-for a departure from these black box paradigms, suggesting that sparse representation methods offer a more intutive framework for the
-volumetric identification of lung diseases by ensuring clinical interpretability.
+Modern radiology increasingly relies on Artificial Intelligence (AI) to streamline the acquisition of radiological analysis on
+chest CTs\cite{Najjar2023Redefining}. However, the exponential increase in data volume generated by 3D CT scanners presents a
+significant challenge for computational efficiency. The prevailing research trend has focused heavily on the
+deployment of 3D deep learning architectures, such as Convolutional Neural Networks (CNNs), achieving remarkable success in
+tasks such as segmenting suspected infection regions and differentiating between various types of carcinoma\cite{Tiwari2023Comprehensive}.
+Despite these advancements, these models frequently encounter challenges regarding computational complexity, data scarcity, and
+a lack of interpretability. The research proposed herein advocates for a departure from these black box paradigms, suggesting that
+sparse representation methods offer a more intutive framework for the volumetric identification of lung diseases by ensuring clinical interpretability.
 
 \section{Problem Statement}
-Modern radiology increasingly relies on AI to manage the vast quantities of 3D data produced during routine screenings. 3D deep
-learning has been widely applied to the automatic diagnosis of lung diseases\cite{Tiwari2023Comprehensive}, achieving remarkable success in
-tasks such as segmenting suspected infection regions and differentiating between various types of carcinoma. Despite these advancements,
-the inherent complexity of 3D \ac{CNN}s introduces a set of constraints that are often overlooked in the pursuit of high accuracy scores.
 
-\subsection{Computational Overhead}
+\subsection{Computational Complexity}
 Processing a 3D CT scan involves treating stacked 2D slices as a single volumetric matrix, which demands significantly more GPU
-memory and processing power than standard image analysis. Unlike ordinary RGB images, CT scans consist of single-channel data with
-varying voxel dimensions and resolution, which complicates spatial alignment and generalizability across different scanners.
-Furthermore, the curse of dimensionality remains a persistent issue; as the network depth increases to capture global features,
-the risk of gradient explosion and slow convergence becomes significant.
+memory and processing power than standard image analysis. Unlike ordinary RGB images, CT scans consist of single channel data with
+varying voxel dimensions and resolution, making spatial alignment and generalizability across different scanners more difficult.
+Furthermore, as the network depth increases to capture global features, the risk of gradient explosion and slow convergence increases,
+and the curse of dimensionality remains a persistent issue.
 
 \subsection{Interpretability Bottleneck}
-Beyond computational limits, the clinical utility of deep learning is hampered by the interpretability paradox. While tools like
-Grad-CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post-hoc explanations are often insufficient for
-medical professionals who require a granular understanding of the model's decision-making process. In high-stakes environments, a
-model that shruggingly produces a diagnosis without an audit trail of its reasoning is difficult to integrate into standard workflows,
+In addition to computational limits, clinical adoption of deep learning is hindered by a lack of interpretability. While tools like
+Grad CAM\cite{Selvaraju_2019} provide visual heatmaps to localize lesions, these post hoc explanations are often insufficient for
+medical professionals who require a granular understanding of the model's decision making process. In high stakes environments, a
+model that produces a diagnosis without transparency in its reasoning is difficult to integrate into standard workflows,
 as it lacks the accountability necessary for legal and ethical compliance. This transparency gap has led to a renewed interest in
-open-book models that are interpretable by design, where the internal logic is clear from the outset.
+models that are interpretable by design.
 
 \section{Objectives and Scope}
-
 \subsection{Objectives}
 
 The primary goal of this project is to address the limitations of existing AI based lung disease diagnosis systems, specifically
-high computational overhead and lack of clinical interpretability, by developing an inherently interpretable and computationally
-efficient dictionary learning framework. The proposed approach aims to enable transparent, anatomically grounded decision making,
+high computational complexity and lack of clinical interpretability, by developing an inherently interpretable and
+efficient dictionary learning framework. The proposed approach aims to enable transparent decision making,
 where each classification outcome can be traced back to specific pathological patterns. This aligns with clinical reasoning and
-facillitates validation and adoption in radiological workflows.
+facilitates validation and adoption in radiological workflows. The research will focus on the following specific objectives:
 
 \begin{enumerate}
-    \item Develop an interpretable dictionary learning framework for lung disease classification from 3D chest CT scans
+    \item Develop a Dictionary Learning framework for Interpretable Lung Disease Classification from 3D Chest CT
         \begin{itemize}
-            \item Implement a two phase training strategy to learn normal and pathological dictionary atoms
+            \item Implement a training strategy to learn normal and pathological dictionary atoms
             using a publicly available annotated 3D chest CT dataset
-            \item Integrate label consistency to improve class discrimination while maintaining
-            interpretability
+            \item Integrate label consistency to improve class discrimination
+        \end{itemize}
+    \item Visualize dictionary atoms and map them to anatomical features
+        \begin{itemize}
+            \item Compare sparse coefficient patterns across disease classes
+            \item Visualize dictionary atoms using an interactive 3D interface
+            \item Demonstrate atom to pathology correspondence
+        \end{itemize}
+    \item Benchmark against baseline models
+        \begin{itemize}
+            \item Compare with standard \ac{KSVD} without label consistency constraint
+            \item Compare with 3D \ac{CNN} baseline (3D ResNet)
+        \end{itemize}
+    \item Integrate clinical metrics for volumetric analysis
+        \begin{itemize}
+            \item Perform segmentation to identify radiological features such as GGO and consolidation
+            \item Compute the Consolidation to GGO (C/G) ratio and relate model predictions to clinical thresholds
+        \end{itemize}
+    
+    \item Optionally include verification from radiologists to support the analysis
+        \begin{itemize}
+            \item Gather opinions from multiple radiologists on the regions identified by the model
+            \item Utilize this feedback to understand how well the model's predictions align with real clinical judgment
         \end{itemize}
 
-    \item Improve model interpretability through visualization of learned dictionary atoms
-        \begin{itemize}
-            \item Visualize dictionary atoms in 3D and map them to anatomical and pathological lung features
-            \item Analyze and compare sparse coefficient patterns across different disease classes
-        \end{itemize}
-
-    \item Evaluate the effectiveness of the proposed framework
-        \begin{itemize}
-            \item Benchmark performance against standard \ac{KSVD} without label consistency
-            \item Compare results with a 3D \ac{CNN} baseline (3D-ResNet)
-        \end{itemize}
-
-    \item Integrate clinically relevant volumetric features into the analysis
-        \begin{itemize}
-            \item Perform HU based segmentation to identify Ground-Glass Opacity (GGO) and consolidation
-            \item Compute the Consolidation toGGO (C/G) ratio and relate model predictions to clinical thresholds
-        \end{itemize}
 \end{enumerate}
 
-
 \subsection{Scope}
-The scope of this study focuses on the development and evaluation of a dictionary learning-based framework
-for lung disease classification using volumetric 3D chest CT data, with the following limitations:
+The scope of this study focuses on the development and evaluation of a dictionary learning based framework
+for diagnostic hypotheses using volumetric 3D chest CT data, with the following limitations:
 
 \begin{itemize}
     \item The proposed solution is limited to volumetric CT scans of the thorax and does not consider other imaging modalities
     such as chest X-rays, MRI, or PET scans.
-    \item The methodology is restricted to dictionary learning-based approaches, with particular emphasis on KSVD and LC-KSVD
-    End-to-end deep dearning models such as CNNs are not the primary focus of this work and are included only as baseline
+    \item The methodology is restricted to dictionary learning based approaches, with particular emphasis on KSVD and LC-KSVD.
+    Deep learning models like CNNs are not the primary focus of this work and are included only as baseline
     comparators for performance benchmarking.
-    \item Clinically, the analysis is confined to the characterization of lung parenchymal abnormalities, specifically GGO and
-    consolidation patterns. Quantitative metrics such as HU-based segmentation and the C/G ratio are employed to support volumetric
-    analysis. The study does not address disease prognosis or treatment outcome prediction.
-    \item The scope excludes real-time clinical deployment, cross-institutional generalization studies, and regulatory validation.
+    \item The analysis is confined to the diagnostic hypotheses of 10 disease categories, based on the
+    18 abnormalities annotated in the CT-RATE dataset. This list does not include all possible differentials but covers the most
+    clinically relevant categories for an AI diagnostic model. The study does not address disease prognosis or treatment outcome prediction.
+    \item The scope excludes real time clinical deployment, cross institutional generalization studies, and regulatory validation.
     The findings are intended to demonstrate the feasibility and interpretability of sparse representation learning for 3D lung
     disease analysis rather than to provide a clinically deployable diagnostic system.
 \end{itemize}
