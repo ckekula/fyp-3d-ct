@@ -1,0 +1,12 @@
+[project]
+name = "merlin"
+version = "0.1.0"
+description = "Implementation of Merlin"
+requires-python = ">=3.12"
+dependencies = [
+    "merlin-vlm>=0.0.7",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
