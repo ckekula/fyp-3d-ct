@@ -1,0 +1,11 @@
+[project]
+name = "ct-clip"
+version = "0.1.0"
+dependencies = [
+    "transformer_maskgit",
+    "ct-clip",
+]
+
+[tool.uv.sources]
+transformer_maskgit = { path = "./transformer_maskgit", editable = true }
+ct-clip = { path = "./CT_CLIP", editable = true }
