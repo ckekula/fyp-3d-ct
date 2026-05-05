@@ -1,0 +1,18 @@
+[project]
+name = "lc-ksvd"
+version = "0.1.0"
+description = "Implementation of LC-KSVD"
+requires-python = ">=3.12"
+dependencies = [
+    "nibabel>=5.4.2",
+    "pandas>=3.0.2",
+    "reppi>=0.1.0",
+    "scikit-image>=0.26.0",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
+    "tqdm>=4.67.3",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

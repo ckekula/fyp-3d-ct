@@ -1,0 +1,255 @@
+"""
+train.py
+Trains one LC-KSVD2 binary classifier per abnormality using reppi.
+
+Pipeline per abnormality:
+  1. Load patch matrix (X, H) from PATCHES_DIR
+  2. Train LCKSVD (variant="lcksvd2") using hyperparameters from config
+  3. Evaluate on validation split
+  4. Save model to MODELS_DIR as a pickle file
+
+Usage:
+  python train.py                        # train all 4 abnormalities
+  python train.py --abnormality lung_nodule  # train one
+  python train.py --skip-extraction      # use existing .npz files
+"""
+
+import argparse
+import logging
+import pickle
+import time
+from pathlib import Path
+from typing import Dict, Tuple
+
+import numpy as np
+from sklearn.metrics import (
+    average_precision_score,
+    f1_score,
+    roc_auc_score,
+)
+
+import config
+from patch_extractor import extract_all_abnormalities, load_patch_matrix
+
+try:
+    from reppi import LCKSVD
+except ImportError:
+    raise ImportError(
+        "reppi is not installed. Run: pip install reppi"
+    )
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+
+
+# ─── Column normalisation ─────────────────────────────────────────────────────
+
+def normalise_columns(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Unit-normalise each column of X (each patch vector).
+    LC-KSVD and OMP require unit-norm signals for correct sparse coding.
+
+    Returns:
+      X_norm : (n_features, n_patches) with unit-norm columns
+      norms  : (n_patches,) original L2 norms — needed to invert for back-projection
+      zero_mask: (n_patches,) bool — True where norm was 0 (all-zero patch)
+    """
+    norms = np.linalg.norm(X, axis=0)          # (n_patches,)
+    zero_mask = norms < 1e-10
+    norms_safe = np.where(zero_mask, 1.0, norms)
+    X_norm = X / norms_safe[np.newaxis, :]
+    return X_norm, norms, zero_mask
+
+
+# ─── Train / val split ───────────────────────────────────────────────────────
+
+def train_val_split(
+    X: np.ndarray, H: np.ndarray
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Stratified split of columns in X and H into train and val sets.
+    Stratified by the positive class (H[1, :] == 1) to preserve class balance.
+    """
+    rng = np.random.default_rng(config.RANDOM_SEED)
+    n = X.shape[1]
+
+    pos_idx = np.where(H[1, :] == 1)[0]
+    neg_idx = np.where(H[0, :] == 1)[0]
+
+    def _split(idx: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        perm = rng.permutation(len(idx))
+        idx  = idx[perm]
+        cut  = int(len(idx) * (config.TRAIN_RATIO / (config.TRAIN_RATIO + config.VAL_RATIO)))
+        return idx[:cut], idx[cut:]
+
+    pos_train, pos_val = _split(pos_idx)
+    neg_train, neg_val = _split(neg_idx)
+
+    train_idx = np.concatenate([pos_train, neg_train])
+    val_idx   = np.concatenate([pos_val,   neg_val])
+
+    train_idx = rng.permutation(train_idx)
+    val_idx   = rng.permutation(val_idx)
+
+    return (
+        X[:, train_idx], H[:, train_idx],
+        X[:, val_idx],   H[:, val_idx],
+    )
+
+
+# ─── Evaluation helpers ───────────────────────────────────────────────────────
+
+def evaluate(
+    model: LCKSVD,
+    X_norm: np.ndarray,
+    H: np.ndarray,
+    split_name: str,
+) -> Dict[str, float]:
+    """
+    Compute classification metrics on a (normalised) patch matrix.
+
+    Metrics:
+      AUROC, F1 (threshold=0.5 on W·Gamma), Average Precision
+    """
+    # Sparse codes
+    Gamma = model.transform(X_norm)                # (n_components, n_patches)
+
+    # Raw scores: project onto classifier weight for positive class (row 1 of W)
+    # W is (n_classes, n_components) = (2, K)
+    W = model.W_
+    scores = W[1, :] @ Gamma                       # (n_patches,)
+
+    # Ground-truth binary labels
+    y_true = H[1, :].astype(int)                   # 1 = positive, 0 = negative
+
+    # Predictions at threshold 0.5 (after sigmoid-like normalisation)
+    # W·Gamma scores are unbounded; we use sign for hard predictions
+    y_pred = (scores > 0).astype(int)
+
+    metrics = {}
+    try:
+        metrics["auroc"] = roc_auc_score(y_true, scores)
+    except ValueError:
+        metrics["auroc"] = float("nan")
+
+    metrics["f1"]   = f1_score(y_true, y_pred, zero_division=0)
+
+    try:
+        metrics["ap"] = average_precision_score(y_true, scores)
+    except ValueError:
+        metrics["ap"] = float("nan")
+
+    logger.info(
+        f"  [{split_name}] AUROC={metrics['auroc']:.4f}  "
+        f"F1={metrics['f1']:.4f}  AP={metrics['ap']:.4f}"
+    )
+    return metrics
+
+
+# ─── Single-abnormality training ─────────────────────────────────────────────
+
+def train_one(abnormality: str) -> Dict:
+    """
+    Full training pipeline for one binary LC-KSVD2 model.
+    Returns a results dict with trained model, metrics, and norms.
+    """
+    logger.info(f"\n{'='*60}\nTraining: {abnormality}\n{'='*60}")
+
+    # ── Load patches ──────────────────────────────────────────────────────────
+    X, H = load_patch_matrix(abnormality, split="train")
+    logger.info(f"Loaded X {X.shape}, H {H.shape}  "
+                f"(pos={int(H[1].sum())}, neg={int(H[0].sum())})")
+
+    # ── Normalise columns ─────────────────────────────────────────────────────
+    X_norm, col_norms, zero_mask = normalise_columns(X)
+    logger.info(f"Column-normalised X.  Zero patches: {zero_mask.sum()}")
+
+    # Remove all-zero patches (uninformative)
+    keep = ~zero_mask
+    X_norm = X_norm[:, keep]
+    H      = H[:, keep]
+    logger.info(f"After zero-patch removal: {X_norm.shape[1]} patches")
+
+    # ── Train / val split ─────────────────────────────────────────────────────
+    X_tr, H_tr, X_val, H_val = train_val_split(X_norm, H)
+    logger.info(f"Train: {X_tr.shape[1]} patches  |  Val: {X_val.shape[1]} patches")
+
+    # ── Train LC-KSVD2 ────────────────────────────────────────────────────────
+    model = LCKSVD(**config.LCKSVD_CONFIG)
+
+    logger.info("Starting LC-KSVD2 training…")
+    t0 = time.time()
+    model.fit(X_tr, H_tr)
+    elapsed = time.time() - t0
+    logger.info(f"Training complete in {elapsed:.1f}s")
+
+    # ── Evaluate ──────────────────────────────────────────────────────────────
+    train_metrics = evaluate(model, X_tr,  H_tr,  split_name="train")
+    val_metrics   = evaluate(model, X_val, H_val, split_name="val")
+
+    # ── Save model ────────────────────────────────────────────────────────────
+    config.MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    model_path = config.MODELS_DIR / f"{abnormality}_lcksvd2.pkl"
+
+    payload = {
+        "model":           model,
+        "abnormality":     abnormality,
+        "train_metrics":   train_metrics,
+        "val_metrics":     val_metrics,
+        "lcksvd_config":   config.LCKSVD_CONFIG,
+        "patch_size":      config.PATCH_SIZE,
+        "target_spacing":  config.TARGET_SPACING_MM,
+        "hu_window":       (config.HU_MIN, config.HU_MAX),
+        "training_time_s": elapsed,
+    }
+
+    with open(model_path, "wb") as f:
+        pickle.dump(payload, f)
+
+    logger.info(f"Model saved to {model_path}")
+    return payload
+
+
+# ─── Entry point ─────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(description="Train LC-KSVD2 models for chest CT abnormalities")
+    parser.add_argument(
+        "--abnormality", type=str, default=None,
+        choices=config.ABNORMALITIES + [None],
+        help="Train a single abnormality. Omit to train all 4."
+    )
+    parser.add_argument(
+        "--skip-extraction", action="store_true",
+        help="Skip patch extraction and use existing .npz files."
+    )
+    args = parser.parse_args()
+
+    # ── Patch extraction ──────────────────────────────────────────────────────
+    if not args.skip_extraction:
+        logger.info("Running patch extraction…")
+        extract_all_abnormalities(split="train")
+
+    # ── Training ──────────────────────────────────────────────────────────────
+    targets = [args.abnormality] if args.abnormality else config.ABNORMALITIES
+    all_results = {}
+
+    for abnormality in targets:
+        try:
+            result = train_one(abnormality)
+            all_results[abnormality] = result
+        except Exception as e:
+            logger.error(f"Failed to train {abnormality}: {e}", exc_info=True)
+
+    # ── Summary ───────────────────────────────────────────────────────────────
+    logger.info(f"\n{'='*60}\nTraining Summary\n{'='*60}")
+    for ab, res in all_results.items():
+        vm = res["val_metrics"]
+        logger.info(
+            f"  {ab:<20}  Val AUROC={vm['auroc']:.4f}  "
+            f"F1={vm['f1']:.4f}  AP={vm['ap']:.4f}"
+        )
+
+
+if __name__ == "__main__":
+    main()
