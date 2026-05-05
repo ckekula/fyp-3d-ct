@@ -23,7 +23,7 @@ import numpy as np
 from tqdm import tqdm
 
 import config
-from data_loader import LabelRegistry, MetadataRegistry, ScanLoader
+from data_loader import LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -105,12 +105,28 @@ def sample_positive_patches(
     max_attempts = n_patches * max_attempts_multiplier
     attempts = 0
 
+    # Stage 1: strict overlap threshold from config
     while len(patches) < n_patches and attempts < max_attempts:
         attempts += 1
         idx = rng.integers(0, len(foreground_coords))
         centre = tuple(foreground_coords[idx])
 
         if _overlap_ratio(centre, binary_mask) >= config.MIN_OVERLAP_RATIO:
+            patch = _extract_patch(volume, centre)
+            if patch is not None:
+                patches.append(patch)
+
+    # Stage 2 fallback: tiny lesions may never satisfy MIN_OVERLAP_RATIO for large patch sizes.
+    # Fill the remainder with any in-bounds patch that still overlaps lesion (>0).
+    if len(patches) < n_patches:
+        while len(patches) < n_patches and attempts < (2 * max_attempts):
+            attempts += 1
+            idx = rng.integers(0, len(foreground_coords))
+            centre = tuple(foreground_coords[idx])
+
+            if _overlap_ratio(centre, binary_mask) <= 0.0:
+                continue
+
             patch = _extract_patch(volume, centre)
             if patch is not None:
                 patches.append(patch)
@@ -331,7 +347,19 @@ def extract_all_abnormalities(split: str = "train") -> None:
     labels   = LabelRegistry()
     loader   = ScanLoader(metadata)
 
-    normal_ids = labels.get_normal_scan_ids()
+    # Pre-filter: remove volumes whose files are missing to avoid repeated FileNotFoundErrors
+    def _filter_existing_volumes(ids: List[str]) -> List[str]:
+        valid = []
+        for vid in ids:
+            try:
+                resolve_volume_path(vid)
+            except Exception:
+                continue
+            valid.append(vid)
+        return valid
+
+    normal_ids = labels.get_normal_volume_names()
+    normal_ids = _filter_existing_volumes(normal_ids)
 
     for abnormality in config.ABNORMALITIES:
         out_path = config.PATCHES_DIR / f"{abnormality}_{split}.npz"
@@ -339,16 +367,21 @@ def extract_all_abnormalities(split: str = "train") -> None:
             logger.info(f"[{abnormality}] Patch matrix already exists at {out_path}, skipping.")
             continue
 
-        positive_ids = labels.get_positive_scan_ids(abnormality)
+        positive_ids = labels.get_positive_volume_names(abnormality)
+        positive_ids = _filter_existing_volumes(positive_ids)
+        removed_pos = len(labels.get_positive_volume_names(abnormality)) - len(positive_ids)
+        removed_norm = len(labels.get_normal_volume_names()) - len(normal_ids)
+        if removed_pos > 0 or removed_norm > 0:
+            logger.info(f"[{abnormality}] Removed missing volumes — positives removed: {removed_pos}, normals removed: {removed_norm}")
         logger.info(
             f"\n{'='*60}\n"
             f"Abnormality : {abnormality}\n"
-            f"Positive scans: {len(positive_ids)}  |  Normal scans: {len(normal_ids)}\n"
+            f"Positive volumes: {len(positive_ids)}  |  Normal volumes: {len(normal_ids)}\n"
             f"{'='*60}"
         )
 
-        scan_ids = {"positive": positive_ids, "normal": normal_ids}
-        X, H = build_patch_matrix(abnormality, scan_ids, loader)
+        volume_names = {"positive": positive_ids, "normal": normal_ids}
+        X, H = build_patch_matrix(abnormality, volume_names, loader)
 
         np.savez_compressed(out_path, X=X, H=H)
         logger.info(f"[{abnormality}] Saved {out_path}  (X shape: {X.shape}, H shape: {H.shape})")

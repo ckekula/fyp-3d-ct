@@ -9,21 +9,21 @@ from pathlib import Path
 # ─── Dataset paths ────────────────────────────────────────────────────────────
 
 # Root of the ReXGroundingCT dataset
-DATASET_ROOT = Path("/path/to/dataset")
+DATASET_ROOT = Path("/home/chest_ct/code/data")
 
-# CT volumes: nested under volumes/dataset/train/<study>/<series>/
-VOLUMES_DIR = DATASET_ROOT / "volumes" / "dataset" / "train"
+# CT volumes: nested under data_volumes/dataset/train/<study>/<series>/
+VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 
 # Segmentation masks: flat folder, same filename as volume
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
 
 # JSON metadata file mapping F-dimension index → finding label per scan
 # Expected structure:  { "train_1_a_1": { "0": "Lung nodule", "1": "Lung opacity", ... }, ... }
-METADATA_JSON = DATASET_ROOT / "metadata.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_transformed_filtered.json"
 
 # CSV with per-volume one-hot labels
 # Expected columns: filename, lung_nodule, lung_opacity, consolidation, atelectasis
-LABELS_CSV = DATASET_ROOT / "labels.csv"
+LABELS_CSV = DATASET_ROOT / "ct-rate" / "train_labels.csv"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -36,19 +36,19 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 
 # Canonical names — order matters; used as dictionary keys and file suffixes
 ABNORMALITIES = [
-    "lung_nodule",
-    "lung_opacity",
-    "consolidation",
-    "atelectasis",
+    "Lung nodule",
+    "Lung opacity",
+    "Consolidation",
+    "Atelectasis",
 ]
 
 # Matching label strings as they appear in the JSON metadata finding descriptions
 # Add lowercase variants that appear in your dataset's JSON
 ABNORMALITY_ALIASES = {
-    "lung_nodule":    ["lung nodule", "pulmonary nodule", "nodule"],
-    "lung_opacity":   ["lung opacity", "opacity", "ground-glass opacity", "ground glass opacity", "groundglass opacity"],
-    "consolidation":  ["consolidation", "consolidations"],
-    "atelectasis":    ["atelectasis", "atelectatic"],
+    "Lung nodule":    ["lung nodule", "pulmonary nodule", "nodule", "nodules"],
+    "Lung opacity":   ["lung opacity", "opacity", "ground-glass opacity", "ground glass opacity", "groundglass opacity"],
+    "Consolidation":  ["consolidation", "consolidations"],
+    "Atelectasis":    ["atelectasis", "atelectatic"],
 }
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
