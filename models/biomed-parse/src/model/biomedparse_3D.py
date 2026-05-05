@@ -6,7 +6,11 @@ from PIL import Image
 import os
 import numpy as np
 import time
-from safetensors.torch import load_file
+
+try:
+    from safetensors.torch import load_file
+except ModuleNotFoundError:
+    load_file = None
 
 def process_multi_prompts(text):
     """
@@ -388,6 +392,10 @@ class BiomedParseModel(nn.Module):
     def load_pretrained(self, checkpoint_path):
         """Loads a pretrained checkpoint into the model."""
         if checkpoint_path.endswith(".safetensors"):
+            if load_file is None:
+                raise ModuleNotFoundError(
+                    "safetensors is required to load .safetensors checkpoints"
+                )
             state_dict = load_file(checkpoint_path)
         else:
             checkpoint = torch.load(checkpoint_path, map_location="cpu")
