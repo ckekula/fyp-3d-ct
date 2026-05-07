@@ -22,8 +22,8 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 from tqdm import tqdm
 
-import config
-from data_loader import LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
+from . import config
+from .data_loader import LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
