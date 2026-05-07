@@ -128,11 +128,27 @@ terns on HRCT images, effectively handling the high variety and complexity of pa
 
 \subsection{Explainability Approaches}
 
-Grad-CAM
+Explainability methods are essential in chest CT analysis because abnormality classification alone is not sufficient for clinical adoption. 
+For this project, the most relevant explainability techniques are those that can relate predictions back to anatomical regions and, ideally, support voxel-level interpretation in volumetric data.
 
-Seg-Grad-CAM
+Grad-CAM is one of the most widely used post-hoc explanation methods for CNN-based classifiers. 
+It generates class-discriminative heatmaps by using gradients flowing into the final convolutional layer, allowing the user to identify image regions that influenced a prediction. 
+In medical imaging, Grad-CAM has been applied to chest radiographs and CT classification tasks to provide coarse visual explanations. 
+However, its main limitation is that it produces low-resolution saliency maps and does not directly provide precise lesion boundaries or voxel-level localization, which is a major drawback for 3D CT interpretation.
 
-Hires-CAM
+Seg-Grad-CAM extends this idea by incorporating segmentation information into the explanation process. 
+Instead of only highlighting regions that are important for classification, it attempts to align attribution maps with anatomical or lesion masks, making the explanation more clinically meaningful. 
+This is particularly useful for volumetric medical imaging tasks where the target abnormality occupies a sparse region within a large 3D scan. 
+For a project focused on grounded localization, Seg-Grad-CAM is more relevant than standard Grad-CAM because it better reflects whether the model is attending to the pathological structure rather than surrounding tissue.
+
+HiRes-CAM addresses one of the key weaknesses of Grad-CAM by producing higher-resolution localization maps. 
+This is important in chest CT because many abnormalities, such as small nodules, consolidations, or subtle interstitial changes, may be missed by coarse heatmaps. 
+HiRes-CAM aims to preserve fine spatial detail, making it more suitable for medical imaging applications where precise localization is required. 
+Nevertheless, like other gradient-based methods, it remains a post-hoc explanation technique and does not change the internal decision process of the model.
+
+In the context of this project, these methods are useful baselines for evaluating interpretability in deep learning models. 
+However, they remain fundamentally different from dictionary learning approaches such as LC-KSVD, which provide intrinsic interpretability by representing predictions through sparse combinations of learned atoms. 
+Compared with Grad-CAM, Seg-Grad-CAM, and HiRes-CAM, LC-KSVD offers a more direct and anatomically traceable explanation mechanism for multi-abnormality classification and localization in 3D CT.
 
 \section{Report Outline}
 
