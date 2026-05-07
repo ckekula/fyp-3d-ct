@@ -1,13 +1,56 @@
-\chapter{Implementation of the Evaluation Framework}\label{cha:chapter3}
+\chapter{Methodology}
+
+\section{Implementation of the LC-KSVD Approach}
+
+\subsection{Mathematical Framework}
+The LC-KSVD algorithm solves an optimization problem that balances reconstruction accuracy with label consistency and
+classification error. Given a set of image patches $P$, the goal is to learn a dictionary $D$ and sparse coefficients
+$X$ that minimize the following objective:
+
+$$\min_{D, X, A, W} \|P - DX\|^2_F + \alpha\|Q - AX\|^2_F + \beta\|H - WX\|^2_F \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T$$
+
+The first term $\|P - DX\|^2_F$ is the standard K-SVD reconstruction error. The second term $\|Q - AX\|^2_F$ introduces
+the "discriminative sparse-code error," where $Q$ is a label-consistent constraint matrix that encourages patches from
+the same class to activate the same dictionary atoms. The third term $\|H - WX\|^2_F$ is the classification error, where
+$W$ is a linear classifier matrix.
+
+This formulation ensures that the dictionary atoms are not just representative of the image data but are also class-specific.
+In 3D CT multi-abnormality segmentation, this allows the model to learn distinct "sub-dictionaries" for each abnormality,
+facilitating easier classification of individual voxels.
 
 
-\section{Project Proposal}
+\subsection{Back-Projecting Class-Discriminative Atoms}
+The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
+each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$, the model can theoretically
+"explain" its decision for a test patch by examining which atoms were used in its sparse representation.
 
-\section{Project Progress}
+To generate a spatial contribution map for a class $c$, the algorithm identifies all atoms $d_k$ that have been assigned
+to that class. For a query voxel or patch with sparse coefficients $x$, the contribution $C_c$ is calculated as the
+partial reconstruction:
+
+$$C_c = \sum_{k \in \text{Class } c} d_k x_k$$
+
+This process should theoretically back-project the class-specific features into the original voxel space, creating a map
+that highlights the regions contributing to the detection of a specific abnormality. for class-discriminative atoms
+operating on raw voxel-space inputs, the back-projection is an exact, closed-form spatial attribution.
 
 
-\section{End Exam} 
+\subsection{Deriving Explainability through Segmentation Masks}
+To evaluate the clinical accuracy of LC-KSVD, these contribution maps are converted into binary segmentation masks for
+comparison with ground truth annotations. This conversion can be achieved through various thresholding methods.
 
+Grad-CAM's approximation has two sources of imprecision — the gradient itself is a local linear approximation of a non-linear
+function, and the spatial upsampling from the coarse feature map to input resolution introduces further interpolation error.
+LC-KSVD's contribution map has only one source of imprecision: the thresholding step you apply to binarize it into a mask.
+The map itself — before thresholding — is exact given the sparse code and the dictionary.
+
+
+Unlike the passive Grad-CAM approach, atom back-projection is generative. The atoms are what the model actually used to
+reconstruct and classify the signal. There's no proxy involved. The localization evidence is produced by the same
+computation that produced the classification, not by a separate post-hoc analysis run afterwards.
+
+
+\section{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
