@@ -2,22 +2,7 @@
 
 \section{Implementation of the LC-KSVD Approach}
 
-\subsection{Mathematical Framework}
-The LC-KSVD algorithm solves an optimization problem that balances reconstruction accuracy with label consistency and
-classification error. Given a set of image patches $P$, the goal is to learn a dictionary $D$ and sparse coefficients
-$X$ that minimize the following objective:
-
-$$\min_{D, X, A, W} \|P - DX\|^2_F + \alpha\|Q - AX\|^2_F + \beta\|H - WX\|^2_F \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T$$
-
-The first term $\|P - DX\|^2_F$ is the standard K-SVD reconstruction error. The second term $\|Q - AX\|^2_F$ introduces
-the "discriminative sparse-code error," where $Q$ is a label-consistent constraint matrix that encourages patches from
-the same class to activate the same dictionary atoms. The third term $\|H - WX\|^2_F$ is the classification error, where
-$W$ is a linear classifier matrix.
-
-This formulation ensures that the dictionary atoms are not just representative of the image data but are also class-specific.
-In 3D CT multi-abnormality segmentation, this allows the model to learn distinct "sub-dictionaries" for each abnormality,
-facilitating easier classification of individual voxels.
-
+\subsection{Developing the Python library}
 
 \subsection{Back-Projecting Class-Discriminative Atoms}
 The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
