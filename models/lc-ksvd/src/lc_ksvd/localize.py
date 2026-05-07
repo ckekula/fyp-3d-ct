@@ -29,8 +29,8 @@ from typing import Optional, Tuple
 import numpy as np
 from skimage.filters import threshold_otsu
 
-import config
-from data_loader import window_and_normalise, resample_volume
+from .config import CONTRIB_THRESHOLD_MODE, DISCRIMINATIVE_ATOM_PERCENTILE, LCKSVD_CONFIG, PATCH_SIZE, TARGET_SPACING_MM, HU_MIN, HU_MAX
+from .data_loader import window_and_normalise, resample_volume
 
 try:
     from reppi import OMP
@@ -51,11 +51,11 @@ def select_discriminative_atoms(W: np.ndarray, pos_class: int = 1) -> np.ndarray
     W shape: (n_classes, n_components) — row 1 = positive class.
     """
     weights = np.abs(W[pos_class, :])             # (n_components,)
-    threshold = np.percentile(weights, config.DISCRIMINATIVE_ATOM_PERCENTILE)
+    threshold = np.percentile(weights, DISCRIMINATIVE_ATOM_PERCENTILE)
     atom_indices = np.where(weights >= threshold)[0]
     logger.debug(
         f"Selected {len(atom_indices)}/{W.shape[1]} discriminative atoms "
-        f"(percentile={config.DISCRIMINATIVE_ATOM_PERCENTILE})"
+        f"(percentile={DISCRIMINATIVE_ATOM_PERCENTILE})"
     )
     return atom_indices
 
@@ -124,7 +124,7 @@ def compute_contribution_map(
                     intensity from discriminative atoms — high where the
                     class-relevant dictionary components are active.
     """
-    p    = config.PATCH_SIZE
+    p    = PATCH_SIZE
     H, W_vol, D_vol = volume.shape
 
     # Accumulation buffers
@@ -227,10 +227,10 @@ class LocalizationEngine:
 
         model        = payload["model"]
         abnormality  = payload["abnormality"]
-        patch_size   = payload.get("patch_size", config.PATCH_SIZE)
-        cfg          = payload.get("lcksvd_config", config.LCKSVD_CONFIG)
-        target_sp    = payload.get("target_spacing", config.TARGET_SPACING_MM)
-        hu_window    = payload.get("hu_window", (config.HU_MIN, config.HU_MAX))
+        patch_size   = payload.get("patch_size", PATCH_SIZE)
+        cfg          = payload.get("lcksvd_config", LCKSVD_CONFIG)
+        target_sp    = payload.get("target_spacing", TARGET_SPACING_MM)
+        hu_window    = payload.get("hu_window", (HU_MIN, HU_MAX))
 
         return cls(
             model=model,
@@ -280,7 +280,7 @@ class LocalizationEngine:
         Returns uint8 [H, W, D] with 1 where the abnormality is predicted.
         """
         cmap  = self.contribution_map(volume, stride=stride)
-        mode  = threshold_mode or config.CONTRIB_THRESHOLD_MODE
+        mode  = threshold_mode or CONTRIB_THRESHOLD_MODE
         mask  = binarize_contribution_map(cmap, mode=mode)
         return mask
 

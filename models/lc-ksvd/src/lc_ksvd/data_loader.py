@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from scipy.ndimage import zoom
 
-import config
+from . import config
 
 
 # ─── Path resolution ──────────────────────────────────────────────────────────
