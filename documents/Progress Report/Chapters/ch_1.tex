@@ -10,23 +10,23 @@ reasoning aligns with clinical diagnosis.
 The transition from 2D projectional radiography to volumetric CT represents a paradigm shift in medical image analysis.
 For Lung disease diagnosis, Chest X-rays (CXR) are commonly used as the first imaging test due to its low cost and low
 radiation exposure. However, studies show that their capability to detect abnormailities is limited when compared to 3D CT.
-[why?].
+\cite{SELF2013401}.
 
 CXR has historically benefited from the availability of massive, radiologist-annotated datasets, while
 the analysis of 3D chest CT volumes has been severely constrained by a lack of such data.
 However, the recent introduction of large-scale, text-paired datasets has facilitated the development of state-of-the-art
 (SotA) vision-language foundation models tailored specifically for volumetric imaging.
-(citations for ReXGroundingCT, RadGenome-Chest CT, RAD-ChestCT)[][][].
+\cite{baharoon2025rexgroundingct3dchestct} \cite{doi:10.1200/JCO.2016.34.15\_suppl.e18246} \cite{chen2026dflashblockdiffusionflash}.
 
 Beyond deep learning approaches, the Label Consistent K-SVD (LC-KSVD)
 algorithm offers a viable approach for interpretable CT analysis. LC-KSVD is a dictionary learning algorithm that
-incorporates label information directly into the dictionary construction process [lc-ksvd citation], making it inherently discriminative and
+incorporates label information directly into the dictionary construction process \cite{LCKSVD}, making it inherently discriminative and
 well-suited for multi-abnormality tasks.
 
 \section{Problem Statement}
 The clinical utility of Deep Learning-based approaches is hindered by a lack of interpretability. Tools like Grad-CAM
 provide visual heatmaps highlighting important regions in an input image by analyzing gradients from the final convolutional
-layer[citation]. These post-hoc explanations are often insufficient for medical professionals who require a granular understanding
+layer \cite{Suara_2024}. These post-hoc explanations are often insufficient for medical professionals who require a granular understanding
 of the model's decision making process. In high stakes environments, a model that produces a diagnosis without transparency
 in its reasoning is difficult to integrate into standard workflows, as it lacks the accountability necessary for legal
 and ethical compliance.
