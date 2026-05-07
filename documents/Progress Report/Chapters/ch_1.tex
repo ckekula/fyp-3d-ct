@@ -1,7 +1,7 @@
 %\index{\footnote{}}
 \chapter{Introduction}
 Developing a unified architectural pipeline for multi-class abnormality classification and grounded localization
-addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
+in 3D Computed Tomography (CT)a ddresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
 Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
 provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is held accountable and its
 reasoning aligns with clinical diagnosis.
@@ -9,59 +9,64 @@ reasoning aligns with clinical diagnosis.
 \section{Background}
 The transition from 2D projectional radiography to volumetric CT represents a paradigm shift in medical image analysis.
 For Lung disease diagnosis, Chest X-rays (CXR) are commonly used as the first imaging test due to its low cost and low
-radiation exposure. However, their diagnostic sensitivity is limited by their two dimensional nature, which causes anatomical
-superposition, allowing visualization of only about 70\% of the lung volume[]. While CT produces high resolution slices
-that reveal fine structural details, studies show that 2D measurements are highly sensitive to the patient's orientation
-and the specific slice chosen, leading to high inter-observer variability[4].
+radiation exposure. However, studies show that their capability to detect abnormailities is limited when compared to 3D CT.
+[why?].
 
-CXR also, has historically benefited from the availability of massive, radiologist-annotated datasets, while
+CXR has historically benefited from the availability of massive, radiologist-annotated datasets, while
 the analysis of 3D chest CT volumes has been severely constrained by a lack of such data.
 However, the recent introduction of large-scale, text-paired datasets has facilitated the development of state-of-the-art
-vision-language foundation models tailored specifically for volumetric imaging.
-(ReXGroundingCT, RadGenome-Chest CT, RAD-ChestCT)
+(SotA) vision-language foundation models tailored specifically for volumetric imaging.
+(citations for ReXGroundingCT, RadGenome-Chest CT, RAD-ChestCT)[][][].
 
-Furthermore, the high-dimensional spatial data processing required for 3D CT analysis introduces significant computational
-complexity due to the sheer volume of voxels in a single CT scan. This demands architectures that can manage memory efficiency
-without sacrificing contextual awareness. Beyond these deep learning approaches, the Label Consistent K-SVD (LC-KSVD)
-algorithm offers a viable approach for interpretable 3D CT analysis. LC-KSVD is a dictionary learning algorithm that
-incorporates label information directly into the dictionary construction process, making it inherently discriminative and
+Beyond deep learning approaches, the Label Consistent K-SVD (LC-KSVD)
+algorithm offers a viable approach for interpretable CT analysis. LC-KSVD is a dictionary learning algorithm that
+incorporates label information directly into the dictionary construction process [lc-ksvd citation], making it inherently discriminative and
 well-suited for multi-abnormality tasks.
 
 \section{Problem Statement}
-The clinical utility of Deep Learning-based approaches is hindered by a lack of interpretability. While tools like Grad-CAM
+The clinical utility of Deep Learning-based approaches is hindered by a lack of interpretability. Tools like Grad-CAM
 provide visual heatmaps highlighting important regions in an input image by analyzing gradients from the final convolutional
-layer. These post-hoc explanations are often insufficient for medical professionals who require a granular understanding
+layer[citation]. These post-hoc explanations are often insufficient for medical professionals who require a granular understanding
 of the model's decision making process. In high stakes environments, a model that produces a diagnosis without transparency
 in its reasoning is difficult to integrate into standard workflows, as it lacks the accountability necessary for legal
 and ethical compliance.
 
 \section{Objectives and Scope}
+The primary goal of this project is to address the limitations of existing Deep Learning based approaches for Lung abnormality
+classification and localization by developing an inheerntly interpretable dictionary learning framework based on LC-KSVD.
+This approach aims to enable transparent, anatomically grounded decision making, where each classification outcome
+can be traced back to specific pathological patterns. This aligns with clinical reasoning and facilitates validation and
+adoption in radiological workflows. The specific objectives are as follows:
 
 \subsection{Objectives}
 \begin{itemize}
-	\item Objective 1
-	\item Objective 2
-	\item ..
+	\item Implement a Dictionary Learning approach to learn normal and pathological dictionary atoms using a publicly available annotated 3D chest CT dataset.
+	\item Map dictionary atoms back to anatomical features and visualize their spatial contribution maps.
+	\item Benchmark model performance against state-of-the-art classification and segmentation models on the same dataset.
+	\item Evaluate abnormality localization by the model on a real-world dataset with expert radiologist review.
 \end{itemize}
 
 \subsection{Scope}
+The scope of this study focuses on the development and evaluation of a dictionary learning based approach for classification
+and grounded localization of lung abnormalities using volumetric 3D CT data, with the following limitations:
+
 \begin{itemize}
-	\item Scope 1
-	\item Scope 2
-	\item ..
+	\item 
+	\item 
+	\item 
 \end{itemize}
 
 \section{Literature Review}
 The landscape of 3D CT analysis is currently divided into three primary architectural paradigms:
 \begin{itemize}
-	\item classification-based models that prioritize diagnostic labels
-	\item segmentation-based models that prioritize boundary precision
-	\item dual architectures designed for grounded localization
+	\item Classification-based models that prioritize diagnostic labels
+	\item Segmentation-based models that prioritize boundary precision
+	\item Unified architectures designed for grounded localization
 \end{itemize}.
 
-State-of-the-Art (SotA) 3D CT AI models are predominantly specialized in either classification or segmentation. However,
-recent systems, particularly in 2025 and 2026, are moving toward multi-task learning or foundation models that can perform
-both diagnosis and voxel-level segmentation simultaneously.
+SotA models are predominantly specialized in either classification or segmentation. However, recent systems, particularly
+in 2025 and 2026, are moving toward multi-task learning or foundation models that can perform both diagnosis and voxel-level
+segmentation simultaneously.
 
 The efficacy of these models is increasingly evaluated on large-scale, multi-institutional benchmarks such as CT-RATE,
 FLARE 2024-2025 and MSWAL, which provide the complexity necessary to test generalizability across diverse patient populations
