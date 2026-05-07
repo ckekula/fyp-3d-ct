@@ -1,10 +1,32 @@
 \chapter{Methodology}
 
+\section{Data Acquisition and Preprocessing}
+Doctor
+
 \section{Implementation of the LC-KSVD Approach}
+To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm.
+Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
+for integration with our Python-based data processing and evaluation pipeline. Although A few open-source Python implementations
+LC-KSVD are available, they either lacked an importable library, or did not provide the flexibility required for our study.
 
-\subsection{Developing the Python library}
+Therefore, we developed a custom implementation of the LC-KSVD algorithm in Python and published it on PyPI under the name “reppi.”
+The implementation follows a modular design, consisting of three separate components:
+\begin{enumerate}
+    \item SRC - Utility Functions shared across Sparse Coding Algorithms
+    \item OMP - Implementation of Batch-OMP and OMP-Cholesky approaches for Sparse Coding
+    \item KSVD - Implementation of KSVD Dictionary Learning Algorithm
+    \item LC-KSVD - Implementation of LC-KSVD1 and LC-KSVD2 Dictionary Learning Algorithms
+\end{enumerate}
 
-\subsection{Back-Projecting Class-Discriminative Atoms}
+This design allows for flexibility in integrating alternative sparse coding methods. The source code is available at github.com/ckekula/reppi.
+
+This modular architecture enables straightforward integration of the algorithm through library imports, while providing
+the flexibility required to experiment with different hyperparameters and configurations. The implementations of the SRC,
+OMP, and LC-KSVD modules are provided in Appendix A, Appendix B, and Appendix C, respectively.
+
+\section{Abnormality Classification}
+
+\section{Back-Projecting Class-Discriminative Atoms}
 The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
 each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$, the model can theoretically
 "explain" its decision for a test patch by examining which atoms were used in its sparse representation.
@@ -20,7 +42,7 @@ that highlights the regions contributing to the detection of a specific abnormal
 operating on raw voxel-space inputs, the back-projection is an exact, closed-form spatial attribution.
 
 
-\subsection{Deriving Explainability through Segmentation Masks}
+\section{Deriving Explainability through Segmentation Masks}
 To evaluate the clinical accuracy of LC-KSVD, these contribution maps are converted into binary segmentation masks for
 comparison with ground truth annotations. This conversion can be achieved through various thresholding methods.
 
@@ -34,8 +56,6 @@ Unlike the passive Grad-CAM approach, atom back-projection is generative. The at
 reconstruct and classify the signal. There's no proxy involved. The localization evidence is produced by the same
 computation that produced the classification, not by a separate post-hoc analysis run afterwards.
 
-
-\section{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
