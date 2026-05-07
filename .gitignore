@@ -15,7 +15,7 @@
 *.pt
 *.txt
 *.bin
-
+*.safetensors
 # Virtual environments
 .venv
 venv/
