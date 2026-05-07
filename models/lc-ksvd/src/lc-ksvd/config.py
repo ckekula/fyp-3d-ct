@@ -35,11 +35,12 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 # Canonical names — order matters; used as dictionary keys and file suffixes
+# Note: Atelectasis removed — dataset has no separate Atelectasis annotations
+#       (all labeled Atelectasis scans also contain nodules; prompts describe nodules only)
 ABNORMALITIES = [
     "Lung nodule",
     "Lung opacity",
     "Consolidation",
-    "Atelectasis",
 ]
 
 # Matching label strings as they appear in the JSON metadata finding descriptions
@@ -48,7 +49,7 @@ ABNORMALITY_ALIASES = {
     "Lung nodule":    ["lung nodule", "pulmonary nodule", "nodule", "nodules"],
     "Lung opacity":   ["lung opacity", "opacity", "ground-glass opacity", "ground glass opacity", "groundglass opacity"],
     "Consolidation":  ["consolidation", "consolidations"],
-    "Atelectasis":    ["atelectasis", "atelectatic"],
+    # "Atelectasis":    ["atelectasis", "atelectatic"],
 }
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
@@ -67,7 +68,8 @@ N_FEATURES = PATCH_SIZE ** 3  # 32768 — dimensionality of each patch vector
 
 # Minimum fraction of patch voxels that must overlap the lesion mask
 # for a patch to be considered a positive sample
-MIN_OVERLAP_RATIO = 0.10
+# (lowered from 0.10 to 0.05 to capture small lesions like opacities/consolidations)
+MIN_OVERLAP_RATIO = 0.05
 
 # Number of positive patches to sample per lesion-containing scan
 N_POSITIVE_PATCHES_PER_SCAN = 30

@@ -174,8 +174,26 @@ def train_one(abnormality: str) -> Dict:
     X_tr, H_tr, X_val, H_val = train_val_split(X_norm, H)
     logger.info(f"Train: {X_tr.shape[1]} patches  |  Val: {X_val.shape[1]} patches")
 
+    # ── Adapt LC-KSVD dictionary size for small training sets ────────────────
+    # reppi's K-SVD initialisation requires enough training signals to seed the
+    # dictionary. For very small patch matrices (e.g. opacity/consolidation),
+    # the default 128 atoms can exceed the available training columns.
+    base_cfg = dict(config.LCKSVD_CONFIG)
+    max_atoms = max(8, X_tr.shape[1] // 2)
+    effective_n_components = min(base_cfg["n_components"], max_atoms)
+    effective_n_nonzero = min(base_cfg["n_nonzero_coefs"], max(1, effective_n_components // 2))
+
+    if effective_n_components != base_cfg["n_components"]:
+        logger.info(
+            f"Adjusting n_components from {base_cfg['n_components']} to {effective_n_components} "
+            f"for {abnormality} (train patches={X_tr.shape[1]})"
+        )
+
+    base_cfg["n_components"] = effective_n_components
+    base_cfg["n_nonzero_coefs"] = effective_n_nonzero
+
     # ── Train LC-KSVD2 ────────────────────────────────────────────────────────
-    model = LCKSVD(**config.LCKSVD_CONFIG)
+    model = LCKSVD(**base_cfg)
 
     logger.info("Starting LC-KSVD2 training…")
     t0 = time.time()
@@ -196,7 +214,7 @@ def train_one(abnormality: str) -> Dict:
         "abnormality":     abnormality,
         "train_metrics":   train_metrics,
         "val_metrics":     val_metrics,
-        "lcksvd_config":   config.LCKSVD_CONFIG,
+        "lcksvd_config":   base_cfg,
         "patch_size":      config.PATCH_SIZE,
         "target_spacing":  config.TARGET_SPACING_MM,
         "hu_window":       (config.HU_MIN, config.HU_MAX),
