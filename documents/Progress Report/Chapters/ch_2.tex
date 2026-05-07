@@ -46,6 +46,15 @@ This separation ensures that normal anatomical structures are not overwritten, w
 
 \section{Radiological Patterns in Lung CT Imaging}
 
+
+
+\subsection{Role of CT Imaging}
+
+Computed Tomography (CT) imaging is widely used in lung disease diagnosis due to its ability to generate detailed cross-sectional images of lung structures. CT scans provide high-resolution visualization of abnormalities such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules, enabling accurate assessment and early detection of lung diseases.
+
+In modern medical imaging systems, CT imaging also supports computer-aided diagnosis and deep learning-based analysis for automated detection, segmentation, and classification of lung abnormalities. These capabilities improve diagnostic efficiency and assist radiologists in clinical decision-making.
+
+
 \subsection{Ground Glass Opacity (GGO) and Consolidation}
 
 Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis.
@@ -96,3 +105,24 @@ Explainable AI (XAI) in medical imaging is used to make deep learning prediction
 \textbf{HiResCAM} is an improved version of activation-based visualization methods. It produces more detailed and higher-resolution heatmaps compared to Grad-CAM, allowing better localization of small or subtle abnormalities in medical images.
 
 Both methods are post-hoc explanation techniques, meaning they are applied after model training. They do not modify the model itself but instead help interpret its predictions by visualizing the regions of the input image that most influenced the output.
+
+
+\section{Vision Transformers (ViTs) in Medical Imaging}
+
+Vision Transformers (ViTs) are deep learning architectures that apply the transformer mechanism, originally developed for Natural Language Processing (NLP), to image analysis tasks, Vision Transformers divide an image into smaller patches and process them as sequential tokens.
+
+Given an input image $I$, the image is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before passing the sequence into transformer encoder layers.
+
+The self-attention mechanism used in ViTs allows the model to capture long-range dependencies and global contextual relationships between different regions of an image. The attention operation can be represented as:
+
+$$
+\text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$
+
+where $Q$ represents queries, $K$ represents keys, $V$ represents values, and $d_k$ is the dimension of the key vectors.
+
+In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions.
+
+For lung CT analysis, ViTs can learn meaningful representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. Hybrid architectures combining CNNs and Vision Transformers are also commonly used to capture both local texture information and global contextual features.
+
+Recent developments such as Swin Transformers and 3D Vision Transformers further extend this capability by enabling hierarchical feature extraction and volumetric analysis for 3D medical imaging applications.
