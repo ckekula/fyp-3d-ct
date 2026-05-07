@@ -16,3 +16,83 @@ $W$ is a linear classifier matrix.
 This formulation ensures that the dictionary atoms are not just representative of the image data but are also class-specific.
 In 3D CT multi-abnormality segmentation, this allows the model to learn distinct "sub-dictionaries" for each abnormality,
 facilitating easier classification of individual voxels.
+
+\section{Sparse Representation, K-SVD, and Frozen Dictionary Learning}
+
+Sparse representation is a signal modeling technique where a CT image patch is expressed as a linear combination of a small number of basis elements called dictionary atoms. Instead of using all available features, the signal is approximated as:
+
+$$
+y = Dx
+$$
+
+where $D$ is the dictionary and $x$ is a sparse coefficient vector with mostly zero values. This leads to a compact and interpretable representation.
+
+The dictionary $D$ is typically learned using K-SVD (K-Singular Value Decomposition), which solves the following optimization problem:
+
+$$
+\min_{D, X} \|P - DX\|_F^2 \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T
+$$
+
+where $P$ represents the training data, $X$ is the sparse coefficient matrix, and $T$ controls the sparsity level. K-SVD alternates between sparse coding and dictionary update steps to minimize reconstruction error. However, it does not incorporate class labels, which limits its discriminative ability for classification tasks.
+
+To address this limitation, LC-KSVD extends the standard K-SVD framework by incorporating class label information into the dictionary learning process. It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction but also discriminative for classification tasks through label consistency constraints. However, LC-KSVD still learns a single shared dictionary for all classes.
+
+To overcome this limitation, Frozen Dictionary Learning introduces a two-stage training strategy. In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures. In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned from abnormal scans only. This formulation can be interpreted as:
+
+- preserving $D_{\text{normal}}$ learned from healthy data
+- learning $D_{\text{abnormal}}$ independently for disease patterns  
+
+This separation ensures that normal anatomical structures are not overwritten, while abnormal features are explicitly isolated, improving interpretability and stability.
+
+\section{Radiological Patterns in Lung CT Imaging}
+
+\subsection{Ground Glass Opacity (GGO) and Consolidation}
+
+Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis.
+
+\textbf{Ground Glass Opacity (GGO)}:
+\begin{itemize}
+    \item Appears as hazy regions in CT images
+    \item Does not fully obscure underlying blood vessels or airway structures
+    \item Typically indicates partial filling of air spaces, inflammation, or early-stage infection
+\end{itemize}
+
+\textbf{Consolidation}:
+\begin{itemize}
+    \item Appears denser than GGO
+    \item Completely obscures underlying lung structures such as vessels and airway walls
+    \item Often associated with severe infection, fluid accumulation, or advanced disease stages
+\end{itemize}
+
+The transition between GGO and consolidation is clinically important, as it can indicate disease progression or worsening lung conditions.
+
+\subsection{Pulmonary Nodules}
+
+Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans and are important indicators for early disease detection.
+
+\textbf{Characteristics of Nodules}:
+\begin{itemize}
+    \item Small, well-defined or slightly irregular rounded opacities
+    \item Usually less than 3 cm in diameter
+    \item Can appear solid, subsolid, or ground-glass in nature
+\end{itemize}
+
+\textbf{Clinical Significance}:
+\begin{itemize}
+    \item May represent benign conditions such as infections or scars
+    \item Can also indicate early-stage lung cancer in suspicious cases
+    \item Requires careful monitoring of size, shape, and growth over time
+\end{itemize}
+
+Pulmonary nodules are critical in early screening and risk assessment, especially in automated CT analysis systems.
+
+
+\section{Explainable Artificial Intelligence (XAI) in Medical Imaging}
+
+Explainable AI (XAI) in medical imaging is used to make deep learning predictions more interpretable, especially in clinical applications where understanding model decisions is important.
+
+\textbf{Grad-CAM} is a widely used method that highlights important regions in an image by generating a heatmap based on the gradients flowing into the final convolutional layers. In CT imaging, it helps identify which lung regions contributed most to a prediction, such as areas with abnormalities or infections.
+
+\textbf{HiResCAM} is an improved version of activation-based visualization methods. It produces more detailed and higher-resolution heatmaps compared to Grad-CAM, allowing better localization of small or subtle abnormalities in medical images.
+
+Both methods are post-hoc explanation techniques, meaning they are applied after model training. They do not modify the model itself but instead help interpret its predictions by visualizing the regions of the input image that most influenced the output.
