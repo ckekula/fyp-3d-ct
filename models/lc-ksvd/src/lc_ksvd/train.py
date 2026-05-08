@@ -28,8 +28,8 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-import config
-from patch_extractor import extract_all_abnormalities, load_patch_matrix
+from .config import ABNORMALITIES, HU_MAX, HU_MIN, LCKSVD_CONFIG, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, TRAIN_RATIO, VAL_RATIO
+from .patch_extractor import extract_all_abnormalities, load_patch_matrix
 
 try:
     from reppi import LCKSVD
@@ -70,7 +70,7 @@ def train_val_split(
     Stratified split of columns in X and H into train and val sets.
     Stratified by the positive class (H[1, :] == 1) to preserve class balance.
     """
-    rng = np.random.default_rng(config.RANDOM_SEED)
+    rng = np.random.default_rng(RANDOM_SEED)
     n = X.shape[1]
 
     pos_idx = np.where(H[1, :] == 1)[0]
@@ -79,7 +79,7 @@ def train_val_split(
     def _split(idx: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         perm = rng.permutation(len(idx))
         idx  = idx[perm]
-        cut  = int(len(idx) * (config.TRAIN_RATIO / (config.TRAIN_RATIO + config.VAL_RATIO)))
+        cut  = int(len(idx) * (TRAIN_RATIO / (TRAIN_RATIO + VAL_RATIO)))
         return idx[:cut], idx[cut:]
 
     pos_train, pos_val = _split(pos_idx)
@@ -178,7 +178,7 @@ def train_one(abnormality: str) -> Dict:
     # reppi's K-SVD initialisation requires enough training signals to seed the
     # dictionary. For very small patch matrices (e.g. opacity/consolidation),
     # the default 128 atoms can exceed the available training columns.
-    base_cfg = dict(config.LCKSVD_CONFIG)
+    base_cfg = dict(LCKSVD_CONFIG)
     max_atoms = max(8, X_tr.shape[1] // 2)
     effective_n_components = min(base_cfg["n_components"], max_atoms)
     effective_n_nonzero = min(base_cfg["n_nonzero_coefs"], max(1, effective_n_components // 2))
@@ -206,8 +206,8 @@ def train_one(abnormality: str) -> Dict:
     val_metrics   = evaluate(model, X_val, H_val, split_name="val")
 
     # ── Save model ────────────────────────────────────────────────────────────
-    config.MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    model_path = config.MODELS_DIR / f"{abnormality}_lcksvd2.pkl"
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    model_path = MODELS_DIR / f"{abnormality}_lcksvd2.pkl"
 
     payload = {
         "model":           model,
@@ -215,9 +215,9 @@ def train_one(abnormality: str) -> Dict:
         "train_metrics":   train_metrics,
         "val_metrics":     val_metrics,
         "lcksvd_config":   base_cfg,
-        "patch_size":      config.PATCH_SIZE,
-        "target_spacing":  config.TARGET_SPACING_MM,
-        "hu_window":       (config.HU_MIN, config.HU_MAX),
+        "patch_size":      PATCH_SIZE,
+        "target_spacing":  TARGET_SPACING_MM,
+        "hu_window":       (HU_MIN, HU_MAX),
         "training_time_s": elapsed,
     }
 
@@ -234,7 +234,7 @@ def main():
     parser = argparse.ArgumentParser(description="Train LC-KSVD2 models for chest CT abnormalities")
     parser.add_argument(
         "--abnormality", type=str, default=None,
-        choices=config.ABNORMALITIES + [None],
+        choices=ABNORMALITIES + [None],
         help="Train a single abnormality. Omit to train all 4."
     )
     parser.add_argument(
@@ -249,7 +249,7 @@ def main():
         extract_all_abnormalities(split="train")
 
     # ── Training ──────────────────────────────────────────────────────────────
-    targets = [args.abnormality] if args.abnormality else config.ABNORMALITIES
+    targets = [args.abnormality] if args.abnormality else ABNORMALITIES
     all_results = {}
 
     for abnormality in targets:

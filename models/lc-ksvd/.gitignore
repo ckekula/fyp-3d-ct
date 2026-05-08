@@ -12,4 +12,5 @@ outputs/*
 checkpoints/*.pt
 *.pt
 *.npz
+*.npy
 *.pkl
