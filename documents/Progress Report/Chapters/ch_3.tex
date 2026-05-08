@@ -68,7 +68,7 @@ To evaluate the clinical accuracy of LC-KSVD, these contribution maps are conver
 comparison with ground truth annotations. This conversion can be achieved through various thresholding methods.
 
 Grad-CAM's approximation has two sources of imprecision — the gradient itself is a local linear approximation of a non-linear
-function \cite{Selvaraju_2019}, and the spatial upsampling from the coarse feature map to input resolution introduces further interpolation error.
+function, and the spatial upsampling from the coarse feature map to input resolution introduces further interpolation error. 
 LC-KSVD's contribution map has only one source of imprecision: the thresholding step you apply to binarize it into a mask.
 The map itself — before thresholding — is exact given the sparse code and the dictionary.
 

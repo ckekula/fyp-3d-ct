@@ -1,5 +1,10 @@
 \chapter{Discussion}
 
+This project investigated an interpretable sparse dictionary learning framework for abnormality classification and localization in 3D chest CT scans. A key contribution is the frozen dictionary approach, where normal anatomical patterns are learned first and abnormalities are learned separately. This helps isolate pathological features and improves interpretability.
+
+Although the proposed method may achieve slightly lower accuracy than state-of-the-art deep learning models, it provides inherent explainability. Unlike black-box models that rely on post-hoc methods such as Grad-CAM, the LC-KSVD framework allows predictions to be directly linked to dictionary atoms and anatomical structures, improving clinical transparency and trust.
+
+A limitation of this work is the absence of a fully unified architecture for simultaneous classification and segmentation. Future work will focus on improving the framework and conducting more comprehensive comparisons with modern deep learning models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
