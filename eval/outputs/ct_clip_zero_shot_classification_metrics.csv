@@ -1,0 +1,6 @@
+accuracy,auroc,average_precision,class_name,dataset,ece,f1,model_name,precision,recall,support
+0.5,nan,nan,lung_nodule,ctrate,0.4926117807626724,0.6666666666666666,ct_clip_zero_shot,1.0,0.5,2
+0.5,nan,nan,lung_opacity,ctrate,0.5309973806142807,0.0,ct_clip_zero_shot,0.0,0.0,0
+0.5,nan,nan,consolidation,ctrate,0.4372296929359436,0.0,ct_clip_zero_shot,0.0,0.0,0
+0.5,nan,nan,atelectasis,ctrate,0.5078060179948807,0.0,ct_clip_zero_shot,0.0,0.0,0
+,nan,nan,macro,ctrate,0.49216121807694435,0.16666666666666666,ct_clip_zero_shot,0.25,0.125,
