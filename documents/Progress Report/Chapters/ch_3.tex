@@ -1,0 +1,83 @@
+\chapter{Methodology}
+
+\section{Data Acquisition and Preprocessing}
+Two public chest CT datasets were used in this work: CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct}. 
+CT-RATE was used as the primary source of volume-level labels (normal/abnormal and abnormality presence) derived from the dataset provided multi finding annotations, 
+while ReXGroundingCT was used to obtain lesion level spatial supervision through radiologist linked segmentation masks together with finding descriptions\cite{rexgroundingct}. 
+In practice, CT-RATE provided the global abnormality labels needed to build classification splits, and ReXGroundingCT provided grounded masks and metadata required for localisation-oriented experiments.
+
+After an initial review of the 18 thoracic findings available in CT-RATE, a clinical discussion with the supervising radiologist produced a shortlist of abnormalities considered both clinically meaningful and suitable for interpretable analysis 
+(Atelectasis, Lung nodule, Ground-Glass Opacity (GGO), Consolidation, Mosaic attenuation, Bronchiectasis, and Calcification). 
+However, after checking practical label and mask availability across the two datasets, the final experiments were restricted to three abnormalities with the most consistent coverage: \textit{Lung nodule}, \textit{Lung opacity / GGO}, and \textit{Consolidation}. 
+The remaining candidates were excluded mainly due to limited grounded lesion samples, inconsistent annotation coverage, or insufficiently distinct mask supervision for reliable training and evaluation.
+
+The preprocessing pipeline followed the LC-KSVD implementation. 
+CT volumes and corresponding masks were loaded from NIfTI files, then resampled to an isotropic spacing of 1.5\,mm to reduce inter-scan resolution variability. 
+Volumes were resampled with trilinear interpolation and segmentation masks with nearest-neighbour interpolation to preserve discrete labels. 
+Intensities were windowed using a lung HU range of $[-1000, 200]$ and linearly normalised to $[0,1]$. 
+For dictionary learning, each preprocessed volume was converted into fixed-size 3D patches of $32\times32\times32$ voxel. 
+Positive patches were sampled from lesion regions using the grounded masks (minimum overlap ratio 5\%, with a fallback for very small lesions). 
+Negative patches were sampled from non overlapping regions (including normal scans), and patch vectors were $L_2$-normalised prior to sparse coding.
+
+
+\section{Implementation of the LC-KSVD Approach}
+To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{LCKSVD}
+Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
+for integration with our Python-based data processing and evaluation pipeline. Although A few open-source Python implementations
+LC-KSVD are available, they either lacked an importable library, or did not provide the flexibility required for our study.
+
+Therefore, we developed a custom implementation of the LC-KSVD algorithm in Python and published it on PyPI under the name “reppi.”
+The implementation follows a modular design, consisting of three separate components:
+\begin{enumerate}
+    \item SRC - Utility Functions shared across Sparse Coding Algorithms
+    \item OMP - Implementation of Batch-OMP and OMP-Cholesky approaches for Sparse Coding
+    \item KSVD - Implementation of KSVD Dictionary Learning Algorithm
+    \item LC-KSVD - Implementation of LC-KSVD1 and LC-KSVD2 Dictionary Learning Algorithms
+\end{enumerate}
+
+This design allows for flexibility in integrating alternative sparse coding methods. The source code is available at github.com/ckekula/reppi.
+
+This modular architecture enables straightforward integration of the algorithm through library imports, while providing
+the flexibility required to experiment with different hyperparameters and configurations. The implementations of the SRC,
+OMP, and LC-KSVD modules are provided in Appendix A, Appendix B, and Appendix C, respectively.
+
+\section{Abnormality Classification}
+Abnormality classification was implemented as a set of one-vs-normal binary LC-KSVD2 models, trained separately for each target finding (Lung nodule, Lung opacity, and Consolidation). 
+After preprocessing, each CT volume is represented as a matrix of vectorised $32\times32\times32$ patches, with each patch column-wise normalised to unit $L_2$ norm before sparse coding. 
+At inference time, patch-wise sparse codes $\Gamma$ are computed using OMP with the learned dictionary $D$, and classification is performed using the learned linear classifier weights $W$ from LC-KSVD2 by scoring $s = W_{\text{pos}}\,\Gamma$. 
+For volume-level prediction, the implementation aggregates evidence by averaging the sparse codes across all sampled patches and applies a sign threshold ($s>0$) to obtain the final abnormality present/absent decision.
+
+\section{Back-Projecting Class-Discriminative Atoms}
+The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
+each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$ \cite{LCKSVD}, the model can theoretically
+"explain" its decision for a test patch by examining which atoms were used in its sparse representation.
+
+To generate a spatial contribution map for a class $c$, the algorithm identifies all atoms $d_k$ that have been assigned
+to that class. For a query voxel or patch with sparse coefficients $x$, the contribution $C_c$ is calculated as the
+partial reconstruction:
+
+$$C_c = \sum_{k \in \text{Class } c} d_k x_k$$
+
+This process should theoretically back-project the class-specific features into the original voxel space, creating a map
+that highlights the regions contributing to the detection of a specific abnormality. for class-discriminative atoms
+operating on raw voxel-space inputs, the back-projection is an exact, closed-form spatial attribution.
+
+
+\section{Deriving Explainability through Segmentation Masks}
+To evaluate the clinical accuracy of LC-KSVD, these contribution maps are converted into binary segmentation masks for
+comparison with ground truth annotations. This conversion can be achieved through various thresholding methods.
+
+Grad-CAM's approximation has two sources of imprecision — the gradient itself is a local linear approximation of a non-linear
+function \cite{Selvaraju_2019}, and the spatial upsampling from the coarse feature map to input resolution introduces further interpolation error.
+LC-KSVD's contribution map has only one source of imprecision: the thresholding step you apply to binarize it into a mask.
+The map itself — before thresholding — is exact given the sparse code and the dictionary.
+
+
+Unlike the passive Grad-CAM approach, atom back-projection is generative. The atoms are what the model actually used to
+reconstruct and classify the signal. There's no proxy involved. The localization evidence is produced by the same
+computation that produced the classification, not by a separate post-hoc analysis run afterwards.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

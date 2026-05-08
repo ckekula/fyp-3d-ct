@@ -1,0 +1,159 @@
+%\index{\footnote{}}
+\chapter{Introduction}
+Developing a unified architectural pipeline for multi-class abnormality classification and grounded localization
+in 3D Computed Tomography (CT)a ddresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
+Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
+provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is held accountable and its
+reasoning aligns with clinical diagnosis.
+
+\section{Background}
+The transition from 2D projectional radiography to volumetric CT represents a paradigm shift in medical image analysis.
+For Lung disease diagnosis, Chest X-rays (CXR) are commonly used as the first imaging test due to its low cost and low
+radiation exposure. However, studies show that their capability to detect abnormailities is limited when compared to 3D CT.
+\cite{SELF2013401}.
+
+CXR has historically benefited from the availability of massive, radiologist-annotated datasets, while
+the analysis of 3D chest CT volumes has been severely constrained by a lack of such data.
+However, the recent introduction of large-scale, text-paired datasets has facilitated the development of state-of-the-art
+(SotA) vision-language foundation models tailored specifically for volumetric imaging.
+\cite{baharoon2025rexgroundingct3dchestct} \cite{doi:10.1200/JCO.2016.34.15\_suppl.e18246} \cite{chen2026dflashblockdiffusionflash}.
+
+Beyond deep learning approaches, the Label Consistent K-SVD (LC-KSVD)
+algorithm offers a viable approach for interpretable CT analysis. LC-KSVD is a dictionary learning algorithm that
+incorporates label information directly into the dictionary construction process \cite{LCKSVD}, making it inherently discriminative and
+well-suited for multi-abnormality tasks.
+
+\section{Problem Statement}
+The clinical utility of Deep Learning-based approaches is hindered by a lack of interpretability. Tools like Grad-CAM
+provide visual heatmaps highlighting important regions in an input image by analyzing gradients from the final convolutional
+layer \cite{Suara_2024}. These post-hoc explanations are often insufficient for medical professionals who require a granular understanding
+of the model's decision making process. In high stakes environments, a model that produces a diagnosis without transparency
+in its reasoning is difficult to integrate into standard workflows, as it lacks the accountability necessary for legal
+and ethical compliance.
+
+\section{Objectives and Scope}
+The primary goal of this project is to address the limitations of existing Deep Learning based approaches for Lung abnormality
+classification and localization by developing an inheerntly interpretable dictionary learning framework based on LC-KSVD.
+This approach aims to enable transparent, anatomically grounded decision making, where each classification outcome
+can be traced back to specific pathological patterns. This aligns with clinical reasoning and facilitates validation and
+adoption in radiological workflows. The specific objectives are as follows:
+
+\subsection{Objectives}
+\begin{itemize}
+	\item Implement a Dictionary Learning approach to learn normal and pathological dictionary atoms using a publicly available annotated 3D chest CT dataset.
+	\item Map dictionary atoms back to anatomical features and visualize their spatial contribution maps.
+	\item Benchmark model performance against state-of-the-art classification and segmentation models on the same dataset.
+	\item Evaluate abnormality localization by the model on a real-world dataset with expert radiologist review.
+\end{itemize}
+
+\subsection{Scope}
+The scope of this study focuses on the development and evaluation of a dictionary learning based approach for classification
+and grounded localization of lung abnormalities using volumetric 3D CT data, with the following limitations:
+
+\begin{itemize}
+	\item This study is limited to 3 thoracic abnormalities: pulmonary nodules, ground-glass opacities, and consolidations.
+	\item 
+	\item 
+\end{itemize}
+
+\section{Literature Review}
+The landscape of 3D CT analysis is currently divided into three primary architectural paradigms:
+\begin{itemize}
+	\item Classification-based models that prioritize diagnostic labels
+	\item Segmentation-based models that prioritize boundary precision
+	\item Unified architectures designed for grounded localization
+\end{itemize}.
+
+SotA models are predominantly specialized in either classification or segmentation. However, recent systems, particularly
+in 2025 and 2026, are moving toward multi-task learning or foundation models that can perform both diagnosis and voxel-level
+segmentation simultaneously.
+
+The efficacy of these models is increasingly evaluated on large-scale, multi-institutional benchmarks such as CT-RATE,
+FLARE 2024-2025 and MSWAL, which provide the complexity necessary to test generalizability across diverse patient populations
+and scanner manufacturers.
+
+\subsection{Classification Architectures}
+Classification-based models for 3D CT have shifted away from 3D Convolutional Neural Networks (CNNs) such as 3D U-Net,
+3D ResNet and DenseNet pipelines, toward Vision Transformers (ViTs) and self-supervised encoders. These models are designed
+to identify the presence of one or more abnormalities
+within a full volumetric scan. The benchmark for this paradigm is the CT-RATE dataset, which introduced the first public
+large-scale 3D medical imaging dataset with paired textual reports, enabling the development of Contrastive Language-Image
+Pretraining for Computed Tomography (CT-CLIP).
+
+(About CT-CLIP)
+Recent benchmarks such as Merlin and DINOv3 have further challenged the necessity of domain-specific pretraining.
+
+Merlin is a vision-language foundation model exclusively pre-trained on abdominal CT scans. Despite it's training, Merlin
+has consistently demonstrated exceptional zero-shot performance on chest CT classification tasks, even when it was
+restricted to a linear probe, significantly outperforming models like CT-CLIP, M3FM, and CT-FM that were explicitly
+trained on thoracic data, by an average of 12.3\% in Area Under the Receiver Operating Characteristic Curve (AUROC).
+Specifically, in cross-domain retrieval tasks, Merlin surpassed CT-CLIP by 24.7\%.
+DINOv3, a self-supervised ViT pretrained on over 1.7 billion natural images, outperform specialized medical models like
+CT-Net and CT-CLIP across all metrics on several classification tasks due to it's ability to capture fine-grained textural features.
+
+\subsection{Segmentation Architectures}
+The prevailing SotA for supervised volumetric segmentation remains variations of the 3D U-Net, such as nnU-Net, which
+utilizes an adaptive framework to optimize preprocessing and architecture for specific datasets. However, the field has
+recently shifted toward foundation models capable of universal segmentation such as SegVol and SAM-Med3D.
+The SegVol model is the first 3D foundation model specifically designed for universal volumetric medical image segmentation.
+Similarly, SAM-Med3D adapts the Segment Anything Model (SAM) for 3D medical data.
+
+Recent evaluations published at the Machine Learning for Healthcare (MLHC) Conference in 2025, which specifically utilized
+the ReXGroundingCT dataset, revealed that the current SotA text-prompted segmentation models that demonstrate near-perfect
+performance in general computer vision tasks struggle with the nuanced clinical descriptions and ill-defined boundaries
+of chest CT abnormalities.
+
+\subsection{Unified Architectures}
+Recent models have been designed to integrate abnormality detection, segmentation, and multimodal chain-of-thought reasoning,
+enabling pixel-level localization, structured report generation, and physician-like diagnostic inference in a single framework.
+BiomedParse, and it's production-ready, version MedImageParse developed by Microsoft, are foundation models designed to parse 3D
+medical images.
+Other notable models include Citrus-V, MTMed3D and MedVista3D, where each architecture incorporates a multi-task learning
+(MTL) framework.
+
+\subsection{Dictionary Learning Approaches}
+Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks. In histopathological
+analysis, Discriminative Feature oriented Dictionary Learning (DFDL) has shown the ability to learn class specific dictionaries that achieve high classification accu-
+racy even with limited training data a critical advantage when generous training samples are not available[19]. In neuroimaging, multi feature kernel supervised
+dictionary learning approaches have demonstrated superior performance in distinguishing Alzheimer’s disease patients from cognitively unimpaired individuals,
+achieving 98.18\% classification accuracy while maintaining fast testing times[20].
+
+Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images. One approach utilized both frozen dic-
+tionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CC-CCII dataset[21]. The framework’s key ad-
+vantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original input signal domain. This work demonstrates that
+sparse representation methods offer an effective balance between performance and explainability for lung disease classification tasks, providing clear feature represen-
+tations while maintaining competitive accuracy. Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease pat-
+terns on HRCT images, effectively handling the high variety and complexity of patterns[22].
+
+
+\subsection{Explainability Approaches}
+
+Explainability methods are essential in chest CT analysis because abnormality classification alone is not sufficient for clinical adoption \cite{lekadir2025futureai}. 
+For this project, the most relevant explainability techniques are those that can relate predictions back to anatomical regions and, ideally, support voxel-level interpretation in volumetric data.
+
+Grad-CAM is one of the most widely used post-hoc explanation methods for CNN-based classifiers \cite{selvaraju2017gradcam}. 
+It generates class-discriminative heatmaps by using gradients flowing into the final convolutional layer, allowing the user to identify image regions that influenced a prediction \cite{selvaraju2017gradcam}. 
+In medical imaging, Grad-CAM has been applied to chest radiographs and CT classification tasks to provide coarse visual explanations \cite{panwar2020gradcam}. 
+However, its main limitation is that it produces low-resolution saliency maps and does not directly provide precise lesion boundaries or voxel-level localization, which is a major drawback for 3D CT interpretation \cite{selvaraju2017gradcam,draelos2020hirescam}.
+
+Seg-Grad-CAM extends this idea by adapting Grad-CAM to semantic segmentation outputs \cite{vinogradova2020seggradcam}. 
+Instead of only highlighting regions that are important for image-level classification, it produces pixel-level relevance heatmaps for segmentation predictions \cite{vinogradova2020seggradcam}. 
+This is particularly useful for volumetric medical imaging tasks where the target abnormality occupies a sparse region within a large 3D scan. 
+For a project focused on grounded localization, Seg-Grad-CAM is more relevant than standard Grad-CAM because it better reflects whether the model is attending to the pathological structure rather than surrounding tissue.
+
+HiRes-CAM addresses one of the key weaknesses of Grad-CAM by producing higher-resolution and more faithful localization maps \cite{draelos2020hirescam}. 
+This is important in chest CT because many abnormalities, such as small nodules, consolidations, or subtle interstitial changes, may be missed by coarse heatmaps. 
+HiRes-CAM aims to preserve fine spatial detail, making it more suitable for medical imaging applications where precise localization is required \cite{draelos2020hirescam}. 
+Nevertheless, like other gradient-based methods, it remains a post-hoc explanation technique and does not change the internal decision process of the model.
+
+In the context of this project, these methods are useful baselines for evaluating interpretability in deep learning models. 
+However, they remain fundamentally different from dictionary learning approaches such as LC-KSVD, which provide intrinsic interpretability by representing predictions through sparse combinations of learned atoms \cite{aharon2006ksvd,jiang2013lcksvd}. 
+Compared with Grad-CAM, Seg-Grad-CAM, and HiRes-CAM, LC-KSVD offers a more direct and anatomically traceable explanation mechanism for multi-abnormality classification and localization in 3D CT.
+
+\section{Report Outline}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
