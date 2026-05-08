@@ -29,8 +29,8 @@ from typing import Optional, Tuple
 import numpy as np
 from skimage.filters import threshold_otsu
 
-from .config import CONTRIB_THRESHOLD_MODE, DISCRIMINATIVE_ATOM_PERCENTILE, LCKSVD_CONFIG, PATCH_SIZE, TARGET_SPACING_MM, HU_MIN, HU_MAX
-from .data_loader import window_and_normalise, resample_volume
+from lc_ksvd.config import CONTRIB_THRESHOLD_MODE, DISCRIMINATIVE_ATOM_PERCENTILE, LCKSVD_CONFIG, PATCH_SIZE, TARGET_SPACING_MM, HU_MIN, HU_MAX
+from lc_ksvd.data_loader import window_and_normalise, resample_volume
 
 try:
     from reppi import OMP
