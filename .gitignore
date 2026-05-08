@@ -52,3 +52,9 @@ Thumbs.db
 *.so
 *.dll
 *.dylib
+.gz
+*pyc
+*.txt
+*.pkl
+*.npz
+*.npy
