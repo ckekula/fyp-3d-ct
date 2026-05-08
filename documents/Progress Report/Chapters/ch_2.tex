@@ -3,7 +3,7 @@
 \section{LC-KSVD}
 
 The LC-KSVD algorithm solves an optimization problem that balances reconstruction accuracy with label consistency and
-classification error. Given a set of image patches $P$, the goal is to learn a dictionary $D$ and sparse coefficients
+classification error \cite{LCKSVD}. Given a set of image patches $P$, the goal is to learn a dictionary $D$ and sparse coefficients
 $X$ that minimize the following objective:
 
 $$\min_{D, X, A, W} \|P - DX\|^2_F + \alpha\|Q - AX\|^2_F + \beta\|H - WX\|^2_F \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T$$
@@ -11,7 +11,7 @@ $$\min_{D, X, A, W} \|P - DX\|^2_F + \alpha\|Q - AX\|^2_F + \beta\|H - WX\|^2_F 
 The first term $\|P - DX\|^2_F$ is the standard K-SVD reconstruction error. The second term $\|Q - AX\|^2_F$ introduces
 the "discriminative sparse-code error," where $Q$ is a label-consistent constraint matrix that encourages patches from
 the same class to activate the same dictionary atoms. The third term $\|H - WX\|^2_F$ is the classification error, where
-$W$ is a linear classifier matrix.
+$W$ is a linear classifier matrix \cite{LCKSVD}.
 
 This formulation ensures that the dictionary atoms are not just representative of the image data but are also class-specific.
 In 3D CT multi-abnormality segmentation, this allows the model to learn distinct "sub-dictionaries" for each abnormality,
@@ -19,7 +19,7 @@ facilitating easier classification of individual voxels.
 
 \section{Sparse Representation, K-SVD, and Frozen Dictionary Learning}
 
-Sparse representation is a signal modeling technique where a CT image patch is expressed as a linear combination of a small number of basis elements called dictionary atoms. Instead of using all available features, the signal is approximated as:
+Sparse representation is a signal modeling technique where a CT image patch is expressed as a linear combination of a small number of basis elements called dictionary atoms. \cite{ksvd} Instead of using all available features, the signal is approximated as:
 
 $$
 y = Dx
@@ -30,10 +30,10 @@ where $D$ is the dictionary and $x$ is a sparse coefficient vector with mostly z
 The dictionary $D$ is typically learned using K-SVD (K-Singular Value Decomposition), which solves the following optimization problem:
 
 $$
-\min_{D, X} \|P - DX\|_F^2 \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T
+\min_{D, X} \|P - DX\|_F^2 \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T 
 $$
 
-where $P$ represents the training data, $X$ is the sparse coefficient matrix, and $T$ controls the sparsity level. K-SVD alternates between sparse coding and dictionary update steps to minimize reconstruction error. However, it does not incorporate class labels, which limits its discriminative ability for classification tasks.
+where $P$ represents the training data, $X$ is the sparse coefficient matrix, and $T$ controls the sparsity level. K-SVD alternates between sparse coding and dictionary update steps to minimize reconstruction error. However, it does not incorporate class labels, which limits its discriminative ability for classification tasks. \cite{ksvd}
 
 To address this limitation, LC-KSVD extends the standard K-SVD framework by incorporating class label information into the dictionary learning process. It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction but also discriminative for classification tasks through label consistency constraints. However, LC-KSVD still learns a single shared dictionary for all classes.
 
@@ -99,16 +99,16 @@ Pulmonary nodules are critical in early screening and risk assessment, especiall
 
 Explainable AI (XAI) in medical imaging is used to make deep learning predictions more interpretable, especially in clinical applications where understanding model decisions is important.
 
-\textbf{Grad-CAM} is a widely used method that highlights important regions in an image by generating a heatmap based on the gradients flowing into the final convolutional layers. In CT imaging, it helps identify which lung regions contributed most to a prediction, such as areas with abnormalities or infections.
+\textbf{Grad-CAM} is a widely used method that highlights important regions in an image by generating a heatmap based on the gradients flowing into the final convolutional layers. In CT imaging,\cite{Suara_2024} it helps identify which lung regions contributed most to a prediction, such as areas with abnormalities or infections.
 
-\textbf{HiResCAM} is an improved version of activation-based visualization methods. It produces more detailed and higher-resolution heatmaps compared to Grad-CAM, allowing better localization of small or subtle abnormalities in medical images.
+\textbf{HiResCAM} is an improved version of activation-based visualization methods. It produces more detailed and higher-resolution heatmaps compared to Grad-CAM, allowing better localization of small or subtle abnormalities in medical images. \cite{draelos2021usehirescaminsteadgradcam}
 
 Both methods are post-hoc explanation techniques, meaning they are applied after model training. They do not modify the model itself but instead help interpret its predictions by visualizing the regions of the input image that most influenced the output.
 
 
 \section{Vision Transformers (ViTs) in Medical Imaging}
 
-Vision Transformers (ViTs) are deep learning architectures that apply the transformer mechanism, originally developed for Natural Language Processing (NLP), to image analysis tasks, Vision Transformers divide an image into smaller patches and process them as sequential tokens.
+Vision Transformers (ViTs) are deep learning architectures that apply the transformer mechanism, originally developed for Natural Language Processing (NLP), to image analysis tasks, Vision Transformers divide an image into smaller patches and process them as sequential tokens.\cite{dosovitskiy2021an}
 
 Given an input image $I$, the image is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before passing the sequence into transformer encoder layers.
 
@@ -120,7 +120,7 @@ $$
 
 where $Q$ represents queries, $K$ represents keys, $V$ represents values, and $d_k$ is the dimension of the key vectors.
 
-In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions.
+In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions.\cite{khan2023recentsurveyvisiontransformers}
 
 For lung CT analysis, ViTs can learn meaningful representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. Hybrid architectures combining CNNs and Vision Transformers are also commonly used to capture both local texture information and global contextual features.
 

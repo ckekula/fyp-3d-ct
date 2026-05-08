@@ -1,9 +1,9 @@
 \chapter{Methodology}
 
 \section{Data Acquisition and Preprocessing}
-Two public chest CT datasets were used in this work: CT-RATE and ReXGroundingCT. 
+Two public chest CT datasets were used in this work: CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct}. 
 CT-RATE was used as the primary source of volume-level labels (normal/abnormal and abnormality presence) derived from the dataset provided multi finding annotations, 
-while ReXGroundingCT was used to obtain lesion level spatial supervision through radiologist linked segmentation masks together with finding descriptions. 
+while ReXGroundingCT was used to obtain lesion level spatial supervision through radiologist linked segmentation masks together with finding descriptions\cite{rexgroundingct}. 
 In practice, CT-RATE provided the global abnormality labels needed to build classification splits, and ReXGroundingCT provided grounded masks and metadata required for localisation-oriented experiments.
 
 After an initial review of the 18 thoracic findings available in CT-RATE, a clinical discussion with the supervising radiologist produced a shortlist of abnormalities considered both clinically meaningful and suitable for interpretable analysis 
