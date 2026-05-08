@@ -10,17 +10,15 @@ Handles all I/O for the ReXGroundingCT dataset:
 """
 
 import json
-import re
 import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import nibabel as nib
 import numpy as np
-import pandas as pd
 from scipy.ndimage import zoom
 
-from . import config
+from lc_ksvd.config import ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR
 
 
 # ─── Path resolution ──────────────────────────────────────────────────────────
@@ -50,7 +48,7 @@ def resolve_volume_path(volume_name: str) -> Path:
     series_dir = f"train_{study}_{series}"          # "train_1_a"
 
     candidate = (
-        config.VOLUMES_DIR
+        VOLUMES_DIR
         / study_dir
         / series_dir
         / f"{volume_name}.nii.gz"
@@ -61,7 +59,7 @@ def resolve_volume_path(volume_name: str) -> Path:
     # Fallback: some series use numeric identifiers ("train_1_1")
     series_dir_num = f"train_{study}_{series}"
     candidate2 = (
-        config.VOLUMES_DIR
+        VOLUMES_DIR
         / study_dir
         / series_dir_num
         / f"{volume_name}.nii.gz"
@@ -77,7 +75,7 @@ def resolve_volume_path(volume_name: str) -> Path:
 
 def resolve_mask_path(volume_name: str) -> Path:
     """Masks are flat in MASKS_DIR with the same filename as the volume."""
-    path = config.MASKS_DIR / f"{volume_name}.nii.gz"
+    path = MASKS_DIR / f"{volume_name}.nii.gz"
     if not path.exists():
         raise FileNotFoundError(f"Mask not found: {path}")
     return path
@@ -127,7 +125,7 @@ def _zoom_factors(current_spacing: np.ndarray, target_spacing: float) -> np.ndar
 
 def resample_volume(vol: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
     """Resample volume to TARGET_SPACING_MM isotropic using trilinear interpolation."""
-    factors = _zoom_factors(current_spacing, config.TARGET_SPACING_MM)
+    factors = _zoom_factors(current_spacing, TARGET_SPACING_MM)
     if np.allclose(factors, 1.0, atol=0.01):
         return vol
     with warnings.catch_warnings():
@@ -141,7 +139,7 @@ def resample_mask(mask: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
     Resample each finding slice of the 4D mask using nearest-neighbour
     to preserve integer entity labels.
     """
-    factors = _zoom_factors(current_spacing, config.TARGET_SPACING_MM)
+    factors = _zoom_factors(current_spacing, TARGET_SPACING_MM)
     if np.allclose(factors, 1.0, atol=0.01):
         return mask
 
@@ -163,129 +161,158 @@ def window_and_normalise(vol: np.ndarray) -> np.ndarray:
     Input:  float32 array in HU
     Output: float32 array in [0, 1]
     """
-    vol = np.clip(vol, config.HU_MIN, config.HU_MAX)
-    vol = (vol - config.HU_MIN) / (config.HU_MAX - config.HU_MIN)
+    vol = np.clip(vol, HU_MIN,  HU_MAX)
+    vol = (vol - HU_MIN) / (HU_MAX - HU_MIN)
     return vol.astype(np.float32)
 
 
 # ─── Metadata parsing ────────────────────────────────────────────────────────
 
-def _normalise_finding_label(label: str) -> Optional[str]:
-    """
-    Map a free-text finding label from the JSON to a canonical abnormality key.
-    Returns None if the label does not match any known abnormality.
-    """
-    label_lower = label.strip().lower()
-    for canonical, aliases in config.ABNORMALITY_ALIASES.items():
-        if any(alias in label_lower for alias in aliases):
-            return canonical
-    return None
-
-
 class MetadataRegistry:
     """
     Loads the JSON metadata file once and provides fast lookup:
-      get_finding_map(volume_name) → dict mapping F-index (int) → canonical abnormality key
+      get_finding_map(volume_name) → dict mapping F-index (int) → abnormality category (str)
+    
+    Expected JSON format:
+    {
+        "train": [
+            {
+                "name": "train_1935_a_1.nii.gz",
+                "findings": {"0": "description", ...},
+                "categories": {"0": "2a", "1": "2c", ...},  # F-index → category
+                ...
+            },
+            ...
+        ],
+        "val": [...],
+        "test": [...]
+    }
     """
 
-    def __init__(self):
-        with open(config.METADATA_JSON, "r") as f:
+    def __init__(self, split: Optional[str] = None):
+        with open(METADATA_JSON, "r") as f:
             self._raw: Dict = json.load(f)
-        self._list_schema_index: Dict[str, Dict[int, str]] = {}
+        self._volume_index: Dict[str, Dict[int, str]] = {}
 
-        # Support MMSEG-style list schema:
-        # {
-        #   "training": [{"prompt": ..., "image": "images_flat/<id>.nii.gz", "key": "0", ...}],
-        #   "testing":  [...]
-        # }
-        if isinstance(self._raw, dict) and isinstance(self._raw.get("training"), list):
-            for item in self._raw["training"]:
+        split_names = [split] if split else ["train", "val", "test"]
+
+        # Index all volumes from all splits (train, val, test)
+        for split_name in split_names:
+            if split_name not in self._raw:
+                continue
+            split_list = self._raw[split_name]
+            if not isinstance(split_list, list):
+                continue
+
+            for item in split_list:
                 if not isinstance(item, dict):
                     continue
 
-                image_name = str(item.get("image", "")).split("/")[-1]
-                volume_name = _stem(image_name)
+                # Extract volume name and strip extension
+                filename = item.get("name", "")
+                volume_name = _stem(filename)
                 if not volume_name:
                     continue
 
-                key_raw = item.get("key")
-                prompt = str(item.get("prompt", ""))
-                canonical = _normalise_finding_label(prompt)
-                if canonical is None:
-                    continue
+                # Map F-indices to categories directly from metadata
+                categories_dict = item.get("categories", {})
+                finding_map = {}
+                for f_idx_str, category in categories_dict.items():
+                    try:
+                        f_idx = int(f_idx_str)
+                        finding_map[f_idx] = str(category)
+                    except (TypeError, ValueError):
+                        continue
 
-                try:
-                    f_idx = int(key_raw)
-                except (TypeError, ValueError):
-                    continue
-
-                if volume_name not in self._list_schema_index:
-                    self._list_schema_index[volume_name] = {}
-                self._list_schema_index[volume_name][f_idx] = canonical
+                if finding_map:
+                    self._volume_index[volume_name] = finding_map
 
     def get_finding_map(self, volume_name: str) -> Dict[int, str]:
         """
-        Returns {0: "lung_nodule", 1: "consolidation", ...} for a given volume.
-        F-indices with no recognised label are omitted.
+        Returns {0: "2a", 1: "2c", ...} for a given volume.
+        Maps F-index (int) to abnormality category (str).
+        Returns empty dict if volume not found or has no findings.
         """
         volume_name = _stem(volume_name)
-
-        # Fast path for list-based schema parsed in __init__
-        if volume_name in self._list_schema_index:
-            return self._list_schema_index[volume_name]
-
-        entry = self._raw.get(volume_name, self._raw.get(f"{volume_name}.nii.gz", {}))
-        result = {}
-        for idx_str, label in entry.items():
-            canonical = _normalise_finding_label(label)
-            if canonical is not None:
-                result[int(idx_str)] = canonical
-        return result
+        return self._volume_index.get(volume_name, {})
 
 
-# ─── CSV label loading ────────────────────────────────────────────────────────
+# ─── Label inference from metadata ────────────────────────────────────────────
 
 class LabelRegistry:
     """
-    Loads the labels CSV and provides fast lookup:
+    Infers volume-level labels from the metadata JSON.
+    A volume is positive for an abnormality category if it has any findings 
+    with that category.
+    
+    Provides high-level queries:
       get_labels(volume_name) → dict {abnormality_key: 0 or 1}
-      get_all_volume_names()  → list of all volume names in the CSV
-      get_normal_volume_names() → list of volumes with no abnormality present
+      get_all_volume_names()  → list of all volume names
+      get_positive_volume_names(category) → list of volumes with that category
+      get_normal_volume_names() → list of volumes with no findings
     """
 
-    def __init__(self):
-        df = pd.read_csv(config.LABELS_CSV)
-        # Normalise filename column to VolumeName (strip extension)
-        if "filename" in df.columns:
-            df["VolumeName"] = df["filename"].apply(_stem)
-        elif "VolumeName" not in df.columns:
-            raise ValueError("CSV must have a 'filename' or 'VolumeName' column.")
-        else:
-            df["VolumeName"] = df["VolumeName"].astype(str).apply(_stem)
+    def __init__(self, metadata: MetadataRegistry, split: Optional[str] = None):
+        self.metadata = metadata
+        self.split = split
+        self._build_label_index()
 
-        # Ensure all abnormality columns are present
-        for col in config.ABNORMALITIES:
-            if col not in df.columns:
-                raise ValueError(f"CSV missing expected column: {col!r}")
+    def _build_label_index(self):
+        """Build a lookup table of volume names and their labels."""
+        self._volume_names: List[str] = []
+        self._volume_labels: Dict[str, Dict[str, int]] = {}
+        abnormalities = list(ABNORMALITY_CATEGORIES.keys())
 
-        df = df.set_index("VolumeName")
-        self._df = df
+        with open(METADATA_JSON, "r") as f:
+            raw = json.load(f)
+
+        # Index all volumes from all splits
+        split_names = [self.split] if self.split else ["train", "val", "test"]
+        for split_name in split_names:
+            if split_name not in raw or not isinstance(raw[split_name], list):
+                continue
+
+            for item in raw[split_name]:
+                if not isinstance(item, dict):
+                    continue
+
+                filename = item.get("name", "")
+                volume_name = _stem(filename)
+                if not volume_name or volume_name in self._volume_names:
+                    continue
+
+                # Get categories present in this volume
+                categories_present: Dict[str, int] = {ab: 0 for ab in abnormalities}
+                categories_dict = item.get("categories", {})
+
+                for category in categories_dict.values():
+                    if str(category) in categories_present:
+                        categories_present[str(category)] = 1
+
+                self._volume_names.append(volume_name)
+                self._volume_labels[volume_name] = categories_present
 
     def get_labels(self, scan_id: str) -> Dict[str, int]:
-        row = self._df.loc[scan_id]
-        return {ab: int(row[ab]) for ab in config.ABNORMALITIES}
+        """Return binary labels {category: 0 or 1} for a volume."""
+        scan_id = _stem(scan_id)
+        abnormalities = list(ABNORMALITY_CATEGORIES.keys())
+        return self._volume_labels.get(scan_id, {ab: 0 for ab in abnormalities})
 
     def get_all_volume_names(self) -> List[str]:
-        return list(self._df.index)
+        """Return all volume names in the metadata."""
+        return list(self._volume_names)
 
-    def get_positive_volume_names(self, abnormality: str) -> List[str]:
-        """Volume names where the given abnormality is labelled 1."""
-        return list(self._df[self._df[abnormality] == 1].index)
+    def get_positive_volume_names(self, category: str) -> List[str]:
+        """Return volume names where the given category is present."""
+        return [vol for vol in self._volume_names 
+                if self._volume_labels.get(vol, {}).get(category, 0) == 1]
 
     def get_normal_volume_names(self) -> List[str]:
-        """Volume names with all abnormality labels == 0."""
-        mask = (self._df[config.ABNORMALITIES] == 0).all(axis=1)
-        return list(self._df[mask].index)
+        """Return volume names with no findings in any category."""
+        abnormalities = list(ABNORMALITY_CATEGORIES.keys())
+        return [vol for vol in self._volume_names
+                if all(self._volume_labels.get(vol, {}).get(ab, 0) == 0 
+                   for ab in abnormalities)]
 
 
 # ─── Full scan loader (convenience wrapper) ───────────────────────────────────

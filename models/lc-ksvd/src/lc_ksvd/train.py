@@ -28,8 +28,8 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-from .config import ABNORMALITIES, HU_MAX, HU_MIN, LCKSVD_CONFIG, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, TRAIN_RATIO, VAL_RATIO
-from .patch_extractor import extract_all_abnormalities, load_patch_matrix
+from lc_ksvd.config import ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, LCKSVD_CONFIG, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM
+from lc_ksvd.patch_extractor import extract_all_abnormalities, load_patch_matrix
 
 try:
     from reppi import LCKSVD
@@ -61,40 +61,7 @@ def normalise_columns(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray
     return X_norm, norms, zero_mask
 
 
-# ─── Train / val split ───────────────────────────────────────────────────────
 
-def train_val_split(
-    X: np.ndarray, H: np.ndarray
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """
-    Stratified split of columns in X and H into train and val sets.
-    Stratified by the positive class (H[1, :] == 1) to preserve class balance.
-    """
-    rng = np.random.default_rng(RANDOM_SEED)
-    n = X.shape[1]
-
-    pos_idx = np.where(H[1, :] == 1)[0]
-    neg_idx = np.where(H[0, :] == 1)[0]
-
-    def _split(idx: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
-        perm = rng.permutation(len(idx))
-        idx  = idx[perm]
-        cut  = int(len(idx) * (TRAIN_RATIO / (TRAIN_RATIO + VAL_RATIO)))
-        return idx[:cut], idx[cut:]
-
-    pos_train, pos_val = _split(pos_idx)
-    neg_train, neg_val = _split(neg_idx)
-
-    train_idx = np.concatenate([pos_train, neg_train])
-    val_idx   = np.concatenate([pos_val,   neg_val])
-
-    train_idx = rng.permutation(train_idx)
-    val_idx   = rng.permutation(val_idx)
-
-    return (
-        X[:, train_idx], H[:, train_idx],
-        X[:, val_idx],   H[:, val_idx],
-    )
 
 
 # ─── Evaluation helpers ───────────────────────────────────────────────────────
@@ -170,8 +137,20 @@ def train_one(abnormality: str) -> Dict:
     H      = H[:, keep]
     logger.info(f"After zero-patch removal: {X_norm.shape[1]} patches")
 
-    # ── Train / val split ─────────────────────────────────────────────────────
-    X_tr, H_tr, X_val, H_val = train_val_split(X_norm, H)
+    # ── Load validation patches ───────────────────────────────────────────────────
+    X_val, H_val = load_patch_matrix(abnormality, split="val")
+    logger.info(f"Loaded validation X {X_val.shape}, H {H_val.shape}  "
+                f"(pos={int(H_val[1].sum())}, neg={int(H_val[0].sum())})")
+
+    # ── Normalise validation columns ───────────────────────────────────────────────
+    X_val_norm, _, val_zero_mask = normalise_columns(X_val)
+    X_val_norm = X_val_norm[:, ~val_zero_mask]
+    H_val = H_val[:, ~val_zero_mask]
+    logger.info(f"Validation after zero-patch removal: {X_val_norm.shape[1]} patches")
+
+    # ── Final train/val split ──────────────────────────────────────────────────────
+    X_tr, H_tr = X_norm, H
+    X_val, H_val = X_val_norm, H_val
     logger.info(f"Train: {X_tr.shape[1]} patches  |  Val: {X_val.shape[1]} patches")
 
     # ── Adapt LC-KSVD dictionary size for small training sets ────────────────
@@ -231,10 +210,12 @@ def train_one(abnormality: str) -> Dict:
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 def main():
+    abnormalities = list(ABNORMALITY_CATEGORIES.keys())
+
     parser = argparse.ArgumentParser(description="Train LC-KSVD2 models for chest CT abnormalities")
     parser.add_argument(
         "--abnormality", type=str, default=None,
-        choices=ABNORMALITIES + [None],
+        choices=abnormalities + [None],
         help="Train a single abnormality. Omit to train all 4."
     )
     parser.add_argument(
@@ -249,7 +230,7 @@ def main():
         extract_all_abnormalities(split="train")
 
     # ── Training ──────────────────────────────────────────────────────────────
-    targets = [args.abnormality] if args.abnormality else ABNORMALITIES
+    targets = [args.abnormality] if args.abnormality else abnormalities
     all_results = {}
 
     for abnormality in targets:
