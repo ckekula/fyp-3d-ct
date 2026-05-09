@@ -18,7 +18,7 @@ class BiomedParseLocalizationAdapter:
 
     Expected BiomedParse output directory:
       outputs/biomedparse_rexgroundingct/
-        reports.json
+                reports.json
         masks/
           <case>.npz
 
@@ -47,13 +47,19 @@ class BiomedParseLocalizationAdapter:
         self.metadata_json = Path(metadata_json) if metadata_json else None
         self.model_name = model_name
 
-        self.reports_path = self.output_dir / "summary.json"
+        self.reports_path = self.output_dir / "reports.json"
+        self.legacy_reports_path = self.output_dir / "summary.json"
         self.masks_dir = self.output_dir / "masks"
 
     def load(self) -> List[LocalizationSample]:
-        if not self.reports_path.exists():
+        reports_path = self.reports_path
+
+        if not reports_path.exists() and self.legacy_reports_path.exists():
+            reports_path = self.legacy_reports_path
+
+        if not reports_path.exists():
             raise FileNotFoundError(
-                f"Could not find summary.json at: {self.reports_path}"
+                f"Could not find reports.json at: {self.reports_path}"
             )
 
         if not self.masks_dir.exists():
@@ -61,7 +67,7 @@ class BiomedParseLocalizationAdapter:
                 f"Could not find masks directory at: {self.masks_dir}"
             )
 
-        reports = json.loads(self.reports_path.read_text(encoding="utf-8"))
+        reports = json.loads(reports_path.read_text(encoding="utf-8"))
         samples: List[LocalizationSample] = []
 
         for report in reports:
@@ -250,6 +256,21 @@ class BiomedParseLocalizationAdapter:
             if path.exists():
                 return self._load_mask_file(path)
 
+        # Fallback: try to extract from unified volume containing all classes
+        unified_candidates = [
+            self.gt_mask_root / f"{case_id}.nii.gz",
+            self.gt_mask_root / f"{case_id}.nii",
+        ]
+        
+        for path in unified_candidates:
+            if path.exists():
+                # Load full volume and convert to binary mask (any non-zero = foreground)
+                mask = self._load_mask_file(path)
+                if mask is not None:
+                    # Convert to binary: any non-zero value becomes 1
+                    binary_mask = (mask > 0).astype(np.float32)
+                    return binary_mask
+        
         return None
 
     def _load_mask_file(self, path: Path) -> np.ndarray:
@@ -274,6 +295,9 @@ class BiomedParseLocalizationAdapter:
             image = nib.load(str(path))
             mask = image.get_fdata(dtype=np.float32)
 
+            # Squeeze out singleton dimensions
+            mask = np.squeeze(mask)
+            
             # Convert XYZ -> ZYX to match your pipeline output convention
             if mask.ndim == 3:
                 mask = np.transpose(mask, (2, 0, 1))

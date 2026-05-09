@@ -1,4 +1,5 @@
-from __future__ import annotations
+import os
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 import argparse
 import json
@@ -15,17 +16,10 @@ from hydra import compose, initialize_config_dir
 from hydra.core.global_hydra import GlobalHydra
 from huggingface_hub import hf_hub_download
 
+from inference import merge_multiclass_masks, postprocess
+from utils import process_input, process_output
 
-ROOT = Path(__file__).resolve().parents[2]
-MODEL_DIR = ROOT / "models" / "biomed-parse"
-
-if str(MODEL_DIR) not in sys.path:
-    sys.path.insert(0, str(MODEL_DIR))
-
-from inference import merge_multiclass_masks, postprocess  # type: ignore
-from utils import process_input, process_output  # type: ignore
-
-from .config import (
+from biomed_parse.config import (
     CHECKPOINT,
     DEVICE,
     DISEASES,
@@ -36,10 +30,11 @@ from .config import (
     POSTPROCESS_THRESHOLD,
     SLICE_BATCH_SIZE,
     VOLUME_ROOT,
+    MODEL_DIR
 )
-from .dataset_adapter import RexCase, iter_target_cases, load_rexgroundingct_cases
-from .prompts import default_prompt_bundles
-from .visualize import save_overlay_png
+from biomed_parse.dataset_adapter import RexCase, iter_target_cases, load_rexgroundingct_cases
+from biomed_parse.prompts import build_disease_prompt
+from biomed_parse.visualize import save_overlay_png
 
 def normalize_disease_name(name: str) -> str:
     """Normalize disease names for case-insensitive matching."""
@@ -89,6 +84,11 @@ def load_volume(volume_path: str | Path) -> np.ndarray:
 
 def load_model(checkpoint_path: str | None, device: torch.device):
     """Load the official BiomedParse v2 3D model."""
+    # Add src directory to path so model modules can be found
+    src_path = str(MODEL_DIR / "src")
+    if src_path not in sys.path:
+        sys.path.insert(0, src_path)
+    
     GlobalHydra.instance().clear()
 
     initialize_config_dir(
@@ -170,21 +170,16 @@ def process_probability_output(
     return vol_np
 
 
-def build_case_report(case: RexCase, predictions: Dict[str, Dict[str, object]]) -> Dict[str, object]:
-    predicted_present = [
-        disease_name
-        for disease_name, item in predictions.items()
-        if bool(item.get("present"))
-    ]
-
+def build_case_report(
+    case: RexCase,
+    predictions: Dict[str, Dict[str, object]],
+) -> Dict[str, object]:
     return {
         "volume_name": case.volume_name,
-        "matched_diseases_in_finding_text": case.matched_diseases,
-        "findings": case.findings,
-        "predicted_present_diseases": predicted_present,
         "predictions": predictions,
         "protocol": case.protocol,
     }
+
 
 
 def run_disease_prompt(
@@ -287,7 +282,7 @@ def run_case(
     volume = load_volume(case.volume_path)
     volume = window_ct(volume)
 
-    # Preprocess once per case. Only the text prompt changes per disease.
+    # Preprocess once per case.
     image, pad_width, padded_size, valid_axis = process_input(volume, 512)
     image = image.to(device).int()
 
@@ -299,22 +294,18 @@ def run_case(
     mask_file.parent.mkdir(parents=True, exist_ok=True)
     prob_file.parent.mkdir(parents=True, exist_ok=True)
 
-    selected_diseases = {normalize_disease_name(disease) for disease in diseases}
-
     disease_scores: Dict[str, Dict[str, object]] = {}
     binary_outputs: Dict[str, np.ndarray] = {}
     prob_outputs: Dict[str, np.ndarray] = {}
 
-    for bundle in default_prompt_bundles():
-        if normalize_disease_name(bundle.disease) not in selected_diseases:
-            continue
-
-        print(f"  Running disease prompt: {bundle.disease}", flush=True)
+    for disease in diseases:
+        disease_prompt = build_disease_prompt(disease)
+        print(f"  Running disease prompt: {disease}", flush=True)
 
         binary_mask, prob_map, existence_score, prompt_count = run_disease_prompt(
             model,
             image,
-            bundle.text,
+            disease_prompt,
             pad_width,
             padded_size,
             valid_axis,
@@ -329,7 +320,7 @@ def run_case(
             and mask_voxels >= min_mask_voxels
         )
 
-        key = safe_key(bundle.disease)
+        key = safe_key(disease)
 
         binary_outputs[key] = binary_mask.astype(np.uint8)
         prob_outputs[key] = prob_map.astype(np.float32)
@@ -337,7 +328,7 @@ def run_case(
         overlay_path = output_dir / "overlays" / key / f"{case_id}.png"
         save_overlay_png(volume, binary_outputs[key], overlay_path)
 
-        disease_scores[bundle.disease] = {
+        disease_scores[disease] = {
             "existence_score": existence_score,
             "mask_voxels": mask_voxels,
             "present": present,
@@ -351,7 +342,7 @@ def run_case(
         }
 
         print(
-            f"  Saved {bundle.disease}: "
+            f"  Saved {disease}: "
             f"score={existence_score:.4f}, "
             f"voxels={mask_voxels}, "
             f"present={present}",
@@ -386,7 +377,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--limit",
         type=int,
-        default=5,
+        default=1,
         help="Number of cases to process. Use 0 to process all selected cases.",
     )
 

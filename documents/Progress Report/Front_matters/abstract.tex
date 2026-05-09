@@ -1,4 +1,17 @@
 
 \chapter*{Abstract}
-
-Abstract goes here.
+Multi-class abnormality detection from 3D chest Computed Tomography requires clinically interpretable methods to support radiological
+decision-making.
+Current state-of-the-art (SotA) models often rely on post-hoc explainability techniques that provide approximate localizations
+and lack direct traceability to the models decisions.
+Furthermore, SotA models rarely support simultaneous multi-class classification and grounded localization, leading to a fragmented
+approach to diagnosis.
+This study aims to address these challenges through two contributions:
+First, we introduce an inherently interpretable sparse dictionary learning framework in which detected abnormalities, such as Pulmonary Nodules,
+Ground-Glass Opacity and Consolidation, can be back-projected to the original voxel space, allowing diagnostic decisions to be traced
+back to relevant anatomical structures.
+Second, we develop a unified evaluation framework to benchmark SotA models across three axes: (i) classification accuracy,
+(ii) segmentation quality, and (iii) explainability, using standardized metrics and a publically available 3D chest CT dataset
+with expertly annotated abnormality localizations.
+Our method is benchmarked against SotA models using this framework, demonstrating competitive
+classification and segmentation performance while providing improved interpretability compared to deep learning baselines.

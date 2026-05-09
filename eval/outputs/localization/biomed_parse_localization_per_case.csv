@@ -1,0 +1,5 @@
+case_id,class_name,dice,iou,model_name,morphology
+train_1741_b_2,lung_nodule,0.7095135630887476,0.5498031926527718,biomed_parse,focal
+train_1741_b_2,lung_opacity,0.0022752132677979872,0.0011389022566624899,biomed_parse,non_focal
+train_1741_b_2,consolidation,4.489942528733616e-13,4.489942528733616e-13,biomed_parse,non_focal
+train_1741_b_2,atelectasis,0.26653076825104405,0.15375569601687797,biomed_parse,non_focal

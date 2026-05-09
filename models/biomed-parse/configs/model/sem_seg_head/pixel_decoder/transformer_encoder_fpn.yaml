@@ -1,4 +1,4 @@
-_target_: src.model.pixel_decoder.transformer_encoder_fpn.TransformerEncoderPixelDecoder
+_target_: model.pixel_decoder.transformer_encoder_fpn.TransformerEncoderPixelDecoder
 transformer_dropout: 0.0
 transformer_nheads: 8
 transformer_dim_feedforward: 2048

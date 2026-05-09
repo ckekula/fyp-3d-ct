@@ -8,22 +8,10 @@ from pathlib import Path
 
 # ─── Dataset paths ────────────────────────────────────────────────────────────
 
-# Root of the ReXGroundingCT dataset
 DATASET_ROOT = Path("/home/chest_ct/code/data")
-
-# CT volumes: nested under data_volumes/dataset/train/<study>/<series>/
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
-
-# Segmentation masks: flat folder, same filename as volume
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-
-# JSON metadata file mapping F-dimension index → finding label per scan
-# Expected structure:  { "train_1_a_1": { "0": "Lung nodule", "1": "Lung opacity", ... }, ... }
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_transformed_filtered.json"
-
-# CSV with per-volume one-hot labels
-# Expected columns: filename, lung_nodule, lung_opacity, consolidation, atelectasis
-LABELS_CSV = DATASET_ROOT / "ct-rate" / "train_labels.csv"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_4.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -34,22 +22,11 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
-# Canonical names — order matters; used as dictionary keys and file suffixes
-# Note: Atelectasis removed — dataset has no separate Atelectasis annotations
-#       (all labeled Atelectasis scans also contain nodules; prompts describe nodules only)
-ABNORMALITIES = [
-    "Lung nodule",
-    "Lung opacity",
-    "Consolidation",
-]
-
-# Matching label strings as they appear in the JSON metadata finding descriptions
-# Add lowercase variants that appear in your dataset's JSON
-ABNORMALITY_ALIASES = {
-    "Lung nodule":    ["lung nodule", "pulmonary nodule", "nodule", "nodules"],
-    "Lung opacity":   ["lung opacity", "opacity", "ground-glass opacity", "ground glass opacity", "groundglass opacity"],
-    "Consolidation":  ["consolidation", "consolidations"],
-    # "Atelectasis":    ["atelectasis", "atelectatic"],
+ABNORMALITY_CATEGORIES = {
+    "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)",
+    "2b": "Atelectasis, consolidation",
+    "2c": "Groundglass opacity",
+    "2d": "Pulmonary nodules/masses",
 }
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
@@ -79,12 +56,6 @@ NEG_TO_POS_RATIO = 1.0     # balanced by default; increase if you want more nega
 
 # Random seed for reproducible patch sampling
 RANDOM_SEED = 42
-
-# ─── Train / val / test split ─────────────────────────────────────────────────
-
-TRAIN_RATIO = 0.70
-VAL_RATIO   = 0.15
-TEST_RATIO  = 0.15          # must sum to 1.0
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 

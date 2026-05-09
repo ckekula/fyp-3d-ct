@@ -22,13 +22,13 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 from tqdm import tqdm
 
-from . import config
-from .data_loader import LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
+from lc_ksvd.config import ABNORMALITY_CATEGORIES, MIN_OVERLAP_RATIO, N_FEATURES, N_POSITIVE_PATCHES_PER_SCAN, NEG_TO_POS_RATIO, PATCH_SIZE, PATCHES_DIR, RANDOM_SEED
+from lc_ksvd.data_loader import LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-rng = np.random.default_rng(config.RANDOM_SEED)
+rng = np.random.default_rng(RANDOM_SEED)
 
 
 # ─── Core patch utilities ────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ def _extract_patch(volume: np.ndarray, centre: Tuple[int, int, int]) -> Optional
     Extract a cubic patch of PATCH_SIZE centred at (cx, cy, cz).
     Returns None if the patch extends outside the volume boundary.
     """
-    p = config.PATCH_SIZE
+    p = PATCH_SIZE
     h = p // 2
     cx, cy, cz = centre
     H, W, D = volume.shape
@@ -58,7 +58,7 @@ def _overlap_ratio(
     binary_mask: np.ndarray,
 ) -> float:
     """Fraction of patch voxels that are positive in the binary_mask."""
-    p = config.PATCH_SIZE
+    p = PATCH_SIZE
     h = p // 2
     cx, cy, cz = centre
     H, W, D = binary_mask.shape
@@ -76,7 +76,7 @@ def _overlap_ratio(
 
 def _valid_centre_range(volume_shape: Tuple[int, int, int]) -> Tuple:
     """Return the inclusive range of valid patch centres (avoids boundary)."""
-    h = config.PATCH_SIZE // 2
+    h = PATCH_SIZE // 2
     H, W, D = volume_shape
     return (h, H - h), (h, W - h), (h, D - h)
 
@@ -111,7 +111,7 @@ def sample_positive_patches(
         idx = rng.integers(0, len(foreground_coords))
         centre = tuple(foreground_coords[idx])
 
-        if _overlap_ratio(centre, binary_mask) >= config.MIN_OVERLAP_RATIO:
+        if _overlap_ratio(centre, binary_mask) >= MIN_OVERLAP_RATIO:
             patch = _extract_patch(volume, centre)
             if patch is not None:
                 patches.append(patch)
@@ -244,7 +244,7 @@ def build_patch_matrix(
             # Use as a negative-only source to avoid wasting the scan.
             negs = sample_negative_patches(
                 scan["volume"], binary_mask=None,
-                n_patches=config.N_POSITIVE_PATCHES_PER_SCAN,
+                n_patches=N_POSITIVE_PATCHES_PER_SCAN,
             )
             negative_patches.extend(negs)
             logger.debug(f"  {scan_id}: no matching mask slice — used as negative source.")
@@ -253,7 +253,7 @@ def build_patch_matrix(
         # Positive patches from the lesion region
         pos = sample_positive_patches(
             scan["volume"], binary_mask,
-            n_patches=config.N_POSITIVE_PATCHES_PER_SCAN,
+            n_patches=N_POSITIVE_PATCHES_PER_SCAN,
         )
         positive_patches.extend(pos)
 
@@ -267,7 +267,7 @@ def build_patch_matrix(
     # ── Normal scans (pure negatives) ────────────────────────────────────────
     n_extra_neg_needed = max(
         0,
-        int(len(positive_patches) * config.NEG_TO_POS_RATIO) - len(negative_patches)
+        int(len(positive_patches) * NEG_TO_POS_RATIO) - len(negative_patches)
     )
 
     if n_extra_neg_needed > 0 and scan_ids["normal"]:
@@ -277,7 +277,7 @@ def build_patch_matrix(
             f"{len(scan_ids['normal'])} normal scans to balance…"
         )
         for scan_id in tqdm(scan_ids["normal"], desc=f"{abnormality} normal scans"):
-            if len(negative_patches) >= int(len(positive_patches) * config.NEG_TO_POS_RATIO):
+            if len(negative_patches) >= int(len(positive_patches) * NEG_TO_POS_RATIO):
                 break
             try:
                 scan = loader.load(scan_id)
@@ -291,7 +291,7 @@ def build_patch_matrix(
 
     # ── Balance to NEG_TO_POS_RATIO ──────────────────────────────────────────
     n_pos = len(positive_patches)
-    n_neg_target = int(n_pos * config.NEG_TO_POS_RATIO)
+    n_neg_target = int(n_pos * NEG_TO_POS_RATIO)
     if len(negative_patches) > n_neg_target:
         neg_idx = rng.choice(len(negative_patches), n_neg_target, replace=False)
         negative_patches = [negative_patches[i] for i in neg_idx]
@@ -304,7 +304,7 @@ def build_patch_matrix(
     if len(positive_patches) == 0:
         raise RuntimeError(
             f"No positive patches collected for {abnormality!r}. "
-            "Check METADATA_JSON, LABELS_CSV, and ABNORMALITY_ALIASES in config.py."
+            "Check METADATA_JSON in config.py and ensure the metadata contains findings for this category."
         )
 
     # ── Assemble matrices ─────────────────────────────────────────────────────
@@ -317,7 +317,7 @@ def build_patch_matrix(
     labels       = [labels[i] for i in order]
 
     n_patches  = len(all_patches)
-    n_features = config.N_FEATURES
+    n_features = N_FEATURES
 
     # X: (n_features, n_patches) — column-major, matches reppi convention
     X = np.zeros((n_features, n_patches), dtype=np.float64)
@@ -341,10 +341,11 @@ def extract_all_abnormalities(split: str = "train") -> None:
     split: "train", "val", or "test" — used only for output naming;
            caller is responsible for passing the correct scan_id lists.
     """
-    config.PATCHES_DIR.mkdir(parents=True, exist_ok=True)
+    PATCHES_DIR.mkdir(parents=True, exist_ok=True)
 
-    metadata = MetadataRegistry()
-    labels   = LabelRegistry()
+    abnormalities = list(ABNORMALITY_CATEGORIES.keys())
+    metadata = MetadataRegistry(split=split)
+    labels   = LabelRegistry(metadata, split=split)
     loader   = ScanLoader(metadata)
 
     # Pre-filter: remove volumes whose files are missing to avoid repeated FileNotFoundErrors
@@ -361,8 +362,8 @@ def extract_all_abnormalities(split: str = "train") -> None:
     normal_ids = labels.get_normal_volume_names()
     normal_ids = _filter_existing_volumes(normal_ids)
 
-    for abnormality in config.ABNORMALITIES:
-        out_path = config.PATCHES_DIR / f"{abnormality}_{split}.npz"
+    for abnormality in abnormalities:
+        out_path = PATCHES_DIR / f"{abnormality}_{split}.npz"
         if out_path.exists():
             logger.info(f"[{abnormality}] Patch matrix already exists at {out_path}, skipping.")
             continue
@@ -389,7 +390,7 @@ def extract_all_abnormalities(split: str = "train") -> None:
 
 def load_patch_matrix(abnormality: str, split: str = "train") -> Tuple[np.ndarray, np.ndarray]:
     """Load a previously saved patch matrix from disk."""
-    path = config.PATCHES_DIR / f"{abnormality}_{split}.npz"
+    path = PATCHES_DIR / f"{abnormality}_{split}.npz"
     if not path.exists():
         raise FileNotFoundError(
             f"Patch matrix not found: {path}. Run extract_all_abnormalities() first."

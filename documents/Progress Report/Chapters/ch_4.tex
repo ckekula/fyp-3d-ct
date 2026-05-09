@@ -1,7 +1,25 @@
 \chapter{Experimentation and Evaluation}
 
+Comparing a sparse, linear approach against SotA non-linear models architectures on raw metric scores alone would be an unfair
+framing. The evaluation framework therefore operates on three evaluation axes simultaneously:
+\begin{itemize}
+    \item Axis A — Classification Accuracy: standard discriminative performance metrics (AUROC, F1, etc.)
+    \item Axis B — Grounded Localization Quality: volumetric segmentation and localization metrics (DSC, IoU, HIT@K\%)
+    \item Axis C — Inherent Explainability: atom-to-voxel traceability, and spatial faithfulness
+\end{itemize}
 
-\section{Project Proposal}
+Axis C is the most novel and critical axis of evaluation, and cannot be meaningfully evaluated for the SOTA non-linear
+models without expensive post-hoc attribution methods such as Grad-CAM and HiResCAM, that are themselves approximations,
+while LC-KSVD provides exact, closed-form localization through its dictionary structure. This asymmetry must be acknowledged,
+and the evaluation framework is designed to highlight the unique explainability advantages of LC-KSVD.
+
+\section{Model Registry}
+The following registry catalogs every SotA baseline model to be included in the evaluation, their primary task orientation,
+and the role they play in the benchmark. Models are grouped by task archetype to clarify the comparison landscape.
+
+\subsection{Classification Baselines}
+
+\subsection{Segmentation/Localization Baselines}
 
 \section{Project Progress}
 
