@@ -1,0 +1,412 @@
+[
+  {
+    "volume_name": "train_1741_b_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Consolidation"
+    ],
+    "findings": [
+      "Irregularly circumscribed nodular consolidation area adjacent to the diaphragm in the basal segment of the lower lobe of the right lung"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999514818191528,
+        "mask_voxels": 11787,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999986886978149,
+        "mask_voxels": 5276087,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999984502792358,
+        "mask_voxels": 4964983,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.9973520040512085,
+        "mask_voxels": 106758,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  },
+  {
+    "volume_name": "train_1935_a_1.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Lung nodule"
+    ],
+    "findings": [
+      "Segmental and subsegmental peribronchial thickening with prominent luminal narrowing in both lungs",
+      "Mosaic attenuation pattern in both lungs",
+      "Reticulonodular density increases in both lung apices",
+      "Paraseptal emphysema in both lung apices",
+      "Several subcentimeter nonspecific pulmonary nodules in both lungs"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9994893074035645,
+        "mask_voxels": 1349,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999984502792358,
+        "mask_voxels": 4642871,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.999997615814209,
+        "mask_voxels": 4002179,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.999890923500061,
+        "mask_voxels": 65504,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  },
+  {
+    "volume_name": "train_1591_f_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "findings": [
+      "Regression of consolidation areas in the middle lobe and lower lobes of the right lung compared to the previous examination",
+      "Atelectatic changes in the posterobasal segment of the left lower lobe",
+      "Fibroatelectatic changes in the anterolateral basal segment and inferior lingular segment of the left lower lobe",
+      "Newly revealed focal acinar infiltration areas in the posterobasal segment of the right lower lobe",
+      "Fibroatelectatic changes in both lungs"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999990463256836,
+        "mask_voxels": 18274,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999983310699463,
+        "mask_voxels": 9143904,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999974966049194,
+        "mask_voxels": 8417658,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.9998038411140442,
+        "mask_voxels": 298005,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  },
+  {
+    "volume_name": "train_1968_b_1.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Atelectasis"
+    ],
+    "findings": [
+      "Significant progression of parenchymal findings in both lungs",
+      "Widespread linear atelectasis"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999904632568359,
+        "mask_voxels": 204786,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999985694885254,
+        "mask_voxels": 4369575,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999982118606567,
+        "mask_voxels": 3511138,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.9999680519104004,
+        "mask_voxels": 211211,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  },
+  {
+    "volume_name": "train_1741_c_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Consolidation"
+    ],
+    "findings": [
+      "Nodule or nodular consolidation at the junction of the posterobasal and anterobasal segments in the lower lobe of the right lung, 30x22 mm with surrounding ground-glass appearance",
+      "Subcentimeter nonspecific nodules in both lungs"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.999974250793457,
+        "mask_voxels": 27720,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999988079071045,
+        "mask_voxels": 5236128,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999983310699463,
+        "mask_voxels": 4461536,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.993409276008606,
+        "mask_voxels": 97986,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  },
+  {
+    "volume_name": "train_1742_c_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Lung nodule",
+      "Lung opacity"
+    ],
+    "findings": [
+      "Nodular lesions with ground glass opacity in the upper and middle lobes of the right lung",
+      "A few subcentimeter nodules in both lungs",
+      "Minimal emphysematous changes in both lungs"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999991655349731,
+        "mask_voxels": 287818,
+        "present": true,
+        "prompt_count": 18,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.999998927116394,
+        "mask_voxels": 6658773,
+        "present": true,
+        "prompt_count": 16,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999988079071045,
+        "mask_voxels": 5923477,
+        "present": true,
+        "prompt_count": 11,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.9999988079071045,
+        "mask_voxels": 6870478,
+        "present": true,
+        "prompt_count": 10,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  }
+]

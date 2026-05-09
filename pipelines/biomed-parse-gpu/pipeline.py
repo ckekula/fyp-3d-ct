@@ -25,23 +25,30 @@ if str(MODEL_DIR) not in sys.path:
 from inference import merge_multiclass_masks, postprocess  # type: ignore
 from utils import process_input, process_output  # type: ignore
 
-# Supports both:
-#   python pipelines/biomedparse_rexgroundingct/pipeline_fix.py
-# and:
-#   python -m pipelines.biomedparse_rexgroundingct.pipeline_fix
-try:
-    from .dataset_adapter import RexCase, iter_target_cases, load_rexgroundingct_cases
-    from .prompts import DEFAULT_DISEASES, default_prompt_bundles
-    from .visualize import save_overlay_png
-except ImportError:
-    from dataset_adapter import RexCase, iter_target_cases, load_rexgroundingct_cases
-    from prompts import DEFAULT_DISEASES, default_prompt_bundles
-    from visualize import save_overlay_png
+from .config import (
+    CHECKPOINT,
+    DEVICE,
+    DISEASES,
+    EXISTENCE_THRESHOLD,
+    METADATA_JSON,
+    MIN_MASK_VOXELS,
+    OUTPUT_DIR,
+    POSTPROCESS_THRESHOLD,
+    SLICE_BATCH_SIZE,
+    VOLUME_ROOT,
+)
+from .dataset_adapter import RexCase, iter_target_cases, load_rexgroundingct_cases
+from .prompts import default_prompt_bundles
+from .visualize import save_overlay_png
+
+def normalize_disease_name(name: str) -> str:
+    """Normalize disease names for case-insensitive matching."""
+    return " ".join(str(name).strip().lower().split())
 
 
 def safe_key(name: str) -> str:
     """Create stable npz/json keys."""
-    return " ".join(str(name).strip().lower().split()).replace(" ", "_").replace("/", "_")
+    return normalize_disease_name(name).replace(" ", "_").replace("/", "_")
 
 
 def volume_stem(name: str) -> str:
@@ -68,8 +75,8 @@ def load_volume(volume_path: str | Path) -> np.ndarray:
     """
     Load a NIfTI CT volume and return it as (D, H, W).
 
-    ReXGroundingCT volumes are commonly loaded as (H, W, D), so this transposes
-    them into depth-first format for easier overlay/mask handling.
+    ReXGroundingCT/CT volumes are usually loaded as (H, W, D),
+    so this transposes the volume into depth-first format.
     """
     image = nib.load(str(volume_path))
     volume = image.get_fdata(dtype=np.float32)
@@ -120,13 +127,6 @@ def call_biomedparse_postprocess(
         return postprocess(mask_preds, object_existence)
 
 
-def to_numpy(array_like) -> np.ndarray:
-    """Convert torch.Tensor or numpy-like output into numpy.ndarray."""
-    if isinstance(array_like, torch.Tensor):
-        return array_like.detach().cpu().numpy()
-    return np.asarray(array_like)
-
-
 def _remove_padding_3d(vol: np.ndarray, pad_width) -> np.ndarray:
     """Remove BiomedParse square padding from a (D, H, W) array."""
     if pad_width is None:
@@ -151,8 +151,7 @@ def process_probability_output(
     Map a float probability volume back to original volume space.
 
     Official process_output casts to int, which is correct for final class masks
-    but not correct for probability maps. This keeps float values for threshold
-    sweeps and qualitative heatmap inspection.
+    but not correct for probability maps. This keeps float values.
     """
     if vol.ndim != 3:
         raise ValueError(f"Expected probability volume with shape (D, H, W), got {tuple(vol.shape)}")
@@ -206,10 +205,13 @@ def run_disease_prompt(
     Returns:
         binary_mask:
             uint8 final foreground mask in original volume space.
+
         prob_map:
             float32 probability map in original volume space.
+
         existence_score:
             max object-existence score after sigmoid.
+
         prompt_count:
             number of prompt masks produced by BiomedParse.
     """
@@ -257,7 +259,7 @@ def run_disease_prompt(
     binary_tensor = (merged_class_mask > 0).to(torch.uint8)
 
     # Important: process_output is okay here because this is already binary/integer.
-    binary_mask = to_numpy(process_output(binary_tensor, pad_width, padded_size, valid_axis)).astype(np.uint8)
+    binary_mask = process_output(binary_tensor, pad_width, padded_size, valid_axis).astype(np.uint8)
 
     # Save probability map separately for threshold experiments.
     prob_tensor = mask_preds.max(dim=0).values
@@ -297,14 +299,14 @@ def run_case(
     mask_file.parent.mkdir(parents=True, exist_ok=True)
     prob_file.parent.mkdir(parents=True, exist_ok=True)
 
-    selected_diseases = {" ".join(str(d).strip().lower().split()) for d in diseases}
+    selected_diseases = {normalize_disease_name(disease) for disease in diseases}
 
     disease_scores: Dict[str, Dict[str, object]] = {}
     binary_outputs: Dict[str, np.ndarray] = {}
     prob_outputs: Dict[str, np.ndarray] = {}
 
     for bundle in default_prompt_bundles():
-        if " ".join(bundle.disease.strip().lower().split()) not in selected_diseases:
+        if normalize_disease_name(bundle.disease) not in selected_diseases:
             continue
 
         print(f"  Running disease prompt: {bundle.disease}", flush=True)
@@ -382,74 +384,10 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "--metadata-json",
-        type=Path,
-        default=ROOT / "data" / "rexgrounding-ct" / "dataset.json",
-    )
-
-    parser.add_argument(
-        "--volume-root",
-        type=Path,
-        required=True,
-    )
-
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=ROOT / "outputs" / "biomedparse_rexgroundingct",
-    )
-
-    parser.add_argument(
-        "--checkpoint",
-        type=Path,
-        default=None,
-    )
-
-    parser.add_argument(
-        "--device",
-        type=str,
-        default="cuda" if torch.cuda.is_available() else "cpu",
-    )
-
-    parser.add_argument(
         "--limit",
         type=int,
-        default=0,
+        default=5,
         help="Number of cases to process. Use 0 to process all selected cases.",
-    )
-
-    parser.add_argument(
-        "--diseases",
-        nargs="*",
-        default=DEFAULT_DISEASES,
-    )
-
-    parser.add_argument(
-        "--existence-threshold",
-        type=float,
-        default=0.30,
-        help="Presence threshold on BiomedParse object_existence after sigmoid.",
-    )
-
-    parser.add_argument(
-        "--postprocess-threshold",
-        type=float,
-        default=0.30,
-        help="Threshold passed into BiomedParse postprocess when supported.",
-    )
-
-    parser.add_argument(
-        "--min-mask-voxels",
-        type=int,
-        default=1,
-        help="Minimum foreground voxels required for present=True.",
-    )
-
-    parser.add_argument(
-        "--slice-batch-size",
-        type=int,
-        default=4,
-        help="BiomedParse slice batch size. Reduce to 1 on CPU or low-memory GPUs.",
     )
 
     return parser.parse_args()
@@ -458,12 +396,12 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    device = torch.device(args.device)
-    output_dir = args.output_dir
+    device = torch.device(DEVICE)
+    output_dir = OUTPUT_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cases = load_rexgroundingct_cases(args.metadata_json, args.volume_root)
-    cases = list(iter_target_cases(cases, diseases=args.diseases))
+    cases = load_rexgroundingct_cases(METADATA_JSON, VOLUME_ROOT)
+    cases = list(iter_target_cases(cases, diseases=DISEASES))
 
     if args.limit > 0:
         cases = cases[: args.limit]
@@ -473,7 +411,7 @@ def main() -> None:
     print(f"Output directory: {output_dir}", flush=True)
 
     model = load_model(
-        str(args.checkpoint) if args.checkpoint else None,
+        str(CHECKPOINT),
         device,
     )
 
@@ -511,11 +449,11 @@ def main() -> None:
             case,
             device,
             output_dir,
-            args.diseases,
-            existence_threshold=args.existence_threshold,
-            min_mask_voxels=args.min_mask_voxels,
-            slice_batch_size=args.slice_batch_size,
-            postprocess_threshold=args.postprocess_threshold,
+            DISEASES,
+            existence_threshold=EXISTENCE_THRESHOLD,
+            min_mask_voxels=MIN_MASK_VOXELS,
+            slice_batch_size=SLICE_BATCH_SIZE,
+            postprocess_threshold=POSTPROCESS_THRESHOLD,
         )
 
         case_report = build_case_report(case, predictions)
@@ -531,17 +469,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-"""
-.\.venv\Scripts\python.exe pipelines\biomedparse_rexgroundingct\pipeline_fix.py `
-  --metadata-json data\Govindu\rexgrounding-ct\dataset.json `
-  --volume-root data\data_volumes `
-  --checkpoint models\biomed-parse\model_weights\biomedparse_v2.ckpt `
-  --output-dir outputs\biomedparse_rexgroundingct_fixed_cuda `
-  --device cuda `
-  --slice-batch-size 4 `
-  --postprocess-threshold 0.30 `
-  --existence-threshold 0.30 `
-  --limit 20
-"""
