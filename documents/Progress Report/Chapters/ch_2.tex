@@ -1,6 +1,6 @@
 \chapter{Background}
 
-\section{Sparse Representation, K-SVD, and Frozen Dictionary Learning}
+\section{Sparse Representation and Dictionary Learning}
 
 Sparse representation is a signal modeling technique where a CT image patch is expressed as a linear combination of a small number of basis elements called dictionary atoms. \cite{ksvd} Instead of using all available features, the signal is approximated as:
 
@@ -76,17 +76,6 @@ Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans 
 \end{itemize}
 
 Pulmonary nodules are critical in early screening and risk assessment, especially in automated CT analysis systems.
-
-
-\section{Explainable Artificial Intelligence (XAI) in Medical Imaging}
-
-Explainable AI (XAI) in medical imaging is used to make deep learning predictions more interpretable, especially in clinical applications where understanding model decisions is important.
-
-\textbf{Grad-CAM} is a widely used method that highlights important regions in an image by generating a heatmap based on the gradients flowing into the final convolutional layers. In CT imaging,\cite{Suara_2024} it helps identify which lung regions contributed most to a prediction, such as areas with abnormalities or infections.
-
-\textbf{HiResCAM} is an improved version of activation-based visualization methods. It produces more detailed and higher-resolution heatmaps compared to Grad-CAM, allowing better localization of small or subtle abnormalities in medical images. \cite{draelos2021usehirescaminsteadgradcam}
-
-Both methods are post-hoc explanation techniques, meaning they are applied after model training. They do not modify the model itself but instead help interpret its predictions by visualizing the regions of the input image that most influenced the output.
 
 
 \section{Vision Transformers (ViTs) in Medical Imaging}
