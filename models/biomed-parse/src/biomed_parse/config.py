@@ -7,7 +7,7 @@ from .prompts import DEFAULT_DISEASES
 ROOT = Path("/home/chest_ct/code")
 MODEL_DIR = ROOT / "models" / "biomed-parse"
 
-METADATA_JSON = ROOT / "data" / "rexgrounding-ct" / "dataset4.json"
+METADATA_JSON = ROOT / "data" / "rexgrounding-ct" / "dataset_4.json"
 VOLUME_ROOT = ROOT / "data" / "data_volumes"
 CHECKPOINT = ROOT / "models" / "biomed-parse" / "model_weights" / "biomedparse_v2.ckpt"
 OUTPUT_DIR = ROOT / "outputs" / "biomedparse"

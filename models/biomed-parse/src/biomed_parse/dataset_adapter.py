@@ -6,11 +6,74 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
-try:
-    from .prompts import DEFAULT_DISEASES, TARGET_DISEASES
-except ImportError:
-    from prompts import DEFAULT_DISEASES, TARGET_DISEASES
+from .prompts import DEFAULT_DISEASES
 
+
+DISEASE_KEYWORDS: Dict[str, List[str]] = {
+    "Lung nodule": [
+        "lung nodule",
+        "lung nodules",
+        "pulmonary nodule",
+        "pulmonary nodules",
+        "subcentimeter pulmonary nodule",
+        "subcentimeter pulmonary nodules",
+        "small lung nodule",
+        "small pulmonary nodule",
+        "nodule",
+        "nodules",
+        "nodular lesion",
+        "nodular lesions",
+        "nonspecific pulmonary nodule",
+        "nonspecific pulmonary nodules",
+        "micronodule",
+        "micronodules",
+        "reticulonodular density",
+        "reticulonodular density increase",
+    ],
+    "Lung opacity": [
+        "lung opacity",
+        "lung opacities",
+        "pulmonary opacity",
+        "pulmonary opacities",
+        "opacity",
+        "opacities",
+        "ground glass opacity",
+        "ground glass opacities",
+        "ground-glass opacity",
+        "ground-glass opacities",
+        "ggo",
+        "mosaic attenuation",
+        "parenchymal opacity",
+        "parenchymal opacities",
+        "density increase",
+        "density increases",
+    ],
+    "Consolidation": [
+        "consolidation",
+        "consolidations",
+        "pulmonary consolidation",
+        "lobar consolidation",
+        "segmental consolidation",
+        "airspace consolidation",
+        "consolidation area",
+        "consolidation areas",
+        "consolidative opacity",
+        "consolidative opacities",
+        "nodular consolidation",
+    ],
+    "Atelectasis": [
+        "atelectasis",
+        "linear atelectasis",
+        "segmental atelectasis",
+        "subsegmental atelectasis",
+        "atelectatic change",
+        "atelectatic changes",
+        "fibroatelectatic change",
+        "fibroatelectatic changes",
+        "fibroatelectatic",
+        "lung collapse",
+    ],
+}
 
 @dataclass
 class RexCase:
@@ -93,7 +156,7 @@ def match_diseases_from_text(text: str) -> List[str]:
     normalized = normalize_text(text)
     matched: List[str] = []
 
-    for disease, keywords in TARGET_DISEASES.items():
+    for disease, keywords in DISEASE_KEYWORDS.items():
         for keyword in keywords:
             keyword_norm = normalize_text(keyword)
             if keyword_norm and keyword_norm in normalized:

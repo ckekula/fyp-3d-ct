@@ -1,0 +1,242 @@
+{
+  "task": "grounded_localization",
+  "axis": "Axis B",
+  "model_name": "biomed_parse",
+  "dataset": "rexgroundingct",
+  "num_samples": 4,
+  "primary_threshold": 0.5,
+  "thresholds": [
+    0.5
+  ],
+  "normalize_masks": false,
+  "overall": {
+    "summary": {
+      "mean_dice": 0.24457988615200965,
+      "mean_iou": 0.1761744477316903,
+      "hit_at_5": 0.5,
+      "hit_at_10": 0.5,
+      "hit_at_25": 0.5,
+      "num_cases": 4
+    },
+    "per_case": [
+      {
+        "case_id": "train_1741_b_2",
+        "class_name": "lung_nodule",
+        "model_name": "biomed_parse",
+        "dice": 0.7095135630887476,
+        "iou": 0.5498031926527718,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_1741_b_2",
+        "class_name": "lung_opacity",
+        "model_name": "biomed_parse",
+        "dice": 0.0022752132677979872,
+        "iou": 0.0011389022566624899,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1741_b_2",
+        "class_name": "consolidation",
+        "model_name": "biomed_parse",
+        "dice": 4.489942528733616e-13,
+        "iou": 4.489942528733616e-13,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1741_b_2",
+        "class_name": "atelectasis",
+        "model_name": "biomed_parse",
+        "dice": 0.26653076825104405,
+        "iou": 0.15375569601687797,
+        "morphology": "non_focal"
+      }
+    ]
+  },
+  "by_class": {
+    "lung_nodule": {
+      "summary": {
+        "mean_dice": 0.7095135630887476,
+        "mean_iou": 0.5498031926527718,
+        "hit_at_5": 1.0,
+        "hit_at_10": 1.0,
+        "hit_at_25": 1.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_nodule",
+          "model_name": "biomed_parse",
+          "dice": 0.7095135630887476,
+          "iou": 0.5498031926527718,
+          "morphology": "focal"
+        }
+      ]
+    },
+    "lung_opacity": {
+      "summary": {
+        "mean_dice": 0.0022752132677979872,
+        "mean_iou": 0.0011389022566624899,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_opacity",
+          "model_name": "biomed_parse",
+          "dice": 0.0022752132677979872,
+          "iou": 0.0011389022566624899,
+          "morphology": "non_focal"
+        }
+      ]
+    },
+    "consolidation": {
+      "summary": {
+        "mean_dice": 4.489942528733616e-13,
+        "mean_iou": 4.489942528733616e-13,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "consolidation",
+          "model_name": "biomed_parse",
+          "dice": 4.489942528733616e-13,
+          "iou": 4.489942528733616e-13,
+          "morphology": "non_focal"
+        }
+      ]
+    },
+    "atelectasis": {
+      "summary": {
+        "mean_dice": 0.26653076825104405,
+        "mean_iou": 0.15375569601687797,
+        "hit_at_5": 1.0,
+        "hit_at_10": 1.0,
+        "hit_at_25": 1.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "atelectasis",
+          "model_name": "biomed_parse",
+          "dice": 0.26653076825104405,
+          "iou": 0.15375569601687797,
+          "morphology": "non_focal"
+        }
+      ]
+    }
+  },
+  "by_morphology": {
+    "focal": {
+      "summary": {
+        "mean_dice": 0.7095135630887476,
+        "mean_iou": 0.5498031926527718,
+        "hit_at_5": 1.0,
+        "hit_at_10": 1.0,
+        "hit_at_25": 1.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_nodule",
+          "model_name": "biomed_parse",
+          "dice": 0.7095135630887476,
+          "iou": 0.5498031926527718,
+          "morphology": "focal"
+        }
+      ]
+    },
+    "non_focal": {
+      "summary": {
+        "mean_dice": 0.08960199383976368,
+        "mean_iou": 0.051631532757996486,
+        "hit_at_5": 0.3333333333333333,
+        "hit_at_10": 0.3333333333333333,
+        "hit_at_25": 0.3333333333333333,
+        "num_cases": 3
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_opacity",
+          "model_name": "biomed_parse",
+          "dice": 0.0022752132677979872,
+          "iou": 0.0011389022566624899,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "consolidation",
+          "model_name": "biomed_parse",
+          "dice": 4.489942528733616e-13,
+          "iou": 4.489942528733616e-13,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "atelectasis",
+          "model_name": "biomed_parse",
+          "dice": 0.26653076825104405,
+          "iou": 0.15375569601687797,
+          "morphology": "non_focal"
+        }
+      ]
+    }
+  },
+  "threshold_sweep": {
+    "0.5": {
+      "summary": {
+        "mean_dice": 0.24457988615200965,
+        "mean_iou": 0.1761744477316903,
+        "hit_at_5": 0.5,
+        "hit_at_10": 0.5,
+        "hit_at_25": 0.5,
+        "num_cases": 4
+      },
+      "per_case": [
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_nodule",
+          "model_name": "biomed_parse",
+          "dice": 0.7095135630887476,
+          "iou": 0.5498031926527718,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "lung_opacity",
+          "model_name": "biomed_parse",
+          "dice": 0.0022752132677979872,
+          "iou": 0.0011389022566624899,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "consolidation",
+          "model_name": "biomed_parse",
+          "dice": 4.489942528733616e-13,
+          "iou": 4.489942528733616e-13,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1741_b_2",
+          "class_name": "atelectasis",
+          "model_name": "biomed_parse",
+          "dice": 0.26653076825104405,
+          "iou": 0.15375569601687797,
+          "morphology": "non_focal"
+        }
+      ]
+    }
+  }
+}
