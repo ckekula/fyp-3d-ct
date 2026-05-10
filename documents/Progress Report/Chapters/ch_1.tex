@@ -76,7 +76,12 @@ Classification-based models for 3D CT have shifted away from 3D Convolutional Ne
 the CT-RATE dataset, which introduced the first public large-scale 3D medical imaging dataset with paired textual reports, enabling
 the development of Contrastive Language-Image Pretraining for Computed Tomography (CT-CLIP).
 
-(About CT-CLIP)
+\subsection{CT-CLIP}
+
+CT-CLIP is a vision-language foundation model designed for 3D chest CT analysis. It extends the CLIP framework to volumetric medical imaging by jointly learning representations from CT scans and their corresponding radiology reports. \cite{hamamci2024ctclip,radford2021clip}
+Through contrastive learning, the model aligns image features with textual descriptions, enabling tasks such as zero-shot classification, cross-modal retrieval, and report-guided abnormality localization. \cite{hamamci2024ctclip}
+CT-CLIP has demonstrated strong performance in chest CT classification, retrieval, and grounded abnormality localization tasks. The model is particularly effective in learning semantic relationships between radiological findings and volumetric imaging patterns such as GGO, consolidation, fibrosis, and pulmonary nodules. \cite{hamamci2024ctclip,rexgroundingct}
+
 Recent benchmarks such as Merlin and DINOv3 have further challenged the necessity of domain-specific pretraining.
 
 Merlin is a vision-language foundation model exclusively pre-trained on abdominal CT scans. Despite it's training, Merlin

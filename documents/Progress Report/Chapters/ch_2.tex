@@ -21,12 +21,12 @@ where $P$ represents the training data, $X$ is the sparse coefficient matrix, an
 It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction but also discriminative for classification through label consistency constraints. However, LC-KSVD still learns a single shared dictionary for all classes.
 
 
-To overcome this limitation, Frozen Dictionary Learning introduces a two-stage training strategy. \cite{yankelevsky2016frozen} % TODO: replace with the exact frozen-dictionary paper used by this project.
-In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures. In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned from abnormal scans only. This formulation can be interpreted as:
+To address this limitation, we adopt a two-stage dictionary learning strategy inspired by constrained dictionary learning approaches. \cite{yankelevsky2016frozen} % TODO: replace with the exact frozen-dictionary paper used by this project.
+In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures. In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned only from abnormal scans. This approach can be interpreted as:
 
 \begin{itemize}
     \item preserving $D_{\text{normal}}$ learned from healthy data
-    \item learning $D_{\text{abnormal}}$ independently for disease patterns  
+    \item learning $D_{\text{abnormal}}$ independently for disease patterns
 \end{itemize}
 
 This separation ensures that normal anatomical structures are not overwritten, while abnormal features are explicitly isolated, improving interpretability and stability.
@@ -45,7 +45,7 @@ These capabilities improve diagnostic efficiency and assist radiologists in clin
 
 \subsection{Ground Glass Opacity (GGO) and Consolidation}
 
-Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis. \cite{hansell2008fleischner} % NEW — same Fleischner glossary
+Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis. \cite{hansell2008fleischner} 
 
 \textbf{Ground Glass Opacity (GGO)}: \cite{park2011ggo} % NEW — Park et al., "Ground-Glass Opacity on HRCT", Korean J Radiol, 2011
 \begin{itemize}
@@ -87,13 +87,12 @@ Pulmonary nodules are critical in early screening and risk assessment, especiall
 
 \section{Vision Transformers (ViTs)}
 
-Vision Transformers (ViTs) are deep learning architectures that apply the transformer mechanism, originally developed for Natural Language Processing (NLP), to image analysis tasks. \cite{vaswani2017attention} % NEW — Vaswani et al., "Attention Is All You Need", NeurIPS, 2017
+Vision Transformers (ViTs) are deep learning architectures that adapt the transformer mechanism, originally developed for natural language processing (NLP), to image analysis tasks. \cite{vaswani2017attention,dosovitskiy2021an} % Vaswani et al., "Attention Is All You Need"; Dosovitskiy et al., "An Image is Worth 16x16 Words"
 Vision Transformers divide an image into smaller patches and process them as sequential tokens. \cite{dosovitskiy2021an}
 
-Given an input image $I$, the image is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before passing the sequence into transformer encoder layers.
+Given an input image $I$, it is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before the sequence is passed into transformer encoder layers.
 
-The self-attention mechanism used in ViTs allows the model to capture long-range dependencies and global contextual relationships between different regions of an image. \cite{dosovitskiy2021an} The attention operation can be represented as:
-
+The self-attention mechanism used in Vision Transformers allows the model to capture long-range dependencies and global contextual relationships between different regions of an image. \cite{dosovitskiy2021an} The attention operation can be represented as:
 $$
 \text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 $$
@@ -103,7 +102,7 @@ where $Q$ represents queries, $K$ represents keys, $V$ represents values, and $d
 In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. \cite{shamshad2023transformers} % NEW — Shamshad et al., "Transformers in Medical Imaging", MIA, 2023
 Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions. \cite{khan2023recentsurveyvisiontransformers}
 
-For lung CT analysis, ViTs can learn meaningful representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. \cite{pereira2021vit_lung} % TODO: replace with a real ViT + lung CT paper from the reviewed literature.
-Hybrid architectures combining CNNs and Vision Transformers are also commonly used to capture both local texture information and global contextual features. \cite{chen2021transunet} % NEW — Chen et al., "TransUNet", arXiv, 2021
+For lung CT analysis, Vision Transformer based architectures have shown strong capability in learning global representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. \cite{dosovitskiy2021an,shamshad2023transformers}
+Hybrid architectures combining CNNs and Vision Transformers are also widely used to capture both local texture information and global contextual features. \cite{chen2021transunet} % NEW — Chen et al., "TransUNet", arXiv, 2021
 
 Recent developments such as Swin Transformers and 3D Vision Transformers further extend this capability by enabling hierarchical feature extraction and volumetric analysis for 3D medical imaging applications. \cite{liu2021swin} % NEW — Liu et al., "Swin Transformer", ICCV, 2021
