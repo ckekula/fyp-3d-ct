@@ -78,17 +78,21 @@ the development of Contrastive Language-Image Pretraining for Computed Tomograph
 
 \subsection{CT-CLIP}
 
-CT-CLIP is a vision-language foundation model designed for 3D chest CT analysis. It extends the CLIP framework to volumetric medical imaging by jointly learning representations from CT scans and their corresponding radiology reports. \cite{hamamci2024ctclip,radford2021clip}
-Through contrastive learning, the model aligns image features with textual descriptions, enabling tasks such as zero-shot classification, cross-modal retrieval, and report-guided abnormality localization. \cite{hamamci2024ctclip}
-CT-CLIP has demonstrated strong performance in chest CT classification, retrieval, and grounded abnormality localization tasks. The model is particularly effective in learning semantic relationships between radiological findings and volumetric imaging patterns such as GGO, consolidation, fibrosis, and pulmonary nodules. \cite{hamamci2024ctclip,rexgroundingct}
+CT-CLIP is a vision-language foundation model designed for 3D chest CT analysis. It extends the CLIP framework to volumetric medical
+imaging by jointly learning representations from CT scans and their corresponding radiology reports. \cite{hamamci2024ctclip,radford2021clip}
+Through contrastive learning, the model aligns image features with textual descriptions, enabling tasks such as zero-shot classification,
+cross-modal retrieval, and report-guided abnormality localization. \cite{hamamci2024ctclip}
+CT-CLIP has demonstrated strong performance in chest CT classification, retrieval, and grounded abnormality localization tasks.
+The model is particularly effective in learning semantic relationships between radiological findings and volumetric imaging
+patterns such as GGO, consolidation, fibrosis, and pulmonary nodules. \cite{hamamci2024ctclip,rexgroundingct}
 
 Recent benchmarks such as Merlin and DINOv3 have further challenged the necessity of domain-specific pretraining.
-
 Merlin is a vision-language foundation model exclusively pre-trained on abdominal CT scans. Despite it's training, Merlin
 has consistently demonstrated exceptional zero-shot performance on chest CT classification tasks, even when it was
 restricted to a linear probe, significantly outperforming models like CT-CLIP, M3FM, and CT-FM that were explicitly
 trained on thoracic data, by an average of 12.3\% in Area Under the Receiver Operating Characteristic Curve (AUROC).
 Specifically, in cross-domain retrieval tasks, Merlin surpassed CT-CLIP by 24.7\%.
+
 DINOv3, a self-supervised ViT pretrained on over 1.7 billion natural images, outperform specialized medical models like
 CT-Net and CT-CLIP across all metrics on several classification tasks due to it's ability to capture fine-grained textural features.
 

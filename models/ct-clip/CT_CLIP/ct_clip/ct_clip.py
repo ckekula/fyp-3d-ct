@@ -410,6 +410,7 @@ class CTCLIP(nn.Module):
             *,
             image_encoder = None,
             text_encoder = None,
+            tokenizer_name_or_path = 'microsoft/BiomedVLP-CXR-BERT-specialized',
             dim_text = 512,
             dim_image = 512,
             dim_latent = 512,
@@ -582,7 +583,7 @@ class CTCLIP(nn.Module):
 
         self.multiview_loss_weight = multiview_loss_weight
 
-        self.tokenizer= BertTokenizer.from_pretrained('microsoft/BiomedVLP-CXR-BERT-specialized',do_lower_case=True)
+        self.tokenizer = BertTokenizer.from_pretrained(tokenizer_name_or_path, do_lower_case=True)
 
     def state_dict(self, *args, **kwargs):
         return super().state_dict(*args, **kwargs)
@@ -593,8 +594,11 @@ class CTCLIP(nn.Module):
     def load(self, path):
         path = Path(path)
         assert path.exists()
-        pt = torch.load(str(path))
-        self.load_state_dict(pt)
+        pt = torch.load(str(path), map_location = 'cpu')
+        incompatible = self.load_state_dict(pt, strict = False)
+        if len(incompatible.missing_keys) > 0 or len(incompatible.unexpected_keys) > 0:
+            print(f"CTCLIP load_state_dict missing_keys={incompatible.missing_keys}")
+            print(f"CTCLIP load_state_dict unexpected_keys={incompatible.unexpected_keys}")
 
     def tokenize(self, prompt):
         text_tokens=self.tokenizer(prompt, return_tensors="pt", padding="max_length", truncation=True, max_length=512).to(torch.cuda)

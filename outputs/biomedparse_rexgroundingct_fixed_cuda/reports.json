@@ -1,0 +1,68 @@
+[
+  {
+    "volume_name": "train_1741_b_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Consolidation"
+    ],
+    "findings": [
+      "Irregularly circumscribed nodular consolidation area adjacent to the diaphragm in the basal segment of the lower lobe of the right lung"
+    ],
+    "predicted_present_diseases": [
+      "Lung nodule",
+      "Lung opacity",
+      "Consolidation",
+      "Atelectasis"
+    ],
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999514818191528,
+        "mask_voxels": 11787,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999986886978149,
+        "mask_voxels": 5276087,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9999984502792358,
+        "mask_voxels": 4964983,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.9973520040512085,
+        "mask_voxels": 106758,
+        "present": true,
+        "prompt_count": 4,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  }
+]
