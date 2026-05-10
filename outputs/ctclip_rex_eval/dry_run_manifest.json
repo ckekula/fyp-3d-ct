@@ -1,0 +1,22 @@
+{
+  "dataset": "rexgrounding-ct",
+  "resolved_cases": 10,
+  "abnormalities": [
+    "Atelectasis",
+    "Lung nodule",
+    "Lung opacity",
+    "Consolidation"
+  ],
+  "sample_case_ids": [
+    "train_234_a_1.nii.gz",
+    "train_115_a_2.nii.gz",
+    "train_183_a_2.nii.gz",
+    "train_272_a_2.nii.gz",
+    "train_39_c_2.nii.gz",
+    "train_122_b_1.nii.gz",
+    "train_66_a_2.nii.gz",
+    "train_240_a_2.nii.gz",
+    "train_230_a_2.nii.gz",
+    "train_279_a_2.nii.gz"
+  ]
+}

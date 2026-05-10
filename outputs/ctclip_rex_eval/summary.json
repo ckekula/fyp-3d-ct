@@ -1,0 +1,51 @@
+{
+  "dataset": "rexgrounding-ct",
+  "num_cases": 2,
+  "threshold": 0.5,
+  "abnormalities": {
+    "Atelectasis": {
+      "count": 2,
+      "positives": 0,
+      "predicted_positives": 1,
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.5,
+      "f1": 0.0,
+      "roc_auc": null
+    },
+    "Lung nodule": {
+      "count": 2,
+      "positives": 2,
+      "predicted_positives": 1,
+      "accuracy": 0.5,
+      "precision": 1.0,
+      "recall": 0.5,
+      "specificity": 0.0,
+      "f1": 0.6666666666666666,
+      "roc_auc": null
+    },
+    "Lung opacity": {
+      "count": 2,
+      "positives": 0,
+      "predicted_positives": 1,
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.5,
+      "f1": 0.0,
+      "roc_auc": null
+    },
+    "Consolidation": {
+      "count": 2,
+      "positives": 0,
+      "predicted_positives": 1,
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.5,
+      "f1": 0.0,
+      "roc_auc": null
+    }
+  }
+}
