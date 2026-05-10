@@ -8,7 +8,7 @@ $$
 y = Dx
 $$
 
-where $D$ is the dictionary and $x$ is a sparse coefficient vector with mostly zero values. This leads to a compact and interpretable representation.
+where $D$ represents the dictionary and $x$ is a sparse coefficient vector containing mostly zero values. This produces a compact and interpretable representation. \cite{elad2010sparse}
 
 The dictionary $D$ is typically learned using K-SVD (K-Singular Value Decomposition), which solves the following optimization problem:
 
@@ -18,50 +18,56 @@ $$
 
 where $P$ represents the training data, $X$ is the sparse coefficient matrix, and $T$ controls the sparsity level. K-SVD alternates between sparse coding and dictionary update steps to minimize reconstruction error. However, it does not incorporate class labels, which limits its discriminative ability for classification tasks. \cite{ksvd}
 
-To address this limitation, LC-KSVD extends the standard K-SVD framework by incorporating class label information into the dictionary learning process. It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction but also discriminative for classification tasks through label consistency constraints. However, LC-KSVD still learns a single shared dictionary for all classes.
+It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction but also discriminative for classification through label consistency constraints. However, LC-KSVD still learns a single shared dictionary for all classes.
 
-To overcome this limitation, Frozen Dictionary Learning introduces a two-stage training strategy. In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures. In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned from abnormal scans only. This formulation can be interpreted as:
 
-- preserving $D_{\text{normal}}$ learned from healthy data
-- learning $D_{\text{abnormal}}$ independently for disease patterns  
+To address this limitation, we adopt a two-stage dictionary learning strategy inspired by constrained dictionary learning approaches. \cite{yankelevsky2016frozen} % TODO: replace with the exact frozen-dictionary paper used by this project.
+In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures. In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned only from abnormal scans. This approach can be interpreted as:
+
+\begin{itemize}
+    \item preserving $D_{\text{normal}}$ learned from healthy data
+    \item learning $D_{\text{abnormal}}$ independently for disease patterns
+\end{itemize}
 
 This separation ensures that normal anatomical structures are not overwritten, while abnormal features are explicitly isolated, improving interpretability and stability.
 
-\section{Radiological Patterns in Lung CT Imaging}
+% -------------------------------------------------------
 
+\section{Radiological Patterns in Lung CT Imaging}
 
 \subsection{CT Imaging}
 
-Computed Tomography (CT) imaging is widely used in lung disease diagnosis due to its ability to generate detailed cross-sectional images of lung structures. CT scans provide high-resolution visualization of abnormalities such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules, enabling accurate assessment and early detection of lung diseases.
+Computed Tomography (CT) imaging is widely used in lung disease diagnosis due to its ability to generate detailed cross-sectional images of lung structures. \cite{sluimer2006ct} % NEW — Sluimer et al., "Computer Analysis of CT of the Lungs", Radiology, 2006
+CT scans provide high-resolution visualization of abnormalities such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules, enabling accurate assessment and early detection of lung diseases. \cite{hansell2008fleischner} % NEW — Hansell et al., Fleischner Society Glossary of Terms, Radiology, 2008
 
-In modern medical imaging systems, CT imaging also supports computer-aided diagnosis and deep learning-based analysis for automated detection, segmentation, and classification of lung abnormalities. These capabilities improve diagnostic efficiency and assist radiologists in clinical decision-making.
-
+In modern medical imaging systems, CT imaging also supports computer-aided diagnosis and deep learning-based analysis for automated detection, segmentation, and classification of lung abnormalities. \cite{litjens2017survey} % NEW — Litjens et al., "A Survey on Deep Learning in Medical Image Analysis", MIA, 2017
+These capabilities improve diagnostic efficiency and assist radiologists in clinical decision-making.
 
 \subsection{Ground Glass Opacity (GGO) and Consolidation}
 
-Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis.
+Ground Glass Opacity (GGO) and consolidation are two important radiological patterns used in lung CT diagnosis. \cite{hansell2008fleischner} 
 
-\textbf{Ground Glass Opacity (GGO)}:
+\textbf{Ground Glass Opacity (GGO)}: \cite{park2011ggo} % NEW — Park et al., "Ground-Glass Opacity on HRCT", Korean J Radiol, 2011
 \begin{itemize}
     \item Appears as hazy regions in CT images
     \item Does not fully obscure underlying blood vessels or airway structures
     \item Typically indicates partial filling of air spaces, inflammation, or early-stage infection
 \end{itemize}
 
-\textbf{Consolidation}:
+\textbf{Consolidation}: \cite{hansell2008fleischner} % NEW
 \begin{itemize}
     \item Appears denser than GGO
     \item Completely obscures underlying lung structures such as vessels and airway walls
     \item Often associated with severe infection, fluid accumulation, or advanced disease stages
 \end{itemize}
 
-The transition between GGO and consolidation is clinically important, as it can indicate disease progression or worsening lung conditions.
+The transition between GGO and consolidation is clinically important, as it can indicate disease progression or worsening lung conditions. \cite{chung2021covid} % NEW — Chung et al., CT findings of COVID-19, Radiology, 2020
 
 \subsection{Pulmonary Nodules}
 
-Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans and are important indicators for early disease detection.
+Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans and are important indicators for early disease detection. \cite{macmahon2017fleischner} % NEW — MacMahon et al., Fleischner Society Guidelines for Nodules, Radiology, 2017
 
-\textbf{Characteristics of Nodules}:
+\textbf{Characteristics of Nodules}: \cite{macmahon2017fleischner} % NEW
 \begin{itemize}
     \item Small, well-defined or slightly irregular rounded opacities
     \item Usually less than 3 cm in diameter
@@ -70,30 +76,33 @@ Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans 
 
 \textbf{Clinical Significance}:
 \begin{itemize}
-    \item May represent benign conditions such as infections or scars
-    \item Can also indicate early-stage lung cancer in suspicious cases
-    \item Requires careful monitoring of size, shape, and growth over time
+    \item May represent benign conditions such as infections or scars \cite{gould2007nodule} % NEW — Gould et al., "Evaluation of Patients With Pulmonary Nodules", Chest, 2007
+    \item Can also indicate early-stage lung cancer in suspicious cases \cite{aberle2011nlst} % NEW — NLST Research Team, NEJM, 2011
+    \item Requires careful monitoring of size, shape, and growth over time \cite{macmahon2017fleischner} % NEW
 \end{itemize}
 
-Pulmonary nodules are critical in early screening and risk assessment, especially in automated CT analysis systems.
+Pulmonary nodules are critical in early screening and risk assessment, especially in automated CT analysis systems. \cite{setio2017validation} % NEW — Setio et al., LUNA16, MIA, 2017
 
+% -------------------------------------------------------
 
 \section{Vision Transformers (ViTs) in Medical Imaging}
 
-Vision Transformers (ViTs) are deep learning architectures that apply the transformer mechanism, originally developed for Natural Language Processing (NLP), to image analysis tasks, Vision Transformers divide an image into smaller patches and process them as sequential tokens.\cite{dosovitskiy2021an}
+Vision Transformers (ViTs) are deep learning architectures that adapt the transformer mechanism, originally developed for natural language processing (NLP), to image analysis tasks. \cite{vaswani2017attention,dosovitskiy2021an} % Vaswani et al., "Attention Is All You Need"; Dosovitskiy et al., "An Image is Worth 16x16 Words"
+Vision Transformers divide an image into smaller patches and process them as sequential tokens. \cite{dosovitskiy2021an}
 
-Given an input image $I$, the image is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before passing the sequence into transformer encoder layers.
+Given an input image $I$, it is divided into fixed-size patches. Each patch is flattened and projected into an embedding vector. Positional embeddings are then added to preserve spatial information before the sequence is passed into transformer encoder layers.
 
-The self-attention mechanism used in ViTs allows the model to capture long-range dependencies and global contextual relationships between different regions of an image. The attention operation can be represented as:
-
+The self-attention mechanism used in Vision Transformers allows the model to capture long-range dependencies and global contextual relationships between different regions of an image. \cite{dosovitskiy2021an} The attention operation can be represented as:
 $$
 \text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 $$
 
 where $Q$ represents queries, $K$ represents keys, $V$ represents values, and $d_k$ is the dimension of the key vectors.
 
-In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions.\cite{khan2023recentsurveyvisiontransformers}
+In medical imaging, Vision Transformers have shown strong performance in tasks such as classification, segmentation, abnormality detection, and disease localization. \cite{shamshad2023transformers} % NEW — Shamshad et al., "Transformers in Medical Imaging", MIA, 2023
+Their ability to model global image context is particularly useful for analyzing complex CT volumes where abnormalities may span multiple regions. \cite{khan2023recentsurveyvisiontransformers}
 
-For lung CT analysis, ViTs can learn meaningful representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. Hybrid architectures combining CNNs and Vision Transformers are also commonly used to capture both local texture information and global contextual features.
+For lung CT analysis, Vision Transformer based architectures have shown strong capability in learning global representations of radiological patterns such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules. \cite{dosovitskiy2021an,shamshad2023transformers}
+Hybrid architectures combining CNNs and Vision Transformers are also widely used to capture both local texture information and global contextual features. \cite{chen2021transunet} % NEW — Chen et al., "TransUNet", arXiv, 2021
 
-Recent developments such as Swin Transformers and 3D Vision Transformers further extend this capability by enabling hierarchical feature extraction and volumetric analysis for 3D medical imaging applications.
+Recent developments such as Swin Transformers and 3D Vision Transformers further extend this capability by enabling hierarchical feature extraction and volumetric analysis for 3D medical imaging applications. \cite{liu2021swin} % NEW — Liu et al., "Swin Transformer", ICCV, 2021
