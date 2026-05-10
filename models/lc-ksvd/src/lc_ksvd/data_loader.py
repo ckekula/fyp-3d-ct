@@ -108,11 +108,6 @@ def load_mask(volume_name: str) -> Tuple[np.ndarray, np.ndarray]:
     img  = nib.load(str(path))
     mask = np.asarray(img.dataobj, dtype=np.uint8)
 
-    # Mask may be stored as [H, W, D, F] in some NIfTI conventions;
-    # detect and transpose if the last axis is small (number of findings)
-    if mask.ndim == 4 and mask.shape[-1] < mask.shape[0]:
-        mask = np.moveaxis(mask, -1, 0)   # → [F, H, W, D]
-
     zooms = np.abs(np.array(img.header.get_zooms()[:3], dtype=np.float32))
     return mask, zooms
 
@@ -311,7 +306,7 @@ class LabelRegistry:
         """Return volume names with no findings in any category."""
         abnormalities = list(ABNORMALITY_CATEGORIES.keys())
         return [vol for vol in self._volume_names
-                if all(self._volume_labels.get(vol, {}).get(ab, 0) == 0 
+                if all(self._volume_labels.get(vol, {}).get(ab, 0) == 0
                    for ab in abnormalities)]
 
 
@@ -354,3 +349,4 @@ class ScanLoader:
             "mask":        mask,        # [F, H, W, D] or None
             "finding_map": finding_map, # {int: str}
         }
+        
