@@ -23,11 +23,14 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
+    "0": "Normal (no findings)",
     "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)",
     "2b": "Atelectasis, consolidation",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }
+
+CLASS_ORDER = ["0", "2a", "2b", "2c", "2d"] 
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
