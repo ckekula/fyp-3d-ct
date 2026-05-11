@@ -129,12 +129,37 @@ def train() -> Dict:
     H_val      = H_val[:, ~val_zero]
     logger.info(f"Val   — {X_val_norm.shape[1]} patches")
 
-    # ── Adapt dictionary size for small datasets ──────────────────────────────
-    cfg = dict(LCKSVD_CONFIG)
-    max_atoms = max(8, X_norm.shape[1] // 2)
-    cfg["n_components"]    = min(cfg["n_components"], max_atoms)
-    cfg["n_nonzero_coefs"] = min(cfg["n_nonzero_coefs"],
-                                 max(1, cfg["n_components"] // 2))
+    # ── Normalise validation columns ───────────────────────────────────────────────
+    X_val_norm, _, val_zero_mask = normalise_columns(X_val)
+    X_val_norm = X_val_norm[:, ~val_zero_mask]
+    H_val = H_val[~val_zero_mask]
+    logger.info(f"Validation after zero-patch removal: {X_val_norm.shape[1]} patches")
+
+    # ── Final train/val split ──────────────────────────────────────────────────────
+    X_tr, H_tr = X_norm, H
+    X_val, H_val = X_val_norm, H_val
+    logger.info(f"Train: {X_tr.shape[1]} patches  |  Val: {X_val.shape[1]} patches")
+
+    # ── Adapt LC-KSVD dictionary size for small training sets ────────────────
+    # reppi's K-SVD initialisation requires enough training signals to seed the
+    # dictionary. For very small patch matrices (e.g. opacity/consolidation),
+    # the default 128 atoms can exceed the available training columns.
+    base_cfg = dict(LCKSVD_CONFIG)
+    max_atoms = max(8, X_tr.shape[1] // 2)
+    effective_n_components = min(base_cfg["n_components"], max_atoms)
+    effective_n_nonzero = min(base_cfg["n_nonzero_coefs"], max(1, effective_n_components // 2))
+
+    if effective_n_components != base_cfg["n_components"]:
+        logger.info(
+            f"Adjusting n_components from {base_cfg['n_components']} to {effective_n_components} "
+            f"for {abnormality} (train patches={X_tr.shape[1]})"
+        )
+
+    base_cfg["n_components"] = effective_n_components
+    base_cfg["n_nonzero_coefs"] = effective_n_nonzero
+
+    # ── Train LC-KSVD2 ────────────────────────────────────────────────────────
+    model = LCKSVD(**base_cfg)
 
     # ── Train ─────────────────────────────────────────────────────────────────
     model = LCKSVD(**cfg)

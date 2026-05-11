@@ -24,7 +24,6 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 
 ABNORMALITY_CATEGORIES = {
     "0": "Normal (no findings)",
-    "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)",
     "2b": "Atelectasis, consolidation",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
