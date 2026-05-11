@@ -13,18 +13,132 @@ models without expensive post-hoc attribution methods such as Grad-CAM and HiRes
 while LC-KSVD provides exact, closed-form localization through its dictionary structure. This asymmetry must be acknowledged,
 and the evaluation framework is designed to highlight the unique explainability advantages of LC-KSVD.
 
-\section{Model Registry}
-The following registry catalogs every SotA baseline model to be included in the evaluation, their primary task orientation,
-and the role they play in the benchmark. Models are grouped by task archetype to clarify the comparison landscape.
+\section{Grounded Localization Evaluation Results}
 
-\subsection{Classification Baselines}
+The BiomedParse model was evaluated on volumetric CT localization using four lesion classes from 
+the RexGrounding-CT dataset. The following subsections present the complete quantitative analysis 
+across 1,264 test cases spanning four anatomical classes (316 cases each).
 
-\subsection{Segmentation/Localization Baselines}
+\subsection{Overall Performance Summary}
 
-\section{Project Progress}
+The model achieves limited localization accuracy across the dataset:
+\begin{itemize}
+    \item Mean Dice Score: 0.0190 (1.9\% overlap)
+    \item Mean IoU: 0.0110
+    \item Hit@5: 0.0949 (9.5\% of cases rank correct region in top-5)
+    \item Hit@10: 0.0562 (5.6\% of cases)
+\end{itemize}
 
+\subsection{Per-Class Performance}
 
-\section{End Exam} 
+\begin{table}[h]
+\centering
+\caption{Localization Performance by Lesion Class}
+\begin{tabular}{lccccr}
+\hline
+\textbf{Class} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
+\hline
+Lung Nodule & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
+Lung Opacity & 0.0064 & 0.0034 & 0.0285 & 0.0158 & 316 \\
+Consolidation & 0.0008 & 0.0004 & 0.0095 & 0.0000 & 316 \\
+Atelectasis & 0.0036 & 0.0020 & 0.0158 & 0.0127 & 316 \\
+\hline
+\end{tabular}
+\label{tab:perclass-localization}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Images/Fig2_Metrics_Comparison.png}
+\caption{Per-class localization performance across three key metrics. 
+The model shows substantially better performance on lung nodules (focal lesions) 
+compared to other lesion types.}
+\label{fig:metrics-comparison}
+\end{figure}
+
+\subsection{Distribution Analysis}
+
+The Dice score distributions reveal a stark pattern: while lung nodules show some successful detections
+(max: 0.79, median: 0.02), non-focal lesions remain largely undetected.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Images/Fig1_Dice_Distributions.png}
+\caption{Histogram of Dice scores for each lesion class. Red and blue dashed lines indicate 
+mean and median respectively. Zero-Dice percentages shown in subtitle. Note the dramatic difference 
+between lung nodules (dispersed distribution) and other classes (peaked at zero).}
+\label{fig:dice-distributions}
+\end{figure}
+
+\subsection{Critical Finding: Focal vs. Non-Focal Lesion Bias}
+
+The evaluation reveals a fundamental model bias: focal lesions (nodules) are detected at dramatically 
+higher rates than non-focal lesions (diffuse patterns).
+
+\begin{table}[h]
+\centering
+\caption{Morphology-Based Performance Analysis}
+\begin{tabular}{lccccr}
+\hline
+\textbf{Morphology} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
+\hline
+Focal (Nodules) & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
+Non-Focal (Diffuse) & 0.0036 & 0.0020 & 0.0179 & 0.0095 & 948 \\
+\hline
+\end{tabular}
+\label{tab:morphology-localization}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Images/Fig3_Focal_vs_NonFocal.png}
+\caption{Critical performance gap between focal (lung nodules) and non-focal (diffuse) lesions. 
+Left panel shows direct metric comparison. Right panel visualizes the performance multiplier gap: 
+the model achieves 18.1× higher Dice on nodules versus non-focal lesions.}
+\label{fig:focal-nonfocal-gap}
+\end{figure}
+
+\subsection{Score Distribution and Failure Modes}
+
+A cumulative distribution analysis shows how performance varies across cases.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Images/Fig4_CDF_Dice.png}
+\caption{Cumulative Distribution Function of Dice scores. Shows the proportion of cases 
+achieving each Dice threshold. Lung nodules reach higher thresholds, while other classes 
+remain concentrated near zero.}
+\label{fig:cdf-dice}
+\end{figure}
+
+The failure-mode distribution reveals the severity of non-focal lesion detection:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{Images/Fig5_Confusion_Patterns.png}
+\caption{Stacked bar chart showing the fraction of cases in each performance category. 
+Consolidation and atelectasis show greater than 98\% zero-Dice cases (complete failure to localize). 
+Lung opacity shows 74\% zero-Dice. Only lung nodules show meaningful detection diversity.}
+\label{fig:confusion-patterns}
+\end{figure}
+
+\subsection{Conclusions from Localization Evaluation}
+
+The evaluation demonstrates that BiomedParse:
+\begin{enumerate}
+    \item Effectively localizes focal lesions (lung nodules) with moderate success (32.6\% Hit@5)
+    \item Fails dramatically on non-focal (diffuse) lesions:
+    \begin{itemize}
+        \item Atelectasis: 96\% zero-Dice (essentially not detected)
+        \item Consolidation: 98\% zero-Dice (essentially not detected)
+        \item Lung Opacity: 74\% zero-Dice (mostly not detected)
+    \end{itemize}
+    \item Shows architectural bias toward focal patterns, suggesting the model's feature representations
+    may not generalize to diffuse pathology
+\end{enumerate}
+
+This focal-bias is a critical finding for understanding model limitations in clinical deployment,
+where many important lesions manifest as diffuse patterns rather than discrete nodules. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
