@@ -49,7 +49,7 @@ Atelectasis & 0.0036 & 0.0020 & 0.0158 & 0.0127 & 316 \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig2_Metrics_Comparison.png}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig2_Metrics_Comparison.png}
 \caption{Per-class localization performance across three key metrics. 
 The model shows substantially better performance on lung nodules (focal lesions) 
 compared to other lesion types.}
@@ -63,7 +63,7 @@ The Dice score distributions reveal a stark pattern: while lung nodules show som
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig1_Dice_Distributions.png}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig1_Dice_Distributions.png}
 \caption{Histogram of Dice scores for each lesion class. Red and blue dashed lines indicate 
 mean and median respectively. Zero-Dice percentages shown in subtitle. Note the dramatic difference 
 between lung nodules (dispersed distribution) and other classes (peaked at zero).}
@@ -91,7 +91,7 @@ Non-Focal (Diffuse) & 0.0036 & 0.0020 & 0.0179 & 0.0095 & 948 \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig3_Focal_vs_NonFocal.png}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig3_Focal_vs_NonFocal.png}
 \caption{Critical performance gap between focal (lung nodules) and non-focal (diffuse) lesions. 
 Left panel shows direct metric comparison. Right panel visualizes the performance multiplier gap: 
 the model achieves 18.1× higher Dice on nodules versus non-focal lesions.}
@@ -104,7 +104,7 @@ A cumulative distribution analysis shows how performance varies across cases.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig4_CDF_Dice.png}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig4_CDF_Dice.png}
 \caption{Cumulative Distribution Function of Dice scores. Shows the proportion of cases 
 achieving each Dice threshold. Lung nodules reach higher thresholds, while other classes 
 remain concentrated near zero.}
@@ -115,7 +115,7 @@ The failure-mode distribution reveals the severity of non-focal lesion detection
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig5_Confusion_Patterns.png}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig5_Confusion_Patterns.png}
 \caption{Stacked bar chart showing the fraction of cases in each performance category. 
 Consolidation and atelectasis show greater than 98\% zero-Dice cases (complete failure to localize). 
 Lung opacity shows 74\% zero-Dice. Only lung nodules show meaningful detection diversity.}
