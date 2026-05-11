@@ -70,6 +70,7 @@ def build_case_report(case: RexCase, predictions: Dict[str, Dict[str, float]]) -
 
 
 def run_case(model, case: RexCase, device: torch.device, output_dir: Path, diseases: List[str]) -> Dict[str, Dict[str, float]]:
+    print(f"Processing case: {case.volume_name}", flush=True)
     volume = load_volume(case.volume_path)
     volume = window_ct(volume)
 
@@ -81,6 +82,7 @@ def run_case(model, case: RexCase, device: torch.device, output_dir: Path, disea
     for bundle in default_prompt_bundles():
         if bundle.disease not in diseases:
             continue
+        print(f"  Running disease prompt: {bundle.disease}", flush=True)
 
         image, pad_width, padded_size, valid_axis = process_input(volume, 512)
         image = image.to(device).int()
@@ -107,12 +109,14 @@ def run_case(model, case: RexCase, device: torch.device, output_dir: Path, disea
             "mask_voxels": mask_voxels,
         }
         bundle_key = bundle.disease.lower().replace(" ", "_")
-        bundle_outputs[bundle_key] = np.asarray(disease_mask.cpu())
+        bundle_outputs[bundle_key] = np.asarray(disease_mask)
 
         overlay_path = output_dir / "overlays" / bundle.disease / f"{Path(case.volume_name).stem}.png"
         save_overlay_png(volume, bundle_outputs[bundle_key], overlay_path)
+        print(f"  Saved outputs for: {bundle.disease}", flush=True)
 
     np.savez_compressed(raw_mask_file, **bundle_outputs)
+    print(f"Finished case: {case.volume_name}", flush=True)
     return disease_scores
 
 
@@ -148,6 +152,7 @@ def main() -> None:
 
     report_path = output_dir / "reports.json"
     report_path.write_text(json.dumps(reports, indent=2), encoding="utf-8")
+    print(f"Wrote report: {report_path}", flush=True)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,4 @@
+volume_name,finding_index,target,prompt,existence_score,dice,iou,precision,recall,pred_voxels,gt_voxels,prediction_file
+train_234_a_1.nii.gz,4,Lung Nodule,Subcentimeter nodules in both lungs,0.7748277187347412,0.0,0.0,0.0,0.0,0,53,D:\My\Projects\fyp-3d-ct\outputs\biomedparse_rexgroundingct_cpu\pred_masks\train_234_a_1_finding_4_lung_nodule.npz
+train_115_a_2.nii.gz,1,Lung Nodule,Subcentimeter nodules in both lungs,0.3866956830024719,0.0,0.0,0.0,0.0,0,507,D:\My\Projects\fyp-3d-ct\outputs\biomedparse_rexgroundingct_cpu\pred_masks\train_115_a_2_finding_1_lung_nodule.npz
+train_272_a_2.nii.gz,1,Consolidation,Consolidation present in both lungs,0.9996612071990967,0.0,0.0,0.0,0.0,7948,97734,D:\My\Projects\fyp-3d-ct\outputs\biomedparse_rexgroundingct_cpu\pred_masks\train_272_a_2_finding_1_consolidation.npz

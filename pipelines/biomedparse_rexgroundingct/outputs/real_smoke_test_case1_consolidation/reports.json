@@ -1,0 +1,19 @@
+[
+  {
+    "volume_name": "train_272_a_2.nii.gz",
+    "matched_diseases_in_finding_text": [
+      "Consolidation"
+    ],
+    "findings": [
+      "Scattered patches of ground glass opacities in both lungs",
+      "Consolidation present in both lungs"
+    ],
+    "predictions": {
+      "Consolidation": {
+        "existence_score": 0.9999982118606567,
+        "mask_voxels": 104518014.0
+      }
+    },
+    "protocol": "protocol1"
+  }
+]

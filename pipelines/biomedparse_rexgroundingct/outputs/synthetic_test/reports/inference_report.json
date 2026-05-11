@@ -1,0 +1,34 @@
+{
+  "volume_shape": [
+    512,
+    512,
+    256
+  ],
+  "diseases_detected": {
+    "Lung nodule": {
+      "confidence": 0.5093863872082822,
+      "mask_path": "outputs\\synthetic_test\\masks\\lung_nodule.npz",
+      "overlay_path": "outputs\\synthetic_test\\overlays\\lung_nodule_overlay.png",
+      "voxel_count": 325551360
+    },
+    "Lung opacity": {
+      "confidence": 0.5479524608259028,
+      "mask_path": "outputs\\synthetic_test\\masks\\lung_opacity.npz",
+      "overlay_path": "outputs\\synthetic_test\\overlays\\lung_opacity_overlay.png",
+      "voxel_count": 326269440
+    },
+    "Consolidation": {
+      "confidence": 0.28722175642021713,
+      "mask_path": "outputs\\synthetic_test\\masks\\consolidation.npz",
+      "overlay_path": "outputs\\synthetic_test\\overlays\\consolidation_overlay.png",
+      "voxel_count": 325029120
+    },
+    "Atelectasis": {
+      "confidence": 0.9744666690202413,
+      "mask_path": "outputs\\synthetic_test\\masks\\atelectasis.npz",
+      "overlay_path": "outputs\\synthetic_test\\overlays\\atelectasis_overlay.png",
+      "voxel_count": 330120960
+    }
+  },
+  "summary": "Processed 4 disease types on synthetic 3D CT volume"
+}

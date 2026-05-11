@@ -1,0 +1,3 @@
+case_id,source,volume_path,atelectasis_gt,atelectasis_prob,lung_nodule_gt,lung_nodule_prob,lung_opacity_gt,lung_opacity_prob,consolidation_gt,consolidation_prob
+train_234_a_1.nii.gz,rexgrounding-ct,data\data_volumes\train_234\train_234_a\train_234_a_1.nii.gz,0,0.5987749099731445,1,0.5338419675827026,0,0.6731555461883545,0,0.6110172271728516
+train_115_a_2.nii.gz,rexgrounding-ct,data\data_volumes\train_115\train_115_a\train_115_a_2.nii.gz,0,0.4168371260166168,1,0.4809344708919525,0,0.3888392150402069,0,0.26344215869903564

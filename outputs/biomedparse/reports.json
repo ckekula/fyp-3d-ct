@@ -1,0 +1,56 @@
+[
+  {
+    "volume_name": "train_1741_b_2.nii.gz",
+    "predictions": {
+      "Lung nodule": {
+        "existence_score": 0.9999890327453613,
+        "mask_voxels": 12778,
+        "present": true,
+        "prompt_count": 1,
+        "mask_key": "lung_nodule",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Lung opacity": {
+        "existence_score": 0.9999986886978149,
+        "mask_voxels": 5216466,
+        "present": true,
+        "prompt_count": 1,
+        "mask_key": "lung_opacity",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Consolidation": {
+        "existence_score": 0.9284447431564331,
+        "mask_voxels": 6701,
+        "present": true,
+        "prompt_count": 1,
+        "mask_key": "consolidation",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      },
+      "Atelectasis": {
+        "existence_score": 0.942058801651001,
+        "mask_voxels": 7976,
+        "present": true,
+        "prompt_count": 1,
+        "mask_key": "atelectasis",
+        "decision": {
+          "existence_threshold": 0.3,
+          "min_mask_voxels": 1,
+          "postprocess_threshold": 0.3
+        }
+      }
+    },
+    "protocol": "protocol1"
+  }
+]
