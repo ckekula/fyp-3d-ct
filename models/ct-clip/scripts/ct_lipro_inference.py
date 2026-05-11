@@ -73,10 +73,19 @@ def evaluate_model(args, model, dataloader, device):
             for item in accs:
                 file.write(item[0] + "\n")
 
-        pathologies = ['Medical material','Arterial wall calcification', 'Cardiomegaly', 'Pericardial effusion','Coronary artery wall calcification', 'Hiatal hernia','Lymphadenopathy', 'Emphysema', 'Atelectasis', 'Lung nodule','Lung opacity', 'Pulmonary fibrotic sequela', 'Pleural effusion', 'Mosaic attenuation pattern','Peribronchial thickening', 'Consolidation', 'Bronchiectasis','Interlobular septal thickening']
+        # Full 18 pathologies from model
+        all_pathologies = ['Medical material','Arterial wall calcification', 'Cardiomegaly', 'Pericardial effusion','Coronary artery wall calcification', 'Hiatal hernia','Lymphadenopathy', 'Emphysema', 'Atelectasis', 'Lung nodule','Lung opacity', 'Pulmonary fibrotic sequela', 'Pleural effusion', 'Mosaic attenuation pattern','Peribronchial thickening', 'Consolidation', 'Bronchiectasis','Interlobular septal thickening']
+        
+        # Filter to 4 pathologies only
+        pathologies = ['Atelectasis', 'Lung nodule', 'Lung opacity', 'Consolidation']
+        pathology_indices = [8, 9, 10, 15]  # indices in original 18-class order
 
         realall=np.array(realall)
         predictedall=np.array(predictedall)
+        
+        # Filter predictions and labels to only the 4 selected pathologies
+        realall = realall[:, pathology_indices]
+        predictedall = predictedall[:, pathology_indices]
 
         np.savez(f"{plotdir}/labels_weights.npz", data=realall)
         np.savez(f"{plotdir}/predicted_weights.npz", data=predictedall)
@@ -125,7 +134,7 @@ if __name__ == '__main__':
 
     )
 
-    num_classes = 18  # you need to specify the number of classes here
+    num_classes = 18  # Keep 18 to match checkpoint; filter output to 4 pathologies
     image_classifier = ImageLatentsClassifier(clip, 512, num_classes)
     zero_shot = copy.deepcopy(image_classifier)
 
