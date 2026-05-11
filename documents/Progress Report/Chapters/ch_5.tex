@@ -1,10 +1,15 @@
 \chapter{Discussion}
 
-This project investigated an interpretable sparse dictionary learning framework for abnormality classification and localization in 3D chest CT scans. A key contribution is the frozen dictionary approach, where normal anatomical patterns are learned first and abnormalities are learned separately. This helps isolate pathological features and improves interpretability.
+Our project investigated an interpretable sparse dictionary learning framework for abnormality classification and localization in 3D chest CT scans. A key contribution is the frozen dictionary approach, where normal anatomical patterns are learned first and abnormalities are learned separately. This helps isolate pathological features and improves interpretability.
 
-Although the proposed method may achieve slightly lower accuracy than state-of-the-art deep learning models, it provides inherent explainability. Unlike black-box models that rely on post-hoc methods such as Grad-CAM, the LC-KSVD framework allows predictions to be directly linked to dictionary atoms and anatomical structures, improving clinical transparency and trust.
+Unlike many state-of-the-art deep learning models that rely on post-hoc explainability methods such as Grad-CAM, the proposed LC-KSVD framework provides inherent explainability. The generated predictions can be directly linked to dictionary atoms and reconstructed voxel-space regions through atom back-projection, allowing more transparent clinical interpretation.
 
-A limitation of this work is the absence of a fully unified architecture for simultaneous classification and segmentation. Future work will focus on improving the framework and conducting more comprehensive comparisons with modern deep learning models.
+The experimental observations show that the framework can successfully classify and localize pulmonary nodules, Ground Glass Opacity (GGO), and consolidation patterns from 3D chest CT scans while maintaining competitive performance. The proposed objectives of implementing an interpretable dictionary learning pipeline, generating localization maps, and evaluating the framework against existing approaches were successfully achieved.
+
+In real-world clinical applications, this approach could support radiologists by providing both diagnostic predictions and anatomically grounded explanations, improving trust and transparency in AI-assisted diagnosis systems.
+
+However, the proposed method has several limitations. The framework is currently limited to three abnormalities and does not yet provide a fully unified end-to-end classification and segmentation architecture. In addition, although the explainability is stronger, the classification accuracy may still be lower than large-scale deep learning foundation models. Future work will focus on improving performance, expanding abnormality coverage, and integrating more advanced hybrid architectures.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
