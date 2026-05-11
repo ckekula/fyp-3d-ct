@@ -15,8 +15,10 @@ radiation exposure. However, studies show that their capability to detect abnorm
 Furthermore, CXR has historically benefited from the availability of massive, radiologist-annotated datasets, while
 the analysis of chest CT volumes has been severely constrained by a lack of such data.
 However, the recent introduction of large-scale, text-paired datasets has facilitated the development of state-of-the-art
-(SotA) Vision-Language Foundation Models (VLFMs) tailored specifically for volumetric imaging
-\cite{baharoon2025rexgroundingct3dchestct, flores2016, chen2026dflashblockdiffusionflash}.
+
+(SotA) vision-language foundation models tailored specifically for volumetric imaging.
+\cite{baharoon2025rexgroundingct3dchestct} \cite{doi:10.1200/JCO.2016.34.15_suppl.e18246} \cite{chen2026dflashblockdiffusionflash}.
+
 
 Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LC-KSVD) \cite{LCKSVD},
 Label Embedded Dictionary Learning (LEDL) and Fischer Discriminant Dictionary Learning (FDDL)
@@ -151,7 +153,17 @@ However, like other gradient-based methods, it remains a post-hoc explanation te
 
 \section{Report Outline}
 
+This report is organized into five main chapters.
 
+Chapter 1 introduces the research problem, background, objectives, scope, and literature review related to multi-class abnormality classification and grounded localization in 3D chest CT imaging. It also discusses existing deep learning and dictionary learning approaches together with their limitations in explainability.
+
+Chapter 2 presents the theoretical background required for this study, including sparse representation, dictionary learning, K-SVD, LC-KSVD, frozen dictionary learning, and Vision Transformers used in medical imaging. In addition, important radiological abnormalities such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules are discussed.
+
+Chapter 3 describes the proposed methodology of the project. This includes dataset acquisition, preprocessing steps, patch extraction, implementation of the LC-KSVD framework, abnormality classification pipeline, and the proposed back-projection mechanism used for interpretable localization and explainability generation.
+
+Chapter 4 explains the experimentation and evaluation framework used in this research. It presents the selected baseline models, evaluation metrics, and the three evaluation axes: classification accuracy, grounded localization quality, and explainability. The chapter also summarizes the current progress of the project and planned evaluations.
+
+Finally, Chapter 5 discusses the overall findings, contributions, limitations, and future improvements of the proposed interpretable dictionary learning framework for 3D chest CT abnormality analysis.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
