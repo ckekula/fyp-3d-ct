@@ -431,7 +431,9 @@ def extract_unified(split: str = "train") -> None:
         for vid in labels.get_positive_volume_names(ab)
     })
     positive_ids = _filter_existing(positive_ids)
-    normal_ids   = _filter_existing(labels.get_normal_volume_names())
+    raw_normals = labels.get_normal_volume_names()
+    logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}, e.g. {raw_normals[:3]}")
+    normal_ids = _filter_existing(raw_normals)
 
     logger.info(
         f"Split={split} | abnormal={len(positive_ids)} | normal={len(normal_ids)}"
