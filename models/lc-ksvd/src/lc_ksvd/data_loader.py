@@ -10,6 +10,7 @@ Handles all I/O for the ReXGroundingCT dataset:
 """
 
 import json
+import logging
 import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -290,6 +291,24 @@ class LabelRegistry:
                 self._volume_names.append(volume_name)
                 self._volume_labels[volume_name] = categories_present
 
+        # --- debug summary ---
+        logger = logging.getLogger(__name__)
+        total = len(self._volume_names)
+        per_cat_counts = {ab: sum(self._volume_labels[v].get(ab, 0) for v in self._volume_names)
+                          for ab in abnormalities}
+        normal_count = len(self.get_normal_volume_names())
+        # sample positives per category (up to 5)
+        sample_pos = {ab: self.get_positive_volume_names(ab)[:5] for ab in abnormalities}
+        # sample normal (empty-category) volumes
+        sample_normals = self.get_normal_volume_names()[:5]
+
+        logger.info(
+            f"LabelRegistry built split={self.split!r} total_volumes={total} "
+            f"normal={normal_count} per_category_counts={per_cat_counts}"
+        )
+        logger.debug(f"Sample positives per category (up to 5): {sample_pos}")
+        logger.debug(f"Sample volumes with no categories (normals, up to 5): {sample_normals}")
+        
     def get_labels(self, scan_id: str) -> Dict[str, int]:
         """Return binary labels {category: 0 or 1} for a volume."""
         scan_id = _stem(scan_id)

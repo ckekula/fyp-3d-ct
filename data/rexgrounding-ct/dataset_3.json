@@ -32361,6 +32361,3129 @@
         "0": "2d"
       },
       "protocol": "protocol1"
+    },
+    {
+      "name": "train_12342_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10990_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9664_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2863_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5462_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6311_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11126_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5837_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12578_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19388_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17490_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12074_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13236_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19503_a_4.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5023_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5102_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6321_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12594_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_783_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_783_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5864_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12132_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19988_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5637_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3779_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2822_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5039_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3528_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3528_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8785_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4381_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1033_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10566_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7553_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7277_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6845_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6997_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18696_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19565_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10541_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8900_a_4.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8900_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_549_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_549_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4454_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14630_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13422_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2062_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14964_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8903_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14676_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4108_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15753_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19167_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16001_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1043_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17370_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9670_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17276_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15428_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19162_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1553_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9261_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3994_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1111_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4939_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17071_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6073_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16723_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3490_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16110_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_629_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18230_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13427_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2740_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6988_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19056_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6293_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7342_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7571_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14398_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15372_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18410_a_4.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17496_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17719_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4483_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2510_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1125_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14111_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14111_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5892_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5332_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15828_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12902_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11378_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10205_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8938_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12901_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19199_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18996_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_194_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6143_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6143_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2967_c_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17160_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1824_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6105_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12603_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3453_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1282_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19915_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9002_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11818_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9272_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14976_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3759_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19567_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10096_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15824_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17322_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8984_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13722_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16988_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15829_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16675_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17277_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13776_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2069_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8866_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6628_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12226_a_4.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17526_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_698_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1800_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1224_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10584_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19464_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18517_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_407_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2744_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_437_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16003_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19847_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5977_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12218_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1846_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18607_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3092_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5425_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6701_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12958_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1098_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9186_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2121_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_847_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8980_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13670_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16404_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6260_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15935_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17692_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7115_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11621_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18359_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6811_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14056_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6956_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5741_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3479_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13822_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6694_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18518_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14207_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17896_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8573_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_415_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19734_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11031_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14901_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18053_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7806_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13650_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17120_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5249_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6600_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10648_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16331_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5166_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12743_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3506_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13712_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2124_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7773_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9455_c_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11755_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13541_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5790_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17029_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11386_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13441_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6868_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6323_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13837_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12257_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18681_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17265_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13057_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13816_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6569_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11211_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4915_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12633_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14153_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16469_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3112_e_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11573_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10792_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6702_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5888_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11880_a_5.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4462_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5233_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5391_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11426_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14273_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12787_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19704_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3160_a_5.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3160_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6575_a_4.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6433_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13505_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17606_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13916_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5655_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13971_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_62_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11225_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10074_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1153_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8561_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12765_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17662_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6445_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9582_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16374_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16374_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16374_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12804_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16656_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11390_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9943_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19568_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18396_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2529_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1834_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19251_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17525_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2438_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2964_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2055_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2542_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5757_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2174_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14336_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17321_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4335_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17812_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18476_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17687_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18878_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5037_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4488_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7592_a_3.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1579_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19913_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17743_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3862_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8760_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18107_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9271_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9437_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13874_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7696_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3485_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12534_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10245_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7339_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18457_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15455_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12011_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5756_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4607_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3972_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11097_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1500_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13046_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3871_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_375_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5111_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16997_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10647_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4944_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10998_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19003_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19003_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_224_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4255_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8079_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9574_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3818_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17658_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12725_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18814_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1253_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_922_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8143_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16763_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2439_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_136_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6621_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2372_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6506_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7760_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14806_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11442_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4451_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17368_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3278_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13248_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8670_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18123_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17169_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16891_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16891_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19892_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10968_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6760_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3058_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18346_a_3.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11746_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16588_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5404_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19798_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_720_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12577_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15129_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
     }
   ],
   "val": [
