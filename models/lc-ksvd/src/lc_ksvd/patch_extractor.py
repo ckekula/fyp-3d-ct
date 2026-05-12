@@ -24,7 +24,7 @@ from tqdm import tqdm
 
 from lc_ksvd.config import (
     MIN_OVERLAP_RATIO, N_FEATURES,
-    N_POSITIVE_PATCHES_PER_SCAN, NEG_TO_POS_RATIO, PATCH_SIZE,
+    N_POSITIVE_PATCHES_PER_SCAN, PATCH_SIZE,
     PATCHES_DIR, RANDOM_SEED, CLASS_ORDER
 )
 from lc_ksvd.data_loader import (
@@ -361,7 +361,6 @@ def build_unified_patch_matrix(
     n_normal_collected = len(normal_patches)
     logger.info(
         f"Normal patches: {n_normal_collected}  "
-        f"(NEG_TO_POS_RATIO={NEG_TO_POS_RATIO} is informational; "
         f"abnormal budget = {n_per_scan} patches/scan)"
     )
  

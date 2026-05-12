@@ -4,10 +4,9 @@ Trains one LC-KSVD2 multi-class model over all abnormalities + normal.
 
 H rows (CLASS_ORDER):
   0 → normal
-  1 → 2a  (linear / atelectasis / scarring)
-  2 → 2b  (atelectasis / consolidation)
-  3 → 2c  (groundglass opacity)
-  4 → 2d  (pulmonary nodules/masses)
+  1 → 2b  (atelectasis / consolidation)
+  2 → 2c  (groundglass opacity)
+  3 → 2d  (pulmonary nodules/masses)
 
 Usage:
   python train.py                   # extract patches then train
