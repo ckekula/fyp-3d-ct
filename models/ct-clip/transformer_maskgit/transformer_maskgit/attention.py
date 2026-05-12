@@ -209,7 +209,7 @@ class AlibiPositionalBias(nn.Module):
         return get_slopes_power_of_2(closest_power_of_2) + get_slopes_power_of_2(2 * closest_power_of_2)[0::2][:heads-closest_power_of_2]
 
     def forward(self, sim):
-        h, i, j, device = *sim.shape[-3:], sim.device
+        h, i, j, device = *sim.shape[-3:], torch.device('cpu')  # Force CPU to avoid CUDA errors
 
         if exists(self.bias) and self.bias.shape[-1] >= j:
             return self.bias[..., :i, :j]
@@ -253,7 +253,7 @@ class ContinuousPositionBias(nn.Module):
     def forward(self, *dimensions, device = torch.device('cpu')):
 
         if not exists(self.rel_pos) or not self.cache_rel_pos:
-            positions = [torch.arange(d, device = device) for d in dimensions]
+            positions = [torch.arange(d, device = torch.device('cpu')) for d in dimensions]
             grid = torch.stack(torch.meshgrid(*positions, indexing = 'ij'))
             grid = rearrange(grid, 'c ... -> (...) c')
             rel_pos = rearrange(grid, 'i c -> i 1 c') - rearrange(grid, 'j c -> 1 j c')
