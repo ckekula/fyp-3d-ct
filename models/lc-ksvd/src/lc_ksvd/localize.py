@@ -23,19 +23,18 @@ Usage:
 
 import logging
 import pickle
-from pathlib import Path
 from typing import Optional, Tuple
 
 import numpy as np
 from skimage.filters import threshold_otsu
 
-from lc_ksvd.config import CONTRIB_THRESHOLD_MODE, DISCRIMINATIVE_ATOM_PERCENTILE, LCKSVD_CONFIG, PATCH_SIZE, TARGET_SPACING_MM, HU_MIN, HU_MAX
+from lc_ksvd.config import (
+    CONTRIB_THRESHOLD_MODE, DISCRIMINATIVE_ATOM_PERCENTILE, LCKSVD_CONFIG,
+    PATCH_SIZE, TARGET_SPACING_MM, HU_MIN, HU_MAX
+)
 from lc_ksvd.data_loader import window_and_normalise, resample_volume
 
-try:
-    from reppi import OMP
-except ImportError:
-    raise ImportError("reppi is not installed. Run: pip install reppi")
+from reppi import OMP
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")

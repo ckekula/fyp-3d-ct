@@ -18,7 +18,6 @@ import argparse
 import logging
 import pickle
 import time
-from pathlib import Path
 from typing import Dict, Tuple
 
 import numpy as np
@@ -55,7 +54,7 @@ def normalise_columns(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray
 def evaluate(
     model: LCKSVD,
     X_norm: np.ndarray,
-    H: np.ndarray,           # (n_patches,) int64
+    H: np.ndarray,           # (n_patches,) int64  ← one-hot is NOT accepted here
     split_name: str,
 ) -> Dict[str, float]:
     Gamma  = model.transform(X_norm)   # (n_components, n_patches)
@@ -63,14 +62,20 @@ def evaluate(
     scores = W @ Gamma                 # (n_classes, n_patches)
 
     y_pred = np.argmax(scores, axis=0) # (n_patches,)
-    y_true = H                         # already integer class indices
+    y_true = H                         # (n_patches,) integers — used directly
+
+    # Sanity check: catch one-hot accidentally passed in
+    assert y_true.ndim == 1, (
+        f"evaluate() expects a 1D integer label vector; got shape {y_true.shape}. "
+        "Pass H before label_binarize(), not H_onehot."
+    )
 
     n_classes = len(CLASS_ORDER)
     metrics: Dict[str, float] = {}
 
     aurocs, aps = [], []
     for c in range(n_classes):
-        y_true_bin = (y_true == c).astype(int)   # binarise for one-vs-rest
+        y_true_bin = (y_true == c).astype(int)
         score_c    = scores[c, :]
 
         try:
@@ -113,68 +118,47 @@ def train() -> Dict:
     X, H = load_unified_patch_matrix(split="train")
     logger.info(f"Train — X: {X.shape}, H: {H.shape}")
     for i, cls in enumerate(CLASS_ORDER):
-        logger.info(f"  class {cls}: {int(H[i].sum())} patches")
+        logger.info(f"  class {cls}: {int((H == i).sum())} patches")
+    #   ↑ was H[i].sum() — H is 1D integers, not one-hot rows
 
     # ── Normalise + drop zero patches ─────────────────────────────────────────
     X_norm, _, zero_mask = normalise_columns(X)
     keep   = ~zero_mask
     X_norm = X_norm[:, keep]
-    H      = H[keep]
+    H      = H[keep]               # H is (n_patches,) — 1D indexing is correct here
     logger.info(f"After zero-patch removal: {X_norm.shape[1]} patches")
 
     # ── Validation set ────────────────────────────────────────────────────────
     X_val, H_val = load_unified_patch_matrix(split="val")
     X_val_norm, _, val_zero = normalise_columns(X_val)
-    X_val_norm = X_val_norm[:, ~val_zero]
-    H_val      = H_val[:, ~val_zero]
+    keep_val   = ~val_zero
+    X_val_norm = X_val_norm[:, keep_val]
+    H_val      = H_val[keep_val]   # ← was H_val[:, ~val_zero] — H_val is 1D, not 2D
     logger.info(f"Val   — {X_val_norm.shape[1]} patches")
 
-    # ── Normalise validation columns ───────────────────────────────────────────────
-    X_val_norm, _, val_zero_mask = normalise_columns(X_val)
-    X_val_norm = X_val_norm[:, ~val_zero_mask]
-    H_val = H_val[~val_zero_mask]
-    logger.info(f"Validation after zero-patch removal: {X_val_norm.shape[1]} patches")
-
-    # ── Final train/val split ──────────────────────────────────────────────────────
-    X_tr, H_tr = X_norm, H
-    X_val, H_val = X_val_norm, H_val
-    logger.info(f"Train: {X_tr.shape[1]} patches  |  Val: {X_val.shape[1]} patches")
-
-    # ── Adapt LC-KSVD dictionary size for small training sets ────────────────
-    # reppi's K-SVD initialisation requires enough training signals to seed the
-    # dictionary. For very small patch matrices (e.g. opacity/consolidation),
-    # the default 128 atoms can exceed the available training columns.
-    base_cfg = dict(LCKSVD_CONFIG)
-    max_atoms = max(8, X_tr.shape[1] // 2)
-    effective_n_components = min(base_cfg["n_components"], max_atoms)
-    effective_n_nonzero = min(base_cfg["n_nonzero_coefs"], max(1, effective_n_components // 2))
-
-    if effective_n_components != base_cfg["n_components"]:
-        logger.info(
-            f"Adjusting n_components from {base_cfg['n_components']} to {effective_n_components} "
-            f"for {abnormality} (train patches={X_tr.shape[1]})"
-        )
-
-    base_cfg["n_components"] = effective_n_components
-    base_cfg["n_nonzero_coefs"] = effective_n_nonzero
-
-    # ── Train LC-KSVD2 ────────────────────────────────────────────────────────
-    model = LCKSVD(**base_cfg)
+    # ── Adapt dictionary size for small datasets ──────────────────────────────
+    cfg = dict(LCKSVD_CONFIG)
+    max_atoms = max(8, X_norm.shape[1] // 2)
+    cfg["n_components"]    = min(cfg["n_components"], max_atoms)
+    cfg["n_nonzero_coefs"] = min(cfg["n_nonzero_coefs"],
+                                 max(1, cfg["n_components"] // 2))
 
     # ── Train ─────────────────────────────────────────────────────────────────
     model = LCKSVD(**cfg)
     logger.info("Starting LC-KSVD2 training…")
     t0 = time.time()
-    # reppi expects one-hot
-    H_onehot = label_binarize(H, classes=list(range(len(CLASS_ORDER)))).T  # (n_classes, n_patches)
-    H_val_onehot = label_binarize(H_val, classes=list(range(len(CLASS_ORDER)))).T
+
+    # Convert to one-hot only for model.fit(); keep integer H for evaluate()
+    classes     = list(range(len(CLASS_ORDER)))
+    H_onehot     = label_binarize(H,     classes=classes).T  # (n_classes, n_patches)
+
     model.fit(X_norm, H_onehot)
     elapsed = time.time() - t0
     logger.info(f"Training complete in {elapsed:.1f}s")
 
-    # ── Evaluate ──────────────────────────────────────────────────────────────
-    train_metrics = evaluate(model, X_norm,     H_onehot,     split_name="train")
-    val_metrics   = evaluate(model, X_val_norm, H_val_onehot, split_name="val")
+    # ── Evaluate — pass integer H, not one-hot ────────────────────────────────
+    train_metrics = evaluate(model, X_norm,     H,     split_name="train")
+    val_metrics   = evaluate(model, X_val_norm, H_val, split_name="val")
 
     # ── Save ──────────────────────────────────────────────────────────────────
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
