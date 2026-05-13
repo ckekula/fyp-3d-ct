@@ -51,6 +51,8 @@ class BiomedParseLocalizationAdapter:
         self.legacy_reports_path = self.output_dir / "summary.json"
         self.masks_dir = self.output_dir / "masks"
 
+        self._metadata_by_case = self._load_metadata_index()
+
     def load(self) -> List[LocalizationSample]:
         reports_path = self.reports_path
 
@@ -254,7 +256,15 @@ class BiomedParseLocalizationAdapter:
 
         for path in candidates:
             if path.exists():
-                return self._load_mask_file(path)
+                mask = self._load_mask_file(path)
+
+                if mask is None:
+                    return None
+
+                if mask.ndim == 4:
+                    return self._extract_class_mask(mask, case_id, class_name)
+
+                return (mask > 0).astype(np.float32)
 
         # Fallback: try to extract from unified volume containing all classes
         unified_candidates = [
@@ -264,14 +274,115 @@ class BiomedParseLocalizationAdapter:
         
         for path in unified_candidates:
             if path.exists():
-                # Load full volume and convert to binary mask (any non-zero = foreground)
                 mask = self._load_mask_file(path)
+
                 if mask is not None:
-                    # Convert to binary: any non-zero value becomes 1
-                    binary_mask = (mask > 0).astype(np.float32)
-                    return binary_mask
+                    if mask.ndim == 4:
+                        return self._extract_class_mask(mask, case_id, class_name)
+
+                    return (mask > 0).astype(np.float32)
         
         return None
+
+    def _load_metadata_index(self) -> Dict[str, Dict]:
+        if not self.metadata_json or not self.metadata_json.exists():
+            return {}
+
+        try:
+            raw = json.loads(self.metadata_json.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+
+        records: list[Dict] = []
+
+        def collect(node) -> None:
+            if isinstance(node, list):
+                for item in node:
+                    collect(item)
+                return
+
+            if isinstance(node, dict):
+                if "name" in node and "findings" in node:
+                    records.append(node)
+                    return
+
+                for value in node.values():
+                    collect(value)
+
+        collect(raw)
+
+        index: Dict[str, Dict] = {}
+
+        for record in records:
+            if not isinstance(record, dict):
+                continue
+
+            name = str(
+                record.get("name")
+                or record.get("file")
+                or record.get("volume_name")
+                or record.get("case_id")
+                or ""
+            )
+
+            if not name:
+                continue
+
+            for key in {name, Path(name).stem}:
+                index[key] = record
+
+        return index
+
+    def _get_case_findings(self, case_id: str) -> list[str]:
+        record = self._metadata_by_case.get(case_id)
+
+        if record is None:
+            record = self._metadata_by_case.get(f"{case_id}.nii.gz")
+
+        if record is None:
+            return []
+
+        findings = record.get("findings", {})
+
+        if isinstance(findings, dict):
+            return [str(findings[key]) for key in sorted(findings.keys(), key=str)]
+
+        if isinstance(findings, list):
+            return [str(item) for item in findings]
+
+        return []
+
+    def _extract_class_mask(
+        self,
+        mask: np.ndarray,
+        case_id: str,
+        class_name: str,
+    ) -> np.ndarray:
+        mask = np.asarray(mask)
+
+        if mask.ndim != 4:
+            return (mask > 0).astype(np.float32)
+
+        finding_texts = self._get_case_findings(case_id)
+        matching_indices = [
+            idx
+            for idx, finding_text in enumerate(finding_texts)
+            if class_name in self._class_names_for_finding(finding_text)
+        ]
+
+        if not matching_indices:
+            return np.zeros(mask.shape[1:], dtype=np.float32)
+
+        if mask.shape[0] >= len(finding_texts) and mask.shape[0] > 1:
+            class_mask = np.any(mask[matching_indices] > 0, axis=0)
+            return class_mask.astype(np.float32)
+
+        if mask.shape[-1] >= len(finding_texts) and mask.shape[-1] > 1:
+            moved = np.moveaxis(mask, -1, 0)
+            class_mask = np.any(moved[matching_indices] > 0, axis=0)
+            return class_mask.astype(np.float32)
+
+        return (mask > 0).any(axis=0).astype(np.float32)
 
     def _load_mask_file(self, path: Path) -> np.ndarray:
         suffixes = "".join(path.suffixes)
@@ -332,6 +443,50 @@ class BiomedParseLocalizationAdapter:
             raise ValueError(f"Expected 3D mask, got shape: {mask.shape}")
 
         return mask
+
+    def _class_names_for_finding(self, finding_text: str) -> set[str]:
+        text = str(finding_text).strip().lower()
+
+        matched: set[str] = set()
+
+        if any(keyword in text for keyword in ["nodule", "nodular", "mass"]):
+            matched.add("lung_nodule")
+
+        if any(
+            keyword in text
+            for keyword in ["atelectasis", "atelectatic", "fibroatelectasis"]
+        ):
+            matched.add("atelectasis")
+
+        if any(
+            keyword in text
+            for keyword in ["consolidation", "consolidative", "pneumonic consolidation"]
+        ):
+            matched.add("consolidation")
+
+        if not matched and any(
+            keyword in text
+            for keyword in [
+                "opacity",
+                "opacities",
+                "ground glass",
+                "ground-glass",
+                "infiltrat",
+                "density",
+                "dense",
+                "reticulonodular",
+                "mosaic",
+                "pneumonia",
+                "crazy paving",
+                "hazy",
+            ]
+        ):
+            matched.add("lung_opacity")
+
+        if not matched:
+            matched.add("lung_opacity")
+
+        return matched
 
     def _normalize_class_name(self, name: str) -> str:
         name = str(name)
