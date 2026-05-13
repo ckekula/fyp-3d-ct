@@ -11,7 +11,7 @@ from pathlib import Path
 DATASET_ROOT = Path("/home/chest_ct/code/data")
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_4.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_3.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -23,11 +23,13 @@ RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
-    "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)",
+    "normal": "Normal (no findings)",
     "2b": "Atelectasis, consolidation",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }
+
+CLASS_ORDER = ["normal", "2b", "2c", "2d"]
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
@@ -48,11 +50,8 @@ N_FEATURES = PATCH_SIZE ** 3  # 32768 — dimensionality of each patch vector
 # (lowered from 0.10 to 0.05 to capture small lesions like opacities/consolidations)
 MIN_OVERLAP_RATIO = 0.05
 
-# Number of positive patches to sample per lesion-containing scan
+# Number of positive patches to sample per scan
 N_POSITIVE_PATCHES_PER_SCAN = 30
-
-# Ratio of negative patches to positive patches in the final matrix
-NEG_TO_POS_RATIO = 1.0     # balanced by default; increase if you want more negatives
 
 # Random seed for reproducible patch sampling
 RANDOM_SEED = 42

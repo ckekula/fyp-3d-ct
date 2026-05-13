@@ -10,6 +10,7 @@ Handles all I/O for the ReXGroundingCT dataset:
 """
 
 import json
+import logging
 import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -108,11 +109,6 @@ def load_mask(volume_name: str) -> Tuple[np.ndarray, np.ndarray]:
     img  = nib.load(str(path))
     mask = np.asarray(img.dataobj, dtype=np.uint8)
 
-    # Mask may be stored as [H, W, D, F] in some NIfTI conventions;
-    # detect and transpose if the last axis is small (number of findings)
-    if mask.ndim == 4 and mask.shape[-1] < mask.shape[0]:
-        mask = np.moveaxis(mask, -1, 0)   # → [F, H, W, D]
-
     zooms = np.abs(np.array(img.header.get_zooms()[:3], dtype=np.float32))
     return mask, zooms
 
@@ -134,12 +130,16 @@ def resample_volume(vol: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
     return resampled.astype(np.float32)
 
 
-def resample_mask(mask: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
+def resample_mask(mask: np.ndarray, target_shape: Tuple[int, int, int]) -> np.ndarray:
     """
-    Resample each finding slice of the 4D mask using nearest-neighbour
-    to preserve integer entity labels.
+    Resample each finding slice of the 4D mask to match target_shape exactly,
+    using nearest-neighbour to preserve integer labels.
+    target_shape should be the spatial shape of the already-resampled volume.
     """
-    factors = _zoom_factors(current_spacing, TARGET_SPACING_MM)
+    current_shape = np.array(mask.shape[1:], dtype=float)  # (H, W, D)
+    target        = np.array(target_shape,   dtype=float)
+    factors       = target / current_shape
+
     if np.allclose(factors, 1.0, atol=0.01):
         return mask
 
@@ -147,9 +147,8 @@ def resample_mask(mask: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
     for f in range(mask.shape[0]):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            rs = zoom(mask[f], factors, order=0)  # order=0 → nearest neighbour
+            rs = zoom(mask[f], factors, order=0)
         resampled_slices.append(rs.astype(np.uint8))
-
     return np.stack(resampled_slices, axis=0)
 
 
@@ -292,6 +291,24 @@ class LabelRegistry:
                 self._volume_names.append(volume_name)
                 self._volume_labels[volume_name] = categories_present
 
+        # --- debug summary ---
+        logger = logging.getLogger(__name__)
+        total = len(self._volume_names)
+        per_cat_counts = {ab: sum(self._volume_labels[v].get(ab, 0) for v in self._volume_names)
+                          for ab in abnormalities}
+        normal_count = len(self.get_normal_volume_names())
+        # sample positives per category (up to 5)
+        sample_pos = {ab: self.get_positive_volume_names(ab)[:5] for ab in abnormalities}
+        # sample normal (empty-category) volumes
+        sample_normals = self.get_normal_volume_names()[:5]
+
+        logger.info(
+            f"LabelRegistry built split={self.split!r} total_volumes={total} "
+            f"normal={normal_count} per_category_counts={per_cat_counts}"
+        )
+        logger.debug(f"Sample positives per category (up to 5): {sample_pos}")
+        logger.debug(f"Sample volumes with no categories (normals, up to 5): {sample_normals}")
+        
     def get_labels(self, scan_id: str) -> Dict[str, int]:
         """Return binary labels {category: 0 or 1} for a volume."""
         scan_id = _stem(scan_id)
@@ -311,7 +328,7 @@ class LabelRegistry:
         """Return volume names with no findings in any category."""
         abnormalities = list(ABNORMALITY_CATEGORIES.keys())
         return [vol for vol in self._volume_names
-                if all(self._volume_labels.get(vol, {}).get(ab, 0) == 0 
+                if all(self._volume_labels.get(vol, {}).get(ab, 0) == 0
                    for ab in abnormalities)]
 
 
@@ -339,10 +356,11 @@ class ScanLoader:
         vol_rs = resample_volume(vol_hu, spacing)
         vol    = window_and_normalise(vol_rs)
 
-        # Load and resample mask (normal scans may not have a mask)
+        # Load and resample mask to match the resampled volume shape exactly,
+        # ignoring the mask's own header spacing to avoid shape mismatches.
         try:
-            mask_raw, mask_spacing = load_mask(volume_name)
-            mask = resample_mask(mask_raw, mask_spacing)
+            mask_raw, _ = load_mask(volume_name)
+            mask = resample_mask(mask_raw, target_shape=vol_rs.shape)
         except FileNotFoundError:
             mask = None
 
@@ -351,6 +369,6 @@ class ScanLoader:
         return {
             "volume_name": volume_name,
             "volume":      vol,
-            "mask":        mask,        # [F, H, W, D] or None
-            "finding_map": finding_map, # {int: str}
+            "mask":        mask,
+            "finding_map": finding_map,
         }

@@ -11,3 +11,4 @@ _C.*
 outputs/*
 checkpoints/*.pt
 *.pt
+checkpoints/
