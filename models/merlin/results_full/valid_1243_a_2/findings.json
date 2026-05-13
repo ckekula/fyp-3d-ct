@@ -1,0 +1,35 @@
+{
+  "name": "valid_1243_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Localized linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral subcentimeter nonspecific pulmonary nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 7615,
+    "1": 304196,
+    "2": 669
+  },
+  "embedding_norm": 16.973073959350586,
+  "mask_active_voxels": 67633152
+}

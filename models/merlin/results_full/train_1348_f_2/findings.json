@@ -1,0 +1,41 @@
+{
+  "name": "train_1348_f_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Dependent secretions in the trachea",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Stable bronchiectasis in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation area based on cystic bronchiectasis in the laterobasal segment of the right lower lobe measuring 4x3 cm, previously measuring approximately 5x3.5 cm, indicating slight regression",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Newly developing ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "1b",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 967,
+    "1": 2145,
+    "2": 80579,
+    "3": 66501
+  },
+  "embedding_norm": 17.586944580078125,
+  "mask_active_voxels": 133431296
+}

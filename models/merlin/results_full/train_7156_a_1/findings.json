@@ -1,0 +1,41 @@
+{
+  "name": "train_7156_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground-glass opacities with interlobular septal thickening in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peripheral ground-glass opacities with interlobular septal thickening in the middle lobe on the right",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Peripheral ground-glass opacities with interlobular septal thickening in the lingular segment on the left",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Peripheral ground-glass opacities with interlobular septal thickening in the anterior segments of the upper lobe on the left",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 52644,
+    "1": 5991,
+    "2": 1266,
+    "3": 369
+  },
+  "embedding_norm": 16.88258934020996,
+  "mask_active_voxels": 60555264
+}

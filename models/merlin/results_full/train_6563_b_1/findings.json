@@ -1,0 +1,23 @@
+{
+  "name": "train_6563_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    334
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 141166
+  },
+  "embedding_norm": 17.348281860351562,
+  "mask_active_voxels": 87556096
+}

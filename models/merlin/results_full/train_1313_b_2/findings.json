@@ -1,0 +1,29 @@
+{
+  "name": "train_1313_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    386
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass areas in the posterior subpleural area of the lower lobes of both lungs, more prominently in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal ground-glass areas in the peripheral regions of both lungs in the upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 416022,
+    "1": 20697
+  },
+  "embedding_norm": 17.31247329711914,
+  "mask_active_voxels": 101187584
+}

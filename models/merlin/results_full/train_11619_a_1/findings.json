@@ -1,0 +1,35 @@
+{
+  "name": "train_11619_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    367
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Halo sign characterized by a 1 cm nodule or nodular consolidation in the posterior segment of the left lower lobe and peripheral ground-glass areas",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear atelectasis areas in the left upper lobe's lingular segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis areas in the right middle lobe's medial segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 5775,
+    "1": 2572,
+    "2": 1747
+  },
+  "embedding_norm": 17.405054092407227,
+  "mask_active_voxels": 96206848
+}

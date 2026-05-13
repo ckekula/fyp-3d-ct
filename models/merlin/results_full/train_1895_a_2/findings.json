@@ -1,0 +1,23 @@
+{
+  "name": "train_1895_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic density consistent with scarring adjacent to the minor fissure in the posterior right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1859
+  },
+  "embedding_norm": 17.58733367919922,
+  "mask_active_voxels": 133431296
+}

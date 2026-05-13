@@ -1,0 +1,35 @@
+{
+  "name": "train_6502_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    441
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the basal segments and subpleural areas of both lower lobes, more prominent in the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Pleuroparenchymal band formations in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 17541,
+    "1": 19829,
+    "2": 17898
+  },
+  "embedding_norm": 17.562158584594727,
+  "mask_active_voxels": 115605504
+}

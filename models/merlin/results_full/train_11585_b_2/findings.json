@@ -1,0 +1,35 @@
+{
+  "name": "train_11585_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    495
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread and patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Irregularly bordered linear opacities forming consolidation in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "More prominent opacities in the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 23495,
+    "1": 11716,
+    "2": 36885
+  },
+  "embedding_norm": 17.57109260559082,
+  "mask_active_voxels": 129761280
+}

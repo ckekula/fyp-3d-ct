@@ -1,0 +1,59 @@
+{
+  "name": "train_1959_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    504
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Newly developed ground-glass opacities with increased density in the bilateral lower lobes of the lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Newly developed ground-glass opacities with increased density in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Newly developed ground-glass opacities with increased density in the left lingular segments",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Occasional nodular consolidation in the bilateral lower lobes of the lungs",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Occasional nodular consolidation in the right middle lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Occasional nodular consolidation in the left lingular segments",
+      "category": "Consolidation"
+    },
+    "6": {
+      "text": "Well-defined cavitary nodules measuring 8 mm in the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2b",
+    "4": "2b",
+    "5": "2b",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 245593,
+    "1": 7310,
+    "2": 114232,
+    "3": 42941,
+    "4": 2931,
+    "5": 3860,
+    "6": 2903
+  },
+  "embedding_norm": 17.49711036682129,
+  "mask_active_voxels": 132120576
+}

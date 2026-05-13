@@ -1,0 +1,23 @@
+{
+  "name": "train_6487_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    337
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Largest parenchymal nodule in the left lung lower lobe laterobasal segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 89
+  },
+  "embedding_norm": 17.214128494262695,
+  "mask_active_voxels": 88342528
+}

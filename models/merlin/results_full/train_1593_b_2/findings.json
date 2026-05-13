@@ -1,0 +1,35 @@
+{
+  "name": "train_1593_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    513
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmental, central and peripheral crazy paving pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Patchy large ground glass consolidations with signs of vascular enlargement in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Bilateral pleural effusion persists without significant change",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2e"
+  },
+  "pixels": {
+    "0": 1371644,
+    "1": 1522178,
+    "2": 157688
+  },
+  "embedding_norm": 17.494409561157227,
+  "mask_active_voxels": 134479872
+}

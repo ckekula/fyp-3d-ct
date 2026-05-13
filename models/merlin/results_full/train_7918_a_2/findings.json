@@ -1,0 +1,23 @@
+{
+  "name": "train_7918_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    152
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes in the paracardiac area anteriorly in the upper lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 3162
+  },
+  "embedding_norm": 16.323970794677734,
+  "mask_active_voxels": 39845888
+}

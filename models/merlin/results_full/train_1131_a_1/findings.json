@@ -1,0 +1,23 @@
+{
+  "name": "train_1131_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    192
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the lateral basal segment of the right lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 10178
+  },
+  "embedding_norm": 17.139846801757812,
+  "mask_active_voxels": 113246208
+}

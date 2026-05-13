@@ -1,0 +1,47 @@
+{
+  "name": "train_7944_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in both lung apices",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "2a",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 14751,
+    "1": 8189,
+    "2": 5969,
+    "3": 1831,
+    "4": 129
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

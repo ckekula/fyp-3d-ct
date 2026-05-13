@@ -1,0 +1,29 @@
+{
+  "name": "train_5223_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subcentimeter nodule, 6.5 mm, in right middle lobe lateral segment",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific subcentimeter nodule, 7 mm, in left upper lobe apicoposterior segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 223,
+    "1": 407
+  },
+  "embedding_norm": 17.57815170288086,
+  "mask_active_voxels": 120061952
+}

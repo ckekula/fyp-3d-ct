@@ -1,0 +1,41 @@
+{
+  "name": "train_6408_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Paraseptal bronchiectasis in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bilateral mild peribronchial thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest nodule measuring 4 mm in diameter located subpleurally in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "1e",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1692,
+    "1": 645,
+    "2": 387,
+    "3": 161
+  },
+  "embedding_norm": 17.440052032470703,
+  "mask_active_voxels": 119275520
+}

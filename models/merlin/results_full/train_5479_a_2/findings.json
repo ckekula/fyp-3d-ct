@@ -1,0 +1,47 @@
+{
+  "name": "train_5479_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    497
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Calcific pulmonary nodule measuring approximately 8 mm in diameter in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Surrounding fibrotic retraction around the calcific pulmonary nodule in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Pleuroparenchymal fibrotic bands in the right lower lobe laterobasal segment",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Pleuroparenchymal fibrotic bands in the left lung lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2d",
+    "2": "2a",
+    "3": "2a",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 313085,
+    "1": 604,
+    "2": 1729,
+    "3": 6301,
+    "4": 2817
+  },
+  "embedding_norm": 17.474180221557617,
+  "mask_active_voxels": 130285568
+}

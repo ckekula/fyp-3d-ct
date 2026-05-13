@@ -1,0 +1,95 @@
+{
+  "name": "valid_850_d_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    341
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Tubular bronchiectasis in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Volume loss in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Architectural distortion in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Tubular bronchiectasis in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Peribronchial thickening in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Extensive consolidations in the upper lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "7": {
+      "text": "Mild bronchiectatic changes in the lower lobes of the right lung",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Peribronchial thickening in the lower lobes of the right lung",
+      "category": "Others"
+    },
+    "9": {
+      "text": "Tree-in-bud pattern in the basal segments of both lungs",
+      "category": "Others"
+    },
+    "10": {
+      "text": "More pronounced tree-in-bud pattern in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "11": {
+      "text": "Prominent intraluminal mucus plugging on the right",
+      "category": "Others"
+    },
+    "12": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2a",
+    "3": "2a",
+    "4": "1b",
+    "5": "1a",
+    "6": "2b",
+    "7": "1b",
+    "8": "1a",
+    "9": "1e",
+    "10": "1e",
+    "11": "1f",
+    "12": "1c"
+  },
+  "pixels": {
+    "0": 289138,
+    "1": 289138,
+    "2": 289138,
+    "3": 289138,
+    "4": 70038,
+    "5": 70038,
+    "6": 289138,
+    "7": 81861,
+    "8": 81861,
+    "9": 64413,
+    "10": 3765,
+    "11": 17590,
+    "12": 70538
+  },
+  "embedding_norm": 17.236141204833984,
+  "mask_active_voxels": 89391104
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_959_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild apical atelectatic changes in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 25419
+  },
+  "embedding_norm": 17.582006454467773,
+  "mask_active_voxels": 134217728
+}

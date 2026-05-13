@@ -1,0 +1,29 @@
+{
+  "name": "train_1887_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nonspecific 3 mm parenchymal nodule in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 314196,
+    "1": 61
+  },
+  "embedding_norm": 17.50688362121582,
+  "mask_active_voxels": 111935488
+}

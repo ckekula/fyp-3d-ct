@@ -1,0 +1,23 @@
+{
+  "name": "train_5349_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increases in pleuroparenchymal fibrotic density in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 7066
+  },
+  "embedding_norm": 17.587331771850586,
+  "mask_active_voxels": 133431296
+}

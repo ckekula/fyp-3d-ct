@@ -1,0 +1,23 @@
+{
+  "name": "train_10417_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    397
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered patchy and nodular ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 80135
+  },
+  "embedding_norm": 17.457901000976562,
+  "mask_active_voxels": 104071168
+}

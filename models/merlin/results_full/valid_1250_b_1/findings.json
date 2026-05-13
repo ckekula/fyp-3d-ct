@@ -1,0 +1,41 @@
+{
+  "name": "valid_1250_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    398
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Structural distortion and bronchiectasis with associated volume loss in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "New areas of ground-glass opacities in the superior and posterobasal segments of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "New areas of ground-glass opacities in the mediobasal and superior segments of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 327650,
+    "1": 146626,
+    "2": 394110,
+    "3": 439338
+  },
+  "embedding_norm": 17.457887649536133,
+  "mask_active_voxels": 104333312
+}

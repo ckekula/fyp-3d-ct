@@ -1,0 +1,41 @@
+{
+  "name": "train_7296_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacities in the mediobasal and laterobasal segments of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground glass opacities in the laterobasal and posterobasal segments of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Pleuroparenchymal densities in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Nodular pleuroparenchymal density in the left lung lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 4979,
+    "1": 4759,
+    "2": 1173,
+    "3": 1173
+  },
+  "embedding_norm": 17.556278228759766,
+  "mask_active_voxels": 125304832
+}

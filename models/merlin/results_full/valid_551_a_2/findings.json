@@ -1,0 +1,41 @@
+{
+  "name": "valid_551_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    406
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral apical pleuroparenchymal scarring",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Left lower lobe posterobasal pleuroparenchymal scarring",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear area of increased density in the medial segment of the right middle lobe consistent with atelectasis",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Multiple subcentimeter nodules within the lung parenchyma bilaterally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 6463,
+    "1": 43043,
+    "2": 2552,
+    "3": 1625
+  },
+  "embedding_norm": 17.360328674316406,
+  "mask_active_voxels": 106430464
+}

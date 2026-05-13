@@ -1,0 +1,23 @@
+{
+  "name": "train_2264_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    457
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening at the level of segmental and subsegmental bronchi in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 39843
+  },
+  "embedding_norm": 17.57826042175293,
+  "mask_active_voxels": 119799808
+}

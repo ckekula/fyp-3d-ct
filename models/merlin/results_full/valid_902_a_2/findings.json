@@ -1,0 +1,65 @@
+{
+  "name": "valid_902_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    536
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mass surrounding segmental bronchi of lower lobe and lingular segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mass measuring approximately 11.5x5.5 cm",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mass abutting mediastinal pleura with broad base along anteromediobasal region of left lower lobe and inferior lingular segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Irregular, lobulated contour of mass",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Ground-glass opacities surrounding the mass",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Diffuse linear density increases surrounding the mass",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Subsegmental atelectatic changes in medial segment of right middle lobe",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Subsegmental atelectatic changes in inferior lingular segment of left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2c",
+    "5": "2a",
+    "6": "2b",
+    "7": "2b"
+  },
+  "pixels": {
+    "0": 313379,
+    "1": 313379,
+    "2": 313379,
+    "3": 313379,
+    "4": 30779,
+    "5": 19751,
+    "6": 5437,
+    "7": 3334
+  },
+  "embedding_norm": 17.52398109436035,
+  "mask_active_voxels": 140509184
+}

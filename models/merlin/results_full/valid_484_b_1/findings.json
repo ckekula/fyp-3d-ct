@@ -1,0 +1,35 @@
+{
+  "name": "valid_484_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    303
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass opacities in the posterolateral and basal segments of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Indeterminate subcentimeter nodular ground glass densities in the lateral lower lobe of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subpleural calcific nodules in the apicoposterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 43296,
+    "1": 2020,
+    "2": 2278
+  },
+  "embedding_norm": 17.270336151123047,
+  "mask_active_voxels": 79429632
+}

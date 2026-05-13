@@ -1,0 +1,71 @@
+{
+  "name": "train_5978_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Parenchymal infiltration in the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nodular consolidations with halo findings in the right middle lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Nodular consolidations with halo findings in the right lower lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Nodular consolidations with halo findings in both upper and lower lobes of the left lung",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Nodular ground-glass opacities in several foci in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Nodular ground-glass opacities in several foci in the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Nodular ground-glass opacities in several foci in both upper and lower lobes of the left lung",
+      "category": "Lung opacity"
+    },
+    "7": {
+      "text": "Several subcentimeter nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "8": {
+      "text": "Shrinkage and distortion in the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2c",
+    "5": "2c",
+    "6": "2c",
+    "7": "2d",
+    "8": "1d"
+  },
+  "pixels": {
+    "0": 5394,
+    "1": 422,
+    "2": 307,
+    "3": 460,
+    "4": 4019,
+    "5": 12555,
+    "6": 10315,
+    "7": 275,
+    "8": 17146
+  },
+  "embedding_norm": 17.154569625854492,
+  "mask_active_voxels": 143917056
+}

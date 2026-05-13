@@ -1,0 +1,29 @@
+{
+  "name": "train_5352_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodule measuring 4 mm in the lower lobe lateral segment on the left",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific nodule measuring 6 mm in the posterobasal segment of the lower lobe on the right",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 153,
+    "1": 792
+  },
+  "embedding_norm": 17.587413787841797,
+  "mask_active_voxels": 133431296
+}

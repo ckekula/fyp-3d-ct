@@ -1,0 +1,41 @@
+{
+  "name": "train_1439_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    305
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild patchy ground-glass opacities in the superior segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Mild patchy ground-glass opacities in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Mild patchy ground-glass opacities in the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Bronchiectatic changes in the right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "1b"
+  },
+  "pixels": {
+    "0": 19474,
+    "1": 13626,
+    "2": 102388,
+    "3": 316460
+  },
+  "embedding_norm": 17.132080078125,
+  "mask_active_voxels": 79953920
+}

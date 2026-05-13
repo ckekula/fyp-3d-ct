@@ -1,0 +1,59 @@
+{
+  "name": "train_11424_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    275
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Central bronchiectasis",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchial wall thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subpleural lines in the posterobasal right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Reticular densities in the posterobasal right lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Subpleural streaking in the right lower lobe",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Subpleural fibrotic densities in the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2h",
+    "3": "1d",
+    "4": "1e",
+    "5": "2h",
+    "6": "2a"
+  },
+  "pixels": {
+    "0": 4701,
+    "1": 1528,
+    "2": 58030,
+    "3": 11690,
+    "4": 568,
+    "5": 58030,
+    "6": 34551
+  },
+  "embedding_norm": 17.015605926513672,
+  "mask_active_voxels": 72089600
+}

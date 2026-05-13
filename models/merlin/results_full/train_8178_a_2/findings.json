@@ -1,0 +1,35 @@
+{
+  "name": "train_8178_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    461
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and centrally located ground glass opacities in the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground glass opacities particularly prominent in the peripheral regions and lower lobes",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 53307,
+    "1": 118202,
+    "2": 8712
+  },
+  "embedding_norm": 17.539766311645508,
+  "mask_active_voxels": 120848384
+}

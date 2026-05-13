@@ -1,0 +1,29 @@
+{
+  "name": "train_11284_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    430
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Posterior predominant opacities in the lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 4455,
+    "1": 55764
+  },
+  "embedding_norm": 17.50275230407715,
+  "mask_active_voxels": 112721920
+}

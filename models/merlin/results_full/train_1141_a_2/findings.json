@@ -1,0 +1,23 @@
+{
+  "name": "train_1141_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    174
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the minor fissure of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1567
+  },
+  "embedding_norm": 16.72292709350586,
+  "mask_active_voxels": 45613056
+}

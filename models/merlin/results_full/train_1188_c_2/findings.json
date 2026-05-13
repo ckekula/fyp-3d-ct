@@ -1,0 +1,29 @@
+{
+  "name": "train_1188_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    246
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear band of atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Nodular appearance at the anteromedial lateral segment junction of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 7241,
+    "1": 8024
+  },
+  "embedding_norm": 16.937694549560547,
+  "mask_active_voxels": 64487424
+}

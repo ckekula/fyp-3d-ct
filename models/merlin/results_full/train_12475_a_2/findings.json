@@ -1,0 +1,35 @@
+{
+  "name": "train_12475_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear subsegmental atelectasis in the superior segment of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear subsegmental atelectasis in the inferior lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear subsegmental atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 1887,
+    "1": 3458,
+    "2": 2906
+  },
+  "embedding_norm": 17.068906784057617,
+  "mask_active_voxels": 62128128
+}

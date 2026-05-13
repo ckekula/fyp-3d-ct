@@ -1,0 +1,29 @@
+{
+  "name": "train_2254_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    161
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atypical infiltrative areas in the form of ground glass nodules in the upper and lower lobes of both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear area of subsegmental atelectasis in the lateral segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 21905,
+    "1": 6882
+  },
+  "embedding_norm": 16.40448760986328,
+  "mask_active_voxels": 42205184
+}

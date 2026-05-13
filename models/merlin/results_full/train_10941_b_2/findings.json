@@ -1,0 +1,29 @@
+{
+  "name": "train_10941_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    311
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased pleuroparenchymal density consistent with scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 14760,
+    "1": 857
+  },
+  "embedding_norm": 17.169273376464844,
+  "mask_active_voxels": 81526784
+}

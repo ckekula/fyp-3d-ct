@@ -1,0 +1,29 @@
+{
+  "name": "train_5726_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    412
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in both lungs, more prominent in the lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 7718,
+    "1": 4940
+  },
+  "embedding_norm": 17.486255645751953,
+  "mask_active_voxels": 108003328
+}

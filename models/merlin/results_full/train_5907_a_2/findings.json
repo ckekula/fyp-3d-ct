@@ -1,0 +1,29 @@
+{
+  "name": "train_5907_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two nonspecific nodules, each measuring 4 mm, in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Two nonspecific nodules, each measuring 4 mm, in the superior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 239,
+    "1": 556
+  },
+  "embedding_norm": 17.578306198120117,
+  "mask_active_voxels": 120061952
+}

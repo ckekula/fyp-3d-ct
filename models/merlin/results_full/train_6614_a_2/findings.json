@@ -1,0 +1,29 @@
+{
+  "name": "train_6614_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    221
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleuroparenchymal scarring in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1372,
+    "1": 9076
+  },
+  "embedding_norm": 17.00130271911621,
+  "mask_active_voxels": 57933824
+}

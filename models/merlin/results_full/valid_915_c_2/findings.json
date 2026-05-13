@@ -1,0 +1,23 @@
+{
+  "name": "valid_915_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    501
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter indeterminate nodule in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 534
+  },
+  "embedding_norm": 17.488950729370117,
+  "mask_active_voxels": 131334144
+}

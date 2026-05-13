@@ -1,0 +1,26 @@
+[
+  {
+    "name": "train_2014_a_1.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 15.69 GiB. GPU 0 has a total capacity of 31.36 GiB of which 12.12 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 18.27 GiB memory in use. Of the allocated memory 17.68 GiB is allocated by PyTorch, and 17.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "name": "train_1237_a_1.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 14.44 GiB. GPU 0 has a total capacity of 31.36 GiB of which 13.43 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 16.95 GiB memory in use. Of the allocated memory 16.35 GiB is allocated by PyTorch, and 17.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "name": "train_3675_a_1.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 15.62 GiB. GPU 0 has a total capacity of 31.36 GiB of which 12.20 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 18.21 GiB memory in use. Of the allocated memory 17.61 GiB is allocated by PyTorch, and 25.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "name": "train_5575_b_1.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 14.69 GiB. GPU 0 has a total capacity of 31.36 GiB of which 13.21 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 17.22 GiB memory in use. Of the allocated memory 16.62 GiB is allocated by PyTorch, and 25.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "name": "train_298_a_2.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 14.22 GiB. GPU 0 has a total capacity of 31.36 GiB of which 13.71 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 16.73 GiB memory in use. Of the allocated memory 16.12 GiB is allocated by PyTorch, and 35.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "name": "valid_437_b_2.nii.gz",
+    "error": "error: CUDA out of memory. Tried to allocate 15.70 GiB. GPU 0 has a total capacity of 31.36 GiB of which 12.13 GiB is free. Process 101550 has 26.09 MiB memory in use. Including non-PyTorch memory, this process has 18.29 GiB memory in use. Of the allocated memory 17.69 GiB is allocated by PyTorch, and 20.80 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  }
+]

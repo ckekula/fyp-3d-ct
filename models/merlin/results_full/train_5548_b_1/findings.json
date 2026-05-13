@@ -1,0 +1,29 @@
+{
+  "name": "train_5548_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibroatelectasis at the apices of both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Associated pleural thickening at the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2e"
+  },
+  "pixels": {
+    "0": 17662,
+    "1": 2028
+  },
+  "embedding_norm": 17.129465103149414,
+  "mask_active_voxels": 66584576
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_8070_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Newly emerging nodular ground-glass opacities in the right upper lung lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy areas of consolidation in the right upper lung lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Areas of linear-subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Bilateral tubular bronchiectasis",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Stable right pleural effusion",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2a",
+    "3": "1b",
+    "4": "2e"
+  },
+  "pixels": {
+    "0": 30164,
+    "1": 3423,
+    "2": 17663,
+    "3": 5420,
+    "4": 281550
+  },
+  "embedding_norm": 17.18135643005371,
+  "mask_active_voxels": 70778880
+}

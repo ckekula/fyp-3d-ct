@@ -1,0 +1,23 @@
+{
+  "name": "valid_346_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    473
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 1234812
+  },
+  "embedding_norm": 17.593530654907227,
+  "mask_active_voxels": 123994112
+}

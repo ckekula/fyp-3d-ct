@@ -1,0 +1,29 @@
+{
+  "name": "train_6418_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear fibrotic band densities in the apical parts of the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 292,
+    "1": 669
+  },
+  "embedding_norm": 17.200864791870117,
+  "mask_active_voxels": 88866816
+}

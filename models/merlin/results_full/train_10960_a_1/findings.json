@@ -1,0 +1,29 @@
+{
+  "name": "train_10960_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    343
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodule measuring 1.5 mm in the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodule in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 32,
+    "1": 32
+  },
+  "embedding_norm": 17.24786376953125,
+  "mask_active_voxels": 89915392
+}

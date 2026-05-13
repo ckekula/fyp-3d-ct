@@ -1,0 +1,23 @@
+{
+  "name": "train_456_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peripheral subpleural nodular ground glass opacities within the lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 188571
+  },
+  "embedding_norm": 17.588756561279297,
+  "mask_active_voxels": 133431296
+}

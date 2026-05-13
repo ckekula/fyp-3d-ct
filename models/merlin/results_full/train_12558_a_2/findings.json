@@ -1,0 +1,47 @@
+{
+  "name": "train_12558_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of increased density consistent with consolidation in the posterobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Areas of increased density consistent with consolidation in the superior segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Areas of increased density consistent with consolidation in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Areas of increased density consistent with consolidation in the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Several nonspecific nodules in both lungs, the largest measuring 4 mm in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1633,
+    "1": 728,
+    "2": 3255,
+    "3": 2949,
+    "4": 1455
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

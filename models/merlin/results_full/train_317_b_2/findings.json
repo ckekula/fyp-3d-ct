@@ -1,0 +1,23 @@
+{
+  "name": "train_317_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral mild pleural effusion",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e"
+  },
+  "pixels": {
+    "0": 50691
+  },
+  "embedding_norm": 17.444198608398438,
+  "mask_active_voxels": 119275520
+}

@@ -1,0 +1,29 @@
+{
+  "name": "valid_626_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    487
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Paraseptal emphysematous changes at the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic parenchymal changes at the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 2695,
+    "1": 3511
+  },
+  "embedding_norm": 17.479124069213867,
+  "mask_active_voxels": 127664128
+}

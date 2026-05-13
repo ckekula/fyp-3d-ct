@@ -1,0 +1,41 @@
+{
+  "name": "valid_676_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    207
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pulmonary nodules",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest pleural-based nodule measuring approximately 5x4.5 mm in the left lower lobe posterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest pleural-based nodule measuring approximately 7x3 mm in the right lower lobe posterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 1354,
+    "1": 605,
+    "2": 1165,
+    "3": 87903
+  },
+  "embedding_norm": 16.91851806640625,
+  "mask_active_voxels": 54263808
+}

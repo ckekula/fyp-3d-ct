@@ -1,0 +1,35 @@
+{
+  "name": "train_11398_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two nonspecific nodules in the middle lobe of the right lung, one measuring 4.5 mm in series 202 image 95",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subpleural nodule measuring 4 mm in size in series 202 image 113 immediately inferior to the first nodule",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Mild retraction of the pleural structures in the right lung, evaluated as sequelae changes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 194,
+    "1": 252,
+    "2": 2428
+  },
+  "embedding_norm": 16.93272590637207,
+  "mask_active_voxels": 53477376
+}

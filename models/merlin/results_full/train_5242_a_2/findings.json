@@ -1,0 +1,23 @@
+{
+  "name": "train_5242_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal mosaic attenuation differences in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 13552
+  },
+  "embedding_norm": 16.784709930419922,
+  "mask_active_voxels": 56098816
+}

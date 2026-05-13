@@ -1,0 +1,23 @@
+{
+  "name": "train_10154_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Compression atelectasis in the anterobasal segment of the left lower lobe due to diaphragmatic elevation",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 34483
+  },
+  "embedding_norm": 17.06658363342285,
+  "mask_active_voxels": 62914560
+}

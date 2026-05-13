@@ -1,0 +1,23 @@
+{
+  "name": "valid_588_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodules in bilateral lower lobe basal segments",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1793
+  },
+  "embedding_norm": 17.587360382080078,
+  "mask_active_voxels": 133431296
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_6249_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    562
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter ground-glass nodules in two foci in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter ground-glass nodules in two foci in the upper lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1056,
+    "1": 267
+  },
+  "embedding_norm": 17.532777786254883,
+  "mask_active_voxels": 147324928
+}

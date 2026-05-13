@@ -1,0 +1,29 @@
+{
+  "name": "train_10510_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    417
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific ground-glass opacities in the lingular segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subsegmental linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 20331,
+    "1": 5159
+  },
+  "embedding_norm": 17.36717414855957,
+  "mask_active_voxels": 109314048
+}

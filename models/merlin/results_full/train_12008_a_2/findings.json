@@ -1,0 +1,29 @@
+{
+  "name": "train_12008_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear subsegmental atelectasis in the mediobasal part of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Calcified pulmonary nodule in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 17069,
+    "1": 203
+  },
+  "embedding_norm": 16.922300338745117,
+  "mask_active_voxels": 54001664
+}

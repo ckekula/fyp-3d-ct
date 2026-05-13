@@ -1,0 +1,29 @@
+{
+  "name": "train_1268_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    404
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring changes in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 13197,
+    "1": 1884
+  },
+  "embedding_norm": 17.330265045166016,
+  "mask_active_voxels": 105906176
+}

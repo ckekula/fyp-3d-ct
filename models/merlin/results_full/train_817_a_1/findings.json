@@ -1,0 +1,29 @@
+{
+  "name": "train_817_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    343
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral ground glass opacities with superimposed dilated vascular structures",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral linear atelectasis",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 274378,
+    "1": 79631
+  },
+  "embedding_norm": 17.247652053833008,
+  "mask_active_voxels": 89915392
+}

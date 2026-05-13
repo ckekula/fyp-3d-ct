@@ -1,0 +1,53 @@
+{
+  "name": "train_1542_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    277
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion extending towards the fissure and locally loculated",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal air in the left pleural space",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Thin-walled cavitary lesion measuring approximately 5.5x6.5 cm in the basal segments of the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Consolidated lung segments in the left lung, especially in the lower lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Consolidations and ground-glass opacities in the posterobasal and laterobasal segments of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Minimal pleural effusion on the right, measuring 1.8 cm at its thickest point",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2g",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2e"
+  },
+  "pixels": {
+    "0": 9239,
+    "1": 7410,
+    "2": 72215,
+    "3": 26775,
+    "4": 122696,
+    "5": 58480
+  },
+  "embedding_norm": 17.05830955505371,
+  "mask_active_voxels": 72613888
+}

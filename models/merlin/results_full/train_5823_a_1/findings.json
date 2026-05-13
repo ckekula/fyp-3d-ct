@@ -1,0 +1,35 @@
+{
+  "name": "train_5823_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    297
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass opacities accompanied by minimal interlobular septal thickening",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 57867,
+    "1": 4215,
+    "2": 2861
+  },
+  "embedding_norm": 17.331193923950195,
+  "mask_active_voxels": 77856768
+}

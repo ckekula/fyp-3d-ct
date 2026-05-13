@@ -1,0 +1,41 @@
+{
+  "name": "valid_1219_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    261
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Irregularly circumscribed patchy-nodular consolidations with air bronchograms in all segments of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Irregularly circumscribed patchy-nodular consolidations with air bronchograms in the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Largest consolidation area in the basal region of the right lower lobe, measuring 102x36 mm",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground-glass halo surrounding some of the consolidations",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 9911,
+    "1": 23390,
+    "2": 334057,
+    "3": 20157
+  },
+  "embedding_norm": 17.001277923583984,
+  "mask_active_voxels": 68419584
+}

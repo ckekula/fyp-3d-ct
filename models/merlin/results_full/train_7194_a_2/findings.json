@@ -1,0 +1,29 @@
+{
+  "name": "train_7194_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in both lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 703,
+    "1": 9757
+  },
+  "embedding_norm": 17.506223678588867,
+  "mask_active_voxels": 111935488
+}

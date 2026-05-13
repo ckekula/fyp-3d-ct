@@ -1,0 +1,35 @@
+{
+  "name": "train_2421_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 2175,
+    "1": 12353,
+    "2": 7773
+  },
+  "embedding_norm": 17.01837158203125,
+  "mask_active_voxels": 117964800
+}

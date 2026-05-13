@@ -1,0 +1,23 @@
+{
+  "name": "train_10118_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    358
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass opacities in the bilateral lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 464431
+  },
+  "embedding_norm": 17.27132225036621,
+  "mask_active_voxels": 93847552
+}

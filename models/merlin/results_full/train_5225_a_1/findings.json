@@ -1,0 +1,29 @@
+{
+  "name": "train_5225_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the middle lobe on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear density in the left lung at the posterobasal level of the lower lobe, possibly scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1025,
+    "1": 901
+  },
+  "embedding_norm": 17.117170333862305,
+  "mask_active_voxels": 80478208
+}

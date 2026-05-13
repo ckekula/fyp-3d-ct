@@ -1,0 +1,35 @@
+{
+  "name": "train_6192_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered and patchy ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "More prominent ground glass opacities in the left lung and subpleural area",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear area of atelectasis in the lower lobe of the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 963,
+    "1": 776,
+    "2": 423
+  },
+  "embedding_norm": 17.409189224243164,
+  "mask_active_voxels": 114819072
+}

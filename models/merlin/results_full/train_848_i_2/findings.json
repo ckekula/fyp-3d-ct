@@ -1,0 +1,29 @@
+{
+  "name": "train_848_i_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    286
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchial wall thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pulmonary fibrosis in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 235616,
+    "1": 17998
+  },
+  "embedding_norm": 17.230133056640625,
+  "mask_active_voxels": 74973184
+}

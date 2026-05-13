@@ -1,0 +1,29 @@
+{
+  "name": "valid_509_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    491
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two subcentimeter nodules at the level of the lingular segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Scattered subcentimeter calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 165,
+    "1": 783
+  },
+  "embedding_norm": 17.576854705810547,
+  "mask_active_voxels": 128712704
+}

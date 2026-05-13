@@ -1,0 +1,35 @@
+{
+  "name": "train_5947_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    468
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear passive atelectatic changes in the mediobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear passive atelectatic changes in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased pleuroparenchymal densities in both lung apical segments",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 1500,
+    "1": 3911,
+    "2": 1230
+  },
+  "embedding_norm": 17.42582130432129,
+  "mask_active_voxels": 122683392
+}

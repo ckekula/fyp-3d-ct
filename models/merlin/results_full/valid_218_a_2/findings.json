@@ -1,0 +1,47 @@
+{
+  "name": "valid_218_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    537
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse centriacinar nodular infiltrates of ground glass density in the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Tree-in-bud opacities in the left lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Consolidation in the anterior segment of the upper lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidation in the paracardiac area of the left lung",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Bilateral subpleural nodules, each measuring less than 5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1e",
+    "2": "2b",
+    "3": "2b",
+    "4": "1e"
+  },
+  "pixels": {
+    "0": 105713,
+    "1": 28034,
+    "2": 31259,
+    "3": 20958,
+    "4": 461
+  },
+  "embedding_norm": 17.64349937438965,
+  "mask_active_voxels": 140771328
+}

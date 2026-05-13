@@ -1,0 +1,53 @@
+{
+  "name": "train_357_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    260
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild ectasia within bronchial structures of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening centrally within bronchial structures of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the inferior lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subsegmental atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Several subcentimeter nodules within both lungs",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Calcifications within some nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1a",
+    "2": "2b",
+    "3": "2b",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 28284,
+    "1": 28284,
+    "2": 56332,
+    "3": 16918,
+    "4": 369,
+    "5": 369
+  },
+  "embedding_norm": 16.955469131469727,
+  "mask_active_voxels": 68157440
+}

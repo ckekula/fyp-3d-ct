@@ -1,0 +1,23 @@
+{
+  "name": "train_11910_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    315
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic density in the apical segment of the right upper lobe, consistent with scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 2202
+  },
+  "embedding_norm": 17.318288803100586,
+  "mask_active_voxels": 82575360
+}

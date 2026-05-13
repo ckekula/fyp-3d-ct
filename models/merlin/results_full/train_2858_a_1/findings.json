@@ -1,0 +1,53 @@
+{
+  "name": "train_2858_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    225
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Coarse plaque-like pleural thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral lung parenchyma and peribronchial dominant ground glass densities/consolidations in the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Interlobular septal thickenings in the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Crazy paving pattern in the right lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Predominant ground glass densities/consolidations in peripheral lung parenchyma",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Crazy paving appearances in both lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1d",
+    "3": "2g",
+    "4": "2b",
+    "5": "2g"
+  },
+  "pixels": {
+    "0": 33178,
+    "1": 148557,
+    "2": 175669,
+    "3": 73974,
+    "4": 14860,
+    "5": 289414
+  },
+  "embedding_norm": 17.138906478881836,
+  "mask_active_voxels": 132710400
+}

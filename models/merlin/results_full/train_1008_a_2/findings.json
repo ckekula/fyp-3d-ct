@@ -1,0 +1,29 @@
+{
+  "name": "train_1008_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 277,
+    "1": 334
+  },
+  "embedding_norm": 17.556774139404297,
+  "mask_active_voxels": 125304832
+}

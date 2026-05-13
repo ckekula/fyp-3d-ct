@@ -1,0 +1,41 @@
+{
+  "name": "train_5818_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    483
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion measuring 7.0 cm at its thickest point on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the lower lobes of both lungs adjacent to the pleural effusion",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Interlobular septal thickening in both lungs, more prominently in the upper lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Ground-glass opacities in both lungs, more prominently in the upper lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1d",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 1314120,
+    "1": 30822,
+    "2": 45797,
+    "3": 52683
+  },
+  "embedding_norm": 17.44614601135254,
+  "mask_active_voxels": 126615552
+}

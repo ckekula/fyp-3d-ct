@@ -1,0 +1,35 @@
+{
+  "name": "train_1854_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodule in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "5 mm nodule in the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Bilateral subcentimeter nonspecific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 811,
+    "1": 1021,
+    "2": 1029
+  },
+  "embedding_norm": 17.543432235717773,
+  "mask_active_voxels": 111673344
+}

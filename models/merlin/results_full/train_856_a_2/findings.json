@@ -1,0 +1,65 @@
+{
+  "name": "train_856_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    432
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Patchy interlobular septal and interstitial thickenings in the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mild architectural distortion and volume loss in the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Absence of previously noted primary mass in the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Post-inflammatory scarring in the right lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Mild bronchiectasis and peribronchial thickening in the central part of the left lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Stable 14 mm nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1d",
+    "2": "2a",
+    "3": "2d",
+    "4": "2a",
+    "5": "1b",
+    "6": "1c",
+    "7": "2d"
+  },
+  "pixels": {
+    "0": 18588,
+    "1": 42777,
+    "2": 109847,
+    "3": 91259,
+    "4": 74261,
+    "5": 64554,
+    "6": 72944,
+    "7": 5393
+  },
+  "embedding_norm": 17.50008773803711,
+  "mask_active_voxels": 113246208
+}

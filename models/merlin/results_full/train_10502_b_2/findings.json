@@ -1,0 +1,23 @@
+{
+  "name": "train_10502_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    499
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 3021
+  },
+  "embedding_norm": 17.464691162109375,
+  "mask_active_voxels": 130809856
+}

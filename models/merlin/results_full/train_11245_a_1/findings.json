@@ -1,0 +1,41 @@
+{
+  "name": "train_11245_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    272
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodule in the laterobasal segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "2-3 mm subpleural nodule in the anterobasal segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 95,
+    "1": 31,
+    "2": 1303,
+    "3": 4020
+  },
+  "embedding_norm": 17.18011474609375,
+  "mask_active_voxels": 71303168
+}

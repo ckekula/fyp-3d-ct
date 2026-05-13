@@ -1,0 +1,23 @@
+{
+  "name": "train_8093_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    325
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the anterobasal segment of the left lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 888
+  },
+  "embedding_norm": 17.198057174682617,
+  "mask_active_voxels": 85196800
+}

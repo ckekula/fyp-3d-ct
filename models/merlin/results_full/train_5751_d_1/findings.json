@@ -1,0 +1,23 @@
+{
+  "name": "train_5751_d_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of increased density consistent with pleuroparenchymal scarring in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 16165
+  },
+  "embedding_norm": 17.15506362915039,
+  "mask_active_voxels": 143917056
+}

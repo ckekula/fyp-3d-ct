@@ -1,0 +1,41 @@
+{
+  "name": "train_11377_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    221
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2 mm nodule in the anterior subpleural area of the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "5x2 mm nodule superimposed on the minor fissure",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "2 mm nodule in the anterior subpleural area of the anterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "2 mm nodule in the lateral subpleural area",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 154,
+    "1": 256,
+    "2": 165,
+    "3": 152
+  },
+  "embedding_norm": 17.305347442626953,
+  "mask_active_voxels": 130351104
+}

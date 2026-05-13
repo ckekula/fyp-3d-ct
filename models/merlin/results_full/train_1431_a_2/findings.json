@@ -1,0 +1,35 @@
+{
+  "name": "train_1431_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    498
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located ground glass opacities in the upper and lower lobes of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peripherally located ground glass opacities in the upper and middle lobes of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground glass opacities are more prominent in the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 145147,
+    "1": 35158,
+    "2": 145147
+  },
+  "embedding_norm": 17.4718017578125,
+  "mask_active_voxels": 130547712
+}

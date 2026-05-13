@@ -1,0 +1,23 @@
+{
+  "name": "valid_1056_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    365
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmental, peripherally weighted, crazy paving nodular ground glass consolidations in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 88544
+  },
+  "embedding_norm": 17.40947723388672,
+  "mask_active_voxels": 95682560
+}

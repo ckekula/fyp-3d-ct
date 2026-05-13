@@ -1,0 +1,29 @@
+{
+  "name": "train_10435_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    350
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the posterobasal segment of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground glass opacities in the lateral part of the middle lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 13278,
+    "1": 7161
+  },
+  "embedding_norm": 17.3775634765625,
+  "mask_active_voxels": 91750400
+}

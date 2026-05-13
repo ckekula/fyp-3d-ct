@@ -1,0 +1,35 @@
+{
+  "name": "train_1591_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear subsegmental atelectasis in the posterobasal segment of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Nonspecific pleural-based nodular lesions",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 26504,
+    "1": 809,
+    "2": 601
+  },
+  "embedding_norm": 17.440095901489258,
+  "mask_active_voxels": 119537664
+}

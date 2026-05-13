@@ -1,0 +1,23 @@
+{
+  "name": "train_12852_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    496
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 1729
+  },
+  "embedding_norm": 17.570789337158203,
+  "mask_active_voxels": 130023424
+}

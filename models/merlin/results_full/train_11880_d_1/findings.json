@@ -1,0 +1,47 @@
+{
+  "name": "train_11880_d_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    319
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation with air bronchogram in the lower lobe of the right lung with surrounding ground-glass opacity",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Centriacinar nodules in the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Thin-walled cavitary lesion measuring approximately 4.0x5.5 cm in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal bronchiectasis in the central part of the right upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1e",
+    "2": "2d",
+    "3": "1b",
+    "4": "1c"
+  },
+  "pixels": {
+    "0": 634769,
+    "1": 866,
+    "2": 93382,
+    "3": 20252,
+    "4": 77410
+  },
+  "embedding_norm": 17.308956146240234,
+  "mask_active_voxels": 83623936
+}

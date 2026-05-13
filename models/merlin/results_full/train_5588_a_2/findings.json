@@ -1,0 +1,23 @@
+{
+  "name": "train_5588_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified pulmonary nodules in both lungs consistent with sequelae",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 295
+  },
+  "embedding_norm": 17.000120162963867,
+  "mask_active_voxels": 58195968
+}

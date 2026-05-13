@@ -1,0 +1,29 @@
+{
+  "name": "train_5221_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    217
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density consistent with scarring in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter air cysts in the upper lobe and lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 4371,
+    "1": 7896
+  },
+  "embedding_norm": 17.079580307006836,
+  "mask_active_voxels": 56885248
+}

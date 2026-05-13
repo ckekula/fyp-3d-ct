@@ -1,0 +1,47 @@
+{
+  "name": "train_877_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thickening of the pleura with calcified foci",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nodular thickening at the major fissure, measuring 2.5 cm at its thickest point",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic changes in the inferior lingular segment and superior segment of the left lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Paraseptal emphysematous changes at the apices of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Multiple calcified and subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2a",
+    "3": "1c",
+    "4": "1e"
+  },
+  "pixels": {
+    "0": 94949,
+    "1": 828292,
+    "2": 20532,
+    "3": 29652,
+    "4": 877
+  },
+  "embedding_norm": 17.471004486083984,
+  "mask_active_voxels": 127401984
+}

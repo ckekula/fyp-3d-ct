@@ -1,0 +1,47 @@
+{
+  "name": "train_7763_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    251
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectasis in both lungs, particularly in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening in both lungs, particularly in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground-glass densities around the peribronchial thickenings, especially in the lower part of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Ground-glass densities in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Focal ground-glass opacity in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2c",
+    "3": "2c",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 8071,
+    "1": 1247,
+    "2": 5343,
+    "3": 975,
+    "4": 249
+  },
+  "embedding_norm": 17.138032913208008,
+  "mask_active_voxels": 65798144
+}

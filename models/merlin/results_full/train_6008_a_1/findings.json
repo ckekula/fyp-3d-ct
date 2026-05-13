@@ -1,0 +1,23 @@
+{
+  "name": "train_6008_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    198
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Parenchymal ground-glass opacity in the middle zone of the right lung, measuring 12 mm by 5 mm",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 2515
+  },
+  "embedding_norm": 16.688547134399414,
+  "mask_active_voxels": 51904512
+}

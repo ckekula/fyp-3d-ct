@@ -1,0 +1,35 @@
+{
+  "name": "train_7656_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Structural distortion in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring with cicatricial bronchiectasis in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Area of increased density consistent with linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2h",
+    "1": "1b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 7268,
+    "1": 3443,
+    "2": 4724
+  },
+  "embedding_norm": 17.44586181640625,
+  "mask_active_voxels": 126877696
+}

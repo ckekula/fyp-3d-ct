@@ -1,0 +1,29 @@
+{
+  "name": "train_2127_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    262
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules up to 3 mm in the posterobasal segments of both lower lobes",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground-glass nodular densities in the posterobasal segments of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 925,
+    "1": 109895
+  },
+  "embedding_norm": 17.301233291625977,
+  "mask_active_voxels": 154533888
+}

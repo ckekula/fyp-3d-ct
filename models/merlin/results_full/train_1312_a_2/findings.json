@@ -1,0 +1,35 @@
+{
+  "name": "train_1312_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    446
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground glass opacities more pronounced in peripheral areas",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Enlarged veins in some areas of the lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 126274,
+    "1": 126274,
+    "2": 103839
+  },
+  "embedding_norm": 17.524112701416016,
+  "mask_active_voxels": 116916224
+}

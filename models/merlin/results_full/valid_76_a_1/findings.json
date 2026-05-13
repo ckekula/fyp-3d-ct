@@ -1,0 +1,29 @@
+{
+  "name": "valid_76_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    259
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Endobronchiolar prominence in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centriacinar ground-glass nodules in the upper lobes of both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 74458,
+    "1": 13672
+  },
+  "embedding_norm": 17.22218132019043,
+  "mask_active_voxels": 152764416
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_829_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules in lung parenchyma bilaterally, some with calcifications",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 350
+  },
+  "embedding_norm": 17.455665588378906,
+  "mask_active_voxels": 126091264
+}

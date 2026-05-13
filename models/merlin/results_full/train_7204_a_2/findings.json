@@ -1,0 +1,29 @@
+{
+  "name": "train_7204_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    249
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2793,
+    "1": 272
+  },
+  "embedding_norm": 17.1987361907959,
+  "mask_active_voxels": 65273856
+}

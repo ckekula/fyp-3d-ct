@@ -1,0 +1,29 @@
+{
+  "name": "train_619_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    489
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass opacities in the lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation in the lungs, predominantly in the lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 252001,
+    "1": 215190
+  },
+  "embedding_norm": 17.606792449951172,
+  "mask_active_voxels": 128188416
+}

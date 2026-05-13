@@ -1,0 +1,71 @@
+{
+  "name": "valid_644_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    318
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysema in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Band atelectasis in the anterior segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the lingula",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Linear atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Linear atelectasis in the anterior segment of the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "5": {
+      "text": "Linear atelectasis in the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "6": {
+      "text": "Mild bronchial wall thickening",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Minimal increased reticular densities in peribronchial regions",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Multiple nodules in both lungs, largest measuring up to 4.5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2b",
+    "3": "2a",
+    "4": "2a",
+    "5": "2a",
+    "6": "1a",
+    "7": "1d",
+    "8": "2d"
+  },
+  "pixels": {
+    "0": 101242,
+    "1": 37822,
+    "2": 37822,
+    "3": 8086,
+    "4": 8372,
+    "5": 7402,
+    "6": 154962,
+    "7": 34121,
+    "8": 310
+  },
+  "embedding_norm": 17.311124801635742,
+  "mask_active_voxels": 83361792
+}

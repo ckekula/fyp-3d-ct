@@ -1,0 +1,23 @@
+{
+  "name": "train_2244_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter parenchymal nodule with linear fibrotic changes in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1168
+  },
+  "embedding_norm": 17.587276458740234,
+  "mask_active_voxels": 133431296
+}

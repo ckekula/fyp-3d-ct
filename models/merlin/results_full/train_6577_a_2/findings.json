@@ -1,0 +1,23 @@
+{
+  "name": "train_6577_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    283
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "7 mm nodule in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 348
+  },
+  "embedding_norm": 17.23806381225586,
+  "mask_active_voxels": 74186752
+}

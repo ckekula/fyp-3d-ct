@@ -1,0 +1,29 @@
+{
+  "name": "train_5632_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    319
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectatic changes in the lung parenchyma, more prominent on the left, in the lower lobe basal segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Slight patchy ground-glass densities in the lower lobe basal segments of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 4162,
+    "1": 6715
+  },
+  "embedding_norm": 17.309064865112305,
+  "mask_active_voxels": 83623936
+}

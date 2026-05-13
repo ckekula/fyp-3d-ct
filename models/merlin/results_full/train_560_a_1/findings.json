@@ -1,0 +1,47 @@
+{
+  "name": "train_560_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral multilobar lower lobes with patchy ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Interspersed areas of consolidation in bilateral multilobar lower lobes",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Interlobular septal thickening in bilateral multilobar lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Diffuse lower lobar fibrosis in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Atelectasis in lower lobes of both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "1d",
+    "3": "2a",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 10489,
+    "1": 7095,
+    "2": 7095,
+    "3": 9758,
+    "4": 5245
+  },
+  "embedding_norm": 16.882104873657227,
+  "mask_active_voxels": 60555264
+}

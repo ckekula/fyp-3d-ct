@@ -1,0 +1,47 @@
+{
+  "name": "valid_377_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    249
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse reticulonodular scarring in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased fibrotic density in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of paraseptal emphysema in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Paramediastinal bulla in the upper lobe of the left lung, 3.3 cm in diameter",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subpleural nodule in the laterobasal segment of the lower lobe of the left lung, 7.5x5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1c",
+    "3": "2h",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 36794,
+    "1": 36794,
+    "2": 20438,
+    "3": 20438,
+    "4": 775
+  },
+  "embedding_norm": 17.198925018310547,
+  "mask_active_voxels": 65273856
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_10001_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    308
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in all lobes of both lung parenchyma, predominantly posterior and subpleural",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "2 mm nonspecific nodule in the anterior upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 132668,
+    "1": 67
+  },
+  "embedding_norm": 17.11724281311035,
+  "mask_active_voxels": 80740352
+}

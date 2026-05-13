@@ -1,0 +1,41 @@
+{
+  "name": "train_2913_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    443
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of pneumonic infiltration in the lower lobes of both lungs, more prominent on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Halo sign observed",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Parenchymal nodular involvement in the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodule in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 517048,
+    "1": 1273,
+    "2": 2053,
+    "3": 883
+  },
+  "embedding_norm": 17.528017044067383,
+  "mask_active_voxels": 116129792
+}

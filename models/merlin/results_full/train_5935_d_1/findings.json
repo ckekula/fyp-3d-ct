@@ -1,0 +1,41 @@
+{
+  "name": "train_5935_d_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    515
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the inferior subsegment of the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Nodules in both lungs, some with irregular borders",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 13233,
+    "1": 5172,
+    "2": 12457,
+    "3": 2845
+  },
+  "embedding_norm": 17.477901458740234,
+  "mask_active_voxels": 135004160
+}

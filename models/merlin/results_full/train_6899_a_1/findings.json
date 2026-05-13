@@ -1,0 +1,59 @@
+{
+  "name": "train_6899_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    316
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural ground-glass opacities in the upper lobe posterior segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subpleural ground-glass opacities in the anterior segment of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subpleural ground-glass opacities most prominent in the posterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Minimal honeycomb appearances within ground-glass opacities in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "4.5 mm nonspecific nodule adjacent to the major fissure in the upper lobe posterior segment of the left lung",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Thickening of the bronchial walls in the anterior segments of both upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c",
+    "4": "2f",
+    "5": "2d",
+    "6": "1a"
+  },
+  "pixels": {
+    "0": 4972,
+    "1": 6059,
+    "2": 3473,
+    "3": 3297,
+    "4": 18367,
+    "5": 229,
+    "6": 752
+  },
+  "embedding_norm": 17.318161010742188,
+  "mask_active_voxels": 82837504
+}

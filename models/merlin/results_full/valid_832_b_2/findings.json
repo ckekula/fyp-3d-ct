@@ -1,0 +1,65 @@
+{
+  "name": "valid_832_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    519
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchial ectasia within both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Consolidations in the left lower lobe anteromedial segment",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Consolidations in the left lower lobe posterior segment",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidations in the left lower lobe lateral segment",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Centrilobular nodular ground glass opacities in the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Centrilobular nodular ground glass opacities in the inferior lingular segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Centrilobular nodular ground glass opacities in the posterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "7": {
+      "text": "Centrilobular nodular ground glass opacities in the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "1e",
+    "5": "1e",
+    "6": "1e",
+    "7": "1e"
+  },
+  "pixels": {
+    "0": 130890,
+    "1": 17409,
+    "2": 9614,
+    "3": 14547,
+    "4": 2202,
+    "5": 6392,
+    "6": 3137,
+    "7": 4184
+  },
+  "embedding_norm": 17.508485794067383,
+  "mask_active_voxels": 136052736
+}

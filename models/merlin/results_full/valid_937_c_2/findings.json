@@ -1,0 +1,29 @@
+{
+  "name": "valid_937_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    552
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation with a semisolid appearance in the anterior segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Mild regression in previously noted infiltrates within the posterobasal segments of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 12516,
+    "1": 50900
+  },
+  "embedding_norm": 17.5388240814209,
+  "mask_active_voxels": 144703488
+}

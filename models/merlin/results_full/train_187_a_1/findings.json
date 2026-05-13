@@ -1,0 +1,41 @@
+{
+  "name": "train_187_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodules with a tree-in-bud appearance in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground glass opacities in the lateral segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Centriacinar nodules with a tree-in-bud appearance in the anteromedial basal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Ground glass opacities in the anteromedial basal segment of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c",
+    "2": "1e",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 37841,
+    "1": 48998,
+    "2": 37079,
+    "3": 37079
+  },
+  "embedding_norm": 17.229246139526367,
+  "mask_active_voxels": 122683392
+}

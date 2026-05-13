@@ -1,0 +1,41 @@
+{
+  "name": "valid_542_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    439
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased densities in the peripheral lung tissue with a halo sign",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Occasional ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Calcified nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 63936,
+    "1": 280303,
+    "2": 62955,
+    "3": 2985
+  },
+  "embedding_norm": 17.4184513092041,
+  "mask_active_voxels": 115081216
+}

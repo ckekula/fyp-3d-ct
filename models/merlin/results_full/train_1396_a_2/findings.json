@@ -1,0 +1,71 @@
+{
+  "name": "train_1396_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    395
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Area of increased density consistent with consolidation in the right lung upper lobe posterior segment",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Air bronchograms in the right lung upper lobe posterior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Air bronchograms in the right lung lower lobe superior segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Vaguely circumscribed ground glass densities in the left lung upper lobe anterior segment",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Vaguely circumscribed ground glass densities in the left lung apicoposterior segment",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Vaguely circumscribed ground glass densities in the right lung middle lobe medial segment",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Vaguely circumscribed ground glass densities in the right lung lower lobe superior segment",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Nodules evaluated in favor of consolidation areas",
+      "category": "Lung Nodule"
+    },
+    "8": {
+      "text": "Emphysematous changes in both lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c",
+    "4": "2c",
+    "5": "2c",
+    "6": "2c",
+    "7": "2b",
+    "8": "1c"
+  },
+  "pixels": {
+    "0": 191545,
+    "1": 59275,
+    "2": 104325,
+    "3": 17967,
+    "4": 17650,
+    "5": 8456,
+    "6": 104325,
+    "7": 1943,
+    "8": 957226
+  },
+  "embedding_norm": 17.463682174682617,
+  "mask_active_voxels": 103546880
+}

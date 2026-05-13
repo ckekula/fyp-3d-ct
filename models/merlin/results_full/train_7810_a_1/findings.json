@@ -1,0 +1,29 @@
+{
+  "name": "train_7810_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Area of consolidation approximately 3 cm in size with air bronchograms in the anterobasal segment of the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Two foci of ground glass opacity in the lower lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 7357,
+    "1": 369
+  },
+  "embedding_norm": 16.782718658447266,
+  "mask_active_voxels": 56098816
+}

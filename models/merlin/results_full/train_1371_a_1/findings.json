@@ -1,0 +1,23 @@
+{
+  "name": "train_1371_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    197
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of patchy ground-glass opacity bilaterally distributed in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 43047
+  },
+  "embedding_norm": 17.013471603393555,
+  "mask_active_voxels": 116195328
+}

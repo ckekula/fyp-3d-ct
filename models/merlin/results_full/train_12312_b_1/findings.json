@@ -1,0 +1,41 @@
+{
+  "name": "train_12312_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    326
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass opacities in the lower lobes of both lungs, predominantly subpleural with more consolidation centrally",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Prominent central bronchiectatic changes in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal emphysematous appearance in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1a",
+    "2": "1b",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 991695,
+    "1": 30731,
+    "2": 30731,
+    "3": 8405
+  },
+  "embedding_norm": 17.197290420532227,
+  "mask_active_voxels": 85458944
+}

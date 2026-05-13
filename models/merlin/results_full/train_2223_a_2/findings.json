@@ -1,0 +1,53 @@
+{
+  "name": "train_2223_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    253
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild ectasia in the bronchial structures of both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse peribronchial thickening in the bronchial structures of both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of increased density in the peribronchial area of the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Indistinct ground glass opacity in the peribronchial area of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Consolidation in the peribronchial area of the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Tree-in-bud appearance in the peribronchial area of the lower lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1a",
+    "2": "2a",
+    "3": "2c",
+    "4": "2b",
+    "5": "1e"
+  },
+  "pixels": {
+    "0": 68258,
+    "1": 68258,
+    "2": 365801,
+    "3": 365801,
+    "4": 365801,
+    "5": 459005
+  },
+  "embedding_norm": 17.130542755126953,
+  "mask_active_voxels": 66322432
+}

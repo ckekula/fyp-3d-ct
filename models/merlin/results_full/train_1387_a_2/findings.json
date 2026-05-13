@@ -1,0 +1,23 @@
+{
+  "name": "train_1387_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    461
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple metastases in both lungs without any increase in size or number",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 7253
+  },
+  "embedding_norm": 17.540014266967773,
+  "mask_active_voxels": 120848384
+}

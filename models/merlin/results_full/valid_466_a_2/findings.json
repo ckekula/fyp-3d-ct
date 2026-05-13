@@ -1,0 +1,41 @@
+{
+  "name": "valid_466_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central nodules in the upper and lower lobes of the left lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nodular consolidations in the upper and lower lobes of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground glass opacities with a halo sign in the upper and lower lobes of the left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Peripheral nodules in the medial aspect of the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2b",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1288,
+    "1": 19206,
+    "2": 30426,
+    "3": 4009
+  },
+  "embedding_norm": 17.578369140625,
+  "mask_active_voxels": 120061952
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_12224_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring at the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "6.5 mm diameter nodule in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 8446,
+    "1": 213
+  },
+  "embedding_norm": 16.83211898803711,
+  "mask_active_voxels": 59244544
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_1098_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Associated atelectasis in both lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 34024
+  },
+  "embedding_norm": 17.507043838500977,
+  "mask_active_voxels": 111935488
+}

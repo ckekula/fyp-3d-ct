@@ -1,0 +1,47 @@
+{
+  "name": "train_5472_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    453
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion measuring 2.7 cm at its thickest part in the left hemithorax",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural effusion extending into the fissure on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Atelectasis adjacent to the pleural effusion in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Atelectasis in the lingular segment",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Bilateral interlobular septal thickening suggesting mild cardiac edema",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2b",
+    "3": "2b",
+    "4": "1d"
+  },
+  "pixels": {
+    "0": 288482,
+    "1": 288482,
+    "2": 38674,
+    "3": 6429,
+    "4": 688
+  },
+  "embedding_norm": 17.43110466003418,
+  "mask_active_voxels": 118751232
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_767_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    191
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lower lobe posterobasal segments with subsegmental atelectasis",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subcentimeter ground-glass nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 28577,
+    "1": 444
+  },
+  "embedding_norm": 16.827293395996094,
+  "mask_active_voxels": 50069504
+}

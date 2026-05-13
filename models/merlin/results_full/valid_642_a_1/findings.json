@@ -1,0 +1,41 @@
+{
+  "name": "valid_642_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse centriacinar nodular opacities with ill-defined margins bilaterally in the lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Multiple patchy ground-glass nodular opacities in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Multiple patchy ground-glass nodular opacities in the lateral and medial segments of the middle lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Multiple patchy ground-glass nodular opacities in the superior-posterior segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 1254,
+    "1": 14325,
+    "2": 8881,
+    "3": 2502
+  },
+  "embedding_norm": 17.237895965576172,
+  "mask_active_voxels": 120324096
+}

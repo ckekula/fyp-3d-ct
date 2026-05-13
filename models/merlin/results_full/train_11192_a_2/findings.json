@@ -1,0 +1,23 @@
+{
+  "name": "train_11192_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in the anterior upper lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 189
+  },
+  "embedding_norm": 17.587398529052734,
+  "mask_active_voxels": 133431296
+}

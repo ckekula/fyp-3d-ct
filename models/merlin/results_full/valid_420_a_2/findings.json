@@ -1,0 +1,53 @@
+{
+  "name": "valid_420_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    266
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild bronchial ectasia in the central regions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse peribronchial thickening in the upper lobe and inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Diffuse peribronchial thickening in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Fibrotic changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "1a",
+    "3": "2a",
+    "4": "1e",
+    "5": "1e"
+  },
+  "pixels": {
+    "0": 38103,
+    "1": 38103,
+    "2": 71724,
+    "3": 25735,
+    "4": 114,
+    "5": 513
+  },
+  "embedding_norm": 17.24810218811035,
+  "mask_active_voxels": 69730304
+}

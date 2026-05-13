@@ -1,0 +1,29 @@
+{
+  "name": "train_7119_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thickening of the minor fissure on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "3 mm nodule in the lateral basal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 506,
+    "1": 1141
+  },
+  "embedding_norm": 17.440155029296875,
+  "mask_active_voxels": 119537664
+}

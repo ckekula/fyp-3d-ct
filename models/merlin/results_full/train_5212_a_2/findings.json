@@ -1,0 +1,23 @@
+{
+  "name": "train_5212_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "9 mm calcified nodule on the diaphragmatic side of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 985
+  },
+  "embedding_norm": 17.587297439575195,
+  "mask_active_voxels": 133431296
+}

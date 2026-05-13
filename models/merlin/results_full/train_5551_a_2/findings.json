@@ -1,0 +1,53 @@
+{
+  "name": "train_5551_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    483
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fissure-based nodules measuring 11 mm and 3.5 mm in the superior segment of the left lower lobe, possibly intraparenchymal lymph nodes",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Fissure-based nodule measuring 3 mm in the anterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nonspecific nodule measuring 2-3 mm in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nodules measuring 2-3 mm in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Two nodules measuring 5 mm and 6 mm in the middle lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nodules measuring 2-3 mm in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 1324,
+    "1": 136,
+    "2": 154,
+    "3": 207,
+    "4": 313,
+    "5": 145
+  },
+  "embedding_norm": 17.44586181640625,
+  "mask_active_voxels": 126615552
+}

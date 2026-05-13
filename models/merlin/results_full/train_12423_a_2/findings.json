@@ -1,0 +1,29 @@
+{
+  "name": "train_12423_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    442
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal band-like fibrotic changes extending to the pleura in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral ground-glass nodules in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 759,
+    "1": 1397
+  },
+  "embedding_norm": 17.56121826171875,
+  "mask_active_voxels": 115867648
+}

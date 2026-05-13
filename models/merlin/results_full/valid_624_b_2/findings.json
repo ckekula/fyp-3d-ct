@@ -1,0 +1,29 @@
+{
+  "name": "valid_624_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    176
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple round nodular lesions within both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Largest round nodular lesion measuring 9.5x8 mm in posterobasal segment of left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 1102,
+    "1": 2049
+  },
+  "embedding_norm": 16.719558715820312,
+  "mask_active_voxels": 46137344
+}

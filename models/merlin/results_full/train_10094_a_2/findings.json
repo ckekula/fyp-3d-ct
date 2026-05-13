@@ -1,0 +1,29 @@
+{
+  "name": "train_10094_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal consolidation adjacent to the segmental bronchi in the left lower lobe laterobasal segment",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Several nonspecific nodules less than 5 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 798,
+    "1": 512
+  },
+  "embedding_norm": 17.587488174438477,
+  "mask_active_voxels": 133431296
+}

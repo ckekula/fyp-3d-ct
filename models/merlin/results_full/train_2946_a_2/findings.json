@@ -1,0 +1,23 @@
+{
+  "name": "train_2946_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    235
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in both lungs, largest measuring 3 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 100
+  },
+  "embedding_norm": 17.07855796813965,
+  "mask_active_voxels": 61603840
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_5993_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal focal bronchiectasis in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nonspecific nodules measuring 2-3 mm in diameter in the apex and anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Mosaic perfusion in both lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 4570,
+    "1": 255,
+    "2": 8164
+  },
+  "embedding_norm": 17.404342651367188,
+  "mask_active_voxels": 118226944
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_12430_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    443
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Extensive consolidation with air bronchograms in the right lung lower lobe superior segment",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Extensive consolidation with air bronchograms in the right lung lower lobe lateral segment",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Extensive consolidation with air bronchograms in the right lung lower lobe posterobasal segment",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Subcentimeter nodular consolidation areas with a tree-in-bud appearance in the left lung lower lobe posterobasal segment",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "1e"
+  },
+  "pixels": {
+    "0": 505894,
+    "1": 505894,
+    "2": 505894,
+    "3": 8793
+  },
+  "embedding_norm": 17.52773666381836,
+  "mask_active_voxels": 116129792
+}

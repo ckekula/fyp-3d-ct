@@ -1,0 +1,35 @@
+{
+  "name": "train_1624_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    235
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the medial segment of the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Multiple subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 6668,
+    "1": 7983,
+    "2": 798
+  },
+  "embedding_norm": 17.367643356323242,
+  "mask_active_voxels": 138608640
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_668_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    246
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural and nodular, patchy, subcentimeter ground glass opacities in the left lung upper lobe apicoposterior segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subpleural and nodular, patchy, subcentimeter ground glass opacities in the left lung lower lobe superior segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subpleural and nodular, patchy, subcentimeter ground glass opacities in the right lung lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subpleural subcentimeter nodules in the right lung lower lobe parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 11584,
+    "1": 4387,
+    "2": 3357,
+    "3": 519
+  },
+  "embedding_norm": 16.93717384338379,
+  "mask_active_voxels": 64487424
+}

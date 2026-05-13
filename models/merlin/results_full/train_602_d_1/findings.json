@@ -1,0 +1,47 @@
+{
+  "name": "train_602_d_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    323
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Band-like ground-glass opacities in bilateral lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the apicoposterior segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal bronchiectasis in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Parenchymal distortion in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "1b",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 301419,
+    "1": 63039,
+    "2": 63039,
+    "3": 63039,
+    "4": 1521
+  },
+  "embedding_norm": 17.160734176635742,
+  "mask_active_voxels": 84672512
+}

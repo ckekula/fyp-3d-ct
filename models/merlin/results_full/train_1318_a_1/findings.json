@@ -1,0 +1,23 @@
+{
+  "name": "train_1318_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    238
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral subcentimeter non-specific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 182
+  },
+  "embedding_norm": 17.06855583190918,
+  "mask_active_voxels": 62390272
+}

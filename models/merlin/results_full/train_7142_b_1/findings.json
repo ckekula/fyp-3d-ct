@@ -1,0 +1,59 @@
+{
+  "name": "train_7142_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural bands in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Traction bronchiectasis in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Focal thickening in the adjacent pleura",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Calcified pulmonary nodules",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Rare paraseptal emphysema",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b",
+    "2": "2e",
+    "3": "2d",
+    "4": "1e",
+    "5": "1c",
+    "6": "2b"
+  },
+  "pixels": {
+    "0": 6772,
+    "1": 1526,
+    "2": 2967,
+    "3": 418,
+    "4": 240,
+    "5": 1345,
+    "6": 7255
+  },
+  "embedding_norm": 17.14295768737793,
+  "mask_active_voxels": 61341696
+}

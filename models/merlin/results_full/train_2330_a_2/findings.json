@@ -1,0 +1,29 @@
+{
+  "name": "train_2330_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    176
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread calcified pleural plaques with a tendency to coalesce in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 83071,
+    "1": 209922
+  },
+  "embedding_norm": 16.719083786010742,
+  "mask_active_voxels": 46137344
+}

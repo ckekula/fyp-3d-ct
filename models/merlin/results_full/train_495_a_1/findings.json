@@ -1,0 +1,47 @@
+{
+  "name": "train_495_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes within both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multiple subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule measuring approximately 5 mm in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Linear atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2d",
+    "3": "2a",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 197483,
+    "1": 1082,
+    "2": 1685,
+    "3": 15088,
+    "4": 15599
+  },
+  "embedding_norm": 17.229740142822266,
+  "mask_active_voxels": 122683392
+}

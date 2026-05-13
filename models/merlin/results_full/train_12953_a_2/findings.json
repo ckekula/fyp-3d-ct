@@ -1,0 +1,29 @@
+{
+  "name": "train_12953_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    439
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass nodule in the peripheral subpleural area of the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Reticulonodular fibrotic density increases in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 1835,
+    "1": 1175
+  },
+  "embedding_norm": 17.418611526489258,
+  "mask_active_voxels": 115081216
+}

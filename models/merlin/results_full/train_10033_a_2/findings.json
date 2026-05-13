@@ -1,0 +1,29 @@
+{
+  "name": "train_10033_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small paraseptal emphysematous change at the apical level of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Patchy ground glass opacities with a surrounding halo sign in the basal segment of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 203,
+    "1": 7506
+  },
+  "embedding_norm": 17.55655288696289,
+  "mask_active_voxels": 125304832
+}

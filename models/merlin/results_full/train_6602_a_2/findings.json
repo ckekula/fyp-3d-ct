@@ -1,0 +1,59 @@
+{
+  "name": "train_6602_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    453
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Consolidation in the lingular segment of the upper lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities in the lingular segment of the upper lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Tree-in-bud appearances in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Tree-in-bud appearances in the lingular segment of the upper lobe of the left lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Widespread tree-in-bud appearances in the lower lobes of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "2c",
+    "4": "1e",
+    "5": "1e",
+    "6": "1e"
+  },
+  "pixels": {
+    "0": 11920,
+    "1": 8972,
+    "2": 13900,
+    "3": 103977,
+    "4": 11796,
+    "5": 24214,
+    "6": 342477
+  },
+  "embedding_norm": 17.43110466003418,
+  "mask_active_voxels": 118751232
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_1765_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    205
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the lower lobe and upper lobe of both lungs and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the lower lobe and upper lobe of both lungs and the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Findings more prominent in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 463984,
+    "1": 466223,
+    "2": 205304,
+    "3": 827407
+  },
+  "embedding_norm": 17.226972579956055,
+  "mask_active_voxels": 120913920
+}

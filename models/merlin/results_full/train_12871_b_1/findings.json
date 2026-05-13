@@ -1,0 +1,29 @@
+{
+  "name": "train_12871_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacity in the inferior lingula",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Pleural retraction",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2h"
+  },
+  "pixels": {
+    "0": 1614,
+    "1": 1937
+  },
+  "embedding_norm": 16.997360229492188,
+  "mask_active_voxels": 58720256
+}

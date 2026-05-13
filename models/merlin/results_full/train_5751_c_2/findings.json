@@ -1,0 +1,23 @@
+{
+  "name": "train_5751_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    495
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of scarring in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 2019
+  },
+  "embedding_norm": 17.571006774902344,
+  "mask_active_voxels": 129761280
+}

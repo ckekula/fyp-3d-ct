@@ -1,0 +1,29 @@
+{
+  "name": "train_11539_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    246
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis with air bronchogram extending from the hilar level in the right upper lobe and middle lobe to the anterior pleura",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Increased pleural effusion bilaterally, measuring up to 108 mm on the right and 60 mm on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2e"
+  },
+  "pixels": {
+    "0": 67020,
+    "1": 2412833
+  },
+  "embedding_norm": 16.93634796142578,
+  "mask_active_voxels": 64487424
+}

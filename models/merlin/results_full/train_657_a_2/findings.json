@@ -1,0 +1,59 @@
+{
+  "name": "train_657_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    225
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple calcified nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Calcified nodules predominantly in the upper lobes",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Mild bronchial ectasia in the apex of the upper lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bronchial wall thickening in the apex of the upper lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Increased reticulonodular densities in the apex of the upper lobes",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Increased ground-glass densities in the apex of the upper lobes",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Mosaic attenuation differences in the upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "1b",
+    "3": "1a",
+    "4": "2c",
+    "5": "2c",
+    "6": "1f"
+  },
+  "pixels": {
+    "0": 1903,
+    "1": 1331,
+    "2": 62312,
+    "3": 62312,
+    "4": 32453,
+    "5": 32453,
+    "6": 30812
+  },
+  "embedding_norm": 16.832189559936523,
+  "mask_active_voxels": 58982400
+}

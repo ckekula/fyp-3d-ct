@@ -1,0 +1,23 @@
+{
+  "name": "train_7991_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    217
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodule measuring 5 mm with slightly spiculated contours at the apical level of the upper lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 791
+  },
+  "embedding_norm": 17.37662124633789,
+  "mask_active_voxels": 127991808
+}

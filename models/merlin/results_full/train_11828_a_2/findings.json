@@ -1,0 +1,29 @@
+{
+  "name": "train_11828_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    215
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 16196,
+    "1": 179
+  },
+  "embedding_norm": 16.80234146118164,
+  "mask_active_voxels": 56360960
+}

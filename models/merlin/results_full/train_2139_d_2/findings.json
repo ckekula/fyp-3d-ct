@@ -1,0 +1,29 @@
+{
+  "name": "train_2139_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    175
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6532,
+    "1": 331
+  },
+  "embedding_norm": 16.71891975402832,
+  "mask_active_voxels": 45875200
+}

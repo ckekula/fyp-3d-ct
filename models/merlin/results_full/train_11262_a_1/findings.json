@@ -1,0 +1,35 @@
+{
+  "name": "train_11262_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the peripheral area of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 7010,
+    "1": 11928,
+    "2": 477
+  },
+  "embedding_norm": 16.889007568359375,
+  "mask_active_voxels": 63963136
+}

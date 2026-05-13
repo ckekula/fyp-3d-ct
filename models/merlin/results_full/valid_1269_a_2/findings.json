@@ -1,0 +1,47 @@
+{
+  "name": "valid_1269_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    267
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peribronchial mild diffuse thickening",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule measuring approximately 4 mm in diameter in the posterior upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Fibrotic changes in the superior segment of the lower lobe of the left lung and apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2d",
+    "2": "2d",
+    "3": "1c",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 188640,
+    "1": 304,
+    "2": 191,
+    "3": 41102,
+    "4": 3496
+  },
+  "embedding_norm": 17.190828323364258,
+  "mask_active_voxels": 69992448
+}

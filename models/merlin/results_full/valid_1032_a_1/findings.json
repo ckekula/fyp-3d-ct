@@ -1,0 +1,29 @@
+{
+  "name": "valid_1032_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    253
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacities in the posterobasal segment of the lower lobes bilaterally",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground glass opacities in the lingular segment of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 5587,
+    "1": 370
+  },
+  "embedding_norm": 17.129436492919922,
+  "mask_active_voxels": 66322432
+}

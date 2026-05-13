@@ -1,0 +1,47 @@
+{
+  "name": "train_6044_d_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    283
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectatic changes in the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic changes in the left inferior lingula",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Atelectatic changes in the left inferior lingula",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Fibrotic changes in both lower lobe basal segments",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b",
+    "2": "2a",
+    "3": "2b",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 780,
+    "1": 3098,
+    "2": 539,
+    "3": 7013,
+    "4": 1341
+  },
+  "embedding_norm": 17.237838745117188,
+  "mask_active_voxels": 74186752
+}

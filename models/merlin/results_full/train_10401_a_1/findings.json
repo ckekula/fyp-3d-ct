@@ -1,0 +1,41 @@
+{
+  "name": "train_10401_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    338
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subcentimeter cystic lesions in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 65702,
+    "1": 509,
+    "2": 7430,
+    "3": 433
+  },
+  "embedding_norm": 17.214677810668945,
+  "mask_active_voxels": 88604672
+}

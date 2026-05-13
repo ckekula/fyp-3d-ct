@@ -1,0 +1,29 @@
+{
+  "name": "train_12030_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 22195,
+    "1": 4111
+  },
+  "embedding_norm": 17.40836524963379,
+  "mask_active_voxels": 114819072
+}

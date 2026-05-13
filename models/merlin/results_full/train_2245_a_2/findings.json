@@ -1,0 +1,29 @@
+{
+  "name": "train_2245_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    421
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "6 mm nonspecific nodule located in the posterior part of the left upper lobe near the fissure, likely representing a subpleural lymph node",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal centriacinar emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 577,
+    "1": 3273
+  },
+  "embedding_norm": 17.385639190673828,
+  "mask_active_voxels": 110362624
+}

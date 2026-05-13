@@ -1,0 +1,53 @@
+{
+  "name": "train_6506_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural consolidations at the bases of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Subpleural bands at the bases of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Architectural distortions at the bases of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Cylindrical bronchiectasis in the affected areas",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Thickening in the lower part of the fissure on the left",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Patchy ground glass infiltrates in both upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2a",
+    "3": "1b",
+    "4": "1f",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 30837,
+    "1": 8381,
+    "2": 53546,
+    "3": 1917,
+    "4": 1940,
+    "5": 2382
+  },
+  "embedding_norm": 16.782386779785156,
+  "mask_active_voxels": 56098816
+}

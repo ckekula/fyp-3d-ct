@@ -1,0 +1,23 @@
+{
+  "name": "valid_874_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial ground glass opacity with septal thickening in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 220131
+  },
+  "embedding_norm": 17.45673179626465,
+  "mask_active_voxels": 126091264
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_7004_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    492
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 187
+  },
+  "embedding_norm": 17.576913833618164,
+  "mask_active_voxels": 128974848
+}

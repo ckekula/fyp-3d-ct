@@ -1,0 +1,35 @@
+{
+  "name": "train_1570_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    475
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidations in the upper lobes and peripheral areas of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Linear density increases in the upper lobes and peripheral areas of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Regions of ground glass opacity in the upper lobes and peripheral areas of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 628117,
+    "1": 628117,
+    "2": 628117
+  },
+  "embedding_norm": 17.56369400024414,
+  "mask_active_voxels": 124518400
+}

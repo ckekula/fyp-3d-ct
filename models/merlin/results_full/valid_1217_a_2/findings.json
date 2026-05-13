@@ -1,0 +1,23 @@
+{
+  "name": "valid_1217_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening bilaterally",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 175121
+  },
+  "embedding_norm": 17.430845260620117,
+  "mask_active_voxels": 119013376
+}

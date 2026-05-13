@@ -1,0 +1,35 @@
+{
+  "name": "train_8057_e_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    238
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild ectasia in the bronchial structures of both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased peribronchial thickening in the bronchial structures of both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Paraseptal emphysematous changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1a",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 4096,
+    "1": 2501,
+    "2": 1187
+  },
+  "embedding_norm": 17.068775177001953,
+  "mask_active_voxels": 62390272
+}

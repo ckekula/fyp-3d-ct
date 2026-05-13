@@ -1,0 +1,35 @@
+{
+  "name": "train_5376_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    217
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving patterns in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2h",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 53106,
+    "1": 207476,
+    "2": 22524
+  },
+  "embedding_norm": 17.079587936401367,
+  "mask_active_voxels": 56885248
+}

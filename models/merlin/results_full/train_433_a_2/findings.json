@@ -1,0 +1,89 @@
+{
+  "name": "train_433_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Significant peribronchial thickening in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of tubular bronchiectasis in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Areas of tubular bronchiectasis in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Increased peripheral micronodular opacities in the inferior lingular segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Increased peripheral micronodular opacities in the posterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Increased peripheral micronodular opacities in the mediobasal segment of the right lung",
+      "category": "Lung opacity"
+    },
+    "7": {
+      "text": "Increases in ground glass density in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Increases in ground glass density in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "9": {
+      "text": "Increases in ground glass density in the mediobasal segment of the right lung",
+      "category": "Others"
+    },
+    "10": {
+      "text": "Band-like pleuroparenchymal fibrotic density increases in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "11": {
+      "text": "Band-like pleuroparenchymal fibrotic density increases in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1a",
+    "2": "1b",
+    "3": "1b",
+    "4": "1e",
+    "5": "1e",
+    "6": "1e",
+    "7": "2c",
+    "8": "2c",
+    "9": "2c",
+    "10": "2a",
+    "11": "2a"
+  },
+  "pixels": {
+    "0": 44213,
+    "1": 643776,
+    "2": 346217,
+    "3": 297559,
+    "4": 1723,
+    "5": 378,
+    "6": 578,
+    "7": 38986,
+    "8": 38643,
+    "9": 22323,
+    "10": 21974,
+    "11": 23734
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

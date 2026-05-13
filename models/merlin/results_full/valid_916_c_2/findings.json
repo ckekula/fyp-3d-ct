@@ -1,0 +1,47 @@
+{
+  "name": "valid_916_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    277
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodules with a tree-in-bud appearance in the apical segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Tree-in-bud opacities in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Nodular consolidations in the apical segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Nodular consolidations in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Subcentimeter indeterminate nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "2b",
+    "3": "2b",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 24095,
+    "1": 30360,
+    "2": 1981,
+    "3": 417,
+    "4": 431
+  },
+  "embedding_norm": 17.058311462402344,
+  "mask_active_voxels": 72613888
+}

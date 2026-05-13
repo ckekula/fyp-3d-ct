@@ -1,0 +1,35 @@
+{
+  "name": "train_8061_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peribronchial thickenings",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis areas in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Calcified nonspecific pulmonary nodule measuring 5 mm in the subpleural region of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2145,
+    "1": 2545,
+    "2": 208
+  },
+  "embedding_norm": 17.587369918823242,
+  "mask_active_voxels": 133431296
+}

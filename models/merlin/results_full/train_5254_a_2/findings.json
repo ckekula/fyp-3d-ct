@@ -1,0 +1,23 @@
+{
+  "name": "train_5254_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulated nodular fibrotic density increases in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 2087
+  },
+  "embedding_norm": 17.44565200805664,
+  "mask_active_voxels": 126877696
+}

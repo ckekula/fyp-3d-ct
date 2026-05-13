@@ -1,0 +1,35 @@
+{
+  "name": "train_13697_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    460
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Significant centrilobular emphysema in the upper and middle zones of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Stable nonspecific nodules in both lungs, some of which are calcified",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule measuring 5 mm in diameter in the right lung laterobasal segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2384760,
+    "1": 1538,
+    "2": 342
+  },
+  "embedding_norm": 17.54222869873047,
+  "mask_active_voxels": 120586240
+}

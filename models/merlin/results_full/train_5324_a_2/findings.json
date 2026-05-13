@@ -1,0 +1,23 @@
+{
+  "name": "train_5324_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subcentimeter parenchymal nodule measuring 3 mm in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 243
+  },
+  "embedding_norm": 17.58739471435547,
+  "mask_active_voxels": 133431296
+}

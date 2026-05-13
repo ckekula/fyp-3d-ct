@@ -1,0 +1,29 @@
+{
+  "name": "train_2759_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm oval-shaped nodule with sad contour located posterolaterally in the basal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific nodular ground glass density",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 410,
+    "1": 414
+  },
+  "embedding_norm": 16.832509994506836,
+  "mask_active_voxels": 59244544
+}

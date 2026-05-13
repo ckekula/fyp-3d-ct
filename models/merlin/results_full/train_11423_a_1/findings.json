@@ -1,0 +1,35 @@
+{
+  "name": "train_11423_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    331
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Tubular bronchiectasis in the central regions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental atelectatic changes in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Several subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 8324,
+    "1": 6967,
+    "2": 86
+  },
+  "embedding_norm": 17.352327346801758,
+  "mask_active_voxels": 86769664
+}

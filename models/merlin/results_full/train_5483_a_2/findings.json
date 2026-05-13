@@ -1,0 +1,35 @@
+{
+  "name": "train_5483_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Occasional areas of atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Ground-glass appearance in the peripheral area of the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Interlobular septal thickening in the peripheral area of the anterior segment of the right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "1d"
+  },
+  "pixels": {
+    "0": 13722,
+    "1": 19682,
+    "2": 13643
+  },
+  "embedding_norm": 17.587268829345703,
+  "mask_active_voxels": 133431296
+}

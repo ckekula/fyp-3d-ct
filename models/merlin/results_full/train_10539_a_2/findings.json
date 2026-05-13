@@ -1,0 +1,23 @@
+{
+  "name": "train_10539_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    428
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter pure calcified nonspecific nodule in the anterior segment of the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 111
+  },
+  "embedding_norm": 17.50710105895996,
+  "mask_active_voxels": 112197632
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5897_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    415
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural non-specific subcentimeter nodules in the posterior lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 164
+  },
+  "embedding_norm": 17.47893714904785,
+  "mask_active_voxels": 108789760
+}

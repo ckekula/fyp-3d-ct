@@ -1,0 +1,29 @@
+{
+  "name": "train_1481_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    295
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysema in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "3 mm nonspecific nodule adjacent to the major fissure on the right",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 151685,
+    "1": 174
+  },
+  "embedding_norm": 17.122314453125,
+  "mask_active_voxels": 77332480
+}

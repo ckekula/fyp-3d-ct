@@ -1,0 +1,47 @@
+{
+  "name": "valid_591_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    233
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion with a thickness of 0.5 cm in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centrally located centriacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Ground glass opacities in both lungs, predominantly in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Slight increase in thickness of the major fissure on the right",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Linear fibrotic atelectatic areas in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1c",
+    "2": "2c",
+    "3": "2a",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 26540,
+    "1": 890,
+    "2": 174411,
+    "3": 21951,
+    "4": 35022
+  },
+  "embedding_norm": 17.143362045288086,
+  "mask_active_voxels": 61079552
+}

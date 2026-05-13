@@ -1,0 +1,29 @@
+{
+  "name": "train_1497_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Dependent ground glass densities in the posterobasal segments of both lower lobes, more prominently on the left",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural ground glass densities on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 318947,
+    "1": 545259
+  },
+  "embedding_norm": 17.59001350402832,
+  "mask_active_voxels": 133431296
+}

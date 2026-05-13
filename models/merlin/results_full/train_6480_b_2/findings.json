@@ -1,0 +1,47 @@
+{
+  "name": "train_6480_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal paraseptal emphysema in both lungs, more prominent in the upper lobes and peripherally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter ground glass nodules in a centriacinar distribution in the anterior part of the left upper lobe and the lingular segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Linear subsegmental atelectasis and fibrotic densities in the left upper lobe lingular segment and the laterobasal and posterobasal sections of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Nonspecific pulmonary nodules, some calcified, in various locations in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1c",
+    "2": "2c",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1159086,
+    "1": 9690,
+    "2": 2421,
+    "3": 265419,
+    "4": 132
+  },
+  "embedding_norm": 17.58747673034668,
+  "mask_active_voxels": 133431296
+}

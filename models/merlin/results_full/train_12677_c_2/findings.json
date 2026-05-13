@@ -1,0 +1,29 @@
+{
+  "name": "train_12677_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    296
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Tree-in-bud patterns in the upper and lower lobes of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter centriacinar ground-glass opacities in the upper and lower lobes of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 7087,
+    "1": 11032
+  },
+  "embedding_norm": 17.123308181762695,
+  "mask_active_voxels": 77594624
+}

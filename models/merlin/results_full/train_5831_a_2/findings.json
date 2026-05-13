@@ -1,0 +1,29 @@
+{
+  "name": "train_5831_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmental areas of ground glass opacity in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 125299,
+    "1": 21541
+  },
+  "embedding_norm": 17.18165397644043,
+  "mask_active_voxels": 70778880
+}

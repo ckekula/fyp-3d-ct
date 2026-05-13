@@ -1,0 +1,47 @@
+{
+  "name": "train_11124_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    372
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified soft tissue density with volume loss and structural distortion in the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Parenchymal fibrosis in the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mild bronchiectatic changes in the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Nodular ground glass opacities in the peripheral subpleural areas of both lungs",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Nodular ground glass opacities in the peribronchovascular areas of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "1b",
+    "3": "2c",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 30377,
+    "1": 3036,
+    "2": 590,
+    "3": 13741,
+    "4": 16453
+  },
+  "embedding_norm": 17.270854949951172,
+  "mask_active_voxels": 97517568
+}

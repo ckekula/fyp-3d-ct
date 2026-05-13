@@ -1,0 +1,47 @@
+{
+  "name": "train_6549_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Passive atelectatic changes in the left lung inferior lingular segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Passive atelectatic changes in the right lung middle lobe mediobasal segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific subpleural nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subpleural nodule measuring 5.3 mm in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subpleural nodule measuring 5.5 mm in the anterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1f",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1750,
+    "1": 1450,
+    "2": 171,
+    "3": 240,
+    "4": 189
+  },
+  "embedding_norm": 16.864898681640625,
+  "mask_active_voxels": 60293120
+}

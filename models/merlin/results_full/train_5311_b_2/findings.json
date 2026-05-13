@@ -1,0 +1,29 @@
+{
+  "name": "train_5311_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    495
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central ground-glass opacities with interlobular septal thickening in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Enlarged vascular structures within areas of ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 29724,
+    "1": 28141
+  },
+  "embedding_norm": 17.570831298828125,
+  "mask_active_voxels": 129761280
+}

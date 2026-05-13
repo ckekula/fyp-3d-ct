@@ -1,0 +1,23 @@
+{
+  "name": "train_5214_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter non-specific nodule at the apical level of the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 95
+  },
+  "embedding_norm": 17.07267951965332,
+  "mask_active_voxels": 73138176
+}

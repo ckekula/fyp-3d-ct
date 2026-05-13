@@ -1,0 +1,29 @@
+{
+  "name": "train_7418_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    417
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidations in both lungs, more prominent in the lower lobes and peripheral areas",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass opacities in both lungs, more prominent in the lower lobes and peripheral areas",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 17130,
+    "1": 3549
+  },
+  "embedding_norm": 17.368257522583008,
+  "mask_active_voxels": 109314048
+}

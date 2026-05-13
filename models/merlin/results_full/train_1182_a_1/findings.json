@@ -1,0 +1,23 @@
+{
+  "name": "train_1182_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    236
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "16 mm bulla in the subpleural region of the upper lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 5430
+  },
+  "embedding_norm": 17.07844352722168,
+  "mask_active_voxels": 61865984
+}

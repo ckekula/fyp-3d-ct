@@ -1,0 +1,35 @@
+{
+  "name": "train_10177_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    263
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Predominantly subpleural emphysematous changes in both lungs, more prominent in the upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal central bronchiectasis",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Calcified subcentimeter nonspecific nodules in the left lung, some reaching up to 2 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 4431,
+    "1": 672,
+    "2": 215
+  },
+  "embedding_norm": 17.01621437072754,
+  "mask_active_voxels": 68943872
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_12127_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    289
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal central bronchiectasis",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1b",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 28436,
+    "1": 26971,
+    "2": 3679
+  },
+  "embedding_norm": 17.084989547729492,
+  "mask_active_voxels": 75759616
+}

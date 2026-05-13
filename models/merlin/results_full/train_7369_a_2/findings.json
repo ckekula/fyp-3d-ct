@@ -1,0 +1,29 @@
+{
+  "name": "train_7369_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    502
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Paraseptal emphysematous changes in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Focal nodular ground glass opacity in the lateral part of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2214,
+    "1": 1479
+  },
+  "embedding_norm": 17.48885154724121,
+  "mask_active_voxels": 131596288
+}

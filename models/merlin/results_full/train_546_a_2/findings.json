@@ -1,0 +1,23 @@
+{
+  "name": "train_546_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the superior and anterobasal segments of the right lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 108370
+  },
+  "embedding_norm": 17.4407901763916,
+  "mask_active_voxels": 119537664
+}

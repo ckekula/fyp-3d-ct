@@ -1,0 +1,29 @@
+{
+  "name": "train_6378_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulonodular and punctate density increases in the peribronchial areas, more prominent in the upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal emphysema in the upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 454,
+    "1": 62430
+  },
+  "embedding_norm": 16.831758499145508,
+  "mask_active_voxels": 59244544
+}

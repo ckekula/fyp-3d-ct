@@ -1,0 +1,29 @@
+{
+  "name": "train_6641_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    520
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodules up to 5 mm in size, especially in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Paracardiac fibrotic changes in the medial right middle lobe and left lingula",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 875,
+    "1": 6966
+  },
+  "embedding_norm": 17.509618759155273,
+  "mask_active_voxels": 136314880
+}

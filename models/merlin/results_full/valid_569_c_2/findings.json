@@ -1,0 +1,23 @@
+{
+  "name": "valid_569_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several subcentimeter nonspecific nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 476
+  },
+  "embedding_norm": 17.18243980407715,
+  "mask_active_voxels": 70778880
+}

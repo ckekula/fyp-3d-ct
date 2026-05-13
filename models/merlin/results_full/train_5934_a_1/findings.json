@@ -1,0 +1,23 @@
+{
+  "name": "train_5934_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Slight ground glass opacities at the posterobasal levels of both lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 8026
+  },
+  "embedding_norm": 16.709043502807617,
+  "mask_active_voxels": 52428800
+}

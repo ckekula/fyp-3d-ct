@@ -1,0 +1,35 @@
+{
+  "name": "train_12537_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    294
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Nonspecific ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Increased interlobular septal thickness in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "1d"
+  },
+  "pixels": {
+    "0": 1298,
+    "1": 2010,
+    "2": 2010
+  },
+  "embedding_norm": 17.109886169433594,
+  "mask_active_voxels": 77070336
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_412_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    500
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Infiltrative mass in the left pulmonary hilum encasing and narrowing the left main bronchus",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mass extends to the carina and right main bronchus, as well as mediastinal structures",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Complete atelectasis of the left lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Widespread ground glass opacities in the upper lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Ground glass opacities medially in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2b",
+    "3": "2c",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 181417,
+    "1": 181417,
+    "2": 51581,
+    "3": 632037,
+    "4": 126142
+  },
+  "embedding_norm": 17.464719772338867,
+  "mask_active_voxels": 131072000
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_11944_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    466
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific ground-glass opacities in the middle lobe and lower lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 67137
+  },
+  "embedding_norm": 17.436012268066406,
+  "mask_active_voxels": 122159104
+}

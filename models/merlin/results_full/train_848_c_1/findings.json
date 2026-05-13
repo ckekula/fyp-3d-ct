@@ -1,0 +1,29 @@
+{
+  "name": "train_848_c_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    340
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Decrease in the extent of previously described ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "New areas of fibrosis at sites of previous ground glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 193913,
+    "1": 193913
+  },
+  "embedding_norm": 17.203704833984375,
+  "mask_active_voxels": 89128960
+}

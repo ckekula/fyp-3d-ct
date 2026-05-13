@@ -1,0 +1,23 @@
+{
+  "name": "train_5748_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular nodular infiltrates in the laterobasal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 26656
+  },
+  "embedding_norm": 16.916852951049805,
+  "mask_active_voxels": 54525952
+}

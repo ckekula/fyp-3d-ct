@@ -1,0 +1,29 @@
+{
+  "name": "train_6755_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    496
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticular consolidations with air bronchograms in the posterobasal and medial basal segments of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Increased centracinar nodular density in the posterobasal and medial basal segments of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 17476,
+    "1": 17476
+  },
+  "embedding_norm": 17.57130241394043,
+  "mask_active_voxels": 130023424
+}

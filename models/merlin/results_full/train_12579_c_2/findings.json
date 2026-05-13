@@ -1,0 +1,59 @@
+{
+  "name": "train_12579_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    400
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pleural effusion measuring approximately 45 mm at its thickest point",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the lung adjacent to the pleural effusion in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Smooth interlobular septal and interstitial thickening in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Locally consolidated lung segments in both lungs, most prominently in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Cystic areas within the consolidated lung segments",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1c",
+    "3": "1d",
+    "4": "2c",
+    "5": "2b",
+    "6": "2b"
+  },
+  "pixels": {
+    "0": 207677,
+    "1": 964231,
+    "2": 207849,
+    "3": 565561,
+    "4": 24503,
+    "5": 121970,
+    "6": 121970
+  },
+  "embedding_norm": 17.45623207092285,
+  "mask_active_voxels": 104857600
+}

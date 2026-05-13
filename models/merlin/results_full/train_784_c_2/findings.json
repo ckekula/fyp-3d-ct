@@ -1,0 +1,35 @@
+{
+  "name": "train_784_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring at both lung apices",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Indeterminate subcentimeter nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 104214,
+    "1": 7861,
+    "2": 2261
+  },
+  "embedding_norm": 17.45558738708496,
+  "mask_active_voxels": 126091264
+}

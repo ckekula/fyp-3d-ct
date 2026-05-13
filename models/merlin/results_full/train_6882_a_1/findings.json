@@ -1,0 +1,23 @@
+{
+  "name": "train_6882_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    217
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific parenchymal nodules less than 5 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 130
+  },
+  "embedding_norm": 17.37661361694336,
+  "mask_active_voxels": 127991808
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_1278_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral apical segments of the lungs with fibrotic scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 29648
+  },
+  "embedding_norm": 17.587936401367188,
+  "mask_active_voxels": 133431296
+}

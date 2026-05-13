@@ -1,0 +1,95 @@
+{
+  "name": "train_1867_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous bilateral lung parenchyma with prominent bullae in the upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring densities in the apicoposterior segments of the bilateral upper lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Diffuse ground-glass opacity in the bilateral upper lobes",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Focal consolidations in the bilateral upper lobes",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Diffuse ground-glass opacity in the anterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Focal consolidations in the anterior segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "6": {
+      "text": "Diffuse ground-glass opacity in the lingula of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "7": {
+      "text": "Focal consolidations in the lingula of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "8": {
+      "text": "Diffuse ground-glass opacity in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "9": {
+      "text": "Focal consolidations in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "10": {
+      "text": "Two subpleural nodules in the lower lobe laterobasal segment, measuring 5.5 mm and 6.7 mm in diameter, located in the lateral part of the right lung superior to the lower lobe",
+      "category": "Lung Nodule"
+    },
+    "11": {
+      "text": "Nodule smaller than 5 mm in the middle lobe of the right lung, adjacent to the minor fissure",
+      "category": "Lung Nodule"
+    },
+    "12": {
+      "text": "6.5 mm nodule in the left lung major fissure",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2c",
+    "3": "2b",
+    "4": "2c",
+    "5": "2b",
+    "6": "2c",
+    "7": "2b",
+    "8": "2c",
+    "9": "2b",
+    "10": "2d",
+    "11": "2d",
+    "12": "2d"
+  },
+  "pixels": {
+    "0": 3133508,
+    "1": 63023,
+    "2": 218408,
+    "3": 46153,
+    "4": 254905,
+    "5": 12237,
+    "6": 151042,
+    "7": 28052,
+    "8": 125271,
+    "9": 16658,
+    "10": 1159,
+    "11": 267,
+    "12": 550
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

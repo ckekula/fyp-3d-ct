@@ -1,0 +1,47 @@
+{
+  "name": "train_5178_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental linear atelectasis in the right middle lobe lateral segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subsegmental linear atelectasis in the left upper lobe inferior lingular segment",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Pleural-based, non-specific 5 mm pulmonary nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 76650,
+    "1": 1463,
+    "2": 893,
+    "3": 78,
+    "4": 33
+  },
+  "embedding_norm": 16.9327335357666,
+  "mask_active_voxels": 53477376
+}

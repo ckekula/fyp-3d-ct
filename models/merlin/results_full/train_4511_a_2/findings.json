@@ -1,0 +1,23 @@
+{
+  "name": "train_4511_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the apex of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 744
+  },
+  "embedding_norm": 17.55651092529297,
+  "mask_active_voxels": 125304832
+}

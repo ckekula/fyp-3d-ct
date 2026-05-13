@@ -1,0 +1,41 @@
+{
+  "name": "train_1651_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    242
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread nodular and patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peripheral ground-glass opacities forming a crazy paving pattern in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Interlobular septal thickenings in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Consolidation in the superior segments of the lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "1d",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 10061,
+    "1": 162091,
+    "2": 120668,
+    "3": 184187
+  },
+  "embedding_norm": 16.906593322753906,
+  "mask_active_voxels": 63438848
+}

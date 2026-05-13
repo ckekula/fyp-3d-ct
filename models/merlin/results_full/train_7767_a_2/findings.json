@@ -1,0 +1,23 @@
+{
+  "name": "train_7767_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    518
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Numerous nonspecific nodules less than 5 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 712
+  },
+  "embedding_norm": 17.500713348388672,
+  "mask_active_voxels": 135790592
+}

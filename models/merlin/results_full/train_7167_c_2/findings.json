@@ -1,0 +1,29 @@
+{
+  "name": "train_7167_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the left lung inferior lingular segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter stable pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 13671,
+    "1": 198
+  },
+  "embedding_norm": 16.972972869873047,
+  "mask_active_voxels": 67633152
+}

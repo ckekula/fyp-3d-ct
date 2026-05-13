@@ -1,0 +1,35 @@
+{
+  "name": "train_3593_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    466
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidation areas in all segments of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Consolidation areas with air bronchograms in the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Consolidation areas with air bronchograms in the posterobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 24467,
+    "1": 353748,
+    "2": 84435
+  },
+  "embedding_norm": 17.4359073638916,
+  "mask_active_voxels": 122159104
+}

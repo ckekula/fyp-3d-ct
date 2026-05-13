@@ -1,0 +1,41 @@
+{
+  "name": "valid_1221_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    291
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Central bronchiectasis",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased density consistent with scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Increased density consistent with scarring in the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1b",
+    "2": "2a",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 87151,
+    "1": 178030,
+    "2": 7331,
+    "3": 4163
+  },
+  "embedding_norm": 17.069416046142578,
+  "mask_active_voxels": 76283904
+}

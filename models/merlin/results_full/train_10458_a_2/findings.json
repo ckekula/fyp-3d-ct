@@ -1,0 +1,29 @@
+{
+  "name": "train_10458_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific parenchymal nodules measuring 4 mm present in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest nodule located in the posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 573,
+    "1": 244
+  },
+  "embedding_norm": 17.470897674560547,
+  "mask_active_voxels": 127401984
+}

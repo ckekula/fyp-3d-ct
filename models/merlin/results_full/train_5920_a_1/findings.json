@@ -1,0 +1,23 @@
+{
+  "name": "train_5920_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    367
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy subpleural ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 8164
+  },
+  "embedding_norm": 17.40428352355957,
+  "mask_active_voxels": 96206848
+}

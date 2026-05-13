@@ -1,0 +1,23 @@
+{
+  "name": "train_11021_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    375
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimally blurred ground glass densities in the mediobasal segments of the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 14837
+  },
+  "embedding_norm": 17.313745498657227,
+  "mask_active_voxels": 98304000
+}

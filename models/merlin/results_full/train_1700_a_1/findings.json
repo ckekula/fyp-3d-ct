@@ -1,0 +1,41 @@
+{
+  "name": "train_1700_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    376
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Smooth interlobular and interstitial septal thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Paraseptal emphysematous changes in the upper lobes of both lungs, more prominent in the apical segments",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Diffuse peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Increased density with ground-glass opacity in the anterior segment of the left upper lobe adjacent to the bronchovascular structure",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1c",
+    "2": "1a",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 199837,
+    "1": 3807,
+    "2": 15338,
+    "3": 54837
+  },
+  "embedding_norm": 17.312938690185547,
+  "mask_active_voxels": 98566144
+}

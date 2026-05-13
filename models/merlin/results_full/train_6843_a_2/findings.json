@@ -1,0 +1,35 @@
+{
+  "name": "train_6843_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    457
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse, patchy nodular ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Associated vascular enlargement in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Halo sign around peripheral nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 64939,
+    "1": 13822,
+    "2": 684
+  },
+  "embedding_norm": 17.577638626098633,
+  "mask_active_voxels": 119799808
+}

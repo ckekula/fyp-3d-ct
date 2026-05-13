@@ -1,0 +1,41 @@
+{
+  "name": "valid_898_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    477
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peripheral ground-glass opacities in the upper and lower lobes, and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Greater prominence of ground-glass opacities in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Enlarged vascular structures within areas of ground-glass opacity",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Multiple indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 92365,
+    "1": 232853,
+    "2": 312611,
+    "3": 676
+  },
+  "embedding_norm": 17.557981491088867,
+  "mask_active_voxels": 125042688
+}

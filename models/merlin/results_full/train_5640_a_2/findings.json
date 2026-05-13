@@ -1,0 +1,41 @@
+{
+  "name": "train_5640_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    267
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Large consolidation area with surrounding ground glass opacities and central air spaces in the lateral segment of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation area with surrounding ground glass opacities and central air spaces in the subpleural area of the posterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Consolidation area with surrounding ground glass opacities and central air spaces in the inferior lingular segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Consolidation area with surrounding ground glass opacities and central air spaces in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 36659,
+    "1": 3279,
+    "2": 4536,
+    "3": 2009
+  },
+  "embedding_norm": 17.190746307373047,
+  "mask_active_voxels": 69992448
+}

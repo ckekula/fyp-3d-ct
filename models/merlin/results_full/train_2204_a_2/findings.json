@@ -1,0 +1,23 @@
+{
+  "name": "train_2204_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    505
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal mosaic attenuation pattern in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f"
+  },
+  "pixels": {
+    "0": 666058
+  },
+  "embedding_norm": 17.623384475708008,
+  "mask_active_voxels": 132382720
+}

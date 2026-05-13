@@ -1,0 +1,29 @@
+{
+  "name": "valid_923_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground glass opacities in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Associated prominent vascular markings in the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f"
+  },
+  "pixels": {
+    "0": 70485,
+    "1": 70485
+  },
+  "embedding_norm": 17.588375091552734,
+  "mask_active_voxels": 133431296
+}

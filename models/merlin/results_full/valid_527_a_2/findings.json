@@ -1,0 +1,29 @@
+{
+  "name": "valid_527_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes in the posterior basal segments of both lower lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild atelectatic changes in the inferior lingula of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 23786,
+    "1": 15393
+  },
+  "embedding_norm": 17.586774826049805,
+  "mask_active_voxels": 133431296
+}

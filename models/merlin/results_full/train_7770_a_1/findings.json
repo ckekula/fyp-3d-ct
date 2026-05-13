@@ -1,0 +1,23 @@
+{
+  "name": "train_7770_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    326
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subcentimeter nodular densities less than 5 mm in the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 428
+  },
+  "embedding_norm": 17.197839736938477,
+  "mask_active_voxels": 85458944
+}

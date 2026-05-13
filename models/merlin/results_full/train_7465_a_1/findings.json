@@ -1,0 +1,29 @@
+{
+  "name": "train_7465_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodule in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal mosaic density differences in the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 54,
+    "1": 22450
+  },
+  "embedding_norm": 17.072803497314453,
+  "mask_active_voxels": 73138176
+}

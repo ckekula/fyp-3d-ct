@@ -1,0 +1,47 @@
+{
+  "name": "train_7250_f_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    194
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nodule measuring 22 mm in the peripheral area of the medial superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subcentimeter nodule in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "1c"
+  },
+  "pixels": {
+    "0": 11174,
+    "1": 5281,
+    "2": 282,
+    "3": 282,
+    "4": 11185
+  },
+  "embedding_norm": 16.650501251220703,
+  "mask_active_voxels": 50855936
+}

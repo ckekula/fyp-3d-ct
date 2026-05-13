@@ -1,0 +1,35 @@
+{
+  "name": "train_2399_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the peripheral regions of the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the peripheral regions of the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Linear densities in the peripheral regions of the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 50938,
+    "1": 127293,
+    "2": 69850
+  },
+  "embedding_norm": 17.441102981567383,
+  "mask_active_voxels": 119275520
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_10708_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    499
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodule in the superior lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 199
+  },
+  "embedding_norm": 17.46473503112793,
+  "mask_active_voxels": 130809856
+}

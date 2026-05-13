@@ -1,0 +1,23 @@
+{
+  "name": "train_7357_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    303
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities with septal thickening in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 8291
+  },
+  "embedding_norm": 17.270307540893555,
+  "mask_active_voxels": 79429632
+}

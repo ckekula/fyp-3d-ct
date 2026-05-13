@@ -1,0 +1,23 @@
+{
+  "name": "train_10499_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few subcentimeter nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 155
+  },
+  "embedding_norm": 17.168798446655273,
+  "mask_active_voxels": 135659520
+}

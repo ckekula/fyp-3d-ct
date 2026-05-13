@@ -1,0 +1,35 @@
+{
+  "name": "train_1445_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    143
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in both lungs, more prominently on the left",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Air bronchograms in both lungs, more prominently on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of consolidation with halo signs in both lungs, more prominently on the left",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 101288,
+    "1": 166933,
+    "2": 219916
+  },
+  "embedding_norm": 16.435150146484375,
+  "mask_active_voxels": 37486592
+}

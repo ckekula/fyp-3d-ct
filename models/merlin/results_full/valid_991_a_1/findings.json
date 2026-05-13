@@ -1,0 +1,35 @@
+{
+  "name": "valid_991_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    372
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes in the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild atelectatic changes in the left upper lobe's inferior lingula",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 1015,
+    "1": 4257,
+    "2": 427
+  },
+  "embedding_norm": 17.271011352539062,
+  "mask_active_voxels": 97517568
+}

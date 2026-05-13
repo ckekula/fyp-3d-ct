@@ -1,0 +1,29 @@
+{
+  "name": "train_5720_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    503
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 3042,
+    "1": 440
+  },
+  "embedding_norm": 17.497167587280273,
+  "mask_active_voxels": 131858432
+}

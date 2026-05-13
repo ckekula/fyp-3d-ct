@@ -1,0 +1,35 @@
+{
+  "name": "train_10135_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground glass opacities in the posterobasal and anterobasal segments of the left upper lobe apicoposterior segment and the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Minimal consolidation in the posterobasal and anterobasal segments of the left upper lobe apicoposterior segment and the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Round-shaped consolidations in the left lower lobe and the upper lobe lingular segment",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 4371,
+    "1": 45169,
+    "2": 507
+  },
+  "embedding_norm": 16.782489776611328,
+  "mask_active_voxels": 55836672
+}

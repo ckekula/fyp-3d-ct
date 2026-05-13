@@ -1,0 +1,29 @@
+{
+  "name": "valid_472_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    466
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central portions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectases in the lingular segment inferior subsegment of the left upper lobe and in the basal segments of the lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 108019,
+    "1": 3227
+  },
+  "embedding_norm": 17.43632698059082,
+  "mask_active_voxels": 122159104
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_13842_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    235
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground glass opacities in the peripheral subpleural areas of the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 451
+  },
+  "embedding_norm": 17.078712463378906,
+  "mask_active_voxels": 61603840
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_7346_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    396
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear fibroatelectasis changes in the left upper lobe lingular segment",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear fibroatelectasis changes in the left lower lobe anteromediobasal segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 3300,
+    "1": 1277,
+    "2": 602
+  },
+  "embedding_norm": 17.46372413635254,
+  "mask_active_voxels": 103809024
+}

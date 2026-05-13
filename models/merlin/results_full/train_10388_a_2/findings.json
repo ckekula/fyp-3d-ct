@@ -1,0 +1,23 @@
+{
+  "name": "train_10388_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    472
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectatic change in the form of a linear band at the posterobasal level of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 19343
+  },
+  "embedding_norm": 17.460344314575195,
+  "mask_active_voxels": 123731968
+}

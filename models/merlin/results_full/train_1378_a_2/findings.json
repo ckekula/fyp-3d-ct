@@ -1,0 +1,47 @@
+{
+  "name": "train_1378_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    292
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "4 mm subcentimeter nodules in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Bronchiectasis in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Minimal thickening in the upper part of the major fissure on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "1b",
+    "3": "2d",
+    "4": "2h"
+  },
+  "pixels": {
+    "0": 8066,
+    "1": 147,
+    "2": 290331,
+    "3": 235,
+    "4": 4268
+  },
+  "embedding_norm": 17.068681716918945,
+  "mask_active_voxels": 76546048
+}

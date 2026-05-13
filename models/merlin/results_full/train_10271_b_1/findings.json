@@ -1,0 +1,29 @@
+{
+  "name": "train_10271_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    292
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, predominantly peripheral subpleural areas of ground-glass opacity in both lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Multilobar, predominantly peripheral subpleural areas of consolidation in both lung parenchyma",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1291,
+    "1": 14278
+  },
+  "embedding_norm": 17.06885528564453,
+  "mask_active_voxels": 76546048
+}

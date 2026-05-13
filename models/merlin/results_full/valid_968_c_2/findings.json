@@ -1,0 +1,53 @@
+{
+  "name": "valid_968_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    439
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased lung parenchymal densities adjacent to pleural effusion consistent with atelectasis",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Consolidation with air bronchograms in the anterior segment of the left upper lobe and lingula",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Consolidation with air bronchograms in the anterior segment of the right upper lobe and right middle lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Nodular increases in centriacinar ground glass densities in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Tree-in-bud appearance in some areas of the lower lobes",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Hyperdense pleural surfaces in the lower lobe of the right lung secondary to pleurodesis",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "1e",
+    "4": "1e",
+    "5": "2e"
+  },
+  "pixels": {
+    "0": 56799,
+    "1": 198933,
+    "2": 271825,
+    "3": 139673,
+    "4": 104204,
+    "5": 81743
+  },
+  "embedding_norm": 17.418609619140625,
+  "mask_active_voxels": 115081216
+}

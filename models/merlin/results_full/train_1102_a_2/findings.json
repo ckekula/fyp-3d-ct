@@ -1,0 +1,29 @@
+{
+  "name": "train_1102_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two indeterminate parenchymal nodules in the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "One calcified nodule measuring 2 mm in diameter in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 433,
+    "1": 466
+  },
+  "embedding_norm": 17.408992767333984,
+  "mask_active_voxels": 114819072
+}

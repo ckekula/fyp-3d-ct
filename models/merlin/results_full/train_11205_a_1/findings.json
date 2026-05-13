@@ -1,0 +1,23 @@
+{
+  "name": "train_11205_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    275
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmental nodular ground glass consolidations with a crazy paving pattern and vascular enlargement in the basal segment of the right lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 39634
+  },
+  "embedding_norm": 17.014925003051758,
+  "mask_active_voxels": 72089600
+}

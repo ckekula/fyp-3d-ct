@@ -1,0 +1,35 @@
+{
+  "name": "train_6694_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Previous ground glass opacities now partially consolidated",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Newly developed ground glass opacity in the right middle lobe at the lateral level",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Newly developed consolidation in the right middle lobe at the lateral level",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 395766,
+    "1": 91906,
+    "2": 91282
+  },
+  "embedding_norm": 17.455528259277344,
+  "mask_active_voxels": 126091264
+}

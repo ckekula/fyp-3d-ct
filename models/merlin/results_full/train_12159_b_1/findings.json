@@ -1,0 +1,29 @@
+{
+  "name": "train_12159_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    289
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Persistent consolidations",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Diffuse linear subsegmental atelectatic changes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 138810,
+    "1": 790028
+  },
+  "embedding_norm": 17.083765029907227,
+  "mask_active_voxels": 75759616
+}

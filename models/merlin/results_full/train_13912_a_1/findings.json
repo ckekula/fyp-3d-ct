@@ -1,0 +1,23 @@
+{
+  "name": "train_13912_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    332
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimally dependent ground-glass densities in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 2547
+  },
+  "embedding_norm": 17.352758407592773,
+  "mask_active_voxels": 87031808
+}

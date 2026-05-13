@@ -1,0 +1,35 @@
+{
+  "name": "train_7468_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    462
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the apices of both upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal ground-glass opacities in the form of subpleural bands in the posterior lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subcentimeter calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "1e"
+  },
+  "pixels": {
+    "0": 17050,
+    "1": 22800,
+    "2": 237
+  },
+  "embedding_norm": 17.539562225341797,
+  "mask_active_voxels": 121110528
+}

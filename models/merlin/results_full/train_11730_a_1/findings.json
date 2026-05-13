@@ -1,0 +1,35 @@
+{
+  "name": "train_11730_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    346
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring pleuroparenchymal bands in the posterobasal segment of the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring pleuroparenchymal bands in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 8974,
+    "1": 5544,
+    "2": 231
+  },
+  "embedding_norm": 17.428686141967773,
+  "mask_active_voxels": 90701824
+}

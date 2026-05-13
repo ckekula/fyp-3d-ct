@@ -1,0 +1,23 @@
+{
+  "name": "valid_424_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    306
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thin band atelectasis along the subdiaphragmatic surfaces of both lower lung lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 7197
+  },
+  "embedding_norm": 17.131607055664062,
+  "mask_active_voxels": 80216064
+}

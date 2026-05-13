@@ -1,0 +1,23 @@
+{
+  "name": "train_7407_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    412
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f"
+  },
+  "pixels": {
+    "0": 7372
+  },
+  "embedding_norm": 17.485689163208008,
+  "mask_active_voxels": 108003328
+}

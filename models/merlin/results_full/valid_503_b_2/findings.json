@@ -1,0 +1,23 @@
+{
+  "name": "valid_503_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    480
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few indeterminate subcentimeter nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 426
+  },
+  "embedding_norm": 17.554933547973633,
+  "mask_active_voxels": 125829120
+}

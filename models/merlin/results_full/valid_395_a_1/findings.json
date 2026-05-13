@@ -1,0 +1,23 @@
+{
+  "name": "valid_395_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    219
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Largest nodule measuring 3.3 mm in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 189
+  },
+  "embedding_norm": 17.314807891845703,
+  "mask_active_voxels": 129171456
+}

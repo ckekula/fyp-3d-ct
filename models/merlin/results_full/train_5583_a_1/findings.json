@@ -1,0 +1,29 @@
+{
+  "name": "train_5583_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    316
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in the posterobasal segment of the lower lobe of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 7193,
+    "1": 4606
+  },
+  "embedding_norm": 17.317861557006836,
+  "mask_active_voxels": 82837504
+}

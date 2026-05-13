@@ -1,0 +1,23 @@
+{
+  "name": "train_7378_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    245
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the upper lobes of both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1040
+  },
+  "embedding_norm": 16.93701171875,
+  "mask_active_voxels": 64225280
+}

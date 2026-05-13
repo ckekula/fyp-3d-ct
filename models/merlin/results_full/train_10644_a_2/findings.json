@@ -1,0 +1,35 @@
+{
+  "name": "train_10644_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Faintly circumscribed nodular ground glass consolidations most prominently in the posterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Subsegmental atelectatic changes in the paracardiac areas of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Pulmonary arteriovenous malformation in the basal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1542,
+    "1": 2478,
+    "2": 5875
+  },
+  "embedding_norm": 17.409337997436523,
+  "mask_active_voxels": 114819072
+}

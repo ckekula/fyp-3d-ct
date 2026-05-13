@@ -1,0 +1,47 @@
+{
+  "name": "train_5719_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    241
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central part of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal peribronchial thickening in the central part of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal scarring changes in both lung apices",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific nodules in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2a",
+    "3": "1c",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1288,
+    "1": 490,
+    "2": 1072,
+    "3": 634,
+    "4": 105
+  },
+  "embedding_norm": 16.906625747680664,
+  "mask_active_voxels": 63176704
+}

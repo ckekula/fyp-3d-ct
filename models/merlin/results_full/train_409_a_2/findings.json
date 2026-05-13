@@ -1,0 +1,35 @@
+{
+  "name": "train_409_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    440
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodule measuring 4.4 mm adjacent to the fissure in the posterior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Tubular bronchiectasis with central predominance in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "1b"
+  },
+  "pixels": {
+    "0": 942,
+    "1": 599,
+    "2": 273695
+  },
+  "embedding_norm": 17.418506622314453,
+  "mask_active_voxels": 115343360
+}

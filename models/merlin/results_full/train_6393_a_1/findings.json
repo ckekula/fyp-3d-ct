@@ -1,0 +1,35 @@
+{
+  "name": "train_6393_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    216
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the left upper lobe lingula inferior segment",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Suspicious area of ground-glass opacity in the left upper lobe lingula inferior segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Scattered nodular consolidation areas in the basal segments of both lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 8747,
+    "1": 5340,
+    "2": 38112
+  },
+  "embedding_norm": 16.80155372619629,
+  "mask_active_voxels": 56623104
+}

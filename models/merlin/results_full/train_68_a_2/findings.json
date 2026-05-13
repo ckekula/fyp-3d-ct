@@ -1,0 +1,23 @@
+{
+  "name": "train_68_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral scattered ground-glass nodules throughout both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 95015
+  },
+  "embedding_norm": 17.457399368286133,
+  "mask_active_voxels": 126091264
+}

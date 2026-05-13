@@ -1,0 +1,47 @@
+{
+  "name": "train_1642_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Indistinct ground-glass opacity in the basal segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Mild diffuse ectasia, more prominent centrally in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear areas of density increase consistent with atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Linear areas of density increase consistent with atelectasis in the inferior lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific nodules in the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f",
+    "2": "2a",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 110501,
+    "1": 154409,
+    "2": 1323,
+    "3": 6404,
+    "4": 264
+  },
+  "embedding_norm": 16.918275833129883,
+  "mask_active_voxels": 54525952
+}

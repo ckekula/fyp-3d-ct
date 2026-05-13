@@ -1,0 +1,29 @@
+{
+  "name": "train_5754_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    365
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in the bilateral apex",
+      "category": "Others"
+    },
+    "1": {
+      "text": "7x6 mm semisolid nodule in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 439,
+    "1": 140
+  },
+  "embedding_norm": 17.406972885131836,
+  "mask_active_voxels": 95682560
+}

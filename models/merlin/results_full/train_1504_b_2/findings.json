@@ -1,0 +1,41 @@
+{
+  "name": "train_1504_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    485
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Honeycomb appearance indicative of fibrosis in the upper lobes of both lungs, especially in the peripheral areas",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal ground glass areas in the central and peripheral parts of the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Mass in the medial aspect of the anterior segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2f",
+    "1": "1c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 485487,
+    "1": 402889,
+    "2": 586596,
+    "3": 24512
+  },
+  "embedding_norm": 17.469873428344727,
+  "mask_active_voxels": 127139840
+}

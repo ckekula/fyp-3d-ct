@@ -1,0 +1,23 @@
+{
+  "name": "train_2039_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    560
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Stable nonspecific parenchymal nodule measuring 5 mm in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 195
+  },
+  "embedding_norm": 17.62124252319336,
+  "mask_active_voxels": 146800640
+}

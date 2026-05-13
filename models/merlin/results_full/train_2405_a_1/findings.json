@@ -1,0 +1,53 @@
+{
+  "name": "train_2405_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    219
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysema in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchiectasis in both lungs, most prominently in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Secretions within the bronchiectatic ducts in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Complete atelectasis of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Tree-in-bud appearances in both lungs, especially in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Pleuroparenchymal scarring changes in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1b",
+    "2": "1f",
+    "3": "2b",
+    "4": "1e",
+    "5": "2a"
+  },
+  "pixels": {
+    "0": 751935,
+    "1": 1041503,
+    "2": 290419,
+    "3": 156625,
+    "4": 286763,
+    "5": 397887
+  },
+  "embedding_norm": 17.314910888671875,
+  "mask_active_voxels": 129171456
+}

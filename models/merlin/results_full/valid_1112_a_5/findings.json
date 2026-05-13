@@ -1,0 +1,29 @@
+{
+  "name": "valid_1112_a_5.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    521
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral upper lobe predominant centriacinar and paraseptal emphysematous changes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Dependent density increases in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1518525,
+    "1": 814489
+  },
+  "embedding_norm": 17.62879753112793,
+  "mask_active_voxels": 136577024
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_6196_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    401
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibroatelectasis causing volume loss and structural distortion in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Nonspecific subcentimeter calcific nodules in the medial segment of the right middle lobe, largest measuring 3.8 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2127,
+    "1": 133
+  },
+  "embedding_norm": 17.34183120727539,
+  "mask_active_voxels": 105119744
+}

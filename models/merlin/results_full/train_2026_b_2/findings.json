@@ -1,0 +1,35 @@
+{
+  "name": "train_2026_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Localized atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 478342,
+    "1": 18600,
+    "2": 198
+  },
+  "embedding_norm": 16.996929168701172,
+  "mask_active_voxels": 58458112
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_244_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    273
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Indeterminate subcentimeter subpleural nodules in the right upper lobe at the apical level",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Indeterminate subcentimeter subpleural nodules in the anterior subpleural region of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 70,
+    "1": 338
+  },
+  "embedding_norm": 17.031455993652344,
+  "mask_active_voxels": 71565312
+}

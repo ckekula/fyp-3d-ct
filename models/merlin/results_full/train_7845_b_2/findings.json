@@ -1,0 +1,41 @@
+{
+  "name": "train_7845_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibroatelectasis changes in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Minimal fibroatelectasis changes in the inferior lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Calcified, nonspecific parenchymal nodule measuring 3 mm in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Contour irregularities in the pleura in the posterobasal segments of both lower lobes suggestive of scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 835,
+    "1": 2151,
+    "2": 1001,
+    "3": 4337
+  },
+  "embedding_norm": 16.997594833374023,
+  "mask_active_voxels": 58720256
+}

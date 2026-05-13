@@ -1,0 +1,35 @@
+{
+  "name": "train_6139_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    271
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation patterns in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Thickening of interlobular septa in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Slight patchy ground-glass density in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1d",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 27379,
+    "1": 5469,
+    "2": 13955
+  },
+  "embedding_norm": 17.180355072021484,
+  "mask_active_voxels": 71041024
+}

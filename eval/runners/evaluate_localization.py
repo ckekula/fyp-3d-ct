@@ -66,6 +66,17 @@ def load_localization_samples(
         )
         return adapter.load()
 
+    if model == "merlin":
+        from eval.adapters.merlin_adapter import MerlinLocalizationAdapter
+
+        adapter = MerlinLocalizationAdapter(
+            output_dir=predictions_dir,
+            gt_mask_root=gt_mask_root,
+            metadata_json=metadata_json,
+            model_name=model_name,
+        )
+        return adapter.load()
+
     if model == "nnunet":
         from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter  # type: ignore
 
@@ -148,7 +159,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         required=True,
-        choices=["biomed_parse", "lc_ksvd", "medsam2", "segvol", "nnunet", "swin_unetr"],
+        choices=["biomed_parse", "lc_ksvd", "merlin", "medsam2", "segvol", "nnunet", "swin_unetr"],
         help="Model adapter to use.",
     )
 

@@ -1,0 +1,35 @@
+{
+  "name": "valid_406_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    251
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural paracardiac consolidation in the anterior upper lobe and medial segment of the middle lobe of the right lung with irregular contours",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Surrounding halo sign of the consolidation in the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 28704,
+    "1": 7917,
+    "2": 1482
+  },
+  "embedding_norm": 17.138032913208008,
+  "mask_active_voxels": 65798144
+}

@@ -1,0 +1,53 @@
+{
+  "name": "train_186_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    535
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Loculated pleural effusions with Hounsfield Unit measurements approximately 4 to 12",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mass-like lesion approximately 3.5x2 cm with irregular, spiculated margins in the paramediastinal region of the left hemithorax",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Poorly demarcated mass from the pulmonary conus and aortic arch in the aortopulmonary window",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Medial atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Localized pleural effusion in the left hemithorax",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Areas of increased density in the lung parenchyma adjacent to the effusion in the posterior aspect of the left upper lobe and superior segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2d",
+    "2": "2d",
+    "3": "2b",
+    "4": "2e",
+    "5": "2a"
+  },
+  "pixels": {
+    "0": 3839563,
+    "1": 112660,
+    "2": 1053717,
+    "3": 34451,
+    "4": 558069,
+    "5": 29662
+  },
+  "embedding_norm": 17.527795791625977,
+  "mask_active_voxels": 140247040
+}

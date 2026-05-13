@@ -1,0 +1,23 @@
+{
+  "name": "train_5904_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    501
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal atelectatic changes at both apical levels",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 3789
+  },
+  "embedding_norm": 17.48988151550293,
+  "mask_active_voxels": 131334144
+}

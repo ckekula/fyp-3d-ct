@@ -1,0 +1,59 @@
+{
+  "name": "train_784_f_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    476
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular nodular opacities with tree-in-bud patterns in both lungs, predominantly on the right",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nodules in the right lung apex, measuring 6 mm",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodules in the left lung upper lobe's inferior lingula, measuring 6 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Bronchiectasis at the aforementioned levels",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Bilateral apical emphysematous changes",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Parenchymal scarring in both lungs",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Multiple stable subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d",
+    "2": "2d",
+    "3": "1b",
+    "4": "1c",
+    "5": "2a",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 32048,
+    "1": 845,
+    "2": 698,
+    "3": 383988,
+    "4": 92112,
+    "5": 6004,
+    "6": 2392
+  },
+  "embedding_norm": 17.561262130737305,
+  "mask_active_voxels": 124780544
+}

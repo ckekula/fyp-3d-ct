@@ -1,0 +1,53 @@
+{
+  "name": "train_6000_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidations with irregular borders in both lung parenchyma",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass densities in both lung parenchyma",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bronchiectasis in the lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bronchial wall thickening in the lower lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Peribronchial consolidations in the lower lobes",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Stable nodular lesion measuring 1.6x1.1 cm in the anterobasal segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "1b",
+    "3": "1a",
+    "4": "2b",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 6879,
+    "1": 15657,
+    "2": 2416,
+    "3": 851,
+    "4": 3436,
+    "5": 989
+  },
+  "embedding_norm": 17.117177963256836,
+  "mask_active_voxels": 80478208
+}

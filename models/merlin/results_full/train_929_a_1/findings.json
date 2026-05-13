@@ -1,0 +1,23 @@
+{
+  "name": "train_929_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread and patchy ground glass opacities in bilateral lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 295857
+  },
+  "embedding_norm": 17.209442138671875,
+  "mask_active_voxels": 88866816
+}

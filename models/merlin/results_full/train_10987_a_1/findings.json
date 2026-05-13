@@ -1,0 +1,35 @@
+{
+  "name": "train_10987_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    255
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectatic changes in the central regions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass opacities in and around the consolidation areas in the peripheral subpleural region of the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Minimal fibrotic changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 8068,
+    "1": 87666,
+    "2": 3684
+  },
+  "embedding_norm": 17.12661361694336,
+  "mask_active_voxels": 66846720
+}

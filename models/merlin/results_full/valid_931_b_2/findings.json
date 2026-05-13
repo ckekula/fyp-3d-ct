@@ -1,0 +1,23 @@
+{
+  "name": "valid_931_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    440
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes in the inferior lingula of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 18281
+  },
+  "embedding_norm": 17.419851303100586,
+  "mask_active_voxels": 115343360
+}

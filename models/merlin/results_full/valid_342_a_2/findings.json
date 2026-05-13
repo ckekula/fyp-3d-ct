@@ -1,0 +1,53 @@
+{
+  "name": "valid_342_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    253
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "34 mm thick-walled air cyst at the apex of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic changes in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal ground glass density in a subpleural distribution in the posterior aspect of the right upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "7 mm nodule with associated pleural retraction in the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Multiple subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2a",
+    "3": "2c",
+    "4": "2d",
+    "5": "1e"
+  },
+  "pixels": {
+    "0": 40667,
+    "1": 26959,
+    "2": 3113,
+    "3": 29685,
+    "4": 826,
+    "5": 603
+  },
+  "embedding_norm": 17.129539489746094,
+  "mask_active_voxels": 66322432
+}

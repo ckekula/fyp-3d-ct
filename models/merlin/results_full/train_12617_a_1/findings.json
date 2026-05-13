@@ -1,0 +1,23 @@
+{
+  "name": "train_12617_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial tree-in-bud pattern in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 58221
+  },
+  "embedding_norm": 17.182252883911133,
+  "mask_active_voxels": 70778880
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_1119_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    317
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1482
+  },
+  "embedding_norm": 17.311145782470703,
+  "mask_active_voxels": 83099648
+}

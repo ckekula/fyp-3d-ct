@@ -1,0 +1,65 @@
+{
+  "name": "train_5912_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    365
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified pleural plaques in the right upper lobe apicoposterior segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Calcified pleural plaques in the right lower lobe superior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific nodules, 4 mm and 3 mm, in the right lower lobe posterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "4 mm subpleural nodule in the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "4.3 mm subpleural nodule in the left lower lobe superior segment",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nodule in the right upper lobe posterior segment",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "5.7 mm nodule in the right lower lobe laterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "7": {
+      "text": "Mosaic attenuation in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2d",
+    "7": "1f"
+  },
+  "pixels": {
+    "0": 5121,
+    "1": 4829,
+    "2": 256,
+    "3": 107,
+    "4": 200,
+    "5": 51,
+    "6": 285,
+    "7": 158432
+  },
+  "embedding_norm": 17.406749725341797,
+  "mask_active_voxels": 95682560
+}

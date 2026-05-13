@@ -1,0 +1,23 @@
+{
+  "name": "valid_852_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    485
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground glass opacities in all lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 667981
+  },
+  "embedding_norm": 17.472993850708008,
+  "mask_active_voxels": 127139840
+}

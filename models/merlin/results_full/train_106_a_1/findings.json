@@ -1,0 +1,23 @@
+{
+  "name": "train_106_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes in the inferior lingula of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 12211
+  },
+  "embedding_norm": 17.11699676513672,
+  "mask_active_voxels": 80478208
+}

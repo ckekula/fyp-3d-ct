@@ -1,0 +1,41 @@
+{
+  "name": "train_1706_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    495
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation area in the posterior segment of the right upper lobe consistent with pneumonic infiltration",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Indistinctly circumscribed ground-glass density area in the posterior segment of the left upper lobe, newly developed",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Millimetric nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "More prominent emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "1e",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 157419,
+    "1": 55816,
+    "2": 784,
+    "3": 161611
+  },
+  "embedding_norm": 17.570993423461914,
+  "mask_active_voxels": 129761280
+}

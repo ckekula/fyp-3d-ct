@@ -1,0 +1,41 @@
+{
+  "name": "train_1263_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    468
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Findings consistent with scarring in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the middle lobe and lower lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the middle lobe and lower lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Minimal pleural effusion on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2b",
+    "3": "2e"
+  },
+  "pixels": {
+    "0": 9581,
+    "1": 78092,
+    "2": 78092,
+    "3": 26249
+  },
+  "embedding_norm": 17.426462173461914,
+  "mask_active_voxels": 122683392
+}

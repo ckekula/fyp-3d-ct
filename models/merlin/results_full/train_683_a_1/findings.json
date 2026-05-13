@@ -1,0 +1,53 @@
+{
+  "name": "train_683_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    351
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal atelectasis in the medial aspect of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Fibrotic changes in the medial aspect of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Focal ground glass opacities in the posterobasal region of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Focal ground glass opacities extending to the upper lobe adjacent to the minor fissure",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Fibrotic densities in the lower lobes bilaterally",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Bilateral subcentimeter nonspecific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2c",
+    "3": "2c",
+    "4": "2a",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 13425,
+    "1": 13425,
+    "2": 37656,
+    "3": 3399,
+    "4": 43424,
+    "5": 4287
+  },
+  "embedding_norm": 17.37577247619629,
+  "mask_active_voxels": 92012544
+}

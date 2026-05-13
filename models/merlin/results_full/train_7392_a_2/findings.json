@@ -1,0 +1,23 @@
+{
+  "name": "train_7392_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    452
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread patchy consolidation areas with air bronchograms located subpleurally in both lungs, particularly in the lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 2100545
+  },
+  "embedding_norm": 17.403717041015625,
+  "mask_active_voxels": 118489088
+}

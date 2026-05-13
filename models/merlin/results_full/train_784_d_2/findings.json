@@ -1,0 +1,53 @@
+{
+  "name": "train_784_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    449
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular nodular densities with a tree-in-bud pattern in the lateral aspects of both upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centrilobular nodular densities with a tree-in-bud pattern in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Centrilobular nodular densities with a tree-in-bud pattern in the posterobasal segments of both lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Fibrosis in the bilateral apical segments",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "1e",
+    "3": "1c",
+    "4": "2a",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 159013,
+    "1": 28597,
+    "2": 13538,
+    "3": 60148,
+    "4": 6398,
+    "5": 1640
+  },
+  "embedding_norm": 17.415006637573242,
+  "mask_active_voxels": 117702656
+}

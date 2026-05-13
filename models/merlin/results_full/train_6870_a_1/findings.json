@@ -1,0 +1,35 @@
+{
+  "name": "train_6870_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    329
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Imaging features consistent with bilateral COVID-19 pneumonia",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 9894,
+    "1": 104361,
+    "2": 114255
+  },
+  "embedding_norm": 17.398618698120117,
+  "mask_active_voxels": 86245376
+}

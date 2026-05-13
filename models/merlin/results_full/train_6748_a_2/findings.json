@@ -1,0 +1,53 @@
+{
+  "name": "train_6748_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    174
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pleural effusion, more prominent on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural effusion measuring 3.0 cm at its thickest point",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation adjacent to the effusion in the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Loss of volume in the lower lobe of the right lung suggestive of passive atelectasis",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Peripheral and centrally located ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Ground-glass opacities accompanied by linear densities parallel to the pleura",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2b",
+    "3": "2b",
+    "4": "2c",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 526118,
+    "1": 10993,
+    "2": 48210,
+    "3": 16240,
+    "4": 9354,
+    "5": 8700
+  },
+  "embedding_norm": 16.722646713256836,
+  "mask_active_voxels": 45613056
+}

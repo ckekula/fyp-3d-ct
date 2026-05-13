@@ -1,0 +1,35 @@
+{
+  "name": "valid_385_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    241
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nodular consolidations in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 37483,
+    "1": 41694,
+    "2": 99015
+  },
+  "embedding_norm": 17.194448471069336,
+  "mask_active_voxels": 142147584
+}

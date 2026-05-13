@@ -1,0 +1,23 @@
+{
+  "name": "valid_313_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    412
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the superior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 12930
+  },
+  "embedding_norm": 17.485383987426758,
+  "mask_active_voxels": 108003328
+}

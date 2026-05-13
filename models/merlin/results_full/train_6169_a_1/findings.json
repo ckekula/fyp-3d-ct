@@ -1,0 +1,29 @@
+{
+  "name": "train_6169_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    212
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral patchy consolidations in both lung parenchyma",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Crazy paving patterns created by interlobular septal thickening in areas of ground glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 105322,
+    "1": 9638
+  },
+  "embedding_norm": 17.00727081298828,
+  "mask_active_voxels": 125042688
+}

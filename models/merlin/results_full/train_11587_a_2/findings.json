@@ -1,0 +1,35 @@
+{
+  "name": "train_11587_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    432
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular densities measuring 6 mm and 3 mm in diameter in the laterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "4 mm nodule in the minor fissure of the middle lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Linear atelectasis areas",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 731,
+    "1": 430,
+    "2": 2526
+  },
+  "embedding_norm": 17.500455856323242,
+  "mask_active_voxels": 113246208
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_6714_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Interlobular septal thickening in the peripheral subpleural area of the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass density increases in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral bronchiectatic changes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Atelectatic changes in the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2c",
+    "2": "1b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 67099,
+    "1": 145255,
+    "2": 28083,
+    "3": 20289
+  },
+  "embedding_norm": 17.35646629333496,
+  "mask_active_voxels": 139788288
+}

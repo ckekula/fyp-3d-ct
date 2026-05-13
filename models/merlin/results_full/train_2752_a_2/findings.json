@@ -1,0 +1,29 @@
+{
+  "name": "train_2752_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    532
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules in the peripheral areas of the lower lobes of both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the peripheral areas of the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1581,
+    "1": 3896
+  },
+  "embedding_norm": 17.494544982910156,
+  "mask_active_voxels": 139460608
+}

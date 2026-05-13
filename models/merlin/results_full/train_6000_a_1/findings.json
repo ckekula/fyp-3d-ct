@@ -1,0 +1,47 @@
+{
+  "name": "train_6000_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse peripheral and round ground-glass opacities in the middle-upper zones of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities with a tendency to converge in the basal regions of both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Widespread centrilobular distribution of ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Density increases at both apices compatible with irregularly circumscribed pleuroparenchymal scarring",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Well-circumscribed 13x11 mm nodule in the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1827,
+    "1": 10130,
+    "2": 2631,
+    "3": 8394,
+    "4": 4538
+  },
+  "embedding_norm": 17.01838493347168,
+  "mask_active_voxels": 117964800
+}

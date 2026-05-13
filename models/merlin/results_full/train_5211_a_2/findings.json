@@ -1,0 +1,29 @@
+{
+  "name": "train_5211_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    474
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild dependent atelectasis in the posterior lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Slight patchy ground-glass density at the level of the inferior lingula of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 12835,
+    "1": 3033
+  },
+  "embedding_norm": 17.594018936157227,
+  "mask_active_voxels": 124256256
+}

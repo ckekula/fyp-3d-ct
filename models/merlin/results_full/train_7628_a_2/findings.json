@@ -1,0 +1,29 @@
+{
+  "name": "train_7628_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    361
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the posterobasal segments of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy areas of consolidation with air bronchograms",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 15503,
+    "1": 5303
+  },
+  "embedding_norm": 17.455337524414062,
+  "mask_active_voxels": 94633984
+}

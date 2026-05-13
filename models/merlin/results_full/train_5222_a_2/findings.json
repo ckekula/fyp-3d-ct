@@ -1,0 +1,41 @@
+{
+  "name": "train_5222_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    379
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral asymmetrical peribronchial and subpleural ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Bilateral atypical pneumonic infiltration areas in the lung parenchyma",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Parenchymal involvement of COVID-19 infection",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 21431,
+    "1": 38140,
+    "2": 77822,
+    "3": 77822
+  },
+  "embedding_norm": 17.43939971923828,
+  "mask_active_voxels": 99352576
+}

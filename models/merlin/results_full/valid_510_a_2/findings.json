@@ -1,0 +1,23 @@
+{
+  "name": "valid_510_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    483
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 8720
+  },
+  "embedding_norm": 17.446537017822266,
+  "mask_active_voxels": 126615552
+}

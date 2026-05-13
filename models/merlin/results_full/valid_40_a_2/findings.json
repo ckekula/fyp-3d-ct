@@ -1,0 +1,35 @@
+{
+  "name": "valid_40_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    492
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lower lobe ground-glass opacities diffusely distributed",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subpleural consolidations in the right lung lower lobe laterobasal segment",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Subpleural consolidations in the left lung upper lobe apicoposterior segment",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 808480,
+    "1": 45935,
+    "2": 77128
+  },
+  "embedding_norm": 17.577333450317383,
+  "mask_active_voxels": 128974848
+}

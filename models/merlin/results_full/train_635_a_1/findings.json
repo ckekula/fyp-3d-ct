@@ -1,0 +1,41 @@
+{
+  "name": "train_635_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Very mild nodular parenchymal density increases in the basal and superior segments of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear opacities in the superior segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear opacities in the laterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subcentimeter nodules likely representing intralobular septal thickening",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2a",
+    "3": "1d"
+  },
+  "pixels": {
+    "0": 573,
+    "1": 18163,
+    "2": 34193,
+    "3": 1444
+  },
+  "embedding_norm": 16.93269920349121,
+  "mask_active_voxels": 53477376
+}

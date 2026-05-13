@@ -1,0 +1,23 @@
+{
+  "name": "train_10762_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few subcentimeter nonspecific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 70
+  },
+  "embedding_norm": 17.12923240661621,
+  "mask_active_voxels": 66584576
+}

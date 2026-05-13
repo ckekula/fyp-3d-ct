@@ -1,0 +1,23 @@
+{
+  "name": "train_2834_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    314
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 221
+  },
+  "embedding_norm": 17.367008209228516,
+  "mask_active_voxels": 82313216
+}

@@ -1,0 +1,59 @@
+{
+  "name": "train_784_e_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    488
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter centrilobular nodular densities in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Tree-in-bud opacities in both lungs, more prominent on the right",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "6 mm indeterminate nodule in the apical region of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Bronchiectasis at the aforementioned levels",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Emphysematous changes within the lungs",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Bilateral apical scarring within the lungs",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Subcentimeter stable nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "2d",
+    "3": "1b",
+    "4": "1c",
+    "5": "2a",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 1045,
+    "1": 19157,
+    "2": 855,
+    "3": 171362,
+    "4": 136916,
+    "5": 3397,
+    "6": 1045
+  },
+  "embedding_norm": 17.479455947875977,
+  "mask_active_voxels": 127926272
+}

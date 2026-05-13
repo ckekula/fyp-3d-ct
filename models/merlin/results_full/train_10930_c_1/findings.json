@@ -1,0 +1,29 @@
+{
+  "name": "train_10930_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    360
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation patterns in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 31034,
+    "1": 12341
+  },
+  "embedding_norm": 17.28151512145996,
+  "mask_active_voxels": 94371840
+}

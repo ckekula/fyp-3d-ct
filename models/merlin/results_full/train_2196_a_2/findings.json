@@ -1,0 +1,47 @@
+{
+  "name": "train_2196_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    436
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the medial segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Consolidation in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Surrounding ground-glass opacities in the medial segment of the right middle lobe and the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subcentimeter centriacinar nodules adjacent to the described areas",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Pneumonic infiltration in the middle and lower lobes of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "1e",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 91507,
+    "1": 159429,
+    "2": 68182,
+    "3": 1768,
+    "4": 83900
+  },
+  "embedding_norm": 17.381607055664062,
+  "mask_active_voxels": 114294784
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_720_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3 mm nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1208
+  },
+  "embedding_norm": 17.000181198120117,
+  "mask_active_voxels": 58195968
+}

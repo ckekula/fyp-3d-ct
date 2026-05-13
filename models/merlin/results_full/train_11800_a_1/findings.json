@@ -1,0 +1,53 @@
+{
+  "name": "train_11800_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    257
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally distributed ground-glass opacities in mid-lower zones of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Interlobular septal thickening in mid-lower zones of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Occasional focal reticulonodular opacities",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Bilateral apical scarring",
+      "category": "Others"
+    },
+    "4": {
+      "text": "3 mm nonspecific nodule at anterior-posterior segment transition of right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nonspecific nodules measuring 2 mm and 4 mm in right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2h",
+    "3": "2a",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 183870,
+    "1": 308105,
+    "2": 204767,
+    "3": 9410,
+    "4": 356,
+    "5": 456
+  },
+  "embedding_norm": 16.972511291503906,
+  "mask_active_voxels": 67371008
+}

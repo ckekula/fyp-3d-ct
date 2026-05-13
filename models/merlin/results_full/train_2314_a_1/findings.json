@@ -1,0 +1,23 @@
+{
+  "name": "train_2314_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few nonspecific subcentimeter semisolid nodules in both lungs, each less than 5 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 167
+  },
+  "embedding_norm": 16.881742477416992,
+  "mask_active_voxels": 60555264
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_1200_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    431
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Soft tissue opacities within the tracheal lumen",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Widespread and confluent areas of consolidation in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Scarring in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2h",
+    "1": "2b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 518,
+    "1": 1143975,
+    "2": 1615033
+  },
+  "embedding_norm": 17.500337600708008,
+  "mask_active_voxels": 112984064
+}

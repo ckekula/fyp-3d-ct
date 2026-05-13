@@ -1,0 +1,23 @@
+{
+  "name": "train_11460_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    493
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b"
+  },
+  "pixels": {
+    "0": 2834
+  },
+  "embedding_norm": 17.572500228881836,
+  "mask_active_voxels": 129236992
+}

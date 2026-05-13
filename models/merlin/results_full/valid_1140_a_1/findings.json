@@ -1,0 +1,41 @@
+{
+  "name": "valid_1140_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Trace effusion in both pleural cavities",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Thickened major fissure on the right side",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectatic changes in the dependent parts of the basal segments of the lower lobes bilaterally",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal thickening of the peribronchovascular interstitium in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1f",
+    "2": "2b",
+    "3": "1d"
+  },
+  "pixels": {
+    "0": 6187,
+    "1": 5385,
+    "2": 6661,
+    "3": 793027
+  },
+  "embedding_norm": 17.33186912536621,
+  "mask_active_voxels": 78118912
+}

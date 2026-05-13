@@ -1,0 +1,23 @@
+{
+  "name": "train_6055_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "6 mm nonspecific ground-glass nodular lesion in the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 345
+  },
+  "embedding_norm": 16.881980895996094,
+  "mask_active_voxels": 60555264
+}

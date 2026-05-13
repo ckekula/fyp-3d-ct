@@ -1,0 +1,23 @@
+{
+  "name": "train_10377_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    370
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacity in the posterior subsegment of the apicoposterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 60249
+  },
+  "embedding_norm": 17.282596588134766,
+  "mask_active_voxels": 96993280
+}

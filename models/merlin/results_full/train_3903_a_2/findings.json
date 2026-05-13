@@ -1,0 +1,35 @@
+{
+  "name": "train_3903_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Minimal atelectasis in the left lingula",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal atelectasis bilaterally in the paracardiac regions",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 889,
+    "1": 1479,
+    "2": 1000
+  },
+  "embedding_norm": 16.88876724243164,
+  "mask_active_voxels": 63963136
+}

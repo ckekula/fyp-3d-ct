@@ -1,0 +1,35 @@
+{
+  "name": "train_11438_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    184
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion in the right hemithorax, 1.5 cm thick",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the posterior segment of the lower lobe of the right lung adjacent to the effusion",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Diffuse nodular ground glass opacities in both lungs, centrally weighted, confluent, and partially consolidated, more prominent in the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 49598,
+    "1": 12430,
+    "2": 1285
+  },
+  "embedding_norm": 16.60047149658203,
+  "mask_active_voxels": 48234496
+}

@@ -1,0 +1,29 @@
+{
+  "name": "valid_679_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectasis in both lungs with central prominence",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic changes in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 806662,
+    "1": 13337
+  },
+  "embedding_norm": 17.588336944580078,
+  "mask_active_voxels": 133431296
+}

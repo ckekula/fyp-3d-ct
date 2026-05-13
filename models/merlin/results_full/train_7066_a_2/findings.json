@@ -1,0 +1,47 @@
+{
+  "name": "train_7066_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacities in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground-glass opacities in the laterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Focal ground-glass opacities in the mediobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Focal ground-glass opacities in the upper lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Focal ground-glass opacities in the middle lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 2297,
+    "1": 8477,
+    "2": 23421,
+    "3": 16982,
+    "4": 34258
+  },
+  "embedding_norm": 17.45148468017578,
+  "mask_active_voxels": 122945536
+}

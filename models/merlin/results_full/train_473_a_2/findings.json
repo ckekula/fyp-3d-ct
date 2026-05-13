@@ -1,0 +1,29 @@
+{
+  "name": "train_473_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes bilaterally in the lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the lower lobe of the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 195376,
+    "1": 10311
+  },
+  "embedding_norm": 17.451580047607422,
+  "mask_active_voxels": 123207680
+}

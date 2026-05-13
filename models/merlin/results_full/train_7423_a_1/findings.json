@@ -1,0 +1,29 @@
+{
+  "name": "train_7423_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    355
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchial ectasia in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the laterobasal segment of the right lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1436,
+    "1": 2932
+  },
+  "embedding_norm": 17.23741340637207,
+  "mask_active_voxels": 93061120
+}

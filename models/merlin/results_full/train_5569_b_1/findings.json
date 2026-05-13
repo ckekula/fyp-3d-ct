@@ -1,0 +1,35 @@
+{
+  "name": "train_5569_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    265
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Wide patchy area of consolidation in both lungs, multilobar and multisegmental, involving the entire lower lobes",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Crazy paving pattern and vascular enlargement in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Reticulonodular fibrotic density increases in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "1d"
+  },
+  "pixels": {
+    "0": 110928,
+    "1": 12528,
+    "2": 29654
+  },
+  "embedding_norm": 17.2479190826416,
+  "mask_active_voxels": 69468160
+}

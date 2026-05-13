@@ -1,0 +1,71 @@
+{
+  "name": "valid_937_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    564
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild bronchiectasis in lower zones of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic changes at apical regions of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Progression of ground-glass opacity from pleura to central region of posterior segment",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Progression of ground-glass opacity in medial segment of middle lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Fibrotic changes at posterobasal level consistent with previous findings",
+      "category": "Others"
+    },
+    "5": {
+      "text": "New area of consolidation with air bronchograms in apicoposterior segment of left lung upper lobe",
+      "category": "Consolidation"
+    },
+    "6": {
+      "text": "Consolidative lesion with subcentimeter area of cavitation associated with bronchial tract in anterior portion of apicoposterior segment",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Lesion more consolidative in appearance",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Previously noted focal ground-glass opacity in anteromediobasal segment of lower lobe still present",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "2c",
+    "3": "2c",
+    "4": "2a",
+    "5": "2b",
+    "6": "2b",
+    "7": "2b",
+    "8": "2c"
+  },
+  "pixels": {
+    "0": 342493,
+    "1": 974,
+    "2": 33041,
+    "3": 14816,
+    "4": 35629,
+    "5": 79066,
+    "6": 79066,
+    "7": 79066,
+    "8": 2493
+  },
+  "embedding_norm": 17.52471351623535,
+  "mask_active_voxels": 147849216
+}

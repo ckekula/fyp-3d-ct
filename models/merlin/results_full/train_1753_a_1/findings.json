@@ -1,0 +1,47 @@
+{
+  "name": "train_1753_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Larger areas of consolidation in the basal segments of the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "New areas of consolidation in the right middle lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "New areas of consolidation in the inferior lingular segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Diffuse subsegmental atelectatic changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 403597,
+    "1": 88082,
+    "2": 23266,
+    "3": 45683,
+    "4": 208
+  },
+  "embedding_norm": 16.92180824279785,
+  "mask_active_voxels": 54001664
+}

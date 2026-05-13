@@ -1,0 +1,35 @@
+{
+  "name": "valid_243_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    494
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the upper and lower lobes of both lungs and in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Interlobular septal thickening in the upper and lower lobes of both lungs and in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nodular opacities with surrounding ground glass changes in the peripheral regions of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 191975,
+    "1": 191975,
+    "2": 5299
+  },
+  "embedding_norm": 17.573644638061523,
+  "mask_active_voxels": 129499136
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_7446_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    523
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific calcific nodule in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 70
+  },
+  "embedding_norm": 17.601585388183594,
+  "mask_active_voxels": 137101312
+}

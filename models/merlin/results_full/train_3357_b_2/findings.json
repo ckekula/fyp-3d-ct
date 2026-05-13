@@ -1,0 +1,29 @@
+{
+  "name": "train_3357_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    494
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs, predominantly in the central regions",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Minimal pleural effusion on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2e"
+  },
+  "pixels": {
+    "0": 23465,
+    "1": 311047
+  },
+  "embedding_norm": 17.573532104492188,
+  "mask_active_voxels": 129499136
+}

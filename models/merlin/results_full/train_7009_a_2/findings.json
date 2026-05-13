@@ -1,0 +1,35 @@
+{
+  "name": "train_7009_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter subpleural nodule at the posterobasal level of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter subpleural nodule in the lateral lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Mild linear atelectasis at the basal level of the left lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 359,
+    "1": 253,
+    "2": 17833
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

@@ -1,0 +1,41 @@
+{
+  "name": "valid_241_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    472
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density areas in the right lower lobe superior segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased density areas in the left lower lobe superior and posterobasal segments",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation in the right lower lobe superior segment",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidation in the left lower lobe superior and posterobasal segments",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 14656,
+    "1": 71950,
+    "2": 310,
+    "3": 323646
+  },
+  "embedding_norm": 17.460351943969727,
+  "mask_active_voxels": 123731968
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_29_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    517
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fissural and pleura-based consolidations in the left lung upper lobe apicoposterior segment",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 13605
+  },
+  "embedding_norm": 17.500505447387695,
+  "mask_active_voxels": 135528448
+}

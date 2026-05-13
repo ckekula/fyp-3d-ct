@@ -1,0 +1,23 @@
+{
+  "name": "train_7060_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter non-specific nodule adjacent to the fissure in the superior-anterior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 115
+  },
+  "embedding_norm": 17.22784996032715,
+  "mask_active_voxels": 121503744
+}

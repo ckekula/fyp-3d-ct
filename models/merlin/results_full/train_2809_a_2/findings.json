@@ -1,0 +1,29 @@
+{
+  "name": "train_2809_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    459
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6612482,
+    "1": 1347
+  },
+  "embedding_norm": 17.540903091430664,
+  "mask_active_voxels": 6613829
+}

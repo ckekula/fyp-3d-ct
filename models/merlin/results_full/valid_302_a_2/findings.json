@@ -1,0 +1,23 @@
+{
+  "name": "valid_302_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    293
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass densities in the left lower lobe at the basal level",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 39965
+  },
+  "embedding_norm": 17.108816146850586,
+  "mask_active_voxels": 76808192
+}

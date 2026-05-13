@@ -1,0 +1,29 @@
+{
+  "name": "train_8223_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground glass opacities in the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Many ground glass opacities are round in shape",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 3428,
+    "1": 3428
+  },
+  "embedding_norm": 17.55673599243164,
+  "mask_active_voxels": 125304832
+}

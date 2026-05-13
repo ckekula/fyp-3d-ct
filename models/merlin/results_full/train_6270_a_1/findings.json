@@ -1,0 +1,29 @@
+{
+  "name": "train_6270_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    232
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "7 x 4 mm nodule at the fissure location on the left",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 280,
+    "1": 175
+  },
+  "embedding_norm": 16.88218116760254,
+  "mask_active_voxels": 60817408
+}

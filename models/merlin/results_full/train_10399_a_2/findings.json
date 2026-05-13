@@ -1,0 +1,29 @@
+{
+  "name": "train_10399_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    514
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 10914,
+    "1": 264
+  },
+  "embedding_norm": 17.486209869384766,
+  "mask_active_voxels": 134742016
+}

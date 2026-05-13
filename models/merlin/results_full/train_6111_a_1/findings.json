@@ -1,0 +1,47 @@
+{
+  "name": "train_6111_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulonodular density increases in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Emphysematous changes in both lung apices",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Thin-walled parenchymal air cyst measuring 6.5 mm in diameter in the laterobasal segment of the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Several calcific nodules measuring up to 2.2 mm in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Largest calcific nodule located in the superior lingular segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1c",
+    "2": "2d",
+    "3": "1e",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 14851,
+    "1": 6405,
+    "2": 326,
+    "3": 139,
+    "4": 105
+  },
+  "embedding_norm": 16.99742889404297,
+  "mask_active_voxels": 58720256
+}

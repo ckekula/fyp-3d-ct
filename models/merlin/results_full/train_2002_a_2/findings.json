@@ -1,0 +1,35 @@
+{
+  "name": "train_2002_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    473
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacities in a few localized areas in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Scarring changes at the apices",
+      "category": "Others"
+    },
+    "2": {
+      "text": "2 mm nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 37202,
+    "1": 11414,
+    "2": 766
+  },
+  "embedding_norm": 17.593902587890625,
+  "mask_active_voxels": 123994112
+}

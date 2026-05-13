@@ -1,0 +1,23 @@
+{
+  "name": "train_11093_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear areas of atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 4390
+  },
+  "embedding_norm": 17.066232681274414,
+  "mask_active_voxels": 62914560
+}

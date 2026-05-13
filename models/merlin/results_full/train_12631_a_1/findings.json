@@ -1,0 +1,29 @@
+{
+  "name": "train_12631_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of consolidation in the lateral segment of the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Occasional nodular ground glass opacities in the lateral segment of the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 54707,
+    "1": 9320
+  },
+  "embedding_norm": 17.118928909301758,
+  "mask_active_voxels": 80478208
+}

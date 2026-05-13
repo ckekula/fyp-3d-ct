@@ -1,0 +1,41 @@
+{
+  "name": "train_6842_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    403
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripherally located areas of increased density consistent with ground-glass opacities and consolidation with indistinct borders in the right upper lobe anterior segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Peripherally located areas of increased density consistent with ground-glass opacities and consolidation with indistinct borders in the left lower lobe posterobasal segment",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Peripherally located areas of increased density consistent with ground-glass opacities and consolidation with indistinct borders in the upper lobe inferior lingular segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 8243,
+    "1": 11151,
+    "2": 1251,
+    "3": 9707
+  },
+  "embedding_norm": 17.330472946166992,
+  "mask_active_voxels": 105644032
+}

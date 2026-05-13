@@ -1,0 +1,23 @@
+{
+  "name": "train_5476_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    463
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the posterobasal and lateral basal segments of the left lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1397
+  },
+  "embedding_norm": 17.53760528564453,
+  "mask_active_voxels": 121372672
+}

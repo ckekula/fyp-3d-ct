@@ -1,0 +1,29 @@
+{
+  "name": "train_5432_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    232
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific irregular nodules in the posterior basal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific irregular nodules in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 278,
+    "1": 86
+  },
+  "embedding_norm": 17.173812866210938,
+  "mask_active_voxels": 136839168
+}

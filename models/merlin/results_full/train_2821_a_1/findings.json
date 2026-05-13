@@ -1,0 +1,29 @@
+{
+  "name": "train_2821_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    242
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural, crazy paving appearances in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Cylindrical bronchiectasis in the affected areas",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1b"
+  },
+  "pixels": {
+    "0": 517465,
+    "1": 1745
+  },
+  "embedding_norm": 16.905797958374023,
+  "mask_active_voxels": 63438848
+}

@@ -1,0 +1,53 @@
+{
+  "name": "valid_1082_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    305
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Effusions extending into the fissures of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased interstitial marking in the lung parenchyma",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Interstitial septal thickening within the lung parenchyma",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Interstitial lobular thickening within the lung parenchyma",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Scattered focal ground-glass opacities throughout both lungs",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Mosaic attenuation pattern in the parenchyma of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1d",
+    "2": "1d",
+    "3": "1d",
+    "4": "2c",
+    "5": "1f"
+  },
+  "pixels": {
+    "0": 195092,
+    "1": 338608,
+    "2": 338608,
+    "3": 338608,
+    "4": 504909,
+    "5": 504909
+  },
+  "embedding_norm": 17.129493713378906,
+  "mask_active_voxels": 79953920
+}

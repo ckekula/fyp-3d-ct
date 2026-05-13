@@ -1,0 +1,29 @@
+{
+  "name": "train_11991_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural nodules up to 5 mm in the posterior right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Focal nodular ground glass opacity in the upper lobe of the right lung toward the lateral aspect",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1270,
+    "1": 171
+  },
+  "embedding_norm": 17.4515380859375,
+  "mask_active_voxels": 123207680
+}

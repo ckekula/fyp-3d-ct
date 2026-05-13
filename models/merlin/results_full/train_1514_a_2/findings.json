@@ -1,0 +1,23 @@
+{
+  "name": "train_1514_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    519
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodules less than 5 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 3413
+  },
+  "embedding_norm": 17.50860023498535,
+  "mask_active_voxels": 136052736
+}

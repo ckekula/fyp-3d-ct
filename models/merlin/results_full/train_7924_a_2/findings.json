@@ -1,0 +1,23 @@
+{
+  "name": "train_7924_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    435
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild ectasia in the bilateral bronchial structures",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 3349
+  },
+  "embedding_norm": 17.38132667541504,
+  "mask_active_voxels": 114032640
+}

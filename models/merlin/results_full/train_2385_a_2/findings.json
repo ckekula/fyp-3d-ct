@@ -1,0 +1,23 @@
+{
+  "name": "train_2385_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    394
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass opacities in the posterior and lateral segments of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 25130
+  },
+  "embedding_norm": 17.50251007080078,
+  "mask_active_voxels": 103284736
+}

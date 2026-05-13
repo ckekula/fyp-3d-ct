@@ -1,0 +1,35 @@
+{
+  "name": "train_5296_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased pleuroparenchymal scarring in the apical region of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Parenchymal nodule measuring 6.8 mm in the posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Parenchymal nodule measuring 4.2 mm in the posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1496,
+    "1": 468,
+    "2": 187
+  },
+  "embedding_norm": 17.57826042175293,
+  "mask_active_voxels": 120061952
+}

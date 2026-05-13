@@ -1,0 +1,41 @@
+{
+  "name": "train_1056_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    183
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the upper and lower lobes of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Round-shaped area of consolidation in the posterobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 87435,
+    "1": 6469,
+    "2": 3803,
+    "3": 36828
+  },
+  "embedding_norm": 16.60011863708496,
+  "mask_active_voxels": 47972352
+}

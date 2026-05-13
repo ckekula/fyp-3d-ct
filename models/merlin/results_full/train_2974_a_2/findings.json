@@ -1,0 +1,47 @@
+{
+  "name": "train_2974_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    236
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidation in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Peripherally located interlobular septal thickenings in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Surrounding ground-glass opacities in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific parenchymal nodule in the anterobasal segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Segmental and subsegmental peribronchial thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1d",
+    "2": "2c",
+    "3": "2d",
+    "4": "1a"
+  },
+  "pixels": {
+    "0": 6160,
+    "1": 13928,
+    "2": 1016,
+    "3": 666,
+    "4": 79255
+  },
+  "embedding_norm": 17.07861328125,
+  "mask_active_voxels": 61865984
+}

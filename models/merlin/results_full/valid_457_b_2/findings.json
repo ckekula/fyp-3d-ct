@@ -1,0 +1,35 @@
+{
+  "name": "valid_457_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered linear atelectasis in the aerated portions of both lungs, excluding the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Emphysematous changes within both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal interlobular septal thickening bilaterally, more pronounced on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c",
+    "2": "1d"
+  },
+  "pixels": {
+    "0": 6059,
+    "1": 7965,
+    "2": 23316
+  },
+  "embedding_norm": 17.14295768737793,
+  "mask_active_voxels": 61341696
+}

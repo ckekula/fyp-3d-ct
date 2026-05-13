@@ -1,0 +1,71 @@
+{
+  "name": "train_1348_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread varicose bronchiectasis in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchiectasis with bronchial thickening in the lateral basal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bronchiectasis with bronchial thickening in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bronchiectasis with bronchial thickening in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Varicose bronchiectasis in the lateral basal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Intense peribronchial thickening in the lateral basal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Bud branch appearances in the lateral basal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Infected bronchiectasis in the lateral basal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Mosaic attenuation due to diffuse aeration differences in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1b",
+    "2": "1b",
+    "3": "1b",
+    "4": "1b",
+    "5": "1a",
+    "6": "1f",
+    "7": "1b",
+    "8": "1f"
+  },
+  "pixels": {
+    "0": 257106,
+    "1": 90437,
+    "2": 81950,
+    "3": 88128,
+    "4": 158357,
+    "5": 90437,
+    "6": 90437,
+    "7": 313183,
+    "8": 95502
+  },
+  "embedding_norm": 17.58745002746582,
+  "mask_active_voxels": 133431296
+}

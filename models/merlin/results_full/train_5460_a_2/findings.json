@@ -1,0 +1,47 @@
+{
+  "name": "train_5460_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the posterobasal segments of the bilateral lower lobes",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the peripheral subpleural areas",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subcentimeter ground-glass nodule in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Atelectasis changes in the posterobasal segments of both lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2d",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 3637,
+    "1": 2432,
+    "2": 1625,
+    "3": 443,
+    "4": 821
+  },
+  "embedding_norm": 17.587636947631836,
+  "mask_active_voxels": 133431296
+}

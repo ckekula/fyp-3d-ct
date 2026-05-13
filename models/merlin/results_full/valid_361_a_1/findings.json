@@ -1,0 +1,23 @@
+{
+  "name": "valid_361_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lung parenchyma with patchy, peripheral-subpleural ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1782
+  },
+  "embedding_norm": 16.998144149780273,
+  "mask_active_voxels": 58720256
+}

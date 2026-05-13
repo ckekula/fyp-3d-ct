@@ -1,0 +1,23 @@
+{
+  "name": "valid_1102_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    531
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter subpleural nodule in the posterobasal portion of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 877
+  },
+  "embedding_norm": 17.494102478027344,
+  "mask_active_voxels": 139198464
+}

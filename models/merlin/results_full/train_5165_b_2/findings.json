@@ -1,0 +1,41 @@
+{
+  "name": "train_5165_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    400
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subpleural ground-glass opacities",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Scattered ground-glass opacities",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Areas of consolidation occasionally formed by ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 12474,
+    "1": 17719,
+    "2": 4008,
+    "3": 14597
+  },
+  "embedding_norm": 17.456552505493164,
+  "mask_active_voxels": 104857600
+}

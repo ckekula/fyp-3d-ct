@@ -1,0 +1,29 @@
+{
+  "name": "valid_90_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    221
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple thick-walled cavitary lesions up to 5.1 cm in the right upper lobe apical level and in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Associated tree-in-bud opacities in the right upper lobe apical level and in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 262616,
+    "1": 57346
+  },
+  "embedding_norm": 17.001598358154297,
+  "mask_active_voxels": 57933824
+}

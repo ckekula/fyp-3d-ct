@@ -1,0 +1,23 @@
+{
+  "name": "train_2323_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    420
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3 mm ground-glass nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 10683
+  },
+  "embedding_norm": 17.356914520263672,
+  "mask_active_voxels": 110100480
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_7868_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    464
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodular density on the pleura in the lateral segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 215
+  },
+  "embedding_norm": 17.53786277770996,
+  "mask_active_voxels": 121634816
+}

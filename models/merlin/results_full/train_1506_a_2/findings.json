@@ -1,0 +1,41 @@
+{
+  "name": "train_1506_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    527
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild bronchiectatic changes in both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening in both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of scarring in the form of pleuroparenchymal bands in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Calcified pulmonary nodule measuring 4 mm in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1049562,
+    "1": 260982,
+    "2": 53826,
+    "3": 724
+  },
+  "embedding_norm": 17.595502853393555,
+  "mask_active_voxels": 138149888
+}

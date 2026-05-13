@@ -1,0 +1,23 @@
+{
+  "name": "valid_913_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small amount of centrilobular emphysema within the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 112229
+  },
+  "embedding_norm": 16.99455451965332,
+  "mask_active_voxels": 58720256
+}

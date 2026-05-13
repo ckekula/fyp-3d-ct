@@ -1,0 +1,47 @@
+{
+  "name": "train_2041_f_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    274
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Collapsed trachea and lobar and segmental bronchi",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Near-complete atelectasis of the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Consolidation in the upper lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground-glass opacities in the upper lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Mild interlobular septal thickening in the basal segment of the lower lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c",
+    "4": "1d"
+  },
+  "pixels": {
+    "0": 198138,
+    "1": 73476,
+    "2": 76746,
+    "3": 73594,
+    "4": 73501
+  },
+  "embedding_norm": 17.03125762939453,
+  "mask_active_voxels": 71827456
+}

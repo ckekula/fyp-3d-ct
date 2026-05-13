@@ -1,0 +1,29 @@
+{
+  "name": "valid_633_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    517
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nodular ground-glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 5100,
+    "1": 8040
+  },
+  "embedding_norm": 17.500852584838867,
+  "mask_active_voxels": 135528448
+}

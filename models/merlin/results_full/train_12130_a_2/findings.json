@@ -1,0 +1,23 @@
+{
+  "name": "train_12130_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic changes in the apices of the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 30079
+  },
+  "embedding_norm": 17.143056869506836,
+  "mask_active_voxels": 61341696
+}

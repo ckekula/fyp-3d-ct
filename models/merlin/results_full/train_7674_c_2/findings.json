@@ -1,0 +1,29 @@
+{
+  "name": "train_7674_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    184
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis in the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Scarring in the inferior subsegment of the lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 2902,
+    "1": 1212
+  },
+  "embedding_norm": 16.60036849975586,
+  "mask_active_voxels": 48234496
+}

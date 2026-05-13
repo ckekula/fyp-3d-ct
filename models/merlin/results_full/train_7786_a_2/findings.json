@@ -1,0 +1,35 @@
+{
+  "name": "train_7786_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    410
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs, more prominent in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities more pronounced in the peripheral regions",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear bands of increased density accompanying the ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 16601,
+    "1": 50237,
+    "2": 13713
+  },
+  "embedding_norm": 17.523954391479492,
+  "mask_active_voxels": 107479040
+}

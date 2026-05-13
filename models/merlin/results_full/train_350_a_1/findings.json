@@ -1,0 +1,23 @@
+{
+  "name": "train_350_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    194
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes within both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 22655
+  },
+  "embedding_norm": 16.64963722229004,
+  "mask_active_voxels": 50855936
+}

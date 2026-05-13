@@ -1,0 +1,35 @@
+{
+  "name": "valid_91_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    487
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central ground glass opacities in bilateral upper and lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Localized areas of consolidation in bilateral upper and lower lobes",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Inverted halo sign in bilateral upper and lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 353920,
+    "1": 283177,
+    "2": 353920
+  },
+  "embedding_norm": 17.485042572021484,
+  "mask_active_voxels": 127664128
+}

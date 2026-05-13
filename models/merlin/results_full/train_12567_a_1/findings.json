@@ -1,0 +1,23 @@
+{
+  "name": "train_12567_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    267
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 18098
+  },
+  "embedding_norm": 17.19182014465332,
+  "mask_active_voxels": 69992448
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_24_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    528
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Panacinar and centriacinar patterns in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of atelectasis in the posterobasal segments of both lower lobes",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Increased nodular density in the medial segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 448286,
+    "1": 448286,
+    "2": 16165,
+    "3": 7741
+  },
+  "embedding_norm": 17.598424911499023,
+  "mask_active_voxels": 138412032
+}

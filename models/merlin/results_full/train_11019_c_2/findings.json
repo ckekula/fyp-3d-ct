@@ -1,0 +1,29 @@
+{
+  "name": "train_11019_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral cylindrical bronchiectasis",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bilateral subcentimeter nonspecific parenchymal nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2013,
+    "1": 74
+  },
+  "embedding_norm": 17.440183639526367,
+  "mask_active_voxels": 119537664
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_1623_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    219
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear density increases in the superior segment of the left lower lobe, consistent with scarring",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal bronchiectasis in the superior segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2a",
+    "3": "1b"
+  },
+  "pixels": {
+    "0": 152627,
+    "1": 6981,
+    "2": 25311,
+    "3": 251072
+  },
+  "embedding_norm": 17.315343856811523,
+  "mask_active_voxels": 129171456
+}

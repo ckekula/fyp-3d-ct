@@ -1,0 +1,29 @@
+{
+  "name": "valid_289_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    447
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pulmonary consolidations",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Increased prevalence of consolidations towards lung bases",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 31500,
+    "1": 70962
+  },
+  "embedding_norm": 17.519975662231445,
+  "mask_active_voxels": 117178368
+}

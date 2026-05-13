@@ -1,0 +1,29 @@
+{
+  "name": "train_1794_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    257
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffusely located peribronchial and subpleural ground-glass opacities with faint borders in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Two subpleural nodules in the superior lower lobe of the right lung, largest measuring 4.5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 202425,
+    "1": 360
+  },
+  "embedding_norm": 16.973142623901367,
+  "mask_active_voxels": 67371008
+}

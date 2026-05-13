@@ -1,0 +1,47 @@
+{
+  "name": "valid_407_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    500
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear density increases at the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal structural distortion at the apices of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Slight volume loss at the apices of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nodules at the apices of both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Pleuroparenchymal fibrosis at the lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2b",
+    "3": "2d",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 64617,
+    "1": 64617,
+    "2": 64617,
+    "3": 64617,
+    "4": 64617
+  },
+  "embedding_norm": 17.464433670043945,
+  "mask_active_voxels": 131072000
+}

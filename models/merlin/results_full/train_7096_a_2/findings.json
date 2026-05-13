@@ -1,0 +1,23 @@
+{
+  "name": "train_7096_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    382
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral consolidation in the anteromediobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 9982
+  },
+  "embedding_norm": 17.43506622314453,
+  "mask_active_voxels": 100139008
+}

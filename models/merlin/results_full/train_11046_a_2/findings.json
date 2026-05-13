@@ -1,0 +1,23 @@
+{
+  "name": "train_11046_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    329
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 25731
+  },
+  "embedding_norm": 17.398698806762695,
+  "mask_active_voxels": 86245376
+}

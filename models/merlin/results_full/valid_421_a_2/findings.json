@@ -1,0 +1,29 @@
+{
+  "name": "valid_421_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    443
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified subcentimeter nodule in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter subpleural nodule in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 427,
+    "1": 231
+  },
+  "embedding_norm": 17.526329040527344,
+  "mask_active_voxels": 116129792
+}

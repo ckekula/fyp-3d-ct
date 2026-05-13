@@ -1,0 +1,41 @@
+{
+  "name": "train_6549_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    446
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibroatelectatic changes in the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibroatelectatic changes in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific subcentimeter parenchymal nodules up to 5 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest nodule located in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1f",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1734,
+    "1": 952,
+    "2": 939,
+    "3": 399
+  },
+  "embedding_norm": 17.521394729614258,
+  "mask_active_voxels": 116916224
+}

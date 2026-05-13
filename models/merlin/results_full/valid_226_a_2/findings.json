@@ -1,0 +1,29 @@
+{
+  "name": "valid_226_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    480
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pulmonary parenchyma with peripheral subpleural ground-glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of increased density consistent with consolidation in bilateral pulmonary parenchyma",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 71724,
+    "1": 87177
+  },
+  "embedding_norm": 17.558391571044922,
+  "mask_active_voxels": 125829120
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_2056_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural ground-glass opacities in the anterior segments of the upper lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation area containing air bronchograms in the superior segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Nodular and ground-glass density areas in the posterobasal segments of the lower lobes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 30620,
+    "1": 140359,
+    "2": 58424
+  },
+  "embedding_norm": 17.543819427490234,
+  "mask_active_voxels": 111673344
+}

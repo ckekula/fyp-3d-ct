@@ -1,0 +1,23 @@
+{
+  "name": "train_5311_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    353
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs have largely regressed but persist at some levels",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 50333
+  },
+  "embedding_norm": 17.251426696777344,
+  "mask_active_voxels": 92536832
+}

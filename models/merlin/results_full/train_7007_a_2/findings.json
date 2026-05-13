@@ -1,0 +1,29 @@
+{
+  "name": "train_7007_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest nodule measuring 4.5 mm in the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 245,
+    "1": 131
+  },
+  "embedding_norm": 17.455583572387695,
+  "mask_active_voxels": 126353408
+}

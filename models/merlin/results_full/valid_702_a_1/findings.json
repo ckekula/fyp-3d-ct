@@ -1,0 +1,23 @@
+{
+  "name": "valid_702_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    376
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Large area of consolidation in the superior posterior segment of the right lower lobe with an air bronchogram",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 118522
+  },
+  "embedding_norm": 17.31402587890625,
+  "mask_active_voxels": 98566144
+}

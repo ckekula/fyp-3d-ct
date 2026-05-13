@@ -1,0 +1,35 @@
+{
+  "name": "train_7491_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    259
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse interlobular septal thickening in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild bilateral pleural effusion",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Patchy ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2e",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 193098,
+    "1": 135891,
+    "2": 198628
+  },
+  "embedding_norm": 16.956037521362305,
+  "mask_active_voxels": 67895296
+}

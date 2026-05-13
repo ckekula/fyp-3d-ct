@@ -1,0 +1,89 @@
+{
+  "name": "train_1348_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    539
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse cylindrical and varicose bronchiectatic changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation areas in the anterior segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidation areas in the posterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Consolidation areas in the laterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Tree-in-bud appearance in the right upper lobe",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Tree-in-bud appearance in both lower lobes",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Tree-in-bud appearance in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Acinar opacities in the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "9": {
+      "text": "Acinar opacities in both lower lobes",
+      "category": "Lung opacity"
+    },
+    "10": {
+      "text": "Acinar opacities in the apicoposterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "11": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "1e",
+    "6": "1e",
+    "7": "1e",
+    "8": "2c",
+    "9": "2c",
+    "10": "2c",
+    "11": "1f"
+  },
+  "pixels": {
+    "0": 60937,
+    "1": 60937,
+    "2": 126952,
+    "3": 79507,
+    "4": 79507,
+    "5": 88664,
+    "6": 379827,
+    "7": 176215,
+    "8": 88664,
+    "9": 379827,
+    "10": 176215,
+    "11": 359278
+  },
+  "embedding_norm": 17.61528778076172,
+  "mask_active_voxels": 141295616
+}

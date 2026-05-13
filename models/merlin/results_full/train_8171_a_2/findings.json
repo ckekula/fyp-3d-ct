@@ -1,0 +1,29 @@
+{
+  "name": "train_8171_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild bronchial ectasia in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a"
+  },
+  "pixels": {
+    "0": 543,
+    "1": 2036
+  },
+  "embedding_norm": 17.066009521484375,
+  "mask_active_voxels": 62914560
+}

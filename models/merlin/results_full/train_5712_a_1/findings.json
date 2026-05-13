@@ -1,0 +1,35 @@
+{
+  "name": "train_5712_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    221
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in the right middle lobe medial segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring changes in the left lung inferior lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "A few subcentimeter nonspecific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 24732,
+    "1": 25287,
+    "2": 530
+  },
+  "embedding_norm": 17.3051815032959,
+  "mask_active_voxels": 130351104
+}

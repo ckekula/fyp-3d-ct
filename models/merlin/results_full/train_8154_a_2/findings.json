@@ -1,0 +1,59 @@
+{
+  "name": "train_8154_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    545
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Interlobar and intralobular septal thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial cuffing in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Linear atelectasis in the left upper lobe inferior lingular segment",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Linear atelectasis in both lower lobe basal segments",
+      "category": "Atelectasis"
+    },
+    "5": {
+      "text": "Subcentimeter non-specific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Paraseptal emphysema in the right lung apex",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1a",
+    "2": "2a",
+    "3": "2a",
+    "4": "2a",
+    "5": "1e",
+    "6": "1c"
+  },
+  "pixels": {
+    "0": 24149,
+    "1": 10147,
+    "2": 4792,
+    "3": 6886,
+    "4": 10286,
+    "5": 741,
+    "6": 14199
+  },
+  "embedding_norm": 17.518884658813477,
+  "mask_active_voxels": 142868480
+}

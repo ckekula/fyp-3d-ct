@@ -1,0 +1,23 @@
+{
+  "name": "train_10898_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    267
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodules up to 3 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 283
+  },
+  "embedding_norm": 17.190753936767578,
+  "mask_active_voxels": 69992448
+}

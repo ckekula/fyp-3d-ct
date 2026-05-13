@@ -1,0 +1,29 @@
+{
+  "name": "train_6171_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    350
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nodule in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2882,
+    "1": 114
+  },
+  "embedding_norm": 17.37761116027832,
+  "mask_active_voxels": 91750400
+}

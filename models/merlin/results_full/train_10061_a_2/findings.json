@@ -1,0 +1,29 @@
+{
+  "name": "train_10061_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    416
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Central and peripheral ground-glass opacities in the upper and lower lobes of both lungs and the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Locally enlarged vascular structures within the areas of ground-glass opacity",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f"
+  },
+  "pixels": {
+    "0": 2684768,
+    "1": 35060
+  },
+  "embedding_norm": 17.480127334594727,
+  "mask_active_voxels": 109051904
+}

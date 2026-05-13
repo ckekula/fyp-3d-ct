@@ -1,0 +1,29 @@
+{
+  "name": "train_12137_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    323
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic densities replacing previously noted infiltrates of viral pneumonia",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 195624,
+    "1": 31535
+  },
+  "embedding_norm": 17.16092300415039,
+  "mask_active_voxels": 84672512
+}

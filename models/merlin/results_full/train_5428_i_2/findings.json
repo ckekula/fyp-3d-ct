@@ -1,0 +1,41 @@
+{
+  "name": "train_5428_i_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    441
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of increased density consistent with pleuroparenchymal scarring in the apical posterobasal section of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal regression in peripherally located ground-glass opacities in the left upper lobe compared to previous examination",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Interseptal thickening in the left upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Increased pleuroparenchymal density in the posterobasal region of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "1d",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 11335,
+    "1": 2791,
+    "2": 9981,
+    "3": 32220
+  },
+  "embedding_norm": 17.561431884765625,
+  "mask_active_voxels": 115605504
+}

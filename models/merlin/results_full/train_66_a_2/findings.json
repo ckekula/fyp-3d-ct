@@ -1,0 +1,59 @@
+{
+  "name": "train_66_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    288
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral emphysematous changes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mosaic attenuation pattern in lung parenchyma bilaterally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Bronchiectasis in the lower lobe bronchi of the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subpleural fibrotic changes in the left lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "7x6 mm nodule in the lateral aspect of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "5 mm nodule with irregular margins in the apical segment of the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1f",
+    "2": "2a",
+    "3": "1b",
+    "4": "2a",
+    "5": "2d",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 61734,
+    "1": 31061,
+    "2": 13804,
+    "3": 39509,
+    "4": 19671,
+    "5": 738,
+    "6": 453
+  },
+  "embedding_norm": 17.227346420288086,
+  "mask_active_voxels": 75497472
+}

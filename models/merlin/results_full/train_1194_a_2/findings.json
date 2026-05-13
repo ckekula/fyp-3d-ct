@@ -1,0 +1,23 @@
+{
+  "name": "train_1194_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    496
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild centrilobular paraseptal emphysematous changes at the apical levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 161701
+  },
+  "embedding_norm": 17.57264518737793,
+  "mask_active_voxels": 130023424
+}

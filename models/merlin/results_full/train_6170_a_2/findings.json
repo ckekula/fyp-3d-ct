@@ -1,0 +1,59 @@
+{
+  "name": "train_6170_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    449
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the middle and lower lobes of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse ground glass densities in the middle and lower lobes of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Acinar nodular infiltrates in the peribronchovascular area of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Consolidations with air bronchograms in the peripheral lung zone in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Consolidations with air bronchograms in the basal segment of the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Ground glass areas in the inferior lingular and basal segments of the left lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Fibrotic and atelectatic changes in the lower lobe basal segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2c",
+    "6": "2a"
+  },
+  "pixels": {
+    "0": 460,
+    "1": 3201,
+    "2": 2324,
+    "3": 2063,
+    "4": 1912,
+    "5": 2737,
+    "6": 1422
+  },
+  "embedding_norm": 17.414854049682617,
+  "mask_active_voxels": 117702656
+}

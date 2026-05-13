@@ -1,0 +1,41 @@
+{
+  "name": "valid_62_c_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    228
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lung fields with areas of increased density consistent with consolidation",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Fibrotic changes in the basal segments of the lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation predominantly located in the peripheral subpleural regions",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidation involving multiple lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 880194,
+    "1": 113319,
+    "2": 880194,
+    "3": 880194
+  },
+  "embedding_norm": 16.818784713745117,
+  "mask_active_voxels": 59768832
+}

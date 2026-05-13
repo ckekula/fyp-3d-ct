@@ -1,0 +1,29 @@
+{
+  "name": "train_6447_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    212
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodule measuring 4x2 mm superimposed on the minor fissure in the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Mosaic attenuation pattern at the basal levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 40,
+    "1": 15266
+  },
+  "embedding_norm": 16.7278995513916,
+  "mask_active_voxels": 55574528
+}

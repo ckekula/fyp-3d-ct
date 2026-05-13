@@ -1,0 +1,29 @@
+{
+  "name": "train_12199_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    503
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central ground-glass opacities in the upper and lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Inverted halo signs sometimes accompanying ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 47405,
+    "1": 3976
+  },
+  "embedding_norm": 17.496885299682617,
+  "mask_active_voxels": 131858432
+}

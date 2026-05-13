@@ -1,0 +1,35 @@
+{
+  "name": "train_6786_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    104
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis in the left upper lobe lingular segment",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Atelectasis in the right middle lobe medial segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal pleural effusion on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2e"
+  },
+  "pixels": {
+    "0": 1746,
+    "1": 2150,
+    "2": 20852
+  },
+  "embedding_norm": 15.639100074768066,
+  "mask_active_voxels": 27262976
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_873_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass opacities in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground glass opacities in the superior segment of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground glass opacities in the posterobasal levels of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 13764,
+    "1": 10393,
+    "2": 43163
+  },
+  "embedding_norm": 17.068819046020508,
+  "mask_active_voxels": 62128128
+}

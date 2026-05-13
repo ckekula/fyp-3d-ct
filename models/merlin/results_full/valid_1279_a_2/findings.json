@@ -1,0 +1,23 @@
+{
+  "name": "valid_1279_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    517
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural fibrosis with notching in the posterior aspect of the right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 878
+  },
+  "embedding_norm": 17.500934600830078,
+  "mask_active_voxels": 135528448
+}

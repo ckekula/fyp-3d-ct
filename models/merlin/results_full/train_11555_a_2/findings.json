@@ -1,0 +1,23 @@
+{
+  "name": "train_11555_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    253
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1826
+  },
+  "embedding_norm": 17.129209518432617,
+  "mask_active_voxels": 66322432
+}

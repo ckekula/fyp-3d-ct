@@ -1,0 +1,23 @@
+{
+  "name": "valid_660_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    465
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "37 mm mass adjacent to the hilar region in the upper lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 91010
+  },
+  "embedding_norm": 17.435903549194336,
+  "mask_active_voxels": 121896960
+}

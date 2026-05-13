@@ -1,0 +1,35 @@
+{
+  "name": "train_11032_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    304
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small patchy ground-glass opacity in the lower lobe of the right lung near the subpleural posterior region",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Mild bronchiectasis in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Patchy ground-glass opacities in the lateral subpleural region of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 869,
+    "1": 4059,
+    "2": 13193
+  },
+  "embedding_norm": 17.27037239074707,
+  "mask_active_voxels": 79691776
+}

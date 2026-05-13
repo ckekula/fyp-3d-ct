@@ -1,0 +1,41 @@
+{
+  "name": "valid_142_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    219
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Indeterminate subcentimeter nodules present",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Emphysematous changes more pronounced in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic changes in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Fibrotic changes in the inferior lingular segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1c",
+    "2": "2a",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 2020,
+    "1": 247939,
+    "2": 5459,
+    "3": 2783
+  },
+  "embedding_norm": 17.314939498901367,
+  "mask_active_voxels": 129171456
+}

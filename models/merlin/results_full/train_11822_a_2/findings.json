@@ -1,0 +1,53 @@
+{
+  "name": "train_11822_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    316
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the right middle lobe lateral segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground glass opacities in the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Consolidation areas in the right lower lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground glass opacities in the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Consolidation areas in the left lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Ground glass opacities in the inferior lingular segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b",
+    "3": "2c",
+    "4": "2b",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 25750,
+    "1": 96290,
+    "2": 87213,
+    "3": 17102,
+    "4": 31427,
+    "5": 401
+  },
+  "embedding_norm": 17.31830406188965,
+  "mask_active_voxels": 82837504
+}

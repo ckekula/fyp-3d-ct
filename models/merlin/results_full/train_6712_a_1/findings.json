@@ -1,0 +1,23 @@
+{
+  "name": "train_6712_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    300
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified nodule adjacent to the minor fissure on the right",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 293
+  },
+  "embedding_norm": 17.28022575378418,
+  "mask_active_voxels": 78643200
+}

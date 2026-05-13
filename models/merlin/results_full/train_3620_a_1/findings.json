@@ -1,0 +1,35 @@
+{
+  "name": "train_3620_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    304
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic changes in the apices of both upper lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Central-weighted bronchial wall thickening in both lungs, more prominent in the right middle lobe and lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nodules in both lungs, the largest measuring up to 4 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1316,
+    "1": 23159,
+    "2": 432
+  },
+  "embedding_norm": 17.27023696899414,
+  "mask_active_voxels": 79691776
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_13715_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    299
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar areas of indistinct ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Increased density consistent with consolidation in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 26037,
+    "1": 6184
+  },
+  "embedding_norm": 17.279447555541992,
+  "mask_active_voxels": 78381056
+}

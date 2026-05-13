@@ -1,0 +1,47 @@
+{
+  "name": "train_1127_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    336
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Area of increased density in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Compressive atelectasis with linear air bronchograms adjacent to the effusion",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Bilateral posterobasal lung lower lobes fibrotic changes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Diffuse mild thickening of the peribronchial regions",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Multiple indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2a",
+    "3": "1a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 29661,
+    "1": 60774,
+    "2": 25576,
+    "3": 227588,
+    "4": 256
+  },
+  "embedding_norm": 17.344446182250977,
+  "mask_active_voxels": 88080384
+}

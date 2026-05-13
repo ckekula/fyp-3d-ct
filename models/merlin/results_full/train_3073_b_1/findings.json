@@ -1,0 +1,59 @@
+{
+  "name": "train_3073_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    293
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "No significant regression in pneumonic consolidation areas of the left lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Pneumonic consolidation on the right measuring 18 mm in thickness",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Slightly increased free pleural effusion",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Stable subcentimeter non-specific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Increase in ground-glass opacity with septal thickening in the inferior lingular segment",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Newly observed centrilobular nodules in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Newly observed minimal pleural effusion in the fissure plane on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2e",
+    "3": "1e",
+    "4": "2c",
+    "5": "1e",
+    "6": "2e"
+  },
+  "pixels": {
+    "0": 62120,
+    "1": 1110,
+    "2": 414795,
+    "3": 955,
+    "4": 43027,
+    "5": 2402,
+    "6": 2839
+  },
+  "embedding_norm": 17.109508514404297,
+  "mask_active_voxels": 76808192
+}

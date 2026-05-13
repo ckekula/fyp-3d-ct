@@ -1,0 +1,29 @@
+{
+  "name": "valid_52_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1360,
+    "1": 38395
+  },
+  "embedding_norm": 17.587814331054688,
+  "mask_active_voxels": 133431296
+}

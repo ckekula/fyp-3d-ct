@@ -1,0 +1,29 @@
+{
+  "name": "train_2342_a_5.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    418
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "4 mm nodule in the right middle lobe, less distinct compared to previous examinations",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 313710,
+    "1": 296
+  },
+  "embedding_norm": 17.367721557617188,
+  "mask_active_voxels": 109576192
+}

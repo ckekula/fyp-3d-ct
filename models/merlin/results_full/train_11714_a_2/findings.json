@@ -1,0 +1,35 @@
+{
+  "name": "train_11714_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "More prominent ground-glass opacities in basal segments of the lower lobes",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Halo signs surrounding ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 41698,
+    "1": 41698,
+    "2": 15266
+  },
+  "embedding_norm": 17.446605682373047,
+  "mask_active_voxels": 126877696
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_6767_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    498
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticular density increases consistent with scarring in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 3700
+  },
+  "embedding_norm": 17.47429847717285,
+  "mask_active_voxels": 130547712
+}

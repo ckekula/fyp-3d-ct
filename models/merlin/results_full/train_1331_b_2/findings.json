@@ -1,0 +1,23 @@
+{
+  "name": "train_1331_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild centrilobular emphysematous changes at the apical levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 190357
+  },
+  "embedding_norm": 17.471271514892578,
+  "mask_active_voxels": 127401984
+}

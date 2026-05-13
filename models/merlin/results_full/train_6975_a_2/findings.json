@@ -1,0 +1,29 @@
+{
+  "name": "train_6975_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    248
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar emphysema areas in the apex of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bleb formations in the anterior and apicoposterior segments of the left upper lobe and the mediobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 707,
+    "1": 3787
+  },
+  "embedding_norm": 16.95319175720215,
+  "mask_active_voxels": 65011712
+}

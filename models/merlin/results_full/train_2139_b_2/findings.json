@@ -1,0 +1,35 @@
+{
+  "name": "train_2139_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    531
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal bronchiectasis in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Pleuroparenchymal scarring changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 397,
+    "1": 234851,
+    "2": 9843
+  },
+  "embedding_norm": 17.49448013305664,
+  "mask_active_voxels": 139198464
+}

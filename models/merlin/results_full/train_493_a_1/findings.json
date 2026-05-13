@@ -1,0 +1,35 @@
+{
+  "name": "train_493_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    286
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased density and volume loss in the right lung's middle lobe medial segment consistent with pulmonary fibrosis",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 279979,
+    "1": 10949,
+    "2": 115531
+  },
+  "embedding_norm": 17.23003578186035,
+  "mask_active_voxels": 74973184
+}

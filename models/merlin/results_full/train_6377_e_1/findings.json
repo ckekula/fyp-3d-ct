@@ -1,0 +1,29 @@
+{
+  "name": "train_6377_e_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    357
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Occasional linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 12652,
+    "1": 7820
+  },
+  "embedding_norm": 17.270606994628906,
+  "mask_active_voxels": 93585408
+}

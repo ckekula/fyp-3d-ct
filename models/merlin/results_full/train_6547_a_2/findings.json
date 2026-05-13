@@ -1,0 +1,29 @@
+{
+  "name": "train_6547_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    265
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Low-density consolidation area extending towards the pleura in the posterobasal region of the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Peribronchial ground-glass opacities in the posterobasal region of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 11633,
+    "1": 11633
+  },
+  "embedding_norm": 17.24876594543457,
+  "mask_active_voxels": 69468160
+}

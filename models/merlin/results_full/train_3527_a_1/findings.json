@@ -1,0 +1,29 @@
+{
+  "name": "train_3527_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    294
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacities in the right lung middle lobe medial segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of linear subsegmental atelectasis in the right lung middle lobe medial segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 108,
+    "1": 3177
+  },
+  "embedding_norm": 17.109636306762695,
+  "mask_active_voxels": 77070336
+}

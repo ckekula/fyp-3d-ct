@@ -1,0 +1,59 @@
+{
+  "name": "train_623_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Consolidation in the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass appearance in the right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Centrilobular nodules in the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Tree-in-bud opacities in the left lower lobe basal segments",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Centrilobular nodules in the left lower lobe periphery",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Subcentimeter nonspecific nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2c",
+    "3": "1e",
+    "4": "1e",
+    "5": "1e",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 253816,
+    "1": 998426,
+    "2": 998426,
+    "3": 1471,
+    "4": 155240,
+    "5": 2853,
+    "6": 5682
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

@@ -1,0 +1,41 @@
+{
+  "name": "valid_695_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    362
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal reticular consolidations in the right middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Minimal reticular consolidations in the lingula of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Associated linear atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Associated linear atelectasis in the lingula of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2a",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 5269,
+    "1": 40967,
+    "2": 19751,
+    "3": 2739
+  },
+  "embedding_norm": 17.45570945739746,
+  "mask_active_voxels": 94896128
+}

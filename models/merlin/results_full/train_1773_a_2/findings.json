@@ -1,0 +1,53 @@
+{
+  "name": "train_1773_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    413
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Prominent centriacinar and paraseptal emphysema in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Emphysematous changes in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground-glass opacities around areas of emphysema in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities minimally observed in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Increased pleuroparenchymal densities in the lingular segment of the left lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Subpleural nodules in the middle lobe of the right lung, largest measuring 3-4 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "2c",
+    "3": "2c",
+    "4": "2a",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 2575234,
+    "1": 34414,
+    "2": 139645,
+    "3": 48562,
+    "4": 214054,
+    "5": 1606
+  },
+  "embedding_norm": 17.480680465698242,
+  "mask_active_voxels": 108265472
+}

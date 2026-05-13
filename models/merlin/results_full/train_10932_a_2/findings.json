@@ -1,0 +1,23 @@
+{
+  "name": "train_10932_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    156
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered and patchy ground-glass opacities in both lungs, particularly in the subpleural areas",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 41134
+  },
+  "embedding_norm": 16.612991333007812,
+  "mask_active_voxels": 40894464
+}

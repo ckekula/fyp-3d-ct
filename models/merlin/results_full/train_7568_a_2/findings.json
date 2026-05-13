@@ -1,0 +1,23 @@
+{
+  "name": "train_7568_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    413
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 293669
+  },
+  "embedding_norm": 17.48076820373535,
+  "mask_active_voxels": 108265472
+}

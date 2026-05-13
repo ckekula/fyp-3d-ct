@@ -1,0 +1,47 @@
+{
+  "name": "train_5412_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    228
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Dependent densities in the posterior parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Nodule measuring approximately 8x7 mm in the anterior part of the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subcentimeter nodule in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 17638,
+    "1": 3267,
+    "2": 1693,
+    "3": 273,
+    "4": 202
+  },
+  "embedding_norm": 17.07893943786621,
+  "mask_active_voxels": 134479872
+}

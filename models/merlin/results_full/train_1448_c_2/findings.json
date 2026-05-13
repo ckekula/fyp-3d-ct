@@ -1,0 +1,53 @@
+{
+  "name": "train_1448_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis adjacent to the effusion in both lower lobes",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Large consolidation-mass with a cavity in the central part of the right upper lobe, measuring 8.5 cm at its widest point",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Thick-walled lesion in the right upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Budding tree appearances in the right lung middle lobe and lower lobe adjacent to the described area",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Budding tree appearances in a small area of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2b",
+    "3": "2d",
+    "4": "1e",
+    "5": "1e"
+  },
+  "pixels": {
+    "0": 52340,
+    "1": 39211,
+    "2": 513494,
+    "3": 513494,
+    "4": 62555,
+    "5": 29117
+  },
+  "embedding_norm": 17.582719802856445,
+  "mask_active_voxels": 134217728
+}

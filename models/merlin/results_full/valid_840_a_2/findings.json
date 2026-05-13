@@ -1,0 +1,23 @@
+{
+  "name": "valid_840_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    449
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodule with a surrounding ground-glass halo in the apicoposterior segment of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 276
+  },
+  "embedding_norm": 17.41485023498535,
+  "mask_active_voxels": 117702656
+}

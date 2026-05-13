@@ -1,0 +1,29 @@
+{
+  "name": "valid_449_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peripheral lung focal consolidations with round morphology",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Mild ground-glass opacities in the bilateral peripheral lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 18424,
+    "1": 47111
+  },
+  "embedding_norm": 16.782506942749023,
+  "mask_active_voxels": 55836672
+}

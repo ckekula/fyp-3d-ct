@@ -1,0 +1,23 @@
+{
+  "name": "train_5816_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased pleuroparenchymal density in the apical segments of both upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 11041
+  },
+  "embedding_norm": 16.97241973876953,
+  "mask_active_voxels": 67633152
+}

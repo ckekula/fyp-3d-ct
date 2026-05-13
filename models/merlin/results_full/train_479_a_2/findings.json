@@ -1,0 +1,23 @@
+{
+  "name": "train_479_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    292
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small pulmonary nodules up to 6 mm in the lower lobe of the left lung and the superior lingula of the upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 3188
+  },
+  "embedding_norm": 17.0685977935791,
+  "mask_active_voxels": 76546048
+}

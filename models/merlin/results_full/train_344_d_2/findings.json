@@ -1,0 +1,29 @@
+{
+  "name": "train_344_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    221
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral paraseptal emphysematous changes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Areas of minimal ground-glass opacity in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 23678,
+    "1": 18946
+  },
+  "embedding_norm": 17.00109100341797,
+  "mask_active_voxels": 57933824
+}

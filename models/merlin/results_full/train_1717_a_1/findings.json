@@ -1,0 +1,29 @@
+{
+  "name": "train_1717_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    319
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pleural effusions measuring 13 mm on the right and 10 mm on the left",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal atelectasis",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 64211,
+    "1": 8160
+  },
+  "embedding_norm": 17.30845069885254,
+  "mask_active_voxels": 83623936
+}

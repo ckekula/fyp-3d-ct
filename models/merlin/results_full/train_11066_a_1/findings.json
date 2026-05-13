@@ -1,0 +1,29 @@
+{
+  "name": "train_11066_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    243
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3 mm ground-glass nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Thickening in the inferior aspect of the interlobar fissure in the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1a"
+  },
+  "pixels": {
+    "0": 68,
+    "1": 3507
+  },
+  "embedding_norm": 16.888397216796875,
+  "mask_active_voxels": 63700992
+}

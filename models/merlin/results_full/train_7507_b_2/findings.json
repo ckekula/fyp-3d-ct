@@ -1,0 +1,35 @@
+{
+  "name": "train_7507_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    429
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation area containing air bronchograms in the posterobasal part of the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass density in the posterobasal part of the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Findings suggestive of pneumonic infiltration in both lungs, more prominently in the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 28788,
+    "1": 29870,
+    "2": 129506
+  },
+  "embedding_norm": 17.50167465209961,
+  "mask_active_voxels": 112459776
+}

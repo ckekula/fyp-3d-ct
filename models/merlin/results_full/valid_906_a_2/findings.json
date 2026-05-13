@@ -1,0 +1,29 @@
+{
+  "name": "valid_906_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    504
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Band-like fibrotic changes in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Band-like fibrotic changes in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 4280,
+    "1": 1221
+  },
+  "embedding_norm": 17.496795654296875,
+  "mask_active_voxels": 132120576
+}

@@ -1,0 +1,59 @@
+{
+  "name": "train_12005_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    264
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Right-sided pleural effusion",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal thickening of the pleura adjacent to the right-sided effusion",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Loculated appearance of the pleural effusion",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Pleural effusion measuring 11.0 cm at its thickest point",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "6": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2e",
+    "3": "2e",
+    "4": "1c",
+    "5": "2a",
+    "6": "1e"
+  },
+  "pixels": {
+    "0": 1399047,
+    "1": 32028,
+    "2": 1399047,
+    "3": 1399047,
+    "4": 100537,
+    "5": 20568,
+    "6": 180
+  },
+  "embedding_norm": 17.01637077331543,
+  "mask_active_voxels": 69206016
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_122_c_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    326
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Unchanged mass with necrotic content in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Numerous peripheral subpleural ground glass opacities in the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Areas of increased density consistent with consolidation in the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Progression of lesions in the lower lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 729636,
+    "1": 60220,
+    "2": 59726,
+    "3": 97702
+  },
+  "embedding_norm": 17.197669982910156,
+  "mask_active_voxels": 85458944
+}

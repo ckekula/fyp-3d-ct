@@ -1,0 +1,41 @@
+{
+  "name": "train_1233_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    376
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Dependent ground glass densities in the posterobasal areas of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic changes in the posterobasal areas of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subpleural subcentimeter air cysts in the posterobasal areas of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in the bilateral lung parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "1c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 312957,
+    "1": 312957,
+    "2": 37017,
+    "3": 438
+  },
+  "embedding_norm": 17.312837600708008,
+  "mask_active_voxels": 98566144
+}

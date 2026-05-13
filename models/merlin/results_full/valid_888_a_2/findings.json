@@ -1,0 +1,29 @@
+{
+  "name": "valid_888_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    415
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectatic changes in the left lung upper lobe inferior lingula",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Slightly patchy ground-glass opacities in the left lung upper lobe inferior lingula",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 4752,
+    "1": 5398
+  },
+  "embedding_norm": 17.47865104675293,
+  "mask_active_voxels": 108789760
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_6336_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    316
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring changes in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Occasional linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Centriacinar nodules with surrounding ground glass opacities in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1e"
+  },
+  "pixels": {
+    "0": 71747,
+    "1": 6408,
+    "2": 624263
+  },
+  "embedding_norm": 17.318235397338867,
+  "mask_active_voxels": 82837504
+}

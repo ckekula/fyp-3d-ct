@@ -1,0 +1,23 @@
+{
+  "name": "train_2402_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    532
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5.3 mm nodule in the lingula inferior segment of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 473
+  },
+  "embedding_norm": 17.494239807128906,
+  "mask_active_voxels": 139460608
+}

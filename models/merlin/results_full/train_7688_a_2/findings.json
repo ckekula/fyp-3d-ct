@@ -1,0 +1,41 @@
+{
+  "name": "train_7688_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    530
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased aeration in the upper lobes of both lungs consistent with minimal panlobular emphysema",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the linguloinferior segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Two nodules measuring 3 mm and 2.5 mm in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 11504,
+    "1": 6609,
+    "2": 1202,
+    "3": 224
+  },
+  "embedding_norm": 17.503135681152344,
+  "mask_active_voxels": 138936320
+}

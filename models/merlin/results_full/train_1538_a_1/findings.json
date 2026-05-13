@@ -1,0 +1,23 @@
+{
+  "name": "train_1538_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation in both lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f"
+  },
+  "pixels": {
+    "0": 115445
+  },
+  "embedding_norm": 16.713233947753906,
+  "mask_active_voxels": 52428800
+}

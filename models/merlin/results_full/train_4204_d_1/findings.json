@@ -1,0 +1,41 @@
+{
+  "name": "train_4204_d_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    335
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground-glass opacities in both lungs, more prominent in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Interlobular septal thickening in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Linear densities parallel to the pleura in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2b",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 387657,
+    "1": 364163,
+    "2": 602169,
+    "3": 45219
+  },
+  "embedding_norm": 17.342308044433594,
+  "mask_active_voxels": 87818240
+}

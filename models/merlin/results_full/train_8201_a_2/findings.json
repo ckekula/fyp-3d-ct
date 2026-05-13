@@ -1,0 +1,29 @@
+{
+  "name": "train_8201_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    444
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of linear subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "3 mm semisolid nodular lesion in the anterior segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 7833,
+    "1": 277
+  },
+  "embedding_norm": 17.526208877563477,
+  "mask_active_voxels": 116391936
+}

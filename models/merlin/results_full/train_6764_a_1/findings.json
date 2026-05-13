@@ -1,0 +1,41 @@
+{
+  "name": "train_6764_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    229
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring at the apical level",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral and round ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Peripheral and round ground-glass opacities in the lingular segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Peripheral and round ground-glass opacities in the lower lobe segments",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 12239,
+    "1": 3572,
+    "2": 2268,
+    "3": 17524
+  },
+  "embedding_norm": 16.86501121520996,
+  "mask_active_voxels": 60030976
+}

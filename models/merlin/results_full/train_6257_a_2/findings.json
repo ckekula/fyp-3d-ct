@@ -1,0 +1,47 @@
+{
+  "name": "train_6257_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs, more prominent on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal bronchiectasis in the superior segment of the left lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Peribronchial thickening in the superior segment of the left lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Structural distortion in the superior segment of the left lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific nodules in the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1b",
+    "2": "1a",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1152,
+    "1": 1271,
+    "2": 1044,
+    "3": 10576,
+    "4": 759
+  },
+  "embedding_norm": 17.58734703063965,
+  "mask_active_voxels": 133431296
+}

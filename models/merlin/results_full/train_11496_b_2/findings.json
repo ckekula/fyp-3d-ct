@@ -1,0 +1,23 @@
+{
+  "name": "train_11496_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacity with indistinct borders in the peripheral area of the upper lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 982
+  },
+  "embedding_norm": 17.404077529907227,
+  "mask_active_voxels": 118226944
+}

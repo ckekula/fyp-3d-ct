@@ -1,0 +1,29 @@
+{
+  "name": "train_6165_e_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    343
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increase in ground-glass opacities in the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 58516,
+    "1": 7762
+  },
+  "embedding_norm": 17.24717903137207,
+  "mask_active_voxels": 89915392
+}

@@ -1,0 +1,35 @@
+{
+  "name": "valid_536_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy-nodular consolidations within lung parenchyma",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Surrounding linear fibrosis with air bronchograms",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Evolution of previous ground glass opacities into consolidations",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 17454,
+    "1": 30392,
+    "2": 20038
+  },
+  "embedding_norm": 16.999788284301758,
+  "mask_active_voxels": 58195968
+}

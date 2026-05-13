@@ -1,0 +1,23 @@
+{
+  "name": "train_8095_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 31
+  },
+  "embedding_norm": 17.12906265258789,
+  "mask_active_voxels": 66584576
+}

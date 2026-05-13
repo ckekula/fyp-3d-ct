@@ -1,0 +1,53 @@
+{
+  "name": "train_6687_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    492
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchiectasis more prominent in the left upper lobe lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Peribronchial thickening in the left upper lobe lingular segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal volume loss in the left upper lobe lingular segment",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Findings consistent with scarring in both lung apices",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Subcentimeter nodules in both lungs, many of which are calcified",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1b",
+    "2": "1a",
+    "3": "2a",
+    "4": "2a",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 5798,
+    "1": 31655,
+    "2": 3668,
+    "3": 3668,
+    "4": 17963,
+    "5": 873
+  },
+  "embedding_norm": 17.577129364013672,
+  "mask_active_voxels": 128974848
+}

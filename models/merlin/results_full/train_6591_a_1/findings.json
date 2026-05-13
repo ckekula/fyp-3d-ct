@@ -1,0 +1,23 @@
+{
+  "name": "train_6591_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    1024,
+    1024,
+    113
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified nonspecific parenchymal nodule in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 87
+  },
+  "embedding_norm": 16.360071182250977,
+  "mask_active_voxels": 118489088
+}

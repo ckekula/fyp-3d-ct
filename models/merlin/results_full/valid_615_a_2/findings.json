@@ -1,0 +1,35 @@
+{
+  "name": "valid_615_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    445
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple nodules in the lower lobes of both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Calcified nodules up to 4.5 mm in size",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodules in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1242,
+    "1": 1005,
+    "2": 11
+  },
+  "embedding_norm": 17.52094078063965,
+  "mask_active_voxels": 116654080
+}

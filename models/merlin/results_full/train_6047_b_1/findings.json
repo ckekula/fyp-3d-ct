@@ -1,0 +1,41 @@
+{
+  "name": "train_6047_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal emphysematous change in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subpleural fibrotic densities in the medial side of the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal ground glass densities in the posterobasal region of the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1c",
+    "2": "2a",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 1029,
+    "1": 8343,
+    "2": 3086,
+    "3": 9090
+  },
+  "embedding_norm": 17.11707305908203,
+  "mask_active_voxels": 80478208
+}

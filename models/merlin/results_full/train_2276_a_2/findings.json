@@ -1,0 +1,41 @@
+{
+  "name": "train_2276_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread subpleural ground-glass opacities throughout both lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Localized minimal consolidations throughout both lung parenchyma",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass opacities more prominently merging in the posterobasal segments of the lower lobes",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 631128,
+    "1": 36128,
+    "2": 1536557,
+    "3": 697
+  },
+  "embedding_norm": 17.58631706237793,
+  "mask_active_voxels": 133431296
+}

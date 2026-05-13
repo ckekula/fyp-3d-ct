@@ -1,0 +1,35 @@
+{
+  "name": "train_2418_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the right lung lower lobe superior segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving patterns in the right lung lower lobe superior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Cylindrical bronchiectasis in the right lung lower lobe superior segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2h",
+    "2": "1b"
+  },
+  "pixels": {
+    "0": 64161,
+    "1": 64161,
+    "2": 155250
+  },
+  "embedding_norm": 16.997344970703125,
+  "mask_active_voxels": 58720256
+}

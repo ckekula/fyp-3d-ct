@@ -1,0 +1,29 @@
+{
+  "name": "train_6261_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    361
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nonspecific nodules, some calcified, in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6429,
+    "1": 596
+  },
+  "embedding_norm": 17.45571517944336,
+  "mask_active_voxels": 94633984
+}

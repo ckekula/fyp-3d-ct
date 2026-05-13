@@ -1,0 +1,23 @@
+{
+  "name": "train_7662_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    207
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific parenchymal nodule in the subpleural region of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 778
+  },
+  "embedding_norm": 16.918710708618164,
+  "mask_active_voxels": 54263808
+}

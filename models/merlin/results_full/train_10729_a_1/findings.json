@@ -1,0 +1,23 @@
+{
+  "name": "train_10729_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    305
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Vaguely limited ground glass opacity in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1404
+  },
+  "embedding_norm": 17.131744384765625,
+  "mask_active_voxels": 79953920
+}

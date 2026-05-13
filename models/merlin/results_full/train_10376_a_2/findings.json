@@ -1,0 +1,23 @@
+{
+  "name": "train_10376_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    443
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodular areas of consolidation with ground-glass halos at the periphery in the posterobasal segments of the lower lobes of both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 630
+  },
+  "embedding_norm": 17.526355743408203,
+  "mask_active_voxels": 116129792
+}

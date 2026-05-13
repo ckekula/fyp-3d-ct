@@ -1,0 +1,23 @@
+{
+  "name": "train_11882_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild centriacinar emphysematous changes in the bilateral upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 2298
+  },
+  "embedding_norm": 17.456430435180664,
+  "mask_active_voxels": 126353408
+}

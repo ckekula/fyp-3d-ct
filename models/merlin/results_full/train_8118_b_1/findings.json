@@ -1,0 +1,35 @@
+{
+  "name": "train_8118_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    353
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter subpleural calcifications in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nodule measuring 8 mm in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodule measuring 4 mm in the superior segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 601,
+    "1": 287,
+    "2": 160
+  },
+  "embedding_norm": 17.25017738342285,
+  "mask_active_voxels": 92536832
+}

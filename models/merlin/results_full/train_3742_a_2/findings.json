@@ -1,0 +1,65 @@
+{
+  "name": "train_3742_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    267
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Paraseptal emphysematous changes in the upper and lower lobe superior segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centriacinar emphysematous changes in the upper and lower lobe superior segments of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Segmental peribronchial thickening with luminal narrowing in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subsegmental peribronchial thickening with luminal narrowing in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Ground glass opacities in the basal segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Band atelectatic changes in the right lower lobe basal segment",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Sequela parenchymal changes",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "1a",
+    "3": "1a",
+    "4": "2c",
+    "5": "2a",
+    "6": "2a",
+    "7": "2d"
+  },
+  "pixels": {
+    "0": 18465,
+    "1": 48285,
+    "2": 19183,
+    "3": 6996,
+    "4": 18039,
+    "5": 582,
+    "6": 5721,
+    "7": 66
+  },
+  "embedding_norm": 17.190746307373047,
+  "mask_active_voxels": 69992448
+}

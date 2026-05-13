@@ -1,0 +1,47 @@
+{
+  "name": "train_518_i_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Previously observed infiltrates within the left lung without appreciable regression",
+      "category": "Others"
+    },
+    "1": {
+      "text": "New area of infiltration in the lateral segment of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground glass nodule measuring 0.5 cm in diameter in the mediobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "New micronodular opacities in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Minimal increases in ground glass density in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "1e",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 108967,
+    "1": 20205,
+    "2": 23115,
+    "3": 96010,
+    "4": 96010
+  },
+  "embedding_norm": 16.99742889404297,
+  "mask_active_voxels": 58458112
+}

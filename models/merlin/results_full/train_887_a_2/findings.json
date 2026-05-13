@@ -1,0 +1,47 @@
+{
+  "name": "train_887_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs, most notably in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bilateral centriacinar nodules with tree-in-bud opacities",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Associated ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Finding suggestive of atelectasis or consolidation in the medial segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Finding suggestive of atelectasis or consolidation in the inferior subsegment of the lingula in the left upper lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1e",
+    "2": "2c",
+    "3": "2b",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 757216,
+    "1": 526662,
+    "2": 18261,
+    "3": 23954,
+    "4": 23756
+  },
+  "embedding_norm": 17.18353271484375,
+  "mask_active_voxels": 70778880
+}

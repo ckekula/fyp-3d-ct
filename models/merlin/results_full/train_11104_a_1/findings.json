@@ -1,0 +1,29 @@
+{
+  "name": "train_11104_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    245
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Parenchymal band in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Parenchymal bands in the laterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 20265,
+    "1": 1405
+  },
+  "embedding_norm": 16.936370849609375,
+  "mask_active_voxels": 64225280
+}

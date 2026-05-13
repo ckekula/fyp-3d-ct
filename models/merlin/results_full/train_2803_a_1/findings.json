@@ -1,0 +1,23 @@
+{
+  "name": "train_2803_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    242
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild scarring at the apical level",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 674
+  },
+  "embedding_norm": 16.90774154663086,
+  "mask_active_voxels": 63438848
+}

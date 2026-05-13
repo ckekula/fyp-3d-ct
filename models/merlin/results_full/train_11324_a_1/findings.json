@@ -1,0 +1,23 @@
+{
+  "name": "train_11324_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    342
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 3930
+  },
+  "embedding_norm": 17.235815048217773,
+  "mask_active_voxels": 89653248
+}

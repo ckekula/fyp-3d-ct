@@ -1,0 +1,35 @@
+{
+  "name": "train_6488_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    269
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal regression of the right hydropneumothorax",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Persistent atelectasis in the middle and lower lobes of the right lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2g",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 271019,
+    "1": 271941,
+    "2": 445
+  },
+  "embedding_norm": 17.182384490966797,
+  "mask_active_voxels": 70516736
+}

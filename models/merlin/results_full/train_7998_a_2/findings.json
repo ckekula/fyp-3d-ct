@@ -1,0 +1,41 @@
+{
+  "name": "train_7998_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    219
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Effusion in both pleural spaces measuring up to 4.5 cm on the left at its deepest point",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Areas of consolidation with indistinct borders in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "2c",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 535774,
+    "1": 20011,
+    "2": 35536,
+    "3": 2740
+  },
+  "embedding_norm": 17.011133193969727,
+  "mask_active_voxels": 57409536
+}

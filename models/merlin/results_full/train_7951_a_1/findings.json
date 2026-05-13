@@ -1,0 +1,23 @@
+{
+  "name": "train_7951_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    330
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse increase in ground-glass opacity in both lungs, particularly in the lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 6499
+  },
+  "embedding_norm": 17.399248123168945,
+  "mask_active_voxels": 86507520
+}

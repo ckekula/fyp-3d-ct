@@ -1,0 +1,23 @@
+{
+  "name": "train_2738_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    312
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the posterobasal segment of the lower lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 940
+  },
+  "embedding_norm": 17.169086456298828,
+  "mask_active_voxels": 81788928
+}

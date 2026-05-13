@@ -1,0 +1,35 @@
+{
+  "name": "train_1911_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    215
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density due to scarring in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased density due to scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific parenchymal nodules up to 4 mm in diameter in both lung parenchyma, largest on the left",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 5261,
+    "1": 48637,
+    "2": 2314
+  },
+  "embedding_norm": 17.10948371887207,
+  "mask_active_voxels": 126812160
+}

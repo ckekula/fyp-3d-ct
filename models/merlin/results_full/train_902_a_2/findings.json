@@ -1,0 +1,41 @@
+{
+  "name": "train_902_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    421
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in both lungs with luminal narrowing",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Focal centriacinar nodular infiltration in the subpleural area of the right lower lobe mediobasal segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Scarring and atelectasis in the right upper lobe anteriorly, the right middle lobe, and the left lingula inferior segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1e",
+    "2": "2d",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 178681,
+    "1": 76769,
+    "2": 8740,
+    "3": 53145
+  },
+  "embedding_norm": 17.385271072387695,
+  "mask_active_voxels": 110362624
+}

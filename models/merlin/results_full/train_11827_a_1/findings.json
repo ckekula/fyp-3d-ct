@@ -1,0 +1,23 @@
+{
+  "name": "train_11827_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    225
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally distributed patchy ground-glass infiltrates in the right middle lobe medial segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 47035
+  },
+  "embedding_norm": 16.8322696685791,
+  "mask_active_voxels": 58982400
+}

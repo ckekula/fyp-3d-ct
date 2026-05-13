@@ -1,0 +1,29 @@
+{
+  "name": "train_5902_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multisegmental peripheral subpleural consolidation areas in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2266,
+    "1": 13786
+  },
+  "embedding_norm": 17.445899963378906,
+  "mask_active_voxels": 126877696
+}

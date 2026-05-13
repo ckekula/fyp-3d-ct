@@ -1,0 +1,35 @@
+{
+  "name": "valid_196_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    459
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Solitary pulmonary nodule in the superior segment of the right lower lobe, measuring 14x11 mm with partially smooth contours, coarse peripheral calcifications, and slight spiculated projections into the surrounding parenchyma and pleura",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Retraction and distortion of the major fissure associated with the nodule",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Central tubular bronchiectasis in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "1b"
+  },
+  "pixels": {
+    "0": 20323,
+    "1": 16141,
+    "2": 9432
+  },
+  "embedding_norm": 17.54425048828125,
+  "mask_active_voxels": 120324096
+}

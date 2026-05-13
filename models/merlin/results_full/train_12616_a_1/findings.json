@@ -1,0 +1,35 @@
+{
+  "name": "train_12616_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural localized consolidation in both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass opacity in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground glass opacity extending towards bilateral asymmetrical basilar regions",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 84713,
+    "1": 73928,
+    "2": 72997
+  },
+  "embedding_norm": 16.865232467651367,
+  "mask_active_voxels": 60293120
+}

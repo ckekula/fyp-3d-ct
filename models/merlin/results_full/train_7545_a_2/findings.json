@@ -1,0 +1,47 @@
+{
+  "name": "train_7545_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    303
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central parts of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation with soft tissue density in the lateral part of the left upper lobe apicoposterior segment",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Minimal volume loss in the lateral part of the left upper lobe apicoposterior segment",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1c",
+    "2": "2b",
+    "3": "2a",
+    "4": "1e"
+  },
+  "pixels": {
+    "0": 38359,
+    "1": 375115,
+    "2": 87057,
+    "3": 21214,
+    "4": 648
+  },
+  "embedding_norm": 17.270570755004883,
+  "mask_active_voxels": 79429632
+}

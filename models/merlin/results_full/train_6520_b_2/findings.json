@@ -1,0 +1,65 @@
+{
+  "name": "train_6520_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    432
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the right upper lobe posterior segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the right lower lobe superior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the right middle lobe medial segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the left upper lobe anterior segment",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the left upper lobe lingular segment",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the left lower lobe superior segment",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Centriacinar nodular densities with a tree-in-bud appearance in the left lower lobe posterobasal segment",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Cystic bronchiectasis and peribronchial wall thickening in the left lower lobe mediobasal segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "1e",
+    "3": "1e",
+    "4": "1e",
+    "5": "1e",
+    "6": "1e",
+    "7": "1b"
+  },
+  "pixels": {
+    "0": 732,
+    "1": 2165,
+    "2": 1418,
+    "3": 4770,
+    "4": 2728,
+    "5": 4779,
+    "6": 12975,
+    "7": 10773
+  },
+  "embedding_norm": 17.50008773803711,
+  "mask_active_voxels": 113246208
+}

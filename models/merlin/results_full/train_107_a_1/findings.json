@@ -1,0 +1,29 @@
+{
+  "name": "train_107_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    321
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild bronchial ectasia in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased peribronchial thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a"
+  },
+  "pixels": {
+    "0": 1884,
+    "1": 2216
+  },
+  "embedding_norm": 17.17454719543457,
+  "mask_active_voxels": 84148224
+}

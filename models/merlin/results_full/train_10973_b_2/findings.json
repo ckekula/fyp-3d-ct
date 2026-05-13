@@ -1,0 +1,29 @@
+{
+  "name": "train_10973_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    406
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Trachea deviated to the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear areas of atelectasis in the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 17141,
+    "1": 10680
+  },
+  "embedding_norm": 17.36001205444336,
+  "mask_active_voxels": 106430464
+}

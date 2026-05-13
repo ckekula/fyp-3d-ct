@@ -1,0 +1,35 @@
+{
+  "name": "train_2380_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    313
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thin fibrotic band extending towards the pleura with minimal ground glass opacity in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "2.5 mm nodule adjacent to the major fissure in the anterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "2 mm nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 75670,
+    "1": 124,
+    "2": 59
+  },
+  "embedding_norm": 17.366943359375,
+  "mask_active_voxels": 82051072
+}
