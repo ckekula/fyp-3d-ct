@@ -1,0 +1,28 @@
+{
+  "name": "train_13426_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    498
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter air cyst in the posterobasal segment of the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Two nodules, each measuring 2 mm in diameter, in the laterobasal segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 173,
+    "1": 152
+  },
+  "embedding_norm": 4.480391025543213
+}

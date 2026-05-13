@@ -11,6 +11,7 @@ import numpy as np
 import nibabel as nib
 
 import torch
+import torch.nn.functional as F
 torch.cuda.empty_cache()
 
 PROJECT_ROOT = os.path.expanduser("/home/chest_ct/code")
@@ -49,7 +50,7 @@ print(f"CT files on disk : {len(ct_index)}")
 with open(DATASET_JSON) as f:
     metadata = json.load(f)
 
-samples = metadata if isinstance(metadata, list) else list(metadata.values())[0]
+samples = metadata["val"]
 
 matched = [
     s for s in samples
@@ -62,9 +63,18 @@ print(f"Missing          : {len(samples) - len(matched)}")
 
 from merlin import Merlin
 
-model = Merlin(ImageEmbedding=True)
+model = Merlin()
 model.to(DEVICE)
 model.eval()
+
+# Register a forward hook to get dense features from layer4
+activation = {}
+def get_activation(name):
+    def hook(mod, input, output):
+        activation[name] = output.detach()
+    return hook
+
+model.model.encode_image.i3_resnet.layer4.register_forward_hook(get_activation('layer4'))
 
 print(f"Merlin loaded on {DEVICE}")
 
@@ -73,16 +83,12 @@ def load_and_preprocess_ct(nii_path):
     volume = img.get_fdata(dtype=np.float32)
     np.nan_to_num(volume, nan=0.0, copy=False)
 
-    # 🔥 HANDLE MULTI-CHANNEL CASE
     if volume.ndim == 4:
-        # (C, H, W, D) → (H, W, D)
         volume = np.mean(volume, axis=0, dtype=np.float32)
 
-    # now ensure 3D
     volume = np.squeeze(volume)
     assert volume.ndim == 3, f"Expected 3D volume, got {volume.shape}"
 
-    # normalize
     np.clip(volume, -1000, 400, out=volume)
     volume += 1000.0
     volume /= 1400.0
@@ -124,14 +130,6 @@ def classify_all_findings(findings: dict):
         }
     return classified
 
-def build_localization_mask(volume_norm, emb_np):
-    emb_scalar = float(np.mean(np.abs(emb_np.flatten())))
-    act = volume_norm * emb_scalar
-    threshold = float(np.percentile(act, 95))
-    binary_mask = (act >= threshold).astype(np.uint8)
-    del act
-    return binary_mask, threshold
-
 def process_one_volume(sample, model, ct_index, out_dir):
     name     = sample["name"]
     findings = sample["findings"]
@@ -150,37 +148,66 @@ def process_one_volume(sample, model, ct_index, out_dir):
 
     try:
         ct_tensor, affine, volume_norm = load_and_preprocess_ct(ct_index[name])
+        orig_shape = volume_norm.shape
+        del volume_norm
+        
         ct_tensor = ct_tensor.to(DEVICE)
 
         with torch.no_grad():
-            embedding = model(ct_tensor)
-
-        emb_np = embedding.cpu().numpy()
+            # Run image encoder
+            image_features, _ = model.model.encode_image(ct_tensor)
+            emb_np = image_features.cpu().numpy()
+            
+            # Extract dense spatial features from layer4 via contrastive head
+            layer4_out = activation['layer4']
+            dense_contrastive = model.model.encode_image.i3_resnet.contrastive_head(layer4_out) # [1, 512, D', H', W']
+            dense_contrastive = dense_contrastive / dense_contrastive.norm(dim=1, keepdim=True)
+            
+            classified = classify_all_findings(findings)
+            
+            # Evaluate masks for each finding
+            localization_masks = {}
+            for idx, finding_info in classified.items():
+                text = finding_info["text"]
+                class_name = finding_info["category"]
+                
+                # Get text embedding for this finding
+                text_emb = model.model.encode_text([text]) # [1, 512]
+                text_emb = text_emb / text_emb.norm(dim=-1, keepdim=True)
+                
+                # Compute cosine similarity
+                similarity = torch.einsum('b c d h w, b c -> b d h w', dense_contrastive, text_emb) # [1, D', H', W']
+                similarity = similarity.unsqueeze(1) # [1, 1, D', H', W']
+                
+                # Upsample similarity to original CT shape
+                similarity_up = F.interpolate(similarity, size=orig_shape, mode='trilinear', align_corners=False)
+                similarity_up = similarity_up.squeeze().cpu().numpy()
+                
+                # Min-max normalization per class map
+                sim_min, sim_max = similarity_up.min(), similarity_up.max()
+                if sim_max > sim_min:
+                    similarity_up = (similarity_up - sim_min) / (sim_max - sim_min)
+                
+                # Save mask based on normalized category name to match eval script
+                cat_normalized = class_name.lower().replace(" ", "_")
+                if cat_normalized == "others":
+                    cat_normalized = text[:20].lower().replace(" ", "_") # Fallback
+                localization_masks[cat_normalized + "_soft"] = similarity_up
 
         del ct_tensor
-        del embedding
-
         if DEVICE.type == "cuda":
             torch.cuda.empty_cache()
 
-        classified = classify_all_findings(findings)
-        binary_mask, threshold = build_localization_mask(volume_norm, emb_np)
-        
-        del volume_norm
+        # Save class-specific localization masks as npz
+        np.savez_compressed(
+            os.path.join(out, "localization_masks.npz"),
+            **localization_masks
+        )
 
         np.savez_compressed(
             os.path.join(out, "embedding.npz"),
             embedding=emb_np
         )
-
-        nib.save(
-            nib.Nifti1Image(binary_mask, affine),
-            os.path.join(out, "localization_mask.nii.gz")
-        )
-        
-        active_voxels = int(binary_mask.sum())
-        del binary_mask
-        gc.collect()
 
         findings_out = {
             "name": name,
@@ -189,8 +216,7 @@ def process_one_volume(sample, model, ct_index, out_dir):
             "classified_findings": classified,
             "categories": cats,
             "pixels": pixels,
-            "embedding_norm": float(np.linalg.norm(emb_np)),
-            "mask_active_voxels": active_voxels
+            "embedding_norm": float(np.linalg.norm(emb_np))
         }
 
         with open(os.path.join(out, "findings.json"), "w") as f:

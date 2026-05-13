@@ -1,0 +1,22 @@
+{
+  "name": "train_13288_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    457
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic bands in the medial segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 13261
+  },
+  "embedding_norm": 4.505317211151123
+}

@@ -151,21 +151,14 @@ class MerlinLocalizationAdapter(BiomedParseLocalizationAdapter):
         for item in self.output_dir.iterdir():
             if not item.is_dir():
                 continue
-            if len(samples) >= 50:
-                break
                 
             case_id = item.name
-            pred_mask_file = item / "localization_mask.nii.gz"
+            pred_mask_file = item / "localization_masks.npz"
             if not pred_mask_file.exists():
                 continue
                 
             try:
-                pred_img = nib.load(str(pred_mask_file))
-                pred_mask = pred_img.get_fdata(dtype=np.float32)
-                # Merlin pipeline creates 3D xyz/zyx mask, squeeze if needed
-                pred_mask = np.squeeze(pred_mask)
-                if pred_mask.ndim == 3:
-                    pred_mask = np.transpose(pred_mask, (2, 0, 1)) # XYZ to ZYX
+                pred_npz = np.load(str(pred_mask_file))
             except Exception:
                 continue
 
@@ -194,6 +187,22 @@ class MerlinLocalizationAdapter(BiomedParseLocalizationAdapter):
                     continue
                 
                 gt_mask = self._ensure_zyx(gt_mask)
+                
+                # Retrieve soft mask from npz
+                pred_mask = self._load_pred_mask_from_npz(
+                    pred_npz=pred_npz,
+                    class_name=class_name,
+                    raw_class_name=class_name,
+                )
+                
+                if pred_mask is None:
+                    continue
+                
+                # ZYX conversion if needed
+                if pred_mask.ndim == 3 and pred_mask.shape != gt_mask.shape:
+                    if np.transpose(pred_mask, (2, 0, 1)).shape == gt_mask.shape:
+                        pred_mask = np.transpose(pred_mask, (2, 0, 1))
+                
                 if pred_mask.shape != gt_mask.shape:
                     continue
                 

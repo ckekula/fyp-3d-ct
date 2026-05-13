@@ -1,0 +1,34 @@
+{
+  "name": "train_13155_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "More prominent emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nodules in both lungs, measuring less than 3 mm in short diameter",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Areas of linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 3842,
+    "1": 140,
+    "2": 33948
+  },
+  "embedding_norm": 4.416377067565918
+}

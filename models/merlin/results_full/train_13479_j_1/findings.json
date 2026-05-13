@@ -1,0 +1,28 @@
+{
+  "name": "train_13479_j_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    380
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Parenchymal scarring in the right lower lobe posterobasal segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal ground-glass opacities in the right lower lobe posterobasal segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 51759,
+    "1": 118519
+  },
+  "embedding_norm": 4.485899448394775
+}

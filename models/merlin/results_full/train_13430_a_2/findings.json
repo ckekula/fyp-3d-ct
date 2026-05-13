@@ -1,0 +1,22 @@
+{
+  "name": "train_13430_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural-based nodule measuring 5x3 mm in the superior segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 131
+  },
+  "embedding_norm": 4.426763534545898
+}

@@ -1,0 +1,34 @@
+{
+  "name": "train_13035_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the bilateral lower lobe posterobasal segments",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Dependent density increases in the bilateral lower lobe posterobasal segments",
+      "category": "Others"
+    },
+    "2": {
+      "text": "4 mm nodule in the medial segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 6648,
+    "1": 5948,
+    "2": 33
+  },
+  "embedding_norm": 4.358880996704102
+}

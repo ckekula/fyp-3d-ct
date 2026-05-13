@@ -1,0 +1,46 @@
+{
+  "name": "train_12991_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the peripheral subpleural areas of the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal consolidations in the peripheral subpleural areas of the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Nodular ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities in the basal segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Nodular consolidations in the basal segments of both lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c",
+    "3": "2c",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 12432,
+    "1": 482,
+    "2": 1547,
+    "3": 47613,
+    "4": 1746
+  },
+  "embedding_norm": 4.409533977508545
+}

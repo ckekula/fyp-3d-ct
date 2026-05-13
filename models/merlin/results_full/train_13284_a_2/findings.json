@@ -1,0 +1,28 @@
+{
+  "name": "train_13284_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    448
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in ground-glass opacity with septal thickening in the peripheral subpleural area of the upper and lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving appearances in the upper and lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 235446,
+    "1": 237239
+  },
+  "embedding_norm": 4.500314712524414
+}

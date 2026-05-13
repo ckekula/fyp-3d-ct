@@ -1,0 +1,34 @@
+{
+  "name": "train_13166_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Faintly circumscribed, poorly distinguishable centriacinar nodular opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Numerous small pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest pulmonary nodule measuring 8 mm in diameter in the left lung fissure",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2842,
+    "1": 3886,
+    "2": 1308
+  },
+  "embedding_norm": 4.507781982421875
+}
