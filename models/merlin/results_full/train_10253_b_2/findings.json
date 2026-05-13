@@ -1,0 +1,35 @@
+{
+  "name": "train_10253_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    432
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pleural effusion measuring 3.3 cm at its thickest point on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the lower lobes of both lungs adjacent to the pleural effusion, especially in the basal segments of the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 2423207,
+    "1": 6577,
+    "2": 3104
+  },
+  "embedding_norm": 17.499526977539062,
+  "mask_active_voxels": 113246208
+}

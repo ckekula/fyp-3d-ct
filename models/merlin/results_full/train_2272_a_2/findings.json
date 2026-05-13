@@ -1,0 +1,29 @@
+{
+  "name": "train_2272_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    373
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules in the peripheral areas of the lower lobe of the right lung with surrounding ground glass opacities",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 3298,
+    "1": 1556
+  },
+  "embedding_norm": 17.3037166595459,
+  "mask_active_voxels": 97779712
+}

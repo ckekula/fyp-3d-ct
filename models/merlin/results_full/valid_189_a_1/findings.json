@@ -1,0 +1,23 @@
+{
+  "name": "valid_189_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    198
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3.1 mm nonspecific subpleural nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 806
+  },
+  "embedding_norm": 16.6881160736084,
+  "mask_active_voxels": 51904512
+}

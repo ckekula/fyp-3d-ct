@@ -1,0 +1,35 @@
+{
+  "name": "train_655_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    538
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral multilobar, predominantly peripheral and subpleural ground-glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Associated fibrotic changes within the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 1317095,
+    "1": 31355,
+    "2": 1317095
+  },
+  "embedding_norm": 17.6418399810791,
+  "mask_active_voxels": 141033472
+}

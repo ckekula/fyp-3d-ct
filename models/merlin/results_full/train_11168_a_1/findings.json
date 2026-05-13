@@ -1,0 +1,29 @@
+{
+  "name": "train_11168_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural air cysts and bullae in the apical segments of the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased pleuroparenchymal density in the apical segments consistent with scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 5714,
+    "1": 1162
+  },
+  "embedding_norm": 17.128950119018555,
+  "mask_active_voxels": 66584576
+}

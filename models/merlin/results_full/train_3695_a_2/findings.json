@@ -1,0 +1,23 @@
+{
+  "name": "train_3695_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground glass densities in the posterobasal segments of the lower lobes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 7605
+  },
+  "embedding_norm": 17.47111701965332,
+  "mask_active_voxels": 127401984
+}

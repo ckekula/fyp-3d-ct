@@ -1,0 +1,35 @@
+{
+  "name": "train_6688_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    239
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral localized thickening in the upper lobe of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening in the lower lobe of the left lung, especially in the superior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear subsegmental atelectasis in the lower lobe of the left lung, especially in the superior segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 20350,
+    "1": 7547,
+    "2": 65832
+  },
+  "embedding_norm": 17.06610679626465,
+  "mask_active_voxels": 62652416
+}

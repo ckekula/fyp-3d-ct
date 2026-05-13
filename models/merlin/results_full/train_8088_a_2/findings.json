@@ -1,0 +1,23 @@
+{
+  "name": "train_8088_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    468
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacities observed bilaterally",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 16550
+  },
+  "embedding_norm": 17.4257869720459,
+  "mask_active_voxels": 122683392
+}

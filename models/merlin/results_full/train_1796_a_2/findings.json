@@ -1,0 +1,29 @@
+{
+  "name": "train_1796_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the inferior subsegment of the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subcentimeter calcific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 1539,
+    "1": 266
+  },
+  "embedding_norm": 17.137929916381836,
+  "mask_active_voxels": 66060288
+}

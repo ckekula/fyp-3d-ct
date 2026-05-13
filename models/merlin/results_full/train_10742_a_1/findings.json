@@ -1,0 +1,35 @@
+{
+  "name": "train_10742_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    232
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple sub-5 mm nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Widespread focal consolidations more prominent in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Surrounding ground glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 591,
+    "1": 4420,
+    "2": 7596
+  },
+  "embedding_norm": 16.881986618041992,
+  "mask_active_voxels": 60817408
+}

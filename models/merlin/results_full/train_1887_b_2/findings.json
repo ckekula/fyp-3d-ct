@@ -1,0 +1,23 @@
+{
+  "name": "train_1887_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    430
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3 mm nonspecific parenchymal nodule in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1285
+  },
+  "embedding_norm": 17.502443313598633,
+  "mask_active_voxels": 112721920
+}

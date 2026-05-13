@@ -1,0 +1,35 @@
+{
+  "name": "train_6578_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis in the lingular segment of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "4.5 mm nonspecific nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2871,
+    "1": 3601,
+    "2": 332
+  },
+  "embedding_norm": 17.306930541992188,
+  "mask_active_voxels": 132120576
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_2349_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in the bilateral apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 41981
+  },
+  "embedding_norm": 17.4558048248291,
+  "mask_active_voxels": 126091264
+}

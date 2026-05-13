@@ -1,0 +1,53 @@
+{
+  "name": "train_10913_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    483
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysema in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural nonspecific nodules, each measuring 2 mm, in the upper and middle lobes of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "3 mm subpleural nodule in the dorsal area of the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "3 mm subpleural nodule in the lingular segment of the left lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Scarring in the inferior lingular segment",
+      "category": "Others"
+    },
+    "5": {
+      "text": "4 mm nodule at the anteromediobasal level",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2a",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 3425,
+    "1": 498,
+    "2": 139,
+    "3": 212,
+    "4": 2780,
+    "5": 114
+  },
+  "embedding_norm": 17.44586181640625,
+  "mask_active_voxels": 126615552
+}

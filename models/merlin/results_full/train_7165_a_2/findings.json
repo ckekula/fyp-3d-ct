@@ -1,0 +1,29 @@
+{
+  "name": "train_7165_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    264
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of linear-subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Several nodules with a diameter of 4 mm in both lungs, largest in the lateral segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 1117,
+    "1": 226
+  },
+  "embedding_norm": 17.016767501831055,
+  "mask_active_voxels": 69206016
+}

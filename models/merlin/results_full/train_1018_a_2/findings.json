@@ -1,0 +1,23 @@
+{
+  "name": "train_1018_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subpleural nodule, 3.5 mm in diameter, in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 264
+  },
+  "embedding_norm": 17.4045467376709,
+  "mask_active_voxels": 118226944
+}

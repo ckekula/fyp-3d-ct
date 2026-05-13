@@ -1,0 +1,23 @@
+{
+  "name": "train_10757_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    207
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few subcentimeter nonspecific nodules in the subpleural area, predominantly in the right middle lobe, in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 296
+  },
+  "embedding_norm": 17.22953987121582,
+  "mask_active_voxels": 122093568
+}

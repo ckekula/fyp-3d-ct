@@ -1,0 +1,47 @@
+{
+  "name": "train_3761_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    283
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild ectasia of the bronchial structures",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse minimal increase in peribronchial thickness in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Area of increased density consistent with linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Emphysematous changes more evident in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1a",
+    "2": "2a",
+    "3": "1c",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 24643,
+    "1": 19112,
+    "2": 6602,
+    "3": 1243,
+    "4": 78
+  },
+  "embedding_norm": 17.237838745117188,
+  "mask_active_voxels": 74186752
+}

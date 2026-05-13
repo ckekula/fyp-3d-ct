@@ -1,0 +1,29 @@
+{
+  "name": "train_1811_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis adjacent to the effusion in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 61783,
+    "1": 747293
+  },
+  "embedding_norm": 16.862751007080078,
+  "mask_active_voxels": 60293120
+}

@@ -1,0 +1,41 @@
+{
+  "name": "valid_939_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    461
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Extensive area of consolidation in the right lung middle lobe medial segment",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Crazy paving pattern in the right lung middle lobe medial segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Air bronchograms in the right lung middle lobe medial segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Surrounding ground glass opacification in the right lung middle lobe medial segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2h",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 383935,
+    "1": 383935,
+    "2": 383935,
+    "3": 383935
+  },
+  "embedding_norm": 17.539634704589844,
+  "mask_active_voxels": 120848384
+}

@@ -1,0 +1,35 @@
+{
+  "name": "valid_478_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral asymmetrical subpleural ground glass opacities with air bronchograms",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Septal thickening in all segments of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of consolidation in all segments of both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 132394,
+    "1": 46418,
+    "2": 90352
+  },
+  "embedding_norm": 17.136999130249023,
+  "mask_active_voxels": 66060288
+}

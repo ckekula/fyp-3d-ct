@@ -1,0 +1,29 @@
+{
+  "name": "train_11106_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    264
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Slightly budding tree-in-bud opacities in the anterior segments of both upper lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy ground glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 18286,
+    "1": 7311
+  },
+  "embedding_norm": 17.016172409057617,
+  "mask_active_voxels": 69206016
+}

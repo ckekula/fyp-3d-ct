@@ -1,0 +1,41 @@
+{
+  "name": "valid_309_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    464
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "6.5 mm nodule with irregular margins in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Surrounding linear fibrotic changes in the anterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal fibrotic changes at the right lung apex",
+      "category": "Others"
+    },
+    "3": {
+      "text": "5 mm subpleural nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 854,
+    "1": 2696,
+    "2": 2189,
+    "3": 375
+  },
+  "embedding_norm": 17.537975311279297,
+  "mask_active_voxels": 121634816
+}

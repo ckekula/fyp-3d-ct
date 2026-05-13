@@ -1,0 +1,41 @@
+{
+  "name": "train_1958_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    263
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Air bronchogram signs in the inferior lingula of the left upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis with cylindrical bronchiectasis in the inferior lingula of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Small consolidation area in the inferior lingula of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Subtle tree-in-bud opacities in the inferior lingula of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "1e"
+  },
+  "pixels": {
+    "0": 136438,
+    "1": 136438,
+    "2": 136438,
+    "3": 129956
+  },
+  "embedding_norm": 17.01555633544922,
+  "mask_active_voxels": 68943872
+}

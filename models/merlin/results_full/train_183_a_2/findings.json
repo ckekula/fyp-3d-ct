@@ -1,0 +1,29 @@
+{
+  "name": "train_183_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    269
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild bronchiectasis with peribronchial thickening in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Patchy ground glass opacities in the paracardiac region of the right middle lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1877,
+    "1": 14093
+  },
+  "embedding_norm": 17.183244705200195,
+  "mask_active_voxels": 70516736
+}

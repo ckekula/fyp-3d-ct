@@ -1,0 +1,23 @@
+{
+  "name": "valid_68_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    225
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple subcentimeter nonspecific nodules in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 484
+  },
+  "embedding_norm": 17.13868522644043,
+  "mask_active_voxels": 132710400
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_1636_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "8 mm ground glass opacity adjacent to the fissure in the anterior lower lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1082
+  },
+  "embedding_norm": 17.587514877319336,
+  "mask_active_voxels": 133431296
+}

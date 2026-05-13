@@ -1,0 +1,41 @@
+{
+  "name": "train_6244_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    430
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5x3 mm indeterminate nodule superimposed on the minor fissure on the right",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "2 mm calcified nodule in the middle lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subpleural 5x3 mm nodule in the laterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "A few indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 263,
+    "1": 76,
+    "2": 336,
+    "3": 124
+  },
+  "embedding_norm": 17.50167465209961,
+  "mask_active_voxels": 112721920
+}

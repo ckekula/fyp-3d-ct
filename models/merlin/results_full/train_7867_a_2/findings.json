@@ -1,0 +1,29 @@
+{
+  "name": "train_7867_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    464
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the left inferior lingular segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground glass opacity measuring 1.5 cm in diameter",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 22709,
+    "1": 7035
+  },
+  "embedding_norm": 17.53816032409668,
+  "mask_active_voxels": 121634816
+}

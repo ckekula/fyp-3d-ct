@@ -1,0 +1,47 @@
+{
+  "name": "train_1842_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Interlobular septal thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased ground-glass opacity in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "More prominent ground-glass opacity in the basal sections with a widespread patchy distribution",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Peripheral focal consolidation in the posterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Atelectatic changes in the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2c",
+    "2": "2c",
+    "3": "2b",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 145508,
+    "1": 554813,
+    "2": 387992,
+    "3": 132696,
+    "4": 7260
+  },
+  "embedding_norm": 17.4306697845459,
+  "mask_active_voxels": 119013376
+}

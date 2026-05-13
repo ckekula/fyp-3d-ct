@@ -1,0 +1,35 @@
+{
+  "name": "train_7206_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal bands at the lung bases bilaterally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal pleural thickening at the lung bases bilaterally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Faint, acinar pattern ground-glass opacity in the right parahilar region",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2h",
+    "1": "2e",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 11663,
+    "1": 5997,
+    "2": 4987
+  },
+  "embedding_norm": 17.451452255249023,
+  "mask_active_voxels": 122945536
+}

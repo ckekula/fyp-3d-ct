@@ -1,0 +1,29 @@
+{
+  "name": "train_6768_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    197
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in all segments of both lungs, predominantly in the peripheral lung tissue and more prominent in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations with a reverse halo sign in all segments of both lungs, predominantly in the peripheral lung tissue and more prominent in the lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 12539,
+    "1": 12539
+  },
+  "embedding_norm": 16.687700271606445,
+  "mask_active_voxels": 51642368
+}

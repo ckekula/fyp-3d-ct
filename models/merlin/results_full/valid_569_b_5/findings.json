@@ -1,0 +1,23 @@
+{
+  "name": "valid_569_b_5.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodular density within the major fissure in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1412
+  },
+  "embedding_norm": 17.440282821655273,
+  "mask_active_voxels": 119537664
+}

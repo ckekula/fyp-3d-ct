@@ -1,0 +1,35 @@
+{
+  "name": "train_6077_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground-glass density area with a bud-like appearance in the posterobasal segment of the right lower lobe, measuring approximately 1.5 cm",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 413,
+    "1": 3823,
+    "2": 677
+  },
+  "embedding_norm": 17.445968627929688,
+  "mask_active_voxels": 126877696
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_6914_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    537
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bleb measuring approximately 8.0 cm in the subpleural segment of the anteromediobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter centriacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Multiple subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2g",
+    "1": "1e",
+    "2": "2d",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 185279,
+    "1": 730,
+    "2": 930,
+    "3": 187075
+  },
+  "embedding_norm": 17.643404006958008,
+  "mask_active_voxels": 140771328
+}

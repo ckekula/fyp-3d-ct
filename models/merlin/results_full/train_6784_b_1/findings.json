@@ -1,0 +1,35 @@
+{
+  "name": "train_6784_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    305
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes more prominent in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Stable pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest pulmonary nodule measuring 5 mm in diameter located subpleurally in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 3441,
+    "1": 970,
+    "2": 566
+  },
+  "embedding_norm": 17.13176727294922,
+  "mask_active_voxels": 79953920
+}

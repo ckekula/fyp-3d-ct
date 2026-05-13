@@ -1,0 +1,29 @@
+{
+  "name": "valid_779_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lower lobe subpleural nodular opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral lower lobe patchy ground glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1586,
+    "1": 185805
+  },
+  "embedding_norm": 17.585878372192383,
+  "mask_active_voxels": 133431296
+}

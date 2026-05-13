@@ -1,0 +1,23 @@
+{
+  "name": "train_229_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    330
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcified non-specific nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 41
+  },
+  "embedding_norm": 17.399232864379883,
+  "mask_active_voxels": 86507520
+}

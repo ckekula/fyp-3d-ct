@@ -1,0 +1,41 @@
+{
+  "name": "train_2329_f_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    301
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass opacity in the central part of the upper lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Centriacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Tree-in-bud appearance in both lungs, more prominent in the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c",
+    "2": "1e",
+    "3": "1e"
+  },
+  "pixels": {
+    "0": 274822,
+    "1": 81831,
+    "2": 5121,
+    "3": 43402
+  },
+  "embedding_norm": 17.270736694335938,
+  "mask_active_voxels": 78905344
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_6235_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    384
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atypical pneumonic infiltration areas in peribronchial and subpleural regions bilaterally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Septal thickenings in peribronchial and subpleural regions bilaterally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground glass density in peribronchial and subpleural regions bilaterally",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1d",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 99756,
+    "1": 20402,
+    "2": 23109
+  },
+  "embedding_norm": 17.430479049682617,
+  "mask_active_voxels": 100663296
+}

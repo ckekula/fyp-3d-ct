@@ -1,0 +1,41 @@
+{
+  "name": "train_8174_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2 mm nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Band atelectasis in the paramediastinal area of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "2 mm nodule in the laterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "3 mm subpleural nodule",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2b",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 13,
+    "1": 3562,
+    "2": 98,
+    "3": 98
+  },
+  "embedding_norm": 16.918819427490234,
+  "mask_active_voxels": 54525952
+}

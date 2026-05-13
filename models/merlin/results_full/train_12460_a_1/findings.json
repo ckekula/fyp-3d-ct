@@ -1,0 +1,23 @@
+{
+  "name": "train_12460_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    243
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodule in the medial segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 117
+  },
+  "embedding_norm": 16.8887939453125,
+  "mask_active_voxels": 63700992
+}

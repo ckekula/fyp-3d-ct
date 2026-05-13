@@ -1,0 +1,35 @@
+{
+  "name": "train_5999_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    284
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes in the apex of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 2850,
+    "1": 537,
+    "2": 2313
+  },
+  "embedding_norm": 17.238189697265625,
+  "mask_active_voxels": 74448896
+}

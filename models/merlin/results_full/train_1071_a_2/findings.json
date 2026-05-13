@@ -1,0 +1,23 @@
+{
+  "name": "train_1071_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    374
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral interlobular septal thickening with associated ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 825882
+  },
+  "embedding_norm": 17.30600357055664,
+  "mask_active_voxels": 98041856
+}

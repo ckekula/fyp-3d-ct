@@ -1,0 +1,29 @@
+{
+  "name": "train_2504_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    549
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in nodular density in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increase in nodular density in the peripheral subpleural area of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2002,
+    "1": 1926
+  },
+  "embedding_norm": 17.531967163085938,
+  "mask_active_voxels": 143917056
+}

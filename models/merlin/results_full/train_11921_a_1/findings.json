@@ -1,0 +1,23 @@
+{
+  "name": "train_11921_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2.5 mm nonspecific nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 116
+  },
+  "embedding_norm": 17.018634796142578,
+  "mask_active_voxels": 117964800
+}

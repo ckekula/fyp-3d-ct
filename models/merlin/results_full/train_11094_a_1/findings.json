@@ -1,0 +1,53 @@
+{
+  "name": "train_11094_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    292
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring changes at the apical level",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural 3 mm nodule in the lateral aspect of the right upper lobe anterior segment",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "4x3 mm nodule superimposed on the lateral aspect of the minor fissure",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subpleural nodule measuring 3 mm in diameter at the laterobasal level of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subpleural 2 mm nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Subpleural nodule measuring 3 mm in diameter at the laterobasal level of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 2556,
+    "1": 83,
+    "2": 76,
+    "3": 64,
+    "4": 53,
+    "5": 81
+  },
+  "embedding_norm": 17.068498611450195,
+  "mask_active_voxels": 76546048
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_12954_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    286
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes at the apical levels in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 3129
+  },
+  "embedding_norm": 17.23053550720215,
+  "mask_active_voxels": 74973184
+}

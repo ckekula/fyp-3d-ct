@@ -415,24 +415,44 @@ def extract_unified(split: str = "train") -> None:
 
     def _filter_existing(ids: List[str]) -> List[str]:
         valid = []
+        missing = []
         for vid in ids:
             try:
                 resolve_volume_path(vid)
                 valid.append(vid)
             except Exception:
-                pass
+                missing.append(vid)
+
+        if missing:
+            logger.debug(
+                f"_filter_existing: {len(missing)} missing volumes (sample up to 5): {missing[:5]}"
+            )
         return valid
 
     # Abnormal: any scan with at least one recognised finding
     abnormality_keys = [k for k in CLASS_ORDER if k != "normal"]
+
+    # Raw lists per category (before dedup & disk existence filtering)
+    raw_by_cat = {ab: labels.get_positive_volume_names(ab) for ab in abnormality_keys}
+    for ab, lst in raw_by_cat.items():
+        logger.info(f"  category {ab}: {len(lst)} volumes (sample: {lst[:3]})")
+
     positive_ids: List[str] = list({
         vid
         for ab in abnormality_keys
-        for vid in labels.get_positive_volume_names(ab)
+        for vid in raw_by_cat.get(ab, [])
     })
+    logger.info(f"Raw positive IDs deduped: {len(positive_ids)} (sample: {positive_ids[:5]})")
+
     positive_ids = _filter_existing(positive_ids)
+    logger.info(f"After path resolution: abnormal={len(positive_ids)}")
+
     raw_normals = labels.get_normal_volume_names()
     logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}, e.g. {raw_normals[:3]}")
+    if len(raw_normals) == 0:
+        logger.warning(
+            "No normal volumes found in metadata — dataset may contain only abnormal scans."
+        )
     normal_ids = _filter_existing(raw_normals)
 
     logger.info(

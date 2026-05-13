@@ -1,0 +1,35 @@
+{
+  "name": "train_7683_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    507
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodule measuring 5 mm with a ground-glass halo in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Scarring in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 254,
+    "1": 1135,
+    "2": 669
+  },
+  "embedding_norm": 17.59185791015625,
+  "mask_active_voxels": 132907008
+}

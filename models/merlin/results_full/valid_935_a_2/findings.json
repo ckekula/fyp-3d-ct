@@ -1,0 +1,29 @@
+{
+  "name": "valid_935_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    479
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy areas of ground-glass consolidation in the lower lobes and posterobasal regions of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Bilateral lungs contain indeterminate subcentimeter nodules with some demonstrating calcification",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 184906,
+    "1": 725
+  },
+  "embedding_norm": 17.55587387084961,
+  "mask_active_voxels": 125566976
+}

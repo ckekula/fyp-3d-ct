@@ -1,0 +1,29 @@
+{
+  "name": "train_6900_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    322
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the bilateral apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in the lower lobe posterobasal segments",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 3577,
+    "1": 5089
+  },
+  "embedding_norm": 17.174795150756836,
+  "mask_active_voxels": 84410368
+}

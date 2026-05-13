@@ -1,0 +1,29 @@
+{
+  "name": "valid_147_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Indeterminate nodule in the right middle lobe, 3 mm",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Indeterminate nodule in the posterobasal segment of the left lower lobe, 4 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 171,
+    "1": 237
+  },
+  "embedding_norm": 16.888822555541992,
+  "mask_active_voxels": 63963136
+}

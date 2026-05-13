@@ -1,0 +1,29 @@
+{
+  "name": "train_1049_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    345
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes at the apices of the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multiple nodules in both lungs, each up to 5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6926,
+    "1": 744
+  },
+  "embedding_norm": 17.428510665893555,
+  "mask_active_voxels": 90439680
+}

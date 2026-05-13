@@ -1,0 +1,65 @@
+{
+  "name": "valid_339_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground glass opacities throughout both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Pulmonary nodules in the right middle lobe, largest measuring 4 mm",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subpleural nodules in the anterior segment of the right upper lobe, measuring 3 mm and 4 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nodules in the right lower lobe laterobasal and mediobasal subpleural segments, each measuring 3 mm",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Nodule in the anterior segment of the left upper lobe, measuring 4 mm",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nodule in the lingular segment of the left lung, measuring 8x5 mm",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Adjacent nodules in the left lower lobe laterobasal segment, measuring 5 mm and 2 mm",
+      "category": "Lung Nodule"
+    },
+    "7": {
+      "text": "Additional subpleural nodules in the left lower lobe laterobasal and posterobasal segments, largest measuring 4 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2d",
+    "7": "2d"
+  },
+  "pixels": {
+    "0": 318284,
+    "1": 296,
+    "2": 246,
+    "3": 205,
+    "4": 169,
+    "5": 247,
+    "6": 343,
+    "7": 376
+  },
+  "embedding_norm": 17.143268585205078,
+  "mask_active_voxels": 61341696
+}

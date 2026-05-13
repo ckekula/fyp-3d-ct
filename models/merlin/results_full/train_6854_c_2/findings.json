@@ -1,0 +1,23 @@
+{
+  "name": "train_6854_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the peripheral area of the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 26234
+  },
+  "embedding_norm": 17.182903289794922,
+  "mask_active_voxels": 70778880
+}

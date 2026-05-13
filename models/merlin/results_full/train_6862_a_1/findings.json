@@ -1,0 +1,29 @@
+{
+  "name": "train_6862_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    379
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring and density increases in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild scarring and density increases in the laterobasal segments of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1768,
+    "1": 2759
+  },
+  "embedding_norm": 17.439590454101562,
+  "mask_active_voxels": 99352576
+}

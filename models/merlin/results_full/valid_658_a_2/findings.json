@@ -1,0 +1,47 @@
+{
+  "name": "valid_658_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse mild central bronchial ectasia in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring at the apex of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Multiple subcentimeter nodules in both lungs, largest measuring 6x3 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Pleural-based nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Uniform interlobular septal thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "2d",
+    "3": "2d",
+    "4": "1d"
+  },
+  "pixels": {
+    "0": 220513,
+    "1": 12581,
+    "2": 1093,
+    "3": 1141,
+    "4": 8800
+  },
+  "embedding_norm": 17.069095611572266,
+  "mask_active_voxels": 62128128
+}

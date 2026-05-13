@@ -1,0 +1,23 @@
+{
+  "name": "train_5628_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    452
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal nodular ground glass opacity in the paramediastinal area in the superior segment of the left lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1332
+  },
+  "embedding_norm": 17.404600143432617,
+  "mask_active_voxels": 118489088
+}

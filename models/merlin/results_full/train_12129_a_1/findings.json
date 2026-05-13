@@ -1,0 +1,23 @@
+{
+  "name": "train_12129_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    354
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal fibrosis in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2f"
+  },
+  "pixels": {
+    "0": 10547
+  },
+  "embedding_norm": 17.250137329101562,
+  "mask_active_voxels": 92798976
+}

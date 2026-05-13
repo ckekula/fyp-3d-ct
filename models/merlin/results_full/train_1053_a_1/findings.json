@@ -1,0 +1,23 @@
+{
+  "name": "train_1053_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    220
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered nodular ground-glass opacities in all lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 86326
+  },
+  "embedding_norm": 17.316165924072266,
+  "mask_active_voxels": 129761280
+}

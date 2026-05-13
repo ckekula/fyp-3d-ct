@@ -1,0 +1,41 @@
+{
+  "name": "train_7198_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Large patchy areas of consolidation showing vascular expansion in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Subpleural striations in the lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Interlobular septal thickening in the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2b",
+    "2": "1f",
+    "3": "1d"
+  },
+  "pixels": {
+    "0": 2194,
+    "1": 34025,
+    "2": 4424,
+    "3": 2964
+  },
+  "embedding_norm": 17.581315994262695,
+  "mask_active_voxels": 134217728
+}

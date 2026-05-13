@@ -1,0 +1,71 @@
+{
+  "name": "train_1422_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation in multilobar, multisegmental upper lobes",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Linear subsegmental atelectatic changes in right middle lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Linear subsegmental atelectatic changes in left upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Linear subsegmental atelectatic changes in inferior lingular segment",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Linear subsegmental atelectatic changes in lower lobe basal segments",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Segmentary and subsegmental peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Several nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "8": {
+      "text": "Calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2a",
+    "3": "2a",
+    "4": "2a",
+    "5": "2a",
+    "6": "1a",
+    "7": "2d",
+    "8": "1f"
+  },
+  "pixels": {
+    "0": 96706,
+    "1": 137717,
+    "2": 6542,
+    "3": 21925,
+    "4": 55240,
+    "5": 95775,
+    "6": 218004,
+    "7": 374,
+    "8": 139
+  },
+  "embedding_norm": 17.18238639831543,
+  "mask_active_voxels": 70778880
+}

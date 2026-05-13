@@ -1,0 +1,29 @@
+{
+  "name": "train_2282_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    249
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6258,
+    "1": 319
+  },
+  "embedding_norm": 17.198280334472656,
+  "mask_active_voxels": 65273856
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_3732_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    174
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation areas with atelectatic changes at the basal levels of both lower lobes with air bronchogram sign",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 71827
+  },
+  "embedding_norm": 16.724023818969727,
+  "mask_active_voxels": 45613056
+}

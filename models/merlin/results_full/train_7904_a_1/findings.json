@@ -1,0 +1,29 @@
+{
+  "name": "train_7904_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    309
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodules measuring 3.4 mm in the middle lobe on the right",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific pulmonary nodules measuring 3.9 mm in the anterobasal segment of the lower lobe on the left",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 172,
+    "1": 510
+  },
+  "embedding_norm": 17.15605926513672,
+  "mask_active_voxels": 81002496
+}

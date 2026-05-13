@@ -1,0 +1,35 @@
+{
+  "name": "train_12383_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    318
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibroatelectatic changes in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibroatelectatic changes in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Parenchymal nodule approximately 6.2 mm in diameter with indistinct borders in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 11679,
+    "1": 5964,
+    "2": 109
+  },
+  "embedding_norm": 17.311124801635742,
+  "mask_active_voxels": 83361792
+}

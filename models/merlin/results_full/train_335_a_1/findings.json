@@ -1,0 +1,23 @@
+{
+  "name": "train_335_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    292
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pulmonary fibrosis in the medial segment of the right middle lobe and the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 9831
+  },
+  "embedding_norm": 17.068500518798828,
+  "mask_active_voxels": 76546048
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_10380_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    487
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities extending to the pleura in the lateral segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Minimal subpleural focal consolidations in the lateral segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground glass opacities extending to the pleura in the anterior segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Minimal subpleural focal consolidations in the anterior segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Calcified nodules consistent with scarring in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c",
+    "3": "2b",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 18427,
+    "1": 755,
+    "2": 38576,
+    "3": 447,
+    "4": 414
+  },
+  "embedding_norm": 17.479103088378906,
+  "mask_active_voxels": 127664128
+}

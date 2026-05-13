@@ -1,0 +1,23 @@
+{
+  "name": "train_5606_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    423
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 7835
+  },
+  "embedding_norm": 17.394399642944336,
+  "mask_active_voxels": 110886912
+}

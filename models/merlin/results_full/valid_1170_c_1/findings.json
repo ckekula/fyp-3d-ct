@@ -1,0 +1,65 @@
+{
+  "name": "valid_1170_c_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    251
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse emphysematous changes throughout both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Cylindrical bronchiectasis with peribronchial thickening in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Cylindrical bronchiectasis with peribronchial thickening in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Cystic bronchiectasis in the lower lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Secretions within the bronchiectatic airways",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Bronchiectasis associated with soft tissue density changes in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Bronchiectasis associated with structural distortion in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Widespread tree-in-bud opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1b",
+    "2": "1b",
+    "3": "1b",
+    "4": "1f",
+    "5": "1b",
+    "6": "1b",
+    "7": "1e"
+  },
+  "pixels": {
+    "0": 566968,
+    "1": 1212240,
+    "2": 201740,
+    "3": 1212240,
+    "4": 611218,
+    "5": 164318,
+    "6": 131915,
+    "7": 298261
+  },
+  "embedding_norm": 17.137502670288086,
+  "mask_active_voxels": 65798144
+}

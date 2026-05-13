@@ -1,0 +1,29 @@
+{
+  "name": "train_7526_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, peripheral subpleural areas of ground-glass opacity in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Increased density consistent with consolidation in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 9966,
+    "1": 61866
+  },
+  "embedding_norm": 17.072486877441406,
+  "mask_active_voxels": 73138176
+}

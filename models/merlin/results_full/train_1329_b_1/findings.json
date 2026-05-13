@@ -1,0 +1,47 @@
+{
+  "name": "train_1329_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    360
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mass with spiculated contours, irregular borders, and pleural retraction in the apical segment of the right upper lobe, measuring up to 48x38 mm",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multiple pulmonary nodules in the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Centrally located ground-glass opacity in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Tree-in-bud pattern of pneumonic infiltration in the mediobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subsegmental atelectasis in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2c",
+    "3": "1e",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 121512,
+    "1": 3090,
+    "2": 11870,
+    "3": 200780,
+    "4": 6633
+  },
+  "embedding_norm": 17.282405853271484,
+  "mask_active_voxels": 94371840
+}

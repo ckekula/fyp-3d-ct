@@ -1,0 +1,41 @@
+{
+  "name": "train_6317_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    537
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground-glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peripheral ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Round ground-glass opacities",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities accompanied by interlobular septal thickening",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 14877,
+    "1": 2107,
+    "2": 1116,
+    "3": 30921
+  },
+  "embedding_norm": 17.64434814453125,
+  "mask_active_voxels": 140771328
+}

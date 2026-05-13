@@ -1,0 +1,23 @@
+{
+  "name": "train_2400_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    358
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4 mm nodule in the peripheral area of the left lower lobe superior segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 423
+  },
+  "embedding_norm": 17.271038055419922,
+  "mask_active_voxels": 93847552
+}

@@ -1,0 +1,29 @@
+{
+  "name": "valid_1081_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    521
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral ground-glass opacities in the lower lobes and peripheral regions of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Dilated vascular structures within areas of ground-glass opacity",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 76345,
+    "1": 73236
+  },
+  "embedding_norm": 17.631372451782227,
+  "mask_active_voxels": 136577024
+}

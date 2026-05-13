@@ -1,0 +1,53 @@
+{
+  "name": "train_5996_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Structural distortion and increased linear band density with volume loss in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the posterobasal segment of the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Consolidation in the right upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Increased ground-glass opacity in the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Consolidation in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Increased ground-glass opacity in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c",
+    "4": "2b",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 1352,
+    "1": 6018,
+    "2": 174175,
+    "3": 60510,
+    "4": 9336,
+    "5": 9336
+  },
+  "embedding_norm": 17.409137725830078,
+  "mask_active_voxels": 114819072
+}

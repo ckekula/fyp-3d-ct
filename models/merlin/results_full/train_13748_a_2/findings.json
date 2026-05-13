@@ -1,0 +1,29 @@
+{
+  "name": "train_13748_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    192
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacities with prominent septal thickening in the upper and lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific parenchymal nodules, some calcified, in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2888,
+    "1": 98
+  },
+  "embedding_norm": 16.82660484313965,
+  "mask_active_voxels": 50331648
+}

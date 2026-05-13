@@ -1,0 +1,23 @@
+{
+  "name": "train_10764_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    400
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural ground-glass opacities in both lungs, especially in the lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 8512
+  },
+  "embedding_norm": 17.456323623657227,
+  "mask_active_voxels": 104857600
+}

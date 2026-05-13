@@ -1,0 +1,35 @@
+{
+  "name": "train_6601_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    491
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located ground-glass opacities with faint borders in the upper lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Linear ground-glass opacity adjacent to the fissure in the left lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subpleural ground-glass opacity with faint borders in the anterior segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 20314,
+    "1": 3542,
+    "2": 654
+  },
+  "embedding_norm": 17.576976776123047,
+  "mask_active_voxels": 128712704
+}

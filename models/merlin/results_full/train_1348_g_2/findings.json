@@ -1,0 +1,71 @@
+{
+  "name": "train_1348_g_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    557
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectasis in areas of ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Cavities in areas of ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Increased cavitation in areas of consolidation in the right upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Increased cavitation in areas of consolidation in the right lower lobe posterobasal segment",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Stable nodular infiltrates in the left lower lobe mediobasal segment",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Bronchiectasis in the left lower lobe mediobasal segment",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Bronchial wall thickening in the left lower lobe mediobasal segment",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Newly developing tree-in-bud patterns in the left lung superior lingular segment",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Newly developing tree-in-bud patterns in the right middle lobe lateral segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2d",
+    "5": "1b",
+    "6": "1a",
+    "7": "1e",
+    "8": "1e"
+  },
+  "pixels": {
+    "0": 89814,
+    "1": 148618,
+    "2": 173670,
+    "3": 63640,
+    "4": 19812,
+    "5": 47276,
+    "6": 47276,
+    "7": 87931,
+    "8": 119593
+  },
+  "embedding_norm": 17.62333106994629,
+  "mask_active_voxels": 146014208
+}

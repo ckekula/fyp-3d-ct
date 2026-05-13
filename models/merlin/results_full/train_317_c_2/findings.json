@@ -1,0 +1,35 @@
+{
+  "name": "train_317_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse reticulonodular opacities throughout both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nodules with surrounding ground-glass opacities",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodular opacities in the posterobasal segments of the lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2f",
+    "1": "2c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 44733,
+    "1": 6562,
+    "2": 26320
+  },
+  "embedding_norm": 17.556392669677734,
+  "mask_active_voxels": 125304832
+}

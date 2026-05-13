@@ -1,0 +1,59 @@
+{
+  "name": "train_6666_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2 mm nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "2 mm nodule in the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "2 mm subpleural nodule in the right posterobasal area",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "3 mm nodule in the right laterobasal area",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "3 mm nodule slightly superiorly in the right lung",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Two nodules at the posterobasal level of the left lung, largest measuring 3 mm",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "3 mm nodule in the left laterobasal segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 34,
+    "1": 36,
+    "2": 51,
+    "3": 139,
+    "4": 99,
+    "5": 231,
+    "6": 99
+  },
+  "embedding_norm": 16.881954193115234,
+  "mask_active_voxels": 60555264
+}

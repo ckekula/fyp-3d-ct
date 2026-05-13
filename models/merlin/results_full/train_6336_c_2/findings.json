@@ -1,0 +1,41 @@
+{
+  "name": "train_6336_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    305
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peribronchial thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bronchiectasis in the laterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bronchial wall thickening in the laterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1a",
+    "2": "1b",
+    "3": "1a"
+  },
+  "pixels": {
+    "0": 15101,
+    "1": 7676,
+    "2": 3540,
+    "3": 3540
+  },
+  "embedding_norm": 17.131793975830078,
+  "mask_active_voxels": 79953920
+}

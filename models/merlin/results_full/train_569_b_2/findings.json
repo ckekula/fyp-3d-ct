@@ -1,0 +1,47 @@
+{
+  "name": "train_569_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    143
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis adjacent to the effusions in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Significant atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Additional linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Minimal smooth interlobular septal thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2a",
+    "3": "1d",
+    "4": "1d"
+  },
+  "pixels": {
+    "0": 76822,
+    "1": 76822,
+    "2": 26051,
+    "3": 154335,
+    "4": 80157
+  },
+  "embedding_norm": 16.437219619750977,
+  "mask_active_voxels": 37486592
+}

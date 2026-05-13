@@ -1,0 +1,23 @@
+{
+  "name": "train_10125_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered light ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 3881
+  },
+  "embedding_norm": 16.708087921142578,
+  "mask_active_voxels": 52428800
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_93_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the medial aspect of the superior segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground-glass opacification in the medial aspect of the superior segment of the left lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter nodular lesion in the left lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Additional subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 36178,
+    "1": 29015,
+    "2": 117,
+    "3": 336
+  },
+  "embedding_norm": 17.13829803466797,
+  "mask_active_voxels": 66060288
+}

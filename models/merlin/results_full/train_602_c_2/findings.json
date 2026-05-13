@@ -1,0 +1,41 @@
+{
+  "name": "train_602_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    460
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidated segment in the posterior subsegment of the left upper lobe apicoposterior segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bilateral lungs with areas of ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Localized linear density increases in bilateral lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal architectural distortion in bilateral lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2a",
+    "3": "1f"
+  },
+  "pixels": {
+    "0": 39101,
+    "1": 241510,
+    "2": 66241,
+    "3": 727387
+  },
+  "embedding_norm": 17.543922424316406,
+  "mask_active_voxels": 120586240
+}

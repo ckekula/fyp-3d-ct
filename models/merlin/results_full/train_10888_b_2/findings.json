@@ -1,0 +1,29 @@
+{
+  "name": "train_10888_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm nodule adjacent to the major fissure in the anterior lower lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter ground glass nodule in the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 142,
+    "1": 1781
+  },
+  "embedding_norm": 17.18254852294922,
+  "mask_active_voxels": 70778880
+}

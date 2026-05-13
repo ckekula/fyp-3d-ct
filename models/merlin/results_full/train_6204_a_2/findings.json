@@ -1,0 +1,35 @@
+{
+  "name": "train_6204_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "More prominent peripheral patch-like ground glass densities in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "More prominent peripheral patch-like ground glass densities on the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Pleural bands",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2h"
+  },
+  "pixels": {
+    "0": 146317,
+    "1": 38000,
+    "2": 9330
+  },
+  "embedding_norm": 17.430768966674805,
+  "mask_active_voxels": 119013376
+}

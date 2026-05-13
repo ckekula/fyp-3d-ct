@@ -1,0 +1,23 @@
+{
+  "name": "train_12027_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    297
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral minimal peribronchial thickening",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 16637
+  },
+  "embedding_norm": 17.331340789794922,
+  "mask_active_voxels": 77856768
+}

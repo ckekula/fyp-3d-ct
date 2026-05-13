@@ -1,0 +1,23 @@
+{
+  "name": "train_1467_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    465
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 766468
+  },
+  "embedding_norm": 17.4371395111084,
+  "mask_active_voxels": 121896960
+}

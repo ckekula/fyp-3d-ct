@@ -1,0 +1,71 @@
+{
+  "name": "valid_937_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    500
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the central portions of both lungs, most notably in the lower lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground glass opacities in the left lower lobe anteromediobasal segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subcentimeter centrilobular nodules in the left lower lobe anteromediobasal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nodular ground glass opacities in the subpleural region of the right middle lobe medial segment anteriorly",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Nodular ground glass opacities in the subpleural region of the left lower lobe laterobasal segment",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Nodule with slightly irregular borders, measuring approximately 9.5 mm in diameter, in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Increased linear density in the posterobasal segment of the right lower lobe, suggestive of fibrotic changes",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Changes consistent with fibrosis in bilateral apical regions of the lungs",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Several subcentimeter nonspecific nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c",
+    "2": "2d",
+    "3": "2c",
+    "4": "2c",
+    "5": "2d",
+    "6": "2a",
+    "7": "2a",
+    "8": "2d"
+  },
+  "pixels": {
+    "0": 802306,
+    "1": 96690,
+    "2": 96690,
+    "3": 30499,
+    "4": 11347,
+    "5": 1816,
+    "6": 34424,
+    "7": 8738,
+    "8": 605
+  },
+  "embedding_norm": 17.464719772338867,
+  "mask_active_voxels": 131072000
+}

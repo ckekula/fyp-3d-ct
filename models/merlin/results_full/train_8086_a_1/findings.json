@@ -1,0 +1,23 @@
+{
+  "name": "train_8086_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    313
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "4.5 mm non-specific nodule in the peripheral subpleural region of the right lower lobe superior segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 345
+  },
+  "embedding_norm": 17.367048263549805,
+  "mask_active_voxels": 82051072
+}

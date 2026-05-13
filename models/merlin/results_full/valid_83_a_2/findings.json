@@ -1,0 +1,35 @@
+{
+  "name": "valid_83_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular lesion in the medial segment of the right middle lobe, 16x9 mm",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multiple pulmonary nodules bilaterally, more prominent on the right",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest pulmonary nodule measuring 10 mm in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 7175,
+    "1": 2636,
+    "2": 1297
+  },
+  "embedding_norm": 17.507320404052734,
+  "mask_active_voxels": 111935488
+}

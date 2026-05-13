@@ -1,0 +1,23 @@
+{
+  "name": "train_1891_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    516
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "7.2x5 mm intrapulmonary nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 660
+  },
+  "embedding_norm": 17.477577209472656,
+  "mask_active_voxels": 135266304
+}

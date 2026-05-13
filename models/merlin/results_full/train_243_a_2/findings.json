@@ -1,0 +1,23 @@
+{
+  "name": "train_243_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    542
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 9462
+  },
+  "embedding_norm": 17.61003303527832,
+  "mask_active_voxels": 142082048
+}

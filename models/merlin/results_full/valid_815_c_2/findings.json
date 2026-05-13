@@ -1,0 +1,35 @@
+{
+  "name": "valid_815_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    207
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Complete resolution of previously noted extensive consolidation in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Band-like fibrotic changes in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Stable subcentimeter nonspecific parenchymal nodules in the lung parenchyma bilaterally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2849,
+    "1": 7999,
+    "2": 307
+  },
+  "embedding_norm": 16.918790817260742,
+  "mask_active_voxels": 54263808
+}

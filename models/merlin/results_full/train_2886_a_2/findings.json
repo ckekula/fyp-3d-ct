@@ -1,0 +1,53 @@
+{
+  "name": "train_2886_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    465
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal free pleural effusion measuring 6 mm in thickness on the left",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Branching opacities with buds and acinar infiltrates in the superior lingular segment of the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Newly emerging focal consolidation areas in several foci in different locations within the apicoposterior segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Newly emerging nodular consolidation areas measuring 1 cm in diameter in the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Focal consolidation area in the laterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "2b",
+    "3": "2d",
+    "4": "2b",
+    "5": "1a"
+  },
+  "pixels": {
+    "0": 39762,
+    "1": 20307,
+    "2": 60066,
+    "3": 8916,
+    "4": 8254,
+    "5": 145909
+  },
+  "embedding_norm": 17.4359073638916,
+  "mask_active_voxels": 121896960
+}

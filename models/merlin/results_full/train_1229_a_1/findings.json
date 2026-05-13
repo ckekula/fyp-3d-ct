@@ -1,0 +1,53 @@
+{
+  "name": "train_1229_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    393
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy-focal consolidations with a peribronchial distribution in the right lung's middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Patchy-focal consolidations with a peribronchial distribution in the lingular segment of the left lung's upper lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Patchy-focal consolidations with a peribronchial distribution in the basal segments of both lower lobes",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Centrilobular acinar infiltrates in the right lung's middle lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Centrilobular acinar infiltrates in the lingular segment of the left lung's upper lobe",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Centrilobular acinar infiltrates in the basal segments of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2b"
+  },
+  "pixels": {
+    "0": 25217,
+    "1": 3288,
+    "2": 467317,
+    "3": 25217,
+    "4": 3288,
+    "5": 62215
+  },
+  "embedding_norm": 17.502893447875977,
+  "mask_active_voxels": 103022592
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_1246_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in the amount of pleural effusion in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Decrease in the amount of pleural effusion in the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e"
+  },
+  "pixels": {
+    "0": 2870181,
+    "1": 32366
+  },
+  "embedding_norm": 16.999343872070312,
+  "mask_active_voxels": 58720256
+}

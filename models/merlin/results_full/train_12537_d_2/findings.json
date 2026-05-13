@@ -1,0 +1,41 @@
+{
+  "name": "train_12537_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    205
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidation in the newly developed right upper lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular consolidation in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Segmental consolidation areas in the basal segments of the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground glass densities in the basal segments of the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 3088,
+    "1": 424,
+    "2": 81897,
+    "3": 67690
+  },
+  "embedding_norm": 16.921812057495117,
+  "mask_active_voxels": 53739520
+}

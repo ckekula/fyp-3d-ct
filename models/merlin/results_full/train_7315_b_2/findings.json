@@ -1,0 +1,23 @@
+{
+  "name": "train_7315_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    459
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread ground-glass opacities with a tendency for central and peripheral fusion in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 4030
+  },
+  "embedding_norm": 17.544418334960938,
+  "mask_active_voxels": 120324096
+}

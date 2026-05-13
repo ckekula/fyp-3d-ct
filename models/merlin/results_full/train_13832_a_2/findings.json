@@ -1,0 +1,23 @@
+{
+  "name": "train_13832_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    366
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subcentimeter nodule in the medial subpleural region of the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 120
+  },
+  "embedding_norm": 17.4066104888916,
+  "mask_active_voxels": 95944704
+}

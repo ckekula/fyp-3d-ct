@@ -1,0 +1,29 @@
+{
+  "name": "train_5584_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    452
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular emphysema in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Paraseptal emphysema in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 4079,
+    "1": 7334
+  },
+  "embedding_norm": 17.40407943725586,
+  "mask_active_voxels": 118489088
+}

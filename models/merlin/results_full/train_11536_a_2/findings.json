@@ -1,0 +1,41 @@
+{
+  "name": "train_11536_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural effusion with a thickness of 3 cm on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural effusion with a thickness of 2 cm on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Diffuse patchy ground-glass opacities in the basal segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Consolidations in the basal segments of both lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2c",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 553122,
+    "1": 185269,
+    "2": 738391,
+    "3": 738391
+  },
+  "embedding_norm": 17.471004486083984,
+  "mask_active_voxels": 127401984
+}

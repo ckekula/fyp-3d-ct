@@ -1,0 +1,23 @@
+{
+  "name": "valid_1194_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 9077
+  },
+  "embedding_norm": 16.86592674255371,
+  "mask_active_voxels": 60293120
+}

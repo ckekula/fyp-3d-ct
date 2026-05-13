@@ -1,0 +1,23 @@
+{
+  "name": "train_5234_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    349
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several nodules in both lung parenchyma, largest measuring 5 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 523
+  },
+  "embedding_norm": 17.37763023376465,
+  "mask_active_voxels": 91488256
+}

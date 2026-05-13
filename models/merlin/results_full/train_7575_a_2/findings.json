@@ -1,0 +1,23 @@
+{
+  "name": "train_7575_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Three or four subcentimeter nodules in the medial segment of the right middle lobe, largest measuring 6 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 333
+  },
+  "embedding_norm": 17.587543487548828,
+  "mask_active_voxels": 133431296
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_1785_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    266
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the posterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground-glass opacity in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 13366,
+    "1": 135551
+  },
+  "embedding_norm": 17.24839973449707,
+  "mask_active_voxels": 69730304
+}

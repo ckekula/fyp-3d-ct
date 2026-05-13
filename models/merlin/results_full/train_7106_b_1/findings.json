@@ -1,0 +1,29 @@
+{
+  "name": "train_7106_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    275
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Slight increase in bronchial wall thickness in the segmental bronchi",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear subsegmental atelectasis in the linguloinferior segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1304,
+    "1": 1895
+  },
+  "embedding_norm": 17.015552520751953,
+  "mask_active_voxels": 72089600
+}

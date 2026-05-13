@@ -1,0 +1,41 @@
+{
+  "name": "train_6337_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules measuring 4 mm in the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Focal bronchiectasis in the subpleural area of the left lower lobe laterobasal segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Fibrotic changes in the subpleural area of the left lower lobe laterobasal segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2d",
+    "2": "1b",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 88937,
+    "1": 84,
+    "2": 2036,
+    "3": 16837
+  },
+  "embedding_norm": 17.072433471679688,
+  "mask_active_voxels": 73138176
+}

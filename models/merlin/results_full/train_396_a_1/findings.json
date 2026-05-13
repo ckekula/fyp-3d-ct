@@ -1,0 +1,23 @@
+{
+  "name": "train_396_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    407
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules in the lung parenchyma bilaterally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 247
+  },
+  "embedding_norm": 17.370241165161133,
+  "mask_active_voxels": 106692608
+}

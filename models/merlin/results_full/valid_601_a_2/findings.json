@@ -1,0 +1,23 @@
+{
+  "name": "valid_601_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    531
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild fibrotic changes at the apical levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 3922
+  },
+  "embedding_norm": 17.49448585510254,
+  "mask_active_voxels": 139198464
+}

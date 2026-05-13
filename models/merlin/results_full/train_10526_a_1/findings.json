@@ -1,0 +1,29 @@
+{
+  "name": "train_10526_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    307
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodule in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 49,
+    "1": 2074
+  },
+  "embedding_norm": 17.117145538330078,
+  "mask_active_voxels": 80478208
+}

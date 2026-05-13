@@ -1,0 +1,29 @@
+{
+  "name": "train_7117_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the lower lobe of the right lung measuring up to 3.3 cm",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the apicoposterior segment of the upper lobe of the left lung with associated vascular expansion",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 26542,
+    "1": 1334
+  },
+  "embedding_norm": 17.55714988708496,
+  "mask_active_voxels": 125304832
+}

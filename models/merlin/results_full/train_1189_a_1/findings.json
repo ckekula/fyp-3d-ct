@@ -1,0 +1,71 @@
+{
+  "name": "train_1189_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Resolution of previously noted consolidations in the medial segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Resolution of previously noted consolidations in the superior segments of both lower lobes",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Resolution of previously noted consolidations in the lateral basal segment of the right lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Reticular infiltrates in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Reticular infiltrates in the superior segments of both lower lobes",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Reticular infiltrates in the lateral basal segment of the right lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Calcified parenchymal nodule in the lingular segment of the left lung",
+      "category": "Lung Nodule"
+    },
+    "7": {
+      "text": "Indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "8": {
+      "text": "New patchy acinar infiltrates in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "1d",
+    "4": "1d",
+    "5": "1d",
+    "6": "2d",
+    "7": "2d",
+    "8": "2b"
+  },
+  "pixels": {
+    "0": 16116,
+    "1": 188848,
+    "2": 147278,
+    "3": 16116,
+    "4": 188848,
+    "5": 147278,
+    "6": 1666,
+    "7": 1836,
+    "8": 8426
+  },
+  "embedding_norm": 17.10492706298828,
+  "mask_active_voxels": 126222336
+}

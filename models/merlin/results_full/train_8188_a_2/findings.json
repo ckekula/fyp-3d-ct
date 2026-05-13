@@ -1,0 +1,47 @@
+{
+  "name": "train_8188_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the lower lobes of both lungs, more prominently on the right",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the lower lobes of both lungs, more prominently on the right",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Centriacinar nodules in the apicoposterior segment of the upper lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Minimal pleural effusion on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "1e",
+    "3": "2d",
+    "4": "2e"
+  },
+  "pixels": {
+    "0": 139002,
+    "1": 139002,
+    "2": 2484,
+    "3": 4821,
+    "4": 259434
+  },
+  "embedding_norm": 17.06655502319336,
+  "mask_active_voxels": 62914560
+}

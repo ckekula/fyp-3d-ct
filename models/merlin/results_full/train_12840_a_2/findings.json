@@ -1,0 +1,23 @@
+{
+  "name": "train_12840_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    166
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass consolidation area in the left lung lower lobe superior segment measuring approximately 3.6x3.7 cm",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 23744
+  },
+  "embedding_norm": 16.450525283813477,
+  "mask_active_voxels": 43515904
+}

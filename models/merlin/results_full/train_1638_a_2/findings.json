@@ -1,0 +1,41 @@
+{
+  "name": "train_1638_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripherally located focal nodular ground-glass opacities in posterobasal segment of left lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Peripherally located focal nodular ground-glass opacities in apicoposterior segment of upper lobe of left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Several nonspecific parenchymal nodules up to 4.8 mm in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 68043,
+    "1": 42307,
+    "2": 2099,
+    "3": 1623
+  },
+  "embedding_norm": 17.556394577026367,
+  "mask_active_voxels": 125304832
+}

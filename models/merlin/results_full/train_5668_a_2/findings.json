@@ -1,0 +1,35 @@
+{
+  "name": "train_5668_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    409
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy diffuse ARDS in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground glass opacities in a crazy paving pattern in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Small amount of bilateral pleural effusion",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2e"
+  },
+  "pixels": {
+    "0": 3442007,
+    "1": 3442007,
+    "2": 16705
+  },
+  "embedding_norm": 17.529584884643555,
+  "mask_active_voxels": 107216896
+}

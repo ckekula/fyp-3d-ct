@@ -1,0 +1,53 @@
+{
+  "name": "train_11760_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    446
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Stable peripheral ground glass nodular opacities in the right upper lobe apicoposterior segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Stable peripheral ground glass nodular opacities in the right lower lobe superior segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Stable peripheral ground glass nodular opacities in the left lung apex",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Newly emerged bud branch appearance in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Acinar opacities in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Increased ground-glass nodular density in the posterobasal segment of the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "1e",
+    "4": "2b",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 4661,
+    "1": 5106,
+    "2": 13934,
+    "3": 37240,
+    "4": 37240,
+    "5": 37240
+  },
+  "embedding_norm": 17.521615982055664,
+  "mask_active_voxels": 116916224
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_11583_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    277
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities with a halo sign in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "A few subcentimeter calcific and noncalcific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 10289,
+    "1": 740
+  },
+  "embedding_norm": 17.05866241455078,
+  "mask_active_voxels": 72613888
+}

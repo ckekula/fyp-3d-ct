@@ -1,0 +1,41 @@
+{
+  "name": "train_1100_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    175
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation with air bronchograms in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Consolidation with air bronchograms in the upper lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Indistinct borders and associated ground glass opacification in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Indistinct borders and associated ground glass opacification in the upper lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 6049,
+    "1": 360240,
+    "2": 6049,
+    "3": 360240
+  },
+  "embedding_norm": 16.715545654296875,
+  "mask_active_voxels": 45875200
+}

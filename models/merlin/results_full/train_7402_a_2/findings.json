@@ -1,0 +1,41 @@
+{
+  "name": "train_7402_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in both lower lobes of the lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Tracheomalacia in both main bronchi and lobar bronchial walls",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Calcifications in both main bronchi and lobar bronchial walls",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal pleural effusion on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1a",
+    "2": "1f",
+    "3": "2e"
+  },
+  "pixels": {
+    "0": 1029,
+    "1": 2786,
+    "2": 2741,
+    "3": 43370
+  },
+  "embedding_norm": 16.921436309814453,
+  "mask_active_voxels": 54001664
+}

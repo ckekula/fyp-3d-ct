@@ -1,0 +1,23 @@
+{
+  "name": "train_10432_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    304
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Interlobular and interstitial septal thickening in all segments, more prominently in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 6388
+  },
+  "embedding_norm": 17.270517349243164,
+  "mask_active_voxels": 79691776
+}

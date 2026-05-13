@@ -1,0 +1,29 @@
+{
+  "name": "train_7227_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    485
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific ground-glass opacities in the peripheral subpleural area of the superior and posterior segments of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1145,
+    "1": 2266
+  },
+  "embedding_norm": 17.470876693725586,
+  "mask_active_voxels": 127139840
+}

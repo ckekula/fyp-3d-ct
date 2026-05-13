@@ -1,0 +1,41 @@
+{
+  "name": "train_6803_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    368
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Three peripheral nodules measuring 10.5 mm in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nodule measuring 11.5 mm in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodule measuring 5 mm in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Ground glass opacity in the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 1016,
+    "1": 1956,
+    "2": 486,
+    "3": 3610
+  },
+  "embedding_norm": 17.404705047607422,
+  "mask_active_voxels": 96468992
+}

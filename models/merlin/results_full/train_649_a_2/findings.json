@@ -1,0 +1,23 @@
+{
+  "name": "train_649_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    495
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm spiculated nodule in the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 2488
+  },
+  "embedding_norm": 17.570995330810547,
+  "mask_active_voxels": 129761280
+}

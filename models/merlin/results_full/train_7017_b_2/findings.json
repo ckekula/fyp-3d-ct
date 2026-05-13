@@ -1,0 +1,41 @@
+{
+  "name": "train_7017_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    500
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in the peripheral lung tissue of the right lower lobe anterobasal segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the peripheral lung tissue of the right lower lobe anterobasal segment",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Patchy ground-glass opacities in the peripheral lung tissue of the left lower lobe posterobasal segment",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Consolidations in the peripheral lung tissue of the left lower lobe posterobasal segment",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 1378,
+    "1": 1378,
+    "2": 9091,
+    "3": 15
+  },
+  "embedding_norm": 17.464813232421875,
+  "mask_active_voxels": 131072000
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_7485_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Inverted halo sign with peripheral subpleural sparing in the right upper lobe and superior segment of the lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Patchy consolidation areas in the right upper lobe and superior segment of the lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground glass densities around a crazy paving pattern in the right upper lobe and superior segment of the lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 45236,
+    "1": 79338,
+    "2": 51672
+  },
+  "embedding_norm": 16.8817195892334,
+  "mask_active_voxels": 60555264
+}

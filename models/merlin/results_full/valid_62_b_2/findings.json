@@ -1,0 +1,29 @@
+{
+  "name": "valid_62_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Progressive consolidations in the lung parenchyma",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "New consolidative pneumonic foci in a patient with known COVID-19 pneumonia",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 72607,
+    "1": 72607
+  },
+  "embedding_norm": 17.009597778320312,
+  "mask_active_voxels": 58458112
+}

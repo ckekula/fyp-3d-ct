@@ -1,0 +1,29 @@
+{
+  "name": "train_7632_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground-glass opacities in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the posterior segment of the right upper lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 4130,
+    "1": 11950
+  },
+  "embedding_norm": 16.88179588317871,
+  "mask_active_voxels": 60555264
+}

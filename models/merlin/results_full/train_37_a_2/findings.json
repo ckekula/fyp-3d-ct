@@ -1,0 +1,41 @@
+{
+  "name": "train_37_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidations in the anterior basal segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Marked decrease in atelectasis in the superior segment of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Stable, non-specific centrilobular nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest centrilobular nodule measuring 4 mm in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "1e",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 54951,
+    "1": 3448,
+    "2": 1023,
+    "3": 297
+  },
+  "embedding_norm": 17.581327438354492,
+  "mask_active_voxels": 134217728
+}

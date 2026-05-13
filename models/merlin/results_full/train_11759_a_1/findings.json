@@ -1,0 +1,53 @@
+{
+  "name": "train_11759_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered ground-glass opacities in the left lung lingular segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Scattered ground-glass opacities in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Scattered ground-glass opacities in the right lower lobe mediobasal segment",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Increased densities in the apicoposterior segment of the left upper lobe consistent with calcification",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Structural distortion in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Volume loss in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2a",
+    "4": "2a",
+    "5": "2b"
+  },
+  "pixels": {
+    "0": 37538,
+    "1": 9724,
+    "2": 1760,
+    "3": 445,
+    "4": 31296,
+    "5": 31296
+  },
+  "embedding_norm": 16.881954193115234,
+  "mask_active_voxels": 60555264
+}

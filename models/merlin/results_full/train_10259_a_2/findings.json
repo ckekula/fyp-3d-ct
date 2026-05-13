@@ -1,0 +1,41 @@
+{
+  "name": "train_10259_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    264
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcification consistent with scarring in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter calcific nodules in the inferior lingular segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Linear densities consistent with linear scarring in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "4 mm pulmonary nodule in the lateral segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 236,
+    "1": 236,
+    "2": 1923,
+    "3": 214
+  },
+  "embedding_norm": 17.01629066467285,
+  "mask_active_voxels": 69206016
+}

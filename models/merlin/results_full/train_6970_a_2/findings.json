@@ -1,0 +1,47 @@
+{
+  "name": "train_6970_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    517
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thick-walled cavitary mass measuring approximately 5.5x6.5 cm in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Surrounding ground glass opacity in the posterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subcentimeter nodules in the posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Lesion measuring approximately 2.0x2.0 cm in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 158045,
+    "1": 44448,
+    "2": 1091,
+    "3": 11956,
+    "4": 1093
+  },
+  "embedding_norm": 17.500953674316406,
+  "mask_active_voxels": 135528448
+}

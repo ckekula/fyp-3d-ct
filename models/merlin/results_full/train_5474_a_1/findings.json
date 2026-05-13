@@ -1,0 +1,35 @@
+{
+  "name": "train_5474_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density consistent with scarring in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased density consistent with scarring in the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased density consistent with scarring in the left inferior lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 4151,
+    "1": 1293,
+    "2": 1849
+  },
+  "embedding_norm": 16.832468032836914,
+  "mask_active_voxels": 59244544
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_1267_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    191
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "6.5x5.5 mm nodule in the right lung apex",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "8x7.5 mm irregularly contoured nodule in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "15x6 mm consolidation area with pleural retraction in the mediobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 747,
+    "1": 3038,
+    "2": 5080
+  },
+  "embedding_norm": 16.826831817626953,
+  "mask_active_voxels": 50069504
+}

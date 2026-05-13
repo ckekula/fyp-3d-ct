@@ -1,0 +1,23 @@
+{
+  "name": "train_10983_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    229
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild atelectatic changes at the apical levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 1023
+  },
+  "embedding_norm": 16.864818572998047,
+  "mask_active_voxels": 60030976
+}

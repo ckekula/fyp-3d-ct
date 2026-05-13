@@ -1,0 +1,47 @@
+{
+  "name": "train_7997_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread ground-glass opacities in both lungs, more prominently in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in both lungs, more prominently in the lower lobes",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Interlobular septal thickening in both lungs, more prominently in the lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Linear density increases in both lungs, more prominently in the lower lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Findings consistent with viral pneumonia in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "1d",
+    "3": "2a",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 2024985,
+    "1": 711821,
+    "2": 5565,
+    "3": 22283,
+    "4": 2024985
+  },
+  "embedding_norm": 17.54330825805664,
+  "mask_active_voxels": 111673344
+}

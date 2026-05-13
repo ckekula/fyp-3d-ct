@@ -1,0 +1,23 @@
+{
+  "name": "valid_234_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear scarring within the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 15796
+  },
+  "embedding_norm": 17.32933807373047,
+  "mask_active_voxels": 78118912
+}

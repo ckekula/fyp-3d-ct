@@ -1,0 +1,41 @@
+{
+  "name": "train_1227_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    511
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased densities with volume loss in the apical segments of the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrosis in the apical segments of the upper lobes of both lungs, more pronounced on the right",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Associated traction bronchiectasis in the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Indeterminate subcentimeter nodular opacities within the lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "1b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 60887,
+    "1": 60887,
+    "2": 211159,
+    "3": 901
+  },
+  "embedding_norm": 17.58622169494629,
+  "mask_active_voxels": 133955584
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_8006_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    503
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral parenchymal nodules in both lungs, largest measuring 3.5 mm in diameter in the lateral basal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Increased reticular density of thymus residue in the anterior mediastinum",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 1207,
+    "1": 58515
+  },
+  "embedding_norm": 17.49762535095215,
+  "mask_active_voxels": 131858432
+}

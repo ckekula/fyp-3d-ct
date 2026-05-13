@@ -1,0 +1,41 @@
+{
+  "name": "valid_672_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral upper lobe ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral upper lobe mild septal thickening",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Lower lobe ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Lower lobe linear densities consistent with atelectatic changes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2c",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 611361,
+    "1": 137876,
+    "2": 148979,
+    "3": 17506
+  },
+  "embedding_norm": 17.430509567260742,
+  "mask_active_voxels": 119013376
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_2715_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    260
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground glass opacities with halo signs in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy ground glass opacities with halo signs in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Air bronchograms in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "More prominent opacities in the lower lobes, paravertebral areas, and posterior regions",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Large consolidated atelectasis area in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "1f",
+    "3": "2b",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 5264,
+    "1": 17060,
+    "2": 35422,
+    "3": 2604,
+    "4": 254050
+  },
+  "embedding_norm": 16.95555877685547,
+  "mask_active_voxels": 68157440
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_1198_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    550
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild central bronchiectasis in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b"
+  },
+  "pixels": {
+    "0": 299841
+  },
+  "embedding_norm": 17.532106399536133,
+  "mask_active_voxels": 144179200
+}

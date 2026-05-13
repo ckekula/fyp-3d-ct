@@ -1,0 +1,29 @@
+{
+  "name": "train_735_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    250
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lungs with consolidations",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Subpleural bands and architectural distortion suggesting a relatively subacute to chronic process",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 229760,
+    "1": 500184
+  },
+  "embedding_norm": 17.480772018432617,
+  "mask_active_voxels": 147456000
+}

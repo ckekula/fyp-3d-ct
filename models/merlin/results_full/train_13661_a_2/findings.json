@@ -1,0 +1,23 @@
+{
+  "name": "train_13661_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    507
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 948
+  },
+  "embedding_norm": 17.59186363220215,
+  "mask_active_voxels": 132907008
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5397_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    421
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 679
+  },
+  "embedding_norm": 17.385766983032227,
+  "mask_active_voxels": 110362624
+}

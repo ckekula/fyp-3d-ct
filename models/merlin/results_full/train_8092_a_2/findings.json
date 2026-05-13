@@ -1,0 +1,23 @@
+{
+  "name": "train_8092_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    394
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nonspecific nodules in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 136
+  },
+  "embedding_norm": 17.50282096862793,
+  "mask_active_voxels": 103284736
+}

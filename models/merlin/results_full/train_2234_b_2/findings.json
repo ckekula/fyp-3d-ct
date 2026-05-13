@@ -1,0 +1,47 @@
+{
+  "name": "train_2234_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the upper, middle, and lower lobes of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Centriacinar nodules in the upper, middle, and lower lobes of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2c",
+    "2": "1e",
+    "3": "1c",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 15509,
+    "1": 311548,
+    "2": 1464,
+    "3": 872717,
+    "4": 9786
+  },
+  "embedding_norm": 16.784252166748047,
+  "mask_active_voxels": 55836672
+}

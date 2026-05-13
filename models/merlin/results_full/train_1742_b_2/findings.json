@@ -1,0 +1,29 @@
+{
+  "name": "train_1742_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    463
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Total resorption in the pleural effusion previously noted in the left hemithorax",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Complete resolution of ground-glass opacities in the left lung lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2960,
+    "1": 74690
+  },
+  "embedding_norm": 17.537660598754883,
+  "mask_active_voxels": 121372672
+}

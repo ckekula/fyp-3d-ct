@@ -1,0 +1,23 @@
+{
+  "name": "train_11240_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in both lungs, particularly in the subpleural areas and more prominently in the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 31297
+  },
+  "embedding_norm": 17.068944931030273,
+  "mask_active_voxels": 62128128
+}

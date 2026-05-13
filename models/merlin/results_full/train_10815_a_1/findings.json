@@ -1,0 +1,41 @@
+{
+  "name": "train_10815_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    337
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Pulmonary nodules with calcification in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Pleural-based pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest pulmonary nodule measuring 4 mm in diameter in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 868,
+    "1": 220,
+    "2": 209,
+    "3": 244
+  },
+  "embedding_norm": 17.21432876586914,
+  "mask_active_voxels": 88342528
+}

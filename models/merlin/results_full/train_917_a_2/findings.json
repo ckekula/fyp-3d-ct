@@ -1,0 +1,29 @@
+{
+  "name": "train_917_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    441
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the apicoposterior segment of the lower lobe and posterobasal segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the paracardiac area of the apical segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 8290,
+    "1": 8212
+  },
+  "embedding_norm": 17.561565399169922,
+  "mask_active_voxels": 115605504
+}

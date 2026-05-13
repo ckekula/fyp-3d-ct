@@ -1,0 +1,29 @@
+{
+  "name": "train_742_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    290
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral multilobar peripheral subpleural ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 66579,
+    "1": 12562
+  },
+  "embedding_norm": 17.083986282348633,
+  "mask_active_voxels": 76021760
+}

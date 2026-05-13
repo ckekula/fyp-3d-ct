@@ -1,0 +1,29 @@
+{
+  "name": "valid_1244_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    250
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodular infiltrates with a tree-in-bud pattern in the central part of the right lung middle lobe and lower lobe basal segments",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 126659,
+    "1": 1189
+  },
+  "embedding_norm": 17.19854736328125,
+  "mask_active_voxels": 65536000
+}

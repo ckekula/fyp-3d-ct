@@ -1,0 +1,41 @@
+{
+  "name": "train_3572_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    514
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural peripherally located patchy ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "More prominent ground glass opacities at the posterobasal levels of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Mild atelectasis in the left upper lobe's inferior lingula",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Mild atelectasis in the right middle lobe's medial segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 18333,
+    "1": 4817,
+    "2": 5204,
+    "3": 9724
+  },
+  "embedding_norm": 17.48663902282715,
+  "mask_active_voxels": 134742016
+}

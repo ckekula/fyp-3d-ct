@@ -1,0 +1,35 @@
+{
+  "name": "train_6014_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    239
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground-glass opacities in multiple areas of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy ground-glass opacities in multiple areas of both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Largest ground-glass opacity located subpleurally in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 5654,
+    "1": 16370,
+    "2": 2809
+  },
+  "embedding_norm": 17.35854721069336,
+  "mask_active_voxels": 140967936
+}

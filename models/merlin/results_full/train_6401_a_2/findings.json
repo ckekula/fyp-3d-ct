@@ -1,0 +1,89 @@
+{
+  "name": "train_6401_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    456
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Pneumonic consolidation in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Bronchial wall thickening in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Air bronchograms in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Focal consolidation in the right lung lower lobe laterobasal segment",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Ground-glass opacities in the right lung lower lobe laterobasal segment",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Peribronchial wall thickening in the left lung lower lobe laterobasal segment",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Focal consolidation in the left lung lower lobe laterobasal segment",
+      "category": "Consolidation"
+    },
+    "8": {
+      "text": "Ground-glass opacities in the left lung lower lobe laterobasal segment",
+      "category": "Lung opacity"
+    },
+    "9": {
+      "text": "Peribronchial wall thickening in the left lung lower lobe anterobasal segment",
+      "category": "Others"
+    },
+    "10": {
+      "text": "Focal consolidation in the left lung lower lobe anterobasal segment",
+      "category": "Consolidation"
+    },
+    "11": {
+      "text": "Ground-glass opacities in the left lung lower lobe anterobasal segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1a",
+    "3": "2b",
+    "4": "2b",
+    "5": "2c",
+    "6": "1a",
+    "7": "2b",
+    "8": "2c",
+    "9": "1a",
+    "10": "2b",
+    "11": "2c"
+  },
+  "pixels": {
+    "0": 11808,
+    "1": 11808,
+    "2": 574,
+    "3": 629,
+    "4": 11416,
+    "5": 8887,
+    "6": 139,
+    "7": 3931,
+    "8": 1625,
+    "9": 369,
+    "10": 8854,
+    "11": 4343
+  },
+  "embedding_norm": 17.440095901489258,
+  "mask_active_voxels": 119537664
+}

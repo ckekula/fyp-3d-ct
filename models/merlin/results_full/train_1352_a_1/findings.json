@@ -1,0 +1,23 @@
+{
+  "name": "train_1352_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    301
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 260
+  },
+  "embedding_norm": 17.27274513244629,
+  "mask_active_voxels": 78905344
+}

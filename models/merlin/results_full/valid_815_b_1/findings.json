@@ -1,0 +1,71 @@
+{
+  "name": "valid_815_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    291
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Compressive atelectasis associated with left pleural effusion",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Right pleural effusion measuring up to 8 mm",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Adjacent parenchymal consolidation with right pleural effusion",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Area of consolidation in the superior and middle portions of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Air bronchograms within the consolidation in the left lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Ground glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Linear subsegmental atelectasis in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "7": {
+      "text": "Bilateral upper lobe fibroatelectatic changes",
+      "category": "Others"
+    },
+    "8": {
+      "text": "More pronounced fibroatelectatic changes on the right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2e",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2c",
+    "6": "2a",
+    "7": "2b",
+    "8": "2b"
+  },
+  "pixels": {
+    "0": 58852,
+    "1": 181686,
+    "2": 181686,
+    "3": 113429,
+    "4": 113429,
+    "5": 49298,
+    "6": 8331,
+    "7": 6330,
+    "8": 18073
+  },
+  "embedding_norm": 17.068883895874023,
+  "mask_active_voxels": 76283904
+}

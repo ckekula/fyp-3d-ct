@@ -1,0 +1,23 @@
+{
+  "name": "train_5523_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    247
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Several subpleural subcentimeter nonspecific nodules in both lungs, specifically in the right middle lobe and the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 304
+  },
+  "embedding_norm": 17.24340057373047,
+  "mask_active_voxels": 145686528
+}

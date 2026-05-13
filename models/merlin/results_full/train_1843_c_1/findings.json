@@ -1,0 +1,41 @@
+{
+  "name": "train_1843_c_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation differences in the lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic changes in the lungs, especially in the lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Thickened bronchial walls in the lower lobes",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bilateral subcentimeter predominantly calcific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2a",
+    "2": "1a",
+    "3": "1e"
+  },
+  "pixels": {
+    "0": 596869,
+    "1": 47253,
+    "2": 98396,
+    "3": 600
+  },
+  "embedding_norm": 16.888790130615234,
+  "mask_active_voxels": 63963136
+}

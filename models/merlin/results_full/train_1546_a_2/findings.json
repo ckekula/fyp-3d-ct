@@ -1,0 +1,23 @@
+{
+  "name": "train_1546_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    423
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the apices of both upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 12255
+  },
+  "embedding_norm": 17.39497947692871,
+  "mask_active_voxels": 110886912
+}

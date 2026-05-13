@@ -1,0 +1,35 @@
+{
+  "name": "train_6954_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    521
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "10 mm nodular ground glass opacity in the posterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Fibrotic changes in the apices of both upper lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic band in the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 1457,
+    "1": 1446,
+    "2": 3699
+  },
+  "embedding_norm": 17.631799697875977,
+  "mask_active_voxels": 136577024
+}

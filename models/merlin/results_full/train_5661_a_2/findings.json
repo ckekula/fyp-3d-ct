@@ -1,0 +1,35 @@
+{
+  "name": "train_5661_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    398
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located subcentimeter calcific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Pleuroparenchymal linear density in the lateral lingular segment of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Barely distinguishable ground-glass opacity in the lateral lingular segment of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 253,
+    "1": 3241,
+    "2": 4532
+  },
+  "embedding_norm": 17.457916259765625,
+  "mask_active_voxels": 104333312
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_11182_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    447
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis in the upper lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Atelectasis in the lower lobe of the right lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 59725,
+    "1": 65673,
+    "2": 39201
+  },
+  "embedding_norm": 17.52020835876465,
+  "mask_active_voxels": 117178368
+}

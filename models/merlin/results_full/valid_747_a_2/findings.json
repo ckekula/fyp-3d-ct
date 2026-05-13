@@ -1,0 +1,65 @@
+{
+  "name": "valid_747_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial thickening in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Consolidation in the superior segment of the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the superior segment of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Centrilobular nodules adjacent to consolidation and ground-glass opacities in the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Similar findings of centrilobular nodules in the central portion of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Fibrotic changes in both lung apices",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "7": {
+      "text": "Small right-sided pleural effusion",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2b",
+    "2": "2c",
+    "3": "1e",
+    "4": "1e",
+    "5": "2a",
+    "6": "1e",
+    "7": "2e"
+  },
+  "pixels": {
+    "0": 189040,
+    "1": 260039,
+    "2": 172609,
+    "3": 519,
+    "4": 171,
+    "5": 14823,
+    "6": 399,
+    "7": 13041
+  },
+  "embedding_norm": 17.138032913208008,
+  "mask_active_voxels": 66060288
+}

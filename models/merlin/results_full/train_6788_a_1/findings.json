@@ -1,0 +1,29 @@
+{
+  "name": "train_6788_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacities in the peripheral subpleural area of the right lower lobe superior segment",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground-glass opacities in the peripheral subpleural area of the right lower lobe posterobasal segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 5224,
+    "1": 13172
+  },
+  "embedding_norm": 17.06858253479004,
+  "mask_active_voxels": 62128128
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_7282_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    197
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal fibroatelectasis and scarring in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Pleuroparenchymal fibroatelectasis and scarring in the left upper lobe inferior lingular segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Pleuroparenchymal fibroatelectasis and scarring more prominently in the basal segments of both lower lobes",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 5862,
+    "1": 1408,
+    "2": 9091,
+    "3": 540
+  },
+  "embedding_norm": 16.688650131225586,
+  "mask_active_voxels": 51642368
+}

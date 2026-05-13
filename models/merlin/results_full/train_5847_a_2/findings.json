@@ -1,0 +1,23 @@
+{
+  "name": "train_5847_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    523
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic changes in the upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 1291
+  },
+  "embedding_norm": 17.601057052612305,
+  "mask_active_voxels": 137101312
+}

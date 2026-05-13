@@ -1,0 +1,23 @@
+{
+  "name": "train_3580_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two subcentimeter nodules in the left lung: one in the lower lobe anterobasal segment and one in the upper lobe anterior segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 10
+  },
+  "embedding_norm": 17.331295013427734,
+  "mask_active_voxels": 78118912
+}

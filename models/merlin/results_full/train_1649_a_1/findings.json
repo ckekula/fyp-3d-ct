@@ -1,0 +1,29 @@
+{
+  "name": "train_1649_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    357
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm pulmonary nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Non-specific pulmonary nodules with some calcifications in various lung segments",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 303,
+    "1": 397
+  },
+  "embedding_norm": 17.271387100219727,
+  "mask_active_voxels": 93585408
+}

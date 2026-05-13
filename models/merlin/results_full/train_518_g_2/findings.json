@@ -1,0 +1,23 @@
+{
+  "name": "train_518_g_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    255
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass densities with surrounding halos in the lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 96353
+  },
+  "embedding_norm": 17.130407333374023,
+  "mask_active_voxels": 66846720
+}

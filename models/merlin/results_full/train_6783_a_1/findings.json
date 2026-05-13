@@ -1,0 +1,23 @@
+{
+  "name": "train_6783_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    268
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in the segmental and subsegmental bronchi of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 9204
+  },
+  "embedding_norm": 17.19466209411621,
+  "mask_active_voxels": 70254592
+}

@@ -1,0 +1,47 @@
+{
+  "name": "valid_163_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in the apical segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural focal cystic emphysematous change at the level of the lateral lingular segment of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Solid pulmonary nodules in both lungs, largest measuring approximately 6 mm in diameter in the anterior upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Small area of ground glass opacity in the posterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Scattered, small-sized faint ground glass opacities in the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "2d",
+    "3": "2c",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 18949,
+    "1": 3767,
+    "2": 1473,
+    "3": 2166,
+    "4": 175474
+  },
+  "embedding_norm": 17.58740234375,
+  "mask_active_voxels": 133431296
+}

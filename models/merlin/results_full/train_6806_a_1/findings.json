@@ -1,0 +1,23 @@
+{
+  "name": "train_6806_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic recessions at the apical levels",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 12588
+  },
+  "embedding_norm": 16.833738327026367,
+  "mask_active_voxels": 59244544
+}

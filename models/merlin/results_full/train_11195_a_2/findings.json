@@ -1,0 +1,53 @@
+{
+  "name": "train_11195_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    388
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Occasional linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Consolidation with air bronchogram in the laterobasal segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Surrounding ground glass opacity in the laterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Nodular ground glass opacities in the superior segment of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Nodular ground glass opacities in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2b",
+    "3": "2c",
+    "4": "2c",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 3307,
+    "1": 41580,
+    "2": 85120,
+    "3": 5425,
+    "4": 3989,
+    "5": 1355
+  },
+  "embedding_norm": 17.30220603942871,
+  "mask_active_voxels": 101711872
+}

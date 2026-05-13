@@ -1,0 +1,29 @@
+{
+  "name": "train_12123_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 28322,
+    "1": 28772
+  },
+  "embedding_norm": 17.587112426757812,
+  "mask_active_voxels": 133431296
+}

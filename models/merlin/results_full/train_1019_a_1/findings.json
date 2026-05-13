@@ -1,0 +1,35 @@
+{
+  "name": "train_1019_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    301
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm pulmonary nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground glass opacities in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear subsegmental atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 845,
+    "1": 18707,
+    "2": 27770
+  },
+  "embedding_norm": 17.272655487060547,
+  "mask_active_voxels": 78905344
+}

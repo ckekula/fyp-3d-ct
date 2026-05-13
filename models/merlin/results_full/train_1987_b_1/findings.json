@@ -1,0 +1,35 @@
+{
+  "name": "train_1987_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    346
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy ground-glass opacities more prominently in the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Patchy ground-glass opacities in the superior lingula of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 14397,
+    "1": 9186,
+    "2": 14033
+  },
+  "embedding_norm": 17.4288387298584,
+  "mask_active_voxels": 90701824
+}

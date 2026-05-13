@@ -1,0 +1,35 @@
+{
+  "name": "train_11065_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    444
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Cystic bronchiectasis in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 26843,
+    "1": 59456,
+    "2": 558
+  },
+  "embedding_norm": 17.526418685913086,
+  "mask_active_voxels": 116391936
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_878_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    492
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcific scarring around the venous structures in the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic densities in the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the peribronchial area at the right upper lobe level",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Bronchiectasis in the segment anterior to the upper lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Mosaic attenuation differences more pronounced centrally",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2c",
+    "3": "1b",
+    "4": "1e"
+  },
+  "pixels": {
+    "0": 17080,
+    "1": 12131,
+    "2": 120298,
+    "3": 61333,
+    "4": 6606
+  },
+  "embedding_norm": 17.576961517333984,
+  "mask_active_voxels": 128974848
+}

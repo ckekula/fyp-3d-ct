@@ -1,0 +1,47 @@
+{
+  "name": "train_5915_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Moderate pleural effusion on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Small to moderate pleural effusion on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Interlobular septal thickenings in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Several nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Atelectatic changes associated with pleural effusion",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "1d",
+    "3": "2d",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 500077,
+    "1": 4578,
+    "2": 11911,
+    "3": 522,
+    "4": 17741
+  },
+  "embedding_norm": 17.57821273803711,
+  "mask_active_voxels": 120061952
+}

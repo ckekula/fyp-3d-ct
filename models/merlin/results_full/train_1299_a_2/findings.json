@@ -1,0 +1,47 @@
+{
+  "name": "train_1299_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    525
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Appearances suggestive of secretions in the bronchial structures in both lower lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchiectasis in both lungs, especially in the lower lobes and central parts",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidation in the posterior part of the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Tree-in-bud appearances, more prominent in the lower lobes and posterior part of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Nodular consolidation in a small area in the anterior segment of the upper lobe of the right lung",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "1b",
+    "2": "2b",
+    "3": "1e",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 528021,
+    "1": 608851,
+    "2": 538393,
+    "3": 199689,
+    "4": 450
+  },
+  "embedding_norm": 17.59836196899414,
+  "mask_active_voxels": 137625600
+}

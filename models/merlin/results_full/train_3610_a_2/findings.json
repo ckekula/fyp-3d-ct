@@ -1,0 +1,41 @@
+{
+  "name": "train_3610_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    262
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread free pleural effusion measuring 6.8 cm in thickness on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Effusion partially extends into the fissure",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Right peribronchial thickening",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Uniform interlobular septal thickening on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "1a",
+    "3": "1d"
+  },
+  "pixels": {
+    "0": 735280,
+    "1": 17554,
+    "2": 6177,
+    "3": 7745
+  },
+  "embedding_norm": 17.001327514648438,
+  "mask_active_voxels": 68681728
+}

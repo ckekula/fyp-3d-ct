@@ -1,0 +1,23 @@
+{
+  "name": "train_12458_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    358
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, predominantly peripheral subpleural regions of ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 30458
+  },
+  "embedding_norm": 17.272069931030273,
+  "mask_active_voxels": 93847552
+}

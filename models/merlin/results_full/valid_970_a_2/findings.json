@@ -1,0 +1,35 @@
+{
+  "name": "valid_970_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    400
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central regions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild emphysematous changes in both lungs, more pronounced in the upper lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Multiple subcentimeter nonspecific nodules scattered throughout both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 247195,
+    "1": 84033,
+    "2": 473
+  },
+  "embedding_norm": 17.455852508544922,
+  "mask_active_voxels": 104857600
+}

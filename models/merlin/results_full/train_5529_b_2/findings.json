@@ -1,0 +1,59 @@
+{
+  "name": "train_5529_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Residual soft tissue densities from primary mass around lower lobe bronchi in right lung hilum",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Collapsed lower lobe of left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of consolidation with air bronchograms in left lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Stable pleural effusion in left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Centracinar emphysema in both lungs",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Focal ground-glass opacities in middle and lower lobes of right lung with minimal increase in density compared to previous exam",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Stable primary mass in left lung hilum",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2b",
+    "2": "2b",
+    "3": "2e",
+    "4": "1c",
+    "5": "2c",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 797,
+    "1": 1110340,
+    "2": 1110340,
+    "3": 15964,
+    "4": 42101,
+    "5": 3268,
+    "6": 2093
+  },
+  "embedding_norm": 17.072738647460938,
+  "mask_active_voxels": 73138176
+}

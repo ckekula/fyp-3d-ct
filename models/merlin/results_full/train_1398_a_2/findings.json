@@ -1,0 +1,23 @@
+{
+  "name": "train_1398_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    462
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter non-specific subpleural nodule in the lateral basal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 370
+  },
+  "embedding_norm": 17.539329528808594,
+  "mask_active_voxels": 121110528
+}

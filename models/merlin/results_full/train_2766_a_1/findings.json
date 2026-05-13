@@ -1,0 +1,23 @@
+{
+  "name": "train_2766_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in the peripheral subpleural areas, particularly in the middle and lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 5366
+  },
+  "embedding_norm": 16.784135818481445,
+  "mask_active_voxels": 55836672
+}

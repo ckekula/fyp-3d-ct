@@ -1,0 +1,29 @@
+{
+  "name": "valid_981_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    196
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern within the lung parenchyma of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "3 mm nodule at the fissure in the superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 120591,
+    "1": 53
+  },
+  "embedding_norm": 16.626806259155273,
+  "mask_active_voxels": 51380224
+}

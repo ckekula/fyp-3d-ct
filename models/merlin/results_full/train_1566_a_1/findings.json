@@ -1,0 +1,23 @@
+{
+  "name": "train_1566_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    299
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in both lung parenchyma, more prominently in the upper lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 71668
+  },
+  "embedding_norm": 17.281360626220703,
+  "mask_active_voxels": 78381056
+}

@@ -1,0 +1,35 @@
+{
+  "name": "valid_1302_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    416
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral peripheral patch-like ground-glass opacities within the lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral peribronchial patch-like ground-glass opacities within the lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Areas of consolidation within the lung parenchyma, with greater prominence on the right",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 109735,
+    "1": 109735,
+    "2": 54733
+  },
+  "embedding_norm": 17.482986450195312,
+  "mask_active_voxels": 109051904
+}

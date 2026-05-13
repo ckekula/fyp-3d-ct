@@ -1,0 +1,35 @@
+{
+  "name": "train_6144_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    440
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule in medial portion of posterior segment of right upper lobe, 2.7 cm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 9264,
+    "1": 355,
+    "2": 551
+  },
+  "embedding_norm": 17.41810417175293,
+  "mask_active_voxels": 115343360
+}

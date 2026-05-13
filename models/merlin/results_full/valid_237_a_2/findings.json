@@ -1,0 +1,29 @@
+{
+  "name": "valid_237_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    489
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral multilobar, peripheral, subpleural, predominantly dorsal ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 11074,
+    "1": 12975
+  },
+  "embedding_norm": 17.60843849182129,
+  "mask_active_voxels": 128188416
+}

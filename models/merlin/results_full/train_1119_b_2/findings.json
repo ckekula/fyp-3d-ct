@@ -1,0 +1,65 @@
+{
+  "name": "train_1119_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    499
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pulmonary nodules present",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Greater prominence of nodules on the left",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule in the lower lobe of the left lung measuring approximately 5 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "New nodules not present on previous imaging",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Minimal increase in size of some nodules",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nonspecific characteristics of nodules",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "7": {
+      "text": "Atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2h",
+    "6": "2b",
+    "7": "2b"
+  },
+  "pixels": {
+    "0": 1628,
+    "1": 325,
+    "2": 925,
+    "3": 2921,
+    "4": 2921,
+    "5": 605,
+    "6": 1970,
+    "7": 6830
+  },
+  "embedding_norm": 17.464744567871094,
+  "mask_active_voxels": 130809856
+}

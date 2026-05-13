@@ -1,0 +1,35 @@
+{
+  "name": "train_5443_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic changes at the apical levels of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mild atelectasis in the lower lobes of both lungs, especially on the right",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1d",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 1284,
+    "1": 857,
+    "2": 654
+  },
+  "embedding_norm": 17.072593688964844,
+  "mask_active_voxels": 73138176
+}

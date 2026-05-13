@@ -1,0 +1,23 @@
+{
+  "name": "train_7127_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    383
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located patchy ground-glass densities in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 54953
+  },
+  "embedding_norm": 17.4306697845459,
+  "mask_active_voxels": 100401152
+}

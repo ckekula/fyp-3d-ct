@@ -1,0 +1,23 @@
+{
+  "name": "train_271_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    435
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic bands in the left lung's inferior lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 194
+  },
+  "embedding_norm": 17.381343841552734,
+  "mask_active_voxels": 114032640
+}

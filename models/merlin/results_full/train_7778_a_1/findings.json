@@ -1,0 +1,29 @@
+{
+  "name": "train_7778_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    332
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atypical pneumonic infiltrates with ground glass opacity in the subpleural and parenchymal regions, more prominent towards the bilateral lung bases",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Linear subsegmental atelectasis areas in both lungs, particularly in the lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 3263,
+    "1": 5781
+  },
+  "embedding_norm": 17.352214813232422,
+  "mask_active_voxels": 87031808
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_7993_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    287
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcific nodules up to 9 mm in diameter in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 684
+  },
+  "embedding_norm": 17.22773551940918,
+  "mask_active_voxels": 75235328
+}

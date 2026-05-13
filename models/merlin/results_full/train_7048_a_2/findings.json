@@ -1,0 +1,29 @@
+{
+  "name": "train_7048_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    494
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild paraseptal emphysematous changes at the apical levels of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Centrilobular subcentimeter ground-glass opacities in both lungs, especially in the upper lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2138,
+    "1": 331
+  },
+  "embedding_norm": 17.57231330871582,
+  "mask_active_voxels": 129499136
+}

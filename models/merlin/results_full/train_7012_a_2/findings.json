@@ -1,0 +1,35 @@
+{
+  "name": "train_7012_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "7 cm pleural effusion on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "9 mm pleural effusion on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Atelectatic changes in the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 400901,
+    "1": 37019,
+    "2": 10352
+  },
+  "embedding_norm": 17.446210861206055,
+  "mask_active_voxels": 126877696
+}

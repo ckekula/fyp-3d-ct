@@ -1,0 +1,35 @@
+{
+  "name": "train_5817_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    474
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pure calcified nonspecific subcentimeter nodule in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Diffuse mild ectasia in bilateral bronchial structures",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased peribronchial thickness in bilateral bronchial structures",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1a",
+    "2": "1a"
+  },
+  "pixels": {
+    "0": 169,
+    "1": 7936,
+    "2": 7796
+  },
+  "embedding_norm": 17.5942440032959,
+  "mask_active_voxels": 124256256
+}

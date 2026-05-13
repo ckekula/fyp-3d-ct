@@ -1,0 +1,47 @@
+{
+  "name": "train_10651_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    308
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild scarring at the apical level",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Thickening of peribronchial scars in the right lung upper lobe anterior segment and middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased density consistent with pleuroparenchymal scarring in the right lung upper lobe anterior segment and middle lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Thickening of the peribronchial sheath on the right",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Occasional faint ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2a",
+    "3": "1a",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 928,
+    "1": 1206,
+    "2": 8542,
+    "3": 2071,
+    "4": 1516
+  },
+  "embedding_norm": 17.116872787475586,
+  "mask_active_voxels": 80740352
+}

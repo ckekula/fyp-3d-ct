@@ -1,0 +1,29 @@
+{
+  "name": "train_338_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    247
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural nodules in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subpleural nodules in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 370,
+    "1": 514
+  },
+  "embedding_norm": 16.953609466552734,
+  "mask_active_voxels": 64749568
+}

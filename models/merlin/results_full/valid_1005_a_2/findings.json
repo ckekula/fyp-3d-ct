@@ -1,0 +1,41 @@
+{
+  "name": "valid_1005_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    493
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Associated atelectatic changes on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental atelectatic changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1a",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 143845,
+    "1": 16087,
+    "2": 572820,
+    "3": 316585
+  },
+  "embedding_norm": 17.572038650512695,
+  "mask_active_voxels": 129236992
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_12397_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    448
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular and patchy ground-glass opacities in both lungs, predominantly subpleural",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 93635
+  },
+  "embedding_norm": 17.51990509033203,
+  "mask_active_voxels": 117440512
+}

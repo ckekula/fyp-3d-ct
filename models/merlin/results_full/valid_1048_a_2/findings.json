@@ -1,0 +1,29 @@
+{
+  "name": "valid_1048_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral subpleural consolidations more pronounced in the lower lobes",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Tendency of consolidations to coalesce",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1767416,
+    "1": 1767416
+  },
+  "embedding_norm": 17.45268440246582,
+  "mask_active_voxels": 119275520
+}

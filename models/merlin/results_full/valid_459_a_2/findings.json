@@ -1,0 +1,59 @@
+{
+  "name": "valid_459_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    178
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidations in the right lower lobe with visible air bronchograms",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Consolidations in the left lower lobe posterobasal segment with visible air bronchograms",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Focal ground glass opacities surrounding the consolidations in the lateral segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Focal ground glass opacities surrounding the consolidations in the mediobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "20 mm deep effusion in the right pleural space",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Loculated effusion near the posterior segment of the right upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "2c",
+    "4": "2d",
+    "5": "2e",
+    "6": "2e"
+  },
+  "pixels": {
+    "0": 132165,
+    "1": 15280,
+    "2": 54196,
+    "3": 13229,
+    "4": 310,
+    "5": 90190,
+    "6": 84731
+  },
+  "embedding_norm": 16.53756332397461,
+  "mask_active_voxels": 46661632
+}

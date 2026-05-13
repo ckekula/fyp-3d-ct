@@ -1,0 +1,23 @@
+{
+  "name": "train_2354_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural subcentimeter nonspecific nodules in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1069
+  },
+  "embedding_norm": 17.587326049804688,
+  "mask_active_voxels": 133431296
+}

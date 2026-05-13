@@ -1,0 +1,23 @@
+{
+  "name": "train_7367_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    309
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 2466
+  },
+  "embedding_norm": 17.15784454345703,
+  "mask_active_voxels": 81002496
+}

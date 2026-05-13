@@ -1,0 +1,23 @@
+{
+  "name": "train_11934_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    467
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial and subpleural nodular consolidation areas in both lung parenchyma, more prominent towards the bases",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 154338
+  },
+  "embedding_norm": 17.42748260498047,
+  "mask_active_voxels": 122421248
+}

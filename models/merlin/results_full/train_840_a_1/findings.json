@@ -1,0 +1,29 @@
+{
+  "name": "train_840_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    337
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrosis with minimal structural distortion and volume loss in the right middle lobe medial segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "4.5 mm nodular density over the fissure in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 3896,
+    "1": 178
+  },
+  "embedding_norm": 17.214242935180664,
+  "mask_active_voxels": 88342528
+}

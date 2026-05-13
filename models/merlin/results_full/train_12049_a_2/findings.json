@@ -1,0 +1,47 @@
+{
+  "name": "train_12049_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    250
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Occasional linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Consolidation in the anteromediobasal segment of the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Tree-in-bud appearance in the anteromediobasal segment of the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2b",
+    "3": "1e",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 33661,
+    "1": 24500,
+    "2": 103060,
+    "3": 189947,
+    "4": 513
+  },
+  "embedding_norm": 17.198530197143555,
+  "mask_active_voxels": 65536000
+}

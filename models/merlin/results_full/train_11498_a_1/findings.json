@@ -1,0 +1,23 @@
+{
+  "name": "train_11498_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    241
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular ground glass nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 1357
+  },
+  "embedding_norm": 17.1945858001709,
+  "mask_active_voxels": 142147584
+}

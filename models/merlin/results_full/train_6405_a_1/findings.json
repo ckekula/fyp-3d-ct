@@ -1,0 +1,29 @@
+{
+  "name": "train_6405_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 2486,
+    "1": 2486
+  },
+  "embedding_norm": 17.358278274536133,
+  "mask_active_voxels": 141557760
+}

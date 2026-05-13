@@ -1,0 +1,29 @@
+{
+  "name": "train_5887_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    287
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the upper lobe apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "A few subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 1553,
+    "1": 260
+  },
+  "embedding_norm": 17.227542877197266,
+  "mask_active_voxels": 75235328
+}

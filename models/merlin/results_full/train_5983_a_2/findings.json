@@ -1,0 +1,35 @@
+{
+  "name": "train_5983_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    459
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in the central segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Volume loss in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal structural distortion in the medial segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 16895,
+    "1": 16653,
+    "2": 14660
+  },
+  "embedding_norm": 17.544326782226562,
+  "mask_active_voxels": 120324096
+}

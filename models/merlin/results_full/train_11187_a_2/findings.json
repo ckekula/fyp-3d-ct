@@ -1,0 +1,35 @@
+{
+  "name": "train_11187_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Paraseptal emphysematous changes in the apices of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Several subcentimeter nodules in both lungs, some calcified, nonspecific, and stable in number and size compared to previous CT",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 3755,
+    "1": 2848,
+    "2": 69
+  },
+  "embedding_norm": 16.972919464111328,
+  "mask_active_voxels": 67633152
+}

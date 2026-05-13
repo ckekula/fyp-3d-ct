@@ -1,0 +1,23 @@
+{
+  "name": "train_6738_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    304
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodule in the upper lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 124
+  },
+  "embedding_norm": 17.270231246948242,
+  "mask_active_voxels": 79691776
+}

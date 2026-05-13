@@ -1,0 +1,59 @@
+{
+  "name": "train_5529_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Hilar mass continuous with parenchymal atelectasis in the left lower lobe basal segment",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Soft tissue with indistinguishable borders in the left lower lobe basal segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Numerous intraparenchymal nodules in the left lower lobe basal segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Suspicious increase in the size of intraparenchymal nodules in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Increased bronchial wall thickness in segmental bronchi",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Ground-glass densities around segmental bronchi in the left lung parenchyma",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Slight ground-glass densities around the right lung lower lobe segment bronchi",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "1a",
+    "5": "2c",
+    "6": "2c"
+  },
+  "pixels": {
+    "0": 126037,
+    "1": 21463,
+    "2": 1389,
+    "3": 360,
+    "4": 14795,
+    "5": 22307,
+    "6": 2647
+  },
+  "embedding_norm": 17.33126449584961,
+  "mask_active_voxels": 78118912
+}

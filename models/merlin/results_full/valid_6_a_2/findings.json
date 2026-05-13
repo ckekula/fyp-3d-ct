@@ -1,0 +1,23 @@
+{
+  "name": "valid_6_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectases in the medial segment of the right middle lobe and the lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 9708
+  },
+  "embedding_norm": 17.58686065673828,
+  "mask_active_voxels": 133431296
+}

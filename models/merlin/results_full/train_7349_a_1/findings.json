@@ -1,0 +1,29 @@
+{
+  "name": "train_7349_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified plaque-like thickening in both pleura",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multilobar, predominantly peripheral, subpleural areas of increased density consistent with ground-glass consolidation in both lungs with a tendency to coalesce",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 6435,
+    "1": 100039
+  },
+  "embedding_norm": 17.331697463989258,
+  "mask_active_voxels": 78118912
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_7435_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    413
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 2215,
+    "1": 140700
+  },
+  "embedding_norm": 17.480554580688477,
+  "mask_active_voxels": 108265472
+}

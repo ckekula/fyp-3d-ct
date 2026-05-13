@@ -1,0 +1,23 @@
+{
+  "name": "train_1344_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    433
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the posterobasal segments of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 8676
+  },
+  "embedding_norm": 17.392093658447266,
+  "mask_active_voxels": 113508352
+}

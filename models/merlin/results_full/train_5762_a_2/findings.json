@@ -1,0 +1,29 @@
+{
+  "name": "train_5762_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    461
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodule in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Several noncalcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 205,
+    "1": 315
+  },
+  "embedding_norm": 17.53952407836914,
+  "mask_active_voxels": 120848384
+}

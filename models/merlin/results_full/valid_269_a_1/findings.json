@@ -1,0 +1,29 @@
+{
+  "name": "valid_269_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    257
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density compatible with linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Several non-specific nodules in the middle lobe of the right lung, 3 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 4829,
+    "1": 178
+  },
+  "embedding_norm": 17.25908851623535,
+  "mask_active_voxels": 151584768
+}

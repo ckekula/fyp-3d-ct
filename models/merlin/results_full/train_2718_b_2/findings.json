@@ -1,0 +1,35 @@
+{
+  "name": "train_2718_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Findings suggestive of scarring in both lung apexes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in both lower lobes",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "A few subcentimeter nonspecific nodules in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 3820,
+    "1": 5603,
+    "2": 1948
+  },
+  "embedding_norm": 17.58133888244629,
+  "mask_active_voxels": 134217728
+}

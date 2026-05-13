@@ -1,0 +1,29 @@
+{
+  "name": "train_5716_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    311
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "More prominent peripheral patchy ground-glass densities in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Crazy paving pattern characterized by interlobular septal thickenings within ground-glass densities",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1097,
+    "1": 1626
+  },
+  "embedding_norm": 17.168962478637695,
+  "mask_active_voxels": 81526784
+}

@@ -1,0 +1,29 @@
+{
+  "name": "valid_41_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    157
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular ground glass opacities in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Linear ground glass opacity in the subpleural region of the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2457,
+    "1": 1543
+  },
+  "embedding_norm": 16.59535789489746,
+  "mask_active_voxels": 41156608
+}

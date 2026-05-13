@@ -1,0 +1,23 @@
+{
+  "name": "train_5536_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    498
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in the distribution of pneumonic infiltrates in the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 922401
+  },
+  "embedding_norm": 17.478029251098633,
+  "mask_active_voxels": 130547712
+}

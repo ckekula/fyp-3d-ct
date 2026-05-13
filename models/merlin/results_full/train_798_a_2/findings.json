@@ -1,0 +1,23 @@
+{
+  "name": "train_798_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    137
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral ground glass opacities with a tendency to coalesce in the lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 464000
+  },
+  "embedding_norm": 16.559165954589844,
+  "mask_active_voxels": 35913728
+}

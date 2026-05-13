@@ -1,0 +1,23 @@
+{
+  "name": "train_7618_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    187
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the inferior segment of the lingula of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 32955
+  },
+  "embedding_norm": 16.842098236083984,
+  "mask_active_voxels": 49020928
+}

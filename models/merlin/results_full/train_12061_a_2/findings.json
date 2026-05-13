@@ -1,0 +1,23 @@
+{
+  "name": "train_12061_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural nodular ground-glass opacity in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1182
+  },
+  "embedding_norm": 17.440189361572266,
+  "mask_active_voxels": 119275520
+}

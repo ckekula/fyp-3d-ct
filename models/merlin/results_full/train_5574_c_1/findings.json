@@ -1,0 +1,47 @@
+{
+  "name": "train_5574_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    362
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thick band of atelectasis in the right upper lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "7 mm opacity in the paracardiac area at the anteromedial junction of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Atelectatic change in the paracardiac area at the anteromedial junction of the right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bronchiectasis at the posterobasal level of the left lower lobe showing regression",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Atelectatic changes at the posterobasal level of the left lower lobe showing regression",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2b",
+    "3": "1b",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 29622,
+    "1": 2099,
+    "2": 8745,
+    "3": 27630,
+    "4": 72932
+  },
+  "embedding_norm": 17.455480575561523,
+  "mask_active_voxels": 94896128
+}

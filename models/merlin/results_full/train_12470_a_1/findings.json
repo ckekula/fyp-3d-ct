@@ -1,0 +1,23 @@
+{
+  "name": "train_12470_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    124
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in both lungs, predominantly in the periphery",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 24348
+  },
+  "embedding_norm": 16.267173767089844,
+  "mask_active_voxels": 32505856
+}

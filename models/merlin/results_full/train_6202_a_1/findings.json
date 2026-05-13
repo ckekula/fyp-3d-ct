@@ -1,0 +1,35 @@
+{
+  "name": "train_6202_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    445
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground-glass opacity in the upper lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving pattern in the peripheral subpleural area of the left lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Focal ground-glass opacity in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 14235,
+    "1": 62908,
+    "2": 3731
+  },
+  "embedding_norm": 17.52127456665039,
+  "mask_active_voxels": 116654080
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_11215_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Local atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 11931,
+    "1": 11426
+  },
+  "embedding_norm": 17.45155906677246,
+  "mask_active_voxels": 123207680
+}

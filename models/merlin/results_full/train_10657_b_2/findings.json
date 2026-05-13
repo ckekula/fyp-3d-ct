@@ -1,0 +1,35 @@
+{
+  "name": "train_10657_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    378
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse linear subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Increased extent and distribution of infection in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "New smear-like pleural effusion in both hemithoraces",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2e"
+  },
+  "pixels": {
+    "0": 5734,
+    "1": 64690,
+    "2": 68191
+  },
+  "embedding_norm": 17.480363845825195,
+  "mask_active_voxels": 99090432
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_3651_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    448
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple ground glass opacities in both lungs with a halo sign surrounding the nodules in a patchy distribution",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 92456
+  },
+  "embedding_norm": 17.518421173095703,
+  "mask_active_voxels": 117440512
+}

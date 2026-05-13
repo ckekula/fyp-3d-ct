@@ -1,0 +1,29 @@
+{
+  "name": "train_13789_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    486
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacity in the superior segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Minimal interlobular septal thickening in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 104582,
+    "1": 104582
+  },
+  "embedding_norm": 17.470701217651367,
+  "mask_active_voxels": 127401984
+}

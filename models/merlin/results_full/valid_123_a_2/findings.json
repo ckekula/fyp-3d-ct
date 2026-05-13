@@ -1,0 +1,53 @@
+{
+  "name": "valid_123_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    466
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "New pleural effusion measuring 3.7 mm on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "New pleural effusion measuring 6.5 mm on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Central air bronchograms in both hilar regions with areas of soft tissue density",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Consolidated appearance and mass-like effect in both hilar regions",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Irregular interlobular septal thickenings in the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Multiple pulmonary nodules bilaterally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2d",
+    "3": "2b",
+    "4": "1d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 3527,
+    "1": 7113,
+    "2": 1872872,
+    "3": 1872872,
+    "4": 31111,
+    "5": 3537
+  },
+  "embedding_norm": 17.434955596923828,
+  "mask_active_voxels": 122159104
+}

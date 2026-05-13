@@ -1,0 +1,41 @@
+{
+  "name": "train_6357_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    217
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pneumonic infiltration in the upper lobe of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Areas of consolidation in the upper lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Ground glass opacities in the upper lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Focal nodular ground glass opacity in the upper lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 308170,
+    "1": 308170,
+    "2": 308170,
+    "3": 246
+  },
+  "embedding_norm": 17.376462936401367,
+  "mask_active_voxels": 127991808
+}

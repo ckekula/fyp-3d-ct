@@ -1,0 +1,59 @@
+{
+  "name": "train_7406_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    475
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodules up to 6 mm in the superior segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground glass density nodules in the basal segments of both lower lobes",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Nodules measuring 4 mm in the anterior segment of the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nodules measuring 4 mm in diameter in the posterior segment of the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Nodules measuring 3-4 mm in diameter in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nodules measuring 5.5 mm and 4 mm in diameter in the anterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Mild pleuroparenchymal density increases in the subpleural regions at the apex of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2a"
+  },
+  "pixels": {
+    "0": 991,
+    "1": 13280,
+    "2": 435,
+    "3": 248,
+    "4": 253,
+    "5": 645,
+    "6": 6969
+  },
+  "embedding_norm": 17.561262130737305,
+  "mask_active_voxels": 124518400
+}

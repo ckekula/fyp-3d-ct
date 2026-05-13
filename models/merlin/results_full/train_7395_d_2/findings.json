@@ -1,0 +1,29 @@
+{
+  "name": "train_7395_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    476
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1f"
+  },
+  "pixels": {
+    "0": 11476,
+    "1": 13637
+  },
+  "embedding_norm": 17.561559677124023,
+  "mask_active_voxels": 124780544
+}

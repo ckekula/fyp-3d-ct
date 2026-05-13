@@ -1,0 +1,29 @@
+{
+  "name": "train_5196_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    353
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic densities in the apex of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural, minimally dependent ground glass densities in the posterobasal areas of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2937,
+    "1": 31810
+  },
+  "embedding_norm": 17.250438690185547,
+  "mask_active_voxels": 92536832
+}

@@ -1,0 +1,35 @@
+{
+  "name": "valid_484_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    423
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Calcified nodules in the right lung's upper lobe apicoposterior part",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear fibrotic densities in the right lung's upper lobe apicoposterior part",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific ground glass opacity in the lateral lingular segment of the left lung's upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 1738,
+    "1": 5898,
+    "2": 20648
+  },
+  "embedding_norm": 17.39506721496582,
+  "mask_active_voxels": 110886912
+}

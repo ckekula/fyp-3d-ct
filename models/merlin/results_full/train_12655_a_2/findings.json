@@ -1,0 +1,23 @@
+{
+  "name": "train_12655_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Densities consistent with scarring on the pleural surfaces of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 1506
+  },
+  "embedding_norm": 17.507436752319336,
+  "mask_active_voxels": 111935488
+}

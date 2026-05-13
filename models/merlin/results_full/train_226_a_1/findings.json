@@ -1,0 +1,29 @@
+{
+  "name": "train_226_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    261
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of increased parenchymal density adjacent to effusions indicative of compressive atelectasis",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis in the inferior lingular segment of the left upper lobe and the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 16540,
+    "1": 13584
+  },
+  "embedding_norm": 17.001604080200195,
+  "mask_active_voxels": 68419584
+}

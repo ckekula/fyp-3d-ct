@@ -1,0 +1,23 @@
+{
+  "name": "train_5385_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    422
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass densities with a halo sign in the posterobasal segments of the lower lobes of both lungs in a subcentimeter patchwork pattern",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 15652
+  },
+  "embedding_norm": 17.385618209838867,
+  "mask_active_voxels": 110624768
+}

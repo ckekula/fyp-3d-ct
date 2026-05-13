@@ -1,0 +1,35 @@
+{
+  "name": "train_835_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs with blebs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Paraseptal emphysematous changes more pronounced at the apexes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Multiple pulmonary nodules bilaterally, largest 5 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 237689,
+    "1": 237689,
+    "2": 4012
+  },
+  "embedding_norm": 17.58126449584961,
+  "mask_active_voxels": 134217728
+}

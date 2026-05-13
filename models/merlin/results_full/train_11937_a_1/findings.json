@@ -1,0 +1,29 @@
+{
+  "name": "train_11937_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    203
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural consolidations in both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Cylindrical bronchiectasis in affected areas",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1b"
+  },
+  "pixels": {
+    "0": 11900,
+    "1": 2181
+  },
+  "embedding_norm": 17.23801612854004,
+  "mask_active_voxels": 119734272
+}

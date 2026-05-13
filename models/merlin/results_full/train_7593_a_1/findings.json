@@ -1,0 +1,29 @@
+{
+  "name": "train_7593_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    329
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Calcific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 183,
+    "1": 125
+  },
+  "embedding_norm": 17.399112701416016,
+  "mask_active_voxels": 86245376
+}

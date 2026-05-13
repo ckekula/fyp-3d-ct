@@ -1,0 +1,29 @@
+{
+  "name": "train_5727_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    220
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in both lungs, particularly in the upper lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Cystic areas within the ground glass regions in both lungs, particularly in the upper lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 37256,
+    "1": 1726
+  },
+  "embedding_norm": 17.011877059936523,
+  "mask_active_voxels": 57671680
+}

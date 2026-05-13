@@ -1,0 +1,23 @@
+{
+  "name": "train_8168_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    335
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Significant increase in ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 10598
+  },
+  "embedding_norm": 17.343910217285156,
+  "mask_active_voxels": 87818240
+}

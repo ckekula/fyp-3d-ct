@@ -1,0 +1,29 @@
+{
+  "name": "valid_386_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcified nodules in the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Fine, non-specific reticular densities in the posterior aspects of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 89,
+    "1": 2119
+  },
+  "embedding_norm": 17.45578956604004,
+  "mask_active_voxels": 126353408
+}

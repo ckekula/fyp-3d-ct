@@ -1,0 +1,35 @@
+{
+  "name": "train_1877_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    247
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs, more prominent in the lower lobes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "5 mm nodule in the lateral basal segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 79126,
+    "1": 4974,
+    "2": 338
+  },
+  "embedding_norm": 16.953153610229492,
+  "mask_active_voxels": 64749568
+}

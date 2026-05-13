@@ -1,0 +1,41 @@
+{
+  "name": "train_7887_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    438
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectatic changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several nodules in both lungs, largest measuring 8x5 mm, located subpleurally in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subsegmental linear atelectasis areas in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subsegmental linear atelectasis areas in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d",
+    "2": "2a",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 4144,
+    "1": 1111,
+    "2": 10750,
+    "3": 7000
+  },
+  "embedding_norm": 17.40909194946289,
+  "mask_active_voxels": 114819072
+}

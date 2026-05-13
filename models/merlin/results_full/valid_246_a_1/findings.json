@@ -1,0 +1,23 @@
+{
+  "name": "valid_246_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    382
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass opacities in the upper lobes of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 83104
+  },
+  "embedding_norm": 17.437524795532227,
+  "mask_active_voxels": 100139008
+}

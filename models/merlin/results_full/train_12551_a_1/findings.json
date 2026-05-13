@@ -1,0 +1,29 @@
+{
+  "name": "train_12551_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    375
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest pulmonary nodule measuring approximately 7 mm in diameter in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 259,
+    "1": 375
+  },
+  "embedding_norm": 17.314321517944336,
+  "mask_active_voxels": 98304000
+}

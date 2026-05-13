@@ -1,0 +1,41 @@
+{
+  "name": "train_527_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    418
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thin layer of pleural effusion in the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Foci of tubular bronchiectasis in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Diffuse atypical pneumonic infiltrates throughout both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Associated linear atelectasis in some areas",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1b",
+    "2": "2b",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 20662,
+    "1": 15354,
+    "2": 114195,
+    "3": 66165
+  },
+  "embedding_norm": 17.3676815032959,
+  "mask_active_voxels": 109576192
+}

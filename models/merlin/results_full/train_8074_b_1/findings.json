@@ -1,0 +1,23 @@
+{
+  "name": "train_8074_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    338
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific subcentimeter nodules, measuring 3 mm, in the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 298
+  },
+  "embedding_norm": 17.214101791381836,
+  "mask_active_voxels": 88604672
+}

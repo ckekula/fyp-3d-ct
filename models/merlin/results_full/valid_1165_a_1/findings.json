@@ -1,0 +1,23 @@
+{
+  "name": "valid_1165_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    316
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass opacities in the basal segments of the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 53681
+  },
+  "embedding_norm": 17.319232940673828,
+  "mask_active_voxels": 82837504
+}

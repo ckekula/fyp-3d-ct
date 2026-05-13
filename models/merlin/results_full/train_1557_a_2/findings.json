@@ -1,0 +1,29 @@
+{
+  "name": "train_1557_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    467
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities in the posterobasal segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nonspecific 5 mm nodule in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 42109,
+    "1": 831
+  },
+  "embedding_norm": 17.425586700439453,
+  "mask_active_voxels": 122421248
+}

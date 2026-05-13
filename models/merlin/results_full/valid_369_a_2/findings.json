@@ -1,0 +1,35 @@
+{
+  "name": "valid_369_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation with air bronchograms in the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular consolidation measuring approximately 6x8 mm with a ground-glass halo in the pleural-based periphery of the lower lobe superior segment",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 11539,
+    "1": 1969,
+    "2": 2850
+  },
+  "embedding_norm": 16.996780395507812,
+  "mask_active_voxels": 58458112
+}

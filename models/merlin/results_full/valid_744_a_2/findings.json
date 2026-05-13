@@ -1,0 +1,29 @@
+{
+  "name": "valid_744_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    443
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral ground-glass opacities with nodular patchy distribution",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Associated halo sign suggesting vascular enlargement",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2h"
+  },
+  "pixels": {
+    "0": 108019,
+    "1": 7839
+  },
+  "embedding_norm": 17.52696990966797,
+  "mask_active_voxels": 116129792
+}

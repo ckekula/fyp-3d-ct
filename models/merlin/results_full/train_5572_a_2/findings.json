@@ -1,0 +1,23 @@
+{
+  "name": "train_5572_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    496
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal scarring with mild nodular configuration in the left lung inferior lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 4290
+  },
+  "embedding_norm": 17.570756912231445,
+  "mask_active_voxels": 130023424
+}

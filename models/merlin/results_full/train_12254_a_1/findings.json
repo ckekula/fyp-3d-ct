@@ -1,0 +1,29 @@
+{
+  "name": "train_12254_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific parenchymal nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific pleural-based nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 364,
+    "1": 1571
+  },
+  "embedding_norm": 17.018238067626953,
+  "mask_active_voxels": 117964800
+}

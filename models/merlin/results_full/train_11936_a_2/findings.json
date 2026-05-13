@@ -1,0 +1,23 @@
+{
+  "name": "train_11936_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrally located peribronchial nodular ground-glass opacities in the upper lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 2126
+  },
+  "embedding_norm": 17.13860511779785,
+  "mask_active_voxels": 66060288
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5612_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    513
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "23 mm effusion in the deepest part of the right pleural area",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e"
+  },
+  "pixels": {
+    "0": 24760
+  },
+  "embedding_norm": 17.486562728881836,
+  "mask_active_voxels": 134479872
+}

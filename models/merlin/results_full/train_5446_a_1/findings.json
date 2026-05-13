@@ -1,0 +1,35 @@
+{
+  "name": "train_5446_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    317
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral subpleural ground-glass opacities in both lung parenchyma without clear boundaries",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Multiple subpleural nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest subpleural nodule measuring up to 7 mm in the posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 3674,
+    "1": 819,
+    "2": 534
+  },
+  "embedding_norm": 17.311094284057617,
+  "mask_active_voxels": 83099648
+}

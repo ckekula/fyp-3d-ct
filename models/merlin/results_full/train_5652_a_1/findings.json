@@ -1,0 +1,23 @@
+{
+  "name": "train_5652_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Band-like fibrotic density increases in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 6889
+  },
+  "embedding_norm": 17.018442153930664,
+  "mask_active_voxels": 117964800
+}

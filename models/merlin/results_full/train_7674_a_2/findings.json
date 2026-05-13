@@ -1,0 +1,41 @@
+{
+  "name": "train_7674_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    189
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the upper, middle, and lower lobes of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis in the upper lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Slightly irregular 12 mm nodule with surrounding ground-glass appearance in the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Several additional subcentimeter nodules with ground-glass appearance in the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 24725,
+    "1": 3760,
+    "2": 2992,
+    "3": 962
+  },
+  "embedding_norm": 16.83082389831543,
+  "mask_active_voxels": 49545216
+}

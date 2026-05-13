@@ -1,0 +1,41 @@
+{
+  "name": "valid_831_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    367
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic bands in the lower lobes' posterobasal segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic bands in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic changes at the apices of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Several subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 7587,
+    "1": 9833,
+    "2": 10317,
+    "3": 745
+  },
+  "embedding_norm": 17.40528106689453,
+  "mask_active_voxels": 96206848
+}

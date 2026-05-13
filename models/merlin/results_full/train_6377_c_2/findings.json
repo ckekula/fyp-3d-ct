@@ -1,0 +1,41 @@
+{
+  "name": "train_6377_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased pleuroparenchymal density in the apical regions of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Indicative of scarring in the apical regions of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Minimal bronchiectatic changes observed centrally",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2a",
+    "3": "1b"
+  },
+  "pixels": {
+    "0": 2919,
+    "1": 2400,
+    "2": 2400,
+    "3": 5276
+  },
+  "embedding_norm": 17.58757209777832,
+  "mask_active_voxels": 133431296
+}

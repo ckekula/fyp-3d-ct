@@ -1,0 +1,29 @@
+{
+  "name": "train_10445_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 1822,
+    "1": 1822
+  },
+  "embedding_norm": 17.129009246826172,
+  "mask_active_voxels": 66584576
+}

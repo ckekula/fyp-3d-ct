@@ -1,0 +1,53 @@
+{
+  "name": "train_7574_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    468
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central consolidation in both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground-glass opacities in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Ground-glass opacities in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Ground-glass opacities in the upper lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Round-shaped ground-glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2c",
+    "3": "2c",
+    "4": "2c",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 127530,
+    "1": 2920,
+    "2": 4818,
+    "3": 7960,
+    "4": 2978,
+    "5": 2097
+  },
+  "embedding_norm": 17.425565719604492,
+  "mask_active_voxels": 122683392
+}

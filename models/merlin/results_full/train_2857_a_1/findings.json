@@ -1,0 +1,47 @@
+{
+  "name": "train_2857_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    215
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral subpleural patchy ground-glass opacities in the apical regions of the upper lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Peripheral subpleural patchy ground-glass opacities in the anterior left upper lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Peripheral subpleural patchy ground-glass opacities in the right lower lobe, more prominent on the right",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Linear atelectatic changes extending from the superior to the subpleural area in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Calcific nodules measuring up to 4 mm in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 584374,
+    "1": 7751,
+    "2": 308878,
+    "3": 26129,
+    "4": 3672
+  },
+  "embedding_norm": 17.10995101928711,
+  "mask_active_voxels": 126812160
+}

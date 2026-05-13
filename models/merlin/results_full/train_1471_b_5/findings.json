@@ -1,0 +1,41 @@
+{
+  "name": "train_1471_b_5.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    460
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear consolidation areas in the posterior and lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular consolidation areas in the posterior and lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Pleuroparenchymal subsegmental atelectasis in the posterior and lower lobes of both lungs",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Bronchopneumonic infiltrative involvement in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 354487,
+    "1": 354487,
+    "2": 27003,
+    "3": 78304
+  },
+  "embedding_norm": 17.545333862304688,
+  "mask_active_voxels": 120586240
+}

@@ -1,0 +1,47 @@
+{
+  "name": "train_1658_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    232
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy peripheral-subpleural ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving patterns in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Cylindrical bronchiectasis in the affected areas",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2h",
+    "2": "2b",
+    "3": "1b",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 9090,
+    "1": 6271,
+    "2": 43152,
+    "3": 210266,
+    "4": 1949
+  },
+  "embedding_norm": 16.882017135620117,
+  "mask_active_voxels": 60817408
+}

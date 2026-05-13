@@ -1,0 +1,23 @@
+{
+  "name": "train_6568_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    278
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter ground-glass nodules in various peripheral subpleural locations in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 900
+  },
+  "embedding_norm": 17.058427810668945,
+  "mask_active_voxels": 72876032
+}

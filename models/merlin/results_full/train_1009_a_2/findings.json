@@ -1,0 +1,35 @@
+{
+  "name": "train_1009_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Extensive ground glass opacities within the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation within the left lower lobe, predominantly in the posterior and mediobasal segments",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Scattered nodular ground glass densities throughout both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 924130,
+    "1": 924130,
+    "2": 1040408
+  },
+  "embedding_norm": 17.453062057495117,
+  "mask_active_voxels": 123207680
+}

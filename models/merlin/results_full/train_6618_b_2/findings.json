@@ -1,0 +1,35 @@
+{
+  "name": "train_6618_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Stable semisolid nodule adjacent to the major fissure in the superior segment of the right lower lobe, unchanged from previous examination",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal micronodular infiltrates in the middle lobe of the right lung, newly appeared",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal micronodular infiltrates in the superior and posterior basal segments of the right lower lobe, newly appeared",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e",
+    "2": "1e"
+  },
+  "pixels": {
+    "0": 165,
+    "1": 1591,
+    "2": 6828
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

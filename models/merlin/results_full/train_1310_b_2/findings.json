@@ -1,0 +1,47 @@
+{
+  "name": "train_1310_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Total atelectasis in the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Irregularly circumscribed nodule causing minimal structural distortion and volume loss in the anterior segment of the left upper lobe, measuring approximately 10x22 mm",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific nodules in the left lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Thickening of the peribronchial sheath in the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Linear atelectasis in the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2d",
+    "3": "1a",
+    "4": "2a"
+  },
+  "pixels": {
+    "0": 267757,
+    "1": 42098,
+    "2": 890,
+    "3": 159600,
+    "4": 15552
+  },
+  "embedding_norm": 17.588424682617188,
+  "mask_active_voxels": 133431296
+}

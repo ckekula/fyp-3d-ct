@@ -1,0 +1,23 @@
+{
+  "name": "train_8150_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    464
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural subcentimeter air cysts in the anterior upper lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 480
+  },
+  "embedding_norm": 17.537931442260742,
+  "mask_active_voxels": 121634816
+}

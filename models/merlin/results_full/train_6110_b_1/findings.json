@@ -1,0 +1,47 @@
+{
+  "name": "train_6110_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    351
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacities in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground glass opacities in the lateral subpleural area of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear area of atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Increased interseptal thickness in the subpleural areas of both lungs",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Increased interseptal thickness more prominent in the lower lobes of the lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2a",
+    "3": "1d",
+    "4": "1d"
+  },
+  "pixels": {
+    "0": 4798,
+    "1": 1160,
+    "2": 2304,
+    "3": 7684,
+    "4": 23010
+  },
+  "embedding_norm": 17.375829696655273,
+  "mask_active_voxels": 92012544
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_6429_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    118
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mass lesion measuring 19 mm in diameter in the posterior segment of the upper lobe of the right lung with slightly irregular borders and associated linear densities suggestive of scarring",
+      "category": "Others"
+    },
+    "1": {
+      "text": "4 mm nonspecific ground-glass nodule in the posterior part of the upper lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 3391,
+    "1": 69
+  },
+  "embedding_norm": 15.888407707214355,
+  "mask_active_voxels": 30932992
+}

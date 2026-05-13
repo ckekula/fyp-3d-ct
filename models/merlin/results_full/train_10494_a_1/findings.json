@@ -1,0 +1,29 @@
+{
+  "name": "train_10494_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Alveolar infiltration presenting as ground glass opacity in the posterior upper lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Alveolar infiltration presenting as ground glass opacity in the lower lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 41065,
+    "1": 175100
+  },
+  "embedding_norm": 17.144575119018555,
+  "mask_active_voxels": 61341696
+}

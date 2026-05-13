@@ -1,0 +1,29 @@
+{
+  "name": "train_1296_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    471
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral asymmetric diffuse pneumonic infiltration areas in the form of ground glass opacity in the upper lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nodular consolidation areas in the lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 1482348,
+    "1": 255093
+  },
+  "embedding_norm": 17.45892333984375,
+  "mask_active_voxels": 123469824
+}

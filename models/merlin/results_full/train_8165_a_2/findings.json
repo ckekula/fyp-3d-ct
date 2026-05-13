@@ -1,0 +1,23 @@
+{
+  "name": "train_8165_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    557
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring changes in both lung apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 4116
+  },
+  "embedding_norm": 17.62258529663086,
+  "mask_active_voxels": 146014208
+}

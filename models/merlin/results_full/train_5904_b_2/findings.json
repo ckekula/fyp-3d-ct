@@ -1,0 +1,29 @@
+{
+  "name": "train_5904_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    436
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmental peripheral subpleural ground-glass opacities in both lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Scarring changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1358,
+    "1": 2433
+  },
+  "embedding_norm": 17.381240844726562,
+  "mask_active_voxels": 114294784
+}

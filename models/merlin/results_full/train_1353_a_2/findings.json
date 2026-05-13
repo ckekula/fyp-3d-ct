@@ -1,0 +1,29 @@
+{
+  "name": "train_1353_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal nodular ground glass densities in the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the laterobasal segment of the left lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 17051,
+    "1": 11889
+  },
+  "embedding_norm": 17.4521427154541,
+  "mask_active_voxels": 122945536
+}

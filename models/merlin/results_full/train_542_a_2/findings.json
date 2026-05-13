@@ -1,0 +1,41 @@
+{
+  "name": "train_542_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    547
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular-patchy consolidations forming a crazy paving pattern in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular-patchy consolidations forming a crazy paving pattern in the upper lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Nodular-patchy consolidations forming a crazy paving pattern in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Widespread subsegmental atelectasis in the lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 60150,
+    "1": 68555,
+    "2": 69494,
+    "3": 131543
+  },
+  "embedding_norm": 17.510345458984375,
+  "mask_active_voxels": 143392768
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_7821_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    518
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Spot-like ground glass opacities in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Focal ground glass opacities in the mediobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2715,
+    "1": 358
+  },
+  "embedding_norm": 17.501094818115234,
+  "mask_active_voxels": 135790592
+}

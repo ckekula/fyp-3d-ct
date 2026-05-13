@@ -1,0 +1,29 @@
+{
+  "name": "train_7979_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    340
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Paraseptal emphysematous changes in the upper and lower superficial lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 10410,
+    "1": 319
+  },
+  "embedding_norm": 17.2009334564209,
+  "mask_active_voxels": 89128960
+}

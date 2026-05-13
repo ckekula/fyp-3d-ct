@@ -1,0 +1,23 @@
+{
+  "name": "train_6451_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodule in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 109
+  },
+  "embedding_norm": 16.997390747070312,
+  "mask_active_voxels": 58458112
+}

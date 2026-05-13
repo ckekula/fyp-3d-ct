@@ -1,0 +1,35 @@
+{
+  "name": "train_5450_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    198
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Aeration losses in both lungs, more prominent on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral ground-glass opacities in the subpleural regions of the superior and inferior areas of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear atelectatic changes in the paracardiac regions of the anterior upper lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 149952,
+    "1": 246714,
+    "2": 23467
+  },
+  "embedding_norm": 17.013324737548828,
+  "mask_active_voxels": 116785152
+}

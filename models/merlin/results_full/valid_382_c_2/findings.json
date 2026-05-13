@@ -1,0 +1,29 @@
+{
+  "name": "valid_382_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    234
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Decreased size of nodular infiltrates in the posterior aspect of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Largest lesion in the right upper lobe regressed from 25 mm to 19 mm",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 10729,
+    "1": 4763
+  },
+  "embedding_norm": 17.14275360107422,
+  "mask_active_voxels": 61341696
+}

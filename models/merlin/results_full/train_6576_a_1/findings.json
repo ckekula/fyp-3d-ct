@@ -1,0 +1,29 @@
+{
+  "name": "train_6576_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal scarring changes in both lung apexes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 494,
+    "1": 4457
+  },
+  "embedding_norm": 17.358667373657227,
+  "mask_active_voxels": 141557760
+}

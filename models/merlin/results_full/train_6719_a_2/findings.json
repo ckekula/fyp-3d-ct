@@ -1,0 +1,47 @@
+{
+  "name": "train_6719_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    511
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Faintly circumscribed ground-glass opacity in the paravertebral mediobasal area in the superior segment of the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bronchiectatic changes in the lower lobe bronchi of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Traction bronchiectasis and fibrotic band formations more prominent in the lower lobe of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Largest pulmonary nodule measuring 5 mm in diameter in the posterobasal segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1b",
+    "2": "1b",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1225,
+    "1": 55230,
+    "2": 3969,
+    "3": 474,
+    "4": 244
+  },
+  "embedding_norm": 17.585962295532227,
+  "mask_active_voxels": 133955584
+}

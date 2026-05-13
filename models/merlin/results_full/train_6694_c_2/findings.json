@@ -1,0 +1,23 @@
+{
+  "name": "train_6694_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    487
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities with a crazy paving pattern observed peripherally in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 92328
+  },
+  "embedding_norm": 17.479040145874023,
+  "mask_active_voxels": 127664128
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_2841_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    236
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening in the central regions of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 113620,
+    "1": 574
+  },
+  "embedding_norm": 17.078428268432617,
+  "mask_active_voxels": 61865984
+}

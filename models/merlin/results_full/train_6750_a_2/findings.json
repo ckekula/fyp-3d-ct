@@ -1,0 +1,35 @@
+{
+  "name": "train_6750_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    522
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal bronchiectasis in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Linear atelectasis in the inferior subsegment of the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "2d",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 12902,
+    "1": 99,
+    "2": 3765
+  },
+  "embedding_norm": 17.63117027282715,
+  "mask_active_voxels": 136839168
+}

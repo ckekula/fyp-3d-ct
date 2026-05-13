@@ -1,0 +1,59 @@
+{
+  "name": "train_5428_f_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    421
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the posterior segment of the right upper lobe with surrounding ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in the medial segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Consolidations in the middle lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidations in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Consolidations in the lingular segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Diffuse centriacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Diffuse ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "1e",
+    "6": "2c"
+  },
+  "pixels": {
+    "0": 7070,
+    "1": 1725,
+    "2": 1424,
+    "3": 2719,
+    "4": 5361,
+    "5": 570,
+    "6": 3139
+  },
+  "embedding_norm": 17.385576248168945,
+  "mask_active_voxels": 110362624
+}

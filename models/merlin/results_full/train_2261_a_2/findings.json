@@ -1,0 +1,35 @@
+{
+  "name": "train_2261_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    550
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass consolidations forming a central-peripheral crazy paving pattern in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Atelectatic changes in the right middle lobe and anterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific subcentimeter parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 208012,
+    "1": 6923,
+    "2": 603
+  },
+  "embedding_norm": 17.53253936767578,
+  "mask_active_voxels": 144179200
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5387_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    488
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral subpleural ground-glass opacities in both lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 43208
+  },
+  "embedding_norm": 17.482507705688477,
+  "mask_active_voxels": 127926272
+}

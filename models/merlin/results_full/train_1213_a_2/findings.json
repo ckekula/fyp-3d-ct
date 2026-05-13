@@ -1,0 +1,47 @@
+{
+  "name": "train_1213_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation with air bronchograms in the right lung, predominantly within the middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Primary mass in the lower lobe of the right lung obscured by consolidation",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Soft tissue densities in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Peribronchial thickening in the left lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Scattered centrilobular nodules in the left lung, predominance in the lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2d",
+    "3": "1a",
+    "4": "1e"
+  },
+  "pixels": {
+    "0": 498555,
+    "1": 543818,
+    "2": 219161,
+    "3": 439414,
+    "4": 14547
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

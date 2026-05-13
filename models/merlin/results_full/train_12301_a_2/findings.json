@@ -1,0 +1,23 @@
+{
+  "name": "train_12301_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    431
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter ground-glass nodules in a focal area in the posterior segment of the right upper lobe, adjacent to the fissure",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 2214
+  },
+  "embedding_norm": 17.500337600708008,
+  "mask_active_voxels": 112984064
+}

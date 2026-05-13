@@ -1,0 +1,29 @@
+{
+  "name": "train_102_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    237
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral multilobar ground glass opacities within the lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of consolidation within the lung parenchyma",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 322581,
+    "1": 72966
+  },
+  "embedding_norm": 17.069244384765625,
+  "mask_active_voxels": 62128128
+}

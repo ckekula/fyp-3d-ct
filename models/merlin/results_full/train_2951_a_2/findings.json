@@ -1,0 +1,29 @@
+{
+  "name": "train_2951_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural linear atelectasis in the posterobasal region of the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Fibrotic densities in the posterobasal region of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 2454,
+    "1": 23372
+  },
+  "embedding_norm": 17.452070236206055,
+  "mask_active_voxels": 123207680
+}

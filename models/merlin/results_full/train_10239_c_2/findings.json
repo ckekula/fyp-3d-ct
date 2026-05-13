@@ -1,0 +1,23 @@
+{
+  "name": "train_10239_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    478
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "8 mm ground glass nodule in the apical segment of the right upper lobe, stable",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1202
+  },
+  "embedding_norm": 17.55669593811035,
+  "mask_active_voxels": 125304832
+}

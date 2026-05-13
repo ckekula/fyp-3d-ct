@@ -1,0 +1,53 @@
+{
+  "name": "train_2319_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    334
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy reticulonodular fibrotic density increases in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mild bronchiectatic changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter calcific nodule in the anterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific solid nodules in the mediobasal subsegment and posterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nonspecific nodules in the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1b",
+    "2": "1a",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 25148,
+    "1": 242997,
+    "2": 82729,
+    "3": 228,
+    "4": 1188,
+    "5": 356
+  },
+  "embedding_norm": 17.34590721130371,
+  "mask_active_voxels": 87556096
+}

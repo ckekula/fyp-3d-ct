@@ -1,0 +1,47 @@
+{
+  "name": "valid_780_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    288
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural fibrotic densities in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Focal area of nodular ground-glass opacity posterior to the upper lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Minimal emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "7x4 mm nodular density adjacent to the pleura in the laterobasal segment of the left lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Additional subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2c",
+    "2": "1c",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 1032,
+    "1": 1564,
+    "2": 31414,
+    "3": 969,
+    "4": 826
+  },
+  "embedding_norm": 17.227577209472656,
+  "mask_active_voxels": 75497472
+}

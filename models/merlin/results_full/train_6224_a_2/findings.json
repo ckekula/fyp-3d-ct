@@ -1,0 +1,35 @@
+{
+  "name": "train_6224_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    488
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal reticulonodular density increases in the right lung apical segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleuroparenchymal reticulonodular density increases in the left lung apicoposterior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Segmental tubular bronchiectasis in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "1b"
+  },
+  "pixels": {
+    "0": 1777,
+    "1": 1906,
+    "2": 5441
+  },
+  "embedding_norm": 17.479158401489258,
+  "mask_active_voxels": 127926272
+}

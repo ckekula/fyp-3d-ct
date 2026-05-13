@@ -1,0 +1,23 @@
+{
+  "name": "valid_730_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    449
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased density consistent with scarring in the inferior lingular segment of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 7147
+  },
+  "embedding_norm": 17.41472625732422,
+  "mask_active_voxels": 117702656
+}

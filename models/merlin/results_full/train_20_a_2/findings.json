@@ -1,0 +1,23 @@
+{
+  "name": "train_20_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    512
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central ground glass opacities in bilateral lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 293909
+  },
+  "embedding_norm": 17.58839225769043,
+  "mask_active_voxels": 134217728
+}

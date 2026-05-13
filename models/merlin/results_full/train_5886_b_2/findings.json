@@ -1,0 +1,23 @@
+{
+  "name": "train_5886_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Decreased subsegmental atelectatic changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 741520
+  },
+  "embedding_norm": 17.585641860961914,
+  "mask_active_voxels": 133431296
+}

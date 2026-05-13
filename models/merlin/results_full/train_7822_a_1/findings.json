@@ -1,0 +1,59 @@
+{
+  "name": "train_7822_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    313
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic densities more prominent in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased interlobar and interlobular septal thickening in the peripheral parts and upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Air cyst in the superior segment of the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Nonspecific scarring pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Subpleural and calcific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "Largest nodule in the lateral part of the right middle lobe measuring approximately 5 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1d",
+    "2": "2c",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 892,
+    "1": 3734,
+    "2": 2351,
+    "3": 371,
+    "4": 461,
+    "5": 165,
+    "6": 668
+  },
+  "embedding_norm": 17.366943359375,
+  "mask_active_voxels": 82051072
+}

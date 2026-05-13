@@ -1,0 +1,23 @@
+{
+  "name": "train_123_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    223
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild paraseptal emphysematous changes at the apical levels of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 751
+  },
+  "embedding_norm": 17.30719566345215,
+  "mask_active_voxels": 131530752
+}

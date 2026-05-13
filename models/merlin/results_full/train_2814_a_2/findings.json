@@ -1,0 +1,23 @@
+{
+  "name": "train_2814_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    507
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral ground-glass opacities in a patchy distribution in the apicoposterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 59569
+  },
+  "embedding_norm": 17.591400146484375,
+  "mask_active_voxels": 132907008
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5341_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    457
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Barely distinguishable ground glass opacity in the right lung lower lobe superior segment subpleural area",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 7839
+  },
+  "embedding_norm": 17.578521728515625,
+  "mask_active_voxels": 119799808
+}

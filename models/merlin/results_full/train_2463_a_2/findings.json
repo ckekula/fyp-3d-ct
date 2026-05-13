@@ -1,0 +1,23 @@
+{
+  "name": "train_2463_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    471
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Unchanged nodule in the laterobasal segment of the right lung lower lobe from previous PET-CT examination",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 935
+  },
+  "embedding_norm": 17.460620880126953,
+  "mask_active_voxels": 123469824
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_1313_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    418
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral nodular ground glass consolidations in all lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Subsegmental atelectatic changes in the left lung inferior lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectatic changes in the right lung middle lobe medial segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 11242,
+    "1": 6601,
+    "2": 10198
+  },
+  "embedding_norm": 17.367692947387695,
+  "mask_active_voxels": 109576192
+}

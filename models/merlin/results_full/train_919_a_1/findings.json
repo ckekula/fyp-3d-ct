@@ -1,0 +1,23 @@
+{
+  "name": "train_919_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    334
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe, inferior subsegment, and medial segment of the lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a"
+  },
+  "pixels": {
+    "0": 2138
+  },
+  "embedding_norm": 17.34592056274414,
+  "mask_active_voxels": 87556096
+}

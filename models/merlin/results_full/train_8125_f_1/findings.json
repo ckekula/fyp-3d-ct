@@ -1,0 +1,23 @@
+{
+  "name": "train_8125_f_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    312
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse consolidation in the posterior parts of both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 10819
+  },
+  "embedding_norm": 17.16912078857422,
+  "mask_active_voxels": 81788928
+}

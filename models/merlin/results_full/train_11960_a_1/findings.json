@@ -1,0 +1,23 @@
+{
+  "name": "train_11960_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific parenchymal nodules measuring 2.5 mm in diameter in the right lung middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 285
+  },
+  "embedding_norm": 17.200777053833008,
+  "mask_active_voxels": 88866816
+}

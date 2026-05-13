@@ -1,0 +1,29 @@
+{
+  "name": "train_3452_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse and patchy nodular ground-glass opacities with subpleural predominance in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation areas with subpleural predominance in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 15392,
+    "1": 23880
+  },
+  "embedding_norm": 17.576505661010742,
+  "mask_active_voxels": 120061952
+}

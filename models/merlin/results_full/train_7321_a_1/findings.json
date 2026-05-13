@@ -1,0 +1,35 @@
+{
+  "name": "train_7321_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities in both lungs, predominantly in the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Vascular enlargement in both lungs, predominantly in the lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Halo signs observed in both lungs, predominantly in the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 4849,
+    "1": 9347,
+    "2": 3759
+  },
+  "embedding_norm": 17.20083236694336,
+  "mask_active_voxels": 88866816
+}

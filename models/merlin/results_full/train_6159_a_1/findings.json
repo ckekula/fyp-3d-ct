@@ -1,0 +1,35 @@
+{
+  "name": "train_6159_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    353
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal peribronchial thickening at the segmental and subsegmental levels in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several nonspecific subcentimeter parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Largest nodule located in the posterobasal segment of the right lower lobe, up to 4.4 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "2d",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 3830,
+    "1": 270,
+    "2": 178
+  },
+  "embedding_norm": 17.250320434570312,
+  "mask_active_voxels": 92536832
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_1356_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Suspicious appearance suggestive of a bronchopleural fistula in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Multiple air cysts in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bullae in the apices of both lungs, more prominent on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2h",
+    "1": "1c",
+    "2": "1c"
+  },
+  "pixels": {
+    "0": 11759,
+    "1": 390725,
+    "2": 38370
+  },
+  "embedding_norm": 16.78134536743164,
+  "mask_active_voxels": 56098816
+}

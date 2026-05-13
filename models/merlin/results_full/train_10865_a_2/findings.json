@@ -1,0 +1,29 @@
+{
+  "name": "train_10865_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    427
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal band formations in all lobes and segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Traction bronchiectasis in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b"
+  },
+  "pixels": {
+    "0": 13289,
+    "1": 1396
+  },
+  "embedding_norm": 17.506261825561523,
+  "mask_active_voxels": 111935488
+}

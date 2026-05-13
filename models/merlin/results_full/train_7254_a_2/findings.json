@@ -1,0 +1,29 @@
+{
+  "name": "train_7254_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    422
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacities located more peripherally in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Crazy paving patterns located more peripherally in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 31832,
+    "1": 113731
+  },
+  "embedding_norm": 17.38408851623535,
+  "mask_active_voxels": 110624768
+}

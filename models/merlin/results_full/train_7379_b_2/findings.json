@@ -1,0 +1,29 @@
+{
+  "name": "train_7379_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Passive atelectatic changes in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear subsegmental atelectatic changes in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 145,
+    "1": 2267
+  },
+  "embedding_norm": 17.57828140258789,
+  "mask_active_voxels": 120061952
+}

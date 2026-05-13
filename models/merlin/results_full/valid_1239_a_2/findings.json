@@ -1,0 +1,35 @@
+{
+  "name": "valid_1239_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse patchy peripheral and central ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Surrounding vascular enlargement in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Air bronchograms in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1f",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 167383,
+    "1": 41839,
+    "2": 27256
+  },
+  "embedding_norm": 17.404428482055664,
+  "mask_active_voxels": 118226944
+}

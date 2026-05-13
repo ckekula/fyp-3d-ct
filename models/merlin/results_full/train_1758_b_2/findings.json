@@ -1,0 +1,47 @@
+{
+  "name": "train_1758_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    186
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Significant consolidated densities with a halo sign in the lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Variable changes in consolidated densities with some decreasing in size, some increasing, and some new lesions",
+      "category": "Others"
+    },
+    "2": {
+      "text": "New lesion measuring up to 23 mm in the paracardiac paramediastinal area, particularly in the anterior upper lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Previously described consolidated areas in the left upper lobe apicoposterior region have shrunk",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Cavitation in the left upper lobe apicoposterior region",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d",
+    "3": "2b",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 17911,
+    "1": 36068,
+    "2": 21584,
+    "3": 3854,
+    "4": 3488
+  },
+  "embedding_norm": 16.922658920288086,
+  "mask_active_voxels": 48758784
+}

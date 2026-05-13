@@ -1,0 +1,41 @@
+{
+  "name": "train_11184_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    337
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidation area measuring approximately 12x7 mm in the lateral segment of the right middle lobe, in the peripheral subpleural area",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Newly developed ground-glass halo observed in the periphery of the nodular consolidation area in the lateral segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Area of increased density consistent with an uncertain limited consolidation in the peribronchial area in the posterior part of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Free pleural effusion observed in both pleural spaces, with the deepest part on the right measuring 25 mm, extending to the apex and fissure in the patient's lying position",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2b",
+    "3": "2e"
+  },
+  "pixels": {
+    "0": 2670,
+    "1": 1078,
+    "2": 6907,
+    "3": 221153
+  },
+  "embedding_norm": 17.21451187133789,
+  "mask_active_voxels": 88342528
+}

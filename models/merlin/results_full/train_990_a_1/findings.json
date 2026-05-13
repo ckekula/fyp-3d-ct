@@ -1,0 +1,41 @@
+{
+  "name": "train_990_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes bilaterally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral peripheral ground-glass opacities, round in shape",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Bilateral subcentimeter nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c",
+    "2": "2c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 5779,
+    "1": 115745,
+    "2": 21283,
+    "3": 370
+  },
+  "embedding_norm": 16.933170318603516,
+  "mask_active_voxels": 53477376
+}

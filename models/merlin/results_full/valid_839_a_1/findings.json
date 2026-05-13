@@ -1,0 +1,29 @@
+{
+  "name": "valid_839_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral basal lung parenchyma with indeterminate areas of increased density",
+      "category": "Others"
+    },
+    "1": {
+      "text": "1 cm nodule in the medial segment of the right middle lobe abutting the mediastinal pleura",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 21633,
+    "1": 1039
+  },
+  "embedding_norm": 16.882247924804688,
+  "mask_active_voxels": 60555264
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_10354_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thickening of the interlobular septa",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 13677
+  },
+  "embedding_norm": 17.073495864868164,
+  "mask_active_voxels": 73138176
+}

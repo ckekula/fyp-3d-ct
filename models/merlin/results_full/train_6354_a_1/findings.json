@@ -1,0 +1,35 @@
+{
+  "name": "train_6354_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    228
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis in the inferior lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Nonspecific subcentimeter nodules in the right lung, some of which are calcified",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 2229,
+    "1": 1350,
+    "2": 3741
+  },
+  "embedding_norm": 17.078857421875,
+  "mask_active_voxels": 134479872
+}

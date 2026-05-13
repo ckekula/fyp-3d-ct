@@ -1,0 +1,23 @@
+{
+  "name": "valid_1103_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    422
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Irregularly circumscribed solid nodule in the middle lobe of the right lung, measuring approximately 25x20 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 11933
+  },
+  "embedding_norm": 17.386066436767578,
+  "mask_active_voxels": 110624768
+}

@@ -1,0 +1,71 @@
+{
+  "name": "train_1493_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    320
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass centriacinar nodular infiltrates in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "More prominent ground-glass centriacinar nodular infiltrates in lower lobe basal segments on the right",
+      "category": "Others"
+    },
+    "2": {
+      "text": "More prominent ground-glass centriacinar nodular infiltrates in upper lobe inferior lingular segments on the left",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subsegmental atelectatic change in medial segment of right middle lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Linear subsegmentary atelectasis in anterobasal segment of right lower lobe",
+      "category": "Atelectasis"
+    },
+    "5": {
+      "text": "Linear subsegmentary atelectasis in inferior lingular segment of left upper lobe",
+      "category": "Atelectasis"
+    },
+    "6": {
+      "text": "Reticulonodular density increases in both lung apices consistent with scarring",
+      "category": "Others"
+    },
+    "7": {
+      "text": "Segmental tubular bronchiectasis in both lungs",
+      "category": "Others"
+    },
+    "8": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c",
+    "3": "2b",
+    "4": "2a",
+    "5": "2a",
+    "6": "2a",
+    "7": "1b",
+    "8": "1a"
+  },
+  "pixels": {
+    "0": 48530,
+    "1": 37523,
+    "2": 34649,
+    "3": 12527,
+    "4": 1871,
+    "5": 3168,
+    "6": 6304,
+    "7": 355784,
+    "8": 188690
+  },
+  "embedding_norm": 17.308971405029297,
+  "mask_active_voxels": 83886080
+}

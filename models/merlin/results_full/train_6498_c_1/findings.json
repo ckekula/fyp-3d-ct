@@ -1,0 +1,47 @@
+{
+  "name": "train_6498_c_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    315
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Newly developed peribronchial ground-glass nodular densities in the lower lobe of the right lung, especially in the posterior and superior regions",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Newly developed subpleural ground-glass nodular densities in the lower lobe of the right lung, especially in the posterior and superior regions",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Calcified, subcentimeter, nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Atelectasis with no significant change in the anterior upper lobe on the right",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2c",
+    "2": "2c",
+    "3": "1e",
+    "4": "2b"
+  },
+  "pixels": {
+    "0": 3764,
+    "1": 8869,
+    "2": 7463,
+    "3": 114,
+    "4": 19268
+  },
+  "embedding_norm": 17.31806182861328,
+  "mask_active_voxels": 82575360
+}

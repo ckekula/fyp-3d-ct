@@ -1,0 +1,23 @@
+{
+  "name": "valid_708_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectatic changes in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 20939
+  },
+  "embedding_norm": 17.45549201965332,
+  "mask_active_voxels": 126353408
+}

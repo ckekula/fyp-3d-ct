@@ -1,0 +1,23 @@
+{
+  "name": "train_1950_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    245
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal area of centrilobular infiltration with ground glass halos in the mediobasal subsegment of the left lower lobe anteromediobasal segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 89475
+  },
+  "embedding_norm": 16.936767578125,
+  "mask_active_voxels": 64225280
+}

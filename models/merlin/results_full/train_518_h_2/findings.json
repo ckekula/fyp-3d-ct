@@ -1,0 +1,35 @@
+{
+  "name": "train_518_h_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    229
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Regression of previously noted increased ground glass opacities in the lingular segment of the left lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "New infiltrate in the left lung adjacent to the lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "1a"
+  },
+  "pixels": {
+    "0": 70256,
+    "1": 55619,
+    "2": 118382
+  },
+  "embedding_norm": 16.864864349365234,
+  "mask_active_voxels": 60030976
+}

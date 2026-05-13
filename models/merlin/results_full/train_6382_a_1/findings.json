@@ -1,0 +1,41 @@
+{
+  "name": "train_6382_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    357
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increased pleuroparenchymal density consistent with scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bilateral minimal bronchiectatic changes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Increased pleuroparenchymal density consistent with scarring in the laterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "4.5 mm nonspecific parenchymal nodule in the anterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1772,
+    "1": 2849,
+    "2": 657,
+    "3": 412
+  },
+  "embedding_norm": 17.27104949951172,
+  "mask_active_voxels": 93585408
+}

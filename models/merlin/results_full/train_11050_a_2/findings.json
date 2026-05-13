@@ -1,0 +1,23 @@
+{
+  "name": "train_11050_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    458
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Few subcentimeter nonspecific nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 307
+  },
+  "embedding_norm": 17.578227996826172,
+  "mask_active_voxels": 120061952
+}

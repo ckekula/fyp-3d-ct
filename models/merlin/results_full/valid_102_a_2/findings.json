@@ -1,0 +1,65 @@
+{
+  "name": "valid_102_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    472
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "3 cm mass enveloping the pleura at the apex of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Loculated pleural effusions measuring up to 5.3 cm in thickness between the pleural layers on the right",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Reticular densities with irregular borders in the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Consolidation in the right middle lobe with air bronchograms and atelectatic changes",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Emphysematous changes in bilateral lungs",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Multiple subcentimeter parenchymal nodules in both the upper and lower lobes of the left lung",
+      "category": "Lung Nodule"
+    },
+    "6": {
+      "text": "5 mm parenchymal nodule in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "7": {
+      "text": "Irregular thickenings of the mediastinal and costal pleura",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2e",
+    "2": "1d",
+    "3": "2b",
+    "4": "1c",
+    "5": "2d",
+    "6": "2d",
+    "7": "2h"
+  },
+  "pixels": {
+    "0": 64254,
+    "1": 119334,
+    "2": 80985,
+    "3": 35678,
+    "4": 125127,
+    "5": 733,
+    "6": 456,
+    "7": 97247
+  },
+  "embedding_norm": 17.460351943969727,
+  "mask_active_voxels": 123731968
+}

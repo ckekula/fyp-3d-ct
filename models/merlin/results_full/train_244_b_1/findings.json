@@ -1,0 +1,23 @@
+{
+  "name": "train_244_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    287
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy subpleural ground glass opacities in various lung segments",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1514
+  },
+  "embedding_norm": 17.227298736572266,
+  "mask_active_voxels": 75235328
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_479_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    429
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass densities with peripheral halo signs in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 410799
+  },
+  "embedding_norm": 17.50215721130371,
+  "mask_active_voxels": 112459776
+}

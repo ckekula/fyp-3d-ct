@@ -1,0 +1,47 @@
+{
+  "name": "train_2037_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    207
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in the prevalence and extent of parenchymal ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral pleural effusion",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Pleural effusion measuring 19 mm at its deepest point on the right",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Pleural effusion measuring 9 mm at its deepest point on the left",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Pleural effusion transitioned from a plastering appearance to an increased volume compared to the previous examination",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2e",
+    "2": "2e",
+    "3": "2e",
+    "4": "2e"
+  },
+  "pixels": {
+    "0": 706203,
+    "1": 214798,
+    "2": 167820,
+    "3": 46978,
+    "4": 214798
+  },
+  "embedding_norm": 16.919658660888672,
+  "mask_active_voxels": 54263808
+}

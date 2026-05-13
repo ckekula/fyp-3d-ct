@@ -1,0 +1,41 @@
+{
+  "name": "train_2393_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    475
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleuroparenchymal fibrotic recessions in the right lung apex",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleuroparenchymal fibrotic recessions in the right upper lobe posterior segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter calcific nodules in the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subcentimeter calcific nodules in the left lung lingular segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 702,
+    "1": 3643,
+    "2": 285,
+    "3": 729
+  },
+  "embedding_norm": 17.561176300048828,
+  "mask_active_voxels": 124518400
+}

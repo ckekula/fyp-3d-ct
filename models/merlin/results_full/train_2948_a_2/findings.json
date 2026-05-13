@@ -1,0 +1,29 @@
+{
+  "name": "train_2948_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific parenchymal nodule measuring 3 mm in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Minimal contour irregularities in the pleura of the superior segment of the left lower lobe, consistent with scarring",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 788,
+    "1": 7212
+  },
+  "embedding_norm": 17.58755874633789,
+  "mask_active_voxels": 133431296
+}

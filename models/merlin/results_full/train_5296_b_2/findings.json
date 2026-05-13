@@ -1,0 +1,29 @@
+{
+  "name": "train_5296_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific subpleural nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest nodule in the left lower lobe measuring up to 5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 452,
+    "1": 685
+  },
+  "embedding_norm": 17.455738067626953,
+  "mask_active_voxels": 126353408
+}

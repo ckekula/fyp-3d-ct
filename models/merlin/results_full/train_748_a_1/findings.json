@@ -1,0 +1,29 @@
+{
+  "name": "train_748_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    312
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lungs with patchy ground glass opacities",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Bilateral lungs with areas of consolidation",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 34766,
+    "1": 366795
+  },
+  "embedding_norm": 17.168704986572266,
+  "mask_active_voxels": 81788928
+}

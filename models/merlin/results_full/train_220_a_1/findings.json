@@ -1,0 +1,41 @@
+{
+  "name": "train_220_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    332
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticular densities in bilateral lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral subpleural band pattern in bilateral lung parenchyma",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Partial ground glass opacities in bilateral lung parenchyma",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Adjacent bronchial dilatation in bilateral lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2a",
+    "2": "2c",
+    "3": "1b"
+  },
+  "pixels": {
+    "0": 52189,
+    "1": 203772,
+    "2": 148159,
+    "3": 55815
+  },
+  "embedding_norm": 17.35529327392578,
+  "mask_active_voxels": 87031808
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_1291_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Parenchymal fibrosis in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Paracicatricial bronchiectatic changes in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "A few subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b",
+    "2": "1c",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 19940,
+    "1": 51770,
+    "2": 16251,
+    "3": 130
+  },
+  "embedding_norm": 16.78244972229004,
+  "mask_active_voxels": 55836672
+}

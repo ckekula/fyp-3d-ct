@@ -1,0 +1,23 @@
+{
+  "name": "valid_911_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    465
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral centriacinar nodular diffuse light ground glass opacities within the lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 5411
+  },
+  "embedding_norm": 17.436874389648438,
+  "mask_active_voxels": 121896960
+}

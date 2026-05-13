@@ -1,0 +1,41 @@
+{
+  "name": "train_11408_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    255
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular-like ground-glass opacities in the lower lobes and basal regions of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Band-like fibrotic density increases in the left lung's inferior lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Band-like fibrotic density increases in the left lung's lower lobe laterobasal segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Bilateral pleural thickening",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a",
+    "3": "2e"
+  },
+  "pixels": {
+    "0": 7404,
+    "1": 3760,
+    "2": 6527,
+    "3": 555
+  },
+  "embedding_norm": 17.12638282775879,
+  "mask_active_voxels": 66846720
+}

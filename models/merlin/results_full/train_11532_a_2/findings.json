@@ -1,0 +1,23 @@
+{
+  "name": "train_11532_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    285
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2.5 mm nonspecific parenchymal nodule in the anterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 62
+  },
+  "embedding_norm": 17.229938507080078,
+  "mask_active_voxels": 74711040
+}

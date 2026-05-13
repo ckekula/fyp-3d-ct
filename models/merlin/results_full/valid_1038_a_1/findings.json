@@ -1,0 +1,47 @@
+{
+  "name": "valid_1038_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    220
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Irregularly contoured density with punctate calcification, approximately 7x4 mm, at the apex of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Smoothly contoured nodule, 4.5 mm, at the apex of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "6 mm low-density nodule in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "3.5 mm nodule in the apicoposterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 80057,
+    "1": 742,
+    "2": 228,
+    "3": 942,
+    "4": 242
+  },
+  "embedding_norm": 17.010589599609375,
+  "mask_active_voxels": 57671680
+}

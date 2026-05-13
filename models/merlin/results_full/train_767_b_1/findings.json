@@ -1,0 +1,23 @@
+{
+  "name": "train_767_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small focal ground-glass opacities in the posterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 7737
+  },
+  "embedding_norm": 17.018505096435547,
+  "mask_active_voxels": 117964800
+}

@@ -1,0 +1,23 @@
+{
+  "name": "valid_290_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    405
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal areas of nodular ground-glass opacity in bilateral lower lobe posterobasal segments and the lingular segment of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 26919
+  },
+  "embedding_norm": 17.36023712158203,
+  "mask_active_voxels": 106168320
+}

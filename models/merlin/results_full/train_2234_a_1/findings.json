@@ -1,0 +1,41 @@
+{
+  "name": "train_2234_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    262
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small airway nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Centroacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Focal ground-glass opacity in the medial segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Subsegmental atelectasis in the inferior lingular segment of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "2c",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 2040,
+    "1": 628,
+    "2": 43993,
+    "3": 10525
+  },
+  "embedding_norm": 17.001127243041992,
+  "mask_active_voxels": 68681728
+}

@@ -1,0 +1,65 @@
+{
+  "name": "train_6671_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    508
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Solid nodule measuring 12.5x11 mm in the anterior segment of the right upper lobe extending to the pleura and surrounding parenchyma",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Mild traction bronchiectasis accompanying solid nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Thick-walled central nodule with cavitation measuring approximately 17x18 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Multiple parenchymal and subpleural nodules in the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Largest parenchymal and subpleural nodule measuring 9.1x11 mm in the paramediastinal area of the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Newly emerged focal ground-glass opacity in the anterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "6": {
+      "text": "Linear fibroatelectasis changes in the basal segments of both lower lobes",
+      "category": "Atelectasis"
+    },
+    "7": {
+      "text": "Central tubular bronchiectasis in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1b",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2c",
+    "6": "2a",
+    "7": "1b"
+  },
+  "pixels": {
+    "0": 5139,
+    "1": 1358,
+    "2": 422,
+    "3": 2640,
+    "4": 3111,
+    "5": 535,
+    "6": 6662,
+    "7": 4627
+  },
+  "embedding_norm": 17.59185791015625,
+  "mask_active_voxels": 133169152
+}

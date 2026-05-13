@@ -1,0 +1,23 @@
+{
+  "name": "train_10547_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    498
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules in both lungs, largest measuring approximately 3 mm in diameter in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 127
+  },
+  "embedding_norm": 17.474225997924805,
+  "mask_active_voxels": 130547712
+}

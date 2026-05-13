@@ -1,0 +1,29 @@
+{
+  "name": "train_873_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    243
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Area of increased density with air bronchograms in the left upper lobe's inferior lingular segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Smooth interlobular septal thickening in the right lung's middle and lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 56137,
+    "1": 157189
+  },
+  "embedding_norm": 16.88982582092285,
+  "mask_active_voxels": 63700992
+}

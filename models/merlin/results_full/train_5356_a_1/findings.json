@@ -1,0 +1,35 @@
+{
+  "name": "train_5356_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1716,
+    "1": 12299,
+    "2": 329
+  },
+  "embedding_norm": 16.881990432739258,
+  "mask_active_voxels": 60555264
+}

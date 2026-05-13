@@ -1,0 +1,23 @@
+{
+  "name": "train_1427_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scattered nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 987
+  },
+  "embedding_norm": 17.542997360229492,
+  "mask_active_voxels": 111673344
+}

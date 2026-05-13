@@ -1,0 +1,41 @@
+{
+  "name": "train_8053_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    256
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural ground glass opacities in the medial and lateral segments of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidation areas in the medial and lateral segments of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Patchy, peripheral-subpleural ground glass opacities in the superior and lateral basal segments of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Consolidation areas in the superior and lateral basal segments of the left lower lobe",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2c",
+    "3": "2b"
+  },
+  "pixels": {
+    "0": 2689,
+    "1": 1717,
+    "2": 3956,
+    "3": 347
+  },
+  "embedding_norm": 17.126062393188477,
+  "mask_active_voxels": 67108864
+}

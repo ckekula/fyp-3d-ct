@@ -1,0 +1,41 @@
+{
+  "name": "train_2410_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    242
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Newly developed minimal pleural effusion measuring approximately 15 mm on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Newly developed minimal pleural effusion measuring approximately 13 mm on the left",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Newly developed areas of increased ground glass density in the right upper lobe (anterior and posterior segments)",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Newly developed areas of increased ground glass density in the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2e",
+    "2": "2c",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 76905,
+    "1": 24048,
+    "2": 52693,
+    "3": 95275
+  },
+  "embedding_norm": 16.906639099121094,
+  "mask_active_voxels": 63438848
+}

@@ -1,0 +1,59 @@
+{
+  "name": "train_1471_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    277
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Scarring in the left upper lobe apicoposterior segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in the superior and basal segments of the left lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Tree-in-bud appearances in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Focal consolidations in the basal segments of both lower lobes, more prominent on the left",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Minimal ground glass opacities in the upper lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Nodular densities smaller than 5 mm in the right middle lobe",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Nodular densities smaller than 5 mm in the laterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1e",
+    "3": "2b",
+    "4": "2c",
+    "5": "2d",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 17905,
+    "1": 706564,
+    "2": 941463,
+    "3": 68093,
+    "4": 4363,
+    "5": 513,
+    "6": 612
+  },
+  "embedding_norm": 17.05830955505371,
+  "mask_active_voxels": 72613888
+}

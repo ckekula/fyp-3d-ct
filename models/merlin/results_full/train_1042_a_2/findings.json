@@ -1,0 +1,35 @@
+{
+  "name": "train_1042_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    404
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular consolidations in the anterior segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular consolidations in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Differential attenuation in lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 25824,
+    "1": 15337,
+    "2": 3195112
+  },
+  "embedding_norm": 17.327653884887695,
+  "mask_active_voxels": 105906176
+}

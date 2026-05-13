@@ -1,0 +1,29 @@
+{
+  "name": "valid_132_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    547
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibrotic changes at the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Nonspecific nodules in both lungs, largest measuring approximately 6 mm in diameter in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 11440,
+    "1": 987
+  },
+  "embedding_norm": 17.510234832763672,
+  "mask_active_voxels": 143392768
+}

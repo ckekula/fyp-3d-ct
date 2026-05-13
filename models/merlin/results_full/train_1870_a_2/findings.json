@@ -1,0 +1,23 @@
+{
+  "name": "train_1870_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    424
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter ground-glass opacity in the middle lobe of the right lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 12940
+  },
+  "embedding_norm": 17.395023345947266,
+  "mask_active_voxels": 111149056
+}

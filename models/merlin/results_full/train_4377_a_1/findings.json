@@ -1,0 +1,29 @@
+{
+  "name": "train_4377_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular pneumonic infiltration areas in the form of ground glass densities in both lungs towards the bases",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Septal thickenings in both lungs towards the bases",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 341637,
+    "1": 43501
+  },
+  "embedding_norm": 17.416906356811523,
+  "mask_active_voxels": 149815296
+}

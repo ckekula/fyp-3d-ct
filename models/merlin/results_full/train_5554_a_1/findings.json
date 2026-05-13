@@ -1,0 +1,29 @@
+{
+  "name": "train_5554_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    231
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulonodular density increases in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific parenchymal nodule in the peripheral subpleural area of the medial segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6466,
+    "1": 183
+  },
+  "embedding_norm": 16.881990432739258,
+  "mask_active_voxels": 60555264
+}

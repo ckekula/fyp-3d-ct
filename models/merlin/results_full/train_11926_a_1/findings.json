@@ -1,0 +1,23 @@
+{
+  "name": "train_11926_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Faint, nonspecific, mild ground-glass opacities at the lower lobe level in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 21325
+  },
+  "embedding_norm": 16.921602249145508,
+  "mask_active_voxels": 54001664
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_6515_a_5.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectasis adjacent to the pleural effusion in the basal segment of the left lower lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Acinar nodules in the anterior segment of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Acinar nodules in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Acinar nodules in the basal segments of both lower lobes",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 108973,
+    "1": 495,
+    "2": 794,
+    "3": 551
+  },
+  "embedding_norm": 17.587581634521484,
+  "mask_active_voxels": 133431296
+}

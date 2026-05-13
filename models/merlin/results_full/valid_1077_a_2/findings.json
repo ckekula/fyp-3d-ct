@@ -1,0 +1,23 @@
+{
+  "name": "valid_1077_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    444
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter subpleural nodule in the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 851
+  },
+  "embedding_norm": 17.526704788208008,
+  "mask_active_voxels": 116391936
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_11995_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    462
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground glass opacities surrounding the consolidation area",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Increase in pleural thickness, including calcification, adjacent to the consolidation area",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2e"
+  },
+  "pixels": {
+    "0": 13296,
+    "1": 66680
+  },
+  "embedding_norm": 17.538984298706055,
+  "mask_active_voxels": 121110528
+}

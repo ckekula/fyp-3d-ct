@@ -1,0 +1,41 @@
+{
+  "name": "train_5699_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    407
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities predominantly peripherally located in the upper lobes on the left",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Ground-glass opacities more prominent in the lower lobes on the right",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Nodules in the posterior upper lobe of the left lung with the largest measuring 4 mm",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nodules at the level of the left lung lingular segment situated in the major fissures",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 112928,
+    "1": 207791,
+    "2": 229,
+    "3": 49
+  },
+  "embedding_norm": 17.371273040771484,
+  "mask_active_voxels": 106692608
+}

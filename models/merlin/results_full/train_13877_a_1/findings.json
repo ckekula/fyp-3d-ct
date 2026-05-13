@@ -1,0 +1,23 @@
+{
+  "name": "train_13877_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    203
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal ground glass opacity in a focal area in the lingular segment of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 350
+  },
+  "embedding_norm": 16.93307113647461,
+  "mask_active_voxels": 53215232
+}

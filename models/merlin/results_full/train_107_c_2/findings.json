@@ -1,0 +1,41 @@
+{
+  "name": "train_107_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    181
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Large consolidation in the lower lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Surrounding ground glass opacities in the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Scattered focal consolidation areas in both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground glass opacities surrounding scattered focal consolidation areas",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 776305,
+    "1": 296435,
+    "2": 35093,
+    "3": 169418
+  },
+  "embedding_norm": 16.57955551147461,
+  "mask_active_voxels": 47448064
+}

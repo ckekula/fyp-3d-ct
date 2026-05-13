@@ -1,0 +1,29 @@
+{
+  "name": "valid_1249_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    220
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular nodular consolidation areas within the anterior segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Bronchial wall thickening in the anterior segment of the right lung upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1a"
+  },
+  "pixels": {
+    "0": 46541,
+    "1": 57879
+  },
+  "embedding_norm": 17.0101318359375,
+  "mask_active_voxels": 57671680
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_10841_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Numerous subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subpleural nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1e",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 319,
+    "1": 644,
+    "2": 33172
+  },
+  "embedding_norm": 16.78242301940918,
+  "mask_active_voxels": 55836672
+}

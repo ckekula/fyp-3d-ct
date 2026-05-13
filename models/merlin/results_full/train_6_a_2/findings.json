@@ -1,0 +1,29 @@
+{
+  "name": "train_6_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse interstitial thickening throughout all lung segments",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass opacities throughout all lung segments",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 863446,
+    "1": 863446
+  },
+  "embedding_norm": 16.793598175048828,
+  "mask_active_voxels": 56098816
+}

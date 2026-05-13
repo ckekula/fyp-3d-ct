@@ -1,0 +1,23 @@
+{
+  "name": "train_926_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    211
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral subcentimeter non-specific nodules in the lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 454
+  },
+  "embedding_norm": 16.727699279785156,
+  "mask_active_voxels": 55312384
+}

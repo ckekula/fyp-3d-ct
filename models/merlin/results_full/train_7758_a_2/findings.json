@@ -1,0 +1,23 @@
+{
+  "name": "train_7758_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    499
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Small 4 mm bulla in the lower lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c"
+  },
+  "pixels": {
+    "0": 347
+  },
+  "embedding_norm": 17.464839935302734,
+  "mask_active_voxels": 130809856
+}

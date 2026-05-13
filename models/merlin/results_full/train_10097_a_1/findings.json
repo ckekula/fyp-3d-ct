@@ -1,0 +1,23 @@
+{
+  "name": "train_10097_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    184
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild subpleural ground glass densities in both lungs, particularly in the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 8708
+  },
+  "embedding_norm": 16.600072860717773,
+  "mask_active_voxels": 48234496
+}

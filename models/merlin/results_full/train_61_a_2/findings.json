@@ -1,0 +1,29 @@
+{
+  "name": "train_61_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    494
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral ground glass opacities in the upper lobes, both peripherally and centrally located",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Uniform interlobular septal thickening associated with ground glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 398971,
+    "1": 398971
+  },
+  "embedding_norm": 17.57338523864746,
+  "mask_active_voxels": 129499136
+}

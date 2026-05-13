@@ -1,0 +1,29 @@
+{
+  "name": "valid_1015_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    447
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the lower lobes of both lungs with peripheral subpleural coalescence",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Well-demarcated 6 mm parenchymal nodule in the laterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 600809,
+    "1": 1803
+  },
+  "embedding_norm": 17.51841926574707,
+  "mask_active_voxels": 117178368
+}

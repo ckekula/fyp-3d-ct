@@ -1,0 +1,59 @@
+{
+  "name": "train_1496_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    326
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic density differences in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Calcific nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Increases in peribronchial reticulonodular density in both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Slight decrease in size of existing nodules in posterior upper lobe of right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Slight decrease in size of existing nodules in posterior lower lobe of left lung",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Unification and increase in size of irregularly circumscribed reticulonodular densities in superior lingular segment of left lung",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Minimal decrease in existing densities in some areas",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "1f",
+    "2": "1d",
+    "3": "2d",
+    "4": "2d",
+    "5": "2d",
+    "6": "2d"
+  },
+  "pixels": {
+    "0": 389191,
+    "1": 621,
+    "2": 20711,
+    "3": 630,
+    "4": 509,
+    "5": 17397,
+    "6": 20905
+  },
+  "embedding_norm": 17.19788932800293,
+  "mask_active_voxels": 85458944
+}

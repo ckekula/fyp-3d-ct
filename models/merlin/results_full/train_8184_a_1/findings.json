@@ -1,0 +1,29 @@
+{
+  "name": "train_8184_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    312
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thick pleuroparenchymal densities in the lower lobe segments of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Thin-walled air cyst measuring 1.2 cm in diameter in the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 49082,
+    "1": 1860
+  },
+  "embedding_norm": 17.168682098388672,
+  "mask_active_voxels": 81788928
+}

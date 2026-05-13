@@ -1,0 +1,23 @@
+{
+  "name": "valid_1213_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    320
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodule in the anterior segment of the right upper lobe, measuring 5x5.5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 705
+  },
+  "embedding_norm": 17.308732986450195,
+  "mask_active_voxels": 83886080
+}

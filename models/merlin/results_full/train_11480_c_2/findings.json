@@ -1,0 +1,35 @@
+{
+  "name": "train_11480_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    146
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Right lung completely atelectatic",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural effusion on the right",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bronchi on the right obliterated",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2e",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 1994572,
+    "1": 1994572,
+    "2": 1994572
+  },
+  "embedding_norm": 16.24881935119629,
+  "mask_active_voxels": 1994572
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_2921_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs with a tendency to coalesce",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Occasional minimal septal thickenings",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 111601,
+    "1": 12688
+  },
+  "embedding_norm": 17.431745529174805,
+  "mask_active_voxels": 119013376
+}

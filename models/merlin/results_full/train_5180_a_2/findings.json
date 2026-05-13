@@ -1,0 +1,53 @@
+{
+  "name": "train_5180_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    457
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural and parenchymal scarring in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter bullae in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Dependent density increases in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subsegmental atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Nonspecific nodules measuring 4 mm and 2.2 mm in the apex of the right lung",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Nonspecific nodules smaller than 5 mm in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1c",
+    "2": "2b",
+    "3": "2b",
+    "4": "2d",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 11858,
+    "1": 1255,
+    "2": 37016,
+    "3": 2499,
+    "4": 151,
+    "5": 185
+  },
+  "embedding_norm": 17.57837677001953,
+  "mask_active_voxels": 119799808
+}

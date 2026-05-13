@@ -1,0 +1,29 @@
+{
+  "name": "valid_1276_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    418
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass opacities in the basal segments of the lower lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Atelectatic changes in the basal segments of the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 743231,
+    "1": 51264
+  },
+  "embedding_norm": 17.369243621826172,
+  "mask_active_voxels": 109576192
+}

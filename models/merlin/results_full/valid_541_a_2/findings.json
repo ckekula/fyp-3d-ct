@@ -1,0 +1,47 @@
+{
+  "name": "valid_541_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    252
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal pleural effusion up to 8 mm in depth on the right side",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse mild bronchial ectasia within both lungs, more pronounced centrally",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Bilateral apical lung scarring",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1b",
+    "2": "2a",
+    "3": "2a",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 24298,
+    "1": 85641,
+    "2": 1672,
+    "3": 7279,
+    "4": 638
+  },
+  "embedding_norm": 17.137876510620117,
+  "mask_active_voxels": 66060288
+}

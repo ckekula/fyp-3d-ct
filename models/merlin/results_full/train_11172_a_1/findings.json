@@ -1,0 +1,23 @@
+{
+  "name": "train_11172_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter non-specific nodule in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 96
+  },
+  "embedding_norm": 17.00044822692871,
+  "mask_active_voxels": 58195968
+}

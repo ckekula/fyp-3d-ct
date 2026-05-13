@@ -1,0 +1,23 @@
+{
+  "name": "train_11917_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    298
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific 3 mm nodular lesion in the posterobasal segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 124
+  },
+  "embedding_norm": 17.331527709960938,
+  "mask_active_voxels": 78118912
+}

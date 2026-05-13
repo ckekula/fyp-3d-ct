@@ -1,0 +1,29 @@
+{
+  "name": "train_7014_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    444
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of scarring in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "A few subcentimeter nonspecific nodules in both lung parenchyma",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 3196,
+    "1": 267
+  },
+  "embedding_norm": 17.526132583618164,
+  "mask_active_voxels": 116391936
+}

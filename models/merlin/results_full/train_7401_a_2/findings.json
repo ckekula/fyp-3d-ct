@@ -1,0 +1,23 @@
+{
+  "name": "train_7401_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    174
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse nodular ground-glass opacities located centrally and peripherally, more prominently in the lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 14063
+  },
+  "embedding_norm": 16.724498748779297,
+  "mask_active_voxels": 45613056
+}

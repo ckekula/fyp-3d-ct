@@ -1,0 +1,29 @@
+{
+  "name": "valid_222_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear fibrotic changes in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal passive atelectatic changes in the paracardiac region of the medial segment of the right middle lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 5313,
+    "1": 6531
+  },
+  "embedding_norm": 17.455917358398438,
+  "mask_active_voxels": 126091264
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_10291_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy, peripheral-subpleural ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 104263,
+    "1": 55076
+  },
+  "embedding_norm": 17.06659698486328,
+  "mask_active_voxels": 62914560
+}

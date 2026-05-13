@@ -1,0 +1,53 @@
+{
+  "name": "train_7858_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    244
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidative densities extending centrally adjacent to the mass",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Mass measuring 5.7x2.8 cm, increased from 4.5x1.7 cm in the previous examination",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Mass extending slightly into the intercostal space, particularly in the inferior part",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Emphysematous changes in both lung parenchyma",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Scarring in both lung parenchyma",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Consolidative soft tissue densities with irregular borders and associated bronchiectasis extending centrally near the mass",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "2d",
+    "3": "1c",
+    "4": "2a",
+    "5": "2b"
+  },
+  "pixels": {
+    "0": 136278,
+    "1": 56691,
+    "2": 56691,
+    "3": 1104356,
+    "4": 44378,
+    "5": 136278
+  },
+  "embedding_norm": 16.888643264770508,
+  "mask_active_voxels": 63963136
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_10741_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules in both lungs, measuring 7x3 mm in the posterior segment fissure of the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific nodules in both lungs, measuring 8x3.5 mm in the major fissure of the right middle lobe lateral segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 636,
+    "1": 845
+  },
+  "embedding_norm": 17.587533950805664,
+  "mask_active_voxels": 133431296
+}

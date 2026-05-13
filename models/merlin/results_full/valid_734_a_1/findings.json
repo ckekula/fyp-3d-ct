@@ -1,0 +1,23 @@
+{
+  "name": "valid_734_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    275
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral patchy ground glass opacities in the lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 413152
+  },
+  "embedding_norm": 17.016273498535156,
+  "mask_active_voxels": 72089600
+}

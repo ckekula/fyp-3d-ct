@@ -1,0 +1,41 @@
+{
+  "name": "train_10875_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    109
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atypical pneumonic infiltration areas in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Consolidation in both lungs",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Occasional septal thickening in the basal segments located in the subpleural region",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2b",
+    "3": "1d"
+  },
+  "pixels": {
+    "0": 27098,
+    "1": 50433,
+    "2": 27098,
+    "3": 7909
+  },
+  "embedding_norm": 16.010047912597656,
+  "mask_active_voxels": 28573696
+}

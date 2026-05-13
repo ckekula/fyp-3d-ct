@@ -1,0 +1,47 @@
+{
+  "name": "train_10083_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural nodule measuring 6 mm in the subpleural area of the upper lobe posterior segment of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subpleural nodule measuring 6 mm in the inferior part of the upper lobe anterior segment adjacent to the fissure of the right lung",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Subpleural nodule measuring 6 mm in the subpleural area of the lower lobe superior segment of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Subpleural nodule measuring 3.1 mm in the lower lobe superior segment of the left lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Subpleural nodule measuring 3.1 mm in the lower lobe laterobasal segment of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 169,
+    "1": 343,
+    "2": 336,
+    "3": 66,
+    "4": 150
+  },
+  "embedding_norm": 17.54330825805664,
+  "mask_active_voxels": 111673344
+}

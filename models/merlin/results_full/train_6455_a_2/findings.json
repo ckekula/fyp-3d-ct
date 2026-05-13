@@ -1,0 +1,35 @@
+{
+  "name": "train_6455_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic bands in the pleura and parenchyma of both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural thickening and fibrotic bands with coarse calcification in the right lower lobe, measuring approximately 1.8x1.6 cm",
+      "category": "Others"
+    },
+    "2": {
+      "text": "4 mm nodule in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2e",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 1368,
+    "1": 48180,
+    "2": 237
+  },
+  "embedding_norm": 17.404855728149414,
+  "mask_active_voxels": 118226944
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_2977_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    473
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread subpleural ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Consolidations in both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Focal bronchial enlargement within areas of consolidation",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "1a"
+  },
+  "pixels": {
+    "0": 476516,
+    "1": 438452,
+    "2": 5088
+  },
+  "embedding_norm": 17.59355926513672,
+  "mask_active_voxels": 123994112
+}

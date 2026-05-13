@@ -1,0 +1,29 @@
+{
+  "name": "train_5730_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    329
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodules in both lungs, the largest measuring approximately 10 mm in diameter in the lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground-glass opacities around some of the nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 6027,
+    "1": 1382
+  },
+  "embedding_norm": 17.399335861206055,
+  "mask_active_voxels": 86245376
+}

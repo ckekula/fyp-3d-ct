@@ -1,0 +1,47 @@
+{
+  "name": "train_6657_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes with increased aeration in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Extensive areas of paraseptal emphysema",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Fibrotic density increases in the upper lobe apical segments",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Fibrotic linear density increase in the anterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Tracheal megaly",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1c",
+    "2": "2a",
+    "3": "2a",
+    "4": "1f"
+  },
+  "pixels": {
+    "0": 18989,
+    "1": 51871,
+    "2": 17135,
+    "3": 28488,
+    "4": 37724
+  },
+  "embedding_norm": 16.708229064941406,
+  "mask_active_voxels": 52428800
+}

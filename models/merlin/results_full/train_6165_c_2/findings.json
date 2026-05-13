@@ -1,0 +1,59 @@
+{
+  "name": "train_6165_c_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    212
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear density increases in the lower lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear consolidations in the lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Newly developed subpleural nodular ground glass opacities in the anterior segment of the right upper lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Newly developed subpleural nodular ground glass opacities in the lateral segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Several nonspecific nodules up to 5 mm in diameter in both lungs, largest in the left upper lobe",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Increased pleural effusion measuring 32 mm in diameter on the left",
+      "category": "Others"
+    },
+    "6": {
+      "text": "Slightly increased pleural effusion measuring 11 mm in diameter on the right",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b",
+    "2": "2c",
+    "3": "2c",
+    "4": "2d",
+    "5": "2e",
+    "6": "2e"
+  },
+  "pixels": {
+    "0": 19131,
+    "1": 19131,
+    "2": 1342,
+    "3": 1922,
+    "4": 274,
+    "5": 246121,
+    "6": 76212
+  },
+  "embedding_norm": 16.727577209472656,
+  "mask_active_voxels": 55574528
+}

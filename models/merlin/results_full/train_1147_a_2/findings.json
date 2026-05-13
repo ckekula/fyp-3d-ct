@@ -1,0 +1,23 @@
+{
+  "name": "train_1147_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    251
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Smooth interlobular and interstitial septal thickening",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 50737
+  },
+  "embedding_norm": 17.137588500976562,
+  "mask_active_voxels": 65798144
+}

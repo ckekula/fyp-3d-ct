@@ -1,0 +1,29 @@
+{
+  "name": "train_7609_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    214
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic parenchymal changes in the bilateral apices",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1041,
+    "1": 3157
+  },
+  "embedding_norm": 17.1046085357666,
+  "mask_active_voxels": 126222336
+}

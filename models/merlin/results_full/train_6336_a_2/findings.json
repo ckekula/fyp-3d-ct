@@ -1,0 +1,23 @@
+{
+  "name": "train_6336_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    302
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild bronchiectatic changes in the lateral lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1b"
+  },
+  "pixels": {
+    "0": 1995
+  },
+  "embedding_norm": 17.272624969482422,
+  "mask_active_voxels": 79167488
+}

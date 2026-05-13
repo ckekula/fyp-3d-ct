@@ -1,0 +1,23 @@
+{
+  "name": "train_8046_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    358
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Volume loss in the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 10316
+  },
+  "embedding_norm": 17.271005630493164,
+  "mask_active_voxels": 93847552
+}

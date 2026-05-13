@@ -1,0 +1,29 @@
+{
+  "name": "train_204_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    447
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lower lobe posterobasal segments fibrotic changes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse mild bronchial ectasia bilaterally",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b"
+  },
+  "pixels": {
+    "0": 8203,
+    "1": 39609
+  },
+  "embedding_norm": 17.520471572875977,
+  "mask_active_voxels": 117178368
+}

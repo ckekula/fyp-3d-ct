@@ -1,0 +1,35 @@
+{
+  "name": "train_1823_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    470
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular patchy ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "More prominent nodular patchy ground-glass opacities in the right lung",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "More intense nodular patchy ground-glass opacities in the subpleural areas",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 14553,
+    "1": 72174,
+    "2": 69093
+  },
+  "embedding_norm": 17.45153045654297,
+  "mask_active_voxels": 123207680
+}

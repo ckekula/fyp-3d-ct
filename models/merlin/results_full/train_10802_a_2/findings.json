@@ -1,0 +1,35 @@
+{
+  "name": "train_10802_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    294
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific pulmonary nodules in the posterobasal parts of the lower lobes of both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Emphysematous changes in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 516,
+    "1": 1858,
+    "2": 5183
+  },
+  "embedding_norm": 17.109493255615234,
+  "mask_active_voxels": 77070336
+}

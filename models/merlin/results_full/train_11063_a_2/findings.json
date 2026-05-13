@@ -1,0 +1,29 @@
+{
+  "name": "train_11063_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and centrally located ground glass opacities in the upper and lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Round-shaped ground glass opacities",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2656,
+    "1": 9589
+  },
+  "embedding_norm": 17.404293060302734,
+  "mask_active_voxels": 118226944
+}

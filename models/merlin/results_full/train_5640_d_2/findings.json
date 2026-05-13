@@ -1,0 +1,41 @@
+{
+  "name": "train_5640_d_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    254
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Drainage catheter placed within the consolidation and effusion area containing air densities in the right hemithorax",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Persistent bronchopleural fistula in the right hemithorax",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific ground glass opacities in the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Widespread areas of emphysema around the subcutaneous fat and muscle planes on both the anterior chest wall and right posterior thoracic wall",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2h",
+    "2": "2c",
+    "3": "1c"
+  },
+  "pixels": {
+    "0": 1783,
+    "1": 636240,
+    "2": 56665,
+    "3": 699032
+  },
+  "embedding_norm": 17.1295166015625,
+  "mask_active_voxels": 66584576
+}

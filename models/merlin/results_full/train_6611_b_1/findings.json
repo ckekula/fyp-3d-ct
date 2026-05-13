@@ -1,0 +1,23 @@
+{
+  "name": "train_6611_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    300
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter, some calcified, non-specific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 271
+  },
+  "embedding_norm": 17.280128479003906,
+  "mask_active_voxels": 78643200
+}

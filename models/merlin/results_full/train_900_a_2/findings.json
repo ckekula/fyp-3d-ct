@@ -1,0 +1,35 @@
+{
+  "name": "train_900_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lung parenchyma with a predominant interstitial pattern",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Peripheral distribution of interstitial pattern in bilateral lung parenchyma",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Honeycombing indicative of interstitial lung disease",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1d",
+    "2": "2f"
+  },
+  "pixels": {
+    "0": 201511,
+    "1": 201511,
+    "2": 106817
+  },
+  "embedding_norm": 17.20105743408203,
+  "mask_active_voxels": 88866816
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_11829_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter calcific nodule in the right lower lobe superiorly",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Subcentimeter calcific nodule in the left upper lobe superior peripherally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 1099,
+    "1": 184
+  },
+  "embedding_norm": 16.70826530456543,
+  "mask_active_voxels": 52428800
+}

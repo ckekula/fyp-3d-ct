@@ -1,0 +1,53 @@
+{
+  "name": "valid_389_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the upper, middle, and lower lobes of the right lung, most prominently in the lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Soft tissue density with minimal volume loss in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "3 cm consolidation in the peripheral subpleural area of the apicoposterior segment of the left upper lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Surrounding ground-glass opacity around the consolidation in the left upper lobe",
+      "category": "Lung opacity"
+    },
+    "4": {
+      "text": "Nodules up to 10 mm in size, predominantly in the lower lobe of the left lung, many with irregular borders",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Ground-glass opacities surrounding nodules in the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b",
+    "2": "2b",
+    "3": "2c",
+    "4": "2d",
+    "5": "2c"
+  },
+  "pixels": {
+    "0": 660480,
+    "1": 51359,
+    "2": 43599,
+    "3": 47626,
+    "4": 3645,
+    "5": 7794
+  },
+  "embedding_norm": 17.453296661376953,
+  "mask_active_voxels": 122945536
+}

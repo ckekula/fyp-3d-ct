@@ -1,0 +1,29 @@
+{
+  "name": "train_7331_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    279
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodular infiltrates in the right lower lobe basal segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Ground glass opacities surrounding centriacinar nodular infiltrates in the right lower lobe basal segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 1481,
+    "1": 3487
+  },
+  "embedding_norm": 17.072969436645508,
+  "mask_active_voxels": 73138176
+}

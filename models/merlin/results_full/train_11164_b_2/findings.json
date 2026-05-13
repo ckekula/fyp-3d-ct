@@ -1,0 +1,41 @@
+{
+  "name": "train_11164_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    493
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Three paravertebral and centrally located lesions in the posterior and lateral segment of the right lower lobe, measuring 18 mm and 10 mm",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Anterior segment lesion in the right upper lobe posteriorly in the paramediastinal area",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Apical fibrotic recessions and calcific foci in the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Changes secondary to TB in the upper lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2a",
+    "3": "2a"
+  },
+  "pixels": {
+    "0": 13223,
+    "1": 961,
+    "2": 2003,
+    "3": 18539
+  },
+  "embedding_norm": 17.572843551635742,
+  "mask_active_voxels": 129236992
+}

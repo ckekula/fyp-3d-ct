@@ -1,0 +1,23 @@
+{
+  "name": "train_2392_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    436
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal minimal ground glass density adjacent to the epicardiac fat pad at the paracardiac level in the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 19041
+  },
+  "embedding_norm": 17.381484985351562,
+  "mask_active_voxels": 114294784
+}

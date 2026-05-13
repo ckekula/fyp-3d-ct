@@ -1,0 +1,53 @@
+{
+  "name": "train_7535_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    270
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchial wall thickening centrally in the lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Band atelectasis in the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Band atelectasis in the left lingula",
+      "category": "Atelectasis"
+    },
+    "4": {
+      "text": "Suspicious ground-glass opacity in the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "5": {
+      "text": "Bilateral subcentimeter nonspecific nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "1a",
+    "2": "2a",
+    "3": "2a",
+    "4": "2c",
+    "5": "2d"
+  },
+  "pixels": {
+    "0": 988715,
+    "1": 72214,
+    "2": 23490,
+    "3": 17696,
+    "4": 543211,
+    "5": 806
+  },
+  "embedding_norm": 17.182456970214844,
+  "mask_active_voxels": 70778880
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_7805_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs, particularly in the peripheral areas, more prominently on the left",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 3094
+  },
+  "embedding_norm": 16.864887237548828,
+  "mask_active_voxels": 60293120
+}

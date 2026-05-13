@@ -1,0 +1,23 @@
+{
+  "name": "train_11534_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    164
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread band-like ground-glass opacities with a tendency to merge peripherally in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 79341
+  },
+  "embedding_norm": 16.3882999420166,
+  "mask_active_voxels": 42991616
+}

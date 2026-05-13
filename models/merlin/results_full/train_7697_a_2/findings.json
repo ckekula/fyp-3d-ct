@@ -1,0 +1,35 @@
+{
+  "name": "train_7697_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    454
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodule measuring 6 mm in the posterolateral aspect of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nodular radiopacities up to 5 mm in the upper lobe of the right lung at the junction of the apicoposterior segment",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Subpleural slightly patchy ground glass densities in the apicoposterior segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 403,
+    "1": 4341,
+    "2": 1623
+  },
+  "embedding_norm": 17.431116104125977,
+  "mask_active_voxels": 119013376
+}

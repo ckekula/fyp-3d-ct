@@ -1,0 +1,29 @@
+{
+  "name": "valid_851_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    447
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nodular pleural thickening in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Two stable calcified nodules in the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 1062,
+    "1": 897
+  },
+  "embedding_norm": 17.520198822021484,
+  "mask_active_voxels": 117178368
+}

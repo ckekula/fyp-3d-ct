@@ -1,0 +1,29 @@
+{
+  "name": "train_6834_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    450
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the inferior subsegment of the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "A few subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1f"
+  },
+  "pixels": {
+    "0": 274,
+    "1": 118
+  },
+  "embedding_norm": 17.414737701416016,
+  "mask_active_voxels": 117964800
+}

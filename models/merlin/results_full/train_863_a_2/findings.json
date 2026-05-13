@@ -1,0 +1,29 @@
+{
+  "name": "train_863_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    481
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar ground glass opacities in the lateral segment of the right middle lobe and the anterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Stable nodules in the posterobasal segment of the right lower lobe, superior segment of the right lower lobe, and superior segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 181898,
+    "1": 2434
+  },
+  "embedding_norm": 17.45658302307129,
+  "mask_active_voxels": 126091264
+}

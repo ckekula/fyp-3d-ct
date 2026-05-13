@@ -1,0 +1,41 @@
+{
+  "name": "train_1286_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    388
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectatic changes in the right middle lobe lateral segment",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subsegmental atelectatic changes in the left lung lingular segment inferiorly",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectatic changes in the left lower lobe superior segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Ectatic bronchial structures in the central part of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "1b"
+  },
+  "pixels": {
+    "0": 15088,
+    "1": 14866,
+    "2": 8182,
+    "3": 154507
+  },
+  "embedding_norm": 17.301410675048828,
+  "mask_active_voxels": 101711872
+}

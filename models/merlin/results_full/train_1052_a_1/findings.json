@@ -1,0 +1,23 @@
+{
+  "name": "train_1052_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    314
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lungs with indeterminate subcentimeter nodules",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 420
+  },
+  "embedding_norm": 17.366695404052734,
+  "mask_active_voxels": 82313216
+}

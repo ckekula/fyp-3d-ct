@@ -1,0 +1,35 @@
+{
+  "name": "train_2818_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central consolidations in the upper and lower lobes of both lungs",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Peripheral and central consolidations in the middle lobe of the right lung",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Minimal ground glass opacities in the upper and lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 392306,
+    "1": 98222,
+    "2": 16038
+  },
+  "embedding_norm": 17.587617874145508,
+  "mask_active_voxels": 133431296
+}

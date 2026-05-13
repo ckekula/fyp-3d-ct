@@ -1,0 +1,29 @@
+{
+  "name": "train_12228_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    455
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm nodular density adjacent to the minor fissure in the anterior middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fibrotic densities in the anterior lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 196,
+    "1": 6129
+  },
+  "embedding_norm": 17.440336227416992,
+  "mask_active_voxels": 119275520
+}

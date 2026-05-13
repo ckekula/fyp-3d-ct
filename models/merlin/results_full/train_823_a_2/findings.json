@@ -1,0 +1,23 @@
+{
+  "name": "train_823_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    522
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple indeterminate nodules within both lungs, largest measuring 3 mm in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1211
+  },
+  "embedding_norm": 17.6319637298584,
+  "mask_active_voxels": 136839168
+}

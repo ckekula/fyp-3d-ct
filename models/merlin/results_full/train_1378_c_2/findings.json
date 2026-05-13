@@ -1,0 +1,59 @@
+{
+  "name": "train_1378_c_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    248
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Stable atelectasis with traction bronchiectasis in the paramediastinal area of the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the inferior lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in both lower lobes",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Increase in size of nodular consolidation areas in the posterior segments of both lower lobes",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Increase in size of nodular consolidation areas in the superior segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Increase in size of nodular consolidation areas in the medial segment of the right middle lobe",
+      "category": "Consolidation"
+    },
+    "6": {
+      "text": "Increase in size of nodular consolidation areas in the medial segments of both lower lobes",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2b",
+    "6": "2b"
+  },
+  "pixels": {
+    "0": 32178,
+    "1": 13472,
+    "2": 19802,
+    "3": 120363,
+    "4": 5974,
+    "5": 2800,
+    "6": 125951
+  },
+  "embedding_norm": 16.95299530029297,
+  "mask_active_voxels": 65011712
+}

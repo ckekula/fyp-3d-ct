@@ -1,0 +1,53 @@
+{
+  "name": "valid_90_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidated areas in the lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Cylindrical bronchiectasis in the apicoposterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Cavitations in the apicoposterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Cylindrical bronchiectasis superiorly in the left lower lobe",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Cavitations superiorly in the left lower lobe",
+      "category": "Others"
+    },
+    "5": {
+      "text": "Cylindrical bronchiectasis in the lateral segment of the left lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "1b",
+    "2": "2b",
+    "3": "1b",
+    "4": "2b",
+    "5": "1b"
+  },
+  "pixels": {
+    "0": 18040,
+    "1": 2725,
+    "2": 2126,
+    "3": 8871,
+    "4": 1989,
+    "5": 29894
+  },
+  "embedding_norm": 16.832279205322266,
+  "mask_active_voxels": 59244544
+}

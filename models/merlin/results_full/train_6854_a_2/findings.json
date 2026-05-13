@@ -1,0 +1,47 @@
+{
+  "name": "train_6854_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    448
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodules forming a tree-in-bud appearance in the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Linear subsegmental atelectasis in the posterobasal and mediobasal segments of the right lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal bronchiectatic changes in the posterobasal and mediobasal segments of the right lower lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Centriacinar nodules forming a tree-in-bud appearance in the surrounding area",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Minimal ground-glass opacities in the surrounding area",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2a",
+    "2": "1b",
+    "3": "1e",
+    "4": "2c"
+  },
+  "pixels": {
+    "0": 9037,
+    "1": 27622,
+    "2": 1145,
+    "3": 12371,
+    "4": 5430
+  },
+  "embedding_norm": 17.52036476135254,
+  "mask_active_voxels": 117440512
+}

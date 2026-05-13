@@ -1,0 +1,29 @@
+{
+  "name": "train_571_b_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    198
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of parenchymal scarring",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Occasional atelectatic changes in both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 32745,
+    "1": 26143
+  },
+  "embedding_norm": 16.68849754333496,
+  "mask_active_voxels": 51904512
+}

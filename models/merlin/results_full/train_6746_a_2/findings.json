@@ -1,0 +1,29 @@
+{
+  "name": "train_6746_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    201
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Widespread patchy consolidation in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 23467,
+    "1": 35755
+  },
+  "embedding_norm": 17.006345748901367,
+  "mask_active_voxels": 52690944
+}

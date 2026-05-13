@@ -1,0 +1,29 @@
+{
+  "name": "train_11776_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    497
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "8 mm nodule in the medial segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "2 mm nodule in the anterobasal segment of the right lower lobe adjacent to the fissure",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 845,
+    "1": 577
+  },
+  "embedding_norm": 17.47402572631836,
+  "mask_active_voxels": 130285568
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_6630_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    229
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of consolidation with air bronchogram in the left lung upper lobe lingular segment",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Accompanying ground glass opacities in the left lung upper lobe lingular segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 55427,
+    "1": 105670
+  },
+  "embedding_norm": 17.169042587280273,
+  "mask_active_voxels": 135069696
+}

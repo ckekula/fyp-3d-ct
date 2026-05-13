@@ -1,0 +1,23 @@
+{
+  "name": "train_5740_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    255
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5 mm nodule in the subpleural area near the 5th vertebral body in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 255
+  },
+  "embedding_norm": 17.12660026550293,
+  "mask_active_voxels": 66846720
+}

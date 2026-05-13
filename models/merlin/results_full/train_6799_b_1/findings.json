@@ -1,0 +1,35 @@
+{
+  "name": "train_6799_b_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    278
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subpleural fine reticular densities in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Pleural effusion measuring 15 mm on the right in the bilateral hemithorax",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2d",
+    "2": "2e"
+  },
+  "pixels": {
+    "0": 21939,
+    "1": 715,
+    "2": 348116
+  },
+  "embedding_norm": 17.05924415588379,
+  "mask_active_voxels": 72876032
+}

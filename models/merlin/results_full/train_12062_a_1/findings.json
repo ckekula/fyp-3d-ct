@@ -1,0 +1,23 @@
+{
+  "name": "train_12062_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    210
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Degenerated ground-glass opacities in both lungs, particularly in the lower lobes, without distinct borders",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 1092053
+  },
+  "embedding_norm": 17.057662963867188,
+  "mask_active_voxels": 123863040
+}

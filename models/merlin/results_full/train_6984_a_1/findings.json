@@ -1,0 +1,23 @@
+{
+  "name": "train_6984_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nodule in the upper lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 107
+  },
+  "embedding_norm": 17.305099487304688,
+  "mask_active_voxels": 130940928
+}

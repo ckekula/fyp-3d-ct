@@ -1,0 +1,41 @@
+{
+  "name": "train_7047_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    534
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring changes in the apex of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Consolidation in the peripheral area of the right lower lobe superior segment with surrounding ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Nodules in the right lower lobe superior segment and the left upper lobe apicoposterior segment",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Ground glass opacities in the right lower lobe superior segment and the left upper lobe apicoposterior segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2b",
+    "2": "2d",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 1551,
+    "1": 1427,
+    "2": 1101,
+    "3": 1082
+  },
+  "embedding_norm": 17.51677131652832,
+  "mask_active_voxels": 139984896
+}

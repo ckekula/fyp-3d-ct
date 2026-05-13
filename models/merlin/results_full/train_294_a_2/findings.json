@@ -1,0 +1,41 @@
+{
+  "name": "train_294_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    266
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular nodular consolidations with ground glass opacities in the anterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Centrilobular nodular consolidations with ground glass opacities in the anterobasal segment of the left lower lobe",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Reticulonodular fibrosis at both lung apices",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Multiple subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "1d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 191405,
+    "1": 4127,
+    "2": 3246,
+    "3": 74
+  },
+  "embedding_norm": 17.247678756713867,
+  "mask_active_voxels": 69730304
+}

@@ -1,0 +1,29 @@
+{
+  "name": "train_6448_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    188
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 7511,
+    "1": 317
+  },
+  "embedding_norm": 16.842851638793945,
+  "mask_active_voxels": 49283072
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_2256_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    468
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Round ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Ground glass opacities accompanied by consolidations in both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 31693,
+    "1": 59756,
+    "2": 45828
+  },
+  "embedding_norm": 17.42522430419922,
+  "mask_active_voxels": 122683392
+}

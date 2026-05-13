@@ -1,0 +1,35 @@
+{
+  "name": "train_2268_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    209
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the lower lobe of the left lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Linear atelectasis at the level of the left lung lower lobe fissure",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the lower lobes of both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 4386,
+    "1": 9096,
+    "2": 10192
+  },
+  "embedding_norm": 16.747987747192383,
+  "mask_active_voxels": 54788096
+}

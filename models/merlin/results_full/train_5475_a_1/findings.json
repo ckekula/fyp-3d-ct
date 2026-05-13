@@ -1,0 +1,23 @@
+{
+  "name": "train_5475_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    204
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific ground-glass opacities in the peripheral subpleural area of the right lung lower lobe posterobasal segment",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 9936
+  },
+  "embedding_norm": 16.934452056884766,
+  "mask_active_voxels": 53477376
+}

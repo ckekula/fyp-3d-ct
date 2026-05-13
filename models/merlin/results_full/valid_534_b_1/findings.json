@@ -1,0 +1,29 @@
+{
+  "name": "valid_534_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    283
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lower lobes subcentimeter nodules",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the superior segments of bilateral lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 3708,
+    "1": 22320
+  },
+  "embedding_norm": 17.238069534301758,
+  "mask_active_voxels": 74186752
+}

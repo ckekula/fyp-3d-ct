@@ -1,0 +1,35 @@
+{
+  "name": "train_10903_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    288
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Thin fibrotic bands in the middle lobe on the right",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Thin fibrotic bands in the lingula on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 640,
+    "1": 13328,
+    "2": 5543
+  },
+  "embedding_norm": 17.22745132446289,
+  "mask_active_voxels": 75497472
+}

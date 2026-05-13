@@ -1,0 +1,35 @@
+{
+  "name": "train_10509_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    310
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal consolidation in the posterior subpleural areas of the superior segments of both lower lobes",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the posterior subpleural areas of the superior segments of both lower lobes",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Linear subsegmental atelectasis in the mediobasal sections of both lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 1891,
+    "1": 12968,
+    "2": 2345
+  },
+  "embedding_norm": 17.155977249145508,
+  "mask_active_voxels": 81264640
+}

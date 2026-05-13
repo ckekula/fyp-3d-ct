@@ -1,0 +1,41 @@
+{
+  "name": "train_5235_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    269
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peribronchial ground-glass pneumonic infiltrates in the lower lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the posterobasal segment of the lower lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Minimal parenchymal scarring with linear fibrotic densities in the right upper lobe",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 152183,
+    "1": 1332,
+    "2": 14398,
+    "3": 413
+  },
+  "embedding_norm": 17.18265151977539,
+  "mask_active_voxels": 70516736
+}

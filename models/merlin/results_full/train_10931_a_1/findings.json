@@ -1,0 +1,35 @@
+{
+  "name": "train_10931_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    238
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild scarring in the lingular segment of the left lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Scarring at the apical level in the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Occasional subpleural blebs at the apical level",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 107693,
+    "1": 11096,
+    "2": 7225
+  },
+  "embedding_norm": 17.356769561767578,
+  "mask_active_voxels": 140378112
+}

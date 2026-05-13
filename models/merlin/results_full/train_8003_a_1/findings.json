@@ -1,0 +1,53 @@
+{
+  "name": "train_8003_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    442
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Moderate pleural effusion in both hemithoraces",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Passive atelectasis in the adjacent lung parenchyma, more prominent in the left lower lobe basal segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Centrilobular nodules with a ground glass appearance in the periphery",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Bilateral effusion",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subsegmental atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "5": {
+      "text": "Several nonspecific calcified nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1e",
+    "3": "2e",
+    "4": "2b",
+    "5": "1f"
+  },
+  "pixels": {
+    "0": 866682,
+    "1": 2664,
+    "2": 438,
+    "3": 866682,
+    "4": 3975,
+    "5": 360
+  },
+  "embedding_norm": 17.560983657836914,
+  "mask_active_voxels": 115867648
+}

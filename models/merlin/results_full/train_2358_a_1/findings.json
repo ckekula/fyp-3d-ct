@@ -1,0 +1,29 @@
+{
+  "name": "train_2358_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear areas of increased density consistent with scarring in the medial segment of the right middle lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear areas of increased density consistent with scarring in the inferior lingular segment of the left upper lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 6909,
+    "1": 22092
+  },
+  "embedding_norm": 17.304580688476562,
+  "mask_active_voxels": 130940928
+}

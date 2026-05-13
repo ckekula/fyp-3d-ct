@@ -1,0 +1,29 @@
+{
+  "name": "train_758_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Linear atelectasis in the upper lobe of the right lung extending to the apical region",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Mild bronchiectasis with fibrotic changes in the upper lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b"
+  },
+  "pixels": {
+    "0": 59491,
+    "1": 250191
+  },
+  "embedding_norm": 17.452190399169922,
+  "mask_active_voxels": 122945536
+}

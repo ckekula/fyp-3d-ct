@@ -1,0 +1,41 @@
+{
+  "name": "train_1276_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    408
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Large right pneumothorax measuring 1.6 cm in thickness",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectatic changes in the lung parenchyma adjacent to pleural effusions",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific parenchymal nodules measuring up to 4 mm in diameter in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest nodule located in the left lung lingular segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2g",
+    "1": "2b",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 289452,
+    "1": 9975,
+    "2": 667,
+    "3": 840
+  },
+  "embedding_norm": 17.370553970336914,
+  "mask_active_voxels": 106954752
+}

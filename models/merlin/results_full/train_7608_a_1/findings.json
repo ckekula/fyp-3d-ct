@@ -1,0 +1,35 @@
+{
+  "name": "train_7608_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    210
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pneumonic consolidation area in the posterior segment of the right upper lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Nodular consolidation in the posterobasal segment of the right lower lobe with surrounding ground glass opacity",
+      "category": "Lung opacity"
+    },
+    "2": {
+      "text": "Areas of pneumonic infiltration in the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 19769,
+    "1": 4093,
+    "2": 24130
+  },
+  "embedding_norm": 16.747289657592773,
+  "mask_active_voxels": 55050240
+}

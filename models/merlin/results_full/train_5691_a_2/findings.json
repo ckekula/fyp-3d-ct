@@ -1,0 +1,53 @@
+{
+  "name": "train_5691_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Prominent bronchiectatic changes centrally in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral peribronchial thickening",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Peripheral subpleural pulmonary nodule measuring 6.7 mm with irregular borders in the superior segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Several subcentimeter nonspecific pulmonary nodules in the left lung",
+      "category": "Lung Nodule"
+    },
+    "5": {
+      "text": "Increased density consistent with scarring in the apical regions of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "1b",
+    "2": "1a",
+    "3": "2d",
+    "4": "2d",
+    "5": "2a"
+  },
+  "pixels": {
+    "0": 967363,
+    "1": 16470,
+    "2": 8270,
+    "3": 1612,
+    "4": 394,
+    "5": 15008
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

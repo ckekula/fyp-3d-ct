@@ -1,0 +1,29 @@
+{
+  "name": "train_2715_d_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Consolidation in the anteromediobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Linear atelectasis in the posterobasal segment of the right lower lobe",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 77821,
+    "1": 1265
+  },
+  "embedding_norm": 16.83249282836914,
+  "mask_active_voxels": 59244544
+}

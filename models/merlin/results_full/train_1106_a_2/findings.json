@@ -1,0 +1,23 @@
+{
+  "name": "train_1106_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    480
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few indeterminate subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1119
+  },
+  "embedding_norm": 17.555137634277344,
+  "mask_active_voxels": 125829120
+}

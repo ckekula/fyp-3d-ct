@@ -1,0 +1,23 @@
+{
+  "name": "train_10008_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    434
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy areas with air signs and vascular enlargement in the upper lobe of the left lung at the level of the superior lingula",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 37104
+  },
+  "embedding_norm": 17.39173126220703,
+  "mask_active_voxels": 113770496
+}

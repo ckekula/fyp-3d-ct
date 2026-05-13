@@ -1,0 +1,29 @@
+{
+  "name": "train_5380_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    426
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities in the central and peripheral regions of both lungs, particularly in the upper lobes",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subcentimeter centriacinar nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 3959,
+    "1": 479
+  },
+  "embedding_norm": 17.5434513092041,
+  "mask_active_voxels": 111673344
+}

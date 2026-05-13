@@ -1,0 +1,29 @@
+{
+  "name": "train_5703_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    321
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subtle ground glass opacities in the lateral segment of the right middle lobe",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Subtle ground glass opacities in the posterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 2697,
+    "1": 7497
+  },
+  "embedding_norm": 17.17493438720703,
+  "mask_active_voxels": 84148224
+}

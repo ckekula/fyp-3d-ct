@@ -1,0 +1,41 @@
+{
+  "name": "train_1124_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    490
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Marked centrilobular emphysema in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear fibrotic changes in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subsegmental atelectasis in the lingula of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Stable 3 mm subpleural nodule in the lingula of the left upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 357151,
+    "1": 7069,
+    "2": 9061,
+    "3": 267
+  },
+  "embedding_norm": 17.60820770263672,
+  "mask_active_voxels": 128450560
+}

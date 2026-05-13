@@ -1,0 +1,29 @@
+{
+  "name": "train_6890_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    260
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter ground-glass nodules in the middle lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Crazy paving patterns in the peripheral subpleural areas of the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 629,
+    "1": 51242
+  },
+  "embedding_norm": 16.95596694946289,
+  "mask_active_voxels": 68157440
+}

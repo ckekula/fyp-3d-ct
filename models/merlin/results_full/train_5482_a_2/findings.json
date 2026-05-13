@@ -1,0 +1,29 @@
+{
+  "name": "train_5482_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    496
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural-based nodule measuring 5.5x2.8 mm superposed on the fissure in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Pleural-based nodule measuring 2.5 mm in diameter in the superior segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 385,
+    "1": 168
+  },
+  "embedding_norm": 17.57102394104004,
+  "mask_active_voxels": 130023424
+}

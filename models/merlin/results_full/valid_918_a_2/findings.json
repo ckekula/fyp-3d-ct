@@ -1,0 +1,29 @@
+{
+  "name": "valid_918_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    469
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thin-walled air cyst with a lobulated contour in the superior segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "A few subcentimeter nonspecific nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 4466,
+    "1": 491
+  },
+  "embedding_norm": 17.451921463012695,
+  "mask_active_voxels": 122945536
+}

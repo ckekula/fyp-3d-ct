@@ -1,0 +1,23 @@
+{
+  "name": "train_246_b_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    308
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral lung parenchyma shows mosaic attenuation",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f"
+  },
+  "pixels": {
+    "0": 99255
+  },
+  "embedding_norm": 17.11620330810547,
+  "mask_active_voxels": 80740352
+}

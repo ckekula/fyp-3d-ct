@@ -1,0 +1,71 @@
+{
+  "name": "train_1261_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Thickening of the pleura adjacent to the effusion on the right",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Diffuse emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Consolidations in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Consolidations in the posterobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Recent consolidations in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "5": {
+      "text": "Recent consolidations in the posterobasal segment of the left lower lobe",
+      "category": "Consolidation"
+    },
+    "6": {
+      "text": "Atelectasis adjacent to the effusion in both lower lobes",
+      "category": "Atelectasis"
+    },
+    "7": {
+      "text": "Linear atelectasis in other parts of both lungs",
+      "category": "Atelectasis"
+    },
+    "8": {
+      "text": "Pleuroparenchymal scarring in other parts of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "1c",
+    "2": "2b",
+    "3": "2b",
+    "4": "2b",
+    "5": "2b",
+    "6": "2b",
+    "7": "2a",
+    "8": "2a"
+  },
+  "pixels": {
+    "0": 52363,
+    "1": 484203,
+    "2": 36847,
+    "3": 70251,
+    "4": 22931,
+    "5": 14588,
+    "6": 13870,
+    "7": 9469,
+    "8": 183563
+  },
+  "embedding_norm": 17.587373733520508,
+  "mask_active_voxels": 133431296
+}

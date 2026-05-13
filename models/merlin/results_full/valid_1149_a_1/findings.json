@@ -1,0 +1,35 @@
+{
+  "name": "valid_1149_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    228
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral upper lobe parenchymal changes with structural distortion",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Volume loss at the apices consistent with fibrosis",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 360969,
+    "1": 360969,
+    "2": 5125
+  },
+  "embedding_norm": 17.07880210876465,
+  "mask_active_voxels": 134479872
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_755_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleuroparenchymal fibrosis in the right middle lobe medially and the left lower lingular segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Atelectasis in the right middle lobe medially and the left lower lingular segment",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subcentimeter indeterminate nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2f",
+    "2": "2b",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 98217,
+    "1": 10893,
+    "2": 10893,
+    "3": 966
+  },
+  "embedding_norm": 16.972211837768555,
+  "mask_active_voxels": 67633152
+}

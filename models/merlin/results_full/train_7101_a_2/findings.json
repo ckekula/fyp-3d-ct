@@ -1,0 +1,29 @@
+{
+  "name": "train_7101_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atypical pneumonic infiltration areas in the form of bilateral diffuse asymmetric ground glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Patchy consolidation areas in both lungs",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 111176,
+    "1": 59111
+  },
+  "embedding_norm": 17.405275344848633,
+  "mask_active_voxels": 118226944
+}

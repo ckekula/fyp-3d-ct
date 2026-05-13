@@ -1,0 +1,23 @@
+{
+  "name": "valid_31_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    491
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple subcentimeter nodules within both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 210
+  },
+  "embedding_norm": 17.577255249023438,
+  "mask_active_voxels": 128712704
+}

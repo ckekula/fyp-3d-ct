@@ -1,0 +1,29 @@
+{
+  "name": "train_1521_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    216
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 7097,
+    "1": 16339
+  },
+  "embedding_norm": 16.80034065246582,
+  "mask_active_voxels": 56623104
+}

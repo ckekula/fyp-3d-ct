@@ -1,0 +1,47 @@
+{
+  "name": "train_6044_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    471
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy areas of consolidation in the superior segment of the right lower lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Subpleural areas of consolidation in the upper lobe",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Parenchymal infiltration areas mainly as ground-glass opacities around the upper lobe segment bronchi",
+      "category": "Lung opacity"
+    },
+    "3": {
+      "text": "Parenchymal infiltration areas mainly as consolidation around the upper lobe segment bronchi",
+      "category": "Consolidation"
+    },
+    "4": {
+      "text": "Mild bronchial dilatation",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c",
+    "3": "2b",
+    "4": "1a"
+  },
+  "pixels": {
+    "0": 4394,
+    "1": 18955,
+    "2": 42477,
+    "3": 4533,
+    "4": 38500
+  },
+  "embedding_norm": 17.460351943969727,
+  "mask_active_voxels": 123469824
+}

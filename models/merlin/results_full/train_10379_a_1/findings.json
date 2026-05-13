@@ -1,0 +1,23 @@
+{
+  "name": "train_10379_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulonodular fibrotic changes in the apices of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 1548
+  },
+  "embedding_norm": 16.70780372619629,
+  "mask_active_voxels": 52428800
+}

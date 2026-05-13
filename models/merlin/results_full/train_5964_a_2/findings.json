@@ -1,0 +1,23 @@
+{
+  "name": "train_5964_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    448
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodular densities less than 5 mm in diameter in the lung parenchyma",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 255
+  },
+  "embedding_norm": 17.519519805908203,
+  "mask_active_voxels": 117440512
+}

@@ -1,0 +1,23 @@
+{
+  "name": "train_5478_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    484
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "6 mm subpleural ground glass nodule in the posterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 373
+  },
+  "embedding_norm": 17.445985794067383,
+  "mask_active_voxels": 126877696
+}

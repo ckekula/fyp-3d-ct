@@ -1,0 +1,29 @@
+{
+  "name": "valid_782_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    228
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of ground glass opacity in the pleura and subpleural regions of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Nonspecific nodules in bilateral lungs, each less than 5 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1e"
+  },
+  "pixels": {
+    "0": 53463,
+    "1": 477
+  },
+  "embedding_norm": 16.81353187561035,
+  "mask_active_voxels": 59768832
+}

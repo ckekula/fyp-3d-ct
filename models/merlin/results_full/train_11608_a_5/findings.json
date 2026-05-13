@@ -1,0 +1,23 @@
+{
+  "name": "train_11608_a_5.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific parenchymal nodule superimposed on the minor fissure in the anterior middle lobe of the right lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 93
+  },
+  "embedding_norm": 17.40442657470703,
+  "mask_active_voxels": 118226944
+}

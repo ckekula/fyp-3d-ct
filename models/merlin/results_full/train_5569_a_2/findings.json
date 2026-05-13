@@ -1,0 +1,35 @@
+{
+  "name": "train_5569_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    509
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Reticulonodular fibrotic changes in the apices of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectatic changes in the apices of both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Subcentimeter nonspecific pulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2b",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 4699,
+    "1": 4699,
+    "2": 236
+  },
+  "embedding_norm": 17.587703704833984,
+  "mask_active_voxels": 133431296
+}

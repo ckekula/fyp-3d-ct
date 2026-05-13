@@ -1,0 +1,35 @@
+{
+  "name": "train_5449_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    350
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring changes in both lung apexes",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the right middle lobe medial segment",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the left upper lobe lingular segment",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 12771,
+    "1": 3082,
+    "2": 3976
+  },
+  "embedding_norm": 17.377601623535156,
+  "mask_active_voxels": 91750400
+}

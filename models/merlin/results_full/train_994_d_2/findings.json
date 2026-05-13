@@ -1,0 +1,23 @@
+{
+  "name": "train_994_d_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    503
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Stable nonspecific nodule in the superior segment of the right lower lobe, 4.4 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 488
+  },
+  "embedding_norm": 17.497159957885742,
+  "mask_active_voxels": 131858432
+}

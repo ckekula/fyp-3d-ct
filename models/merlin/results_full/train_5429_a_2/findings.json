@@ -1,0 +1,41 @@
+{
+  "name": "train_5429_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    265
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centrilobular emphysema more prominent in the upper lobes of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Areas of linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Several nodules in both lungs, some calcified, largest 3 mm in diameter in the medial segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Two fusiform-shaped nodules in both lungs, largest 4.5 mm in diameter, superposed on the right major fissure, possibly intrapulmonary lymph nodes",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 5185,
+    "1": 4654,
+    "2": 215,
+    "3": 65
+  },
+  "embedding_norm": 17.24803924560547,
+  "mask_active_voxels": 69468160
+}

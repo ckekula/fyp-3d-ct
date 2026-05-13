@@ -1,0 +1,29 @@
+{
+  "name": "train_5634_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    209
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, peripheral subpleural ground-glass opacities in the middle and lower lobes of both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Interlobular septal thickening in the middle and lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "1d"
+  },
+  "pixels": {
+    "0": 266841,
+    "1": 315307
+  },
+  "embedding_norm": 17.056039810180664,
+  "mask_active_voxels": 123273216
+}

@@ -1,0 +1,41 @@
+{
+  "name": "train_6887_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    506
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two nodules in the superior segment of the right lower lobe, largest measuring 3.5 mm",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Bronchiectatic changes in the pericardiac area in the upper lobe inferior lingular segment of the left lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bronchiectatic changes in the lower lobe anterior medial segment of the left lung",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Tree-in-bud-like nodular opacities in the posterior segment of the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1b",
+    "2": "1b",
+    "3": "1e"
+  },
+  "pixels": {
+    "0": 437,
+    "1": 8366,
+    "2": 9080,
+    "3": 11100
+  },
+  "embedding_norm": 17.622692108154297,
+  "mask_active_voxels": 132644864
+}

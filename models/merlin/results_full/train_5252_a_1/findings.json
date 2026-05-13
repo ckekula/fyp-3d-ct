@@ -1,0 +1,23 @@
+{
+  "name": "train_5252_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    364
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific nodules in the left lung with no change in size or appearance",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 202
+  },
+  "embedding_norm": 17.412912368774414,
+  "mask_active_voxels": 95420416
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_7244_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    339
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Irregularly circumscribed mass approximately 83x73 mm in the anterior segment of the upper lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Localized linear atelectasis in both lungs",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1f",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 78312,
+    "1": 660,
+    "2": 6765
+  },
+  "embedding_norm": 17.2012996673584,
+  "mask_active_voxels": 88866816
+}

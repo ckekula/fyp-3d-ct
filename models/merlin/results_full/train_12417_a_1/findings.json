@@ -1,0 +1,41 @@
+{
+  "name": "train_12417_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    343
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal scarring in both lung apices",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Several subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 1525,
+    "1": 1553,
+    "2": 1108,
+    "3": 201
+  },
+  "embedding_norm": 17.247549057006836,
+  "mask_active_voxels": 89915392
+}

@@ -1,0 +1,35 @@
+{
+  "name": "train_10307_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    467
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal fibroatelectatic changes in the bases of both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Several subcentimeter parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Calcified parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2d",
+    "2": "1e"
+  },
+  "pixels": {
+    "0": 41414,
+    "1": 330,
+    "2": 84
+  },
+  "embedding_norm": 17.425992965698242,
+  "mask_active_voxels": 122421248
+}

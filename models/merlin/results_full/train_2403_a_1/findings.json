@@ -1,0 +1,29 @@
+{
+  "name": "train_2403_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    247
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific parenchymal nodule measuring 6.3 mm in the right lower lobe laterobasal segment",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific parenchymal nodule measuring 2.5 mm in the right lingular segment",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 457,
+    "1": 208
+  },
+  "embedding_norm": 17.243860244750977,
+  "mask_active_voxels": 145686528
+}

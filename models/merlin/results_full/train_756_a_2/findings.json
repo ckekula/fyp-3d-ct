@@ -1,0 +1,29 @@
+{
+  "name": "train_756_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    471
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild fibrotic changes at the apical levels of the lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural nodule measuring 3 mm in diameter in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 6585,
+    "1": 285
+  },
+  "embedding_norm": 17.460128784179688,
+  "mask_active_voxels": 123469824
+}

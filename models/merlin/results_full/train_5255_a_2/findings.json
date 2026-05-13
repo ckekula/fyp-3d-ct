@@ -1,0 +1,35 @@
+{
+  "name": "train_5255_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    225
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Segmental tubular bronchiectasis in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal peribronchial thickening in both lungs",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Several subcentimeter nonspecific parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1a",
+    "2": "2d"
+  },
+  "pixels": {
+    "0": 10149,
+    "1": 4727,
+    "2": 120
+  },
+  "embedding_norm": 16.832469940185547,
+  "mask_active_voxels": 58982400
+}

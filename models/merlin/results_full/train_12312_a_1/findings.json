@@ -1,0 +1,29 @@
+{
+  "name": "train_12312_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    349
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse peribronchial thickening in the bronchial structures of both lungs, more prominent centrally",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Minimal emphysematous changes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 58233,
+    "1": 26807
+  },
+  "embedding_norm": 17.377914428710938,
+  "mask_active_voxels": 91488256
+}

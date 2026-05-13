@@ -1,0 +1,29 @@
+{
+  "name": "train_1349_a_2.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    405
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripherally located ground glass opacities in the lower lobe of the right lung",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Areas of increased density consistent with consolidation in the lower lobe of the right lung",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 300150,
+    "1": 300150
+  },
+  "embedding_norm": 17.360456466674805,
+  "mask_active_voxels": 106168320
+}

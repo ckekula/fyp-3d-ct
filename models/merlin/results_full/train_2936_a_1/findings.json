@@ -1,0 +1,41 @@
+{
+  "name": "train_2936_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    208
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Minimal emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Linear atelectasis in the medial segment of the right middle lobe",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Linear atelectasis in the lingular segment of the left upper lobe",
+      "category": "Atelectasis"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 3163099,
+    "1": 883,
+    "2": 1401,
+    "3": 676
+  },
+  "embedding_norm": 16.9184513092041,
+  "mask_active_voxels": 3166059
+}

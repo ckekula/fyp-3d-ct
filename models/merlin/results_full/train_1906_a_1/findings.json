@@ -1,0 +1,29 @@
+{
+  "name": "train_1906_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    238
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild emphysematous changes in both lungs",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subcentimeter nonspecific ground-glass nodule in the subpleural region of the right lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 631967,
+    "1": 157
+  },
+  "embedding_norm": 17.066471099853516,
+  "mask_active_voxels": 62390272
+}

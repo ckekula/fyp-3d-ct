@@ -1,0 +1,23 @@
+{
+  "name": "train_6913_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    230
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Increase in bronchial wall thickness in the left upper lobe posterior segment bronchus",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1a"
+  },
+  "pixels": {
+    "0": 521
+  },
+  "embedding_norm": 16.864885330200195,
+  "mask_active_voxels": 60293120
+}

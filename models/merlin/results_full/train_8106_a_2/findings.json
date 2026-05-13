@@ -1,0 +1,35 @@
+{
+  "name": "train_8106_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    482
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multilobar, multisegmentary central-peripherally located nodular-patchy ground glass opacities forming a crazy paving pattern in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Linear atelectasis in the right middle lobe, left lower lingular segment, and basal segments of both lower lobes",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subpleural lines in the right middle lobe, left lower lingular segment, and basal segments of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a",
+    "2": "2a"
+  },
+  "pixels": {
+    "0": 105355,
+    "1": 5066,
+    "2": 5066
+  },
+  "embedding_norm": 17.456838607788086,
+  "mask_active_voxels": 126353408
+}

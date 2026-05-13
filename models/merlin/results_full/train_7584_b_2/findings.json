@@ -1,0 +1,47 @@
+{
+  "name": "train_7584_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    407
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread interlobular septal thickening in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Subpleural nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Intrapulmonary nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest nodule measuring 7 mm in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "Newly developed nodule in the anterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "1e",
+    "2": "2d",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 2891,
+    "1": 983,
+    "2": 1375,
+    "3": 1732,
+    "4": 1732
+  },
+  "embedding_norm": 17.370208740234375,
+  "mask_active_voxels": 106692608
+}

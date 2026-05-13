@@ -8,7 +8,6 @@ build/*
 _C.*
 *.nii.gz
 *.csv
-outputs/*
 checkpoints/*.pt
 *.pt
 *.npz

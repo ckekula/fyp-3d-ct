@@ -1,0 +1,41 @@
+{
+  "name": "train_12588_b_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    284
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass densities in the upper lobe posterior segment of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Pleural effusion in both hemithoraces",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Pleural effusion thickness approximately 4.5 cm on the right",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Pleural effusion thickness approximately 1.5 cm on the left",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2e",
+    "2": "2e",
+    "3": "2e"
+  },
+  "pixels": {
+    "0": 78147,
+    "1": 18132,
+    "2": 16604,
+    "3": 4292
+  },
+  "embedding_norm": 17.237838745117188,
+  "mask_active_voxels": 74448896
+}

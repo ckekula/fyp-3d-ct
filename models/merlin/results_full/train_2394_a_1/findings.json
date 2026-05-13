@@ -1,0 +1,41 @@
+{
+  "name": "train_2394_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    200
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subsegmental atelectasis in the middle lobe of the right lung",
+      "category": "Atelectasis"
+    },
+    "1": {
+      "text": "Subsegmental atelectasis in the lingular segment of the left lung",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "5 mm nodule in the superior segment of the lower lobe of the right lung",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Nonspecific subcentimeter nodule in the superior segment of the lower lobe of the left lung",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2d",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 15813,
+    "1": 9258,
+    "2": 2326,
+    "3": 2843
+  },
+  "embedding_norm": 17.018566131591797,
+  "mask_active_voxels": 117964800
+}

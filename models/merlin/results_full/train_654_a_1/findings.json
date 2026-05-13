@@ -1,0 +1,23 @@
+{
+  "name": "train_654_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    322
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Subcentimeter nonspecific subpleural nodules in the posterior aspects of the lower lobes bilaterally",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 1569
+  },
+  "embedding_norm": 17.174915313720703,
+  "mask_active_voxels": 84410368
+}

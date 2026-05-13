@@ -1,0 +1,29 @@
+{
+  "name": "train_10134_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    768,
+    768,
+    213
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mild endobronchial prominence in the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Increased bronchial wall thickness in the segmental bronchus of the posterobasal segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f",
+    "1": "1a"
+  },
+  "pixels": {
+    "0": 2313,
+    "1": 2077
+  },
+  "embedding_norm": 17.104713439941406,
+  "mask_active_voxels": 125632512
+}

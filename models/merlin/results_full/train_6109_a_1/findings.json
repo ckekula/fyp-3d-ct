@@ -1,0 +1,29 @@
+{
+  "name": "train_6109_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    311
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "A few subcentimeter non-specific nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Mild centrilobular emphysematous changes in the upper lobes of both lungs at the apical levels",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "1c"
+  },
+  "pixels": {
+    "0": 608,
+    "1": 5206
+  },
+  "embedding_norm": 17.168506622314453,
+  "mask_active_voxels": 81526784
+}

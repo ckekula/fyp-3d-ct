@@ -1,0 +1,47 @@
+{
+  "name": "train_2728_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    229
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Traction bronchiectasis in the posterior segment of the right upper lobe",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Bilateral subpleural nodules",
+      "category": "Lung Nodule"
+    },
+    "3": {
+      "text": "Largest subpleural nodule measuring 5 mm in diameter in the inferior segment of the left lung lingula",
+      "category": "Lung Nodule"
+    },
+    "4": {
+      "text": "6 mm subsolid nodule in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "1b",
+    "2": "1e",
+    "3": "2d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 31780,
+    "1": 6730,
+    "2": 1492,
+    "3": 631,
+    "4": 4
+  },
+  "embedding_norm": 16.864761352539062,
+  "mask_active_voxels": 60030976
+}

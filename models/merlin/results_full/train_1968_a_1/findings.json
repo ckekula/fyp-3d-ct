@@ -1,0 +1,23 @@
+{
+  "name": "train_1968_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    302
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Ground-glass opacities more prominent in the subpleural areas and lower lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 36134
+  },
+  "embedding_norm": 17.271770477294922,
+  "mask_active_voxels": 79167488
+}

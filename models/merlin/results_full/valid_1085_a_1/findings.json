@@ -1,0 +1,23 @@
+{
+  "name": "valid_1085_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    512,
+    512,
+    232
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific nodules less than 5 mm in diameter",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1e"
+  },
+  "pixels": {
+    "0": 1221
+  },
+  "embedding_norm": 16.882225036621094,
+  "mask_active_voxels": 60817408
+}

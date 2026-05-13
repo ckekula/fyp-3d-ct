@@ -1,0 +1,23 @@
+{
+  "name": "train_6361_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    258
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Pleural-based subcentimeter nodule in the apical segment of the right upper lobe, 4 mm in diameter, showing minimal size increase from prior PET CT",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 157
+  },
+  "embedding_norm": 16.972537994384766,
+  "mask_active_voxels": 67633152
+}

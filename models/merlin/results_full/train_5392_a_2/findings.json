@@ -1,0 +1,29 @@
+{
+  "name": "train_5392_a_2.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    439
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Diffuse ground-glass opacities in lung parenchyma, particularly in lower zones and peripherally distributed",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Scarring in inferior lingular segment",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 10475,
+    "1": 1464
+  },
+  "embedding_norm": 17.418203353881836,
+  "mask_active_voxels": 115081216
+}

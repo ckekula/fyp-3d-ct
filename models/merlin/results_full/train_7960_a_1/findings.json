@@ -1,0 +1,23 @@
+{
+  "name": "train_7960_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Widespread ground-glass opacities with interstitial septal thickening (crazy paving pattern) in the upper lobes of both lungs",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 11217
+  },
+  "embedding_norm": 17.00020408630371,
+  "mask_active_voxels": 58195968
+}

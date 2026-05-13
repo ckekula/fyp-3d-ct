@@ -1,0 +1,23 @@
+{
+  "name": "valid_714_a_1.nii.gz",
+  "protocol": "protocol1",
+  "shape": [
+    768,
+    768,
+    240
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Indeterminate subcentimeter nodules within the bilateral lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d"
+  },
+  "pixels": {
+    "0": 660
+  },
+  "embedding_norm": 17.358325958251953,
+  "mask_active_voxels": 141557760
+}

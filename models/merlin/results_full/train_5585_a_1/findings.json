@@ -1,0 +1,29 @@
+{
+  "name": "train_5585_a_1.nii.gz",
+  "protocol": "protocol2",
+  "shape": [
+    512,
+    512,
+    293
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Peripheral and central consolidations more prominent in the lower lobes with accompanying ground-glass opacities in both lungs",
+      "category": "Lung opacity"
+    },
+    "1": {
+      "text": "Inverted halo sign in the superior segment of the right lower lobe",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 43636,
+    "1": 7420
+  },
+  "embedding_norm": 17.110239028930664,
+  "mask_active_voxels": 76808192
+}
