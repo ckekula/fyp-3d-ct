@@ -19,6 +19,7 @@ OUTPUT_DIR = Path("outputs")
 PATCHES_DIR = OUTPUT_DIR / "patches"       # saved patch matrices (.npz)
 MODELS_DIR  = OUTPUT_DIR / "models"        # saved LC-KSVD models (.pkl)
 RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
+INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii.gz)
 
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
@@ -53,6 +54,10 @@ MIN_OVERLAP_RATIO = 0.05
 # Number of positive patches to sample per scan
 N_POSITIVE_PATCHES_PER_SCAN = 30
 
+# Sliding-window stride used during inference (voxels).
+# PATCH_SIZE // 2 gives 50 % overlap; increase for speed, decrease for finer maps.
+INFERENCE_STRIDE = PATCH_SIZE // 2   # 16 voxels = 24 mm at 1.5 mm spacing
+
 # Random seed for reproducible patch sampling
 RANDOM_SEED = 42
 
@@ -73,7 +78,7 @@ LCKSVD_CONFIG = {
 # ─── Localization / contribution map ─────────────────────────────────────────
 
 # Threshold strategy for binarizing the contribution map into a mask.
-# "otsu"  → compute Otsu threshold from validation set contribution maps
+# "otsu"  → compute Otsu threshold from the per-class score map
 # "fixed" → use CONTRIB_FIXED_THRESHOLD below
 CONTRIB_THRESHOLD_MODE = "otsu"
 CONTRIB_FIXED_THRESHOLD = 0.3
@@ -82,3 +87,9 @@ CONTRIB_FIXED_THRESHOLD = 0.3
 # (computed per class over the full W matrix) are included in back-projection.
 # Prevents reconstruction-only atoms from polluting the localization map.
 DISCRIMINATIVE_ATOM_PERCENTILE = 75
+
+# A class is considered "detected" in a volume when the mean patch-level
+# classifier score for that class exceeds this fraction of the global score
+# range for that class across all patches in the volume.
+# Increase to be more conservative (fewer detections); decrease for higher recall.
+DETECTION_SCORE_THRESHOLD = 0.5
