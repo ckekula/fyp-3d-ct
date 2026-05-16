@@ -153,11 +153,11 @@ dictionary learning approaches have demonstrated superior performance in disting
 achieving 98.18\% classification accuracy while maintaining fast testing times[20].
 
 Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images. One approach utilized both frozen
-dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CC-CCII dataset[21]. The framework\'s key
+dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CC-CCII dataset~\cite{gould2007nodule}. The framework\'s key
 advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original input signal domain. This work demonstrates that
 sparse representation methods offer an effective balance between performance and explainability for lung disease classification tasks, providing clear feature
 representations while maintaining competitive accuracy. Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease
-patterns on HRCT images, effectively handling the high variety and complexity of patterns[22].
+patterns on HRCT images, effectively handling the high variety and complexity of patterns~\cite{aberle2011nlst}.
 
 
 \subsection{Explainability Approaches}
@@ -185,7 +185,8 @@ This report is organized into five main chapters.
 
 Chapter 1 introduces the research problem, background, objectives, scope, and literature review related to multi-class abnormality classification and grounded localization in 3D chest CT imaging. It also discusses existing deep learning and dictionary learning approaches together with their limitations in explainability.
 
-Chapter 2 presents the theoretical background required for this study, including sparse representation, dictionary learning, K-SVD, LC-KSVD, frozen dictionary learning, and Vision Transformers used in medical imaging. In addition, important radiological abnormalities such as Ground Glass Opacity (GGO), consolidation, and pulmonary nodules are discussed.
+Chapter 2 presents the theoretical background required for this study, including sparse representation, dictionary learning, K-SVD, LC-KSVD, frozen dictionary learning, and Vision Transformers used in medical imaging.
+
 
 Chapter 3 describes the proposed methodology of the project. This includes dataset acquisition, preprocessing steps, patch extraction, implementation of the LC-KSVD framework, abnormality classification pipeline, and the proposed back-projection mechanism used for interpretable localization and explainability generation.
 
