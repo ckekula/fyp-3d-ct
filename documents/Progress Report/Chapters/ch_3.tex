@@ -63,7 +63,7 @@ Both phases share the same maximum patches/scan budget; class balance is therefo
 All patches are assembled into X (32768 x N, float64) and H (N,) int64, then saved as .npz files.
 
 \section{Implementation of the LC-KSVD Approach}
-To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{LCKSVD}
+To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{jiang2013lcksvd}
 Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
 for integration with our Python-based data processing and evaluation pipeline. Although A few open-source Python implementations
 LC-KSVD are available, they either lacked an importable library, or did not provide the flexibility required for our study.
@@ -112,7 +112,7 @@ providing multiple independent score estimates per spatial location for the subs
 
 \section{Back-Projecting Class-Discriminative Atoms}
 The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
-each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$ \cite{LCKSVD}, the model can theoretically
+each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$ \cite{jiang2013lcksvd}, the model can theoretically
 "explain" its decision for a test patch by examining which atoms were used in its sparse representation.
 
 To generate a spatial contribution map for a class $c$, the algorithm identifies all atoms $d_k$ that have been assigned
