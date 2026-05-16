@@ -116,6 +116,12 @@ This is achieved by extracting patches on a dense regular grid with a stride of 
 For a volume of size $ 512^3 $, this produces $ 32 ^ 3 = 32768 $ patches, each a $ 32^3 $ voxel window centred on a grid point.
 The 50\% overlap between adjacent patches ensures that every voxel is covered by up to 8 patch windows,
 providing multiple independent score estimates per spatial location for the subsequent back-projection step.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{\detokenize{Chapters/chapter1PIC/training.jpg}}
+\caption{Patch extraction grid used during training and dense inference sampling.}
+\label{fig:training_grid}
+\end{figure}
 
 \section{Back-Projecting Class-Discriminative Atoms}
 The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
