@@ -27,10 +27,37 @@ K-SVD alternates between sparse coding and dictionary update steps to minimize r
 However, it does not incorporate class labels, which limits its discriminative ability for classification tasks. \cite{ksvd}
 
 \subsection{LC-KSVD}
+LC-KSVD jointly learns a dictionary, sparse codes, a label-consistency transform, and a linear classifier so that the learned
+representations are not only good for reconstruction but also discriminative for classification through label-consistency constraints \cite{jiang2013lcksvd}.
 
-It jointly learns a dictionary, sparse codes, and a classifier so that the learned representations are not only good for reconstruction
-but also discriminative for classification through label consistency constraints.
-However, LC-KSVD still learns a single shared dictionary for all classes.
+The standard LC-KSVD objective (often referred to as LC-KSVD2 when the classifier term is included) can be written compactly as:
+\begin{equation}
+\label{eq:lcksvd_obj}
+\min_{D,A,W,X} \; \|P - D X\|_F^2 + \alpha \|Q - A X\|_F^2 + \beta \|H - W X\|_F^2 \quad \text{s.t. } \forall i, \|x_i\|_0 \le T, \; \|d_k\|_2 = 1 \; \forall k
+\end{equation}
+
+Definitions of terms:
+\begin{itemize}
+    \item $P \in \mathbb{R}^{m\times N}$: training data matrix (each column is a vectorised 3D patch).
+    \item $D \in \mathbb{R}^{m\times K}$: dictionary matrix with $K$ atoms (columns $d_k$).
+    \item $X \in \mathbb{R}^{K\times N}$: sparse coefficient matrix whose $i$-th column $x_i$ encodes the $i$-th patch.
+    \item $T$: sparsity threshold (maximum non-zeros allowed per sparse code).
+    \item $Q \in \mathbb{R}^{p\times N}$: label-consistency target matrix that embeds class information into a prototype space used to regularise codes.
+    \item $A \in \mathbb{R}^{p\times K}$: linear transform that maps sparse codes to the label-consistency space (enforces that codes for the same class are similar).
+    \item $H \in \mathbb{R}^{c\times N}$: label indicator matrix (one-hot encoding across $c$ classes) used for classifier training.
+    \item $W \in \mathbb{R}^{c\times K}$: linear classifier weights mapping sparse codes to class scores.
+    \item $\alpha,\beta$: non-negative scalars controlling the strength of the label-consistency and classification terms respectively.
+    \item $\|\cdot\|_F$: Frobenius norm; $\|x\|_0$ denotes the $\ell_0$ (sparsity) pseudo-norm.
+\end{itemize}
+
+Role of each objective term:
+\begin{itemize}
+    \item $\|P - D X\|_F^2$: reconstruction fidelity; forces the dictionary and codes to accurately represent the input patches.
+    \item $\alpha \|Q - A X\|_F^2$: label-consistency regulariser; encourages codes for the same class to be mapped close to a shared prototype.
+    \item $\beta \|H - W X\|_F^2$: supervised classification loss on sparse codes; trains a linear classifier jointly with the dictionary.
+\end{itemize}
+
+In practice LC-KSVD is solved by alternating optimisation: (1) sparse coding (e.g., OMP) to estimate $X$ with $D,A,W$ fixed, and (2) closed-form or SVD-based updates for $D,A,W$ while holding $X$ fixed. Variants differ in how $Q$ is constructed and whether the classifier term is included during early warm-start iterations.
 
 \subsection{Frozen Dictionary Learning}
 
