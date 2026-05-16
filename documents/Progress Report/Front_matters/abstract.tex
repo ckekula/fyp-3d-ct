@@ -1,17 +1,18 @@
-
+﻿
 \chapter*{Abstract}
 Automated Diagnostic Hypotheses from 3D chest Computed Tomography requires clinically interpretable methods to support radiological
-decision-making.
-Current state-of-the-art (SotA) deep learning models often rely on post-hoc explainability techniques that provide approximate localizations
+decisionmaking.
+Current stateoftheart (SotA) deep learning models often rely on posthoc explainability techniques that provide approximate localizations
 and lack direct traceability to the models decisions.
-Furthermore, SotA models rarely support simultaneous multi-class classification and grounded localization, leading to a fragmented
+Furthermore, SotA models rarely support simultaneous multiclass classification and grounded localization, leading to a fragmented
 approach to diagnosis. This also hinders the ability to benchmark models across multiple dimensions of performance,
 including classification accuracy, segmentation quality, and explainability.
 This study aims to address these challenges through two contributions:
 First, we introduce an inherently interpretable dictionary learning framework in which detected abnormalities can be
-back-projected to the original voxel space, allowing diagnostic decisions to be traced back to relevant anatomical structures.
+backprojected to the original voxel space, allowing diagnostic decisions to be traced back to relevant anatomical structures.
 Second, we develop a unified evaluation framework to benchmark SotA models across three axes: (i) classification accuracy,
 (ii) segmentation quality, and (iii) explainability, using standardized metrics and a publically available 3D chest CT dataset
 with expertly annotated abnormality localizations.
 Our method is benchmarked against SotA models using this framework, demonstrating competitive
 classification and segmentation performance while providing improved interpretability compared to deep learning baselines.
+

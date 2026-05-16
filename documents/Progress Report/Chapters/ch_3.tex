@@ -1,12 +1,12 @@
-\chapter{Methodology}
+﻿\chapter{Methodology}
 
-We implement a six-stage pipeline for our study, consisting of:
+We implement a sixstage pipeline for our study, consisting of:
 \begin{enumerate}
     \item Data Acquisition
     \item Data Preprocessing
-    \item Implementation of the LC-KSVD Approach
+    \item Implementation of the LCKSVD Approach
     \item Abnormality Classification
-    \item Back-Projecting Class-Discriminative Atoms and Deriving Explainability through Segmentation Masks
+    \item BackProjecting ClassDiscriminative Atoms and Deriving Explainability through Segmentation Masks
     \item Evaluation and Benchmarking
 \end{enumerate}
 
@@ -14,22 +14,22 @@ We implement a six-stage pipeline for our study, consisting of:
 \centering
 \includegraphics[width=0.9\linewidth]{Images/Chapter 4/Methodology_Diagram.png}
 \caption{Overall methodology pipeline used in the study.}
-\label{fig:methodology-diagram}
+\label{fig:methodologydiagram}
 \end{figure}
 
 \section{Data Acquisition}
-Two public chest CT datasets: CT-RATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct} were used in our work.
-CT-RATE was used as the primary source of CT volumes (normal and abnormal).
-while ReXGroundingCT was used to obtain voxel-level segmentation masks per abnormality scan together abnormality labels,
-for each corresponding CT volume. Although CT-RATE also contains abnormality labels, RexGrounding-CT was chosen
-for its more clinically relevant set of findings, as well as its detailed voxel-level annotations that are essential for our explainability evaluation.
+Two public chest CT datasets: CTRATE\cite{ctrate} and ReXGroundingCT\cite{rexgroundingct} were used in our work.
+CTRATE was used as the primary source of CT volumes (normal and abnormal).
+while ReXGroundingCT was used to obtain voxellevel segmentation masks per abnormality scan together abnormality labels,
+for each corresponding CT volume. Although CTRATE also contains abnormality labels, RexGroundingCT was chosen
+for its more clinically relevant set of findings, as well as its detailed voxellevel annotations that are essential for our explainability evaluation.
 
 After an initial review of the thoracic findings available in ReXGroundingCT, a discussion with the supervising radiologist
 produced a shortlist of the following abnormalities that are clinically significant and have sufficient representation in the datasets:
 \begin{enumerate}
     \item Atelectasis
     \item Lung nodule
-    \item Ground-Glass Opacity (GGO)
+    \item GroundGlass Opacity (GGO)
     \item Consolidation
 \end{enumerate}
 
@@ -49,22 +49,22 @@ The data preprocessing pipeline consists of four major steps:
 
 Each volume is resampled to 1.5 mm isotropic using trilinear interpolation to standardize the spatial resolution across scans.
 If the current spacing is already within 1\% of target, this step is skipped.
-Each mask is also resampled to exactly match the resampled volume's spatial shape using nearest-neighbour interpolation to preserve integer label values
+Each mask is also resampled to exactly match the resampled volume's spatial shape using nearestneighbour interpolation to preserve integer label values
 
-In the second step, a standard window Hounsefield unit (HU) of [-1000, +200] was used to separate the lung window from the CT volume.
+In the second step, a standard window Hounsefield unit (HU) of [1000, +200] was used to separate the lung window from the CT volume.
 Then, a linear rescaling to [0, 1] as float32 was applied to the windowed volume, to normalize the intensity values.
 
 Finally, the preprocessed volumes are divided into overlapping 3D patches of size \(32 \times 32 \times 32\) with
 32,768 features per patch (48 mm³ at 1.5 mm spacing).
 Normal and abnormal scans are processed in separate phases to ensure that the Dictionary Learning model first learns a representation of normal anatomy before being exposed to abnormalities.
 
-In phase 1, a maximum number of patches are sampled from each normal scan from any in-bounds location in the volume.
+In phase 1, a maximum number of patches are sampled from each normal scan from any inbounds location in the volume.
 all labelled class index 0
 
-In phase 2, using the abnormal scans, we build a per-category binary mask by OR-ing all finding slots of the same category together; build a
+In phase 2, using the abnormal scans, we build a percategory binary mask by ORing all finding slots of the same category together; build a
 union mask across all categories; sample patch centres uniformly from the union mask foreground; each candidate patch must have
 $ \geq 5\% $ overlap with at least one category mask; the label is assigned to whichever
-category mask has the highest overlap with that patch (majority-class rule), which handles overlapping findings correctly
+category mask has the highest overlap with that patch (majorityclass rule), which handles overlapping findings correctly
 
 Both phases share the same maximum patches/scan budget; class balance is therefore determined by the normal/abnormal scan counts in the dataset, not a hard ratio
 All patches are assembled into X (32768 x N, float64) and H (N,) int64, then saved as .npz files.
@@ -76,20 +76,20 @@ All patches are assembled into X (32768 x N, float64) and H (N,) int64, then sav
 \label{fig:preprocessing}
 \end{figure}
 
-\section{Implementation of the LC-KSVD Approach}
-To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{jiang2013lcksvd}
-Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
-for integration with our Python-based data processing and evaluation pipeline. Although A few open-source Python implementations
-LC-KSVD are available, they either lacked an importable library, or did not provide the flexibility required for our study.
+\section{Implementation of the LCKSVD Approach}
+To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LCKSVD algorithm. \cite{jiang2013lcksvd}
+Currently, many of the available standard implementations of KSVD and LCKSVD are developed using MATLAB, which is not ideal
+for integration with our Pythonbased data processing and evaluation pipeline. Although A few opensource Python implementations
+LCKSVD are available, they either lacked an importable library, or did not provide the flexibility required for our study.
 
-Therefore, we developed a custom implementation of the LC-KSVD algorithm in Python and published it on PyPI,
-the official third-party software repository for Python, under the name “reppi.”
+Therefore, we developed a custom implementation of the LCKSVD algorithm in Python and published it on PyPI,
+the official thirdparty software repository for Python, under the name “reppi.”
 The implementation follows a modular design, consisting of four separate components:
 \begin{enumerate}
-    \item SRC - Utility Functions shared across Sparse Coding Algorithms
-    \item OMP - Implementation of Batch-OMP and OMP-Cholesky approaches for Sparse Coding
-    \item KSVD - Implementation of KSVD Dictionary Learning Algorithm
-    \item LC-KSVD - Implementation of LC-KSVD1 and LC-KSVD2 Dictionary Learning Algorithms
+    \item SRC  Utility Functions shared across Sparse Coding Algorithms
+    \item OMP  Implementation of BatchOMP and OMPCholesky approaches for Sparse Coding
+    \item KSVD  Implementation of KSVD Dictionary Learning Algorithm
+    \item LCKSVD  Implementation of LCKSVD1 and LCKSVD2 Dictionary Learning Algorithms
 \end{enumerate}
 
 This design also allows for flexibility in integrating alternative sparse coding methods in the future.
@@ -97,21 +97,21 @@ The source code is available at github.com/ckekula/reppi.
 
 This modular architecture enables straightforward integration of the algorithm through library imports, while providing
 the flexibility required to experiment with different hyperparameters and configurations. The implementations of the SRC,
-OMP, and LC-KSVD modules are provided in Appendix A, Appendix B, and Appendix C, respectively.
+OMP, and LCKSVD modules are provided in Appendix A, Appendix B, and Appendix C, respectively.
 
 \section{Model Training and Inference}
-Prior to training, each patch vector is L2-normalised to unit norm, ensuring that the sparse coding step operates on
-texture direction rather than absolute intensity magnitude. Patches with a norm below $ 1 \times 10^{-10} $,
+Prior to training, each patch vector is L2normalised to unit norm, ensuring that the sparse coding step operates on
+texture direction rather than absolute intensity magnitude. Patches with a norm below $ 1 \times 10^{10} $,
 corresponding to uniform zero regions with no signal, are discarded entirely.
 
-The model is trained using LC-KSVD2, a dictionary learning algorithm that jointly optimises three objectives:
+The model is trained using LCKSVD2, a dictionary learning algorithm that jointly optimises three objectives:
 reconstruction accuracy, label consistency, and linear classification. Training proceeds in two stages:
-20-iteration K-SVD warm-start that initialises the dictionary on reconstruction error alone, followed by 50 LC-KSVD2 iterations
-that refine it under the combined objective. This two-stage procedure avoids poor local minima that arise when the
-label-consistency and classifier terms are applied before the dictionary has converged to a geometrically meaningful initialisation.
+20iteration KSVD warmstart that initialises the dictionary on reconstruction error alone, followed by 50 LCKSVD2 iterations
+that refine it under the combined objective. This twostage procedure avoids poor local minima that arise when the
+labelconsistency and classifier terms are applied before the dictionary has converged to a geometrically meaningful initialisation.
 
-The key hyperparameters are a dictionary size of K = 128 atoms, a sparsity constraint of T = 10 non-zero coefficients per patch
-(approximately 8\% of K), a label-consistency weight of $ \alpha = 4.0 $, and a classifier weight of $ \beta = 2.0 $.
+The key hyperparameters are a dictionary size of K = 128 atoms, a sparsity constraint of T = 10 nonzero coefficients per patch
+(approximately 8\% of K), a labelconsistency weight of $ \alpha = 4.0 $, and a classifier weight of $ \beta = 2.0 $.
 On smaller datasets where the patch count N is insufficient to support 128 atoms, the dictionary size is adaptively capped at
 $ max(8, N/2) $ and the sparsity constraint is scaled proportionally.
 
@@ -122,7 +122,7 @@ inference requires spatial exhaustiveness so that every region of the volume rec
 This is achieved by extracting patches on a dense regular grid with a stride of half the patch width along each spatial axis.
 For a volume of size $ 512^3 $, this produces $ 32 ^ 3 = 32768 $ patches, each a $ 32^3 $ voxel window centred on a grid point.
 The 50\% overlap between adjacent patches ensures that every voxel is covered by up to 8 patch windows,
-providing multiple independent score estimates per spatial location for the subsequent back-projection step.
+providing multiple independent score estimates per spatial location for the subsequent backprojection step.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\linewidth]{\detokenize{Chapters/chapter1PIC/training.jpg}}
@@ -130,8 +130,8 @@ providing multiple independent score estimates per spatial location for the subs
 \label{fig:training_grid}
 \end{figure}
 
-\section{Back-Projecting Class-Discriminative Atoms}
-The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
+\section{BackProjecting ClassDiscriminative Atoms}
+The unique intuition we propose in our approach is to generate spatial contribution maps through backprojection. Because
 each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$ \cite{jiang2013lcksvd}, the model can theoretically
 "explain" its decision for a test patch by examining which atoms were used in its sparse representation.
 
@@ -141,25 +141,26 @@ partial reconstruction:
 
 $$C_c = \sum_{k \in \text{Class } c} d_k x_k$$
 
-This process back-projects the class-specific features into the original voxel space, creating a map
-that highlights the regions contributing to the detection of a specific abnormality. for class-discriminative atoms
-operating on raw voxel-space inputs, the back-projection is an exact, closed-form spatial attribution.
+This process backprojects the classspecific features into the original voxel space, creating a map
+that highlights the regions contributing to the detection of a specific abnormality. for classdiscriminative atoms
+operating on raw voxelspace inputs, the backprojection is an exact, closedform spatial attribution.
 
 \section{Deriving Explainability through Segmentation Masks}
-To evaluate the clinical accuracy of LC-KSVD, these contribution maps are converted into binary segmentation masks for
+To evaluate the clinical accuracy of LCKSVD, these contribution maps are converted into binary segmentation masks for
 comparison with ground truth annotations. This conversion can be achieved through various thresholding methods.
 
-Grad-CAM's approximation has two sources of imprecision — the gradient itself is a local linear approximation of a non-linear
+GradCAM's approximation has two sources of imprecision — the gradient itself is a local linear approximation of a nonlinear
 function, and the spatial upsampling from the coarse feature map to input resolution introduces further interpolation error. 
-LC-KSVD's contribution map has only one source of imprecision: the thresholding step you apply to binarize it into a mask.
+LCKSVD's contribution map has only one source of imprecision: the thresholding step you apply to binarize it into a mask.
 The map itself — before thresholding — is exact given the sparse code and the dictionary.
 
 
-Unlike the passive Grad-CAM approach, atom back-projection is generative. The atoms are what the model actually used to
+Unlike the passive GradCAM approach, atom backprojection is generative. The atoms are what the model actually used to
 reconstruct and classify the signal. There's no proxy involved. The localization evidence is produced by the same
-computation that produced the classification, not by a separate post-hoc analysis run afterwards.
+computation that produced the classification, not by a separate posthoc analysis run afterwards.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% END OF FILE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

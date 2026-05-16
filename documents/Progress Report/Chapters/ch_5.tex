@@ -1,16 +1,26 @@
-\chapter{Discussion}
+﻿\chapter{Future Work}
+\label{ch:futurework}
 
-Our project investigated an interpretable sparse dictionary learning framework for abnormality classification and localization in 3D chest CT scans. A key contribution is the frozen dictionary approach, where normal anatomical patterns are learned first and abnormalities are learned separately. This helps isolate pathological features and improves interpretability.
+There are several improvements that can be made in the future to further develop this research and improve the overall performance of the proposed system.
 
-Unlike many state-of-the-art deep learning models that rely on post-hoc explainability methods such as Grad-CAM, the proposed LC-KSVD framework provides inherent explainability. The generated predictions can be directly linked to dictionary atoms and reconstructed voxel-space regions through atom back-projection, allowing more transparent clinical interpretation.
+\section{Further Improvement of the LC-KSVD Model}
 
-The experimental observations show that the framework can successfully classify and localize pulmonary nodules, Ground Glass Opacity (GGO), and consolidation patterns from 3D chest CT scans while maintaining competitive performance. The proposed objectives of implementing an interpretable dictionary learning pipeline, generating localization maps, and evaluating the framework against existing approaches were successfully achieved.
+More experiments can be carried out to improve the performance of the LC-KSVD model by changing different training parameters such as dictionary size, sparsity constraints, and regularization values. Testing different parameter combinations may help achieve better classification and localization results.
 
-In real-world clinical applications, this approach could support radiologists by providing both diagnostic predictions and anatomically grounded explanations, improving trust and transparency in AI-assisted diagnosis systems.
+\section{Studying Other Dictionary Learning Techniques}
 
-However, the proposed method has several limitations. The framework is currently limited to three abnormalities and does not yet provide a fully unified end-to-end classification and segmentation architecture. In addition, although the explainability is stronger, the classification accuracy may still be lower than large-scale deep learning foundation models. Future work will focus on improving performance, expanding abnormality coverage, and integrating more advanced hybrid architectures.
+This study mainly focused on the LC-KSVD approach. In future research, other dictionary learning methods such as K-SVD, D-KSVD, and FDDL can also be tested and compared. This would help identify which method works best for multi-abnormality detection in 3D CT images.
+
+\section{Validation with Radiologists}
+
+Another important future step is to evaluate the model outputs with the support of radiologists. Their medical expertise can help verify whether the detected abnormal regions and predictions are clinically meaningful and accurate. Such evaluations can improve the practical value of the proposed system.
+
+\section{Comparison with Recent Advanced Models}
+
+Future studies can also compare the proposed approach with newer state-of-the-art models developed for medical image classification and localization. This comparison can provide a clearer understanding of the advantages and limitations of the LC-KSVD-based framework.
+
+\section{Improving Explainability and Reliability}
+
+Future work can focus on making the system more explainable and reliable for real clinical use. Providing clearer visual evidence and more stable predictions may help doctors better understand and trust the AI-generated results during diagnosis.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% END OF FILE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
