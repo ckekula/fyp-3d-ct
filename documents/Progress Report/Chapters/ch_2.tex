@@ -2,7 +2,7 @@
 
 \section{Dictionary Learning}
 
-\subsection{Sparse Coding}
+\subsection{Sparse Coding and KSVD}
 
 Sparse coding is the process of representing an input signal as a linear combination of only a small number of basis elements selected from a dictionary. In the context of this project, each input signal corresponds to a vectorised 3D CT patch. For example, a patch of size $32 \times 32 \times 32$ contains 32,768 voxel values and is reshaped into a column vector before being used by the dictionary learning model.
 
@@ -22,28 +22,6 @@ x = \arg\min_x \|y - Dx\|_2^2
 \]
 
 where $\|y - Dx\|_2^2$ measures the reconstruction error, $\|x\|_0$ counts the number of non-zero coefficients in the sparse code, and $T$ controls the maximum number of atoms that can be used to represent one patch. A smaller value of $T$ forces the model to use fewer atoms, resulting in a more compact and interpretable representation.
-
-For all training patches, the sparse representation can be written in matrix form as:
-
-\[
-P \approx DX
-\]
-
-where $P \in \mathbb{R}^{m \times N}$ is the training patch matrix, $D \in \mathbb{R}^{m \times K}$ is the dictionary, and $X \in \mathbb{R}^{K \times N}$ is the sparse coefficient matrix. Each column of $P$ is one vectorised CT patch, and each corresponding column of $X$ is its sparse code.
-
-In this study, sparse coding is important because it provides the link between the input CT patch and the learned dictionary atoms. If a patch activates atoms associated with a specific abnormality, such as consolidation or ground-glass opacity, the sparse code can be used for classification and later back-projected into voxel space for interpretability. Therefore, sparse coding does not only reduce dimensionality, but also supports the proposed explanation mechanism by identifying which learned atoms contributed to a model decision.
-
-Sparse coding is usually solved using approximate algorithms because finding the exact sparsest representation is computationally difficult. In this work, Orthogonal Matching Pursuit (OMP) is used because it is simple, efficient, and commonly used with K-SVD-based dictionary learning. OMP selects atoms iteratively by choosing the atom that best reduces the current reconstruction error, then updates the coefficients until the sparsity limit $T$ is reached or the reconstruction error becomes sufficiently small.
-
-\subsection{KSVD}
-
-Dictionary learning is a signal modeling technique where a CT image patch is expressed as a linear combination of a small number of basis elements called dictionary atoms. \cite{ksvd} Instead of using all available features, the signal is approximated as:
-
-$$
-y = Dx
-$$
-
-where $D$ represents the dictionary and $x$ is a sparse coefficient vector containing mostly zero values. This produces a compact and interpretable representation. \cite{elad2010sparse}
 
 The dictionary $D$ is typically learned using K-SVD (K-Singular Value Decomposition), which solves the following optimization problem:
 
