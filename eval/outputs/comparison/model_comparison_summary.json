@@ -1,0 +1,211 @@
+{
+  "comparison_scope": "Shared RexGroundingCT classification comparison",
+  "models": [
+    {
+      "model_name": "CT-CLIP",
+      "dataset": "rexgroundingct",
+      "num_samples": 2465,
+      "source": "eval/outputs/classification/ct_clip_lipro_classification_metrics.json",
+      "macro": {
+        "auroc": 0.5377957789650524,
+        "average_precision": 0.35713373593209174,
+        "precision": 0.3565418298711066,
+        "recall": 0.3059766468875884,
+        "f1": 0.31917976085095706,
+        "ece": 0.16450704074111477
+      },
+      "classes": {
+        "lung_nodule": {
+          "auroc": 0.4832388158339105,
+          "average_precision": 0.45040294921162627,
+          "precision": 0.4389027431421446,
+          "recall": 0.3093145869947276,
+          "f1": 0.3628865979381443,
+          "accuracy": 0.49858012170385396,
+          "ece": 0.03667469372855725,
+          "support": 1138.0
+        },
+        "lung_opacity": {
+          "auroc": 0.5396307003958011,
+          "average_precision": 0.4292108705168877,
+          "precision": 0.42953020134228187,
+          "recall": 0.26256410256410256,
+          "f1": 0.32590706556333543,
+          "accuracy": 0.5703853955375253,
+          "ece": 0.08853408759554307,
+          "support": 975.0
+        },
+        "consolidation": {
+          "auroc": 0.5350166253157383,
+          "average_precision": 0.22759938361238896,
+          "precision": 0.22375,
+          "recall": 0.3587174348697395,
+          "f1": 0.27559661277906083,
+          "accuracy": 0.6182555780933063,
+          "ece": 0.2926355782677145,
+          "support": 499.0
+        },
+        "atelectasis": {
+          "auroc": 0.5932969743147595,
+          "average_precision": 0.3213217403874641,
+          "precision": 0.333984375,
+          "recall": 0.2933104631217839,
+          "f1": 0.31232876712328766,
+          "accuracy": 0.6945233265720081,
+          "ece": 0.24018380337264425,
+          "support": 583.0
+        }
+      }
+    },
+    {
+      "model_name": "Merlin",
+      "dataset": "rexgroundingct",
+      "num_samples": 2986,
+      "source": "eval/outputs/classification/merlin_classification_metrics.json",
+      "macro": {
+        "auroc": 0.9663296683952618,
+        "average_precision": 0.9603840615158892,
+        "precision": 0.9902054467271859,
+        "recall": 0.9536849778161649,
+        "f1": 0.9708927377907126,
+        "ece": 0.016493636972538514
+      },
+      "classes": {
+        "lung_nodule": {
+          "auroc": 0.9553072625698324,
+          "average_precision": 0.9588395753740921,
+          "precision": 1.0,
+          "recall": 0.9106145251396648,
+          "f1": 0.9532163742690059,
+          "accuracy": 0.9517749497655726,
+          "ece": 0.04822505023442733,
+          "support": 1611.0
+        },
+        "lung_opacity": {
+          "auroc": 0.9579487179487179,
+          "average_precision": 0.9608217869087434,
+          "precision": 0.9608217869087434,
+          "recall": 1.0,
+          "f1": 0.9800194931773879,
+          "accuracy": 0.9725385130609511,
+          "ece": 0.0,
+          "support": 2011.0
+        },
+        "consolidation": {
+          "auroc": 0.9600371747211895,
+          "average_precision": 0.9344748852762707,
+          "precision": 1.0,
+          "recall": 0.9200743494423792,
+          "f1": 0.9583736689254598,
+          "accuracy": 0.9855994641661086,
+          "ece": 0.014400535833891495,
+          "support": 538.0
+        },
+        "atelectasis": {
+          "auroc": 0.9920255183413078,
+          "average_precision": 0.9873999985044508,
+          "precision": 1.0,
+          "recall": 0.9840510366826156,
+          "f1": 0.9919614147909968,
+          "accuracy": 0.9966510381781648,
+          "ece": 0.0033489618218352315,
+          "support": 627.0
+        }
+      }
+    },
+    {
+      "model_name": "BioMedParse",
+      "dataset": "rexgroundingct",
+      "num_samples": 814,
+      "source": "eval/outputs/classification/biomed_parse_rexgroundingct_classification_metrics.json",
+      "macro": {
+        "auroc": 0.5091167386356701,
+        "average_precision": 0.4294758064021109,
+        "precision": 0.40013151022616655,
+        "recall": 0.9693308550185873,
+        "f1": 0.5633778753139635,
+        "ece": 0.5454335869232728
+      },
+      "classes": {
+        "lung_nodule": {
+          "auroc": 0.41953804347826085,
+          "average_precision": 0.4466504975088248,
+          "precision": 0.5085995085995086,
+          "recall": 1.0,
+          "f1": 0.6742671009771987,
+          "accuracy": 0.5085995085995086,
+          "ece": 0.4912513977040236,
+          "support": 414.0
+        },
+        "lung_opacity": {
+          "auroc": 0.5411504587606103,
+          "average_precision": 0.4773012429193102,
+          "precision": 0.43734643734643736,
+          "recall": 1.0,
+          "f1": 0.6085470085470085,
+          "accuracy": 0.43734643734643736,
+          "ece": 0.5626477077054157,
+          "support": 356.0
+        },
+        "consolidation": {
+          "auroc": 0.5247092527539988,
+          "average_precision": 0.39234248169602465,
+          "precision": 0.328998699609883,
+          "recall": 0.9405204460966543,
+          "f1": 0.48747591522157996,
+          "accuracy": 0.3464373464373464,
+          "ece": 0.5570342414245852,
+          "support": 269.0
+        },
+        "atelectasis": {
+          "auroc": 0.5510691995498107,
+          "average_precision": 0.4016090034842842,
+          "precision": 0.32558139534883723,
+          "recall": 0.9368029739776952,
+          "f1": 0.48322147651006714,
+          "accuracy": 0.33783783783783783,
+          "ece": 0.5708010008590667,
+          "support": 269.0
+        }
+      }
+    },
+    {
+      "model_name": "LC-KSVD",
+      "dataset": "rexgroundingct (external metrics file)",
+      "num_samples": null,
+      "source": "models/lc-ksvd/lcksvd_metrics.json",
+      "macro": {
+        "auroc": 0.7630140114303186,
+        "average_precision": 0.786737953183339,
+        "f1": 0.7002974515636305
+      },
+      "classes": {
+        "lung_nodule": {
+          "auroc": 0.5242782679434967,
+          "average_precision": 0.5271105428920864,
+          "f1": 0.5154755205402364
+        },
+        "lung_opacity": {
+          "auroc": 0.9166666666666667,
+          "average_precision": 0.9150793650793649,
+          "f1": 0.8571428571428571
+        },
+        "consolidation": {
+          "auroc": 0.8055555555555556,
+          "average_precision": 0.8523809523809522,
+          "f1": 0.7142857142857143
+        },
+        "atelectasis": {
+          "auroc": 0.8055555555555556,
+          "average_precision": 0.8523809523809522,
+          "f1": 0.7142857142857143
+        }
+      },
+      "notes": "LC-KSVD has no separate Atelectasis entry, so its Consolidation metrics are reused for Atelectasis in the comparison."
+    }
+  ],
+  "notes": [
+    "Main charts use the shared RexGroundingCT classification task.",
+    "LC-KSVD has no separate Atelectasis metrics entry, so its Consolidation output is reused for Atelectasis only."
+  ]
+}

@@ -281,7 +281,7 @@ plt.close()
 # Figure 5: Confusion Pattern Analysis (Zero Case Breakdown)
 # ============================================================================
 print("Generating Figure 5: Confusion Pattern Analysis...")
-fig, ax = plt.subplots(figsize=(12, 6))
+fig, ax = plt.subplots(figsize=(14, 7))
 
 # Categorize dice scores
 categories = {
@@ -312,26 +312,28 @@ for class_name in sorted(class_dice.keys()):
         pct = 100 * count / len(dice_values)
         ax.bar(class_name.replace('_', ' ').title(), pct, bottom=bottom, 
                label=cat if class_name == 'lung_nodule' else '',
-               color=category_colors[idx], edgecolor='black', linewidth=0.5)
+               color=category_colors[idx], edgecolor='black', linewidth=0.8)
         
         # Add percentage labels for major segments
-        if pct > 5:
-            ax.text(list(class_dice.keys()).index(class_name), bottom + pct/2, 
-                   f'{pct:.0f}%', ha='center', va='center', fontweight='bold', fontsize=9)
+        if pct > 6:
+            ax.text(list(class_dice.keys()).index(class_name), bottom + pct / 2, 
+                   f'{pct:.0f}%', ha='center', va='center', fontweight='bold', fontsize=11)
         bottom += pct
 
-ax.set_ylabel('Percentage of Cases (%)', fontweight='bold', fontsize=12)
+ax.set_ylabel('Percentage of Cases (%)', fontweight='bold', fontsize=14)
 ax.set_title('Dice Score Distribution Breakdown: Where Does the Model Fail?', 
-             fontweight='bold', fontsize=14)
+             fontweight='bold', fontsize=18)
 ax.set_ylim(0, 100)
 ax.grid(alpha=0.3, axis='y')
+ax.set_xticklabels([name.replace('_', ' ').title() for name in sorted(class_dice.keys())], fontsize=13)
+ax.tick_params(axis='y', labelsize=13)
 
-# Create legend with unique entries
+# Create legend with unique entries and place outside the figure
 handles = [mpatches.Patch(facecolor=color, edgecolor='black', label=cat) 
            for cat, color in zip(categories.keys(), category_colors)]
-ax.legend(handles=handles, fontsize=10, loc='upper right', ncol=2)
+ax.legend(handles=handles, fontsize=12, loc='upper left', bbox_to_anchor=(1.01, 1), borderaxespad=0.)
 
-plt.tight_layout()
+plt.tight_layout(rect=[0, 0, 0.88, 1])
 plt.savefig(FIGURES_DIR / 'Fig5_Confusion_Patterns.png', dpi=300, bbox_inches='tight')
 print(f"✓ Saved: {FIGURES_DIR / 'Fig5_Confusion_Patterns.png'}")
 plt.close()

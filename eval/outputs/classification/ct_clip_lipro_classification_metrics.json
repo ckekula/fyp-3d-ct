@@ -1,0 +1,64 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "ct_clip_lipro",
+  "dataset": "rexgroundingct",
+  "num_samples": 2465,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": 0.4832388158339105,
+      "average_precision": 0.45040294921162627,
+      "precision": 0.4389027431421446,
+      "recall": 0.3093145869947276,
+      "f1": 0.3628865979381443,
+      "accuracy": 0.49858012170385396,
+      "ece": 0.03667469372855725,
+      "support": 1138
+    },
+    "lung_opacity": {
+      "auroc": 0.5396307003958011,
+      "average_precision": 0.4292108705168877,
+      "precision": 0.42953020134228187,
+      "recall": 0.26256410256410256,
+      "f1": 0.32590706556333543,
+      "accuracy": 0.5703853955375253,
+      "ece": 0.08853408759554307,
+      "support": 975
+    },
+    "consolidation": {
+      "auroc": 0.5350166253157383,
+      "average_precision": 0.22759938361238896,
+      "precision": 0.22375,
+      "recall": 0.3587174348697395,
+      "f1": 0.27559661277906083,
+      "accuracy": 0.6182555780933063,
+      "ece": 0.2926355782677145,
+      "support": 499
+    },
+    "atelectasis": {
+      "auroc": 0.5932969743147595,
+      "average_precision": 0.3213217403874641,
+      "precision": 0.333984375,
+      "recall": 0.2933104631217839,
+      "f1": 0.31232876712328766,
+      "accuracy": 0.6945233265720081,
+      "ece": 0.24018380337264425,
+      "support": 583
+    },
+    "macro": {
+      "auroc": 0.5377957789650524,
+      "average_precision": 0.35713373593209174,
+      "precision": 0.3565418298711066,
+      "recall": 0.3059766468875884,
+      "f1": 0.31917976085095706,
+      "ece": 0.16450704074111477
+    }
+  }
+}

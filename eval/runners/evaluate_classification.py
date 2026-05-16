@@ -43,6 +43,15 @@ def load_classification_samples(
         )
         return adapter.load()
 
+    if model == "biomed_parse":
+        from eval.adapters.biomedparse_adapter import BiomedParseClassificationAdapter
+
+        adapter = BiomedParseClassificationAdapter(
+            predictions_path=predictions_path,
+            model_name=model_name,
+        )
+        return adapter.load()
+
     if model == "lc_ksvd":
         from eval.adapters.lcksvd_adapter import LCKSVDClassificationAdapter
 
@@ -54,7 +63,7 @@ def load_classification_samples(
 
     raise ValueError(
         f"Unsupported classification model: {model}. "
-        "Supported: ct_clip, merlin, lc_ksvd"
+        "Supported: ct_clip, merlin, biomed_parse, lc_ksvd"
     )
 
 
@@ -84,7 +93,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         required=True,
-        choices=["ct_clip", "merlin", "lc_ksvd"],
+        choices=["ct_clip", "merlin", "biomed_parse", "lc_ksvd"],
         help="Model adapter to use.",
     )
 

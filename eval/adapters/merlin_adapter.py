@@ -18,7 +18,7 @@ class MerlinClassificationAdapter:
         self,
         predictions_path: str | Path,
         model_name: str = "merlin",
-        metadata_json: str | Path = "data/rexgrounding-ct/dataset.json"
+        metadata_json: str | Path = "data/rexgrounding-ct/dataset_4.json"
     ):
         self.predictions_path = Path(predictions_path)
         self.model_name = model_name
@@ -60,6 +60,16 @@ class MerlinClassificationAdapter:
             matched.add("lung_opacity")
         return matched
 
+    def _class_names_for_gt_category(self, category_code: str) -> set[str]:
+        code = str(category_code).strip().lower()
+        if code == "2d":
+            return {"lung_nodule"}
+        if code == "2c":
+            return {"lung_opacity"}
+        if code == "2b":
+            return {"consolidation", "atelectasis"}
+        return set()
+
     def _normalize_category(self, cat: str) -> str:
         cat = cat.lower().replace(" ", "_")
         if cat == "lung_nodule": return "lung_nodule"
@@ -93,9 +103,16 @@ class MerlinClassificationAdapter:
             # Ground Truth
             y_true = {"lung_nodule": 0, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0}
             gt_record = self._metadata_by_case.get(case_id, {})
-            gt_findings = gt_record.get("findings", {})
-            for v in gt_findings.values():
-                for cls_name in self._class_names_for_finding(v):
+            gt_categories = gt_record.get("categories", {})
+            if isinstance(gt_categories, dict):
+                category_values = [str(gt_categories[key]) for key in sorted(gt_categories.keys(), key=str)]
+            elif isinstance(gt_categories, list):
+                category_values = [str(item) for item in gt_categories]
+            else:
+                category_values = []
+
+            for category_code in category_values:
+                for cls_name in self._class_names_for_gt_category(category_code):
                     y_true[cls_name] = 1
 
             # Predictions

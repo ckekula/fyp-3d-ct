@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 import nibabel as nib
 import numpy as np
 
-from eval.core.schemas import LocalizationSample
+from eval.core.schemas import ClassificationSample, LocalizationSample
 
 
 class BiomedParseLocalizationAdapter:
@@ -512,3 +512,153 @@ class BiomedParseLocalizationAdapter:
             return "focal"
 
         return "non_focal"
+
+
+class BiomedParseClassificationAdapter:
+    CLASS_NAMES = [
+        "lung_nodule",
+        "lung_opacity",
+        "consolidation",
+        "atelectasis",
+    ]
+
+    def __init__(
+        self,
+        predictions_path: str | Path,
+        model_name: str = "biomed_parse",
+        metadata_json: str | Path = "data/rexgrounding-ct/dataset_4.json",
+    ) -> None:
+        self.predictions_path = Path(predictions_path)
+        self.model_name = model_name
+        self.metadata_json = Path(metadata_json)
+        self._metadata_by_case = self._load_metadata_index()
+
+    def load(self) -> List[ClassificationSample]:
+        reports_path = self.predictions_path
+        if self.predictions_path.is_dir():
+            reports_path = self.predictions_path / "reports.json"
+
+        if not reports_path.exists():
+            raise FileNotFoundError(f"Could not find BioMedParse reports at: {reports_path}")
+
+        reports = json.loads(reports_path.read_text(encoding="utf-8"))
+        samples: List[ClassificationSample] = []
+
+        for report in reports:
+            case_id = self._get_case_id(report)
+            y_true = self._get_case_labels(case_id)
+
+            y_score = {class_name: 0.0 for class_name in self.CLASS_NAMES}
+            for raw_class_name, payload in report.get("predictions", {}).items():
+                class_name = self._normalize_prediction_class_name(raw_class_name)
+                if class_name not in y_score:
+                    continue
+
+                if isinstance(payload, dict):
+                    score = payload.get("existence_score")
+                    if score is None:
+                        score = 1.0 if payload.get("present") else 0.0
+                    y_score[class_name] = float(score)
+                else:
+                    y_score[class_name] = float(payload)
+
+            samples.append(
+                ClassificationSample(
+                    case_id=case_id,
+                    model_name=self.model_name,
+                    y_true=y_true,
+                    y_score=y_score,
+                    dataset="rexgroundingct",
+                    metadata={"volume_name": report.get("volume_name")},
+                )
+            )
+
+        return samples
+
+    def _load_metadata_index(self) -> Dict[str, Dict]:
+        if not self.metadata_json.exists():
+            return {}
+
+        try:
+            raw = json.loads(self.metadata_json.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+
+        records: List[Dict] = []
+        if isinstance(raw, dict):
+            for value in raw.values():
+                if isinstance(value, list):
+                    records.extend(item for item in value if isinstance(item, dict))
+        elif isinstance(raw, list):
+            records.extend(item for item in raw if isinstance(item, dict))
+
+        index: Dict[str, Dict] = {}
+        for record in records:
+            name = str(record.get("name") or record.get("volume_name") or record.get("case_id") or "")
+            if not name:
+                continue
+
+            keys = {name, Path(name).stem}
+            if name.endswith(".nii.gz"):
+                keys.add(name[:-7])
+
+            for key in keys:
+                index[key] = record
+
+        return index
+
+    def _get_case_id(self, report: Dict) -> str:
+        if "case_id" in report:
+            return str(report["case_id"])
+
+        volume_name = str(report.get("volume_name", ""))
+        if volume_name.endswith(".nii.gz"):
+            return volume_name[:-7]
+        if volume_name.endswith(".nii"):
+            return volume_name[:-4]
+        return Path(volume_name).stem
+
+    def _get_case_labels(self, case_id: str) -> Dict[str, int]:
+        record = self._metadata_by_case.get(case_id) or self._metadata_by_case.get(f"{case_id}.nii.gz")
+        y_true = {class_name: 0 for class_name in self.CLASS_NAMES}
+
+        if not record:
+            return y_true
+
+        categories = record.get("categories", {})
+        values: List[str] = []
+        if isinstance(categories, dict):
+            values = [str(categories[key]) for key in sorted(categories.keys(), key=str)]
+        elif isinstance(categories, list):
+            values = [str(item) for item in categories]
+
+        for category_code in values:
+            mapped_classes = self._class_names_for_gt_category(category_code)
+            for class_name in mapped_classes:
+                y_true[class_name] = 1
+
+        return y_true
+
+    def _class_names_for_gt_category(self, category_code: str) -> set[str]:
+        code = str(category_code).strip().lower()
+
+        if code == "2d":
+            return {"lung_nodule"}
+
+        if code == "2c":
+            return {"lung_opacity"}
+
+        if code == "2b":
+            return {"consolidation", "atelectasis"}
+
+        # 2a and anything unknown are intentionally excluded.
+        return set()
+
+    def _normalize_prediction_class_name(self, name: str) -> str:
+        return (
+            str(name)
+            .strip()
+            .lower()
+            .replace("-", "_")
+            .replace(" ", "_")
+        )
