@@ -62,6 +62,13 @@ category mask has the highest overlap with that patch (majority-class rule), whi
 Both phases share the same maximum patches/scan budget; class balance is therefore determined by the normal/abnormal scan counts in the dataset, not a hard ratio
 All patches are assembled into X (32768 x N, float64) and H (N,) int64, then saved as .npz files.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{\detokenize{Chapters/chapter1PIC/Preprocessing.jpg}}
+\caption{Preprocessing pipeline overview.}
+\label{fig:preprocessing}
+\end{figure}
+
 \section{Implementation of the LC-KSVD Approach}
 To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{jiang2013lcksvd}
 Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
