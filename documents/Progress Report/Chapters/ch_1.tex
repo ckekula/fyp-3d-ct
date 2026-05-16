@@ -1,13 +1,19 @@
 %\index{\footnote{}}
 \chapter{Introduction}
 Developing a unified architectural pipeline for multi-class abnormality classification and grounded localization
-in 3D Computed Tomography (CT) ddresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
+in 3D Computed Tomography (CT) addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
 Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
 provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is held accountable and its
 reasoning aligns with clinical diagnosis.
 
 \section{Background}
 The transition from 2D projectional radiography to volumetric CT represents a paradigm shift in medical image analysis.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Chapters/chapter1PIC/2D to 3D.jpg}
+\caption{Transition from 2D projectional radiography to volumetric CT.}
+\label{fig:2dto3d}
+\end{figure}
 For Lung disease diagnosis, Chest X-rays (CXR) are commonly used as the first imaging test due to its low cost and low
 radiation exposure. However, studies show that their capability to detect abnormailities is limited when compared to 3D CT.
 \cite{SELF2013401}.
@@ -16,11 +22,10 @@ Furthermore, CXR has historically benefited from the availability of massive, ra
 the analysis of chest CT volumes has been severely constrained by a lack of such data.
 However, the recent introduction of large-scale, text-paired datasets has facilitated the development of state-of-the-art
 
-(SotA) vision-language foundation models tailored specifically for volumetric imaging.
-\cite{baharoon2025rexgroundingct3dchestct} \cite{doi:10.1200/JCO.2016.34.15_suppl.e18246} \cite{chen2026dflashblockdiffusionflash}.
+(SotA) vision-language foundation models tailored specifically for volumetric imaging \cite{baharoon2025rexgroundingct3dchestct,flores2016,chen2026dflashblockdiffusionflash}.
 
 
-Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LC-KSVD) \cite{LCKSVD},
+Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LC-KSVD) \cite{jiang2013lcksvd},
 Label Embedded Dictionary Learning (LEDL) and Fischer Discriminant Dictionary Learning (FDDL)
 offer viable approaches for interpretable CT analysis. All three techniques incorporate label information during the dictionary training
 process, and ensures that the sparse representation of the data is highly discriminative, making them
@@ -32,6 +37,13 @@ provide post-hoc explanations to model decisions, these are often insufficient f
 understanding of the model's decision making process. In high stakes environments, a model that produces a diagnosis without
 transparency in its reasoning is difficult to integrate into standard workflows, as it lacks the accountability necessary for legal
 and ethical compliance.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Chapters/chapter1PIC/HIresCAM.jpg}
+\caption{HiRes-CAM example illustrating higher-resolution localization compared with Grad-CAM.}
+\label{fig:hirescam}
+\end{figure}
 
 \section{Objectives and Scope}
 The primary goal of this project is to address the limitations of existing Deep Learning based approaches for Lung abnormality
@@ -121,15 +133,15 @@ Table 1
 Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks. In histopathological
 analysis, Discriminative Feature oriented Dictionary Learning (DFDL) has shown the ability to learn class specific dictionaries that achieve high classification
 accuracy even with limited training data a critical advantage when generous training samples are not available[19]. In neuroimaging, multi feature kernel supervised
-dictionary learning approaches have demonstrated superior performance in distinguishing Alzheimer’s disease patients from cognitively unimpaired individuals,
+dictionary learning approaches have demonstrated superior performance in distinguishing Alzheimer\'s disease patients from cognitively unimpaired individuals,
 achieving 98.18\% classification accuracy while maintaining fast testing times[20].
 
 Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images. One approach utilized both frozen
-dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CC-CCII dataset[21]. The framework’s key
+dictionary learning and label consistent LC-KSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CC-CCII dataset[21]. The framework\'s key
 advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original input signal domain. This work demonstrates that
-sparse representation methods offer an effective balance between performance and explainability for lung disease classification tasks, providing clear feature represen-
-tations while maintaining competitive accuracy. Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease pat-
-terns on HRCT images, effectively handling the high variety and complexity of patterns[22].
+sparse representation methods offer an effective balance between performance and explainability for lung disease classification tasks, providing clear feature
+representations while maintaining competitive accuracy. Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease
+patterns on HRCT images, effectively handling the high variety and complexity of patterns[22].
 
 
 \subsection{Explainability Approaches}
