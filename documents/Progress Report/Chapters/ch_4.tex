@@ -1,146 +1,179 @@
-\chapter{Experimentation and Evaluation}
+\chapter{Evaluation Framework and Results}
 
-Comparing a sparse, linear approach against SotA non-linear models architectures on raw metric scores alone would be an unfair
-framing. The evaluation framework therefore operates on three evaluation axes simultaneously:
+\section{Evaluation Framework Design}
+
+Comparing a sparse linear approach with state-of-the-art non-linear model architectures using only raw performance scores can give an incomplete view of model behavior. In medical imaging, a useful model should not only predict the correct abnormality, but also identify the relevant anatomical region and provide a meaningful explanation for its decision. Therefore, the evaluation framework in this study is organized around three complementary evaluation axes:
+
 \begin{itemize}
-    \item Axis A — Classification Accuracy: standard discriminative performance metrics (AUROC, F1, etc.)
-    \item Axis B — Grounded Localization Quality: volumetric segmentation and localization metrics (DSC, IoU, HIT@K\%)
-    \item Axis C — Inherent Explainability: atom-to-voxel traceability, and spatial faithfulness
+    \item \textbf{Axis A: Classification Accuracy} evaluates the ability of the model to detect the presence or absence of each abnormality using standard discriminative metrics such as AUROC, precision, recall, and F1 score.
+    \item \textbf{Axis B: Grounded Localization Quality} evaluates whether the model localizes the abnormality in the correct region of the 3D CT volume using spatial overlap and hit-based localization metrics such as DSC, IoU, and HIT@K.
+    \item \textbf{Axis C: Interpretability and Explanation Faithfulness} evaluates whether the model's explanation or attribution map is spatially aligned with the true abnormality region using metrics such as Attribution-Mask IoU, Pointing Game Accuracy, and Energy Inside Mask.
 \end{itemize}
 
-Axis C is the most novel and critical axis of evaluation, and cannot be meaningfully evaluated for the SOTA non-linear
-models without expensive post-hoc attribution methods such as Grad-CAM and HiResCAM, that are themselves approximations,
-while LC-KSVD provides exact, closed-form localization through its dictionary structure. This asymmetry must be acknowledged,
-and the evaluation framework is designed to highlight the unique explainability advantages of LC-KSVD.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{Images/Chapter 4/Evaluation_FrameWork_Architecture_Diagram.png}
+\caption{Architecture diagram of the proposed evaluation framework.}
+\label{fig:evaluation-framework}
+\end{figure}
 
-\section{Grounded Localization Evaluation Results}
+Axis C is particularly important for this study because the proposed LC-KSVD-based approach is designed to provide interpretable decision-making through dictionary atoms and sparse activations. In contrast, most deep learning and foundation models require post-hoc attribution techniques such as Grad-CAM, HiResCAM, or saliency-based methods to explain their predictions. These post-hoc methods provide useful approximations, but they do not directly represent the internal decision process of the model. Therefore, the evaluation framework explicitly separates predictive performance, localization quality, and explanation faithfulness to better highlight the strengths and limitations of each model type.
 
-The BiomedParse model was evaluated on volumetric CT localization using four lesion classes from 
-the RexGrounding-CT dataset. The following subsections present the complete quantitative analysis 
-across 1,264 test cases spanning four anatomical classes (316 cases each).
+\section{Evaluation Metrics}
 
-\subsection{Overall Performance Summary}
+A common set of quantitative metrics was used to evaluate the models across the three axes. This ensures that different models are compared under the same evaluation criteria, even though their raw outputs may differ. Classification-oriented models are evaluated using disease probability scores, localization-oriented models are evaluated using predicted masks, and interpretable models are additionally evaluated using attribution or activation maps.
 
-The model achieves limited localization accuracy across the dataset:
+\subsection{Classification Metrics}
+
+For Axis A, the classification task measures whether the model correctly detects each abnormality. The following metrics are used:
+
 \begin{itemize}
-    \item Mean Dice Score: 0.0190 (1.9\% overlap)
-    \item Mean IoU: 0.0110
-    \item Hit@5: 0.0949 (9.5\% of cases rank correct region in top-5)
-    \item Hit@10: 0.0562 (5.6\% of cases)
+    \item \textbf{Area Under the Receiver Operating Characteristic Curve (AUROC):} AUROC measures how well the model separates positive and negative cases across different decision thresholds. It is useful for imbalanced medical datasets because it evaluates ranking performance rather than relying on a single fixed threshold.
+    
+    \item \textbf{Precision and Recall:} Precision measures how many predicted positive cases are actually positive, while recall measures how many true positive cases are correctly detected by the model.
+    
+    \item \textbf{F1 Score:} F1 score is the harmonic mean of precision and recall. It provides a balanced measure when both false positives and false negatives are important.
+    
+    \item \textbf{Average Precision:} Average precision summarizes the precision-recall curve and is useful when positive cases are relatively rare.
+    
 \end{itemize}
 
-\subsection{Per-Class Performance}
+\subsection{Localization and Grounding Metrics}
 
-\begin{table}[h]
-\centering
-\caption{Localization Performance by Lesion Class}
-\begin{tabular}{lccccr}
-\hline
-\textbf{Class} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
-\hline
-Lung Nodule & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
-Lung Opacity & 0.0064 & 0.0034 & 0.0285 & 0.0158 & 316 \\
-Consolidation & 0.0008 & 0.0004 & 0.0095 & 0.0000 & 316 \\
-Atelectasis & 0.0036 & 0.0020 & 0.0158 & 0.0127 & 316 \\
-\hline
-\end{tabular}
-\label{tab:perclass-localization}
-\end{table}
+For Axis B, the localization task measures whether the predicted abnormality region overlaps with the ground-truth lesion mask. This is important because a model may correctly predict the presence of a disease while still focusing on the wrong anatomical area.
 
-\begin{figure}[h]
+\begin{itemize}
+    \item \textbf{Dice Similarity Coefficient (DSC):} Dice measures the spatial overlap between the predicted mask and the ground-truth mask. It is defined as:
+    \[
+    DSC = \frac{2|X \cap Y|}{|X| + |Y|}
+    \]
+    where \(X\) is the predicted mask and \(Y\) is the ground-truth mask.
+    
+    \item \textbf{Intersection over Union (IoU):} IoU, also known as the Jaccard index, measures the ratio between the overlapping region and the total combined region:
+    \[
+    IoU = \frac{|X \cap Y|}{|X \cup Y|}
+    \]
+    
+    \item \textbf{HIT@K:} HIT@K measures the proportion of cases where the model achieves at least a small amount of meaningful overlap with the ground-truth lesion region. In this work, HIT@5, HIT@10, and HIT@25 are used to indicate whether the Dice score exceeds 0.05, 0.10, and 0.25 respectively. This is useful for diffuse abnormalities where exact boundary agreement is difficult.
+\end{itemize}
+
+\subsection{Interpretability Metrics}
+
+For Axis C, the interpretability task evaluates whether the model's explanation is focused on the clinically relevant abnormality region. This is different from localization because the goal is not only to check where the model predicts a lesion, but also to determine whether the model's decision is supported by the correct anatomical evidence.
+
+\begin{itemize}
+    \item \textbf{Attribution-Mask IoU:} This measures the overlap between the thresholded attribution map and the ground-truth lesion mask. A higher value indicates that the explanation is spatially aligned with the true abnormality.
+    
+    \item \textbf{Pointing Game Accuracy:} This checks whether the highest-attribution point lies inside the ground-truth lesion region. If the maximum response is inside the lesion mask, the case is counted as a hit.
+    
+    \item \textbf{Energy Inside Mask:} This measures the percentage of total attribution energy that lies inside the ground-truth mask. A high value indicates that the model's explanation is concentrated on the true abnormality region rather than irrelevant background structures.
+\end{itemize}
+
+\section{Classification Accuracy Evaluation}
+
+The classification performance was evaluated across four abnormality classes: Lung Nodule, Lung Opacity, Consolidation, and Atelectasis. The proposed LC-KSVD-based baseline was compared with three foundation model baselines: Merlin, CT-CLIP, and BiomedParse. For LC-KSVD, consolidation-related performance was also used as a proxy reference for atelectasis due to current dataset and label constraints.
+
+\subsection{Overall Classification Performance}
+
+Figure~\ref{fig:classification-macro} shows the macro-level classification performance across the evaluated models. Merlin achieved the strongest discriminative performance, with a macro-AUROC of 0.966. In contrast, CT-CLIP and BiomedParse produced lower macro-AUROC values of 0.538 and 0.509 respectively on the ReXGroundingCT evaluation setting.
+
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig2_Metrics_Comparison.png}
-\caption{Per-class localization performance across three key metrics. 
-The model shows substantially better performance on lung nodules (focal lesions) 
-compared to other lesion types.}
-\label{fig:metrics-comparison}
+\includegraphics[width=0.95\linewidth]{Images/Chapter 4/classification_macro_comparison.png}
+\caption{Overall classification performance comparison across models.}
+\label{fig:classification-macro}
 \end{figure}
 
-\subsection{Distribution Analysis}
+These results suggest that Merlin is the strongest classification baseline in this setup. CT-CLIP and BiomedParse show weaker classification performance, which may be due to differences in training objectives, dataset alignment, and the use of zero-shot or proxy classification outputs. BiomedParse is mainly designed for text-guided segmentation and grounding, so its classification score should be interpreted as a proxy rather than as the output of a dedicated classifier.
 
-The Dice score distributions reveal a stark pattern: while lung nodules show some successful detections
-(max: 0.79, median: 0.02), non-focal lesions remain largely undetected.
-
-\begin{figure}[h]
+\subsection{Per-Class Analysis}
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig1_Dice_Distributions.png}
-\caption{Histogram of Dice scores for each lesion class. Red and blue dashed lines indicate 
-mean and median respectively. Zero-Dice percentages shown in subtitle. Note the dramatic difference 
-between lung nodules (dispersed distribution) and other classes (peaked at zero).}
-\label{fig:dice-distributions}
+\includegraphics[width=0.85\linewidth]{Images/Chapter 4/classification_per_class_auroc.png}
+\caption{Per-class AUROC comparison Across Models.}
+\label{fig:classification-per-class}
+\end{figure}
+The per-class AUROC comparison in Figure~\ref{fig:classification-per-class} provides a more detailed view of model behavior. Merlin maintains strong performance across all evaluated classes. The LC-KSVD baseline shows promising results for non-focal or broader abnormalities, achieving AUROC values of 0.917 for Lung Opacity and 0.806 for Consolidation. It also achieves 0.806 for Atelectasis in the current evaluation setting. However, its performance for Lung Nodule is weaker, with an AUROC of 0.524.
+
+This behavior suggests that LC-KSVD may capture broader abnormal tissue patterns more effectively than small focal lesions. Lung nodules are compact and localized, so their detection may require finer spatial resolution, multi-scale patch modeling, or more nodule-specific training samples. In contrast, abnormalities such as lung opacity and consolidation may produce more distributed visual patterns that are more compatible with the sparse dictionary representation.
+
+
+\section{Grounded Localization Evaluation}
+
+Axis B evaluates whether the models can identify the correct abnormal region in the volumetric CT scan. This is different from classification because a model can correctly detect the presence of a disease while still localizing the wrong anatomical region. The localization evaluation therefore uses Dice, IoU, and HIT@K metrics to measure spatial agreement between predicted lesion regions and ground-truth annotations.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{Images/Chapter 4/Localization_Overall_Model_Comparison.png}
+\caption{Overall localization performance comparison for BiomedParse and Merlin.}
+\label{fig:localization-overall}
 \end{figure}
 
-\subsection{Critical Finding: Focal vs. Non-Focal Lesion Bias}
+Figure~\ref{fig:localization-overall} shows that grounded localization remains challenging for the evaluated models. The Dice, IoU, and HIT@K values indicate limited agreement between predicted lesion regions and reference annotations. This highlights an important gap between disease recognition and true spatial grounding. For clinical support, it is not sufficient to detect an abnormality; the model should also identify the correct location and extent of the abnormal region.
 
-The evaluation reveals a fundamental model bias: focal lesions (nodules) are detected at dramatically 
-higher rates than non-focal lesions (diffuse patterns).
+\subsection{Per-Class Localization Performance}
 
-\begin{table}[h]
+Figure~\ref{fig:localization-dice-comparison} shows the per-class Dice comparison. The results indicate that localization performance varies substantially across lesion categories. This variation is likely influenced by lesion morphology, size, contrast, and boundary clarity.
+
+\begin{figure}[htbp]
 \centering
-\caption{Morphology-Based Performance Analysis}
-\begin{tabular}{lccccr}
-\hline
-\textbf{Morphology} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
-\hline
-Focal (Nodules) & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
-Non-Focal (Diffuse) & 0.0036 & 0.0020 & 0.0179 & 0.0095 & 948 \\
-\hline
-\end{tabular}
-\label{tab:morphology-localization}
-\end{table}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig3_Focal_vs_NonFocal.png}
-\caption{Critical performance gap between focal (lung nodules) and non-focal (diffuse) lesions. 
-Left panel shows direct metric comparison. Right panel visualizes the performance multiplier gap: 
-the model achieves 18.1× higher Dice on nodules versus non-focal lesions.}
-\label{fig:focal-nonfocal-gap}
+\includegraphics[width=0.85\linewidth]{Images/Chapter 4/Localization_Dice_Comparison_BiomedParse_vs_Merlin.png}
+\caption{Mean Dice comparison by lesion class.}
+\label{fig:localization-dice-comparison}
 \end{figure}
 
-\subsection{Score Distribution and Failure Modes}
+Focal lesions such as lung nodules show comparatively better localization than diffuse abnormalities such as lung opacity, consolidation, and atelectasis. This suggests that object-like lesions with clearer boundaries are easier for text-guided segmentation models to localize. In contrast, diffuse abnormalities often have ambiguous borders and variable appearance, making exact spatial overlap more difficult.
 
-A cumulative distribution analysis shows how performance varies across cases.
+\subsection{Qualitative Comparison of Localization Outcomes}
 
-\begin{figure}[h]
+The qualitative BiomedParse example in Figure~\ref{fig:qualitative-consolidation} further illustrates the gap between abnormality detection and precise grounding. In the consolidation example, the predicted region covers a broad area of the lung, while the ground-truth annotation is more localized. This indicates that the model responds to the general lung region associated with the abnormality, but it does not accurately preserve the lesion boundary, extent, or class-specific spatial location.
+
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig4_CDF_Dice.png}
-\caption{Cumulative Distribution Function of Dice scores. Shows the proportion of cases 
-achieving each Dice threshold. Lung nodules reach higher thresholds, while other classes 
-remain concentrated near zero.}
-\label{fig:cdf-dice}
+\includegraphics[width=0.9\linewidth]{Images/Chapter 4/train_272_a_2_gt_pred_comparison.png}
+\caption{Ground-truth and BiomedParse-predicted localization for consolidation.}
+\label{fig:qualitative-consolidation}
 \end{figure}
 
-The failure-mode distribution reveals the severity of non-focal lesion detection:
+The LC-KSVD visualization in Figure~\ref{fig:qualitative-lc-ksvd} shows a related limitation. The prediction map highlights a suspicious region in the lung, indicating some sensitivity to abnormal tissue patterns. However, the activated region is not fully aligned with the ground-truth lesion location. This suggests that the sparse representation captures some abnormal visual structure, but further refinement is needed to improve anatomical alignment.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Chapter 4/Fig5_Confusion_Patterns.png}
-\caption{Stacked bar chart showing the fraction of cases in each performance category. 
-Consolidation and atelectasis show greater than 98\% zero-Dice cases (complete failure to localize). 
-Lung opacity shows 74\% zero-Dice. Only lung nodules show meaningful detection diversity.}
-\label{fig:confusion-patterns}
+\includegraphics[width=0.9\linewidth]{Images/Chapter 4/LC-KSVD_Visualization_Result.png}
+\caption{Ground-truth and LC-KSVD-predicted localization for consolidation.}
+\label{fig:qualitative-lc-ksvd}
 \end{figure}
 
-\subsection{Conclusions from Localization Evaluation}
+Overall, the localization results show that both foundation models and the proposed sparse representation approach face challenges in producing precise lesion-level grounding in 3D CT. This supports the need for evaluation beyond classification scores alone.
 
-The evaluation demonstrates that BiomedParse:
-\begin{enumerate}
-    \item Effectively localizes focal lesions (lung nodules) with moderate success (32.6\% Hit@5)
-    \item Fails dramatically on non-focal (diffuse) lesions:
-    \begin{itemize}
-        \item Atelectasis: 96\% zero-Dice (essentially not detected)
-        \item Consolidation: 98\% zero-Dice (essentially not detected)
-        \item Lung Opacity: 74\% zero-Dice (mostly not detected)
-    \end{itemize}
-    \item Shows architectural bias toward focal patterns, suggesting the model's feature representations
-    may not generalize to diffuse pathology
-\end{enumerate}
+\section{Inherent Explainability Evaluation}
 
-This focal-bias is a critical finding for understanding model limitations in clinical deployment,
-where many important lesions manifest as diffuse patterns rather than discrete nodules. 
+Axis C focuses on whether model predictions are supported by clinically meaningful evidence. This is a key motivation for the proposed LC-KSVD approach. Deep learning models such as Merlin, CT-CLIP, and BiomedParse can be evaluated with post-hoc explanation methods or grounding maps, but these explanations are not always part of the model's internal decision process. LC-KSVD, in contrast, provides a more direct form of traceability through its dictionary atoms and sparse coefficients.
 
+\subsection{Atom-to-Voxel Traceability}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% END OF FILE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+LC-KSVD represents input patches using a learned dictionary and sparse activation coefficients. Since the reconstruction and classification processes are based on linear combinations of dictionary atoms, the contribution of selected atoms can be traced back to the corresponding voxel regions in the CT volume. This provides a direct connection between the model's prediction and the spatial image patterns that contributed to it.
+
+This atom-to-voxel traceability is useful because it allows the model's decision to be inspected in terms of activated dictionary components. Instead of relying only on a final disease score, the user can examine which atoms were activated and where their contributions appear in the volume.
+
+\subsection{Spatial Faithfulness of Explanations}
+
+The explanation quality is evaluated using attribution maps generated from model activations or atom contributions. These maps are compared with the ground-truth lesion masks using the following metrics:
+
+\begin{itemize}
+    \item \textbf{Attribution-Mask IoU:} Measures how much the explanation map overlaps with the true lesion region.
+    
+    \item \textbf{Pointing Game Accuracy:} Checks whether the strongest explanation point falls inside the annotated lesion region.
+    
+    \item \textbf{Energy Inside Mask:} Measures how much of the explanation signal is concentrated inside the ground-truth mask.
+\end{itemize}
+
+Together, these metrics assess whether the explanation is spatially faithful to the disease region. A model with good interpretability should not only predict the correct abnormality, but should also base its decision on the relevant anatomical evidence.
+
+For LC-KSVD, these metrics are particularly meaningful because the explanation comes from the model structure itself through sparse codes and dictionary atoms. Even when its classification performance is lower than that of a large foundation model, its explanations can provide additional value by making the decision process more transparent and easier to inspect.
+
+\section{Summary of Evaluation Findings}
+
+The evaluation framework provides a multi-dimensional comparison of model performance. Axis A shows that Merlin is the strongest classification baseline, while LC-KSVD demonstrates promising performance for lung opacity, consolidation, and atelectasis. Axis B shows that localization remains difficult for all evaluated models, especially for diffuse abnormalities. BiomedParse performs relatively better on focal lung nodules, but its localization performance is inconsistent across classes. Axis C highlights the main advantage of LC-KSVD: its ability to provide interpretable atom-based explanations that can be traced back to voxel-level regions.
+
+Overall, the results indicate that classification accuracy alone is not sufficient for evaluating medical AI models in 3D chest CT analysis. A reliable model should be accurate, spatially grounded, and explainable. The proposed evaluation framework captures these three requirements and provides a fair basis for comparing sparse interpretable models with modern foundation model baselines.
