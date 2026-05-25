@@ -48,56 +48,99 @@ def normalise_columns(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray
     return X_norm, norms, zero_mask
 
 
-# ─── Evaluation ───────────────────────────────────────────────────────────────
+def _log_class_distribution(H: np.ndarray, prefix: str) -> None:
+    """Log per-class patch counts for the given label vector."""
+    for i, cls in enumerate(CLASS_ORDER):
+        count = int((H == i).sum())
+        logger.info(f"  {prefix} class {cls}: {count} patches")
+
+
+# ─── Scan-level evaluation ────────────────────────────────────────────────────
 
 def evaluate(
     model: LCKSVD,
     X_norm: np.ndarray,
-    H: np.ndarray,           # (n_patches,) int64  ← one-hot is NOT accepted here
+    H: np.ndarray,           # (n_patches,)  int64 — patch-level class indices
+    scan_ids: np.ndarray,    # (n_patches,)  str   — one scan ID per patch
     split_name: str,
 ) -> Dict[str, float]:
+    """
+    Compute scan-level classification metrics by mean-pooling patch scores
+    across all patches belonging to the same scan.
+
+    For each scan:
+      - Score vector = mean of (W @ Gamma) over its patches  →  (n_classes,)
+      - Predicted class = argmax of the mean score vector
+      - Ground-truth class = majority class label among the scan's patches
+        (all patches from a normal scan have label 0; abnormal scans may have
+         patches from multiple classes, but the scan-level GT is the class that
+         appears most, which in practice is always the single abnormality class
+         assigned during extraction)
+
+    AUROC and AP are computed one-vs-rest using the mean score for each class
+    as the continuous ranking signal.
+    """
+    assert H.ndim == 1, (
+        f"evaluate() expects a 1D integer label vector; got shape {H.shape}."
+    )
+
     Gamma  = model.transform(X_norm)   # (n_components, n_patches)
     W      = model.W_                  # (n_classes, n_components)
     scores = W @ Gamma                 # (n_classes, n_patches)
 
-    y_pred = np.argmax(scores, axis=0) # (n_patches,)
-    y_true = H                         # (n_patches,) integers — used directly
+    # ── Aggregate to scan level ───────────────────────────────────────────────
+    unique_scans = np.unique(scan_ids)
+    n_scans      = len(unique_scans)
+    n_classes    = len(CLASS_ORDER)
 
-    # Sanity check: catch one-hot accidentally passed in
-    assert y_true.ndim == 1, (
-        f"evaluate() expects a 1D integer label vector; got shape {y_true.shape}. "
-        "Pass H before label_binarize(), not H_onehot."
-    )
+    scan_scores   = np.zeros((n_classes, n_scans), dtype=np.float64)
+    scan_gt       = np.zeros(n_scans, dtype=np.int64)
 
-    n_classes = len(CLASS_ORDER)
+    for j, sid in enumerate(unique_scans):
+        mask = scan_ids == sid
+        # Mean-pool patch scores for this scan
+        scan_scores[:, j] = scores[:, mask].mean(axis=1)
+        # Majority class among this scan's patches as ground truth
+        patch_labels = H[mask]
+        counts = np.bincount(patch_labels, minlength=n_classes)
+        scan_gt[j] = int(np.argmax(counts))
+
+    scan_pred = np.argmax(scan_scores, axis=0)   # (n_scans,)
+
+    # ── Metrics ───────────────────────────────────────────────────────────────
     metrics: Dict[str, float] = {}
-
     aurocs, aps = [], []
+
     for c in range(n_classes):
-        y_true_bin = (y_true == c).astype(int)
-        score_c    = scores[c, :]
+        gt_bin  = (scan_gt == c).astype(int)
+        score_c = scan_scores[c, :]
 
         try:
-            aurocs.append(roc_auc_score(y_true_bin, score_c))
+            aurocs.append(roc_auc_score(gt_bin, score_c))
         except ValueError:
             aurocs.append(float("nan"))
 
         try:
-            aps.append(average_precision_score(y_true_bin, score_c))
+            aps.append(average_precision_score(gt_bin, score_c))
         except ValueError:
             aps.append(float("nan"))
 
     metrics["auroc_macro"] = float(np.nanmean(aurocs))
     metrics["ap_macro"]    = float(np.nanmean(aps))
-    metrics["f1_macro"]    = f1_score(y_true, y_pred, average="macro", zero_division=0)
+    metrics["f1_macro"]    = f1_score(
+        scan_gt, scan_pred, average="macro", zero_division=0
+    )
+    metrics["n_scans"]     = n_scans
 
     for i, cls in enumerate(CLASS_ORDER):
         metrics[f"auroc_{cls}"] = aurocs[i]
         metrics[f"ap_{cls}"]    = aps[i]
 
     logger.info(
-        f"  [{split_name}] AUROC(macro)={metrics['auroc_macro']:.4f}  "
-        f"F1(macro)={metrics['f1_macro']:.4f}  AP(macro)={metrics['ap_macro']:.4f}"
+        f"  [{split_name}] {n_scans} scans — "
+        f"AUROC(macro)={metrics['auroc_macro']:.4f}  "
+        f"F1(macro)={metrics['f1_macro']:.4f}  "
+        f"AP(macro)={metrics['ap_macro']:.4f}"
     )
     for cls in CLASS_ORDER:
         logger.info(
@@ -114,26 +157,32 @@ def train() -> Dict:
     logger.info(f"\n{'='*60}\nTraining unified LC-KSVD2 model\n{'='*60}")
 
     # ── Load patches ──────────────────────────────────────────────────────────
-    X, H = load_unified_patch_matrix(split="train")
+    X, H, scan_ids = load_unified_patch_matrix(split="train")
     logger.info(f"Train — X: {X.shape}, H: {H.shape}")
-    for i, cls in enumerate(CLASS_ORDER):
-        logger.info(f"  class {cls}: {int((H == i).sum())} patches")
-    #   ↑ was H[i].sum() — H is 1D integers, not one-hot rows
+    _log_class_distribution(H, prefix="train (raw)")
 
     # ── Normalise + drop zero patches ─────────────────────────────────────────
     X_norm, _, zero_mask = normalise_columns(X)
     keep   = ~zero_mask
-    X_norm = X_norm[:, keep]
-    H      = H[keep]               # H is (n_patches,) — 1D indexing is correct here
-    logger.info(f"After zero-patch removal: {X_norm.shape[1]} patches")
+    X_norm   = X_norm[:, keep]
+    H        = H[keep]
+    scan_ids = scan_ids[keep]
+
+    n_dropped = int(zero_mask.sum())
+    logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
+    _log_class_distribution(H, prefix="train (after zero-norm drop)")
 
     # ── Validation set ────────────────────────────────────────────────────────
-    X_val, H_val = load_unified_patch_matrix(split="val")
+    X_val, H_val, scan_ids_val = load_unified_patch_matrix(split="val")
     X_val_norm, _, val_zero = normalise_columns(X_val)
-    keep_val   = ~val_zero
-    X_val_norm = X_val_norm[:, keep_val]
-    H_val      = H_val[keep_val]   # ← was H_val[:, ~val_zero] — H_val is 1D, not 2D
-    logger.info(f"Val   — {X_val_norm.shape[1]} patches")
+    keep_val       = ~val_zero
+    X_val_norm     = X_val_norm[:, keep_val]
+    H_val          = H_val[keep_val]
+    scan_ids_val   = scan_ids_val[keep_val]
+
+    n_dropped_val = int(val_zero.sum())
+    logger.info(f"Val: dropped {n_dropped_val} zero-norm patches; {keep_val.sum()} remaining.")
+    _log_class_distribution(H_val, prefix="val (after zero-norm drop)")
 
     # ── Adapt dictionary size for small datasets ──────────────────────────────
     cfg = dict(LCKSVD_CONFIG)
@@ -147,17 +196,16 @@ def train() -> Dict:
     logger.info("Starting LC-KSVD2 training…")
     t0 = time.time()
 
-    # Convert to one-hot only for model.fit(); keep integer H for evaluate()
-    classes     = list(range(len(CLASS_ORDER)))
-    H_onehot     = label_binarize(H,     classes=classes).T  # (n_classes, n_patches)
+    classes  = list(range(len(CLASS_ORDER)))
+    H_onehot = label_binarize(H, classes=classes).T  # (n_classes, n_patches)
 
     model.fit(X_norm, H_onehot)
     elapsed = time.time() - t0
     logger.info(f"Training complete in {elapsed:.1f}s")
 
-    # ── Evaluate — pass integer H, not one-hot ────────────────────────────────
-    train_metrics = evaluate(model, X_norm,     H,     split_name="train")
-    val_metrics   = evaluate(model, X_val_norm, H_val, split_name="val")
+    # ── Evaluate at scan level — pass integer H and scan_ids ──────────────────
+    train_metrics = evaluate(model, X_norm,     H,     scan_ids,     split_name="train")
+    val_metrics   = evaluate(model, X_val_norm, H_val, scan_ids_val, split_name="val")
 
     # ── Save ──────────────────────────────────────────────────────────────────
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
@@ -186,7 +234,7 @@ def train() -> Dict:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Train a single unified LC-KSVD2 model (normal + 4 abnormalities)"
+        description="Train a single unified LC-KSVD2 model (normal + 3 abnormalities)"
     )
     parser.add_argument(
         "--skip-extraction", action="store_true",
@@ -203,7 +251,8 @@ def main():
 
     vm = result["val_metrics"]
     logger.info(
-        f"\nFinal val — AUROC(macro)={vm['auroc_macro']:.4f}  "
+        f"\nFinal val ({int(vm['n_scans'])} scans) — "
+        f"AUROC(macro)={vm['auroc_macro']:.4f}  "
         f"F1(macro)={vm['f1_macro']:.4f}  AP(macro)={vm['ap_macro']:.4f}"
     )
 

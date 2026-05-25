@@ -39,7 +39,7 @@ HU_MIN = -1000
 HU_MAX =  200
 
 # Target isotropic voxel spacing in mm after resampling
-TARGET_SPACING_MM = 1.5   # resamples 0.75×0.75×1.5 and 1×1×3 to 1.5×1.5×1.5
+TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
