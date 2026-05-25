@@ -1,0 +1,34 @@
+{
+  "name": "train_13583_d_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    514
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Progressive pleural effusion reaching a diameter of 3 cm between the leaves of the right pleura",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Extensive consolidation areas in all segments of both lungs",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Consolidation areas showing more confluence",
+      "category": "Consolidation"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "2b"
+  },
+  "pixels": {
+    "0": 916086,
+    "1": 39189,
+    "2": 620757
+  },
+  "embedding_norm": 4.485410213470459
+}

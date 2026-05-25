@@ -1,0 +1,28 @@
+{
+  "name": "train_13591_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    253
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground glass densities in the inferior lingula of the left upper lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectatic changes in the middle lobe of the right lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2c",
+    "1": "2b"
+  },
+  "pixels": {
+    "0": 16441,
+    "1": 20735
+  },
+  "embedding_norm": 4.4363694190979
+}

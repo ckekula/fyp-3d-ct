@@ -1,0 +1,212 @@
+"""
+train.py
+Trains one LC-KSVD2 multi-class model over all abnormalities + normal.
+
+H rows (CLASS_ORDER):
+  0 → normal
+  1 → 2b  (atelectasis / consolidation)
+  2 → 2c  (groundglass opacity)
+  3 → 2d  (pulmonary nodules/masses)
+
+Usage:
+  python train.py                   # extract patches then train
+  python train.py --skip-extraction # use existing unified .npz
+"""
+
+import argparse
+import logging
+import pickle
+import time
+from typing import Dict, Tuple
+
+import numpy as np
+from sklearn.metrics import (
+    average_precision_score,
+    f1_score,
+    roc_auc_score,
+)
+from sklearn.preprocessing import label_binarize
+
+from lc_ksvd.config import (
+    CLASS_ORDER, HU_MAX, HU_MIN, LCKSVD_CONFIG,
+    MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM,
+)
+from lc_ksvd.patch_extractor import extract_unified, load_unified_patch_matrix
+from reppi import LCKSVD
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+
+
+# ─── Column normalisation ─────────────────────────────────────────────────────
+
+def normalise_columns(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    norms = np.linalg.norm(X, axis=0)
+    zero_mask = norms < 1e-10
+    norms_safe = np.where(zero_mask, 1.0, norms)
+    X_norm = X / norms_safe[np.newaxis, :]
+    return X_norm, norms, zero_mask
+
+
+# ─── Evaluation ───────────────────────────────────────────────────────────────
+
+def evaluate(
+    model: LCKSVD,
+    X_norm: np.ndarray,
+    H: np.ndarray,           # (n_patches,) int64  ← one-hot is NOT accepted here
+    split_name: str,
+) -> Dict[str, float]:
+    Gamma  = model.transform(X_norm)   # (n_components, n_patches)
+    W      = model.W_                  # (n_classes, n_components)
+    scores = W @ Gamma                 # (n_classes, n_patches)
+
+    y_pred = np.argmax(scores, axis=0) # (n_patches,)
+    y_true = H                         # (n_patches,) integers — used directly
+
+    # Sanity check: catch one-hot accidentally passed in
+    assert y_true.ndim == 1, (
+        f"evaluate() expects a 1D integer label vector; got shape {y_true.shape}. "
+        "Pass H before label_binarize(), not H_onehot."
+    )
+
+    n_classes = len(CLASS_ORDER)
+    metrics: Dict[str, float] = {}
+
+    aurocs, aps = [], []
+    for c in range(n_classes):
+        y_true_bin = (y_true == c).astype(int)
+        score_c    = scores[c, :]
+
+        try:
+            aurocs.append(roc_auc_score(y_true_bin, score_c))
+        except ValueError:
+            aurocs.append(float("nan"))
+
+        try:
+            aps.append(average_precision_score(y_true_bin, score_c))
+        except ValueError:
+            aps.append(float("nan"))
+
+    metrics["auroc_macro"] = float(np.nanmean(aurocs))
+    metrics["ap_macro"]    = float(np.nanmean(aps))
+    metrics["f1_macro"]    = f1_score(y_true, y_pred, average="macro", zero_division=0)
+
+    for i, cls in enumerate(CLASS_ORDER):
+        metrics[f"auroc_{cls}"] = aurocs[i]
+        metrics[f"ap_{cls}"]    = aps[i]
+
+    logger.info(
+        f"  [{split_name}] AUROC(macro)={metrics['auroc_macro']:.4f}  "
+        f"F1(macro)={metrics['f1_macro']:.4f}  AP(macro)={metrics['ap_macro']:.4f}"
+    )
+    for cls in CLASS_ORDER:
+        logger.info(
+            f"    {cls}: AUROC={metrics[f'auroc_{cls}']:.4f}  "
+            f"AP={metrics[f'ap_{cls}']:.4f}"
+        )
+
+    return metrics
+
+
+# ─── Training ─────────────────────────────────────────────────────────────────
+
+def train() -> Dict:
+    logger.info(f"\n{'='*60}\nTraining unified LC-KSVD2 model\n{'='*60}")
+
+    # ── Load patches ──────────────────────────────────────────────────────────
+    X, H = load_unified_patch_matrix(split="train")
+    logger.info(f"Train — X: {X.shape}, H: {H.shape}")
+    for i, cls in enumerate(CLASS_ORDER):
+        logger.info(f"  class {cls}: {int((H == i).sum())} patches")
+    #   ↑ was H[i].sum() — H is 1D integers, not one-hot rows
+
+    # ── Normalise + drop zero patches ─────────────────────────────────────────
+    X_norm, _, zero_mask = normalise_columns(X)
+    keep   = ~zero_mask
+    X_norm = X_norm[:, keep]
+    H      = H[keep]               # H is (n_patches,) — 1D indexing is correct here
+    logger.info(f"After zero-patch removal: {X_norm.shape[1]} patches")
+
+    # ── Validation set ────────────────────────────────────────────────────────
+    X_val, H_val = load_unified_patch_matrix(split="val")
+    X_val_norm, _, val_zero = normalise_columns(X_val)
+    keep_val   = ~val_zero
+    X_val_norm = X_val_norm[:, keep_val]
+    H_val      = H_val[keep_val]   # ← was H_val[:, ~val_zero] — H_val is 1D, not 2D
+    logger.info(f"Val   — {X_val_norm.shape[1]} patches")
+
+    # ── Adapt dictionary size for small datasets ──────────────────────────────
+    cfg = dict(LCKSVD_CONFIG)
+    max_atoms = max(8, X_norm.shape[1] // 2)
+    cfg["n_components"]    = min(cfg["n_components"], max_atoms)
+    cfg["n_nonzero_coefs"] = min(cfg["n_nonzero_coefs"],
+                                 max(1, cfg["n_components"] // 2))
+
+    # ── Train ─────────────────────────────────────────────────────────────────
+    model = LCKSVD(**cfg)
+    logger.info("Starting LC-KSVD2 training…")
+    t0 = time.time()
+
+    # Convert to one-hot only for model.fit(); keep integer H for evaluate()
+    classes     = list(range(len(CLASS_ORDER)))
+    H_onehot     = label_binarize(H,     classes=classes).T  # (n_classes, n_patches)
+
+    model.fit(X_norm, H_onehot)
+    elapsed = time.time() - t0
+    logger.info(f"Training complete in {elapsed:.1f}s")
+
+    # ── Evaluate — pass integer H, not one-hot ────────────────────────────────
+    train_metrics = evaluate(model, X_norm,     H,     split_name="train")
+    val_metrics   = evaluate(model, X_val_norm, H_val, split_name="val")
+
+    # ── Save ──────────────────────────────────────────────────────────────────
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    model_path = MODELS_DIR / "unified_lcksvd2.pkl"
+
+    payload = {
+        "model":           model,
+        "class_order":     CLASS_ORDER,
+        "train_metrics":   train_metrics,
+        "val_metrics":     val_metrics,
+        "lcksvd_config":   cfg,
+        "patch_size":      PATCH_SIZE,
+        "target_spacing":  TARGET_SPACING_MM,
+        "hu_window":       (HU_MIN, HU_MAX),
+        "training_time_s": elapsed,
+    }
+
+    with open(model_path, "wb") as f:
+        pickle.dump(payload, f)
+
+    logger.info(f"Model saved → {model_path}")
+    return payload
+
+
+# ─── Entry point ─────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Train a single unified LC-KSVD2 model (normal + 4 abnormalities)"
+    )
+    parser.add_argument(
+        "--skip-extraction", action="store_true",
+        help="Skip patch extraction and use existing unified .npz files."
+    )
+    args = parser.parse_args()
+
+    if not args.skip_extraction:
+        logger.info("Running unified patch extraction (train + val)…")
+        extract_unified(split="train")
+        extract_unified(split="val")
+
+    result = train()
+
+    vm = result["val_metrics"]
+    logger.info(
+        f"\nFinal val — AUROC(macro)={vm['auroc_macro']:.4f}  "
+        f"F1(macro)={vm['f1_macro']:.4f}  AP(macro)={vm['ap_macro']:.4f}"
+    )
+
+
+if __name__ == "__main__":
+    main()

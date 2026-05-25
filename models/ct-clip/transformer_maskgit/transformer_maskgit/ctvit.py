@@ -285,11 +285,11 @@ class CTViT(nn.Module):
     ):
         b = tokens.shape[0]
         h, w = self.patch_height_width
+        device = tokens.device
 
         video_shape = tuple(tokens.shape[:-1])
 
         tokens = rearrange(tokens, 'b t h w d -> (b t) (h w) d')
-        device=torch.device('cuda')
         attn_bias = self.spatial_rel_pos_bias(h, w, device = device)
 
         tokens = self.enc_spatial_transformer(tokens, attn_bias = attn_bias, video_shape = video_shape)
@@ -312,6 +312,7 @@ class CTViT(nn.Module):
     ):
         b = tokens.shape[0]
         h, w = self.patch_height_width
+        device = tokens.device
 
         if tokens.ndim == 3:
             tokens = rearrange(tokens, 'b (t h w) d -> b t h w d', h = h, w = w)
@@ -329,7 +330,6 @@ class CTViT(nn.Module):
         # decode - spatial
 
         tokens = rearrange(tokens, 'b t h w d -> (b t) (h w) d')
-        device=torch.device('cuda')
         attn_bias = self.spatial_rel_pos_bias(h, w, device = device)
 
         tokens = self.dec_spatial_transformer(tokens, attn_bias = attn_bias, video_shape = video_shape)
@@ -371,7 +371,6 @@ class CTViT(nn.Module):
             assert not exists(mask)
 
         b, c, f, *image_dims, device = *video.shape, video.device
-        device=torch.device('cuda')
         assert tuple(image_dims) == self.image_size
         assert not exists(mask) or mask.shape[-1] == f
 

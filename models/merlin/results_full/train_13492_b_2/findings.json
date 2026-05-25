@@ -1,0 +1,40 @@
+{
+  "name": "train_13492_b_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    463
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two nonspecific nodules measuring 4 mm in diameter in the lateral segment of the right middle lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Parenchymal changes consistent with scarring in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Areas of consolidation in the lower lobe of the left lung",
+      "category": "Consolidation"
+    },
+    "3": {
+      "text": "Ground-glass opacity in the lower lobe of the left lung",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2a",
+    "2": "2b",
+    "3": "2c"
+  },
+  "pixels": {
+    "0": 280,
+    "1": 18528,
+    "2": 4518,
+    "3": 405686
+  },
+  "embedding_norm": 4.500171661376953
+}

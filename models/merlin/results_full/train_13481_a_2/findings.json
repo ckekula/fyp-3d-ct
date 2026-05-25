@@ -1,0 +1,34 @@
+{
+  "name": "train_13481_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    466
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Areas of pneumonic consolidation with air bronchograms in the middle lobe",
+      "category": "Consolidation"
+    },
+    "1": {
+      "text": "Areas of pneumonic consolidation with air bronchograms in the lower lobes of both lungs, more prominently on the right",
+      "category": "Consolidation"
+    },
+    "2": {
+      "text": "Areas of ground-glass opacity in the lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2b",
+    "1": "2b",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 123773,
+    "1": 532462,
+    "2": 36225
+  },
+  "embedding_norm": 4.474164962768555
+}

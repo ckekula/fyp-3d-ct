@@ -1,0 +1,22 @@
+{
+  "name": "train_13471_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    198
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Aeration differences observed bilaterally in the lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1f"
+  },
+  "pixels": {
+    "0": 14305
+  },
+  "embedding_norm": 4.343036651611328
+}

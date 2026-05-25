@@ -1,0 +1,40 @@
+{
+  "name": "train_13398_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    327
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Mosaic attenuation pattern in both lung parenchyma",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Parenchymal changes with scarring in the right middle lobe medial segment",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Parenchymal changes with scarring in the left upper lobe inferior segment and laterobasal segment",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1d",
+    "1": "2a",
+    "2": "2a",
+    "3": "2d"
+  },
+  "pixels": {
+    "0": 335560,
+    "1": 3687,
+    "2": 778,
+    "3": 1505
+  },
+  "embedding_norm": 4.430638790130615
+}

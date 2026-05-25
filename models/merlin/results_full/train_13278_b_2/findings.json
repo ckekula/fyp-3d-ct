@@ -1,0 +1,28 @@
+{
+  "name": "train_13278_b_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    451
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "2-3 nodules in the right lung, largest measuring approximately 4 mm in diameter",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Ground-glass opacities in the laterobasal segment of the right middle and lower lobes",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2c"
+  },
+  "pixels": {
+    "0": 321,
+    "1": 52309
+  },
+  "embedding_norm": 4.461941719055176
+}

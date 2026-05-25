@@ -1,0 +1,8 @@
+dataset,group_name,group_type,hit_at_10,hit_at_25,hit_at_5,mean_dice,mean_iou,model_name,num_cases
+rexgroundingct,all,overall,0.0,0.0,0.0,0.0005748503301099437,0.0002883350234820171,merlin,50
+rexgroundingct,lung_opacity,class,0.0,0.0,0.0,0.0013681549148697443,0.0006869589656757509,merlin,14
+rexgroundingct,atelectasis,class,0.0,0.0,0.0,2.646367599195314e-05,1.3232248007638074e-05,merlin,6
+rexgroundingct,lung_nodule,class,0.0,0.0,0.0,0.0003129096997603127,0.00015663132578800176,merlin,29
+rexgroundingct,consolidation,class,0.0,0.0,0.0,0.00035518434831998357,0.00017762371874246072,merlin,1
+rexgroundingct,non_focal,morphology,0.0,0.0,0.0,0.0009365778672594344,0.00047021155839280015,merlin,21
+rexgroundingct,focal,morphology,0.0,0.0,0.0,0.0003129096997603127,0.00015663132578800176,merlin,29

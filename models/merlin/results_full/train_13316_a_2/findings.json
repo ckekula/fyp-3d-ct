@@ -1,0 +1,28 @@
+{
+  "name": "train_13316_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    222
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Multiple parenchymal nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 946,
+    "1": 3688
+  },
+  "embedding_norm": 4.416958808898926
+}

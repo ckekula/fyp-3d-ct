@@ -1,0 +1,64 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "biomed_parse_rexgroundingct",
+  "dataset": "rexgroundingct",
+  "num_samples": 814,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": 0.41953804347826085,
+      "average_precision": 0.4466504975088248,
+      "precision": 0.5085995085995086,
+      "recall": 1.0,
+      "f1": 0.6742671009771987,
+      "accuracy": 0.5085995085995086,
+      "ece": 0.4912513977040236,
+      "support": 414
+    },
+    "lung_opacity": {
+      "auroc": 0.5411504587606103,
+      "average_precision": 0.4773012429193102,
+      "precision": 0.43734643734643736,
+      "recall": 1.0,
+      "f1": 0.6085470085470085,
+      "accuracy": 0.43734643734643736,
+      "ece": 0.5626477077054157,
+      "support": 356
+    },
+    "consolidation": {
+      "auroc": 0.5247092527539988,
+      "average_precision": 0.39234248169602465,
+      "precision": 0.328998699609883,
+      "recall": 0.9405204460966543,
+      "f1": 0.48747591522157996,
+      "accuracy": 0.3464373464373464,
+      "ece": 0.5570342414245852,
+      "support": 269
+    },
+    "atelectasis": {
+      "auroc": 0.5510691995498107,
+      "average_precision": 0.4016090034842842,
+      "precision": 0.32558139534883723,
+      "recall": 0.9368029739776952,
+      "f1": 0.48322147651006714,
+      "accuracy": 0.33783783783783783,
+      "ece": 0.5708010008590667,
+      "support": 269
+    },
+    "macro": {
+      "auroc": 0.5091167386356701,
+      "average_precision": 0.4294758064021109,
+      "precision": 0.40013151022616655,
+      "recall": 0.9693308550185873,
+      "f1": 0.5633778753139635,
+      "ece": 0.5454335869232728
+    }
+  }
+}

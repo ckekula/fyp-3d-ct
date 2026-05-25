@@ -1,0 +1,96 @@
+﻿
+%%%%%%%%%%% Document class and package options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{graphicx} % graphics
+\usepackage{subcaption} %subcaption styles
+\usepackage{amsmath} % equations and spacings
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{comment} 
+% \usepackage{array}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include page setup options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{pagesetup.cfg}
+
+%% ____Bibliography____%%
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{chapterbib}
+\usepackage[breaklinks]{hyperref}
+\hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue}
+
+%% ____Nicely format and linebreak URLs in the bibliography (and elsewhere)____%%
+\usepackage{url} 
+\def\UrlBreaks{\do/} 
+\usepackage{breakurl}
+\usepackage{lmodern}
+\usepackage[expansion=false]{microtype}
+\usepackage{caption}
+\usepackage{amssymb}
+
+
+\begin{document}
+\sloppy
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% The Front Matter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+\include{Front_matters/cover}
+
+\renewcommand{\thepage}{\roman{page}} % Start page numbering in roman
+
+% Abstract, Acknowledgements, Preface, list of tables, list of figures and Acronyms
+\input{Front_matters/abstract}
+\addcontentsline{toc}{chapter}{Abstract} % add line to the table of contents
+
+\input{Front_matters/acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements} % add line to the table of contents
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{Contents} % add line to the table of contents
+
+\listoffigures	
+\addcontentsline{toc}{chapter}{List of Figures} % add line to the table of contents
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables} % add line to the table of contents
+
+\input{Front_matters/acronyms}
+\addcontentsline{toc}{chapter}{Acronyms} % add line to the table of contents
+
+
+%%%%%%%%%%%%%%%%%%%%%%% The main matters %%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thepage}{\arabic{page}} % Start page numbering in arabic 
+\setcounter{page}{1} % start page numbering from 1
+
+\input{Chapters/ch_1}
+\input{Chapters/ch_2}
+\input{Chapters/ch_3}
+\input{Chapters/ch_4}
+\input{Chapters/ch_5}
+\input{Chapters/ch_6}
+\input{Chapters/ch_7}
+
+
+%%%%%%%%%%%%%%%%%%%%% The End matters %%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% Bibiliography %%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\bibliographystyle{ieeetr}
+\refstepcounter{chapter}
+\addcontentsline {toc}{chapter}{\bibname}
+% _____Add Bibiliography using BibTex file_____
+\bibliography{bibliography} 
+
+\end{document}
+

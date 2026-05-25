@@ -1,4 +1,4 @@
-_target_: src.model.backbone.focal.D2FocalNet
+_target_: model.backbone.focal.D2FocalNet
 pretrain_img_size: 224
 patch_size: 4
 embed_dim: 192

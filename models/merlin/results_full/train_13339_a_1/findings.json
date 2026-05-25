@@ -1,0 +1,28 @@
+{
+  "name": "train_13339_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    364
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Nonspecific pulmonary nodule, 3.9 mm, in the anterobasal segment of the right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Nonspecific pulmonary nodule, 4.3 mm, in the laterobasal segment of the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 118,
+    "1": 114
+  },
+  "embedding_norm": 4.481905937194824
+}

@@ -1,0 +1,1714 @@
+{
+  "task": "grounded_localization",
+  "axis": "Axis B",
+  "model_name": "merlin",
+  "dataset": "rexgroundingct",
+  "num_samples": 50,
+  "primary_threshold": 0.5,
+  "thresholds": [
+    0.5
+  ],
+  "normalize_masks": false,
+  "overall": {
+    "summary": {
+      "mean_dice": 0.0005748503301099437,
+      "mean_iou": 0.0002883350234820171,
+      "hit_at_5": 0.0,
+      "hit_at_10": 0.0,
+      "hit_at_25": 0.0,
+      "num_cases": 50
+    },
+    "per_case": [
+      {
+        "case_id": "valid_1044_a_2",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 1.5635204413880723e-15,
+        "iou": 1.5635204413880723e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1024_a_1",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 4.008318061641503e-15,
+        "iou": 4.008318061641503e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "valid_565_b_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 3.483560728565813e-15,
+        "iou": 3.483560728565813e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_2039_d_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.007546769817092e-15,
+        "iou": 2.007546769817092e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_11607_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 3.1012386967602505e-15,
+        "iou": 3.1012386967602505e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_838_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 3.4365288584229034e-15,
+        "iou": 3.4365288584229034e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_7965_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 0.002367877040646664,
+        "iou": 0.0011853418922506658,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "valid_325_a_1",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 3.639657857602741e-15,
+        "iou": 3.639657857602741e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1398_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.6512841293596145e-15,
+        "iou": 1.6512841293596145e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_6900_b_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 2.2221782724741617e-15,
+        "iou": 2.2221782724741617e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1996_b_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 3.1070441973929943e-15,
+        "iou": 3.1070441973929943e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_12459_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.8150791403198643e-15,
+        "iou": 2.8150791403198643e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_2352_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.4259653749939554e-15,
+        "iou": 1.4259653749939554e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_10106_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.6954066348043218e-15,
+        "iou": 1.6954066348043218e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_13702_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 3.703326513040325e-15,
+        "iou": 3.703326513040325e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_2078_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.444867623864934e-15,
+        "iou": 2.444867623864934e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_365_a_2",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 1.6704940469438867e-15,
+        "iou": 1.6704940469438867e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_6571_a_2",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 1.4901348601851142e-15,
+        "iou": 1.4901348601851142e-15,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_5408_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.4988856534609322e-15,
+        "iou": 1.4988856534609322e-15,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_2039_c_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.656660638272255e-06,
+        "iou": 1.3283320836339678e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_2382_a_2",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.00023500280331218118,
+        "iou": 0.00011751520985800505,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_804_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 4.406752553949181e-06,
+        "iou": 2.203381131889778e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "valid_660_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 0.0014921143453736462,
+        "iou": 0.0007466141895582137,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_127_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.6348689204485193e-06,
+        "iou": 8.174351284995911e-07,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_11735_a_2",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 5.107076042357735e-05,
+        "iou": 2.5536032284156943e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_12538_a_2",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 2.71083322817627e-05,
+        "iou": 1.3554349858872432e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_12538_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.71083322817627e-05,
+        "iou": 1.3554349858872432e-05,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_8083_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.000162739048569441,
+        "iou": 8.137614582305517e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_958_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.006708531688052828,
+        "iou": 0.003365554809570397,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_2003_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 0.0023865614976861433,
+        "iou": 0.0011947063689537049,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_10764_a_2",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.00016234033736284604,
+        "iou": 8.117675781259536e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1544_a_1",
+        "class_name": "atelectasis",
+        "model_name": "merlin",
+        "dice": 8.060296323706032e-05,
+        "iou": 4.030310589348059e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_5964_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 4.34261469026339e-06,
+        "iou": 2.1713120597600936e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_13825_a_2",
+        "class_name": "consolidation",
+        "model_name": "merlin",
+        "dice": 0.00035518434831998357,
+        "iou": 0.00017762371874246072,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_208_a_5",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.010707732118645025,
+        "iou": 0.005382684229728147,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_1997_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 5.561941217105691e-06,
+        "iou": 2.7809783424176183e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_5471_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.2537203003293094e-05,
+        "iou": 6.268640797295885e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_6008_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 9.690402804248448e-05,
+        "iou": 4.8454361732752625e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_196_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 4.59083725369642e-06,
+        "iou": 2.2954238958482616e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_3695_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 0.00011937876983505534,
+        "iou": 5.969294795291413e-05,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_588_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 0.0026272912679719883,
+        "iou": 0.0013153735687316565,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_350_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.0008905513912523637,
+        "iou": 0.0004454740543957346,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "valid_296_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.3260526383035125e-05,
+        "iou": 6.630307152240306e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_907_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.975164870307776e-06,
+        "iou": 1.4875846481323239e-06,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_7020_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 1.0143539342144814e-06,
+        "iou": 5.07177224372074e-07,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_6129_a_2",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 1.137051050267589e-05,
+        "iou": 5.685287573689821e-06,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_8163_a_1",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 7.825016971375e-07,
+        "iou": 3.9125100168950874e-07,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_11029_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 2.2920948587915984e-05,
+        "iou": 1.1460605638016868e-05,
+        "morphology": "non_focal"
+      },
+      {
+        "case_id": "train_176_a_2",
+        "class_name": "lung_nodule",
+        "model_name": "merlin",
+        "dice": 2.8661406481955866e-07,
+        "iou": 1.4330705298080854e-07,
+        "morphology": "focal"
+      },
+      {
+        "case_id": "train_5859_a_1",
+        "class_name": "lung_opacity",
+        "model_name": "merlin",
+        "dice": 0.00015607593384027845,
+        "iou": 7.804405731973683e-05,
+        "morphology": "non_focal"
+      }
+    ]
+  },
+  "by_class": {
+    "lung_opacity": {
+      "summary": {
+        "mean_dice": 0.0013681549148697443,
+        "mean_iou": 0.0006869589656757509,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 14
+      },
+      "per_case": [
+        {
+          "case_id": "valid_1044_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.5635204413880723e-15,
+          "iou": 1.5635204413880723e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6900_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2221782724741617e-15,
+          "iou": 2.2221782724741617e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1996_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 3.1070441973929943e-15,
+          "iou": 3.1070441973929943e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6571_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.4901348601851142e-15,
+          "iou": 1.4901348601851142e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_2382_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00023500280331218118,
+          "iou": 0.00011751520985800505,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_8083_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.000162739048569441,
+          "iou": 8.137614582305517e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_958_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.006708531688052828,
+          "iou": 0.003365554809570397,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_10764_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00016234033736284604,
+          "iou": 8.117675781259536e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_208_a_5",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.010707732118645025,
+          "iou": 0.005382684229728147,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6008_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 9.690402804248448e-05,
+          "iou": 4.8454361732752625e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_350_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.0008905513912523637,
+          "iou": 0.0004454740543957346,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6129_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.137051050267589e-05,
+          "iou": 5.685287573689821e-06,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_11029_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2920948587915984e-05,
+          "iou": 1.1460605638016868e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_5859_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00015607593384027845,
+          "iou": 7.804405731973683e-05,
+          "morphology": "non_focal"
+        }
+      ]
+    },
+    "atelectasis": {
+      "summary": {
+        "mean_dice": 2.646367599195314e-05,
+        "mean_iou": 1.3232248007638074e-05,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 6
+      },
+      "per_case": [
+        {
+          "case_id": "train_1024_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 4.008318061641503e-15,
+          "iou": 4.008318061641503e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "valid_325_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 3.639657857602741e-15,
+          "iou": 3.639657857602741e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_365_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 1.6704940469438867e-15,
+          "iou": 1.6704940469438867e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_11735_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 5.107076042357735e-05,
+          "iou": 2.5536032284156943e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1544_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 8.060296323706032e-05,
+          "iou": 4.030310589348059e-05,
+          "morphology": "non_focal"
+        }
+      ]
+    },
+    "lung_nodule": {
+      "summary": {
+        "mean_dice": 0.0003129096997603127,
+        "mean_iou": 0.00015663132578800176,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 29
+      },
+      "per_case": [
+        {
+          "case_id": "valid_565_b_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.483560728565813e-15,
+          "iou": 3.483560728565813e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_d_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.007546769817092e-15,
+          "iou": 2.007546769817092e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_11607_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.1012386967602505e-15,
+          "iou": 3.1012386967602505e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_838_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.4365288584229034e-15,
+          "iou": 3.4365288584229034e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7965_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.002367877040646664,
+          "iou": 0.0011853418922506658,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_1398_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6512841293596145e-15,
+          "iou": 1.6512841293596145e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_12459_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8150791403198643e-15,
+          "iou": 2.8150791403198643e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2352_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4259653749939554e-15,
+          "iou": 1.4259653749939554e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_10106_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6954066348043218e-15,
+          "iou": 1.6954066348043218e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_13702_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.703326513040325e-15,
+          "iou": 3.703326513040325e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2078_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.444867623864934e-15,
+          "iou": 2.444867623864934e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5408_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4988856534609322e-15,
+          "iou": 1.4988856534609322e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_c_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.656660638272255e-06,
+          "iou": 1.3283320836339678e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_804_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.406752553949181e-06,
+          "iou": 2.203381131889778e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_660_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0014921143453736462,
+          "iou": 0.0007466141895582137,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_127_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6348689204485193e-06,
+          "iou": 8.174351284995911e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2003_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0023865614976861433,
+          "iou": 0.0011947063689537049,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5964_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.34261469026339e-06,
+          "iou": 2.1713120597600936e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_1997_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 5.561941217105691e-06,
+          "iou": 2.7809783424176183e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5471_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.2537203003293094e-05,
+          "iou": 6.268640797295885e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_196_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.59083725369642e-06,
+          "iou": 2.2954238958482616e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_3695_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.00011937876983505534,
+          "iou": 5.969294795291413e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_588_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0026272912679719883,
+          "iou": 0.0013153735687316565,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_296_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.3260526383035125e-05,
+          "iou": 6.630307152240306e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_907_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.975164870307776e-06,
+          "iou": 1.4875846481323239e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7020_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.0143539342144814e-06,
+          "iou": 5.07177224372074e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_8163_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 7.825016971375e-07,
+          "iou": 3.9125100168950874e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_176_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8661406481955866e-07,
+          "iou": 1.4330705298080854e-07,
+          "morphology": "focal"
+        }
+      ]
+    },
+    "consolidation": {
+      "summary": {
+        "mean_dice": 0.00035518434831998357,
+        "mean_iou": 0.00017762371874246072,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 1
+      },
+      "per_case": [
+        {
+          "case_id": "train_13825_a_2",
+          "class_name": "consolidation",
+          "model_name": "merlin",
+          "dice": 0.00035518434831998357,
+          "iou": 0.00017762371874246072,
+          "morphology": "non_focal"
+        }
+      ]
+    }
+  },
+  "by_morphology": {
+    "non_focal": {
+      "summary": {
+        "mean_dice": 0.0009365778672594344,
+        "mean_iou": 0.00047021155839280015,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 21
+      },
+      "per_case": [
+        {
+          "case_id": "valid_1044_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.5635204413880723e-15,
+          "iou": 1.5635204413880723e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1024_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 4.008318061641503e-15,
+          "iou": 4.008318061641503e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "valid_325_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 3.639657857602741e-15,
+          "iou": 3.639657857602741e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6900_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2221782724741617e-15,
+          "iou": 2.2221782724741617e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1996_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 3.1070441973929943e-15,
+          "iou": 3.1070441973929943e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_365_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 1.6704940469438867e-15,
+          "iou": 1.6704940469438867e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6571_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.4901348601851142e-15,
+          "iou": 1.4901348601851142e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_2382_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00023500280331218118,
+          "iou": 0.00011751520985800505,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_11735_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 5.107076042357735e-05,
+          "iou": 2.5536032284156943e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_8083_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.000162739048569441,
+          "iou": 8.137614582305517e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_958_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.006708531688052828,
+          "iou": 0.003365554809570397,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_10764_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00016234033736284604,
+          "iou": 8.117675781259536e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1544_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 8.060296323706032e-05,
+          "iou": 4.030310589348059e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_13825_a_2",
+          "class_name": "consolidation",
+          "model_name": "merlin",
+          "dice": 0.00035518434831998357,
+          "iou": 0.00017762371874246072,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_208_a_5",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.010707732118645025,
+          "iou": 0.005382684229728147,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6008_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 9.690402804248448e-05,
+          "iou": 4.8454361732752625e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_350_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.0008905513912523637,
+          "iou": 0.0004454740543957346,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6129_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.137051050267589e-05,
+          "iou": 5.685287573689821e-06,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_11029_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2920948587915984e-05,
+          "iou": 1.1460605638016868e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_5859_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00015607593384027845,
+          "iou": 7.804405731973683e-05,
+          "morphology": "non_focal"
+        }
+      ]
+    },
+    "focal": {
+      "summary": {
+        "mean_dice": 0.0003129096997603127,
+        "mean_iou": 0.00015663132578800176,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 29
+      },
+      "per_case": [
+        {
+          "case_id": "valid_565_b_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.483560728565813e-15,
+          "iou": 3.483560728565813e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_d_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.007546769817092e-15,
+          "iou": 2.007546769817092e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_11607_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.1012386967602505e-15,
+          "iou": 3.1012386967602505e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_838_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.4365288584229034e-15,
+          "iou": 3.4365288584229034e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7965_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.002367877040646664,
+          "iou": 0.0011853418922506658,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_1398_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6512841293596145e-15,
+          "iou": 1.6512841293596145e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_12459_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8150791403198643e-15,
+          "iou": 2.8150791403198643e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2352_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4259653749939554e-15,
+          "iou": 1.4259653749939554e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_10106_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6954066348043218e-15,
+          "iou": 1.6954066348043218e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_13702_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.703326513040325e-15,
+          "iou": 3.703326513040325e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2078_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.444867623864934e-15,
+          "iou": 2.444867623864934e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5408_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4988856534609322e-15,
+          "iou": 1.4988856534609322e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_c_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.656660638272255e-06,
+          "iou": 1.3283320836339678e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_804_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.406752553949181e-06,
+          "iou": 2.203381131889778e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_660_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0014921143453736462,
+          "iou": 0.0007466141895582137,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_127_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6348689204485193e-06,
+          "iou": 8.174351284995911e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2003_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0023865614976861433,
+          "iou": 0.0011947063689537049,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5964_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.34261469026339e-06,
+          "iou": 2.1713120597600936e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_1997_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 5.561941217105691e-06,
+          "iou": 2.7809783424176183e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5471_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.2537203003293094e-05,
+          "iou": 6.268640797295885e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_196_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.59083725369642e-06,
+          "iou": 2.2954238958482616e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_3695_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.00011937876983505534,
+          "iou": 5.969294795291413e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_588_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0026272912679719883,
+          "iou": 0.0013153735687316565,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_296_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.3260526383035125e-05,
+          "iou": 6.630307152240306e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_907_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.975164870307776e-06,
+          "iou": 1.4875846481323239e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7020_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.0143539342144814e-06,
+          "iou": 5.07177224372074e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_8163_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 7.825016971375e-07,
+          "iou": 3.9125100168950874e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_176_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8661406481955866e-07,
+          "iou": 1.4330705298080854e-07,
+          "morphology": "focal"
+        }
+      ]
+    }
+  },
+  "threshold_sweep": {
+    "0.5": {
+      "summary": {
+        "mean_dice": 0.0005748503301099437,
+        "mean_iou": 0.0002883350234820171,
+        "hit_at_5": 0.0,
+        "hit_at_10": 0.0,
+        "hit_at_25": 0.0,
+        "num_cases": 50
+      },
+      "per_case": [
+        {
+          "case_id": "valid_1044_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.5635204413880723e-15,
+          "iou": 1.5635204413880723e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1024_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 4.008318061641503e-15,
+          "iou": 4.008318061641503e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "valid_565_b_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.483560728565813e-15,
+          "iou": 3.483560728565813e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_d_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.007546769817092e-15,
+          "iou": 2.007546769817092e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_11607_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.1012386967602505e-15,
+          "iou": 3.1012386967602505e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_838_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.4365288584229034e-15,
+          "iou": 3.4365288584229034e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7965_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.002367877040646664,
+          "iou": 0.0011853418922506658,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_325_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 3.639657857602741e-15,
+          "iou": 3.639657857602741e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1398_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6512841293596145e-15,
+          "iou": 1.6512841293596145e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_6900_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2221782724741617e-15,
+          "iou": 2.2221782724741617e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1996_b_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 3.1070441973929943e-15,
+          "iou": 3.1070441973929943e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_12459_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8150791403198643e-15,
+          "iou": 2.8150791403198643e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2352_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4259653749939554e-15,
+          "iou": 1.4259653749939554e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_10106_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6954066348043218e-15,
+          "iou": 1.6954066348043218e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_13702_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 3.703326513040325e-15,
+          "iou": 3.703326513040325e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2078_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.444867623864934e-15,
+          "iou": 2.444867623864934e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_365_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 1.6704940469438867e-15,
+          "iou": 1.6704940469438867e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_6571_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.4901348601851142e-15,
+          "iou": 1.4901348601851142e-15,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_5408_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.4988856534609322e-15,
+          "iou": 1.4988856534609322e-15,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2039_c_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.656660638272255e-06,
+          "iou": 1.3283320836339678e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_2382_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00023500280331218118,
+          "iou": 0.00011751520985800505,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_804_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.406752553949181e-06,
+          "iou": 2.203381131889778e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "valid_660_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0014921143453736462,
+          "iou": 0.0007466141895582137,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_127_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.6348689204485193e-06,
+          "iou": 8.174351284995911e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_11735_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 5.107076042357735e-05,
+          "iou": 2.5536032284156943e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_12538_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.71083322817627e-05,
+          "iou": 1.3554349858872432e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_8083_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.000162739048569441,
+          "iou": 8.137614582305517e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_958_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.006708531688052828,
+          "iou": 0.003365554809570397,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_2003_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0023865614976861433,
+          "iou": 0.0011947063689537049,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_10764_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00016234033736284604,
+          "iou": 8.117675781259536e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1544_a_1",
+          "class_name": "atelectasis",
+          "model_name": "merlin",
+          "dice": 8.060296323706032e-05,
+          "iou": 4.030310589348059e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_5964_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.34261469026339e-06,
+          "iou": 2.1713120597600936e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_13825_a_2",
+          "class_name": "consolidation",
+          "model_name": "merlin",
+          "dice": 0.00035518434831998357,
+          "iou": 0.00017762371874246072,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_208_a_5",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.010707732118645025,
+          "iou": 0.005382684229728147,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_1997_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 5.561941217105691e-06,
+          "iou": 2.7809783424176183e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5471_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.2537203003293094e-05,
+          "iou": 6.268640797295885e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_6008_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 9.690402804248448e-05,
+          "iou": 4.8454361732752625e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_196_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 4.59083725369642e-06,
+          "iou": 2.2954238958482616e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_3695_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.00011937876983505534,
+          "iou": 5.969294795291413e-05,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_588_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 0.0026272912679719883,
+          "iou": 0.0013153735687316565,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_350_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.0008905513912523637,
+          "iou": 0.0004454740543957346,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "valid_296_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.3260526383035125e-05,
+          "iou": 6.630307152240306e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_907_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.975164870307776e-06,
+          "iou": 1.4875846481323239e-06,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_7020_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 1.0143539342144814e-06,
+          "iou": 5.07177224372074e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_6129_a_2",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 1.137051050267589e-05,
+          "iou": 5.685287573689821e-06,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_8163_a_1",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 7.825016971375e-07,
+          "iou": 3.9125100168950874e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_11029_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 2.2920948587915984e-05,
+          "iou": 1.1460605638016868e-05,
+          "morphology": "non_focal"
+        },
+        {
+          "case_id": "train_176_a_2",
+          "class_name": "lung_nodule",
+          "model_name": "merlin",
+          "dice": 2.8661406481955866e-07,
+          "iou": 1.4330705298080854e-07,
+          "morphology": "focal"
+        },
+        {
+          "case_id": "train_5859_a_1",
+          "class_name": "lung_opacity",
+          "model_name": "merlin",
+          "dice": 0.00015607593384027845,
+          "iou": 7.804405731973683e-05,
+          "morphology": "non_focal"
+        }
+      ]
+    }
+  }
+}

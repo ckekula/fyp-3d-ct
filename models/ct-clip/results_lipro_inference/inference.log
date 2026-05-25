@@ -1,0 +1,5341 @@
+2026-05-12 22:55:04,145 - INFO - Added paths: /home/chest_ct/code/models/ct-clip/CT_CLIP, /home/chest_ct/code/models/ct-clip/transformer_maskgit
+2026-05-12 22:55:04,145 - INFO - Imported parse_arguments
+2026-05-12 22:55:06,666 - INFO - Imported BertTokenizer and BertModel
+2026-05-12 22:55:06,864 - INFO - Imported CTViT
+2026-05-12 22:55:06,866 - INFO - Imported CTCLIP
+2026-05-12 22:55:06,867 - INFO - Imported CTReportDatasetinfer
+2026-05-12 22:55:07,380 - INFO - Imported evaluation functions
+2026-05-12 22:55:07,380 - INFO - Imported all dependencies successfully
+2026-05-12 22:55:07,380 - INFO - ================================================================================
+2026-05-12 22:55:07,380 - INFO - Starting CT-CLIP LiPro Inference Pipeline
+2026-05-12 22:55:07,380 - INFO - ================================================================================
+2026-05-12 22:55:07,503 - INFO - Arguments parsed: pretrained=/home/chest_ct/code/models/ct-clip/checkpointlipro/CT_LiPro_v2.pt, device=cuda
+2026-05-12 22:55:07,503 - INFO - Data folder: /home/chest_ct/code/data/data_volumes/dataset/train_fixed
+2026-05-12 22:55:07,503 - INFO - Output directory: /home/chest_ct/code/models/ct-clip/results_lipro_inference
+2026-05-12 22:55:07,503 - INFO - Loading tokenizer...
+2026-05-12 22:55:14,498 - INFO - Tokenizer loaded
+2026-05-12 22:55:14,498 - INFO - Loading text encoder...
+2026-05-12 22:55:16,155 - INFO - Text encoder loaded
+2026-05-12 22:55:16,155 - INFO - Text encoder tokenizer embeddings resized to 30522
+2026-05-12 22:55:16,155 - INFO - Creating image encoder (CTViT)...
+2026-05-12 22:55:16,238 - INFO - Image encoder created
+2026-05-12 22:55:16,238 - INFO - Creating CTCLIP model...
+2026-05-12 22:55:18,562 - INFO - CTCLIP model created
+2026-05-12 22:55:18,562 - INFO - Creating ImageLatentsClassifier with 18 classes
+2026-05-12 22:55:18,883 - INFO - ImageLatentsClassifier created
+2026-05-12 22:55:18,883 - INFO - Loading checkpoint from: /home/chest_ct/code/models/ct-clip/checkpointlipro/CT_LiPro_v2.pt
+2026-05-12 22:55:21,400 - INFO - Checkpoint file loaded into memory
+2026-05-12 22:55:21,635 - WARNING - Missing keys (will use initialized values): ['trained_model.visual_transformer.vq._codebook.embed_avg']
+2026-05-12 22:55:21,635 - WARNING - Unexpected keys (ignored from checkpoint): ['trained_model.text_transformer.embeddings.position_ids']
+2026-05-12 22:55:21,635 - INFO - Checkpoint loaded successfully
+2026-05-12 22:55:21,635 - INFO - Creating dataset from folder: /home/chest_ct/code/data/data_volumes/dataset/train_fixed
+  0%|          | 0/2247 [00:00<?, ?it/s]  2%|▏         | 55/2247 [00:00<00:04, 543.09it/s]  5%|▍         | 110/2247 [00:00<00:04, 513.07it/s]  7%|▋         | 166/2247 [00:00<00:03, 532.13it/s] 10%|▉         | 224/2247 [00:00<00:03, 536.74it/s] 12%|█▏        | 278/2247 [00:00<00:03, 537.35it/s] 15%|█▍        | 334/2247 [00:00<00:03, 542.96it/s] 18%|█▊        | 396/2247 [00:00<00:03, 566.63it/s] 20%|██        | 453/2247 [00:00<00:03, 554.99it/s] 23%|██▎       | 509/2247 [00:00<00:03, 548.64it/s] 25%|██▌       | 564/2247 [00:01<00:03, 548.76it/s] 28%|██▊       | 619/2247 [00:01<00:02, 548.52it/s] 30%|███       | 675/2247 [00:01<00:02, 549.75it/s] 33%|███▎      | 731/2247 [00:01<00:02, 551.97it/s] 35%|███▌      | 789/2247 [00:01<00:02, 559.34it/s] 38%|███▊      | 849/2247 [00:01<00:02, 569.83it/s] 40%|████      | 906/2247 [00:01<00:02, 568.00it/s] 43%|████▎     | 963/2247 [00:01<00:02, 567.31it/s] 45%|████▌     | 1022/2247 [00:01<00:02, 572.50it/s] 48%|████▊     | 1080/2247 [00:01<00:02, 560.34it/s] 51%|█████     | 1138/2247 [00:02<00:01, 565.43it/s] 53%|█████▎    | 1195/2247 [00:02<00:01, 555.02it/s] 56%|█████▌    | 1251/2247 [00:02<00:01, 549.28it/s] 58%|█████▊    | 1308/2247 [00:02<00:01, 553.46it/s] 61%|██████    | 1364/2247 [00:02<00:01, 551.97it/s] 63%|██████▎   | 1424/2247 [00:02<00:01, 565.30it/s] 66%|██████▌   | 1482/2247 [00:02<00:01, 569.53it/s] 68%|██████▊   | 1539/2247 [00:02<00:01, 551.82it/s] 71%|███████   | 1595/2247 [00:02<00:01, 547.04it/s] 73%|███████▎  | 1650/2247 [00:02<00:01, 530.96it/s] 76%|███████▌  | 1704/2247 [00:03<00:01, 530.24it/s] 78%|███████▊  | 1758/2247 [00:03<00:00, 523.22it/s] 81%|████████  | 1811/2247 [00:03<00:00, 511.91it/s] 83%|████████▎ | 1866/2247 [00:03<00:00, 521.76it/s] 85%|████████▌ | 1919/2247 [00:03<00:00, 520.40it/s] 88%|████████▊ | 1974/2247 [00:03<00:00, 527.45it/s] 90%|█████████ | 2027/2247 [00:03<00:00, 521.63it/s] 93%|█████████▎| 2084/2247 [00:03<00:00, 532.27it/s] 95%|█████████▌| 2141/2247 [00:03<00:00, 541.43it/s] 98%|█████████▊| 2196/2247 [00:04<00:00, 531.29it/s]100%|██████████| 2247/2247 [00:04<00:00, 545.56it/s]
+2026-05-12 22:55:27,116 - INFO - Dataset created with 2465 samples
+2026-05-12 22:55:27,116 - INFO - Creating DataLoader...
+2026-05-12 22:55:27,117 - INFO - DataLoader created
+2026-05-12 22:55:27,117 - INFO - ================================================================================
+2026-05-12 22:55:27,117 - INFO - Starting evaluation...
+2026-05-12 22:55:27,117 - INFO - ================================================================================
+2026-05-12 22:55:27,117 - INFO - Starting model evaluation
+2026-05-12 22:55:27,273 - INFO - Model moved to device: cuda
+2026-05-12 22:55:27,273 - INFO - Created output directory: /home/chest_ct/code/models/ct-clip/results_lipro_inference
+2026-05-12 22:55:27,273 - INFO - Will save results incrementally every 50 samples
+  0%|          | 0/2465 [00:00<?, ?it/s]/home/chest_ct/code/models/ct-clip/scripts/ct_lipro_inference.py:137: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  save_out = sigmoid(torch.tensor(output)).cpu().numpy()
+test all pooling
+train_12342_a_1
+  0%|          | 1/2465 [00:05<3:25:45,  5.01s/it]test all pooling
+train_5368_a_1
+  0%|          | 2/2465 [00:05<1:27:24,  2.13s/it]test all pooling
+train_34_a_2
+test all pooling
+train_917_a_2
+  0%|          | 4/2465 [00:05<35:41,  1.15it/s]  test all pooling
+train_7900_b_1
+  0%|          | 5/2465 [00:05<26:07,  1.57it/s]test all pooling
+train_7656_a_2
+  0%|          | 6/2465 [00:05<19:42,  2.08it/s]test all pooling
+train_10380_a_2
+  0%|          | 7/2465 [00:05<14:58,  2.74it/s]test all pooling
+train_7331_a_2
+test all pooling
+train_11296_a_1
+  0%|          | 9/2465 [00:06<16:58,  2.41it/s]2026-05-12 22:55:33,937 - INFO - Processing batch 10
+test all pooling
+train_8089_b_2
+test all pooling
+train_2990_a_2
+  0%|          | 11/2465 [00:06<11:39,  3.51it/s]test all pooling
+train_368_a_1
+  0%|          | 12/2465 [00:06<10:05,  4.05it/s]test all pooling
+train_6418_b_1
+test all pooling
+train_6418_a_2
+  1%|          | 14/2465 [00:07<07:36,  5.37it/s]test all pooling
+train_5897_a_2
+test all pooling
+train_10990_a_1
+  1%|          | 16/2465 [00:07<11:11,  3.65it/s]test all pooling
+train_11156_b_1
+  1%|          | 17/2465 [00:09<22:08,  1.84it/s]test all pooling
+train_1229_a_1
+  1%|          | 18/2465 [00:09<18:23,  2.22it/s]test all pooling
+train_7606_a_2
+  1%|          | 19/2465 [00:09<15:04,  2.70it/s]2026-05-12 22:55:37,481 - INFO - Processing batch 20
+test all pooling
+train_6505_a_1
+  1%|          | 20/2465 [00:10<15:54,  2.56it/s]test all pooling
+train_10926_a_2
+test all pooling
+train_9664_a_1
+  1%|          | 22/2465 [00:12<28:10,  1.45it/s]test all pooling
+train_1448_e_2
+test all pooling
+train_1448_c_2
+  1%|          | 24/2465 [00:12<18:52,  2.15it/s]test all pooling
+train_498_a_2
+  1%|          | 25/2465 [00:13<18:45,  2.17it/s]test all pooling
+train_2824_a_1
+  1%|          | 26/2465 [00:13<15:24,  2.64it/s]test all pooling
+train_7040_a_2
+  1%|          | 27/2465 [00:13<12:35,  3.23it/s]test all pooling
+train_7040_b_2
+  1%|          | 28/2465 [00:13<12:50,  3.16it/s]test all pooling
+train_2863_a_1
+  1%|          | 29/2465 [00:13<10:37,  3.82it/s]2026-05-12 22:55:41,804 - INFO - Processing batch 30
+test all pooling
+train_235_a_1
+  1%|          | 30/2465 [00:14<17:05,  2.38it/s]test all pooling
+train_5462_a_2
+  1%|▏         | 31/2465 [00:17<41:06,  1.01s/it]test all pooling
+train_10534_a_2
+test all pooling
+train_7901_b_1
+  1%|▏         | 33/2465 [00:17<24:11,  1.68it/s]test all pooling
+train_93_c_2
+test all pooling
+train_93_d_2
+  1%|▏         | 35/2465 [00:17<16:11,  2.50it/s]test all pooling
+train_5615_a_1
+  1%|▏         | 36/2465 [00:17<13:40,  2.96it/s]test all pooling
+train_863_a_2
+test all pooling
+train_863_b_2
+  2%|▏         | 38/2465 [00:17<09:48,  4.13it/s]test all pooling
+train_6311_a_2
+  2%|▏         | 39/2465 [00:20<30:54,  1.31it/s]2026-05-12 22:55:47,711 - INFO - Processing batch 40
+test all pooling
+train_2003_a_2
+test all pooling
+train_5254_b_1
+  2%|▏         | 41/2465 [00:20<20:29,  1.97it/s]test all pooling
+train_11126_a_1
+test all pooling
+train_12049_a_2
+  2%|▏         | 43/2465 [00:20<14:31,  2.78it/s]test all pooling
+train_7167_c_2
+test all pooling
+train_2392_a_2
+  2%|▏         | 45/2465 [00:20<10:50,  3.72it/s]test all pooling
+train_12558_a_2
+test all pooling
+train_5837_a_1
+  2%|▏         | 47/2465 [00:23<21:33,  1.87it/s]test all pooling
+train_6352_a_2
+test all pooling
+train_13082_a_1
+  2%|▏         | 49/2465 [00:23<15:49,  2.54it/s]2026-05-12 22:55:50,599 - INFO - Processing batch 50
+test all pooling
+train_10147_a_1
+2026-05-12 22:55:50,674 - INFO - Saving interim results for 50 samples
+2026-05-12 22:55:50,676 - INFO - Saved interim results for 50 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_1233_a_1
+  2%|▏         | 51/2465 [00:23<11:59,  3.36it/s]test all pooling
+train_6688_b_1
+test all pooling
+train_6204_a_2
+  2%|▏         | 53/2465 [00:23<09:24,  4.27it/s]test all pooling
+train_5392_a_2
+  2%|▏         | 54/2465 [00:23<08:29,  4.73it/s]test all pooling
+train_1322_a_1
+  2%|▏         | 55/2465 [00:25<24:02,  1.67it/s]test all pooling
+train_7087_a_1
+test all pooling
+train_5831_a_2
+  2%|▏         | 57/2465 [00:26<16:28,  2.44it/s]test all pooling
+train_6405_a_1
+test all pooling
+train_6849_a_2
+  2%|▏         | 59/2465 [00:26<11:57,  3.35it/s]2026-05-12 22:55:53,514 - INFO - Processing batch 60
+test all pooling
+train_12578_a_2
+test all pooling
+train_2952_a_1
+  2%|▏         | 61/2465 [00:26<09:11,  4.36it/s]test all pooling
+train_6509_a_2
+  3%|▎         | 62/2465 [00:26<08:20,  4.80it/s]test all pooling
+train_19388_b_2
+  3%|▎         | 63/2465 [00:28<22:40,  1.77it/s]test all pooling
+train_2715_d_1
+test all pooling
+train_2715_b_1
+  3%|▎         | 65/2465 [00:28<15:24,  2.60it/s]test all pooling
+train_7423_a_1
+test all pooling
+train_8006_a_2
+  3%|▎         | 67/2465 [00:28<11:21,  3.52it/s]test all pooling
+train_1301_a_2
+  3%|▎         | 68/2465 [00:28<10:06,  3.95it/s]test all pooling
+train_683_a_1
+2026-05-12 22:55:56,295 - INFO - Processing batch 70
+test all pooling
+train_2413_a_2
+  3%|▎         | 70/2465 [00:29<08:00,  4.98it/s]test all pooling
+train_1348_e_1
+  3%|▎         | 71/2465 [00:30<18:27,  2.16it/s]test all pooling
+train_1348_g_2
+  3%|▎         | 72/2465 [00:30<15:15,  2.61it/s]test all pooling
+train_1348_a_2
+test all pooling
+train_1348_c_2
+  3%|▎         | 74/2465 [00:30<10:42,  3.72it/s]test all pooling
+train_1348_f_2
+  3%|▎         | 75/2465 [00:31<10:11,  3.91it/s]test all pooling
+train_1348_d_1
+  3%|▎         | 76/2465 [00:31<09:00,  4.42it/s]test all pooling
+train_2051_a_1
+  3%|▎         | 77/2465 [00:31<07:49,  5.09it/s]test all pooling
+train_1777_a_2
+  3%|▎         | 78/2465 [00:31<06:52,  5.79it/s]test all pooling
+train_2809_a_2
+  3%|▎         | 79/2465 [00:33<30:12,  1.32it/s]2026-05-12 22:56:01,046 - INFO - Processing batch 80
+test all pooling
+train_5226_a_2
+  3%|▎         | 80/2465 [00:33<23:05,  1.72it/s]test all pooling
+train_17490_a_1
+  3%|▎         | 81/2465 [00:36<45:43,  1.15s/it]test all pooling
+train_12074_a_2
+test all pooling
+train_115_a_2
+  3%|▎         | 83/2465 [00:36<26:39,  1.49it/s]test all pooling
+train_3313_a_2
+test all pooling
+train_12087_a_1
+  3%|▎         | 85/2465 [00:36<17:28,  2.27it/s]test all pooling
+train_8223_a_2
+test all pooling
+train_6903_a_1
+  4%|▎         | 87/2465 [00:36<12:21,  3.21it/s]test all pooling
+train_6847_a_2
+test all pooling
+train_1428_a_1
+  4%|▎         | 89/2465 [00:39<23:51,  1.66it/s]2026-05-12 22:56:06,575 - INFO - Processing batch 90
+test all pooling
+train_2950_a_1
+test all pooling
+train_13236_a_2
+  4%|▎         | 91/2465 [00:39<17:17,  2.29it/s]test all pooling
+train_10937_a_2
+test all pooling
+train_19503_a_4
+  4%|▍         | 93/2465 [00:39<13:00,  3.04it/s]test all pooling
+train_1435_b_2
+test all pooling
+train_1435_a_1
+  4%|▍         | 95/2465 [00:39<10:23,  3.80it/s]test all pooling
+train_7165_a_2
+test all pooling
+train_5023_a_2
+  4%|▍         | 97/2465 [00:42<21:15,  1.86it/s]test all pooling
+train_1593_b_2
+test all pooling
+train_2959_a_2
+  4%|▍         | 99/2465 [00:42<15:45,  2.50it/s]2026-05-12 22:56:09,677 - INFO - Processing batch 100
+test all pooling
+train_6112_a_2
+2026-05-12 22:56:09,748 - INFO - Saving interim results for 100 samples
+2026-05-12 22:56:09,749 - INFO - Saved interim results for 100 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_1395_a_1
+  4%|▍         | 101/2465 [00:42<12:00,  3.28it/s]test all pooling
+train_606_a_2
+test all pooling
+train_1097_a_1
+  4%|▍         | 103/2465 [00:43<11:24,  3.45it/s]test all pooling
+train_338_a_2
+test all pooling
+train_5102_b_2
+  4%|▍         | 105/2465 [00:45<23:44,  1.66it/s]test all pooling
+train_6578_a_1
+test all pooling
+train_6321_b_2
+  4%|▍         | 107/2465 [00:45<17:41,  2.22it/s]test all pooling
+train_2239_a_2
+test all pooling
+train_2180_a_1
+  4%|▍         | 109/2465 [00:46<13:25,  2.92it/s]2026-05-12 22:56:13,389 - INFO - Processing batch 110
+test all pooling
+train_12794_c_2
+test all pooling
+train_5721_a_1
+  5%|▍         | 111/2465 [00:46<10:21,  3.79it/s]test all pooling
+train_12594_a_2
+test all pooling
+train_6372_a_1
+  5%|▍         | 113/2465 [00:48<17:45,  2.21it/s]test all pooling
+train_5592_a_1
+test all pooling
+train_5887_a_2
+  5%|▍         | 115/2465 [00:48<13:26,  2.91it/s]test all pooling
+train_783_a_2
+test all pooling
+train_783_a_1
+  5%|▍         | 117/2465 [00:48<10:39,  3.67it/s]test all pooling
+train_1950_a_2
+  5%|▍         | 118/2465 [00:48<09:31,  4.10it/s]test all pooling
+train_5650_a_2
+2026-05-12 22:56:15,945 - INFO - Processing batch 120
+test all pooling
+train_1313_a_2
+  5%|▍         | 120/2465 [00:48<07:46,  5.03it/s]test all pooling
+train_1313_b_2
+  5%|▍         | 121/2465 [00:50<21:01,  1.86it/s]test all pooling
+train_1717_b_1
+test all pooling
+train_1717_a_1
+  5%|▍         | 123/2465 [00:50<14:37,  2.67it/s]test all pooling
+train_2399_a_2
+test all pooling
+train_344_d_2
+  5%|▌         | 125/2465 [00:51<10:46,  3.62it/s]test all pooling
+train_344_c_1
+test all pooling
+train_1137_a_2
+  5%|▌         | 127/2465 [00:51<08:26,  4.62it/s]test all pooling
+train_8055_b_2
+test all pooling
+train_1765_a_1
+  5%|▌         | 129/2465 [00:54<28:37,  1.36it/s]2026-05-12 22:56:22,229 - INFO - Processing batch 130
+test all pooling
+train_6021_a_2
+test all pooling
+train_7967_a_1
+  5%|▌         | 131/2465 [00:55<20:46,  1.87it/s]test all pooling
+train_10692_a_2
+test all pooling
+train_5864_b_1
+  5%|▌         | 133/2465 [00:57<26:32,  1.46it/s]test all pooling
+train_7047_a_2
+test all pooling
+train_6469_a_2
+  5%|▌         | 135/2465 [00:57<19:24,  2.00it/s]test all pooling
+train_12132_a_2
+test all pooling
+train_13766_a_2
+  6%|▌         | 137/2465 [00:57<15:06,  2.57it/s]test all pooling
+train_5446_a_1
+test all pooling
+train_10253_b_2
+  6%|▌         | 139/2465 [00:57<11:39,  3.32it/s]2026-05-12 22:56:25,080 - INFO - Processing batch 140
+test all pooling
+train_5679_a_2
+test all pooling
+train_1085_a_1
+  6%|▌         | 141/2465 [01:00<22:32,  1.72it/s]test all pooling
+train_19988_a_2
+test all pooling
+train_632_a_2
+  6%|▌         | 143/2465 [01:00<16:41,  2.32it/s]test all pooling
+train_856_a_2
+test all pooling
+train_6014_a_1
+  6%|▌         | 145/2465 [01:00<14:46,  2.62it/s]test all pooling
+train_1349_a_2
+test all pooling
+train_8102_a_2
+  6%|▌         | 147/2465 [01:01<11:17,  3.42it/s]test all pooling
+train_11438_a_2
+test all pooling
+train_2514_a_2
+  6%|▌         | 149/2465 [01:03<21:59,  1.76it/s]2026-05-12 22:56:30,844 - INFO - Processing batch 150
+test all pooling
+train_12486_a_2
+2026-05-12 22:56:30,926 - INFO - Saving interim results for 150 samples
+2026-05-12 22:56:30,927 - INFO - Saved interim results for 150 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+  6%|▌         | 150/2465 [01:03<18:47,  2.05it/s]test all pooling
+train_2100_a_2
+test all pooling
+train_6000_b_1
+  6%|▌         | 152/2465 [01:03<13:39,  2.82it/s]test all pooling
+train_6000_a_1
+  6%|▌         | 153/2465 [01:04<14:58,  2.57it/s]test all pooling
+train_2982_a_2
+test all pooling
+train_7919_a_1
+  6%|▋         | 155/2465 [01:04<10:54,  3.53it/s]test all pooling
+train_7328_a_1
+  6%|▋         | 156/2465 [01:04<09:37,  4.00it/s]test all pooling
+train_5715_a_2
+  6%|▋         | 157/2465 [01:06<23:17,  1.65it/s]test all pooling
+train_6567_b_1
+test all pooling
+train_825_a_2
+  6%|▋         | 159/2465 [01:06<15:28,  2.48it/s]2026-05-12 22:56:33,968 - INFO - Processing batch 160
+test all pooling
+train_825_b_2
+test all pooling
+train_7470_a_1
+  7%|▋         | 161/2465 [01:06<11:15,  3.41it/s]test all pooling
+train_5873_a_1
+  7%|▋         | 162/2465 [01:06<09:54,  3.88it/s]test all pooling
+train_5925_a_2
+test all pooling
+train_7880_a_1
+  7%|▋         | 164/2465 [01:07<07:44,  4.95it/s]test all pooling
+train_5637_a_1
+  7%|▋         | 165/2465 [01:08<17:49,  2.15it/s]test all pooling
+train_1646_a_2
+  7%|▋         | 166/2465 [01:08<14:40,  2.61it/s]test all pooling
+train_12994_a_1
+  7%|▋         | 167/2465 [01:08<12:07,  3.16it/s]test all pooling
+train_5632_c_1
+  7%|▋         | 168/2465 [01:08<10:00,  3.82it/s]test all pooling
+train_5632_a_1
+  7%|▋         | 169/2465 [01:09<08:26,  4.53it/s]2026-05-12 22:56:36,398 - INFO - Processing batch 170
+test all pooling
+train_5632_b_1
+test all pooling
+train_10177_a_2
+  7%|▋         | 171/2465 [01:09<06:17,  6.08it/s]test all pooling
+train_1773_a_2
+  7%|▋         | 172/2465 [01:09<05:51,  6.52it/s]test all pooling
+train_3779_a_2
+  7%|▋         | 173/2465 [01:12<36:46,  1.04it/s]test all pooling
+train_229_a_1
+test all pooling
+train_226_a_1
+  7%|▋         | 175/2465 [01:12<22:44,  1.68it/s]test all pooling
+train_2822_a_2
+test all pooling
+train_7414_a_1
+  7%|▋         | 177/2465 [01:13<15:23,  2.48it/s]test all pooling
+train_1008_a_2
+test all pooling
+train_11342_a_1
+  7%|▋         | 179/2465 [01:13<11:07,  3.42it/s]2026-05-12 22:56:40,556 - INFO - Processing batch 180
+test all pooling
+train_1720_a_2
+test all pooling
+train_81_a_2
+  7%|▋         | 181/2465 [01:15<20:30,  1.86it/s]test all pooling
+train_7485_a_1
+test all pooling
+train_11215_a_2
+  7%|▋         | 183/2465 [01:15<14:58,  2.54it/s]test all pooling
+train_11029_a_1
+test all pooling
+train_5039_a_1
+  8%|▊         | 185/2465 [01:15<11:18,  3.36it/s]test all pooling
+train_240_a_2
+test all pooling
+train_2149_a_1
+  8%|▊         | 187/2465 [01:15<08:52,  4.28it/s]test all pooling
+train_6268_a_1
+test all pooling
+train_3528_a_1
+  8%|▊         | 189/2465 [01:17<13:39,  2.78it/s]2026-05-12 22:56:44,453 - INFO - Processing batch 190
+test all pooling
+train_3528_a_2
+  8%|▊         | 190/2465 [01:17<11:59,  3.16it/s]test all pooling
+train_7710_e_1
+  8%|▊         | 191/2465 [01:17<10:38,  3.56it/s]test all pooling
+train_7974_a_2
+  8%|▊         | 192/2465 [01:17<09:31,  3.97it/s]test all pooling
+train_277_a_1
+  8%|▊         | 193/2465 [01:17<08:09,  4.64it/s]test all pooling
+train_6031_a_1
+  8%|▊         | 194/2465 [01:17<07:15,  5.21it/s]test all pooling
+train_7652_a_2
+  8%|▊         | 195/2465 [01:17<06:20,  5.97it/s]test all pooling
+train_10657_b_2
+test all pooling
+train_2919_a_2
+  8%|▊         | 197/2465 [01:20<22:57,  1.65it/s]test all pooling
+train_6805_c_1
+  8%|▊         | 198/2465 [01:20<18:24,  2.05it/s]test all pooling
+train_8785_a_1
+  8%|▊         | 199/2465 [01:20<14:47,  2.55it/s]2026-05-12 22:56:47,766 - INFO - Processing batch 200
+test all pooling
+train_10809_a_2
+2026-05-12 22:56:47,863 - INFO - Saving interim results for 200 samples
+2026-05-12 22:56:47,864 - INFO - Saved interim results for 200 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+  8%|▊         | 200/2465 [01:20<12:02,  3.14it/s]test all pooling
+train_7055_a_1
+  8%|▊         | 201/2465 [01:20<10:00,  3.77it/s]test all pooling
+train_869_a_2
+  8%|▊         | 202/2465 [01:20<08:26,  4.47it/s]test all pooling
+train_7978_a_2
+test all pooling
+train_12186_a_2
+  8%|▊         | 204/2465 [01:21<06:18,  5.97it/s]test all pooling
+train_4381_a_2
+  8%|▊         | 205/2465 [01:23<24:11,  1.56it/s]test all pooling
+train_649_a_2
+  8%|▊         | 206/2465 [01:23<19:15,  1.95it/s]test all pooling
+train_12549_a_2
+  8%|▊         | 207/2465 [01:23<15:07,  2.49it/s]test all pooling
+train_7194_a_2
+test all pooling
+train_10291_a_1
+  8%|▊         | 209/2465 [01:23<10:13,  3.68it/s]2026-05-12 22:56:50,890 - INFO - Processing batch 210
+test all pooling
+train_5355_a_1
+  9%|▊         | 210/2465 [01:23<08:48,  4.27it/s]test all pooling
+train_7597_a_2
+  9%|▊         | 211/2465 [01:23<07:35,  4.95it/s]test all pooling
+train_495_a_1
+  9%|▊         | 212/2465 [01:23<06:35,  5.70it/s]test all pooling
+train_12075_a_2
+  9%|▊         | 213/2465 [01:24<13:13,  2.84it/s]test all pooling
+train_2748_a_2
+  9%|▊         | 214/2465 [01:25<21:31,  1.74it/s]test all pooling
+train_61_a_2
+test all pooling
+train_8188_a_2
+  9%|▉         | 216/2465 [01:26<13:22,  2.80it/s]test all pooling
+train_907_a_1
+  9%|▉         | 217/2465 [01:26<11:23,  3.29it/s]test all pooling
+train_7531_a_2
+test all pooling
+train_5295_a_1
+  9%|▉         | 219/2465 [01:26<08:34,  4.37it/s]2026-05-12 22:56:53,729 - INFO - Processing batch 220
+test all pooling
+train_6737_a_1
+  9%|▉         | 220/2465 [01:26<07:59,  4.68it/s]test all pooling
+train_6111_a_1
+  9%|▉         | 221/2465 [01:27<11:26,  3.27it/s]test all pooling
+train_6139_a_1
+  9%|▉         | 222/2465 [01:28<17:21,  2.15it/s]test all pooling
+train_13896_b_1
+test all pooling
+train_6899_a_1
+  9%|▉         | 224/2465 [01:28<11:26,  3.27it/s]test all pooling
+train_6630_a_1
+test all pooling
+train_1533_a_1
+  9%|▉         | 226/2465 [01:28<08:31,  4.38it/s]test all pooling
+train_756_a_2
+  9%|▉         | 227/2465 [01:28<07:38,  4.88it/s]test all pooling
+train_3695_a_2
+  9%|▉         | 228/2465 [01:29<10:55,  3.41it/s]test all pooling
+train_8125_f_1
+  9%|▉         | 229/2465 [01:30<18:25,  2.02it/s]2026-05-12 22:56:58,580 - INFO - Processing batch 230
+test all pooling
+train_8179_a_1
+  9%|▉         | 230/2465 [01:31<24:17,  1.53it/s]test all pooling
+train_5677_a_2
+  9%|▉         | 231/2465 [01:31<18:41,  1.99it/s]test all pooling
+train_2329_f_1
+test all pooling
+train_12397_a_2
+  9%|▉         | 233/2465 [01:31<11:56,  3.11it/s]test all pooling
+train_6719_a_2
+test all pooling
+train_1562_b_2
+ 10%|▉         | 235/2465 [01:31<08:38,  4.30it/s]test all pooling
+train_13113_a_1
+test all pooling
+train_1033_a_2
+ 10%|▉         | 237/2465 [01:32<06:43,  5.52it/s]test all pooling
+train_3357_b_2
+ 10%|▉         | 238/2465 [01:35<27:47,  1.34it/s]test all pooling
+train_10510_a_2
+2026-05-12 22:57:02,373 - INFO - Processing batch 240
+test all pooling
+train_6666_a_1
+ 10%|▉         | 240/2465 [01:35<18:40,  1.99it/s]test all pooling
+train_12115_b_1
+test all pooling
+train_5843_a_1
+ 10%|▉         | 242/2465 [01:35<13:24,  2.76it/s]test all pooling
+train_12105_b_2
+test all pooling
+train_10566_a_2
+ 10%|▉         | 244/2465 [01:35<10:07,  3.65it/s]test all pooling
+train_6377_e_1
+ 10%|▉         | 245/2465 [01:35<08:55,  4.15it/s]test all pooling
+train_6377_b_2
+ 10%|▉         | 246/2465 [01:38<25:57,  1.42it/s]test all pooling
+train_6377_c_2
+test all pooling
+train_6377_d_2
+ 10%|█         | 248/2465 [01:38<17:26,  2.12it/s]test all pooling
+train_845_a_1
+ 10%|█         | 249/2465 [01:38<14:30,  2.55it/s]2026-05-12 22:57:05,619 - INFO - Processing batch 250
+test all pooling
+train_7553_a_1
+2026-05-12 22:57:05,704 - INFO - Saving interim results for 250 samples
+2026-05-12 22:57:05,705 - INFO - Saved interim results for 250 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 10%|█         | 250/2465 [01:38<11:59,  3.08it/s]test all pooling
+train_7948_a_1
+ 10%|█         | 251/2465 [01:38<09:55,  3.72it/s]test all pooling
+train_13497_a_1
+ 10%|█         | 252/2465 [01:38<08:17,  4.45it/s]test all pooling
+train_7693_a_2
+test all pooling
+train_1023_a_2
+ 10%|█         | 254/2465 [01:40<21:24,  1.72it/s]test all pooling
+train_7463_a_2
+ 10%|█         | 255/2465 [01:41<21:19,  1.73it/s]test all pooling
+train_7277_a_2
+ 10%|█         | 256/2465 [01:41<17:13,  2.14it/s]test all pooling
+train_5985_a_1
+test all pooling
+train_6845_a_1
+ 10%|█         | 258/2465 [01:41<11:22,  3.23it/s]test all pooling
+train_602_d_1
+2026-05-12 22:57:09,004 - INFO - Processing batch 260
+test all pooling
+train_602_c_2
+ 11%|█         | 260/2465 [01:41<08:18,  4.42it/s]test all pooling
+train_602_a_2
+test all pooling
+train_5959_a_1
+ 11%|█         | 262/2465 [01:42<11:56,  3.07it/s]test all pooling
+train_2720_a_2
+ 11%|█         | 263/2465 [01:43<12:48,  2.86it/s]test all pooling
+train_6382_a_1
+test all pooling
+train_183_a_2
+ 11%|█         | 265/2465 [01:43<09:21,  3.92it/s]test all pooling
+train_2955_a_1
+test all pooling
+train_5748_a_1
+ 11%|█         | 267/2465 [01:43<07:27,  4.91it/s]test all pooling
+train_5811_a_1
+ 11%|█         | 268/2465 [01:43<06:50,  5.35it/s]test all pooling
+train_6997_a_1
+ 11%|█         | 269/2465 [01:43<06:19,  5.78it/s]2026-05-12 22:57:13,304 - INFO - Processing batch 270
+test all pooling
+train_7786_a_2
+ 11%|█         | 270/2465 [01:46<24:09,  1.51it/s]test all pooling
+train_1599_a_2
+ 11%|█         | 271/2465 [01:47<27:47,  1.32it/s]test all pooling
+train_10601_a_2
+ 11%|█         | 272/2465 [01:47<21:26,  1.70it/s]test all pooling
+train_5341_a_2
+ 11%|█         | 273/2465 [01:47<16:33,  2.21it/s]test all pooling
+train_18696_a_1
+ 11%|█         | 274/2465 [01:47<16:23,  2.23it/s]test all pooling
+train_8198_b_2
+test all pooling
+train_8198_a_2
+ 11%|█         | 276/2465 [01:48<10:45,  3.39it/s]test all pooling
+train_6437_a_2
+ 11%|█         | 277/2465 [01:48<09:05,  4.01it/s]test all pooling
+train_5716_a_1
+ 11%|█▏        | 278/2465 [01:48<11:13,  3.25it/s]test all pooling
+train_19565_b_2
+ 11%|█▏        | 279/2465 [01:49<17:35,  2.07it/s]2026-05-12 22:57:16,859 - INFO - Processing batch 280
+test all pooling
+train_11989_a_1
+test all pooling
+train_6592_a_1
+ 11%|█▏        | 281/2465 [01:49<11:15,  3.23it/s]test all pooling
+train_2353_a_1
+ 11%|█▏        | 282/2465 [01:50<14:07,  2.58it/s]test all pooling
+train_10541_a_2
+ 11%|█▏        | 283/2465 [01:50<11:32,  3.15it/s]test all pooling
+train_10321_g_1
+test all pooling
+train_1580_a_2
+ 12%|█▏        | 285/2465 [01:50<08:11,  4.44it/s]test all pooling
+train_2754_b_1
+ 12%|█▏        | 286/2465 [01:50<07:14,  5.01it/s]test all pooling
+train_6351_a_1
+ 12%|█▏        | 287/2465 [01:51<14:03,  2.58it/s]test all pooling
+train_6786_a_1
+test all pooling
+train_3742_a_2
+ 12%|█▏        | 289/2465 [01:51<09:38,  3.76it/s]2026-05-12 22:57:19,241 - INFO - Processing batch 290
+test all pooling
+train_8900_a_4
+ 12%|█▏        | 290/2465 [01:52<08:29,  4.27it/s]test all pooling
+train_8900_a_2
+test all pooling
+train_549_a_1
+ 12%|█▏        | 292/2465 [01:53<14:40,  2.47it/s]test all pooling
+train_549_a_2
+test all pooling
+train_1959_b_2
+ 12%|█▏        | 294/2465 [01:53<10:32,  3.43it/s]test all pooling
+train_2810_a_1
+ 12%|█▏        | 295/2465 [01:54<17:56,  2.02it/s]test all pooling
+train_767_b_1
+ 12%|█▏        | 296/2465 [01:54<14:47,  2.44it/s]test all pooling
+train_767_a_1
+test all pooling
+train_7566_a_1
+ 12%|█▏        | 298/2465 [01:55<10:24,  3.47it/s]test all pooling
+train_6864_a_2
+ 12%|█▏        | 299/2465 [01:55<09:09,  3.94it/s]2026-05-12 22:57:24,182 - INFO - Processing batch 300
+test all pooling
+train_4454_a_2
+2026-05-12 22:57:24,268 - INFO - Saving interim results for 300 samples
+2026-05-12 22:57:24,269 - INFO - Saved interim results for 300 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 12%|█▏        | 300/2465 [01:56<21:22,  1.69it/s]test all pooling
+train_2286_a_1
+test all pooling
+train_2002_a_2
+ 12%|█▏        | 302/2465 [01:57<14:13,  2.53it/s]test all pooling
+train_309_a_2
+ 12%|█▏        | 303/2465 [01:58<19:55,  1.81it/s]test all pooling
+train_14630_a_1
+ 12%|█▏        | 304/2465 [01:58<17:51,  2.02it/s]test all pooling
+train_1853_a_2
+test all pooling
+train_1439_a_1
+ 12%|█▏        | 306/2465 [01:58<11:47,  3.05it/s]test all pooling
+train_5516_a_2
+test all pooling
+train_8046_a_1
+ 12%|█▏        | 308/2465 [01:59<13:28,  2.67it/s]test all pooling
+train_1774_a_1
+2026-05-12 22:57:27,089 - INFO - Processing batch 310
+test all pooling
+train_13422_b_1
+ 13%|█▎        | 310/2465 [01:59<09:58,  3.60it/s]test all pooling
+train_1650_a_2
+ 13%|█▎        | 311/2465 [02:01<19:10,  1.87it/s]test all pooling
+train_6870_a_1
+ 13%|█▎        | 312/2465 [02:01<15:53,  2.26it/s]test all pooling
+train_2062_a_2
+ 13%|█▎        | 313/2465 [02:01<12:58,  2.77it/s]test all pooling
+train_14964_a_2
+test all pooling
+train_5209_a_2
+ 13%|█▎        | 315/2465 [02:01<09:04,  3.95it/s]test all pooling
+train_3732_b_2
+ 13%|█▎        | 316/2465 [02:01<07:56,  4.51it/s]test all pooling
+train_8903_a_2
+ 13%|█▎        | 317/2465 [02:02<06:54,  5.19it/s]test all pooling
+train_5551_a_2
+ 13%|█▎        | 318/2465 [02:02<08:56,  4.00it/s]test all pooling
+train_8003_a_1
+ 13%|█▎        | 319/2465 [02:04<25:16,  1.41it/s]2026-05-12 22:57:31,744 - INFO - Processing batch 320
+test all pooling
+train_4246_e_1
+ 13%|█▎        | 320/2465 [02:04<19:15,  1.86it/s]test all pooling
+train_7706_c_2
+ 13%|█▎        | 321/2465 [02:04<14:48,  2.41it/s]test all pooling
+train_14676_a_1
+test all pooling
+train_5482_a_2
+ 13%|█▎        | 323/2465 [02:04<09:41,  3.69it/s]test all pooling
+train_4108_b_2
+test all pooling
+train_5356_a_1
+ 13%|█▎        | 325/2465 [02:05<07:12,  4.95it/s]test all pooling
+train_5178_a_2
+test all pooling
+train_1113_a_2
+ 13%|█▎        | 327/2465 [02:08<25:35,  1.39it/s]test all pooling
+train_5751_b_2
+test all pooling
+train_5751_d_1
+ 13%|█▎        | 329/2465 [02:08<17:55,  1.99it/s]2026-05-12 22:57:35,779 - INFO - Processing batch 330
+test all pooling
+train_6192_b_2
+test all pooling
+train_6192_a_2
+ 13%|█▎        | 331/2465 [02:08<13:08,  2.71it/s]test all pooling
+train_6257_a_2
+ 13%|█▎        | 332/2465 [02:08<11:19,  3.14it/s]test all pooling
+train_6563_b_1
+test all pooling
+train_7468_a_2
+ 14%|█▎        | 334/2465 [02:08<08:31,  4.16it/s]test all pooling
+train_13763_a_2
+ 14%|█▎        | 335/2465 [02:11<22:16,  1.59it/s]test all pooling
+train_1648_a_1
+test all pooling
+train_7145_b_2
+ 14%|█▎        | 337/2465 [02:11<15:17,  2.32it/s]test all pooling
+train_7145_a_2
+test all pooling
+train_10763_a_1
+ 14%|█▍        | 339/2465 [02:11<11:07,  3.19it/s]2026-05-12 22:57:38,779 - INFO - Processing batch 340
+test all pooling
+train_3620_a_1
+test all pooling
+train_15753_a_2
+ 14%|█▍        | 341/2465 [02:11<08:28,  4.18it/s]test all pooling
+train_1841_a_2
+test all pooling
+train_12277_a_2
+ 14%|█▍        | 343/2465 [02:14<19:57,  1.77it/s]test all pooling
+train_8106_a_2
+test all pooling
+train_7798_a_1
+ 14%|█▍        | 345/2465 [02:14<14:43,  2.40it/s]test all pooling
+train_19167_a_1
+ 14%|█▍        | 346/2465 [02:15<18:13,  1.94it/s]test all pooling
+train_1642_b_2
+test all pooling
+train_2916_a_2
+ 14%|█▍        | 348/2465 [02:15<12:56,  2.73it/s]test all pooling
+train_484_a_2
+2026-05-12 22:57:42,868 - INFO - Processing batch 350
+test all pooling
+train_13640_a_1
+2026-05-12 22:57:42,951 - INFO - Saving interim results for 350 samples
+2026-05-12 22:57:42,952 - INFO - Saved interim results for 350 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 14%|█▍        | 350/2465 [02:15<09:46,  3.61it/s]test all pooling
+train_5347_a_1
+ 14%|█▍        | 351/2465 [02:15<09:53,  3.56it/s]test all pooling
+train_396_a_1
+ 14%|█▍        | 352/2465 [02:16<08:31,  4.13it/s]test all pooling
+train_2316_a_1
+test all pooling
+train_16001_a_2
+ 14%|█▍        | 354/2465 [02:18<22:04,  1.59it/s]test all pooling
+train_10376_a_2
+ 14%|█▍        | 355/2465 [02:18<18:19,  1.92it/s]test all pooling
+train_6335_a_1
+ 14%|█▍        | 356/2465 [02:18<15:08,  2.32it/s]test all pooling
+train_6335_b_1
+ 14%|█▍        | 357/2465 [02:18<12:25,  2.83it/s]test all pooling
+train_1043_a_1
+ 15%|█▍        | 358/2465 [02:20<18:59,  1.85it/s]test all pooling
+train_5449_a_1
+ 15%|█▍        | 359/2465 [02:20<14:59,  2.34it/s]2026-05-12 22:57:47,457 - INFO - Processing batch 360
+test all pooling
+train_3903_a_2
+ 15%|█▍        | 360/2465 [02:20<11:59,  2.93it/s]test all pooling
+train_2888_a_2
+ 15%|█▍        | 361/2465 [02:20<09:46,  3.59it/s]test all pooling
+train_17370_a_1
+ 15%|█▍        | 362/2465 [02:24<48:37,  1.39s/it]test all pooling
+train_5478_a_2
+test all pooling
+train_1296_a_2
+ 15%|█▍        | 364/2465 [02:24<27:52,  1.26it/s]test all pooling
+train_7296_a_2
+test all pooling
+train_6613_a_1
+ 15%|█▍        | 366/2465 [02:24<18:01,  1.94it/s]test all pooling
+train_9670_a_1
+test all pooling
+train_6800_a_1
+ 15%|█▍        | 368/2465 [02:25<12:38,  2.77it/s]test all pooling
+train_7598_a_1
+2026-05-12 22:57:53,577 - INFO - Processing batch 370
+test all pooling
+train_12304_a_1
+ 15%|█▌        | 370/2465 [02:26<16:34,  2.11it/s]test all pooling
+train_5223_a_2
+ 15%|█▌        | 371/2465 [02:26<14:16,  2.45it/s]test all pooling
+train_11487_a_2
+ 15%|█▌        | 372/2465 [02:26<12:11,  2.86it/s]test all pooling
+train_5962_a_2
+ 15%|█▌        | 373/2465 [02:26<10:25,  3.34it/s]test all pooling
+train_1353_a_2
+ 15%|█▌        | 374/2465 [02:26<09:15,  3.76it/s]test all pooling
+train_467_a_1
+ 15%|█▌        | 375/2465 [02:27<08:18,  4.19it/s]test all pooling
+train_7924_a_2
+ 15%|█▌        | 376/2465 [02:27<07:37,  4.57it/s]test all pooling
+train_17276_a_1
+ 15%|█▌        | 377/2465 [02:27<06:31,  5.34it/s]test all pooling
+train_3570_a_2
+ 15%|█▌        | 378/2465 [02:28<15:01,  2.31it/s]test all pooling
+train_2028_a_1
+2026-05-12 22:57:55,837 - INFO - Processing batch 380
+test all pooling
+train_3196_a_2
+ 15%|█▌        | 380/2465 [02:28<09:38,  3.60it/s]test all pooling
+train_352_a_2
+test all pooling
+train_1644_a_2
+ 15%|█▌        | 382/2465 [02:28<07:14,  4.79it/s]test all pooling
+train_10384_a_2
+ 16%|█▌        | 383/2465 [02:28<06:29,  5.34it/s]test all pooling
+train_80_a_1
+ 16%|█▌        | 384/2465 [02:29<05:52,  5.90it/s]test all pooling
+train_1948_a_1
+ 16%|█▌        | 385/2465 [02:29<05:26,  6.36it/s]test all pooling
+train_759_a_1
+ 16%|█▌        | 386/2465 [02:30<18:29,  1.87it/s]test all pooling
+train_1592_b_2
+test all pooling
+train_2079_a_1
+ 16%|█▌        | 388/2465 [02:30<11:59,  2.89it/s]test all pooling
+train_7297_a_2
+ 16%|█▌        | 389/2465 [02:31<09:58,  3.47it/s]2026-05-12 22:57:59,402 - INFO - Processing batch 390
+test all pooling
+train_5895_a_2
+ 16%|█▌        | 390/2465 [02:32<17:45,  1.95it/s]test all pooling
+train_5799_a_2
+ 16%|█▌        | 391/2465 [02:32<14:21,  2.41it/s]test all pooling
+train_15428_a_2
+ 16%|█▌        | 392/2465 [02:32<11:49,  2.92it/s]test all pooling
+train_19162_a_1
+ 16%|█▌        | 393/2465 [02:32<10:53,  3.17it/s]test all pooling
+train_7487_a_1
+ 16%|█▌        | 394/2465 [02:33<15:32,  2.22it/s]test all pooling
+train_1553_a_2
+ 16%|█▌        | 395/2465 [02:34<21:37,  1.60it/s]test all pooling
+train_1880_a_2
+test all pooling
+train_6990_a_2
+ 16%|█▌        | 397/2465 [02:34<13:16,  2.60it/s]test all pooling
+train_5658_a_1
+test all pooling
+train_829_a_2
+ 16%|█▌        | 399/2465 [02:34<09:15,  3.72it/s]2026-05-12 22:58:02,279 - INFO - Processing batch 400
+test all pooling
+train_2890_a_1
+2026-05-12 22:58:02,357 - INFO - Saving interim results for 400 samples
+2026-05-12 22:58:02,358 - INFO - Saved interim results for 400 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_506_a_1
+ 16%|█▋        | 401/2465 [02:35<07:22,  4.66it/s]test all pooling
+train_1760_a_2
+ 16%|█▋        | 402/2465 [02:36<17:08,  2.00it/s]test all pooling
+train_739_a_2
+ 16%|█▋        | 403/2465 [02:37<21:16,  1.61it/s]test all pooling
+train_5712_a_1
+test all pooling
+train_2507_a_2
+ 16%|█▋        | 405/2465 [02:38<14:06,  2.43it/s]test all pooling
+train_1298_a_1
+test all pooling
+train_6601_a_2
+ 17%|█▋        | 407/2465 [02:38<10:08,  3.38it/s]test all pooling
+train_284_a_1
+ 17%|█▋        | 408/2465 [02:38<08:46,  3.90it/s]test all pooling
+train_5252_a_1
+2026-05-12 22:58:06,613 - INFO - Processing batch 410
+test all pooling
+train_7121_a_2
+ 17%|█▋        | 410/2465 [02:39<12:36,  2.72it/s]test all pooling
+train_6480_b_2
+ 17%|█▋        | 411/2465 [02:41<27:09,  1.26it/s]test all pooling
+train_5432_a_1
+test all pooling
+train_11096_a_1
+ 17%|█▋        | 413/2465 [02:42<18:12,  1.88it/s]test all pooling
+train_67_a_2
+test all pooling
+train_2196_a_2
+ 17%|█▋        | 415/2465 [02:42<12:52,  2.65it/s]test all pooling
+train_1716_a_1
+test all pooling
+train_7353_a_2
+ 17%|█▋        | 417/2465 [02:42<09:41,  3.52it/s]test all pooling
+train_10422_a_2
+test all pooling
+train_5649_a_1
+ 17%|█▋        | 419/2465 [02:44<20:27,  1.67it/s]2026-05-12 22:58:12,217 - INFO - Processing batch 420
+test all pooling
+train_1566_a_1
+test all pooling
+train_6817_a_1
+ 17%|█▋        | 421/2465 [02:45<15:02,  2.26it/s]test all pooling
+train_628_a_1
+ 17%|█▋        | 422/2465 [02:45<12:54,  2.64it/s]test all pooling
+train_1367_a_2
+test all pooling
+train_2974_a_2
+ 17%|█▋        | 424/2465 [02:45<09:32,  3.56it/s]test all pooling
+train_7227_a_2
+test all pooling
+train_7998_a_2
+ 17%|█▋        | 426/2465 [02:45<07:23,  4.59it/s]test all pooling
+train_9261_a_1
+ 17%|█▋        | 427/2465 [02:47<18:20,  1.85it/s]test all pooling
+train_6541_a_2
+ 17%|█▋        | 428/2465 [02:47<15:17,  2.22it/s]test all pooling
+train_13141_a_1
+ 17%|█▋        | 429/2465 [02:47<12:40,  2.68it/s]2026-05-12 22:58:15,038 - INFO - Processing batch 430
+test all pooling
+train_6170_a_2
+ 17%|█▋        | 430/2465 [02:47<10:29,  3.23it/s]test all pooling
+train_7573_a_2
+ 17%|█▋        | 431/2465 [02:47<08:41,  3.90it/s]test all pooling
+train_11299_a_2
+ 18%|█▊        | 432/2465 [02:48<07:15,  4.67it/s]test all pooling
+train_10106_a_2
+ 18%|█▊        | 433/2465 [02:48<06:40,  5.07it/s]test all pooling
+train_7997_a_2
+ 18%|█▊        | 434/2465 [02:48<05:45,  5.88it/s]test all pooling
+train_8201_a_2
+ 18%|█▊        | 435/2465 [02:50<24:23,  1.39it/s]test all pooling
+train_12012_d_1
+test all pooling
+train_6201_a_1
+ 18%|█▊        | 437/2465 [02:50<14:47,  2.28it/s]test all pooling
+train_979_a_1
+ 18%|█▊        | 438/2465 [02:50<12:14,  2.76it/s]test all pooling
+train_3572_a_2
+ 18%|█▊        | 439/2465 [02:50<09:59,  3.38it/s]2026-05-12 22:58:18,124 - INFO - Processing batch 440
+test all pooling
+train_1299_a_2
+ 18%|█▊        | 440/2465 [02:50<08:28,  3.98it/s]test all pooling
+train_3994_a_1
+ 18%|█▊        | 441/2465 [02:54<36:27,  1.08s/it]test all pooling
+train_2893_a_1
+test all pooling
+train_7777_a_2
+ 18%|█▊        | 443/2465 [02:54<21:37,  1.56it/s]test all pooling
+train_6993_a_2
+test all pooling
+train_1807_a_1
+ 18%|█▊        | 445/2465 [02:54<14:33,  2.31it/s]test all pooling
+train_5376_a_1
+ 18%|█▊        | 446/2465 [02:54<12:08,  2.77it/s]test all pooling
+train_5376_b_1
+ 18%|█▊        | 447/2465 [02:54<10:06,  3.33it/s]test all pooling
+train_11101_a_1
+test all pooling
+train_542_a_2
+ 18%|█▊        | 449/2465 [02:58<27:55,  1.20it/s]2026-05-12 22:58:25,299 - INFO - Processing batch 450
+test all pooling
+train_1111_a_1
+2026-05-12 22:58:25,376 - INFO - Saving interim results for 450 samples
+2026-05-12 22:58:25,377 - INFO - Saved interim results for 450 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_1741_c_2
+ 18%|█▊        | 451/2465 [02:58<18:49,  1.78it/s]test all pooling
+train_1741_b_2
+test all pooling
+train_1741_a_1
+ 18%|█▊        | 453/2465 [02:58<13:23,  2.51it/s]test all pooling
+train_6109_a_1
+test all pooling
+train_4784_a_1
+ 18%|█▊        | 455/2465 [02:58<10:01,  3.34it/s]test all pooling
+train_4939_a_1
+ 18%|█▊        | 456/2465 [02:58<08:46,  3.82it/s]test all pooling
+train_230_a_2
+ 19%|█▊        | 457/2465 [03:01<23:38,  1.42it/s]test all pooling
+train_3527_a_1
+test all pooling
+train_17071_a_1
+ 19%|█▊        | 459/2465 [03:01<15:46,  2.12it/s]2026-05-12 22:58:28,474 - INFO - Processing batch 460
+test all pooling
+train_412_a_2
+test all pooling
+train_412_b_2
+ 19%|█▊        | 461/2465 [03:01<11:21,  2.94it/s]test all pooling
+train_412_c_2
+test all pooling
+train_2492_a_1
+ 19%|█▉        | 463/2465 [03:01<08:38,  3.86it/s]test all pooling
+train_8163_a_1
+test all pooling
+train_6787_a_2
+ 19%|█▉        | 465/2465 [03:03<15:42,  2.12it/s]test all pooling
+train_7944_a_2
+test all pooling
+train_5920_a_1
+ 19%|█▉        | 467/2465 [03:03<11:44,  2.84it/s]test all pooling
+train_107_b_2
+test all pooling
+train_107_a_1
+ 19%|█▉        | 469/2465 [03:03<09:03,  3.67it/s]2026-05-12 22:58:31,076 - INFO - Processing batch 470
+test all pooling
+train_107_c_2
+ 19%|█▉        | 470/2465 [03:03<08:06,  4.10it/s]test all pooling
+train_5479_a_2
+ 19%|█▉        | 471/2465 [03:04<07:08,  4.66it/s]test all pooling
+train_5231_a_2
+ 19%|█▉        | 472/2465 [03:04<06:22,  5.22it/s]test all pooling
+train_1706_c_2
+ 19%|█▉        | 473/2465 [03:06<25:33,  1.30it/s]test all pooling
+train_7556_a_2
+test all pooling
+train_6345_a_2
+ 19%|█▉        | 475/2465 [03:06<16:13,  2.04it/s]test all pooling
+train_6345_b_2
+ 19%|█▉        | 476/2465 [03:06<13:18,  2.49it/s]test all pooling
+train_13890_a_2
+test all pooling
+train_66_a_2
+ 19%|█▉        | 478/2465 [03:07<09:24,  3.52it/s]test all pooling
+train_2993_a_2
+ 19%|█▉        | 479/2465 [03:07<08:07,  4.08it/s]2026-05-12 22:58:34,551 - INFO - Processing batch 480
+test all pooling
+train_7532_c_2
+ 19%|█▉        | 480/2465 [03:07<06:59,  4.73it/s]test all pooling
+train_7954_a_1
+ 20%|█▉        | 481/2465 [03:09<20:23,  1.62it/s]test all pooling
+train_5869_a_1
+ 20%|█▉        | 482/2465 [03:09<16:02,  2.06it/s]test all pooling
+train_6073_a_2
+ 20%|█▉        | 483/2465 [03:09<12:57,  2.55it/s]test all pooling
+train_571_b_2
+ 20%|█▉        | 484/2465 [03:09<10:25,  3.17it/s]test all pooling
+train_2043_a_2
+test all pooling
+train_7903_a_2
+ 20%|█▉        | 486/2465 [03:09<07:11,  4.58it/s]test all pooling
+train_6603_a_1
+test all pooling
+train_6429_a_1
+ 20%|█▉        | 488/2465 [03:09<05:37,  5.86it/s]test all pooling
+train_6315_a_2
+ 20%|█▉        | 489/2465 [03:12<21:31,  1.53it/s]2026-05-12 22:58:39,623 - INFO - Processing batch 490
+test all pooling
+train_12095_a_1
+test all pooling
+train_626_a_1
+ 20%|█▉        | 491/2465 [03:12<14:23,  2.29it/s]test all pooling
+train_8014_a_2
+test all pooling
+train_5885_a_1
+ 20%|██        | 493/2465 [03:12<10:18,  3.19it/s]test all pooling
+train_1200_a_2
+test all pooling
+train_11292_a_1
+ 20%|██        | 495/2465 [03:12<07:46,  4.22it/s]test all pooling
+train_473_a_2
+test all pooling
+train_16723_a_2
+ 20%|██        | 497/2465 [03:15<20:07,  1.63it/s]test all pooling
+train_3490_b_1
+test all pooling
+train_2381_a_2
+ 20%|██        | 499/2465 [03:15<14:38,  2.24it/s]2026-05-12 22:58:43,123 - INFO - Processing batch 500
+test all pooling
+train_16110_a_1
+2026-05-12 22:58:43,202 - INFO - Saving interim results for 500 samples
+2026-05-12 22:58:43,203 - INFO - Saved interim results for 500 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_629_a_1
+ 20%|██        | 501/2465 [03:16<10:59,  2.98it/s]test all pooling
+train_2860_a_2
+test all pooling
+train_263_d_1
+ 20%|██        | 503/2465 [03:16<08:29,  3.85it/s]test all pooling
+train_263_h_2
+test all pooling
+train_2801_a_2
+ 20%|██        | 505/2465 [03:18<19:50,  1.65it/s]test all pooling
+train_3761_a_2
+test all pooling
+train_10033_a_2
+ 21%|██        | 507/2465 [03:19<14:38,  2.23it/s]test all pooling
+train_18230_a_1
+test all pooling
+train_13427_a_1
+ 21%|██        | 509/2465 [03:19<11:05,  2.94it/s]2026-05-12 22:58:46,626 - INFO - Processing batch 510
+test all pooling
+train_2740_a_1
+test all pooling
+train_6988_a_1
+ 21%|██        | 511/2465 [03:19<08:41,  3.75it/s]test all pooling
+train_19056_a_2
+test all pooling
+train_1378_c_2
+ 21%|██        | 513/2465 [03:21<13:54,  2.34it/s]test all pooling
+train_1378_a_2
+test all pooling
+train_8094_a_1
+ 21%|██        | 515/2465 [03:21<10:32,  3.08it/s]test all pooling
+train_7681_a_2
+test all pooling
+train_10547_a_2
+ 21%|██        | 517/2465 [03:21<08:19,  3.90it/s]test all pooling
+train_6902_b_1
+ 21%|██        | 518/2465 [03:21<07:28,  4.34it/s]test all pooling
+train_5234_a_1
+ 21%|██        | 519/2465 [03:21<06:41,  4.85it/s]2026-05-12 22:58:49,009 - INFO - Processing batch 520
+test all pooling
+train_5239_a_2
+ 21%|██        | 520/2465 [03:21<05:55,  5.47it/s]test all pooling
+train_6293_a_2
+ 21%|██        | 521/2465 [03:25<29:37,  1.09it/s]test all pooling
+train_7418_a_2
+test all pooling
+train_600_a_2
+ 21%|██        | 523/2465 [03:25<18:37,  1.74it/s]test all pooling
+train_7342_b_1
+test all pooling
+train_11828_a_2
+ 21%|██▏       | 525/2465 [03:25<12:57,  2.49it/s]test all pooling
+train_346_a_1
+ 21%|██▏       | 526/2465 [03:25<11:04,  2.92it/s]test all pooling
+train_8078_a_1
+ 21%|██▏       | 527/2465 [03:25<09:18,  3.47it/s]test all pooling
+train_8078_b_1
+ 21%|██▏       | 528/2465 [03:25<07:51,  4.11it/s]test all pooling
+train_12008_a_2
+ 21%|██▏       | 529/2465 [03:26<15:00,  2.15it/s]2026-05-12 22:58:54,117 - INFO - Processing batch 530
+test all pooling
+train_1474_a_2
+ 22%|██▏       | 530/2465 [03:26<11:53,  2.71it/s]test all pooling
+train_11873_a_2
+test all pooling
+train_4543_a_1
+ 22%|██▏       | 532/2465 [03:28<14:21,  2.24it/s]test all pooling
+train_7571_b_1
+test all pooling
+train_7571_a_2
+ 22%|██▏       | 534/2465 [03:28<10:00,  3.22it/s]test all pooling
+train_7991_a_1
+test all pooling
+train_8216_a_2
+ 22%|██▏       | 536/2465 [03:28<07:38,  4.20it/s]test all pooling
+train_1401_b_1
+ 22%|██▏       | 537/2465 [03:29<10:36,  3.03it/s]test all pooling
+train_1401_a_1
+ 22%|██▏       | 538/2465 [03:29<09:03,  3.54it/s]test all pooling
+train_12537_c_1
+ 22%|██▏       | 539/2465 [03:29<07:39,  4.19it/s]2026-05-12 22:58:57,104 - INFO - Processing batch 540
+test all pooling
+train_12537_d_2
+ 22%|██▏       | 540/2465 [03:29<10:46,  2.98it/s]test all pooling
+train_619_a_2
+ 22%|██▏       | 541/2465 [03:31<19:12,  1.67it/s]test all pooling
+train_5947_a_2
+ 22%|██▏       | 542/2465 [03:31<14:46,  2.17it/s]test all pooling
+train_7009_a_2
+test all pooling
+train_14398_a_1
+ 22%|██▏       | 544/2465 [03:31<10:35,  3.02it/s]test all pooling
+train_11539_a_2
+test all pooling
+train_6322_a_2
+ 22%|██▏       | 546/2465 [03:32<13:53,  2.30it/s]test all pooling
+train_5546_b_1
+ 22%|██▏       | 547/2465 [03:33<11:35,  2.76it/s]test all pooling
+train_990_a_1
+test all pooling
+train_2170_a_1
+ 22%|██▏       | 549/2465 [03:33<13:02,  2.45it/s]2026-05-12 22:59:01,258 - INFO - Processing batch 550
+test all pooling
+train_742_a_1
+2026-05-12 22:59:01,339 - INFO - Saving interim results for 550 samples
+2026-05-12 22:59:01,340 - INFO - Saved interim results for 550 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_11974_a_1
+ 22%|██▏       | 551/2465 [03:34<09:28,  3.36it/s]test all pooling
+train_6446_a_1
+ 22%|██▏       | 552/2465 [03:34<08:16,  3.86it/s]test all pooling
+train_2940_a_2
+ 22%|██▏       | 553/2465 [03:34<07:14,  4.40it/s]test all pooling
+train_2843_a_1
+ 22%|██▏       | 554/2465 [03:35<17:31,  1.82it/s]test all pooling
+train_2904_a_2
+ 23%|██▎       | 555/2465 [03:36<13:57,  2.28it/s]test all pooling
+train_5352_a_2
+ 23%|██▎       | 556/2465 [03:36<11:17,  2.82it/s]test all pooling
+train_10492_a_2
+ 23%|██▎       | 557/2465 [03:37<17:26,  1.82it/s]test all pooling
+train_7357_a_1
+test all pooling
+train_2111_a_1
+ 23%|██▎       | 559/2465 [03:37<10:59,  2.89it/s]2026-05-12 22:59:04,711 - INFO - Processing batch 560
+test all pooling
+train_10759_a_5
+test all pooling
+train_15372_a_1
+ 23%|██▎       | 561/2465 [03:37<07:54,  4.01it/s]test all pooling
+train_18410_a_4
+ 23%|██▎       | 562/2465 [03:37<07:00,  4.53it/s]test all pooling
+train_5428_f_2
+ 23%|██▎       | 563/2465 [03:38<08:38,  3.67it/s]test all pooling
+train_5428_i_2
+ 23%|██▎       | 564/2465 [03:38<07:28,  4.24it/s]test all pooling
+train_5428_d_2
+ 23%|██▎       | 565/2465 [03:40<22:45,  1.39it/s]test all pooling
+train_5428_c_2
+test all pooling
+train_10507_a_1
+ 23%|██▎       | 567/2465 [03:40<14:04,  2.25it/s]test all pooling
+train_7804_a_1
+test all pooling
+train_1192_a_2
+ 23%|██▎       | 569/2465 [03:40<09:46,  3.23it/s]2026-05-12 22:59:07,997 - INFO - Processing batch 570
+test all pooling
+train_5916_a_2
+test all pooling
+train_13256_b_2
+ 23%|██▎       | 571/2465 [03:41<09:28,  3.33it/s]test all pooling
+train_926_a_1
+ 23%|██▎       | 572/2465 [03:41<08:16,  3.81it/s]test all pooling
+train_43_a_2
+ 23%|██▎       | 573/2465 [03:44<27:29,  1.15it/s]test all pooling
+train_1672_a_2
+ 23%|██▎       | 574/2465 [03:44<21:41,  1.45it/s]test all pooling
+train_2250_a_2
+ 23%|██▎       | 575/2465 [03:44<16:59,  1.85it/s]test all pooling
+train_17496_a_1
+ 23%|██▎       | 576/2465 [03:45<20:09,  1.56it/s]test all pooling
+train_2333_a_2
+ 23%|██▎       | 577/2465 [03:45<15:38,  2.01it/s]test all pooling
+train_12588_b_2
+ 23%|██▎       | 578/2465 [03:45<12:09,  2.59it/s]test all pooling
+train_4051_a_1
+2026-05-12 22:59:13,120 - INFO - Processing batch 580
+test all pooling
+train_17719_a_1
+ 24%|██▎       | 580/2465 [03:45<08:01,  3.92it/s]test all pooling
+train_4483_a_1
+ 24%|██▎       | 581/2465 [03:49<31:59,  1.02s/it]test all pooling
+train_878_a_2
+test all pooling
+train_2510_a_1
+ 24%|██▎       | 583/2465 [03:49<19:58,  1.57it/s]test all pooling
+train_7697_a_2
+test all pooling
+train_6206_a_1
+ 24%|██▎       | 585/2465 [03:49<13:31,  2.32it/s]test all pooling
+train_2723_a_2
+test all pooling
+train_1125_a_1
+ 24%|██▍       | 587/2465 [03:49<09:44,  3.21it/s]test all pooling
+train_6810_a_2
+test all pooling
+train_2899_a_2
+ 24%|██▍       | 589/2465 [04:21<2:48:35,  5.39s/it]2026-05-12 22:59:48,515 - INFO - Processing batch 590
+test all pooling
+train_6138_a_1
+test all pooling
+train_14111_a_1
+ 24%|██▍       | 591/2465 [04:21<1:55:18,  3.69s/it]test all pooling
+train_14111_a_2
+test all pooling
+train_5892_a_2
+ 24%|██▍       | 593/2465 [04:21<1:19:46,  2.56s/it]test all pooling
+train_12780_a_1
+test all pooling
+train_2261_a_2
+ 24%|██▍       | 595/2465 [04:21<55:46,  1.79s/it]  test all pooling
+train_6368_a_2
+ 24%|██▍       | 595/2465 [04:35<55:46,  1.79s/it]test all pooling
+train_11437_a_2
+ 24%|██▍       | 597/2465 [04:43<2:24:39,  4.65s/it]test all pooling
+train_5332_a_1
+test all pooling
+train_6114_b_1
+ 24%|██▍       | 599/2465 [04:44<1:41:16,  3.26s/it]2026-05-12 23:00:11,380 - INFO - Processing batch 600
+test all pooling
+train_6114_a_2
+2026-05-12 23:00:11,453 - INFO - Saving interim results for 600 samples
+2026-05-12 23:00:11,454 - INFO - Saved interim results for 600 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_5504_a_2
+ 24%|██▍       | 601/2465 [04:44<1:11:16,  2.29s/it]test all pooling
+train_5343_a_2
+test all pooling
+train_15828_a_2
+ 24%|██▍       | 603/2465 [04:44<50:27,  1.63s/it]  test all pooling
+train_1267_a_1
+ 24%|██▍       | 603/2465 [04:55<50:27,  1.63s/it]test all pooling
+train_7007_a_2
+ 25%|██▍       | 605/2465 [05:21<3:27:19,  6.69s/it]test all pooling
+train_7723_a_1
+test all pooling
+train_8142_a_2
+ 25%|██▍       | 607/2465 [05:21<2:25:32,  4.70s/it]test all pooling
+train_5922_a_2
+test all pooling
+train_5408_a_2
+ 25%|██▍       | 609/2465 [05:21<1:42:26,  3.31s/it]2026-05-12 23:00:48,878 - INFO - Processing batch 610
+test all pooling
+train_12430_a_2
+test all pooling
+train_7960_a_1
+ 25%|██▍       | 611/2465 [05:21<1:12:22,  2.34s/it]test all pooling
+train_7835_a_1
+test all pooling
+train_6279_a_2
+ 25%|██▍       | 613/2465 [05:33<1:46:20,  3.45s/it]test all pooling
+train_7912_a_1
+test all pooling
+train_6175_a_1
+ 25%|██▍       | 615/2465 [05:33<1:15:03,  2.43s/it]test all pooling
+train_6727_a_1
+test all pooling
+train_5520_a_2
+ 25%|██▌       | 617/2465 [05:34<53:12,  1.73s/it]  test all pooling
+train_1991_a_2
+test all pooling
+train_6764_a_1
+ 25%|██▌       | 619/2465 [05:34<37:56,  1.23s/it]2026-05-12 23:01:01,552 - INFO - Processing batch 620
+test all pooling
+train_994_d_2
+ 25%|██▌       | 619/2465 [05:45<37:56,  1.23s/it]test all pooling
+train_272_a_2
+ 25%|██▌       | 621/2465 [05:55<2:04:42,  4.06s/it]test all pooling
+train_772_a_2
+test all pooling
+train_12902_a_2
+ 25%|██▌       | 623/2465 [05:55<1:27:58,  2.87s/it]test all pooling
+train_1917_a_2
+test all pooling
+train_11378_a_1
+ 25%|██▌       | 625/2465 [05:55<1:02:14,  2.03s/it]test all pooling
+train_2977_a_2
+test all pooling
+train_2183_a_1
+ 25%|██▌       | 627/2465 [05:56<44:14,  1.44s/it]  test all pooling
+train_7014_a_2
+test all pooling
+train_798_a_2
+ 26%|██▌       | 629/2465 [06:09<1:30:39,  2.96s/it]2026-05-12 23:01:36,337 - INFO - Processing batch 630
+test all pooling
+train_6884_a_2
+test all pooling
+train_2938_a_1
+ 26%|██▌       | 631/2465 [06:14<1:30:13,  2.95s/it]test all pooling
+train_1199_a_1
+ 26%|██▌       | 632/2465 [06:32<2:51:02,  5.60s/it]test all pooling
+train_10174_a_1
+test all pooling
+train_7282_a_2
+ 26%|██▌       | 634/2465 [06:33<1:54:30,  3.75s/it]test all pooling
+train_6336_d_2
+test all pooling
+train_6336_a_2
+ 26%|██▌       | 636/2465 [06:33<1:18:13,  2.57s/it]test all pooling
+train_6336_c_2
+test all pooling
+train_7857_a_2
+ 26%|██▌       | 638/2465 [06:33<54:53,  1.80s/it]  test all pooling
+train_10205_a_2
+2026-05-12 23:02:02,484 - INFO - Processing batch 640
+test all pooling
+train_7628_a_2
+ 26%|██▌       | 640/2465 [06:35<46:14,  1.52s/it]test all pooling
+train_8938_a_1
+test all pooling
+train_7674_c_2
+ 26%|██▌       | 642/2465 [06:35<32:51,  1.08s/it]test all pooling
+train_7674_a_2
+test all pooling
+train_7674_b_2
+ 26%|██▌       | 644/2465 [06:35<23:39,  1.28it/s]test all pooling
+train_6538_a_1
+ 26%|██▌       | 645/2465 [06:35<20:54,  1.45it/s]test all pooling
+train_948_c_2
+test all pooling
+train_2400_a_1
+ 26%|██▌       | 647/2465 [06:36<17:18,  1.75it/s]test all pooling
+train_5740_a_2
+ 26%|██▋       | 648/2465 [06:37<18:15,  1.66it/s]test all pooling
+train_2818_a_2
+ 26%|██▋       | 649/2465 [06:38<19:38,  1.54it/s]2026-05-12 23:02:05,474 - INFO - Processing batch 650
+test all pooling
+train_5627_a_1
+2026-05-12 23:02:05,558 - INFO - Saving interim results for 650 samples
+2026-05-12 23:02:05,559 - INFO - Saved interim results for 650 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_2957_a_2
+ 26%|██▋       | 651/2465 [06:38<13:10,  2.29it/s]test all pooling
+train_2802_a_1
+test all pooling
+train_5454_a_1
+ 26%|██▋       | 653/2465 [06:38<10:10,  2.97it/s]test all pooling
+train_7611_a_2
+ 27%|██▋       | 654/2465 [06:38<09:31,  3.17it/s]test all pooling
+train_2024_a_2
+ 27%|██▋       | 655/2465 [06:39<13:21,  2.26it/s]test all pooling
+train_1767_a_2
+ 27%|██▋       | 656/2465 [06:39<10:55,  2.76it/s]test all pooling
+train_7127_a_2
+ 27%|██▋       | 657/2465 [06:41<18:20,  1.64it/s]test all pooling
+train_12901_a_1
+test all pooling
+train_8193_a_2
+ 27%|██▋       | 659/2465 [06:41<11:40,  2.58it/s]2026-05-12 23:02:08,697 - INFO - Processing batch 660
+test all pooling
+train_1352_a_1
+ 27%|██▋       | 660/2465 [06:41<09:42,  3.10it/s]test all pooling
+train_7062_a_2
+ 27%|██▋       | 661/2465 [06:41<10:49,  2.78it/s]test all pooling
+train_7867_a_2
+test all pooling
+train_6935_a_1
+ 27%|██▋       | 663/2465 [06:42<10:58,  2.74it/s]test all pooling
+train_6755_a_2
+ 27%|██▋       | 664/2465 [06:42<09:12,  3.26it/s]test all pooling
+train_7111_a_1
+ 27%|██▋       | 665/2465 [06:43<14:53,  2.01it/s]test all pooling
+train_5640_d_2
+ 27%|██▋       | 666/2465 [06:44<12:00,  2.50it/s]test all pooling
+train_5640_c_2
+ 27%|██▋       | 667/2465 [06:44<09:51,  3.04it/s]test all pooling
+train_5640_a_2
+ 27%|██▋       | 668/2465 [06:44<08:09,  3.67it/s]test all pooling
+train_5978_a_1
+ 27%|██▋       | 669/2465 [06:45<16:25,  1.82it/s]2026-05-12 23:02:12,841 - INFO - Processing batch 670
+test all pooling
+train_19199_a_1
+test all pooling
+train_6337_a_2
+ 27%|██▋       | 671/2465 [06:45<10:19,  2.90it/s]test all pooling
+train_6451_a_2
+test all pooling
+train_2376_b_2
+ 27%|██▋       | 673/2465 [06:46<13:20,  2.24it/s]test all pooling
+train_1589_a_2
+test all pooling
+train_5999_a_2
+ 27%|██▋       | 675/2465 [06:47<09:32,  3.13it/s]test all pooling
+train_7400_a_2
+test all pooling
+train_2948_a_2
+ 27%|██▋       | 677/2465 [06:48<14:13,  2.09it/s]test all pooling
+train_1794_a_2
+ 28%|██▊       | 678/2465 [06:48<12:16,  2.42it/s]test all pooling
+train_127_a_1
+ 28%|██▊       | 679/2465 [06:48<10:27,  2.85it/s]2026-05-12 23:02:16,269 - INFO - Processing batch 680
+test all pooling
+train_11429_a_1
+test all pooling
+train_12769_a_2
+ 28%|██▊       | 681/2465 [06:49<08:48,  3.38it/s]test all pooling
+train_18996_a_2
+ 28%|██▊       | 682/2465 [06:49<07:45,  3.83it/s]test all pooling
+train_194_a_1
+ 28%|██▊       | 683/2465 [06:49<06:43,  4.41it/s]test all pooling
+train_7442_a_1
+ 28%|██▊       | 684/2465 [06:49<05:47,  5.13it/s]test all pooling
+train_548_a_1
+ 28%|██▊       | 685/2465 [06:50<11:48,  2.51it/s]test all pooling
+train_12137_a_1
+test all pooling
+train_7866_a_2
+ 28%|██▊       | 687/2465 [06:50<07:52,  3.76it/s]test all pooling
+train_1497_a_2
+test all pooling
+train_7025_a_2
+ 28%|██▊       | 689/2465 [06:52<16:14,  1.82it/s]2026-05-12 23:02:20,197 - INFO - Processing batch 690
+test all pooling
+train_12155_a_2
+test all pooling
+train_6738_b_1
+ 28%|██▊       | 691/2465 [06:53<11:30,  2.57it/s]test all pooling
+train_5511_a_2
+ 28%|██▊       | 692/2465 [06:53<09:48,  3.01it/s]test all pooling
+train_7369_a_2
+ 28%|██▊       | 693/2465 [06:54<16:51,  1.75it/s]test all pooling
+train_6143_a_1
+ 28%|██▊       | 694/2465 [06:56<23:05,  1.28it/s]test all pooling
+train_6143_a_2
+test all pooling
+train_3398_b_2
+ 28%|██▊       | 696/2465 [06:56<14:40,  2.01it/s]test all pooling
+train_2967_c_1
+ 28%|██▊       | 697/2465 [06:57<20:41,  1.42it/s]test all pooling
+train_17160_a_2
+test all pooling
+train_1427_a_2
+ 28%|██▊       | 699/2465 [06:57<13:31,  2.18it/s]2026-05-12 23:02:25,080 - INFO - Processing batch 700
+test all pooling
+train_7815_a_1
+2026-05-12 23:02:25,147 - INFO - Saving interim results for 700 samples
+2026-05-12 23:02:25,148 - INFO - Saved interim results for 700 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_7461_c_2
+ 28%|██▊       | 701/2465 [06:57<09:28,  3.10it/s]test all pooling
+train_1310_b_2
+ 28%|██▊       | 702/2465 [07:29<3:18:53,  6.77s/it]test all pooling
+train_887_a_2
+test all pooling
+train_1568_a_2
+ 29%|██▊       | 704/2465 [07:30<2:06:21,  4.31s/it]test all pooling
+train_6409_a_1
+test all pooling
+train_1790_a_2
+ 29%|██▊       | 706/2465 [07:30<1:23:31,  2.85s/it]test all pooling
+train_1824_a_1
+test all pooling
+train_6614_a_2
+ 29%|██▊       | 708/2465 [07:30<56:40,  1.94s/it]  test all pooling
+train_6105_a_1
+ 29%|██▊       | 708/2465 [07:45<56:40,  1.94s/it]2026-05-12 23:03:18,994 - INFO - Processing batch 710
+test all pooling
+train_6539_a_2
+ 29%|██▉       | 710/2465 [07:51<2:19:06,  4.76s/it]test all pooling
+train_5584_c_1
+test all pooling
+train_5584_d_1
+ 29%|██▉       | 712/2465 [07:51<1:36:06,  3.29s/it]test all pooling
+train_5584_a_2
+test all pooling
+train_2037_b_2
+ 29%|██▉       | 714/2465 [07:52<1:07:00,  2.30s/it]test all pooling
+train_10154_a_1
+test all pooling
+train_977_a_1
+ 29%|██▉       | 716/2465 [07:52<47:08,  1.62s/it]  test all pooling
+train_187_a_1
+ 29%|██▉       | 716/2465 [08:05<47:08,  1.62s/it]test all pooling
+train_12505_b_1
+ 29%|██▉       | 718/2465 [08:17<2:22:40,  4.90s/it]test all pooling
+train_2749_a_2
+2026-05-12 23:03:44,487 - INFO - Processing batch 720
+test all pooling
+train_12603_a_2
+ 29%|██▉       | 720/2465 [08:17<1:40:10,  3.44s/it]test all pooling
+train_6271_a_2
+test all pooling
+train_10826_a_2
+ 29%|██▉       | 722/2465 [08:17<1:10:37,  2.43s/it]test all pooling
+train_1918_a_1
+test all pooling
+train_3694_a_1
+ 29%|██▉       | 724/2465 [08:17<50:04,  1.73s/it]  test all pooling
+train_1863_a_2
+test all pooling
+train_10784_a_2
+ 29%|██▉       | 726/2465 [08:19<41:33,  1.43s/it]test all pooling
+train_10784_b_2
+ 29%|██▉       | 727/2465 [08:19<34:44,  1.20s/it]test all pooling
+train_8070_b_2
+ 30%|██▉       | 728/2465 [08:19<28:20,  1.02it/s]test all pooling
+train_3453_a_1
+ 30%|██▉       | 729/2465 [08:19<24:58,  1.16it/s]2026-05-12 23:03:47,146 - INFO - Processing batch 730
+test all pooling
+train_3640_a_2
+test all pooling
+train_6133_a_1
+ 30%|██▉       | 731/2465 [08:20<16:07,  1.79it/s]test all pooling
+train_5472_a_2
+test all pooling
+train_13583_d_2
+ 30%|██▉       | 733/2465 [08:20<15:21,  1.88it/s]test all pooling
+train_7020_a_1
+ 30%|██▉       | 734/2465 [08:22<21:48,  1.32it/s]test all pooling
+train_1282_a_1
+test all pooling
+train_7013_a_2
+ 30%|██▉       | 736/2465 [08:22<14:42,  1.96it/s]test all pooling
+train_669_a_2
+test all pooling
+train_5279_b_2
+ 30%|██▉       | 738/2465 [08:22<10:29,  2.74it/s]test all pooling
+train_11032_b_1
+2026-05-12 23:03:50,347 - INFO - Processing batch 740
+test all pooling
+train_5255_a_2
+ 30%|███       | 740/2465 [08:23<07:51,  3.66it/s]test all pooling
+train_6510_a_1
+ 30%|███       | 741/2465 [08:23<09:32,  3.01it/s]test all pooling
+train_7446_a_2
+ 30%|███       | 742/2465 [08:25<20:12,  1.42it/s]test all pooling
+train_1659_a_1
+ 30%|███       | 743/2465 [08:25<16:09,  1.78it/s]test all pooling
+train_10144_a_1
+test all pooling
+train_19915_a_2
+ 30%|███       | 745/2465 [08:26<10:42,  2.68it/s]test all pooling
+train_8044_a_1
+test all pooling
+train_6235_a_2
+ 30%|███       | 747/2465 [08:26<07:41,  3.72it/s]test all pooling
+train_6699_a_2
+test all pooling
+train_1398_a_2
+ 30%|███       | 749/2465 [08:26<06:11,  4.62it/s]2026-05-12 23:03:56,173 - INFO - Processing batch 750
+test all pooling
+train_3651_a_2
+2026-05-12 23:03:56,249 - INFO - Saving interim results for 750 samples
+2026-05-12 23:03:56,250 - INFO - Saved interim results for 750 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 30%|███       | 750/2465 [08:28<18:56,  1.51it/s]test all pooling
+train_703_a_2
+test all pooling
+train_1067_a_1
+ 31%|███       | 752/2465 [08:29<12:59,  2.20it/s]test all pooling
+train_9002_a_2
+ 31%|███       | 753/2465 [08:29<10:55,  2.61it/s]test all pooling
+train_10525_a_2
+test all pooling
+train_232_a_2
+ 31%|███       | 755/2465 [08:29<07:49,  3.64it/s]test all pooling
+train_8085_a_1
+test all pooling
+train_13790_a_2
+ 31%|███       | 757/2465 [08:29<06:11,  4.60it/s]test all pooling
+train_7029_b_1
+ 31%|███       | 758/2465 [08:31<14:52,  1.91it/s]test all pooling
+train_5777_a_1
+2026-05-12 23:03:58,779 - INFO - Processing batch 760
+test all pooling
+train_5359_a_1
+ 31%|███       | 760/2465 [08:31<10:23,  2.73it/s]test all pooling
+train_10973_b_2
+test all pooling
+train_6025_a_2
+ 31%|███       | 762/2465 [08:31<07:40,  3.70it/s]test all pooling
+train_7521_a_2
+test all pooling
+train_6937_a_1
+ 31%|███       | 764/2465 [08:31<06:00,  4.72it/s]test all pooling
+train_11818_a_1
+test all pooling
+train_217_a_2
+ 31%|███       | 766/2465 [08:34<15:00,  1.89it/s]test all pooling
+train_10364_a_1
+test all pooling
+train_6819_a_1
+ 31%|███       | 768/2465 [08:34<11:08,  2.54it/s]test all pooling
+train_2041_c_2
+2026-05-12 23:04:01,930 - INFO - Processing batch 770
+test all pooling
+train_2041_f_2
+ 31%|███       | 770/2465 [08:34<08:30,  3.32it/s]test all pooling
+train_8164_a_2
+ 31%|███▏      | 771/2465 [08:34<07:30,  3.76it/s]test all pooling
+train_1294_a_3
+ 31%|███▏      | 772/2465 [08:34<06:33,  4.30it/s]test all pooling
+train_28_a_2
+test all pooling
+train_1292_b_2
+ 31%|███▏      | 774/2465 [08:35<08:46,  3.21it/s]test all pooling
+train_1623_a_1
+test all pooling
+train_207_a_1
+ 31%|███▏      | 776/2465 [08:36<06:35,  4.27it/s]test all pooling
+train_2753_a_1
+test all pooling
+train_1742_b_2
+ 32%|███▏      | 778/2465 [08:36<05:15,  5.35it/s]test all pooling
+train_1742_d_2
+2026-05-12 23:04:03,580 - INFO - Processing batch 780
+test all pooling
+train_1742_c_2
+ 32%|███▏      | 780/2465 [08:36<04:24,  6.36it/s]test all pooling
+train_1742_a_2
+ 32%|███▏      | 781/2465 [08:37<09:18,  3.02it/s]test all pooling
+train_1324_a_2
+ 32%|███▏      | 782/2465 [08:39<20:29,  1.37it/s]test all pooling
+train_8060_a_2
+test all pooling
+train_9272_a_2
+ 32%|███▏      | 784/2465 [08:40<17:16,  1.62it/s]test all pooling
+train_1870_a_2
+test all pooling
+train_6224_a_2
+ 32%|███▏      | 786/2465 [08:40<12:03,  2.32it/s]test all pooling
+train_7918_a_2
+ 32%|███▏      | 787/2465 [08:40<10:12,  2.74it/s]test all pooling
+train_14976_a_1
+test all pooling
+train_7535_a_1
+ 32%|███▏      | 789/2465 [08:41<07:24,  3.77it/s]2026-05-12 23:04:09,887 - INFO - Processing batch 790
+test all pooling
+train_1860_a_1
+ 32%|███▏      | 790/2465 [08:42<15:41,  1.78it/s]test all pooling
+train_12167_a_1
+ 32%|███▏      | 791/2465 [08:42<12:47,  2.18it/s]test all pooling
+train_3759_a_2
+ 32%|███▏      | 792/2465 [08:46<33:51,  1.21s/it]test all pooling
+train_33_a_1
+test all pooling
+train_19567_a_2
+ 32%|███▏      | 794/2465 [08:46<20:54,  1.33it/s]test all pooling
+train_7081_a_1
+test all pooling
+train_12463_a_1
+ 32%|███▏      | 796/2465 [08:46<13:59,  1.99it/s]test all pooling
+train_10096_a_1
+test all pooling
+train_456_b_2
+ 32%|███▏      | 798/2465 [08:46<09:55,  2.80it/s]test all pooling
+train_6306_a_1
+2026-05-12 23:04:16,783 - INFO - Processing batch 800
+test all pooling
+train_11937_a_1
+2026-05-12 23:04:16,868 - INFO - Saving interim results for 800 samples
+2026-05-12 23:04:16,869 - INFO - Saved interim results for 800 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 32%|███▏      | 800/2465 [08:49<19:08,  1.45it/s]test all pooling
+train_433_a_2
+test all pooling
+train_5914_a_2
+ 33%|███▎      | 802/2465 [08:49<13:50,  2.00it/s]test all pooling
+train_1330_a_1
+test all pooling
+train_7505_b_2
+ 33%|███▎      | 804/2465 [08:49<10:15,  2.70it/s]test all pooling
+train_6195_a_1
+test all pooling
+train_4620_a_2
+ 33%|███▎      | 806/2465 [08:50<07:51,  3.52it/s]test all pooling
+train_10987_a_1
+test all pooling
+train_7173_d_2
+ 33%|███▎      | 808/2465 [08:51<11:54,  2.32it/s]test all pooling
+train_5247_a_5
+ 33%|███▎      | 809/2465 [08:51<10:28,  2.64it/s]2026-05-12 23:04:19,117 - INFO - Processing batch 810
+test all pooling
+train_7568_a_2
+ 33%|███▎      | 810/2465 [08:51<08:53,  3.10it/s]test all pooling
+train_1900_a_2
+test all pooling
+train_15824_a_1
+ 33%|███▎      | 812/2465 [08:52<07:02,  3.92it/s]test all pooling
+train_6494_a_1
+ 33%|███▎      | 813/2465 [08:52<06:09,  4.47it/s]test all pooling
+train_295_a_1
+ 33%|███▎      | 814/2465 [08:52<05:39,  4.86it/s]test all pooling
+train_7034_a_1
+test all pooling
+train_6910_a_2
+ 33%|███▎      | 816/2465 [08:54<16:00,  1.72it/s]test all pooling
+train_5796_a_1
+test all pooling
+train_11821_a_2
+ 33%|███▎      | 818/2465 [08:54<11:05,  2.48it/s]test all pooling
+train_10276_b_2
+ 33%|███▎      | 819/2465 [08:55<09:25,  2.91it/s]2026-05-12 23:04:22,337 - INFO - Processing batch 820
+test all pooling
+train_3003_a_2
+test all pooling
+train_3334_a_1
+ 33%|███▎      | 821/2465 [08:55<06:46,  4.04it/s]test all pooling
+train_11412_a_2
+test all pooling
+train_17322_b_2
+ 33%|███▎      | 823/2465 [08:55<05:20,  5.13it/s]test all pooling
+train_5214_a_1
+ 33%|███▎      | 824/2465 [08:56<12:11,  2.24it/s]test all pooling
+train_6244_a_2
+ 33%|███▎      | 825/2465 [08:57<10:19,  2.65it/s]test all pooling
+train_12563_e_1
+ 34%|███▎      | 826/2465 [08:57<08:41,  3.14it/s]test all pooling
+train_7479_a_1
+ 34%|███▎      | 827/2465 [08:57<07:28,  3.65it/s]test all pooling
+train_5822_a_2
+ 34%|███▎      | 828/2465 [08:57<07:23,  3.69it/s]test all pooling
+train_7150_a_2
+2026-05-12 23:04:24,941 - INFO - Processing batch 830
+test all pooling
+train_7584_b_2
+ 34%|███▎      | 830/2465 [08:57<05:40,  4.81it/s]test all pooling
+train_2308_a_2
+ 34%|███▎      | 831/2465 [08:57<05:00,  5.44it/s]test all pooling
+train_6649_a_2
+ 34%|███▍      | 832/2465 [09:00<18:10,  1.50it/s]test all pooling
+train_8984_a_2
+test all pooling
+train_5813_a_2
+ 34%|███▍      | 834/2465 [09:00<11:32,  2.36it/s]test all pooling
+train_13722_a_1
+test all pooling
+train_1835_a_1
+ 34%|███▍      | 836/2465 [09:00<09:25,  2.88it/s]test all pooling
+train_1089_a_1
+test all pooling
+train_11913_a_1
+ 34%|███▍      | 838/2465 [09:00<06:56,  3.91it/s]test all pooling
+train_16988_a_2
+2026-05-12 23:04:32,914 - INFO - Processing batch 840
+test all pooling
+train_15829_a_1
+ 34%|███▍      | 840/2465 [09:05<26:54,  1.01it/s]test all pooling
+train_8061_b_2
+test all pooling
+train_8061_a_2
+ 34%|███▍      | 842/2465 [09:05<19:02,  1.42it/s]test all pooling
+train_16675_a_1
+ 34%|███▍      | 843/2465 [09:06<17:54,  1.51it/s]test all pooling
+train_17277_a_1
+ 34%|███▍      | 844/2465 [09:07<17:51,  1.51it/s]test all pooling
+train_6190_a_1
+test all pooling
+train_1540_a_1
+ 34%|███▍      | 846/2465 [09:07<12:05,  2.23it/s]test all pooling
+train_7608_a_1
+test all pooling
+train_11398_a_1
+ 34%|███▍      | 848/2465 [09:07<08:42,  3.10it/s]test all pooling
+train_13776_a_2
+2026-05-12 23:04:34,808 - INFO - Processing batch 850
+test all pooling
+train_2069_a_1
+2026-05-12 23:04:34,892 - INFO - Saving interim results for 850 samples
+2026-05-12 23:04:34,893 - INFO - Saved interim results for 850 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 34%|███▍      | 850/2465 [09:07<06:39,  4.05it/s]test all pooling
+train_1557_a_2
+ 35%|███▍      | 851/2465 [09:09<14:46,  1.82it/s]test all pooling
+train_7904_a_1
+ 35%|███▍      | 852/2465 [09:09<12:17,  2.19it/s]test all pooling
+train_1237_a_1
+ 35%|███▍      | 853/2465 [09:09<10:07,  2.65it/s]test all pooling
+train_1630_a_2
+ 35%|███▍      | 854/2465 [09:09<08:22,  3.20it/s]test all pooling
+train_1560_a_2
+ 35%|███▍      | 855/2465 [09:09<07:01,  3.82it/s]test all pooling
+train_6158_b_1
+ 35%|███▍      | 856/2465 [09:10<06:50,  3.92it/s]test all pooling
+train_6158_a_1
+test all pooling
+train_1161_a_2
+ 35%|███▍      | 858/2465 [09:10<06:11,  4.32it/s]test all pooling
+train_8866_a_2
+ 35%|███▍      | 859/2465 [09:13<21:33,  1.24it/s]2026-05-12 23:04:40,484 - INFO - Processing batch 860
+test all pooling
+train_6329_a_1
+ 35%|███▍      | 860/2465 [09:13<16:49,  1.59it/s]test all pooling
+train_7473_a_1
+test all pooling
+train_6039_b_2
+ 35%|███▍      | 862/2465 [09:13<10:47,  2.47it/s]test all pooling
+train_6628_a_2
+ 35%|███▌      | 863/2465 [09:13<08:58,  2.97it/s]test all pooling
+train_2474_a_1
+test all pooling
+train_7739_a_2
+ 35%|███▌      | 865/2465 [09:13<06:26,  4.14it/s]test all pooling
+train_10744_l_1
+test all pooling
+train_991_a_1
+ 35%|███▌      | 867/2465 [09:15<11:03,  2.41it/s]test all pooling
+train_6954_a_2
+ 35%|███▌      | 868/2465 [09:15<09:55,  2.68it/s]test all pooling
+train_7406_a_2
+2026-05-12 23:04:42,819 - INFO - Processing batch 870
+test all pooling
+train_5953_a_1
+ 35%|███▌      | 870/2465 [09:15<07:04,  3.75it/s]test all pooling
+train_355_a_1
+test all pooling
+train_2778_a_2
+ 35%|███▌      | 872/2465 [09:15<05:26,  4.88it/s]test all pooling
+train_12226_a_4
+test all pooling
+train_2319_a_1
+ 35%|███▌      | 874/2465 [09:15<04:25,  5.99it/s]test all pooling
+train_7355_a_2
+ 35%|███▌      | 875/2465 [09:18<15:44,  1.68it/s]test all pooling
+train_17526_a_2
+ 36%|███▌      | 876/2465 [09:19<16:17,  1.63it/s]test all pooling
+train_1083_a_1
+test all pooling
+train_698_a_2
+ 36%|███▌      | 878/2465 [09:19<10:59,  2.41it/s]test all pooling
+train_2272_a_2
+2026-05-12 23:04:46,626 - INFO - Processing batch 880
+test all pooling
+train_6549_b_2
+ 36%|███▌      | 880/2465 [09:19<07:55,  3.33it/s]test all pooling
+train_6549_a_1
+test all pooling
+train_858_a_1
+ 36%|███▌      | 882/2465 [09:19<06:04,  4.35it/s]test all pooling
+train_2901_a_2
+ 36%|███▌      | 883/2465 [09:20<10:44,  2.46it/s]test all pooling
+train_5490_a_1
+ 36%|███▌      | 884/2465 [09:22<20:10,  1.31it/s]test all pooling
+train_1800_a_1
+test all pooling
+train_1224_a_2
+ 36%|███▌      | 886/2465 [09:22<13:17,  1.98it/s]test all pooling
+train_773_a_2
+test all pooling
+train_755_a_1
+ 36%|███▌      | 888/2465 [09:23<09:24,  2.79it/s]test all pooling
+train_1960_a_2
+2026-05-12 23:04:50,541 - INFO - Processing batch 890
+test all pooling
+train_1868_a_2
+ 36%|███▌      | 890/2465 [09:23<07:00,  3.75it/s]test all pooling
+train_6282_a_2
+ 36%|███▌      | 891/2465 [09:23<07:10,  3.66it/s]test all pooling
+train_6346_a_2
+ 36%|███▌      | 892/2465 [09:25<16:58,  1.54it/s]test all pooling
+train_1130_a_2
+test all pooling
+train_5726_a_2
+ 36%|███▋      | 894/2465 [09:25<11:22,  2.30it/s]test all pooling
+train_1131_a_1
+test all pooling
+train_1814_b_2
+ 36%|███▋      | 896/2465 [09:26<08:11,  3.19it/s]test all pooling
+train_1614_a_2
+test all pooling
+train_924_a_1
+ 36%|███▋      | 898/2465 [09:26<06:11,  4.21it/s]test all pooling
+train_7002_a_1
+2026-05-12 23:04:55,480 - INFO - Processing batch 900
+test all pooling
+train_10584_a_2
+2026-05-12 23:04:55,560 - INFO - Saving interim results for 900 samples
+2026-05-12 23:04:55,561 - INFO - Saved interim results for 900 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 37%|███▋      | 900/2465 [09:28<13:05,  1.99it/s]test all pooling
+train_5709_a_1
+test all pooling
+train_19464_a_2
+ 37%|███▋      | 902/2465 [09:28<09:37,  2.70it/s]test all pooling
+train_5276_a_2
+test all pooling
+train_1676_a_2
+ 37%|███▋      | 904/2465 [09:28<07:18,  3.56it/s]test all pooling
+train_11760_c_2
+test all pooling
+train_12475_a_2
+ 37%|███▋      | 906/2465 [09:28<05:45,  4.51it/s]test all pooling
+train_6042_a_2
+ 37%|███▋      | 907/2465 [09:28<05:12,  4.98it/s]test all pooling
+train_2746_a_2
+ 37%|███▋      | 908/2465 [09:31<17:33,  1.48it/s]test all pooling
+train_11_a_2
+2026-05-12 23:04:59,051 - INFO - Processing batch 910
+test all pooling
+train_7093_a_2
+ 37%|███▋      | 910/2465 [09:31<13:04,  1.98it/s]test all pooling
+train_5934_a_1
+test all pooling
+train_7197_a_2
+ 37%|███▋      | 912/2465 [09:32<09:20,  2.77it/s]test all pooling
+train_1013_a_2
+test all pooling
+train_6444_a_1
+ 37%|███▋      | 914/2465 [09:32<07:00,  3.69it/s]test all pooling
+train_7068_a_2
+test all pooling
+train_12646_a_2
+ 37%|███▋      | 916/2465 [09:34<14:40,  1.76it/s]test all pooling
+train_1381_c_1
+test all pooling
+train_1891_a_2
+ 37%|███▋      | 918/2465 [09:34<11:25,  2.26it/s]test all pooling
+train_5912_a_1
+2026-05-12 23:05:02,325 - INFO - Processing batch 920
+test all pooling
+train_1189_a_1
+ 37%|███▋      | 920/2465 [09:35<08:37,  2.98it/s]test all pooling
+train_18517_a_1
+ 37%|███▋      | 921/2465 [09:35<07:31,  3.42it/s]test all pooling
+train_1284_a_2
+ 37%|███▋      | 922/2465 [09:35<06:31,  3.94it/s]test all pooling
+train_5588_a_2
+ 37%|███▋      | 923/2465 [09:35<05:49,  4.41it/s]test all pooling
+train_12_a_2
+ 37%|███▋      | 924/2465 [09:36<12:56,  1.98it/s]test all pooling
+train_5585_a_1
+test all pooling
+train_6187_c_2
+ 38%|███▊      | 926/2465 [09:37<09:03,  2.83it/s]test all pooling
+train_6187_a_1
+test all pooling
+train_2254_a_2
+ 38%|███▊      | 928/2465 [09:37<06:32,  3.91it/s]test all pooling
+train_371_a_2
+2026-05-12 23:05:04,655 - INFO - Processing batch 930
+test all pooling
+train_407_a_2
+ 38%|███▊      | 930/2465 [09:37<05:02,  5.07it/s]test all pooling
+train_11822_a_2
+test all pooling
+train_2744_a_1
+ 38%|███▊      | 932/2465 [09:40<15:00,  1.70it/s]test all pooling
+train_10172_a_2
+test all pooling
+train_2209_a_2
+ 38%|███▊      | 934/2465 [09:40<10:52,  2.35it/s]test all pooling
+train_5660_a_2
+test all pooling
+train_5719_b_2
+ 38%|███▊      | 936/2465 [09:40<08:08,  3.13it/s]test all pooling
+train_5719_c_2
+test all pooling
+train_2936_a_1
+ 38%|███▊      | 938/2465 [09:40<06:18,  4.03it/s]test all pooling
+train_6525_a_1
+ 38%|███▊      | 939/2465 [09:40<05:37,  4.52it/s]2026-05-12 23:05:09,834 - INFO - Processing batch 940
+test all pooling
+train_11862_b_1
+ 38%|███▊      | 940/2465 [09:42<14:01,  1.81it/s]test all pooling
+train_6779_f_2
+ 38%|███▊      | 941/2465 [09:42<11:25,  2.22it/s]test all pooling
+train_5238_a_2
+ 38%|███▊      | 942/2465 [09:43<12:14,  2.07it/s]test all pooling
+train_6497_a_2
+test all pooling
+train_1897_f_2
+ 38%|███▊      | 944/2465 [09:43<08:13,  3.08it/s]test all pooling
+train_8154_a_2
+ 38%|███▊      | 945/2465 [09:43<07:04,  3.58it/s]test all pooling
+train_13119_c_1
+ 38%|███▊      | 946/2465 [09:43<06:05,  4.16it/s]test all pooling
+train_7683_a_2
+ 38%|███▊      | 947/2465 [09:43<05:16,  4.80it/s]test all pooling
+train_12202_a_2
+ 38%|███▊      | 948/2465 [09:46<20:17,  1.25it/s]test all pooling
+train_842_a_1
+ 38%|███▊      | 949/2465 [09:46<15:23,  1.64it/s]2026-05-12 23:05:13,706 - INFO - Processing batch 950
+test all pooling
+train_6797_a_2
+2026-05-12 23:05:13,781 - INFO - Saving interim results for 950 samples
+2026-05-12 23:05:13,782 - INFO - Saved interim results for 950 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_437_a_1
+ 39%|███▊      | 951/2465 [09:46<09:31,  2.65it/s]test all pooling
+train_6474_a_2
+test all pooling
+train_16003_a_2
+ 39%|███▊      | 953/2465 [09:46<06:41,  3.77it/s]test all pooling
+train_1854_a_1
+test all pooling
+train_6490_a_2
+ 39%|███▊      | 955/2465 [09:46<05:05,  4.94it/s]test all pooling
+train_294_a_2
+ 39%|███▉      | 956/2465 [09:48<11:54,  2.11it/s]test all pooling
+train_13098_a_2
+test all pooling
+train_5207_a_1
+ 39%|███▉      | 958/2465 [09:49<11:11,  2.24it/s]test all pooling
+train_6240_a_2
+ 39%|███▉      | 959/2465 [09:49<10:17,  2.44it/s]2026-05-12 23:05:16,845 - INFO - Processing batch 960
+test all pooling
+train_929_a_1
+test all pooling
+train_19847_a_2
+ 39%|███▉      | 961/2465 [09:49<07:15,  3.45it/s]test all pooling
+train_7569_c_2
+test all pooling
+train_7569_d_2
+ 39%|███▉      | 963/2465 [09:49<05:27,  4.58it/s]test all pooling
+train_6591_a_1
+ 39%|███▉      | 964/2465 [10:26<3:07:07,  7.48s/it]test all pooling
+train_7392_a_2
+test all pooling
+train_12991_a_1
+ 39%|███▉      | 966/2465 [10:26<1:59:56,  4.80s/it]test all pooling
+train_6967_a_2
+test all pooling
+train_5204_a_2
+ 39%|███▉      | 968/2465 [10:26<1:19:38,  3.19s/it]test all pooling
+train_5720_a_2
+2026-05-12 23:05:54,353 - INFO - Processing batch 970
+test all pooling
+train_7263_a_1
+ 39%|███▉      | 970/2465 [10:27<54:08,  2.17s/it]  test all pooling
+train_176_a_2
+ 39%|███▉      | 970/2465 [10:45<54:08,  2.17s/it]test all pooling
+train_782_a_1
+ 39%|███▉      | 972/2465 [10:47<1:56:08,  4.67s/it]test all pooling
+train_12149_a_2
+test all pooling
+train_510_a_2
+ 40%|███▉      | 974/2465 [10:47<1:20:21,  3.23s/it]test all pooling
+train_5977_a_2
+test all pooling
+train_6740_a_2
+ 40%|███▉      | 976/2465 [10:47<56:03,  2.26s/it]  test all pooling
+train_807_a_1
+test all pooling
+train_13249_b_2
+ 40%|███▉      | 978/2465 [10:47<39:26,  1.59s/it]test all pooling
+train_5907_a_2
+ 40%|███▉      | 978/2465 [11:05<39:26,  1.59s/it]2026-05-12 23:06:37,003 - INFO - Processing batch 980
+test all pooling
+train_10098_a_1
+ 40%|███▉      | 980/2465 [11:09<1:50:55,  4.48s/it]test all pooling
+train_1935_a_1
+test all pooling
+train_6384_a_1
+ 40%|███▉      | 982/2465 [11:32<2:41:18,  6.53s/it]test all pooling
+train_7156_a_1
+test all pooling
+train_608_a_2
+ 40%|███▉      | 984/2465 [11:32<1:53:05,  4.58s/it]test all pooling
+train_6203_a_2
+test all pooling
+train_6984_a_1
+ 40%|████      | 986/2465 [11:32<1:19:30,  3.23s/it]test all pooling
+train_12218_a_2
+test all pooling
+train_7004_a_2
+ 40%|████      | 988/2465 [11:32<56:06,  2.28s/it]  test all pooling
+train_13035_a_1
+2026-05-12 23:07:02,578 - INFO - Processing batch 990
+test all pooling
+train_7817_a_2
+ 40%|████      | 990/2465 [11:35<48:48,  1.99s/it]test all pooling
+train_594_a_1
+test all pooling
+train_5335_a_2
+ 40%|████      | 992/2465 [11:35<34:43,  1.41s/it]test all pooling
+train_1652_a_1
+test all pooling
+train_2343_a_1
+ 40%|████      | 994/2465 [11:35<24:55,  1.02s/it]test all pooling
+train_11948_b_2
+test all pooling
+train_5574_c_1
+ 40%|████      | 996/2465 [11:35<18:04,  1.35it/s]test all pooling
+train_20_a_2
+test all pooling
+train_10271_b_1
+ 40%|████      | 998/2465 [11:38<20:37,  1.19it/s]test all pooling
+train_5188_a_1
+2026-05-12 23:07:05,473 - INFO - Processing batch 1000
+test all pooling
+train_11195_a_2
+2026-05-12 23:07:05,549 - INFO - Saving interim results for 1000 samples
+2026-05-12 23:07:05,550 - INFO - Saved interim results for 1000 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 41%|████      | 1000/2465 [11:38<15:06,  1.62it/s]test all pooling
+train_1846_a_2
+test all pooling
+train_5560_a_2
+ 41%|████      | 1002/2465 [11:38<11:12,  2.18it/s]test all pooling
+train_7792_a_1
+test all pooling
+train_6476_a_1
+ 41%|████      | 1004/2465 [11:38<08:26,  2.88it/s]test all pooling
+train_29_a_2
+test all pooling
+train_8056_b_1
+ 41%|████      | 1006/2465 [11:40<11:07,  2.19it/s]test all pooling
+train_5617_a_2
+test all pooling
+train_7116_a_2
+ 41%|████      | 1008/2465 [11:40<08:21,  2.90it/s]test all pooling
+train_2010_a_2
+2026-05-12 23:07:07,577 - INFO - Processing batch 1010
+test all pooling
+train_1823_a_2
+ 41%|████      | 1010/2465 [11:40<06:25,  3.77it/s]test all pooling
+train_1823_b_2
+test all pooling
+train_4204_d_1
+ 41%|████      | 1012/2465 [11:40<05:06,  4.73it/s]test all pooling
+train_1970_a_1
+test all pooling
+train_440_a_2
+ 41%|████      | 1014/2465 [11:44<17:10,  1.41it/s]test all pooling
+train_440_b_1
+test all pooling
+train_13316_a_2
+ 41%|████      | 1016/2465 [11:44<12:39,  1.91it/s]test all pooling
+train_6317_a_2
+test all pooling
+train_265_a_2
+ 41%|████▏     | 1018/2465 [11:44<09:29,  2.54it/s]test all pooling
+train_6547_a_2
+2026-05-12 23:07:12,035 - INFO - Processing batch 1020
+test all pooling
+train_3958_a_2
+ 41%|████▏     | 1020/2465 [11:44<07:21,  3.27it/s]test all pooling
+train_18607_a_2
+ 41%|████▏     | 1021/2465 [11:44<06:31,  3.69it/s]test all pooling
+train_10603_a_2
+ 41%|████▏     | 1022/2465 [11:47<16:11,  1.49it/s]test all pooling
+train_435_a_2
+test all pooling
+train_826_b_2
+ 42%|████▏     | 1024/2465 [11:47<11:03,  2.17it/s]test all pooling
+train_8184_a_1
+test all pooling
+train_428_a_2
+ 42%|████▏     | 1026/2465 [11:47<07:54,  3.03it/s]test all pooling
+train_2378_a_1
+test all pooling
+train_56_a_1
+ 42%|████▏     | 1028/2465 [11:47<05:59,  4.00it/s]test all pooling
+train_13252_b_2
+2026-05-12 23:07:16,680 - INFO - Processing batch 1030
+test all pooling
+train_2418_a_1
+ 42%|████▏     | 1030/2465 [11:49<10:47,  2.22it/s]test all pooling
+train_13013_a_1
+ 42%|████▏     | 1031/2465 [11:49<09:15,  2.58it/s]test all pooling
+train_12165_a_1
+test all pooling
+train_7688_b_2
+ 42%|████▏     | 1033/2465 [11:50<08:36,  2.77it/s]test all pooling
+train_7688_a_2
+ 42%|████▏     | 1034/2465 [11:50<08:27,  2.82it/s]test all pooling
+train_8022_a_1
+test all pooling
+train_564_a_1
+ 42%|████▏     | 1036/2465 [11:50<06:07,  3.89it/s]test all pooling
+train_3092_a_1
+test all pooling
+train_6082_a_1
+ 42%|████▏     | 1038/2465 [11:51<06:53,  3.45it/s]test all pooling
+train_7457_b_2
+2026-05-12 23:07:18,820 - INFO - Processing batch 1040
+test all pooling
+train_5795_a_2
+ 42%|████▏     | 1040/2465 [11:51<05:21,  4.44it/s]test all pooling
+train_10118_a_2
+ 42%|████▏     | 1041/2465 [11:52<09:39,  2.46it/s]test all pooling
+train_2257_a_2
+ 42%|████▏     | 1042/2465 [11:53<10:43,  2.21it/s]test all pooling
+train_6110_b_1
+ 42%|████▏     | 1043/2465 [11:53<09:09,  2.59it/s]test all pooling
+train_3617_a_2
+ 42%|████▏     | 1044/2465 [11:53<07:55,  2.99it/s]test all pooling
+train_5425_a_2
+ 42%|████▏     | 1045/2465 [11:53<06:46,  3.49it/s]test all pooling
+train_7491_a_2
+ 42%|████▏     | 1046/2465 [11:54<07:25,  3.19it/s]test all pooling
+train_3744_a_2
+test all pooling
+train_6701_a_2
+ 43%|████▎     | 1048/2465 [11:54<05:06,  4.63it/s]test all pooling
+train_2318_a_1
+ 43%|████▎     | 1049/2465 [11:55<09:17,  2.54it/s]2026-05-12 23:07:22,999 - INFO - Processing batch 1050
+test all pooling
+train_8083_a_1
+2026-05-12 23:07:23,101 - INFO - Saving interim results for 1050 samples
+2026-05-12 23:07:23,103 - INFO - Saved interim results for 1050 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 43%|████▎     | 1050/2465 [11:55<09:09,  2.57it/s]test all pooling
+train_11053_a_1
+test all pooling
+train_2224_a_1
+ 43%|████▎     | 1052/2465 [11:56<06:14,  3.77it/s]test all pooling
+train_6153_a_2
+test all pooling
+train_621_a_1
+ 43%|████▎     | 1054/2465 [11:56<06:06,  3.85it/s]test all pooling
+train_1843_c_1
+test all pooling
+train_7469_a_1
+ 43%|████▎     | 1056/2465 [11:56<04:41,  5.01it/s]test all pooling
+train_492_a_2
+ 43%|████▎     | 1057/2465 [11:59<14:47,  1.59it/s]test all pooling
+train_7074_a_1
+ 43%|████▎     | 1058/2465 [11:59<13:43,  1.71it/s]test all pooling
+train_1015_a_1
+ 43%|████▎     | 1059/2465 [11:59<11:06,  2.11it/s]2026-05-12 23:07:27,153 - INFO - Processing batch 1060
+test all pooling
+train_5803_a_2
+ 43%|████▎     | 1060/2465 [11:59<10:25,  2.25it/s]test all pooling
+train_10281_a_2
+test all pooling
+train_1397_a_2
+ 43%|████▎     | 1062/2465 [12:00<06:59,  3.35it/s]test all pooling
+train_7910_b_2
+ 43%|████▎     | 1063/2465 [12:00<05:59,  3.90it/s]test all pooling
+train_6766_a_1
+ 43%|████▎     | 1064/2465 [12:00<05:07,  4.55it/s]test all pooling
+train_2119_a_2
+ 43%|████▎     | 1065/2465 [12:02<14:31,  1.61it/s]test all pooling
+train_7838_a_1
+ 43%|████▎     | 1066/2465 [12:02<11:25,  2.04it/s]test all pooling
+train_12958_a_2
+ 43%|████▎     | 1067/2465 [12:02<08:57,  2.60it/s]test all pooling
+train_7378_a_2
+ 43%|████▎     | 1068/2465 [12:02<07:09,  3.25it/s]test all pooling
+train_1025_a_2
+2026-05-12 23:07:29,889 - INFO - Processing batch 1070
+test all pooling
+train_6378_a_2
+ 43%|████▎     | 1070/2465 [12:02<04:54,  4.74it/s]test all pooling
+train_1842_a_2
+ 43%|████▎     | 1071/2465 [12:03<05:27,  4.26it/s]test all pooling
+train_11967_a_2
+test all pooling
+train_398_a_1
+ 44%|████▎     | 1073/2465 [12:04<09:34,  2.42it/s]test all pooling
+train_1098_a_2
+ 44%|████▎     | 1074/2465 [12:06<17:52,  1.30it/s]test all pooling
+train_5608_a_1
+ 44%|████▎     | 1075/2465 [12:06<14:04,  1.65it/s]test all pooling
+train_5450_a_1
+ 44%|████▎     | 1076/2465 [12:06<11:01,  2.10it/s]test all pooling
+train_5817_a_2
+ 44%|████▎     | 1077/2465 [12:06<08:40,  2.67it/s]test all pooling
+train_1976_a_2
+test all pooling
+train_1105_a_2
+ 44%|████▍     | 1079/2465 [12:06<05:46,  4.00it/s]2026-05-12 23:07:34,103 - INFO - Processing batch 1080
+test all pooling
+train_10977_a_1
+test all pooling
+train_2029_a_2
+ 44%|████▍     | 1081/2465 [12:07<04:29,  5.14it/s]test all pooling
+train_7139_a_1
+ 44%|████▍     | 1082/2465 [12:10<19:30,  1.18it/s]test all pooling
+train_10012_a_2
+test all pooling
+train_7498_a_2
+ 44%|████▍     | 1084/2465 [12:10<12:52,  1.79it/s]test all pooling
+train_1213_a_2
+test all pooling
+train_2798_a_2
+ 44%|████▍     | 1086/2465 [12:10<09:00,  2.55it/s]test all pooling
+train_7017_b_2
+test all pooling
+train_244_a_1
+ 44%|████▍     | 1088/2465 [12:10<06:36,  3.47it/s]test all pooling
+train_244_b_1
+2026-05-12 23:07:40,900 - INFO - Processing batch 1090
+test all pooling
+train_2752_a_2
+ 44%|████▍     | 1090/2465 [12:13<15:20,  1.49it/s]test all pooling
+train_234_a_1
+test all pooling
+train_7519_a_1
+ 44%|████▍     | 1092/2465 [12:13<11:05,  2.06it/s]test all pooling
+train_6617_a_2
+test all pooling
+train_2775_a_2
+ 44%|████▍     | 1094/2465 [12:14<08:16,  2.76it/s]test all pooling
+train_2739_a_1
+ 44%|████▍     | 1095/2465 [12:14<07:16,  3.14it/s]test all pooling
+train_220_a_1
+test all pooling
+train_5281_a_2
+ 45%|████▍     | 1097/2465 [12:14<05:31,  4.13it/s]test all pooling
+train_6316_a_1
+ 45%|████▍     | 1098/2465 [12:15<08:50,  2.58it/s]test all pooling
+train_1514_a_2
+ 45%|████▍     | 1099/2465 [12:15<07:27,  3.05it/s]2026-05-12 23:07:42,753 - INFO - Processing batch 1100
+test all pooling
+train_392_a_1
+2026-05-12 23:07:42,839 - INFO - Saving interim results for 1100 samples
+2026-05-12 23:07:42,841 - INFO - Saved interim results for 1100 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 45%|████▍     | 1100/2465 [12:15<06:14,  3.64it/s]test all pooling
+train_2019_a_1
+ 45%|████▍     | 1101/2465 [12:15<05:15,  4.32it/s]test all pooling
+train_2347_a_1
+ 45%|████▍     | 1102/2465 [12:15<04:28,  5.07it/s]test all pooling
+train_9186_a_2
+test all pooling
+train_2121_a_1
+ 45%|████▍     | 1104/2465 [12:16<04:21,  5.19it/s]test all pooling
+train_2864_a_2
+ 45%|████▍     | 1105/2465 [12:16<03:52,  5.85it/s]test all pooling
+train_1486_b_2
+ 45%|████▍     | 1106/2465 [12:17<08:58,  2.52it/s]test all pooling
+train_1486_a_2
+ 45%|████▍     | 1107/2465 [12:17<07:18,  3.09it/s]test all pooling
+train_5752_a_1
+ 45%|████▍     | 1108/2465 [12:17<08:39,  2.61it/s]test all pooling
+train_2806_a_2
+ 45%|████▍     | 1109/2465 [12:18<06:51,  3.29it/s]2026-05-12 23:07:45,370 - INFO - Processing batch 1110
+test all pooling
+train_6551_a_2
+ 45%|████▌     | 1110/2465 [12:18<05:36,  4.03it/s]test all pooling
+train_5170_a_1
+ 45%|████▌     | 1111/2465 [12:18<04:38,  4.86it/s]test all pooling
+train_5387_a_2
+ 45%|████▌     | 1112/2465 [12:19<12:22,  1.82it/s]test all pooling
+train_1374_a_2
+test all pooling
+train_10083_a_2
+ 45%|████▌     | 1114/2465 [12:20<08:30,  2.64it/s]test all pooling
+train_10083_b_2
+ 45%|████▌     | 1115/2465 [12:20<07:01,  3.21it/s]test all pooling
+train_10083_c_2
+ 45%|████▌     | 1116/2465 [12:21<11:06,  2.02it/s]test all pooling
+train_6302_a_2
+ 45%|████▌     | 1117/2465 [12:21<08:58,  2.50it/s]test all pooling
+train_1106_a_2
+ 45%|████▌     | 1118/2465 [12:21<07:13,  3.11it/s]test all pooling
+train_102_c_1
+ 45%|████▌     | 1119/2465 [12:21<05:49,  3.85it/s]2026-05-12 23:07:48,790 - INFO - Processing batch 1120
+test all pooling
+train_102_b_1
+ 45%|████▌     | 1120/2465 [12:21<04:56,  4.54it/s]test all pooling
+train_7641_b_2
+ 45%|████▌     | 1121/2465 [12:21<04:18,  5.20it/s]test all pooling
+train_1822_b_2
+ 46%|████▌     | 1122/2465 [12:23<11:57,  1.87it/s]test all pooling
+train_847_a_1
+ 46%|████▌     | 1123/2465 [12:25<22:24,  1.00s/it]test all pooling
+train_1305_a_2
+ 46%|████▌     | 1124/2465 [12:25<16:26,  1.36it/s]test all pooling
+train_7425_a_2
+ 46%|████▌     | 1125/2465 [12:25<12:14,  1.82it/s]test all pooling
+train_12312_b_1
+test all pooling
+train_12312_a_1
+ 46%|████▌     | 1127/2465 [12:25<07:35,  2.94it/s]test all pooling
+train_5834_c_1
+test all pooling
+train_5834_a_1
+ 46%|████▌     | 1129/2465 [12:25<05:18,  4.20it/s]2026-05-12 23:07:53,072 - INFO - Processing batch 1130
+test all pooling
+train_2371_a_1
+test all pooling
+train_479_a_2
+ 46%|████▌     | 1131/2465 [12:27<09:40,  2.30it/s]test all pooling
+train_503_a_1
+ 46%|████▌     | 1132/2465 [12:27<08:08,  2.73it/s]test all pooling
+train_5429_a_2
+ 46%|████▌     | 1133/2465 [12:27<07:05,  3.13it/s]test all pooling
+train_2826_a_2
+ 46%|████▌     | 1134/2465 [12:27<06:17,  3.53it/s]test all pooling
+train_2834_a_2
+ 46%|████▌     | 1135/2465 [12:27<05:26,  4.07it/s]test all pooling
+train_2032_a_1
+test all pooling
+train_470_b_1
+ 46%|████▌     | 1137/2465 [12:28<04:17,  5.17it/s]test all pooling
+train_8980_a_1
+ 46%|████▌     | 1138/2465 [12:31<18:18,  1.21it/s]test all pooling
+train_11491_a_1
+2026-05-12 23:07:58,465 - INFO - Processing batch 1140
+test all pooling
+train_7320_a_1
+ 46%|████▌     | 1140/2465 [12:31<11:49,  1.87it/s]test all pooling
+train_13670_b_1
+test all pooling
+train_657_a_2
+ 46%|████▋     | 1142/2465 [12:31<08:12,  2.68it/s]test all pooling
+train_12675_a_2
+test all pooling
+train_961_a_1
+ 46%|████▋     | 1144/2465 [12:31<06:04,  3.62it/s]test all pooling
+train_7012_a_2
+test all pooling
+train_5630_a_2
+ 46%|████▋     | 1146/2465 [12:34<13:04,  1.68it/s]test all pooling
+train_11167_a_1
+test all pooling
+train_5476_a_2
+ 47%|████▋     | 1148/2465 [12:34<09:28,  2.32it/s]test all pooling
+train_7272_a_2
+2026-05-12 23:08:01,679 - INFO - Processing batch 1150
+test all pooling
+train_5661_a_2
+2026-05-12 23:08:01,750 - INFO - Saving interim results for 1150 samples
+2026-05-12 23:08:01,751 - INFO - Saved interim results for 1150 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 47%|████▋     | 1150/2465 [12:34<07:07,  3.08it/s]test all pooling
+train_6748_a_2
+test all pooling
+train_10000_a_1
+ 47%|████▋     | 1152/2465 [12:34<05:31,  3.97it/s]test all pooling
+train_6047_b_1
+ 47%|████▋     | 1153/2465 [12:34<04:57,  4.42it/s]test all pooling
+train_838_a_1
+ 47%|████▋     | 1154/2465 [12:36<11:41,  1.87it/s]test all pooling
+train_6332_a_2
+ 47%|████▋     | 1155/2465 [12:36<09:45,  2.24it/s]test all pooling
+train_5422_a_2
+ 47%|████▋     | 1156/2465 [12:36<08:01,  2.72it/s]test all pooling
+train_12631_a_1
+test all pooling
+train_2728_a_1
+ 47%|████▋     | 1158/2465 [12:36<05:34,  3.91it/s]test all pooling
+train_7845_b_2
+2026-05-12 23:08:04,330 - INFO - Processing batch 1160
+test all pooling
+train_408_b_2
+ 47%|████▋     | 1160/2465 [12:37<04:12,  5.17it/s]test all pooling
+train_1124_a_2
+test all pooling
+train_1124_b_1
+ 47%|████▋     | 1162/2465 [12:39<13:02,  1.67it/s]test all pooling
+train_6627_a_1
+test all pooling
+train_1145_a_2
+ 47%|████▋     | 1164/2465 [12:40<09:20,  2.32it/s]test all pooling
+train_2718_b_2
+ 47%|████▋     | 1165/2465 [12:40<07:58,  2.72it/s]test all pooling
+train_2718_a_2
+test all pooling
+train_6714_a_1
+ 47%|████▋     | 1167/2465 [12:40<05:51,  3.69it/s]test all pooling
+train_16404_a_1
+test all pooling
+train_6386_a_1
+ 47%|████▋     | 1169/2465 [12:40<04:29,  4.80it/s]2026-05-12 23:08:08,258 - INFO - Processing batch 1170
+test all pooling
+train_6260_a_1
+test all pooling
+train_2813_a_1
+ 48%|████▊     | 1171/2465 [12:41<05:47,  3.72it/s]test all pooling
+train_1796_a_2
+ 48%|████▊     | 1172/2465 [12:41<05:25,  3.97it/s]test all pooling
+train_3073_b_1
+ 48%|████▊     | 1173/2465 [12:41<05:02,  4.28it/s]test all pooling
+train_890_a_1
+ 48%|████▊     | 1174/2465 [12:41<04:35,  4.69it/s]test all pooling
+train_15935_a_1
+ 48%|████▊     | 1175/2465 [12:41<04:08,  5.18it/s]test all pooling
+train_17692_a_1
+ 48%|████▊     | 1176/2465 [12:42<04:02,  5.32it/s]test all pooling
+train_1511_a_2
+ 48%|████▊     | 1177/2465 [12:42<03:50,  5.58it/s]test all pooling
+train_13102_a_1
+ 48%|████▊     | 1178/2465 [12:43<11:22,  1.89it/s]test all pooling
+train_7348_a_2
+2026-05-12 23:08:11,047 - INFO - Processing batch 1180
+test all pooling
+train_10001_a_1
+ 48%|████▊     | 1180/2465 [12:43<07:07,  3.01it/s]test all pooling
+train_679_a_2
+test all pooling
+train_2332_a_2
+ 48%|████▊     | 1182/2465 [12:44<05:46,  3.70it/s]test all pooling
+train_6261_a_1
+test all pooling
+train_10830_a_1
+ 48%|████▊     | 1184/2465 [12:44<04:20,  4.92it/s]test all pooling
+train_1837_a_2
+test all pooling
+train_1638_a_2
+ 48%|████▊     | 1186/2465 [12:47<13:37,  1.56it/s]test all pooling
+train_7800_a_2
+test all pooling
+train_7115_a_1
+ 48%|████▊     | 1188/2465 [12:48<14:09,  1.50it/s]test all pooling
+train_4511_a_2
+2026-05-12 23:08:16,167 - INFO - Processing batch 1190
+test all pooling
+train_7258_a_2
+ 48%|████▊     | 1190/2465 [12:48<10:17,  2.07it/s]test all pooling
+train_7946_b_1
+test all pooling
+train_6533_a_1
+ 48%|████▊     | 1192/2465 [12:49<07:40,  2.76it/s]test all pooling
+train_7209_a_1
+ 48%|████▊     | 1193/2465 [12:49<06:39,  3.18it/s]test all pooling
+train_11621_a_1
+ 48%|████▊     | 1194/2465 [12:49<05:47,  3.66it/s]test all pooling
+train_1431_a_2
+test all pooling
+train_2268_a_2
+ 49%|████▊     | 1196/2465 [12:51<10:40,  1.98it/s]test all pooling
+train_10555_a_1
+test all pooling
+train_18359_a_1
+ 49%|████▊     | 1198/2465 [12:51<07:39,  2.76it/s]test all pooling
+train_2167_a_2
+2026-05-12 23:08:18,735 - INFO - Processing batch 1200
+test all pooling
+train_718_a_1
+2026-05-12 23:08:18,809 - INFO - Saving interim results for 1200 samples
+2026-05-12 23:08:18,810 - INFO - Saved interim results for 1200 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 49%|████▊     | 1200/2465 [12:51<05:44,  3.67it/s]test all pooling
+train_1520_a_1
+test all pooling
+train_2006_a_1
+ 49%|████▉     | 1202/2465 [12:51<04:32,  4.63it/s]test all pooling
+train_1087_a_2
+ 49%|████▉     | 1203/2465 [12:51<04:07,  5.11it/s]test all pooling
+train_2223_a_2
+ 49%|████▉     | 1204/2465 [12:53<09:24,  2.24it/s]test all pooling
+train_6811_a_1
+ 49%|████▉     | 1205/2465 [12:53<07:58,  2.64it/s]test all pooling
+train_1291_a_2
+ 49%|████▉     | 1206/2465 [12:53<06:52,  3.05it/s]test all pooling
+train_231_a_2
+ 49%|████▉     | 1207/2465 [12:53<05:55,  3.54it/s]test all pooling
+train_5180_a_2
+ 49%|████▉     | 1208/2465 [12:53<05:09,  4.06it/s]test all pooling
+train_682_a_2
+ 49%|████▉     | 1209/2465 [12:53<04:31,  4.63it/s]2026-05-12 23:08:21,403 - INFO - Processing batch 1210
+test all pooling
+train_14056_a_2
+ 49%|████▉     | 1210/2465 [12:54<04:41,  4.46it/s]test all pooling
+train_5444_a_2
+ 49%|████▉     | 1211/2465 [12:54<07:13,  2.90it/s]test all pooling
+train_10992_b_1
+ 49%|████▉     | 1212/2465 [12:56<12:55,  1.62it/s]test all pooling
+train_5886_b_2
+test all pooling
+train_8118_a_2
+ 49%|████▉     | 1214/2465 [12:56<07:55,  2.63it/s]test all pooling
+train_8118_b_1
+ 49%|████▉     | 1215/2465 [12:56<06:29,  3.21it/s]test all pooling
+train_5529_b_2
+test all pooling
+train_5529_a_2
+ 49%|████▉     | 1217/2465 [12:56<04:41,  4.44it/s]test all pooling
+train_6956_a_2
+ 49%|████▉     | 1218/2465 [12:57<07:37,  2.72it/s]test all pooling
+train_5741_a_1
+ 49%|████▉     | 1219/2465 [12:57<07:13,  2.88it/s]2026-05-12 23:08:26,442 - INFO - Processing batch 1220
+test all pooling
+train_389_a_2
+ 49%|████▉     | 1220/2465 [12:59<13:19,  1.56it/s]test all pooling
+train_6788_a_1
+ 50%|████▉     | 1221/2465 [12:59<10:24,  1.99it/s]test all pooling
+train_1906_a_1
+ 50%|████▉     | 1222/2465 [12:59<08:05,  2.56it/s]test all pooling
+train_6161_a_1
+test all pooling
+train_3511_a_1
+ 50%|████▉     | 1224/2465 [12:59<05:23,  3.83it/s]test all pooling
+train_341_a_2
+test all pooling
+train_3723_a_2
+ 50%|████▉     | 1226/2465 [13:00<05:49,  3.55it/s]test all pooling
+train_3479_a_1
+ 50%|████▉     | 1227/2465 [13:00<05:02,  4.09it/s]test all pooling
+train_7429_a_1
+ 50%|████▉     | 1228/2465 [13:01<09:11,  2.24it/s]test all pooling
+train_6044_b_2
+2026-05-12 23:08:28,917 - INFO - Processing batch 1230
+test all pooling
+train_5250_a_2
+ 50%|████▉     | 1230/2465 [13:01<06:16,  3.28it/s]test all pooling
+train_2045_a_2
+test all pooling
+train_1102_a_2
+ 50%|████▉     | 1232/2465 [13:01<04:43,  4.35it/s]test all pooling
+train_1371_a_1
+ 50%|█████     | 1233/2465 [13:02<04:10,  4.92it/s]test all pooling
+train_11184_c_1
+ 50%|█████     | 1234/2465 [13:02<06:52,  2.98it/s]test all pooling
+train_2273_a_2
+ 50%|█████     | 1235/2465 [13:02<05:41,  3.60it/s]test all pooling
+train_6055_a_1
+ 50%|█████     | 1236/2465 [13:03<06:09,  3.32it/s]test all pooling
+train_5671_a_2
+ 50%|█████     | 1237/2465 [13:05<16:40,  1.23it/s]test all pooling
+train_7887_a_2
+ 50%|█████     | 1238/2465 [13:05<12:36,  1.62it/s]test all pooling
+train_8035_a_2
+ 50%|█████     | 1239/2465 [13:05<09:40,  2.11it/s]2026-05-12 23:08:34,190 - INFO - Processing batch 1240
+test all pooling
+train_13822_a_1
+ 50%|█████     | 1240/2465 [13:06<14:33,  1.40it/s]test all pooling
+train_11424_a_2
+test all pooling
+train_7206_b_2
+ 50%|█████     | 1242/2465 [13:07<08:57,  2.27it/s]test all pooling
+train_2123_a_2
+ 50%|█████     | 1243/2465 [13:07<07:26,  2.74it/s]test all pooling
+train_543_a_1
+test all pooling
+train_6837_a_1
+ 51%|█████     | 1245/2465 [13:07<05:13,  3.89it/s]test all pooling
+train_6473_a_2
+test all pooling
+train_7969_a_2
+ 51%|█████     | 1247/2465 [13:07<03:55,  5.17it/s]test all pooling
+train_1892_a_2
+ 51%|█████     | 1248/2465 [13:08<05:09,  3.93it/s]test all pooling
+train_11019_c_2
+2026-05-12 23:08:38,345 - INFO - Processing batch 1250
+test all pooling
+train_6694_d_2
+2026-05-12 23:08:38,438 - INFO - Saving interim results for 1250 samples
+2026-05-12 23:08:38,439 - INFO - Saved interim results for 1250 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 51%|█████     | 1250/2465 [13:11<14:25,  1.40it/s]test all pooling
+train_6694_c_2
+test all pooling
+train_6694_a_1
+ 51%|█████     | 1252/2465 [13:12<14:27,  1.40it/s]test all pooling
+train_5915_c_2
+test all pooling
+train_5915_a_2
+ 51%|█████     | 1254/2465 [13:12<10:21,  1.95it/s]test all pooling
+train_5938_a_1
+ 51%|█████     | 1255/2465 [13:12<08:50,  2.28it/s]test all pooling
+train_2127_a_1
+ 51%|█████     | 1256/2465 [13:13<07:22,  2.73it/s]test all pooling
+train_6207_a_1
+test all pooling
+train_6373_a_2
+ 51%|█████     | 1258/2465 [13:13<05:37,  3.58it/s]test all pooling
+train_13662_a_2
+ 51%|█████     | 1259/2465 [13:14<10:02,  2.00it/s]2026-05-12 23:08:42,259 - INFO - Processing batch 1260
+test all pooling
+train_18518_a_2
+ 51%|█████     | 1260/2465 [13:15<09:44,  2.06it/s]test all pooling
+train_12101_a_1
+ 51%|█████     | 1261/2465 [13:15<07:49,  2.56it/s]test all pooling
+train_1054_a_1
+test all pooling
+train_296_a_2
+ 51%|█████     | 1263/2465 [13:15<05:27,  3.67it/s]test all pooling
+train_11735_a_2
+ 51%|█████▏    | 1264/2465 [13:15<04:48,  4.16it/s]test all pooling
+train_654_a_1
+ 51%|█████▏    | 1265/2465 [13:15<04:15,  4.70it/s]test all pooling
+train_8127_a_2
+ 51%|█████▏    | 1266/2465 [13:15<03:51,  5.18it/s]test all pooling
+train_8093_a_1
+ 51%|█████▏    | 1267/2465 [13:17<12:34,  1.59it/s]test all pooling
+train_791_a_2
+ 51%|█████▏    | 1268/2465 [13:18<13:02,  1.53it/s]test all pooling
+train_5800_a_1
+2026-05-12 23:08:45,696 - INFO - Processing batch 1270
+test all pooling
+train_8132_a_1
+ 52%|█████▏    | 1270/2465 [13:18<08:10,  2.44it/s]test all pooling
+train_8132_b_1
+ 52%|█████▏    | 1271/2465 [13:18<06:44,  2.95it/s]test all pooling
+train_13092_a_2
+ 52%|█████▏    | 1272/2465 [13:18<05:32,  3.59it/s]test all pooling
+train_5762_a_2
+ 52%|█████▏    | 1273/2465 [13:18<04:37,  4.30it/s]test all pooling
+train_11619_a_1
+test all pooling
+train_784_e_2
+ 52%|█████▏    | 1275/2465 [13:21<11:57,  1.66it/s]test all pooling
+train_784_c_2
+ 52%|█████▏    | 1276/2465 [13:21<10:36,  1.87it/s]test all pooling
+train_784_f_2
+test all pooling
+train_784_d_2
+ 52%|█████▏    | 1278/2465 [13:21<07:02,  2.81it/s]test all pooling
+train_14207_a_2
+ 52%|█████▏    | 1279/2465 [13:21<05:56,  3.33it/s]2026-05-12 23:08:48,907 - INFO - Processing batch 1280
+test all pooling
+train_422_a_1
+test all pooling
+train_5426_a_1
+ 52%|█████▏    | 1281/2465 [13:21<04:23,  4.49it/s]test all pooling
+train_10882_a_2
+ 52%|█████▏    | 1282/2465 [13:21<04:09,  4.75it/s]test all pooling
+train_12440_a_1
+ 52%|█████▏    | 1283/2465 [13:23<08:03,  2.44it/s]test all pooling
+train_11945_a_1
+ 52%|█████▏    | 1284/2465 [13:23<10:11,  1.93it/s]test all pooling
+train_6576_a_1
+ 52%|█████▏    | 1285/2465 [13:23<08:01,  2.45it/s]test all pooling
+train_7810_a_1
+ 52%|█████▏    | 1286/2465 [13:24<06:37,  2.96it/s]test all pooling
+train_7575_a_2
+ 52%|█████▏    | 1287/2465 [13:24<05:34,  3.52it/s]test all pooling
+train_1506_a_2
+ 52%|█████▏    | 1288/2465 [13:24<04:35,  4.28it/s]test all pooling
+train_1409_a_2
+ 52%|█████▏    | 1289/2465 [13:24<03:52,  5.07it/s]2026-05-12 23:08:51,797 - INFO - Processing batch 1290
+test all pooling
+train_2083_a_2
+ 52%|█████▏    | 1290/2465 [13:24<03:28,  5.63it/s]test all pooling
+train_5963_a_2
+ 52%|█████▏    | 1291/2465 [13:25<08:35,  2.28it/s]test all pooling
+train_5212_a_2
+ 52%|█████▏    | 1292/2465 [13:27<14:52,  1.31it/s]test all pooling
+train_823_a_2
+test all pooling
+train_5417_a_2
+ 52%|█████▏    | 1294/2465 [13:27<08:48,  2.21it/s]test all pooling
+train_1309_a_1
+test all pooling
+train_12136_a_1
+ 53%|█████▎    | 1296/2465 [13:27<05:58,  3.26it/s]test all pooling
+train_13660_b_2
+test all pooling
+train_17896_b_2
+ 53%|█████▎    | 1298/2465 [13:27<04:24,  4.42it/s]test all pooling
+train_7315_b_2
+ 53%|█████▎    | 1299/2465 [13:28<05:49,  3.33it/s]2026-05-12 23:08:58,698 - INFO - Processing batch 1300
+test all pooling
+train_7315_a_2
+2026-05-12 23:08:58,780 - INFO - Saving interim results for 1300 samples
+2026-05-12 23:08:58,781 - INFO - Saved interim results for 1300 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 53%|█████▎    | 1300/2465 [13:31<18:33,  1.05it/s]test all pooling
+train_10332_b_1
+test all pooling
+train_7737_a_1
+ 53%|█████▎    | 1302/2465 [13:31<11:56,  1.62it/s]test all pooling
+train_7737_b_2
+test all pooling
+train_2766_a_1
+ 53%|█████▎    | 1304/2465 [13:31<08:13,  2.35it/s]test all pooling
+train_10699_a_2
+test all pooling
+train_7847_a_1
+ 53%|█████▎    | 1306/2465 [13:32<06:00,  3.21it/s]test all pooling
+train_7740_a_2
+test all pooling
+train_2314_a_1
+ 53%|█████▎    | 1308/2465 [13:33<09:02,  2.13it/s]test all pooling
+train_8573_a_1
+ 53%|█████▎    | 1309/2465 [13:33<07:51,  2.45it/s]2026-05-12 23:09:01,059 - INFO - Processing batch 1310
+test all pooling
+train_6914_a_2
+test all pooling
+train_415_a_1
+ 53%|█████▎    | 1311/2465 [13:33<05:43,  3.36it/s]test all pooling
+train_5575_b_1
+test all pooling
+train_19734_a_2
+ 53%|█████▎    | 1313/2465 [13:34<04:22,  4.38it/s]test all pooling
+train_11031_a_1
+ 53%|█████▎    | 1314/2465 [13:34<03:54,  4.90it/s]test all pooling
+train_706_a_1
+test all pooling
+train_7189_b_2
+ 53%|█████▎    | 1316/2465 [13:36<09:06,  2.10it/s]test all pooling
+train_7189_a_2
+ 53%|█████▎    | 1317/2465 [13:36<07:42,  2.48it/s]test all pooling
+train_175_a_1
+test all pooling
+train_2429_a_2
+ 54%|█████▎    | 1319/2465 [13:36<05:29,  3.48it/s]2026-05-12 23:09:03,837 - INFO - Processing batch 1320
+test all pooling
+train_2850_a_2
+ 54%|█████▎    | 1320/2465 [13:36<04:59,  3.82it/s]test all pooling
+train_6478_b_1
+test all pooling
+train_7593_a_1
+ 54%|█████▎    | 1322/2465 [13:36<03:49,  4.98it/s]test all pooling
+train_7290_a_2
+ 54%|█████▎    | 1323/2465 [13:37<03:52,  4.92it/s]test all pooling
+train_6890_a_1
+ 54%|█████▎    | 1324/2465 [13:58<1:37:09,  5.11s/it]test all pooling
+train_7379_a_1
+ 54%|█████▍    | 1325/2465 [14:11<2:16:10,  7.17s/it]test all pooling
+train_7379_b_2
+test all pooling
+train_5902_c_2
+ 54%|█████▍    | 1327/2465 [14:12<1:20:11,  4.23s/it]test all pooling
+train_5902_b_2
+test all pooling
+train_5902_a_2
+ 54%|█████▍    | 1329/2465 [14:12<50:50,  2.69s/it]  2026-05-12 23:09:39,527 - INFO - Processing batch 1330
+test all pooling
+train_7257_a_2
+test all pooling
+train_5737_a_2
+ 54%|█████▍    | 1331/2465 [14:12<33:40,  1.78s/it] 54%|█████▍    | 1331/2465 [14:25<33:40,  1.78s/it]test all pooling
+train_14901_a_1
+ 54%|█████▍    | 1332/2465 [14:34<1:51:18,  5.89s/it]test all pooling
+train_18053_a_1
+ 54%|█████▍    | 1333/2465 [14:35<1:28:33,  4.69s/it]test all pooling
+train_12273_a_2
+test all pooling
+train_7806_a_2
+ 54%|█████▍    | 1335/2465 [14:35<54:46,  2.91s/it]  test all pooling
+train_13650_a_1
+test all pooling
+train_10895_a_2
+ 54%|█████▍    | 1337/2465 [14:35<35:45,  1.90s/it]test all pooling
+train_6768_a_1
+test all pooling
+train_2421_a_1
+ 54%|█████▍    | 1339/2465 [14:35<24:09,  1.29s/it] 54%|█████▍    | 1339/2465 [14:55<24:09,  1.29s/it]2026-05-12 23:10:47,063 - INFO - Processing batch 1340
+test all pooling
+train_6680_a_1
+ 54%|█████▍    | 1340/2465 [15:19<2:59:39,  9.58s/it]test all pooling
+train_4284_a_2
+test all pooling
+train_2886_a_2
+ 54%|█████▍    | 1342/2465 [15:20<1:55:54,  6.19s/it]test all pooling
+train_5730_a_1
+test all pooling
+train_844_a_2
+ 55%|█████▍    | 1344/2465 [15:20<1:17:10,  4.13s/it]test all pooling
+train_17120_a_2
+test all pooling
+train_11205_a_1
+ 55%|█████▍    | 1346/2465 [15:20<52:29,  2.81s/it]  test all pooling
+train_7680_a_1
+test all pooling
+train_2208_a_2
+ 55%|█████▍    | 1348/2465 [15:23<44:06,  2.37s/it]test all pooling
+train_13715_a_1
+2026-05-12 23:10:50,555 - INFO - Processing batch 1350
+test all pooling
+train_2009_a_2
+2026-05-12 23:10:50,626 - INFO - Saving interim results for 1350 samples
+2026-05-12 23:10:50,628 - INFO - Saved interim results for 1350 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 55%|█████▍    | 1350/2465 [15:23<30:47,  1.66s/it]test all pooling
+train_5599_a_2
+test all pooling
+train_11074_a_1
+ 55%|█████▍    | 1352/2465 [15:23<21:45,  1.17s/it]test all pooling
+train_2906_a_1
+test all pooling
+train_10368_a_1
+ 55%|█████▍    | 1354/2465 [15:23<15:32,  1.19it/s]test all pooling
+train_409_a_2
+ 55%|█████▍    | 1354/2465 [15:35<15:32,  1.19it/s]test all pooling
+train_2147_a_2
+ 55%|█████▌    | 1356/2465 [16:02<1:59:11,  6.45s/it]test all pooling
+train_6449_a_1
+ 55%|█████▌    | 1357/2465 [16:02<1:39:46,  5.40s/it]test all pooling
+train_6782_a_2
+test all pooling
+train_624_a_2
+ 55%|█████▌    | 1359/2465 [16:03<1:06:29,  3.61s/it]2026-05-12 23:11:30,318 - INFO - Processing batch 1360
+test all pooling
+train_5523_a_1
+test all pooling
+train_12593_a_1
+ 55%|█████▌    | 1361/2465 [16:03<45:17,  2.46s/it]  test all pooling
+train_5249_a_1
+ 55%|█████▌    | 1362/2465 [16:03<37:59,  2.07s/it]test all pooling
+train_5605_a_2
+test all pooling
+train_2394_a_1
+ 55%|█████▌    | 1364/2465 [16:30<1:50:04,  6.00s/it]test all pooling
+train_10983_a_1
+test all pooling
+train_7735_a_2
+ 55%|█████▌    | 1366/2465 [16:30<1:13:49,  4.03s/it]test all pooling
+train_5996_a_2
+ 55%|█████▌    | 1367/2465 [16:30<1:00:01,  3.28s/it]test all pooling
+train_5867_a_2
+ 55%|█████▌    | 1368/2465 [16:30<47:29,  2.60s/it]  test all pooling
+train_6749_a_2
+2026-05-12 23:11:58,106 - INFO - Processing batch 1370
+test all pooling
+train_3498_a_2
+ 56%|█████▌    | 1370/2465 [16:30<30:23,  1.67s/it]test all pooling
+train_5926_a_2
+test all pooling
+train_2719_b_2
+ 56%|█████▌    | 1372/2465 [17:07<2:18:45,  7.62s/it]test all pooling
+train_2719_d_1
+test all pooling
+train_2719_c_1
+ 56%|█████▌    | 1374/2465 [17:08<1:32:36,  5.09s/it]test all pooling
+train_2719_a_2
+test all pooling
+train_2719_f_2
+ 56%|█████▌    | 1376/2465 [17:08<1:02:59,  3.47s/it]test all pooling
+train_6600_a_1
+test all pooling
+train_8072_a_2
+ 56%|█████▌    | 1378/2465 [17:08<43:26,  2.40s/it]  test all pooling
+train_10648_a_1
+2026-05-12 23:12:45,067 - INFO - Processing batch 1380
+test all pooling
+train_8018_a_1
+ 56%|█████▌    | 1380/2465 [17:17<56:18,  3.11s/it]test all pooling
+train_8052_a_2
+test all pooling
+train_16331_a_1
+ 56%|█████▌    | 1382/2465 [17:18<39:26,  2.19s/it]test all pooling
+train_5166_a_1
+ 56%|█████▌    | 1383/2465 [17:20<40:20,  2.24s/it]test all pooling
+train_1483_a_1
+test all pooling
+train_10427_b_2
+ 56%|█████▌    | 1385/2465 [17:20<27:05,  1.51s/it]test all pooling
+train_12743_a_1
+test all pooling
+train_3506_a_1
+ 56%|█████▋    | 1387/2465 [17:20<18:44,  1.04s/it]test all pooling
+train_525_a_1
+test all pooling
+train_6270_a_1
+ 56%|█████▋    | 1389/2465 [17:21<13:18,  1.35it/s]2026-05-12 23:12:48,373 - INFO - Processing batch 1390
+test all pooling
+train_10644_a_2
+ 56%|█████▋    | 1390/2465 [17:21<11:10,  1.60it/s]test all pooling
+train_10742_a_1
+ 56%|█████▋    | 1391/2465 [17:22<14:41,  1.22it/s]test all pooling
+train_5443_a_2
+ 56%|█████▋    | 1392/2465 [17:22<11:54,  1.50it/s]test all pooling
+train_5818_a_2
+ 57%|█████▋    | 1393/2465 [17:23<09:26,  1.89it/s]test all pooling
+train_569_b_2
+ 57%|█████▋    | 1394/2465 [17:23<07:27,  2.40it/s]test all pooling
+train_546_a_2
+ 57%|█████▋    | 1395/2465 [17:23<06:17,  2.84it/s]test all pooling
+train_357_a_2
+test all pooling
+train_12871_a_1
+ 57%|█████▋    | 1397/2465 [17:23<04:13,  4.22it/s]test all pooling
+train_5339_a_1
+ 57%|█████▋    | 1398/2465 [17:23<03:40,  4.84it/s]test all pooling
+train_13712_a_2
+ 57%|█████▋    | 1399/2465 [17:25<13:04,  1.36it/s]2026-05-12 23:12:53,163 - INFO - Processing batch 1400
+test all pooling
+train_12650_a_1
+2026-05-12 23:12:53,269 - INFO - Saving interim results for 1400 samples
+2026-05-12 23:12:53,270 - INFO - Saved interim results for 1400 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 57%|█████▋    | 1400/2465 [17:25<10:10,  1.74it/s]test all pooling
+train_7536_a_1
+ 57%|█████▋    | 1401/2465 [17:26<07:54,  2.24it/s]test all pooling
+train_6185_a_1
+ 57%|█████▋    | 1402/2465 [17:26<06:13,  2.84it/s]test all pooling
+train_2124_a_2
+ 57%|█████▋    | 1403/2465 [17:26<05:34,  3.17it/s]test all pooling
+train_6785_a_2
+ 57%|█████▋    | 1404/2465 [17:26<04:44,  3.73it/s]test all pooling
+train_1946_a_2
+ 57%|█████▋    | 1405/2465 [17:26<03:57,  4.46it/s]test all pooling
+train_7117_b_2
+ 57%|█████▋    | 1406/2465 [17:26<03:24,  5.18it/s]test all pooling
+train_5727_a_1
+ 57%|█████▋    | 1407/2465 [17:28<09:13,  1.91it/s]test all pooling
+train_7773_a_1
+ 57%|█████▋    | 1408/2465 [17:29<11:29,  1.53it/s]test all pooling
+train_9455_c_2
+2026-05-12 23:12:56,473 - INFO - Processing batch 1410
+test all pooling
+train_11755_a_1
+ 57%|█████▋    | 1410/2465 [17:29<06:56,  2.54it/s]test all pooling
+train_1658_a_1
+test all pooling
+train_6641_a_2
+ 57%|█████▋    | 1412/2465 [17:29<04:54,  3.57it/s]test all pooling
+train_1785_a_2
+ 57%|█████▋    | 1413/2465 [17:29<04:19,  4.05it/s]test all pooling
+train_13541_a_2
+ 57%|█████▋    | 1414/2465 [17:29<03:49,  4.58it/s]test all pooling
+train_5485_a_2
+ 57%|█████▋    | 1415/2465 [17:30<04:26,  3.95it/s]test all pooling
+train_5442_b_2
+ 57%|█████▋    | 1416/2465 [17:31<12:03,  1.45it/s]test all pooling
+train_6887_a_1
+test all pooling
+train_6887_b_2
+ 58%|█████▊    | 1418/2465 [17:32<07:30,  2.32it/s]test all pooling
+train_6169_a_1
+ 58%|█████▊    | 1419/2465 [17:32<06:08,  2.84it/s]2026-05-12 23:12:59,559 - INFO - Processing batch 1420
+test all pooling
+train_10319_a_1
+test all pooling
+train_7060_a_1
+ 58%|█████▊    | 1421/2465 [17:32<04:17,  4.06it/s]test all pooling
+train_8029_a_1
+test all pooling
+train_5983_a_2
+ 58%|█████▊    | 1423/2465 [17:33<05:00,  3.46it/s]test all pooling
+train_5790_a_1
+ 58%|█████▊    | 1424/2465 [17:38<22:59,  1.33s/it]test all pooling
+train_7542_a_1
+test all pooling
+train_7373_a_2
+ 58%|█████▊    | 1426/2465 [17:38<14:56,  1.16it/s]test all pooling
+train_1968_b_1
+test all pooling
+train_1968_a_1
+ 58%|█████▊    | 1428/2465 [17:38<10:13,  1.69it/s]test all pooling
+train_1968_c_1
+2026-05-12 23:13:06,165 - INFO - Processing batch 1430
+test all pooling
+train_1188_c_2
+ 58%|█████▊    | 1430/2465 [17:38<07:17,  2.36it/s]test all pooling
+train_6159_a_1
+test all pooling
+train_2965_b_2
+ 58%|█████▊    | 1432/2465 [17:41<10:57,  1.57it/s]test all pooling
+train_894_a_1
+test all pooling
+train_10893_a_1
+ 58%|█████▊    | 1434/2465 [17:41<08:00,  2.15it/s]test all pooling
+train_10846_b_2
+test all pooling
+train_919_a_1
+ 58%|█████▊    | 1436/2465 [17:41<05:59,  2.87it/s]test all pooling
+train_6535_a_1
+test all pooling
+train_518_g_2
+ 58%|█████▊    | 1438/2465 [17:41<04:39,  3.68it/s]test all pooling
+train_518_b_2
+2026-05-12 23:13:09,867 - INFO - Processing batch 1440
+test all pooling
+train_518_i_2
+ 58%|█████▊    | 1440/2465 [17:42<05:46,  2.95it/s]test all pooling
+train_518_c_1
+ 58%|█████▊    | 1441/2465 [17:42<05:04,  3.37it/s]test all pooling
+train_11844_a_1
+test all pooling
+train_2717_a_1
+ 59%|█████▊    | 1443/2465 [17:42<03:52,  4.39it/s]test all pooling
+train_5505_a_2
+test all pooling
+train_655_a_2
+ 59%|█████▊    | 1445/2465 [17:43<03:05,  5.50it/s]test all pooling
+train_12753_a_1
+test all pooling
+train_10272_a_2
+ 59%|█████▊    | 1447/2465 [17:43<02:34,  6.59it/s]test all pooling
+train_5357_b_2
+test all pooling
+train_17029_a_2
+ 59%|█████▉    | 1449/2465 [17:46<09:31,  1.78it/s]2026-05-12 23:13:13,543 - INFO - Processing batch 1450
+test all pooling
+train_768_a_2
+2026-05-12 23:13:13,618 - INFO - Saving interim results for 1450 samples
+2026-05-12 23:13:13,619 - INFO - Saved interim results for 1450 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_12005_a_2
+ 59%|█████▉    | 1451/2465 [17:46<07:03,  2.40it/s]test all pooling
+train_5904_a_2
+ 59%|█████▉    | 1452/2465 [17:46<06:04,  2.78it/s]test all pooling
+train_5904_b_2
+ 59%|█████▉    | 1453/2465 [17:46<05:17,  3.19it/s]test all pooling
+train_2201_b_1
+ 59%|█████▉    | 1454/2465 [17:46<04:34,  3.69it/s]test all pooling
+train_2201_a_2
+ 59%|█████▉    | 1455/2465 [17:46<03:54,  4.31it/s]test all pooling
+train_11386_a_1
+ 59%|█████▉    | 1456/2465 [17:48<08:01,  2.10it/s]test all pooling
+train_1780_a_1
+test all pooling
+train_60_d_1
+ 59%|█████▉    | 1458/2465 [17:48<05:17,  3.18it/s]test all pooling
+train_904_a_2
+2026-05-12 23:13:15,661 - INFO - Processing batch 1460
+test all pooling
+train_10802_a_2
+ 59%|█████▉    | 1460/2465 [17:48<03:53,  4.30it/s]test all pooling
+train_2814_a_2
+ 59%|█████▉    | 1461/2465 [17:49<07:54,  2.12it/s]test all pooling
+train_13441_a_2
+ 59%|█████▉    | 1462/2465 [17:49<06:37,  2.52it/s]test all pooling
+train_676_a_2
+ 59%|█████▉    | 1463/2465 [17:50<06:41,  2.50it/s]test all pooling
+train_1738_a_2
+ 59%|█████▉    | 1464/2465 [17:50<06:19,  2.64it/s]test all pooling
+train_5193_a_2
+ 59%|█████▉    | 1465/2465 [17:50<05:21,  3.11it/s]test all pooling
+train_6868_a_1
+ 59%|█████▉    | 1466/2465 [17:53<15:15,  1.09it/s]test all pooling
+train_6834_a_2
+ 60%|█████▉    | 1467/2465 [17:53<11:38,  1.43it/s]test all pooling
+train_6323_a_1
+ 60%|█████▉    | 1468/2465 [17:53<09:01,  1.84it/s]test all pooling
+train_2485_a_1
+ 60%|█████▉    | 1469/2465 [17:53<06:56,  2.39it/s]2026-05-12 23:13:21,041 - INFO - Processing batch 1470
+test all pooling
+train_13837_a_2
+ 60%|█████▉    | 1470/2465 [17:53<05:23,  3.08it/s]test all pooling
+train_12257_a_1
+test all pooling
+train_6087_f_2
+ 60%|█████▉    | 1472/2465 [17:54<03:40,  4.50it/s]test all pooling
+train_7662_a_1
+test all pooling
+train_5397_a_2
+ 60%|█████▉    | 1474/2465 [17:56<09:01,  1.83it/s]test all pooling
+train_6905_a_1
+test all pooling
+train_645_a_2
+ 60%|█████▉    | 1476/2465 [17:56<06:21,  2.59it/s]test all pooling
+train_7612_a_2
+ 60%|█████▉    | 1477/2465 [17:56<05:24,  3.05it/s]test all pooling
+train_12222_a_1
+ 60%|█████▉    | 1478/2465 [17:56<04:33,  3.61it/s]test all pooling
+train_804_a_2
+2026-05-12 23:13:23,942 - INFO - Processing batch 1480
+test all pooling
+train_1261_a_2
+ 60%|██████    | 1480/2465 [17:56<03:22,  4.85it/s]test all pooling
+train_1261_d_2
+test all pooling
+train_59_a_2
+ 60%|██████    | 1482/2465 [18:03<21:28,  1.31s/it]test all pooling
+train_1856_a_2
+test all pooling
+train_6583_a_2
+ 60%|██████    | 1484/2465 [18:29<1:26:37,  5.30s/it]test all pooling
+train_7574_a_2
+test all pooling
+train_8187_a_2
+ 60%|██████    | 1486/2465 [18:29<58:40,  3.60s/it]  test all pooling
+train_10526_a_1
+test all pooling
+train_2942_a_2
+ 60%|██████    | 1488/2465 [18:29<40:20,  2.48s/it]test all pooling
+train_5475_a_1
+2026-05-12 23:13:57,123 - INFO - Processing batch 1490
+test all pooling
+train_2166_a_2
+ 60%|██████    | 1490/2465 [18:29<28:05,  1.73s/it]test all pooling
+train_2342_a_5
+ 60%|██████    | 1490/2465 [18:45<28:05,  1.73s/it]test all pooling
+train_1405_a_2
+ 61%|██████    | 1492/2465 [19:12<2:05:08,  7.72s/it]test all pooling
+train_18681_a_2
+test all pooling
+train_7106_b_1
+ 61%|██████    | 1494/2465 [19:12<1:27:04,  5.38s/it]test all pooling
+train_7738_a_2
+test all pooling
+train_7731_a_2
+ 61%|██████    | 1496/2465 [19:12<1:00:50,  3.77s/it]test all pooling
+train_1356_a_1
+test all pooling
+train_10110_a_1
+ 61%|██████    | 1498/2465 [19:12<42:41,  2.65s/it]  test all pooling
+train_7335_a_1
+ 61%|██████    | 1498/2465 [19:25<42:41,  2.65s/it]2026-05-12 23:15:14,957 - INFO - Processing batch 1500
+test all pooling
+train_2831_a_1
+2026-05-12 23:15:15,041 - INFO - Saving interim results for 1500 samples
+2026-05-12 23:15:15,043 - INFO - Saved interim results for 1500 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 61%|██████    | 1500/2465 [19:47<1:55:01,  7.15s/it]test all pooling
+train_11995_a_2
+test all pooling
+train_1549_a_1
+ 61%|██████    | 1502/2465 [19:47<1:20:37,  5.02s/it]test all pooling
+train_1905_a_2
+test all pooling
+train_8001_a_1
+ 61%|██████    | 1504/2465 [19:48<56:39,  3.54s/it]  test all pooling
+train_2212_a_2
+test all pooling
+train_17265_a_1
+ 61%|██████    | 1506/2465 [19:48<39:55,  2.50s/it]test all pooling
+train_5407_b_2
+ 61%|██████    | 1506/2465 [20:05<39:55,  2.50s/it]test all pooling
+train_12677_b_2
+ 61%|██████    | 1508/2465 [20:21<1:47:21,  6.73s/it]test all pooling
+train_6443_a_2
+2026-05-12 23:15:48,816 - INFO - Processing batch 1510
+test all pooling
+train_6027_a_2
+ 61%|██████▏   | 1510/2465 [20:21<1:15:20,  4.73s/it]test all pooling
+train_311_a_2
+test all pooling
+train_8170_a_2
+ 61%|██████▏   | 1512/2465 [20:21<52:59,  3.34s/it]  test all pooling
+train_13057_a_1
+test all pooling
+train_5759_a_2
+ 61%|██████▏   | 1514/2465 [20:21<37:24,  2.36s/it]test all pooling
+train_6796_a_2
+test all pooling
+train_332_a_1
+ 62%|██████▏   | 1516/2465 [20:29<44:17,  2.80s/it]test all pooling
+train_10580_a_2
+test all pooling
+train_1571_a_1
+ 62%|██████▏   | 1518/2465 [20:29<31:21,  1.99s/it]test all pooling
+train_765_a_1
+2026-05-12 23:15:57,136 - INFO - Processing batch 1520
+test all pooling
+train_13816_a_2
+ 62%|██████▏   | 1520/2465 [20:29<22:17,  1.41s/it]test all pooling
+train_3593_a_2
+test all pooling
+train_1445_a_2
+ 62%|██████▏   | 1522/2465 [20:30<15:56,  1.01s/it]test all pooling
+train_1052_a_1
+test all pooling
+train_1591_c_2
+ 62%|██████▏   | 1524/2465 [20:32<17:40,  1.13s/it]test all pooling
+train_1591_b_2
+test all pooling
+train_1591_f_2
+ 62%|██████▏   | 1526/2465 [20:33<12:44,  1.23it/s]test all pooling
+train_1331_a_1
+test all pooling
+train_10445_c_2
+ 62%|██████▏   | 1528/2465 [20:33<09:15,  1.69it/s]test all pooling
+train_1340_a_2
+2026-05-12 23:16:00,561 - INFO - Processing batch 1530
+test all pooling
+train_6202_a_1
+ 62%|██████▏   | 1530/2465 [20:33<06:50,  2.28it/s]test all pooling
+train_11038_a_2
+test all pooling
+train_10388_a_2
+ 62%|██████▏   | 1532/2465 [20:35<10:39,  1.46it/s]test all pooling
+train_5703_a_1
+ 62%|██████▏   | 1533/2465 [20:35<09:04,  1.71it/s]test all pooling
+train_6569_a_1
+test all pooling
+train_748_a_1
+ 62%|██████▏   | 1535/2465 [20:36<06:27,  2.40it/s]test all pooling
+train_10805_a_2
+test all pooling
+train_10857_a_1
+ 62%|██████▏   | 1537/2465 [20:36<04:46,  3.24it/s]test all pooling
+train_780_a_1
+test all pooling
+train_8048_a_2
+ 62%|██████▏   | 1539/2465 [20:36<03:41,  4.19it/s]2026-05-12 23:16:05,110 - INFO - Processing batch 1540
+test all pooling
+train_6334_a_2
+test all pooling
+train_11211_a_2
+ 63%|██████▎   | 1541/2465 [20:38<06:08,  2.51it/s]test all pooling
+train_2398_a_2
+test all pooling
+train_11733_a_2
+ 63%|██████▎   | 1543/2465 [20:38<04:39,  3.30it/s]test all pooling
+train_7307_a_2
+test all pooling
+train_4915_a_1
+ 63%|██████▎   | 1545/2465 [20:38<03:40,  4.18it/s]test all pooling
+train_6247_a_1
+test all pooling
+train_11522_a_1
+ 63%|██████▎   | 1547/2465 [20:38<02:56,  5.19it/s]test all pooling
+train_2358_a_1
+test all pooling
+train_1493_a_1
+ 63%|██████▎   | 1549/2465 [20:41<09:31,  1.60it/s]2026-05-12 23:16:09,068 - INFO - Processing batch 1550
+test all pooling
+train_1636_a_2
+2026-05-12 23:16:09,144 - INFO - Saving interim results for 1550 samples
+2026-05-12 23:16:09,146 - INFO - Saved interim results for 1550 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_1649_a_1
+ 63%|██████▎   | 1551/2465 [20:41<07:02,  2.16it/s]test all pooling
+train_6361_a_2
+test all pooling
+train_512_a_1
+ 63%|██████▎   | 1553/2465 [20:42<05:19,  2.85it/s]test all pooling
+train_5329_a_1
+ 63%|██████▎   | 1554/2465 [20:42<04:39,  3.26it/s]test all pooling
+train_12633_a_1
+ 63%|██████▎   | 1555/2465 [20:42<05:33,  2.73it/s]test all pooling
+train_1364_a_1
+ 63%|██████▎   | 1556/2465 [20:43<07:28,  2.03it/s]test all pooling
+train_1364_b_1
+test all pooling
+train_5668_a_2
+ 63%|██████▎   | 1558/2465 [20:43<05:08,  2.94it/s]test all pooling
+train_2109_a_2
+ 63%|██████▎   | 1559/2465 [20:44<04:23,  3.44it/s]2026-05-12 23:16:11,381 - INFO - Processing batch 1560
+test all pooling
+train_2159_a_5
+ 63%|██████▎   | 1560/2465 [20:44<03:45,  4.02it/s]test all pooling
+train_14153_a_2
+ 63%|██████▎   | 1561/2465 [20:44<03:13,  4.68it/s]test all pooling
+train_10788_a_1
+ 63%|██████▎   | 1562/2465 [20:44<02:52,  5.24it/s]test all pooling
+train_2877_a_2
+ 63%|██████▎   | 1563/2465 [20:47<14:05,  1.07it/s]test all pooling
+train_16469_a_1
+ 63%|██████▎   | 1564/2465 [20:47<10:37,  1.41it/s]test all pooling
+train_388_a_1
+ 63%|██████▎   | 1565/2465 [20:47<08:04,  1.86it/s]test all pooling
+train_11536_a_2
+ 64%|██████▎   | 1566/2465 [20:47<06:16,  2.39it/s]test all pooling
+train_5480_a_1
+ 64%|██████▎   | 1567/2465 [20:49<11:45,  1.27it/s]test all pooling
+train_3112_e_1
+ 64%|██████▎   | 1568/2465 [20:49<08:44,  1.71it/s]test all pooling
+train_7280_c_2
+2026-05-12 23:16:16,868 - INFO - Processing batch 1570
+test all pooling
+train_7280_b_2
+ 64%|██████▎   | 1570/2465 [20:49<05:27,  2.74it/s]test all pooling
+train_13624_a_2
+ 64%|██████▎   | 1571/2465 [20:51<09:37,  1.55it/s]test all pooling
+train_214_a_2
+ 64%|██████▍   | 1572/2465 [20:51<07:39,  1.94it/s]test all pooling
+train_11573_b_1
+ 64%|██████▍   | 1573/2465 [20:51<06:12,  2.40it/s]test all pooling
+train_10061_a_2
+ 64%|██████▍   | 1574/2465 [20:51<05:15,  2.83it/s]test all pooling
+train_1177_b_2
+ 64%|██████▍   | 1575/2465 [20:52<07:35,  1.95it/s]test all pooling
+train_10792_a_2
+ 64%|██████▍   | 1576/2465 [20:52<05:50,  2.54it/s]test all pooling
+train_483_a_2
+test all pooling
+train_7778_a_1
+ 64%|██████▍   | 1578/2465 [20:52<03:47,  3.89it/s]test all pooling
+train_6447_a_1
+ 64%|██████▍   | 1579/2465 [20:53<03:26,  4.29it/s]2026-05-12 23:16:20,330 - INFO - Processing batch 1580
+test all pooling
+train_5801_a_1
+test all pooling
+train_6521_c_2
+ 64%|██████▍   | 1581/2465 [20:54<05:49,  2.53it/s]test all pooling
+train_6521_b_2
+test all pooling
+train_9_a_1
+ 64%|██████▍   | 1583/2465 [20:55<08:15,  1.78it/s]test all pooling
+train_6353_a_1
+test all pooling
+train_6702_a_2
+ 64%|██████▍   | 1585/2465 [20:56<05:52,  2.50it/s]test all pooling
+train_6846_a_2
+ 64%|██████▍   | 1586/2465 [20:56<04:59,  2.93it/s]test all pooling
+train_617_a_1
+test all pooling
+train_1606_a_2
+ 64%|██████▍   | 1588/2465 [20:56<03:38,  4.02it/s]test all pooling
+train_1491_a_2
+ 64%|██████▍   | 1589/2465 [20:56<03:55,  3.72it/s]2026-05-12 23:16:24,085 - INFO - Processing batch 1590
+test all pooling
+train_6144_a_2
+test all pooling
+train_5754_a_1
+ 65%|██████▍   | 1591/2465 [20:59<10:08,  1.44it/s]test all pooling
+train_5888_a_2
+test all pooling
+train_668_b_2
+ 65%|██████▍   | 1593/2465 [20:59<07:05,  2.05it/s]test all pooling
+train_6951_a_2
+test all pooling
+train_7805_a_1
+ 65%|██████▍   | 1595/2465 [21:00<05:10,  2.80it/s]test all pooling
+train_6913_a_2
+test all pooling
+train_6246_a_2
+ 65%|██████▍   | 1597/2465 [21:00<05:29,  2.63it/s]test all pooling
+train_11150_b_2
+ 65%|██████▍   | 1598/2465 [21:01<04:51,  2.97it/s]test all pooling
+train_10094_a_2
+ 65%|██████▍   | 1599/2465 [21:04<13:09,  1.10it/s]2026-05-12 23:16:31,382 - INFO - Processing batch 1600
+test all pooling
+train_10094_c_1
+2026-05-12 23:16:31,464 - INFO - Saving interim results for 1600 samples
+2026-05-12 23:16:31,466 - INFO - Saved interim results for 1600 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_5739_a_2
+ 65%|██████▍   | 1601/2465 [21:04<08:43,  1.65it/s]test all pooling
+train_6878_a_2
+test all pooling
+train_1053_a_1
+ 65%|██████▌   | 1603/2465 [21:04<06:09,  2.33it/s]test all pooling
+train_8015_a_1
+test all pooling
+train_7435_a_2
+ 65%|██████▌   | 1605/2465 [21:04<04:43,  3.04it/s]test all pooling
+train_11880_a_5
+ 65%|██████▌   | 1606/2465 [21:04<04:05,  3.50it/s]test all pooling
+train_11880_d_1
+ 65%|██████▌   | 1607/2465 [21:07<09:55,  1.44it/s]test all pooling
+train_197_a_2
+test all pooling
+train_6455_a_2
+ 65%|██████▌   | 1609/2465 [21:07<06:44,  2.12it/s]2026-05-12 23:16:34,546 - INFO - Processing batch 1610
+test all pooling
+train_5388_a_1
+ 65%|██████▌   | 1610/2465 [21:07<05:39,  2.52it/s]test all pooling
+train_7563_a_1
+test all pooling
+train_637_b_1
+ 65%|██████▌   | 1612/2465 [21:07<04:02,  3.52it/s]test all pooling
+train_5311_c_1
+ 65%|██████▌   | 1613/2465 [21:08<05:44,  2.48it/s]test all pooling
+train_5311_b_2
+ 65%|██████▌   | 1614/2465 [21:08<04:47,  2.96it/s]test all pooling
+train_1449_a_1
+ 66%|██████▌   | 1615/2465 [21:10<08:46,  1.61it/s]test all pooling
+train_6245_a_1
+ 66%|██████▌   | 1616/2465 [21:10<06:56,  2.04it/s]test all pooling
+train_4462_a_1
+ 66%|██████▌   | 1617/2465 [21:10<05:33,  2.55it/s]test all pooling
+train_5233_a_1
+ 66%|██████▌   | 1618/2465 [21:10<04:32,  3.11it/s]test all pooling
+train_6803_c_2
+ 66%|██████▌   | 1619/2465 [21:10<03:48,  3.70it/s]2026-05-12 23:16:37,844 - INFO - Processing batch 1620
+test all pooling
+train_6803_a_2
+ 66%|██████▌   | 1620/2465 [21:10<03:16,  4.31it/s]test all pooling
+train_6803_b_2
+ 66%|██████▌   | 1621/2465 [21:11<05:09,  2.73it/s]test all pooling
+train_2921_a_2
+test all pooling
+train_6813_a_2
+ 66%|██████▌   | 1623/2465 [21:13<09:45,  1.44it/s]test all pooling
+train_7465_a_1
+test all pooling
+train_1753_f_2
+ 66%|██████▌   | 1625/2465 [21:13<06:26,  2.17it/s]test all pooling
+train_1753_a_1
+test all pooling
+train_1753_e_2
+ 66%|██████▌   | 1627/2465 [21:13<04:35,  3.04it/s]test all pooling
+train_11233_a_1
+ 66%|██████▌   | 1628/2465 [21:14<03:56,  3.55it/s]test all pooling
+train_5626_a_1
+ 66%|██████▌   | 1629/2465 [21:14<05:54,  2.36it/s]2026-05-12 23:16:42,250 - INFO - Processing batch 1630
+test all pooling
+train_962_a_1
+ 66%|██████▌   | 1630/2465 [21:15<04:56,  2.82it/s]test all pooling
+train_6947_a_2
+ 66%|██████▌   | 1631/2465 [21:19<18:51,  1.36s/it]test all pooling
+train_5391_a_1
+ 66%|██████▌   | 1632/2465 [21:19<14:12,  1.02s/it]test all pooling
+train_11426_a_2
+ 66%|██████▌   | 1633/2465 [21:19<10:39,  1.30it/s]test all pooling
+train_10410_a_2
+test all pooling
+train_5308_a_2
+ 66%|██████▋   | 1635/2465 [21:19<06:29,  2.13it/s]test all pooling
+train_14273_a_2
+test all pooling
+train_11083_a_1
+ 66%|██████▋   | 1637/2465 [21:19<04:26,  3.11it/s]test all pooling
+train_7119_a_2
+test all pooling
+train_1752_a_2
+ 66%|██████▋   | 1639/2465 [21:21<07:52,  1.75it/s]2026-05-12 23:16:49,252 - INFO - Processing batch 1640
+test all pooling
+train_5196_a_1
+ 67%|██████▋   | 1640/2465 [21:22<07:24,  1.86it/s]test all pooling
+train_6077_a_2
+test all pooling
+train_11291_b_2
+ 67%|██████▋   | 1642/2465 [21:22<05:03,  2.71it/s]test all pooling
+train_6354_a_1
+test all pooling
+train_7529_a_1
+ 67%|██████▋   | 1644/2465 [21:22<03:39,  3.73it/s]test all pooling
+train_12787_a_2
+ 67%|██████▋   | 1645/2465 [22:05<1:59:23,  8.74s/it]test all pooling
+train_1154_a_2
+test all pooling
+train_8178_a_2
+ 67%|██████▋   | 1647/2465 [22:06<1:18:50,  5.78s/it]test all pooling
+train_12442_a_2
+test all pooling
+train_19704_a_2
+ 67%|██████▋   | 1649/2465 [22:07<52:17,  3.85s/it]  2026-05-12 23:17:34,715 - INFO - Processing batch 1650
+test all pooling
+train_1621_a_1
+2026-05-12 23:17:34,782 - INFO - Saving interim results for 1650 samples
+2026-05-12 23:17:34,897 - INFO - Saved interim results for 1650 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 67%|██████▋   | 1650/2465 [22:07<43:20,  3.19s/it]test all pooling
+train_7545_a_2
+test all pooling
+train_11934_a_2
+ 67%|██████▋   | 1652/2465 [22:07<28:06,  2.07s/it]test all pooling
+train_1501_b_1
+ 67%|██████▋   | 1653/2465 [22:31<1:26:29,  6.39s/it]test all pooling
+train_1501_a_1
+test all pooling
+train_3160_a_5
+ 67%|██████▋   | 1655/2465 [23:16<2:47:59, 12.44s/it]test all pooling
+train_3160_a_2
+test all pooling
+train_7543_a_2
+ 67%|██████▋   | 1657/2465 [23:16<1:50:14,  8.19s/it]test all pooling
+train_6602_a_2
+test all pooling
+train_8168_b_1
+ 67%|██████▋   | 1659/2465 [23:17<1:14:06,  5.52s/it]2026-05-12 23:18:44,365 - INFO - Processing batch 1660
+test all pooling
+train_6889_a_2
+test all pooling
+train_13786_b_1
+ 67%|██████▋   | 1661/2465 [23:17<50:39,  3.78s/it]  test all pooling
+train_11271_a_1
+test all pooling
+train_588_a_2
+ 67%|██████▋   | 1663/2465 [23:19<40:00,  2.99s/it]test all pooling
+train_1513_a_2
+ 68%|██████▊   | 1664/2465 [23:19<32:54,  2.47s/it]test all pooling
+train_5884_a_2
+ 68%|██████▊   | 1665/2465 [23:20<26:20,  1.98s/it]test all pooling
+train_982_a_1
+ 68%|██████▊   | 1666/2465 [23:20<20:36,  1.55s/it]test all pooling
+train_11182_a_2
+ 68%|██████▊   | 1667/2465 [23:20<15:54,  1.20s/it]test all pooling
+train_7554_a_1
+ 68%|██████▊   | 1668/2465 [23:20<12:11,  1.09it/s]test all pooling
+train_1093_a_1
+ 68%|██████▊   | 1669/2465 [23:20<09:14,  1.44it/s]2026-05-12 23:18:47,765 - INFO - Processing batch 1670
+test all pooling
+train_12699_b_2
+test all pooling
+train_12699_c_2
+ 68%|██████▊   | 1671/2465 [23:21<09:05,  1.46it/s]test all pooling
+train_7758_a_2
+test all pooling
+train_7758_b_2
+ 68%|██████▊   | 1673/2465 [23:22<06:02,  2.18it/s]test all pooling
+train_6575_a_4
+ 68%|██████▊   | 1674/2465 [23:22<05:01,  2.62it/s]test all pooling
+train_2078_a_2
+test all pooling
+train_867_a_2
+ 68%|██████▊   | 1676/2465 [23:22<03:41,  3.56it/s]test all pooling
+train_10981_a_2
+test all pooling
+train_7120_a_1
+ 68%|██████▊   | 1678/2465 [23:22<02:52,  4.56it/s]test all pooling
+train_6433_a_1
+ 68%|██████▊   | 1679/2465 [23:24<06:37,  1.98it/s]2026-05-12 23:18:51,485 - INFO - Processing batch 1680
+test all pooling
+train_6132_a_1
+ 68%|██████▊   | 1680/2465 [23:24<05:25,  2.41it/s]test all pooling
+train_7250_i_2
+ 68%|██████▊   | 1681/2465 [23:24<04:26,  2.94it/s]test all pooling
+train_7250_h_2
+ 68%|██████▊   | 1682/2465 [23:24<03:38,  3.58it/s]test all pooling
+train_7250_f_2
+test all pooling
+train_7250_b_2
+ 68%|██████▊   | 1684/2465 [23:25<03:55,  3.31it/s]test all pooling
+train_11534_a_2
+test all pooling
+train_445_a_1
+ 68%|██████▊   | 1686/2465 [23:25<02:53,  4.49it/s]test all pooling
+train_5746_a_1
+ 68%|██████▊   | 1687/2465 [23:27<07:11,  1.80it/s]test all pooling
+train_5179_b_1
+test all pooling
+train_2255_a_2
+ 69%|██████▊   | 1689/2465 [23:27<04:53,  2.64it/s]2026-05-12 23:18:54,607 - INFO - Processing batch 1690
+test all pooling
+train_7298_a_2
+test all pooling
+train_5652_a_1
+ 69%|██████▊   | 1691/2465 [23:27<03:36,  3.58it/s]test all pooling
+train_2241_a_2
+ 69%|██████▊   | 1692/2465 [23:28<05:26,  2.37it/s]test all pooling
+train_13505_a_1
+test all pooling
+train_17606_a_2
+ 69%|██████▊   | 1694/2465 [23:28<03:51,  3.33it/s]test all pooling
+train_298_a_2
+ 69%|██████▉   | 1695/2465 [23:32<12:54,  1.01s/it]test all pooling
+train_1570_a_2
+test all pooling
+train_1570_b_2
+ 69%|██████▉   | 1697/2465 [23:32<08:28,  1.51it/s]test all pooling
+train_605_a_2
+test all pooling
+train_6160_c_2
+ 69%|██████▉   | 1699/2465 [23:32<05:53,  2.17it/s]2026-05-12 23:19:00,005 - INFO - Processing batch 1700
+test all pooling
+train_13916_a_2
+2026-05-12 23:19:00,073 - INFO - Saving interim results for 1700 samples
+2026-05-12 23:19:00,075 - INFO - Saved interim results for 1700 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_519_b_2
+ 69%|██████▉   | 1701/2465 [23:32<04:15,  2.99it/s]test all pooling
+train_5483_a_2
+test all pooling
+train_6304_a_1
+ 69%|██████▉   | 1703/2465 [23:35<08:08,  1.56it/s]test all pooling
+train_5557_a_2
+test all pooling
+train_2769_a_2
+ 69%|██████▉   | 1705/2465 [23:35<05:53,  2.15it/s]test all pooling
+train_6_a_2
+test all pooling
+train_362_a_1
+ 69%|██████▉   | 1707/2465 [23:35<04:22,  2.89it/s]test all pooling
+train_5655_a_1
+test all pooling
+train_7212_a_1
+ 69%|██████▉   | 1709/2465 [23:35<03:21,  3.76it/s]2026-05-12 23:19:03,239 - INFO - Processing batch 1710
+test all pooling
+train_10819_a_2
+test all pooling
+train_2393_a_2
+ 69%|██████▉   | 1711/2465 [23:38<06:38,  1.89it/s]test all pooling
+train_7868_a_2
+test all pooling
+train_7458_a_2
+ 69%|██████▉   | 1713/2465 [23:38<04:56,  2.54it/s]test all pooling
+train_6171_a_1
+test all pooling
+train_11124_a_2
+ 70%|██████▉   | 1715/2465 [23:38<03:44,  3.34it/s]test all pooling
+train_10548_a_1
+test all pooling
+train_1811_a_2
+ 70%|██████▉   | 1717/2465 [23:38<02:55,  4.27it/s]test all pooling
+train_13288_a_2
+test all pooling
+train_13971_a_2
+ 70%|██████▉   | 1719/2465 [23:41<07:48,  1.59it/s]2026-05-12 23:19:09,075 - INFO - Processing batch 1720
+test all pooling
+train_62_a_1
+test all pooling
+train_7886_a_1
+ 70%|██████▉   | 1721/2465 [23:41<05:45,  2.15it/s]test all pooling
+train_11207_a_1
+test all pooling
+train_6799_b_1
+ 70%|██████▉   | 1723/2465 [23:42<04:20,  2.85it/s]test all pooling
+train_2245_a_2
+test all pooling
+train_5222_a_2
+ 70%|██████▉   | 1725/2465 [23:42<03:20,  3.69it/s]test all pooling
+train_6487_a_1
+test all pooling
+train_269_a_2
+ 70%|███████   | 1727/2465 [23:45<07:32,  1.63it/s]test all pooling
+train_7453_a_2
+test all pooling
+train_6671_a_2
+ 70%|███████   | 1729/2465 [23:45<05:33,  2.20it/s]2026-05-12 23:19:12,569 - INFO - Processing batch 1730
+test all pooling
+train_6671_c_1
+test all pooling
+train_11225_a_1
+ 70%|███████   | 1731/2465 [23:45<04:10,  2.92it/s]test all pooling
+train_10074_a_1
+test all pooling
+train_7993_a_2
+ 70%|███████   | 1733/2465 [23:45<03:13,  3.78it/s]test all pooling
+train_8086_a_1
+test all pooling
+train_1153_a_1
+ 70%|███████   | 1735/2465 [23:50<10:29,  1.16it/s]test all pooling
+train_1526_a_2
+test all pooling
+train_108_a_2
+ 70%|███████   | 1737/2465 [23:50<07:36,  1.59it/s]test all pooling
+train_11834_a_1
+test all pooling
+train_873_c_2
+ 71%|███████   | 1739/2465 [23:50<05:36,  2.16it/s]2026-05-12 23:19:17,731 - INFO - Processing batch 1740
+test all pooling
+train_873_a_1
+test all pooling
+train_873_b_2
+ 71%|███████   | 1741/2465 [23:50<04:11,  2.88it/s]test all pooling
+train_5215_a_2
+test all pooling
+train_5691_a_2
+ 71%|███████   | 1743/2465 [23:53<07:41,  1.56it/s]test all pooling
+train_5691_c_2
+test all pooling
+train_5691_b_2
+ 71%|███████   | 1745/2465 [23:53<05:39,  2.12it/s]test all pooling
+train_2385_a_2
+test all pooling
+train_7349_a_1
+ 71%|███████   | 1747/2465 [23:53<04:14,  2.82it/s]test all pooling
+train_7389_a_2
+test all pooling
+train_353_a_2
+ 71%|███████   | 1749/2465 [23:53<03:15,  3.67it/s]2026-05-12 23:19:21,015 - INFO - Processing batch 1750
+test all pooling
+train_10354_c_1
+2026-05-12 23:19:21,084 - INFO - Saving interim results for 1750 samples
+2026-05-12 23:19:21,086 - INFO - Saved interim results for 1750 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 71%|███████   | 1749/2465 [24:05<03:15,  3.67it/s]test all pooling
+train_5367_a_1
+ 71%|███████   | 1751/2465 [24:12<36:22,  3.06s/it]test all pooling
+train_6618_b_2
+test all pooling
+train_1019_a_1
+ 71%|███████   | 1753/2465 [24:12<25:39,  2.16s/it]test all pooling
+train_8561_a_1
+test all pooling
+train_10131_b_2
+ 71%|███████   | 1755/2465 [24:13<18:11,  1.54s/it]test all pooling
+train_10938_a_1
+test all pooling
+train_12765_a_1
+ 71%|███████▏  | 1757/2465 [24:13<12:58,  1.10s/it]test all pooling
+train_10666_a_2
+ 71%|███████▏  | 1757/2465 [24:25<12:58,  1.10s/it]test all pooling
+train_5278_a_2
+ 71%|███████▏  | 1759/2465 [24:54<1:21:47,  6.95s/it]2026-05-12 23:20:21,794 - INFO - Processing batch 1760
+test all pooling
+train_225_a_1
+test all pooling
+train_17662_a_2
+ 71%|███████▏  | 1761/2465 [24:54<57:22,  4.89s/it]  test all pooling
+train_6704_a_1
+test all pooling
+train_1227_d_2
+ 72%|███████▏  | 1763/2465 [24:54<40:19,  3.45s/it]test all pooling
+train_1227_c_2
+test all pooling
+train_1227_b_2
+ 72%|███████▏  | 1765/2465 [24:54<28:26,  2.44s/it]test all pooling
+train_10135_a_1
+test all pooling
+train_12579_c_2
+ 72%|███████▏  | 1767/2465 [24:59<27:55,  2.40s/it]test all pooling
+train_6777_a_1
+test all pooling
+train_6401_a_2
+ 72%|███████▏  | 1769/2465 [24:59<19:49,  1.71s/it]2026-05-12 23:20:27,305 - INFO - Processing batch 1770
+test all pooling
+train_2139_c_2
+ 72%|███████▏  | 1770/2465 [25:00<16:53,  1.46s/it]test all pooling
+train_2139_b_2
+test all pooling
+train_2139_d_2
+ 72%|███████▏  | 1772/2465 [25:00<11:31,  1.00it/s]test all pooling
+train_2139_a_1
+test all pooling
+train_403_a_2
+ 72%|███████▏  | 1774/2465 [25:00<08:03,  1.43it/s] 72%|███████▏  | 1774/2465 [25:15<08:03,  1.43it/s]test all pooling
+train_1110_a_2
+ 72%|███████▏  | 1775/2465 [25:25<1:00:48,  5.29s/it]test all pooling
+train_1018_a_2
+ 72%|███████▏  | 1776/2465 [25:25<48:43,  4.24s/it]  test all pooling
+train_1694_a_2
+test all pooling
+train_6445_a_1
+ 72%|███████▏  | 1778/2465 [25:26<30:39,  2.68s/it]test all pooling
+train_11831_a_1
+2026-05-12 23:20:53,464 - INFO - Processing batch 1780
+test all pooling
+train_9582_b_2
+ 72%|███████▏  | 1780/2465 [25:26<20:15,  1.77s/it]test all pooling
+train_877_a_2
+ 72%|███████▏  | 1781/2465 [25:26<16:25,  1.44s/it]test all pooling
+train_16374_b_1
+test all pooling
+train_16374_b_2
+ 72%|███████▏  | 1783/2465 [25:27<12:58,  1.14s/it]test all pooling
+train_16374_a_1
+ 72%|███████▏  | 1784/2465 [25:31<18:56,  1.67s/it]test all pooling
+train_11470_a_2
+test all pooling
+train_5225_a_1
+ 72%|███████▏  | 1786/2465 [25:31<12:14,  1.08s/it]test all pooling
+train_11768_a_2
+test all pooling
+train_2895_a_1
+ 73%|███████▎  | 1788/2465 [25:31<08:18,  1.36it/s]test all pooling
+train_12804_a_1
+2026-05-12 23:20:59,018 - INFO - Processing batch 1790
+test all pooling
+train_16656_a_2
+ 73%|███████▎  | 1790/2465 [25:31<05:50,  1.92it/s]test all pooling
+train_10750_a_2
+test all pooling
+train_7951_a_1
+ 73%|███████▎  | 1792/2465 [25:33<07:41,  1.46it/s]test all pooling
+train_4788_a_2
+test all pooling
+train_11390_a_1
+ 73%|███████▎  | 1794/2465 [25:34<05:34,  2.01it/s]test all pooling
+train_6165_e_1
+test all pooling
+train_6165_g_2
+ 73%|███████▎  | 1796/2465 [25:34<04:09,  2.68it/s]test all pooling
+train_6165_f_2
+test all pooling
+train_6165_c_2
+ 73%|███████▎  | 1798/2465 [25:34<03:10,  3.50it/s]test all pooling
+train_6854_c_2
+2026-05-12 23:21:36,451 - INFO - Processing batch 1800
+test all pooling
+train_6854_a_2
+2026-05-12 23:21:36,526 - INFO - Saving interim results for 1800 samples
+2026-05-12 23:21:36,527 - INFO - Saved interim results for 1800 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 73%|███████▎  | 1800/2465 [26:09<1:01:01,  5.51s/it]test all pooling
+train_1329_b_1
+test all pooling
+train_11111_a_2
+ 73%|███████▎  | 1802/2465 [26:09<42:38,  3.86s/it]  test all pooling
+train_6295_b_2
+test all pooling
+train_2407_a_2
+ 73%|███████▎  | 1804/2465 [26:09<29:55,  2.72s/it]test all pooling
+train_1813_a_2
+test all pooling
+train_6842_a_2
+ 73%|███████▎  | 1806/2465 [26:09<21:06,  1.92s/it]test all pooling
+train_9943_a_2
+ 73%|███████▎  | 1806/2465 [26:25<21:06,  1.92s/it]test all pooling
+train_8074_b_1
+ 73%|███████▎  | 1808/2465 [26:27<43:24,  3.96s/it]test all pooling
+train_119_a_2
+2026-05-12 23:21:54,513 - INFO - Processing batch 1810
+test all pooling
+train_19568_a_1
+ 73%|███████▎  | 1810/2465 [26:27<30:32,  2.80s/it]test all pooling
+train_18396_a_1
+test all pooling
+train_1877_a_2
+ 74%|███████▎  | 1812/2465 [26:27<21:35,  1.98s/it]test all pooling
+train_2382_b_1
+test all pooling
+train_2382_a_2
+ 74%|███████▎  | 1814/2465 [26:27<15:20,  1.41s/it]test all pooling
+train_6712_a_1
+test all pooling
+train_835_a_2
+ 74%|███████▎  | 1816/2465 [26:33<20:31,  1.90s/it]test all pooling
+train_1911_a_1
+test all pooling
+train_6991_a_1
+ 74%|███████▍  | 1818/2465 [26:33<14:34,  1.35s/it]test all pooling
+train_6357_a_1
+2026-05-12 23:22:01,243 - INFO - Processing batch 1820
+test all pooling
+train_318_a_2
+ 74%|███████▍  | 1820/2465 [26:34<10:26,  1.03it/s]test all pooling
+train_7048_a_2
+test all pooling
+train_2857_a_1
+ 74%|███████▍  | 1822/2465 [26:34<07:32,  1.42it/s]test all pooling
+train_68_a_2
+ 74%|███████▍  | 1822/2465 [26:45<07:32,  1.42it/s]test all pooling
+train_1127_a_1
+ 74%|███████▍  | 1824/2465 [27:03<51:45,  4.84s/it]test all pooling
+train_7767_a_2
+test all pooling
+train_1624_a_1
+ 74%|███████▍  | 1826/2465 [27:03<36:22,  3.42s/it]test all pooling
+train_2529_a_2
+test all pooling
+train_12840_a_2
+ 74%|███████▍  | 1828/2465 [27:03<25:38,  2.41s/it]test all pooling
+train_7066_a_2
+2026-05-12 23:22:30,952 - INFO - Processing batch 1830
+test all pooling
+train_11585_a_1
+ 74%|███████▍  | 1830/2465 [27:03<18:13,  1.72s/it]test all pooling
+train_11585_b_2
+ 74%|███████▍  | 1830/2465 [27:15<18:13,  1.72s/it]test all pooling
+train_6156_a_2
+ 74%|███████▍  | 1832/2465 [27:42<1:14:00,  7.02s/it]test all pooling
+train_6393_a_1
+test all pooling
+train_5993_a_2
+ 74%|███████▍  | 1834/2465 [27:42<51:54,  4.94s/it]  test all pooling
+train_6010_a_1
+test all pooling
+train_5964_a_2
+ 74%|███████▍  | 1836/2465 [27:42<36:28,  3.48s/it]test all pooling
+train_5964_b_2
+test all pooling
+train_2218_a_2
+ 75%|███████▍  | 1838/2465 [27:42<25:45,  2.46s/it]test all pooling
+train_6983_a_2
+ 75%|███████▍  | 1838/2465 [27:55<25:45,  2.46s/it]2026-05-12 23:23:32,274 - INFO - Processing batch 1840
+test all pooling
+train_7259_d_1
+ 75%|███████▍  | 1840/2465 [28:05<52:28,  5.04s/it]test all pooling
+train_7259_c_1
+test all pooling
+train_1653_a_2
+ 75%|███████▍  | 1842/2465 [28:05<36:54,  3.56s/it]test all pooling
+train_7198_a_2
+test all pooling
+train_10691_a_1
+ 75%|███████▍  | 1844/2465 [28:05<26:05,  2.52s/it]test all pooling
+train_186_a_2
+test all pooling
+train_2185_a_1
+ 75%|███████▍  | 1846/2465 [28:05<18:30,  1.79s/it]test all pooling
+train_10892_a_2
+test all pooling
+train_1834_a_2
+ 75%|███████▍  | 1848/2465 [28:08<17:26,  1.70s/it]test all pooling
+train_1441_a_2
+2026-05-12 23:23:35,992 - INFO - Processing batch 1850
+test all pooling
+train_31_a_1
+2026-05-12 23:23:36,062 - INFO - Saving interim results for 1850 samples
+2026-05-12 23:23:36,063 - INFO - Saved interim results for 1850 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 75%|███████▌  | 1850/2465 [28:08<12:25,  1.21s/it]test all pooling
+train_19251_a_1
+test all pooling
+train_10017_a_2
+ 75%|███████▌  | 1852/2465 [28:08<08:55,  1.15it/s]test all pooling
+train_17525_a_1
+test all pooling
+train_7552_c_2
+ 75%|███████▌  | 1854/2465 [28:09<06:27,  1.57it/s]test all pooling
+train_10497_d_1
+test all pooling
+train_10497_b_2
+ 75%|███████▌  | 1856/2465 [28:12<08:57,  1.13it/s]test all pooling
+train_3713_d_2
+test all pooling
+train_10072_a_1
+ 75%|███████▌  | 1858/2465 [28:12<06:29,  1.56it/s]test all pooling
+train_6610_a_2
+2026-05-12 23:23:39,562 - INFO - Processing batch 1860
+test all pooling
+train_2438_a_2
+ 75%|███████▌  | 1860/2465 [28:12<04:47,  2.11it/s]test all pooling
+train_1525_b_1
+test all pooling
+train_198_a_2
+ 76%|███████▌  | 1862/2465 [28:12<03:35,  2.80it/s]test all pooling
+train_1542_a_1
+test all pooling
+train_7015_a_1
+ 76%|███████▌  | 1864/2465 [28:14<06:00,  1.67it/s]test all pooling
+train_11073_c_2
+ 76%|███████▌  | 1865/2465 [28:14<05:08,  1.95it/s]test all pooling
+train_2964_a_1
+ 76%|███████▌  | 1866/2465 [28:15<04:19,  2.30it/s]test all pooling
+train_848_c_1
+ 76%|███████▌  | 1867/2465 [28:15<03:36,  2.76it/s]test all pooling
+train_12912_a_1
+test all pooling
+train_865_a_1
+ 76%|███████▌  | 1869/2465 [28:15<02:33,  3.87it/s]2026-05-12 23:23:42,676 - INFO - Processing batch 1870
+test all pooling
+train_2039_c_2
+test all pooling
+train_2039_d_1
+ 76%|███████▌  | 1871/2465 [28:15<01:58,  5.01it/s]test all pooling
+train_2039_b_1
+ 76%|███████▌  | 1872/2465 [28:45<1:02:19,  6.31s/it]test all pooling
+train_2039_a_2
+test all pooling
+train_527_b_2
+ 76%|███████▌  | 1874/2465 [28:45<39:33,  4.02s/it]  test all pooling
+train_2055_a_1
+test all pooling
+train_6502_a_2
+ 76%|███████▌  | 1876/2465 [28:46<26:06,  2.66s/it]test all pooling
+train_7524_a_2
+test all pooling
+train_321_a_2
+ 76%|███████▌  | 1878/2465 [28:46<17:41,  1.81s/it]test all pooling
+train_2542_a_2
+ 76%|███████▌  | 1878/2465 [29:05<17:41,  1.81s/it]2026-05-12 23:25:05,218 - INFO - Processing batch 1880
+test all pooling
+train_5412_a_1
+ 76%|███████▋  | 1880/2465 [29:38<1:32:47,  9.52s/it]test all pooling
+train_2244_b_1
+test all pooling
+train_2244_a_2
+ 76%|███████▋  | 1882/2465 [29:38<1:03:44,  6.56s/it]test all pooling
+train_5778_a_1
+test all pooling
+train_7596_a_2
+ 76%|███████▋  | 1884/2465 [29:38<44:07,  4.56s/it]  test all pooling
+train_6689_a_2
+test all pooling
+train_2336_a_1
+ 77%|███████▋  | 1886/2465 [29:38<30:44,  3.18s/it]test all pooling
+train_10399_a_2
+ 77%|███████▋  | 1886/2465 [29:55<30:44,  3.18s/it]test all pooling
+train_7750_a_1
+ 77%|███████▋  | 1888/2465 [30:22<1:25:34,  8.90s/it]test all pooling
+train_7401_a_2
+2026-05-12 23:25:49,806 - INFO - Processing batch 1890
+test all pooling
+train_5757_b_2
+ 77%|███████▋  | 1890/2465 [30:22<59:39,  6.23s/it]  test all pooling
+train_5757_a_2
+test all pooling
+train_1586_a_2
+ 77%|███████▋  | 1892/2465 [30:22<41:43,  4.37s/it]test all pooling
+train_1062_a_2
+test all pooling
+train_6882_a_1
+ 77%|███████▋  | 1894/2465 [30:22<29:17,  3.08s/it]test all pooling
+train_2026_b_2
+ 77%|███████▋  | 1894/2465 [30:35<29:17,  3.08s/it]test all pooling
+train_1396_a_2
+ 77%|███████▋  | 1896/2465 [30:57<1:09:56,  7.38s/it]test all pooling
+train_1396_e_2
+test all pooling
+train_2858_a_1
+ 77%|███████▋  | 1898/2465 [30:57<48:57,  5.18s/it]  test all pooling
+train_5385_a_2
+2026-05-12 23:26:25,183 - INFO - Processing batch 1900
+test all pooling
+train_11587_a_2
+2026-05-12 23:26:25,269 - INFO - Saving interim results for 1900 samples
+2026-05-12 23:26:25,270 - INFO - Saved interim results for 1900 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 77%|███████▋  | 1900/2465 [30:57<34:23,  3.65s/it]test all pooling
+train_7395_e_2
+test all pooling
+train_7395_d_2
+ 77%|███████▋  | 1902/2465 [30:58<24:13,  2.58s/it]test all pooling
+train_817_a_1
+test all pooling
+train_13398_a_1
+ 77%|███████▋  | 1904/2465 [31:02<22:49,  2.44s/it]test all pooling
+train_5883_a_1
+test all pooling
+train_7763_a_2
+ 77%|███████▋  | 1906/2465 [31:02<16:08,  1.73s/it]test all pooling
+train_6307_a_2
+test all pooling
+train_5569_b_1
+ 77%|███████▋  | 1908/2465 [31:02<11:29,  1.24s/it]test all pooling
+train_5569_a_2
+2026-05-12 23:26:30,107 - INFO - Processing batch 1910
+test all pooling
+train_2946_a_2
+ 77%|███████▋  | 1910/2465 [31:02<08:15,  1.12it/s]test all pooling
+train_1502_a_1
+test all pooling
+train_13752_a_1
+ 78%|███████▊  | 1912/2465 [31:11<18:03,  1.96s/it]test all pooling
+train_2174_a_1
+ 78%|███████▊  | 1913/2465 [31:13<18:22,  2.00s/it]test all pooling
+train_2730_a_5
+test all pooling
+train_340_a_1
+ 78%|███████▊  | 1915/2465 [31:14<12:25,  1.36s/it]test all pooling
+train_1887_b_2
+test all pooling
+train_1887_a_2
+ 78%|███████▊  | 1917/2465 [31:14<08:37,  1.06it/s]test all pooling
+train_11889_a_2
+test all pooling
+train_14336_a_2
+ 78%|███████▊  | 1919/2465 [31:14<06:07,  1.49it/s]2026-05-12 23:26:41,775 - INFO - Processing batch 1920
+test all pooling
+train_2460_a_2
+test all pooling
+train_7294_a_2
+ 78%|███████▊  | 1921/2465 [31:17<07:58,  1.14it/s]test all pooling
+train_8031_a_2
+test all pooling
+train_1758_b_2
+ 78%|███████▊  | 1923/2465 [31:17<05:44,  1.57it/s]test all pooling
+train_1758_a_2
+test all pooling
+train_17321_a_2
+ 78%|███████▊  | 1925/2465 [31:17<04:11,  2.15it/s]test all pooling
+train_4335_a_2
+test all pooling
+train_12513_a_2
+ 78%|███████▊  | 1927/2465 [31:17<03:08,  2.85it/s]test all pooling
+train_7214_a_1
+test all pooling
+train_7214_e_1
+ 78%|███████▊  | 1929/2465 [31:20<05:25,  1.65it/s]2026-05-12 23:26:47,346 - INFO - Processing batch 1930
+test all pooling
+train_7214_d_1
+test all pooling
+train_7214_b_1
+ 78%|███████▊  | 1931/2465 [31:20<04:00,  2.22it/s]test all pooling
+train_6746_a_2
+test all pooling
+train_6746_b_1
+ 78%|███████▊  | 1933/2465 [31:20<03:00,  2.95it/s]test all pooling
+train_6289_a_2
+test all pooling
+train_8095_a_2
+ 78%|███████▊  | 1935/2465 [31:20<02:21,  3.74it/s]test all pooling
+train_204_a_2
+ 79%|███████▊  | 1936/2465 [31:20<02:06,  4.17it/s]test all pooling
+train_17812_a_1
+ 79%|███████▊  | 1937/2465 [31:23<06:04,  1.45it/s]test all pooling
+train_18476_a_2
+test all pooling
+train_6249_a_2
+ 79%|███████▊  | 1939/2465 [31:23<04:07,  2.13it/s]2026-05-12 23:26:50,647 - INFO - Processing batch 1940
+test all pooling
+train_5401_a_1
+test all pooling
+train_7618_a_2
+ 79%|███████▊  | 1941/2465 [31:23<02:58,  2.94it/s]test all pooling
+train_5935_d_1
+test all pooling
+train_5935_a_2
+ 79%|███████▉  | 1943/2465 [31:23<02:14,  3.88it/s]test all pooling
+train_24_a_2
+test all pooling
+train_712_a_1
+ 79%|███████▉  | 1945/2465 [31:25<04:09,  2.08it/s]test all pooling
+train_3666_a_2
+ 79%|███████▉  | 1946/2465 [31:25<03:33,  2.43it/s]test all pooling
+train_17687_a_1
+ 79%|███████▉  | 1947/2465 [31:25<03:02,  2.84it/s]test all pooling
+train_1268_b_2
+ 79%|███████▉  | 1948/2465 [31:25<02:32,  3.39it/s]test all pooling
+train_5203_a_2
+2026-05-12 23:26:53,353 - INFO - Processing batch 1950
+test all pooling
+train_18878_a_1
+2026-05-12 23:26:53,434 - INFO - Saving interim results for 1950 samples
+2026-05-12 23:26:53,436 - INFO - Saved interim results for 1950 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 79%|███████▉  | 1950/2465 [31:26<01:50,  4.64it/s]test all pooling
+train_6464_a_2
+test all pooling
+train_566_a_2
+ 79%|███████▉  | 1952/2465 [31:27<03:02,  2.81it/s]test all pooling
+train_5037_a_1
+ 79%|███████▉  | 1953/2465 [31:30<07:38,  1.12it/s]test all pooling
+train_1543_a_2
+test all pooling
+train_5324_a_2
+ 79%|███████▉  | 1955/2465 [31:30<05:02,  1.68it/s]test all pooling
+train_1504_b_2
+test all pooling
+train_1987_b_1
+ 79%|███████▉  | 1957/2465 [31:30<03:31,  2.40it/s]test all pooling
+train_1987_a_2
+test all pooling
+train_182_b_1
+ 79%|███████▉  | 1959/2465 [31:30<02:34,  3.27it/s]2026-05-12 23:27:24,503 - INFO - Processing batch 1960
+test all pooling
+train_182_c_1
+ 80%|███████▉  | 1960/2465 [31:57<44:38,  5.30s/it]test all pooling
+train_2821_a_1
+test all pooling
+train_6488_a_2
+ 80%|███████▉  | 1962/2465 [31:57<29:00,  3.46s/it]test all pooling
+train_6488_b_2
+test all pooling
+train_6488_c_2
+ 80%|███████▉  | 1964/2465 [31:57<19:25,  2.33s/it]test all pooling
+train_2985_a_2
+test all pooling
+train_317_d_2
+ 80%|███████▉  | 1966/2465 [32:14<35:46,  4.30s/it]test all pooling
+train_317_c_2
+test all pooling
+train_11909_a_1
+ 80%|███████▉  | 1968/2465 [32:18<29:16,  3.53s/it]test all pooling
+train_4488_a_1
+2026-05-12 23:27:45,589 - INFO - Processing batch 1970
+test all pooling
+train_1850_a_1
+ 80%|███████▉  | 1970/2465 [32:18<20:17,  2.46s/it]test all pooling
+train_8005_a_2
+ 80%|███████▉  | 1971/2465 [32:37<45:01,  5.47s/it]test all pooling
+train_6515_a_5
+test all pooling
+train_7592_a_3
+ 80%|████████  | 1973/2465 [33:06<1:10:42,  8.62s/it]test all pooling
+train_12538_a_2
+test all pooling
+train_1579_a_1
+ 80%|████████  | 1975/2465 [33:06<47:31,  5.82s/it]  test all pooling
+train_5491_a_2
+test all pooling
+train_757_a_2
+ 80%|████████  | 1977/2465 [33:07<32:25,  3.99s/it]test all pooling
+train_874_a_1
+test all pooling
+train_5380_b_2
+ 80%|████████  | 1979/2465 [33:07<22:22,  2.76s/it]2026-05-12 23:28:34,530 - INFO - Processing batch 1980
+test all pooling
+train_5380_a_2
+ 80%|████████  | 1979/2465 [33:25<22:22,  2.76s/it]test all pooling
+train_914_a_2
+ 80%|████████  | 1981/2465 [33:46<1:04:07,  7.95s/it]test all pooling
+train_6381_a_2
+test all pooling
+train_10551_a_1
+ 80%|████████  | 1983/2465 [33:46<44:29,  5.54s/it]  test all pooling
+train_5543_a_1
+test all pooling
+train_5789_a_2
+ 81%|████████  | 1985/2465 [33:46<31:00,  3.88s/it]test all pooling
+train_19913_a_1
+test all pooling
+train_747_b_1
+ 81%|████████  | 1987/2465 [33:57<35:08,  4.41s/it]test all pooling
+train_17743_a_2
+test all pooling
+train_12869_c_2
+ 81%|████████  | 1989/2465 [33:58<24:37,  3.10s/it]2026-05-12 23:29:25,375 - INFO - Processing batch 1990
+test all pooling
+train_6495_a_1
+test all pooling
+train_2126_a_1
+ 81%|████████  | 1991/2465 [33:58<17:18,  2.19s/it]test all pooling
+train_2410_b_2
+test all pooling
+train_12957_a_2
+ 81%|████████  | 1993/2465 [33:58<12:14,  1.56s/it]test all pooling
+train_644_c_2
+test all pooling
+train_644_e_2
+ 81%|████████  | 1995/2465 [34:00<11:07,  1.42s/it]test all pooling
+train_644_d_1
+ 81%|████████  | 1996/2465 [34:00<09:24,  1.20s/it]test all pooling
+train_644_b_2
+test all pooling
+train_246_b_1
+ 81%|████████  | 1998/2465 [34:00<06:27,  1.21it/s]test all pooling
+train_3862_a_2
+2026-05-12 23:29:28,377 - INFO - Processing batch 2000
+test all pooling
+train_5269_b_1
+2026-05-12 23:29:28,475 - INFO - Saving interim results for 2000 samples
+2026-05-12 23:29:28,478 - INFO - Saved interim results for 2000 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 81%|████████  | 2000/2465 [34:01<04:36,  1.68it/s]test all pooling
+train_563_a_2
+test all pooling
+train_7244_a_1
+ 81%|████████  | 2002/2465 [34:03<05:49,  1.32it/s]test all pooling
+train_8760_a_2
+test all pooling
+train_18107_a_2
+ 81%|████████▏ | 2004/2465 [34:04<04:54,  1.57it/s]test all pooling
+train_9271_a_2
+test all pooling
+train_7036_b_1
+ 81%|████████▏ | 2006/2465 [34:04<03:35,  2.13it/s]test all pooling
+train_9437_a_2
+test all pooling
+train_13874_a_2
+ 81%|████████▏ | 2008/2465 [34:04<02:42,  2.81it/s]test all pooling
+train_2160_a_2
+2026-05-12 23:29:33,480 - INFO - Processing batch 2010
+test all pooling
+train_79_a_2
+ 82%|████████▏ | 2010/2465 [34:06<03:56,  1.93it/s]test all pooling
+train_7696_a_2
+ 82%|████████▏ | 2011/2465 [34:06<03:25,  2.21it/s]test all pooling
+train_365_a_2
+ 82%|████████▏ | 2012/2465 [34:07<04:11,  1.80it/s]test all pooling
+train_1078_c_1
+test all pooling
+train_5460_a_2
+ 82%|████████▏ | 2014/2465 [34:07<02:53,  2.60it/s]test all pooling
+train_5460_b_2
+ 82%|████████▏ | 2015/2465 [34:07<02:26,  3.07it/s]test all pooling
+train_3485_a_1
+test all pooling
+train_840_a_1
+ 82%|████████▏ | 2017/2465 [34:07<01:46,  4.20it/s]test all pooling
+train_6520_b_2
+ 82%|████████▏ | 2018/2465 [34:08<02:28,  3.00it/s]test all pooling
+train_12534_a_2
+2026-05-12 23:29:37,430 - INFO - Processing batch 2020
+test all pooling
+train_6305_a_2
+ 82%|████████▏ | 2020/2465 [34:10<03:50,  1.93it/s]test all pooling
+train_6093_a_2
+test all pooling
+train_10245_a_1
+ 82%|████████▏ | 2022/2465 [34:10<02:44,  2.69it/s]test all pooling
+train_3580_a_2
+ 82%|████████▏ | 2023/2465 [34:10<02:21,  3.11it/s]test all pooling
+train_2300_a_1
+ 82%|████████▏ | 2024/2465 [34:10<02:01,  3.64it/s]test all pooling
+train_12159_b_1
+ 82%|████████▏ | 2025/2465 [34:10<01:43,  4.24it/s]test all pooling
+train_11199_a_2
+ 82%|████████▏ | 2026/2465 [34:11<02:37,  2.78it/s]test all pooling
+train_2228_a_2
+test all pooling
+train_2759_a_1
+ 82%|████████▏ | 2028/2465 [34:12<02:44,  2.65it/s]test all pooling
+train_10509_a_1
+ 82%|████████▏ | 2029/2465 [34:12<02:21,  3.08it/s]2026-05-12 23:29:39,744 - INFO - Processing batch 2030
+test all pooling
+train_11093_a_2
+ 82%|████████▏ | 2030/2465 [34:12<02:00,  3.60it/s]test all pooling
+train_2226_a_1
+ 82%|████████▏ | 2031/2465 [34:12<01:42,  4.24it/s]test all pooling
+train_8092_a_2
+ 82%|████████▏ | 2032/2465 [34:12<01:28,  4.89it/s]test all pooling
+train_7339_a_1
+ 82%|████████▏ | 2033/2465 [34:12<01:17,  5.58it/s]test all pooling
+train_595_a_1
+ 83%|████████▎ | 2034/2465 [34:13<03:02,  2.36it/s]test all pooling
+train_6172_a_2
+test all pooling
+train_18457_a_1
+ 83%|████████▎ | 2036/2465 [34:14<03:11,  2.24it/s]test all pooling
+train_5198_b_2
+test all pooling
+train_5198_a_1
+ 83%|████████▎ | 2038/2465 [34:15<02:11,  3.25it/s]test all pooling
+train_11901_a_2
+ 83%|████████▎ | 2039/2465 [34:15<01:51,  3.81it/s]2026-05-12 23:29:42,495 - INFO - Processing batch 2040
+test all pooling
+train_2900_a_2
+test all pooling
+train_7557_a_1
+ 83%|████████▎ | 2041/2465 [34:15<01:52,  3.77it/s]test all pooling
+train_11829_b_1
+test all pooling
+train_1436_a_2
+ 83%|████████▎ | 2043/2465 [34:16<01:32,  4.57it/s]test all pooling
+train_13292_a_2
+ 83%|████████▎ | 2044/2465 [34:31<22:58,  3.27s/it]test all pooling
+train_5849_a_2
+test all pooling
+train_6970_b_2
+ 83%|████████▎ | 2046/2465 [34:31<14:41,  2.10s/it]test all pooling
+train_6970_a_2
+test all pooling
+train_1344_a_2
+ 83%|████████▎ | 2048/2465 [34:31<09:47,  1.41s/it]test all pooling
+train_7985_a_2
+ 83%|████████▎ | 2049/2465 [35:01<48:03,  6.93s/it]2026-05-12 23:30:28,416 - INFO - Processing batch 2050
+test all pooling
+train_5706_a_2
+2026-05-12 23:30:28,494 - INFO - Saving interim results for 2050 samples
+2026-05-12 23:30:28,496 - INFO - Saved interim results for 2050 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_8103_a_1
+ 83%|████████▎ | 2051/2465 [35:01<30:49,  4.47s/it]test all pooling
+train_8130_a_2
+test all pooling
+train_6590_a_2
+ 83%|████████▎ | 2053/2465 [35:13<34:48,  5.07s/it]test all pooling
+train_290_a_3
+test all pooling
+train_7343_a_2
+ 83%|████████▎ | 2055/2465 [35:13<23:30,  3.44s/it]test all pooling
+train_1042_a_2
+test all pooling
+train_5699_a_2
+ 83%|████████▎ | 2057/2465 [35:14<16:07,  2.37s/it]test all pooling
+train_2282_a_2
+test all pooling
+train_122_a_1
+ 84%|████████▎ | 2059/2465 [35:14<11:12,  1.66s/it] 84%|████████▎ | 2059/2465 [35:25<11:12,  1.66s/it]2026-05-12 23:31:08,600 - INFO - Processing batch 2060
+test all pooling
+train_122_b_1
+ 84%|████████▎ | 2060/2465 [35:41<42:33,  6.30s/it]test all pooling
+train_122_c_1
+test all pooling
+train_13075_a_2
+ 84%|████████▎ | 2062/2465 [35:41<28:00,  4.17s/it]test all pooling
+train_6166_a_2
+test all pooling
+train_1855_a_1
+ 84%|████████▎ | 2064/2465 [35:41<18:53,  2.83s/it]test all pooling
+train_15455_a_2
+test all pooling
+train_1693_b_1
+ 84%|████████▍ | 2066/2465 [35:53<25:11,  3.79s/it]test all pooling
+train_256_a_2
+test all pooling
+train_6577_a_2
+ 84%|████████▍ | 2068/2465 [36:04<28:29,  4.31s/it]test all pooling
+train_10401_a_1
+2026-05-12 23:31:31,645 - INFO - Processing batch 2070
+test all pooling
+train_1544_a_1
+ 84%|████████▍ | 2070/2465 [36:04<19:44,  3.00s/it]test all pooling
+train_1496_a_1
+test all pooling
+train_5853_a_1
+ 84%|████████▍ | 2072/2465 [36:04<13:46,  2.10s/it] 84%|████████▍ | 2072/2465 [36:15<13:46,  2.10s/it]test all pooling
+train_3576_a_2
+ 84%|████████▍ | 2073/2465 [36:30<41:52,  6.41s/it]test all pooling
+train_923_a_4
+test all pooling
+train_7966_a_1
+ 84%|████████▍ | 2075/2465 [36:30<27:42,  4.26s/it]test all pooling
+train_12251_b_2
+test all pooling
+train_12251_a_1
+ 84%|████████▍ | 2077/2465 [36:40<29:16,  4.53s/it]test all pooling
+train_247_a_2
+test all pooling
+train_2773_a_1
+ 84%|████████▍ | 2079/2465 [36:41<20:01,  3.11s/it]2026-05-12 23:32:08,413 - INFO - Processing batch 2080
+test all pooling
+train_13479_j_1
+ 84%|████████▍ | 2079/2465 [36:55<20:01,  3.11s/it]test all pooling
+train_13479_e_1
+ 84%|████████▍ | 2081/2465 [37:01<33:42,  5.27s/it]test all pooling
+train_10865_a_2
+test all pooling
+train_7501_b_2
+ 85%|████████▍ | 2083/2465 [37:01<23:20,  3.67s/it]test all pooling
+train_635_a_1
+test all pooling
+train_7346_b_2
+ 85%|████████▍ | 2085/2465 [37:01<16:16,  2.57s/it]test all pooling
+train_5960_a_2
+test all pooling
+train_2249_a_1
+ 85%|████████▍ | 2087/2465 [37:01<11:24,  1.81s/it]test all pooling
+train_7254_a_2
+ 85%|████████▍ | 2087/2465 [37:15<11:24,  1.81s/it]test all pooling
+train_1471_b_5
+ 85%|████████▍ | 2089/2465 [37:38<43:19,  6.91s/it]2026-05-12 23:33:06,228 - INFO - Processing batch 2090
+test all pooling
+train_1471_a_1
+test all pooling
+train_12011_a_1
+ 85%|████████▍ | 2091/2465 [37:52<43:05,  6.91s/it]test all pooling
+train_7118_a_2
+test all pooling
+train_1534_a_2
+ 85%|████████▍ | 2093/2465 [37:52<30:05,  4.85s/it]test all pooling
+train_1422_b_1
+test all pooling
+train_1422_c_2
+ 85%|████████▍ | 2095/2465 [37:53<21:03,  3.41s/it]test all pooling
+train_2287_a_2
+test all pooling
+train_2287_b_2
+ 85%|████████▌ | 2097/2465 [37:53<14:47,  2.41s/it]test all pooling
+train_12278_a_1
+ 85%|████████▌ | 2097/2465 [38:05<14:47,  2.41s/it]test all pooling
+train_3709_a_2
+ 85%|████████▌ | 2099/2465 [38:29<43:41,  7.16s/it]2026-05-12 23:33:56,965 - INFO - Processing batch 2100
+test all pooling
+train_758_a_2
+2026-05-12 23:33:57,037 - INFO - Saving interim results for 2100 samples
+2026-05-12 23:33:57,039 - INFO - Saved interim results for 2100 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_5756_a_2
+ 85%|████████▌ | 2101/2465 [38:29<30:33,  5.04s/it]test all pooling
+train_2867_a_2
+test all pooling
+train_10187_a_1
+ 85%|████████▌ | 2103/2465 [38:30<21:24,  3.55s/it]test all pooling
+train_11463_c_2
+test all pooling
+train_1521_a_1
+ 85%|████████▌ | 2105/2465 [38:30<15:02,  2.51s/it]test all pooling
+train_7107_c_2
+ 85%|████████▌ | 2105/2465 [38:45<15:02,  2.51s/it]test all pooling
+train_5645_a_1
+ 85%|████████▌ | 2107/2465 [38:52<30:08,  5.05s/it]test all pooling
+train_2361_a_2
+test all pooling
+train_1318_a_1
+ 86%|████████▌ | 2109/2465 [38:52<21:06,  3.56s/it]2026-05-12 23:34:19,562 - INFO - Processing batch 2110
+test all pooling
+train_2841_a_1
+test all pooling
+train_2841_b_2
+ 86%|████████▌ | 2111/2465 [38:52<14:49,  2.51s/it]test all pooling
+train_4607_b_1
+test all pooling
+train_1123_a_2
+ 86%|████████▌ | 2113/2465 [38:52<10:26,  1.78s/it]test all pooling
+train_11178_a_1
+ 86%|████████▌ | 2113/2465 [39:05<10:26,  1.78s/it]test all pooling
+train_10754_e_2
+ 86%|████████▌ | 2115/2465 [39:09<22:23,  3.84s/it]test all pooling
+train_10581_a_2
+test all pooling
+train_3770_a_2
+ 86%|████████▌ | 2117/2465 [39:11<16:56,  2.92s/it]test all pooling
+train_1421_a_1
+test all pooling
+train_1734_a_1
+ 86%|████████▌ | 2119/2465 [39:11<11:56,  2.07s/it]2026-05-12 23:34:38,877 - INFO - Processing batch 2120
+test all pooling
+train_7507_b_2
+test all pooling
+train_5571_a_2
+ 86%|████████▌ | 2121/2465 [39:11<08:27,  1.48s/it]test all pooling
+train_5571_b_1
+test all pooling
+train_13718_d_1
+ 86%|████████▌ | 2123/2465 [39:12<06:53,  1.21s/it]test all pooling
+train_13718_g_3
+test all pooling
+train_6843_a_2
+ 86%|████████▌ | 2125/2465 [39:14<05:54,  1.04s/it]test all pooling
+train_1385_a_1
+test all pooling
+train_6925_a_2
+ 86%|████████▋ | 2127/2465 [39:14<04:16,  1.32it/s]test all pooling
+train_1867_a_2
+test all pooling
+train_3972_a_2
+ 86%|████████▋ | 2129/2465 [39:14<03:07,  1.79it/s]2026-05-12 23:34:41,901 - INFO - Processing batch 2130
+test all pooling
+train_1312_a_2
+test all pooling
+train_13481_a_2
+ 86%|████████▋ | 2131/2465 [39:16<03:22,  1.65it/s]test all pooling
+train_11097_a_1
+test all pooling
+train_2352_a_2
+ 87%|████████▋ | 2133/2465 [39:17<03:26,  1.61it/s]test all pooling
+train_5495_a_1
+test all pooling
+train_6750_a_2
+ 87%|████████▋ | 2135/2465 [39:17<02:31,  2.18it/s]test all pooling
+train_5908_a_1
+test all pooling
+train_5235_a_2
+ 87%|████████▋ | 2137/2465 [39:17<01:53,  2.89it/s]test all pooling
+train_2330_a_2
+test all pooling
+train_1276_a_2
+ 87%|████████▋ | 2139/2465 [39:18<01:51,  2.93it/s]2026-05-12 23:34:45,640 - INFO - Processing batch 2140
+test all pooling
+train_70_a_1
+test all pooling
+train_7488_f_2
+ 87%|████████▋ | 2141/2465 [39:19<02:14,  2.41it/s]test all pooling
+train_7488_h_2
+test all pooling
+train_1500_a_1
+ 87%|████████▋ | 2143/2465 [39:19<01:41,  3.16it/s]test all pooling
+train_196_a_2
+test all pooling
+train_7902_a_2
+ 87%|████████▋ | 2145/2465 [39:19<01:19,  4.02it/s]test all pooling
+train_2417_b_1
+ 87%|████████▋ | 2146/2465 [39:19<01:11,  4.45it/s]test all pooling
+train_2417_a_1
+ 87%|████████▋ | 2147/2465 [39:21<02:05,  2.53it/s]test all pooling
+train_10006_b_2
+test all pooling
+train_13046_a_2
+ 87%|████████▋ | 2149/2465 [39:23<03:28,  1.52it/s]2026-05-12 23:34:50,591 - INFO - Processing batch 2150
+test all pooling
+train_913_a_1
+2026-05-12 23:34:50,674 - INFO - Saving interim results for 2150 samples
+2026-05-12 23:34:50,676 - INFO - Saved interim results for 2150 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_3871_a_2
+ 87%|████████▋ | 2151/2465 [39:23<02:25,  2.15it/s]test all pooling
+train_7096_a_2
+test all pooling
+train_12847_b_1
+ 87%|████████▋ | 2153/2465 [39:23<01:45,  2.94it/s]test all pooling
+train_375_a_1
+test all pooling
+train_3610_a_2
+ 87%|████████▋ | 2155/2465 [39:23<01:21,  3.81it/s]test all pooling
+train_5471_a_2
+test all pooling
+train_5111_a_2
+ 88%|████████▊ | 2157/2465 [39:25<02:17,  2.24it/s]test all pooling
+train_2951_a_2
+test all pooling
+train_4123_a_2
+ 88%|████████▊ | 2159/2465 [39:25<01:43,  2.96it/s]2026-05-12 23:34:53,029 - INFO - Processing batch 2160
+test all pooling
+train_7187_b_2
+test all pooling
+train_2256_a_2
+ 88%|████████▊ | 2161/2465 [39:25<01:19,  3.83it/s]test all pooling
+train_5377_a_2
+ 88%|████████▊ | 2162/2465 [39:26<01:14,  4.04it/s]test all pooling
+train_1100_a_2
+test all pooling
+train_16997_a_1
+ 88%|████████▊ | 2164/2465 [39:26<00:57,  5.20it/s]test all pooling
+train_10647_a_1
+ 88%|████████▊ | 2165/2465 [39:30<05:10,  1.04s/it]test all pooling
+train_4944_a_1
+test all pooling
+train_6687_a_1
+ 88%|████████▊ | 2167/2465 [39:30<03:26,  1.44it/s]test all pooling
+train_6687_b_2
+test all pooling
+train_5857_a_2
+ 88%|████████▊ | 2169/2465 [39:31<02:24,  2.06it/s]2026-05-12 23:34:58,399 - INFO - Processing batch 2170
+test all pooling
+train_10875_a_2
+test all pooling
+train_6196_a_2
+ 88%|████████▊ | 2171/2465 [39:31<01:44,  2.82it/s]test all pooling
+train_10075_a_2
+test all pooling
+train_963_a_2
+ 88%|████████▊ | 2173/2465 [39:33<02:55,  1.67it/s]test all pooling
+train_12417_a_1
+test all pooling
+train_7436_a_1
+ 88%|████████▊ | 2175/2465 [39:33<02:08,  2.26it/s]test all pooling
+train_1438_d_2
+test all pooling
+train_1438_c_2
+ 88%|████████▊ | 2177/2465 [39:33<01:36,  3.00it/s]test all pooling
+train_6210_a_1
+test all pooling
+train_6210_b_2
+ 88%|████████▊ | 2179/2465 [39:34<01:15,  3.81it/s]2026-05-12 23:35:01,400 - INFO - Processing batch 2180
+test all pooling
+train_6620_a_2
+ 88%|████████▊ | 2180/2465 [39:34<01:06,  4.26it/s]test all pooling
+train_493_a_1
+ 88%|████████▊ | 2181/2465 [39:35<02:25,  1.95it/s]test all pooling
+train_6199_a_2
+ 89%|████████▊ | 2182/2465 [39:35<01:59,  2.37it/s]test all pooling
+train_5634_c_2
+test all pooling
+train_5634_d_1
+ 89%|████████▊ | 2184/2465 [39:36<01:21,  3.45it/s]test all pooling
+train_5634_a_1
+test all pooling
+train_1601_a_1
+ 89%|████████▊ | 2186/2465 [39:36<01:00,  4.61it/s]test all pooling
+train_10998_a_1
+test all pooling
+train_5680_a_2
+ 89%|████████▉ | 2188/2465 [39:36<00:47,  5.85it/s]test all pooling
+train_5680_b_2
+2026-05-12 23:35:06,147 - INFO - Processing batch 2190
+test all pooling
+train_10097_a_1
+ 89%|████████▉ | 2190/2465 [39:38<02:25,  1.90it/s]test all pooling
+train_5554_a_1
+test all pooling
+train_7190_a_1
+ 89%|████████▉ | 2192/2465 [39:39<01:46,  2.57it/s]test all pooling
+train_7526_a_1
+ 89%|████████▉ | 2193/2465 [39:39<01:31,  2.97it/s]test all pooling
+train_1731_a_2
+test all pooling
+train_1731_b_2
+ 89%|████████▉ | 2195/2465 [39:39<01:08,  3.95it/s]test all pooling
+train_6564_a_1
+ 89%|████████▉ | 2196/2465 [39:39<01:00,  4.48it/s]test all pooling
+train_19003_a_2
+ 89%|████████▉ | 2197/2465 [39:41<03:12,  1.39it/s]test all pooling
+train_19003_a_1
+test all pooling
+train_1942_a_1
+ 89%|████████▉ | 2199/2465 [39:42<02:06,  2.11it/s]2026-05-12 23:35:09,466 - INFO - Processing batch 2200
+test all pooling
+train_7790_a_1
+2026-05-12 23:35:09,556 - INFO - Saving interim results for 2200 samples
+2026-05-12 23:35:09,559 - INFO - Saved interim results for 2200 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 89%|████████▉ | 2200/2465 [39:42<01:44,  2.53it/s]test all pooling
+train_224_a_2
+ 89%|████████▉ | 2201/2465 [39:42<01:27,  3.02it/s]test all pooling
+train_6670_a_1
+test all pooling
+train_622_a_2
+ 89%|████████▉ | 2203/2465 [39:42<01:01,  4.29it/s]test all pooling
+train_10702_a_1
+test all pooling
+train_4255_a_2
+ 89%|████████▉ | 2205/2465 [39:46<03:39,  1.18it/s]test all pooling
+train_7858_a_2
+test all pooling
+train_7719_b_2
+ 90%|████████▉ | 2207/2465 [39:46<02:30,  1.71it/s]test all pooling
+train_8079_a_1
+test all pooling
+train_6881_a_1
+ 90%|████████▉ | 2209/2465 [39:46<01:47,  2.38it/s]2026-05-12 23:35:14,033 - INFO - Processing batch 2210
+test all pooling
+train_6310_a_2
+test all pooling
+train_1683_a_2
+ 90%|████████▉ | 2211/2465 [39:46<01:19,  3.19it/s]test all pooling
+train_11172_a_1
+test all pooling
+train_451_a_1
+ 90%|████████▉ | 2213/2465 [39:49<02:44,  1.53it/s]test all pooling
+train_10461_b_2
+test all pooling
+train_5572_a_2
+ 90%|████████▉ | 2215/2465 [39:49<01:59,  2.08it/s]test all pooling
+train_9574_a_1
+ 90%|████████▉ | 2216/2465 [39:50<01:43,  2.42it/s]test all pooling
+train_3818_a_1
+ 90%|████████▉ | 2217/2465 [39:50<01:26,  2.86it/s]test all pooling
+train_2913_c_1
+test all pooling
+train_2913_b_2
+ 90%|█████████ | 2219/2465 [39:50<01:02,  3.94it/s]2026-05-12 23:35:17,583 - INFO - Processing batch 2220
+test all pooling
+train_2913_a_1
+ 90%|█████████ | 2220/2465 [39:50<00:54,  4.50it/s]test all pooling
+train_1168_a_2
+ 90%|█████████ | 2221/2465 [39:53<03:28,  1.17it/s]test all pooling
+train_252_b_2
+test all pooling
+train_5371_a_1
+ 90%|█████████ | 2223/2465 [39:53<02:13,  1.81it/s]test all pooling
+train_6962_a_2
+test all pooling
+train_37_a_2
+ 90%|█████████ | 2225/2465 [39:53<01:32,  2.59it/s]test all pooling
+train_6904_a_2
+test all pooling
+train_17658_a_2
+ 90%|█████████ | 2227/2465 [39:53<01:08,  3.49it/s]test all pooling
+train_366_a_2
+test all pooling
+train_6330_a_2
+ 90%|█████████ | 2229/2465 [39:56<02:11,  1.80it/s]2026-05-12 23:35:23,435 - INFO - Processing batch 2230
+test all pooling
+train_7159_a_1
+ 90%|█████████ | 2230/2465 [39:56<01:50,  2.12it/s]test all pooling
+train_11418_a_2
+ 91%|█████████ | 2231/2465 [39:56<01:31,  2.55it/s]test all pooling
+train_11418_d_2
+ 91%|█████████ | 2232/2465 [39:56<01:15,  3.07it/s]test all pooling
+train_11418_b_2
+ 91%|█████████ | 2233/2465 [39:56<01:02,  3.70it/s]test all pooling
+train_6829_a_2
+test all pooling
+train_7105_b_1
+ 91%|█████████ | 2235/2465 [39:56<00:45,  5.05it/s]test all pooling
+train_12725_a_1
+ 91%|█████████ | 2236/2465 [39:56<00:42,  5.39it/s]test all pooling
+train_1714_a_2
+ 91%|█████████ | 2237/2465 [40:19<21:49,  5.74s/it]test all pooling
+train_18814_a_1
+test all pooling
+train_1064_a_1
+ 91%|█████████ | 2239/2465 [40:19<12:48,  3.40s/it]2026-05-12 23:35:47,047 - INFO - Processing batch 2240
+test all pooling
+train_1253_a_1
+test all pooling
+train_6440_a_1
+ 91%|█████████ | 2241/2465 [40:19<08:05,  2.17s/it]test all pooling
+train_10664_a_1
+test all pooling
+train_12758_a_2
+ 91%|█████████ | 2243/2465 [40:20<05:20,  1.44s/it] 91%|█████████ | 2243/2465 [40:35<05:20,  1.44s/it]test all pooling
+train_6559_a_2
+ 91%|█████████ | 2244/2465 [40:41<19:47,  5.37s/it]test all pooling
+train_7204_a_2
+ 91%|█████████ | 2245/2465 [40:43<16:47,  4.58s/it]test all pooling
+train_2402_a_2
+test all pooling
+train_1269_a_2
+ 91%|█████████ | 2247/2465 [40:43<10:18,  2.84s/it]test all pooling
+train_5098_a_1
+test all pooling
+train_3675_a_1
+ 91%|█████████ | 2249/2465 [40:48<10:06,  2.81s/it]2026-05-12 23:36:16,045 - INFO - Processing batch 2250
+test all pooling
+train_8088_a_2
+2026-05-12 23:36:16,111 - INFO - Saving interim results for 2250 samples
+2026-05-12 23:36:16,113 - INFO - Saved interim results for 2250 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_11555_a_2
+ 91%|█████████▏| 2251/2465 [40:48<06:44,  1.89s/it]test all pooling
+train_13591_a_1
+test all pooling
+train_922_a_2
+ 91%|█████████▏| 2253/2465 [40:49<04:35,  1.30s/it]test all pooling
+train_8143_a_1
+test all pooling
+train_11423_a_1
+ 91%|█████████▏| 2255/2465 [40:49<03:11,  1.10it/s]test all pooling
+train_900_a_2
+ 91%|█████████▏| 2255/2465 [41:05<03:11,  1.10it/s]test all pooling
+train_7101_a_2
+ 92%|█████████▏| 2257/2465 [41:27<23:06,  6.66s/it]test all pooling
+train_1756_a_1
+test all pooling
+train_1686_a_1
+ 92%|█████████▏| 2259/2465 [41:28<15:54,  4.64s/it]2026-05-12 23:36:55,405 - INFO - Processing batch 2260
+test all pooling
+train_16763_a_1
+test all pooling
+train_6745_a_2
+ 92%|█████████▏| 2261/2465 [41:28<11:01,  3.24s/it]test all pooling
+train_11931_e_2
+test all pooling
+train_2439_a_2
+ 92%|█████████▏| 2263/2465 [41:28<07:41,  2.28s/it]test all pooling
+train_136_a_2
+test all pooling
+train_1045_a_1
+ 92%|█████████▏| 2265/2465 [41:30<06:12,  1.86s/it]test all pooling
+train_6568_a_1
+test all pooling
+train_5823_a_1
+ 92%|█████████▏| 2267/2465 [41:30<04:22,  1.33s/it]test all pooling
+train_560_a_1
+test all pooling
+train_12344_a_1
+ 92%|█████████▏| 2269/2465 [41:30<03:09,  1.03it/s]2026-05-12 23:36:57,986 - INFO - Processing batch 2270
+test all pooling
+train_1857_a_1
+test all pooling
+train_697_a_1
+ 92%|█████████▏| 2271/2465 [41:30<02:17,  1.42it/s]test all pooling
+train_177_a_2
+ 92%|█████████▏| 2272/2465 [41:31<01:56,  1.65it/s]test all pooling
+train_7632_a_1
+ 92%|█████████▏| 2273/2465 [41:32<02:26,  1.31it/s]test all pooling
+train_5350_a_1
+test all pooling
+train_6621_a_1
+ 92%|█████████▏| 2275/2465 [41:32<01:38,  1.93it/s]test all pooling
+train_6254_a_2
+test all pooling
+train_7506_a_1
+ 92%|█████████▏| 2277/2465 [41:32<01:14,  2.54it/s]test all pooling
+train_293_a_1
+test all pooling
+train_5758_a_1
+ 92%|█████████▏| 2279/2465 [41:33<00:54,  3.41it/s]2026-05-12 23:37:01,430 - INFO - Processing batch 2280
+test all pooling
+train_2825_a_2
+ 92%|█████████▏| 2280/2465 [41:34<01:24,  2.18it/s]test all pooling
+train_466_a_2
+ 93%|█████████▎| 2281/2465 [41:34<01:15,  2.44it/s]test all pooling
+train_2372_a_1
+test all pooling
+train_6959_a_2
+ 93%|█████████▎| 2283/2465 [41:34<00:52,  3.48it/s]test all pooling
+train_4377_a_1
+ 93%|█████████▎| 2284/2465 [41:35<01:08,  2.64it/s]test all pooling
+train_841_a_1
+test all pooling
+train_6784_b_1
+ 93%|█████████▎| 2286/2465 [41:35<00:47,  3.76it/s]test all pooling
+train_1384_c_2
+ 93%|█████████▎| 2287/2465 [41:36<01:01,  2.88it/s]test all pooling
+train_1384_b_2
+ 93%|█████████▎| 2288/2465 [41:57<15:17,  5.18s/it]test all pooling
+train_6371_a_1
+2026-05-12 23:37:24,625 - INFO - Processing batch 2290
+test all pooling
+train_1610_a_2
+ 93%|█████████▎| 2290/2465 [41:57<09:09,  3.14s/it]test all pooling
+train_2056_a_2
+test all pooling
+train_6506_b_1
+ 93%|█████████▎| 2292/2465 [41:57<05:50,  2.03s/it]test all pooling
+train_6506_a_1
+test all pooling
+train_5227_a_1
+ 93%|█████████▎| 2294/2465 [42:23<16:21,  5.74s/it]test all pooling
+train_13773_a_1
+test all pooling
+train_7935_a_2
+ 93%|█████████▎| 2296/2465 [42:24<11:10,  3.97s/it]test all pooling
+train_10362_a_1
+test all pooling
+train_2276_a_2
+ 93%|█████████▎| 2298/2465 [42:24<07:35,  2.73s/it]test all pooling
+train_1094_a_1
+2026-05-12 23:37:51,577 - INFO - Processing batch 2300
+test all pooling
+train_7760_a_1
+2026-05-12 23:37:51,645 - INFO - Saving interim results for 2300 samples
+2026-05-12 23:37:51,648 - INFO - Saved interim results for 2300 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 93%|█████████▎| 2300/2465 [42:24<05:13,  1.90s/it]test all pooling
+train_3729_a_1
+ 93%|█████████▎| 2301/2465 [42:24<04:17,  1.57s/it]test all pooling
+train_14806_a_2
+ 93%|█████████▎| 2302/2465 [43:04<25:46,  9.49s/it]test all pooling
+train_11442_a_1
+test all pooling
+train_11956_a_1
+ 93%|█████████▎| 2304/2465 [43:04<16:05,  6.00s/it]test all pooling
+train_8183_a_1
+test all pooling
+train_6439_c_1
+ 94%|█████████▎| 2306/2465 [43:04<10:27,  3.95s/it]test all pooling
+train_6869_a_2
+test all pooling
+train_7878_a_2
+ 94%|█████████▎| 2308/2465 [43:04<06:58,  2.67s/it]test all pooling
+train_1009_a_2
+2026-05-12 23:38:35,341 - INFO - Processing batch 2310
+test all pooling
+train_6625_b_2
+ 94%|█████████▎| 2310/2465 [43:08<06:03,  2.34s/it]test all pooling
+train_6625_a_1
+test all pooling
+train_4451_a_1
+ 94%|█████████▍| 2312/2465 [43:08<04:19,  1.70s/it]test all pooling
+train_17368_a_2
+test all pooling
+train_13724_a_2
+ 94%|█████████▍| 2314/2465 [43:08<03:01,  1.20s/it]test all pooling
+train_5456_a_1
+test all pooling
+train_721_a_1
+ 94%|█████████▍| 2316/2465 [43:09<02:08,  1.16it/s]test all pooling
+train_7321_a_1
+ 94%|█████████▍| 2317/2465 [43:09<01:47,  1.38it/s]test all pooling
+train_2770_a_1
+ 94%|█████████▍| 2318/2465 [43:10<01:55,  1.27it/s]test all pooling
+train_7260_a_2
+ 94%|█████████▍| 2319/2465 [43:10<01:32,  1.58it/s]2026-05-12 23:38:37,797 - INFO - Processing batch 2320
+test all pooling
+train_7049_a_2
+ 94%|█████████▍| 2320/2465 [43:10<01:19,  1.82it/s]test all pooling
+train_6921_a_1
+test all pooling
+train_11395_a_1
+ 94%|█████████▍| 2322/2465 [43:10<00:51,  2.78it/s]test all pooling
+train_7770_a_1
+test all pooling
+train_7979_a_1
+ 94%|█████████▍| 2324/2465 [43:10<00:36,  3.85it/s]test all pooling
+train_327_a_2
+ 94%|█████████▍| 2325/2465 [43:11<00:32,  4.34it/s]test all pooling
+train_7920_a_2
+ 94%|█████████▍| 2326/2465 [43:30<10:30,  4.54s/it]test all pooling
+train_7067_a_2
+test all pooling
+train_12233_a_1
+ 94%|█████████▍| 2328/2465 [43:36<09:12,  4.03s/it]test all pooling
+train_11065_a_2
+2026-05-12 23:39:03,955 - INFO - Processing batch 2330
+test all pooling
+train_7875_a_1
+ 95%|█████████▍| 2330/2465 [43:36<05:51,  2.60s/it]test all pooling
+train_8174_a_1
+test all pooling
+train_623_a_2
+ 95%|█████████▍| 2332/2465 [43:36<03:51,  1.74s/it]test all pooling
+train_2377_a_2
+ 95%|█████████▍| 2333/2465 [43:51<09:22,  4.26s/it]test all pooling
+train_1700_a_1
+ 95%|█████████▍| 2334/2465 [44:00<11:42,  5.36s/it]test all pooling
+train_12127_a_1
+test all pooling
+train_13177_a_2
+ 95%|█████████▍| 2336/2465 [44:01<07:27,  3.47s/it]test all pooling
+train_3278_a_2
+test all pooling
+train_2504_a_2
+ 95%|█████████▍| 2338/2465 [44:01<04:48,  2.27s/it]test all pooling
+train_7402_a_2
+2026-05-12 23:39:29,242 - INFO - Processing batch 2340
+test all pooling
+train_233_a_1
+ 95%|█████████▍| 2340/2465 [44:02<03:12,  1.54s/it]test all pooling
+train_5597_a_2
+test all pooling
+train_1958_b_2
+ 95%|█████████▌| 2342/2465 [44:21<08:32,  4.17s/it]test all pooling
+train_1958_a_2
+test all pooling
+train_6145_a_1
+ 95%|█████████▌| 2344/2465 [44:40<11:53,  5.90s/it]test all pooling
+train_13248_a_1
+test all pooling
+train_5211_a_2
+ 95%|█████████▌| 2346/2465 [44:40<08:06,  4.09s/it]test all pooling
+train_1039_a_1
+test all pooling
+train_8670_a_1
+ 95%|█████████▌| 2348/2465 [44:40<05:34,  2.86s/it]test all pooling
+train_7821_a_2
+2026-05-12 23:40:08,350 - INFO - Processing batch 2350
+test all pooling
+train_18123_a_2
+2026-05-12 23:40:08,420 - INFO - Saving interim results for 2350 samples
+2026-05-12 23:40:08,422 - INFO - Saved interim results for 2350 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+ 95%|█████████▌| 2350/2465 [44:41<03:51,  2.01s/it]test all pooling
+train_13492_b_2
+test all pooling
+train_6757_a_1
+ 95%|█████████▌| 2352/2465 [44:42<03:09,  1.68s/it]test all pooling
+train_2163_b_1
+ 95%|█████████▌| 2353/2465 [44:43<02:36,  1.40s/it]test all pooling
+train_2163_a_1
+test all pooling
+train_6281_a_2
+ 96%|█████████▌| 2355/2465 [44:43<01:45,  1.04it/s]test all pooling
+train_279_a_2
+ 96%|█████████▌| 2356/2465 [44:43<01:26,  1.26it/s]test all pooling
+train_10159_a_2
+ 96%|█████████▌| 2357/2465 [44:44<01:25,  1.27it/s]test all pooling
+train_956_a_1
+test all pooling
+train_2403_a_1
+ 96%|█████████▌| 2359/2465 [44:44<00:55,  1.92it/s]2026-05-12 23:40:11,633 - INFO - Processing batch 2360
+test all pooling
+train_1661_b_1
+test all pooling
+train_6008_a_1
+ 96%|█████████▌| 2361/2465 [44:44<00:38,  2.71it/s]test all pooling
+train_5628_a_2
+ 96%|█████████▌| 2362/2465 [44:44<00:32,  3.18it/s]test all pooling
+train_17169_a_2
+ 96%|█████████▌| 2363/2465 [44:44<00:27,  3.72it/s]test all pooling
+train_2075_b_1
+ 96%|█████████▌| 2364/2465 [44:44<00:23,  4.27it/s]test all pooling
+train_2420_a_2
+ 96%|█████████▌| 2365/2465 [44:47<01:22,  1.21it/s]test all pooling
+train_6498_c_1
+ 96%|█████████▌| 2366/2465 [44:47<01:02,  1.58it/s]test all pooling
+train_6498_a_2
+ 96%|█████████▌| 2367/2465 [44:47<00:47,  2.05it/s]test all pooling
+train_5871_a_1
+ 96%|█████████▌| 2368/2465 [44:47<00:36,  2.63it/s]test all pooling
+train_735_a_1
+ 96%|█████████▌| 2369/2465 [44:47<00:29,  3.28it/s]2026-05-12 23:40:15,133 - INFO - Processing batch 2370
+test all pooling
+train_16891_a_1
+ 96%|█████████▌| 2370/2465 [44:47<00:23,  3.98it/s]test all pooling
+train_16891_a_2
+ 96%|█████████▌| 2371/2465 [44:48<00:20,  4.65it/s]test all pooling
+train_19892_a_2
+ 96%|█████████▌| 2372/2465 [44:48<00:17,  5.23it/s]test all pooling
+train_1481_a_1
+ 96%|█████████▋| 2373/2465 [44:49<00:52,  1.74it/s]test all pooling
+train_2234_a_1
+ 96%|█████████▋| 2374/2465 [44:49<00:39,  2.28it/s]test all pooling
+train_2234_b_2
+test all pooling
+train_6611_b_1
+ 96%|█████████▋| 2376/2465 [44:50<00:25,  3.49it/s]test all pooling
+train_10968_a_2
+ 96%|█████████▋| 2377/2465 [44:50<00:26,  3.36it/s]test all pooling
+train_1056_a_2
+test all pooling
+train_6760_a_2
+ 97%|█████████▋| 2379/2465 [44:50<00:23,  3.72it/s]2026-05-12 23:40:18,111 - INFO - Processing batch 2380
+test all pooling
+train_1286_a_2
+ 97%|█████████▋| 2380/2465 [44:50<00:19,  4.26it/s]test all pooling
+train_1594_a_1
+ 97%|█████████▋| 2381/2465 [44:51<00:33,  2.53it/s]test all pooling
+train_12616_a_1
+test all pooling
+train_3058_a_2
+ 97%|█████████▋| 2383/2465 [44:52<00:22,  3.66it/s]test all pooling
+train_6432_a_2
+ 97%|█████████▋| 2384/2465 [44:52<00:19,  4.19it/s]test all pooling
+train_6721_b_1
+ 97%|█████████▋| 2385/2465 [44:52<00:29,  2.72it/s]test all pooling
+train_2918_a_2
+ 97%|█████████▋| 2386/2465 [44:53<00:24,  3.28it/s]test all pooling
+train_634_a_2
+test all pooling
+train_18346_a_3
+ 97%|█████████▋| 2388/2465 [44:53<00:17,  4.45it/s]test all pooling
+train_10263_a_1
+ 97%|█████████▋| 2389/2465 [44:53<00:21,  3.50it/s]2026-05-12 23:40:21,460 - INFO - Processing batch 2390
+test all pooling
+train_7142_e_2
+ 97%|█████████▋| 2390/2465 [44:54<00:25,  2.89it/s]test all pooling
+train_7142_b_1
+ 97%|█████████▋| 2391/2465 [44:54<00:20,  3.54it/s]test all pooling
+train_2721_a_1
+ 97%|█████████▋| 2392/2465 [44:54<00:21,  3.43it/s]test all pooling
+train_11746_a_1
+ 97%|█████████▋| 2393/2465 [44:58<01:32,  1.28s/it]test all pooling
+train_12835_a_2
+test all pooling
+train_5296_a_2
+ 97%|█████████▋| 2395/2465 [44:58<00:52,  1.33it/s]test all pooling
+train_5296_b_2
+test all pooling
+train_8107_b_1
+ 97%|█████████▋| 2397/2465 [44:58<00:33,  2.01it/s]test all pooling
+train_8107_a_1
+test all pooling
+train_16588_a_2
+ 97%|█████████▋| 2399/2465 [44:59<00:23,  2.85it/s]2026-05-12 23:40:26,367 - INFO - Processing batch 2400
+test all pooling
+train_2872_a_1
+2026-05-12 23:40:26,444 - INFO - Saving interim results for 2400 samples
+2026-05-12 23:40:26,446 - INFO - Saved interim results for 2400 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_2380_a_1
+ 97%|█████████▋| 2401/2465 [45:00<00:34,  1.85it/s]test all pooling
+train_5404_a_2
+test all pooling
+train_5404_b_2
+ 97%|█████████▋| 2403/2465 [45:01<00:24,  2.54it/s]test all pooling
+train_1696_a_2
+test all pooling
+train_2986_c_2
+ 98%|█████████▊| 2405/2465 [45:01<00:18,  3.33it/s]test all pooling
+train_2986_d_2
+test all pooling
+train_6629_a_1
+ 98%|█████████▊| 2407/2465 [45:01<00:13,  4.17it/s]test all pooling
+train_13825_a_2
+ 98%|█████████▊| 2408/2465 [45:01<00:12,  4.59it/s]test all pooling
+train_39_c_2
+ 98%|█████████▊| 2409/2465 [45:02<00:23,  2.34it/s]2026-05-12 23:40:30,135 - INFO - Processing batch 2410
+test all pooling
+train_2322_a_2
+test all pooling
+train_6807_a_1
+ 98%|█████████▊| 2411/2465 [45:03<00:16,  3.29it/s]test all pooling
+train_6723_a_2
+ 98%|█████████▊| 2412/2465 [45:03<00:13,  3.81it/s]test all pooling
+train_10841_a_1
+ 98%|█████████▊| 2413/2465 [45:03<00:12,  4.33it/s]test all pooling
+train_106_a_1
+ 98%|█████████▊| 2414/2465 [45:03<00:10,  4.95it/s]test all pooling
+train_7822_a_1
+ 98%|█████████▊| 2415/2465 [45:03<00:08,  5.66it/s]test all pooling
+train_10288_a_1
+ 98%|█████████▊| 2416/2465 [45:03<00:07,  6.37it/s]test all pooling
+train_2354_a_2
+ 98%|█████████▊| 2417/2465 [45:05<00:37,  1.29it/s]test all pooling
+train_7514_a_2
+test all pooling
+train_5165_b_2
+ 98%|█████████▊| 2419/2465 [45:06<00:21,  2.11it/s]2026-05-12 23:40:33,439 - INFO - Processing batch 2420
+test all pooling
+train_11480_c_2
+test all pooling
+train_11480_b_2
+ 98%|█████████▊| 2421/2465 [45:06<00:14,  3.06it/s]test all pooling
+train_1651_a_1
+test all pooling
+train_2405_a_1
+ 98%|█████████▊| 2423/2465 [45:06<00:10,  4.10it/s]test all pooling
+train_1263_b_2
+test all pooling
+train_7715_b_2
+ 98%|█████████▊| 2425/2465 [45:08<00:17,  2.29it/s]test all pooling
+train_10013_b_1
+test all pooling
+train_10013_a_1
+ 98%|█████████▊| 2427/2465 [45:08<00:12,  3.09it/s]test all pooling
+train_7237_a_1
+test all pooling
+train_19798_a_2
+ 99%|█████████▊| 2429/2465 [45:08<00:08,  4.00it/s]2026-05-12 23:40:35,808 - INFO - Processing batch 2430
+test all pooling
+train_7994_a_2
+test all pooling
+train_5283_a_1
+ 99%|█████████▊| 2431/2465 [45:08<00:06,  4.95it/s]test all pooling
+train_6408_a_2
+test all pooling
+train_5224_a_1
+ 99%|█████████▊| 2433/2465 [45:11<00:20,  1.57it/s]test all pooling
+train_10942_b_2
+ 99%|█████████▊| 2434/2465 [45:12<00:16,  1.85it/s]test all pooling
+train_1049_a_1
+test all pooling
+train_1933_a_1
+ 99%|█████████▉| 2436/2465 [45:12<00:11,  2.57it/s]test all pooling
+train_5772_a_2
+test all pooling
+train_11460_a_2
+ 99%|█████████▉| 2438/2465 [45:12<00:08,  3.37it/s]test all pooling
+train_720_a_1
+ 99%|█████████▉| 2439/2465 [45:13<00:11,  2.21it/s]2026-05-12 23:40:40,863 - INFO - Processing batch 2440
+test all pooling
+train_860_a_1
+test all pooling
+train_1181_a_2
+ 99%|█████████▉| 2441/2465 [45:14<00:10,  2.23it/s]test all pooling
+train_3452_a_2
+test all pooling
+train_5812_a_2
+ 99%|█████████▉| 2443/2465 [45:14<00:07,  3.03it/s]test all pooling
+train_12577_a_1
+ 99%|█████████▉| 2444/2465 [45:14<00:06,  3.38it/s]test all pooling
+train_7072_a_1
+ 99%|█████████▉| 2445/2465 [45:14<00:05,  3.92it/s]test all pooling
+train_7679_b_1
+ 99%|█████████▉| 2446/2465 [45:15<00:04,  4.48it/s]test all pooling
+train_1455_a_1
+ 99%|█████████▉| 2447/2465 [45:15<00:06,  2.88it/s]test all pooling
+train_8053_a_1
+ 99%|█████████▉| 2448/2465 [45:15<00:05,  3.31it/s]test all pooling
+train_5744_a_2
+ 99%|█████████▉| 2449/2465 [45:17<00:11,  1.35it/s]2026-05-12 23:40:45,106 - INFO - Processing batch 2450
+test all pooling
+train_5643_a_2
+2026-05-12 23:40:45,178 - INFO - Saving interim results for 2450 samples
+2026-05-12 23:40:45,180 - INFO - Saved interim results for 2450 samples at /home/chest_ct/code/models/ct-clip/results_lipro_inference/interim
+test all pooling
+train_5923_a_1
+ 99%|█████████▉| 2451/2465 [45:17<00:06,  2.20it/s]test all pooling
+train_2323_a_2
+test all pooling
+train_15129_a_1
+100%|█████████▉| 2453/2465 [45:18<00:03,  3.22it/s]test all pooling
+train_7973_a_2
+test all pooling
+train_13155_a_2
+100%|█████████▉| 2455/2465 [45:18<00:02,  4.33it/s]test all pooling
+train_1119_b_2
+100%|█████████▉| 2456/2465 [45:18<00:01,  4.85it/s]test all pooling
+train_491_a_1
+100%|█████████▉| 2457/2465 [45:19<00:03,  2.24it/s]test all pooling
+train_1071_a_2
+test all pooling
+train_10694_a_1
+100%|█████████▉| 2459/2465 [45:19<00:01,  3.28it/s]2026-05-12 23:40:47,171 - INFO - Processing batch 2460
+test all pooling
+train_10379_a_1
+test all pooling
+train_1997_a_2
+100%|█████████▉| 2461/2465 [45:20<00:01,  3.38it/s]test all pooling
+train_10748_a_1
+test all pooling
+train_7965_a_2
+100%|█████████▉| 2463/2465 [45:20<00:00,  4.48it/s]test all pooling
+train_2251_a_2
+test all pooling
+train_7748_a_2
+100%|██████████| 2465/2465 [45:21<00:00,  3.61it/s]100%|██████████| 2465/2465 [45:21<00:00,  1.10s/it]
+2026-05-12 23:40:48,699 - INFO - Completed processing 2465 batches
+2026-05-12 23:40:48,699 - INFO - Filtering to 4 pathologies: ['Atelectasis', 'Lung nodule', 'Lung opacity', 'Consolidation']
+2026-05-12 23:40:48,703 - INFO - Real labels shape: (2465, 18), Predicted shape: (2465, 18)
+2026-05-12 23:40:48,703 - INFO - After filtering - Real shape: (2465, 4), Predicted shape: (2465, 4)
+2026-05-12 23:40:48,703 - INFO - Saving final results for 2465 total samples
+2026-05-12 23:40:48,703 - INFO - Saved final NPZ files to /home/chest_ct/code/models/ct-clip/results_lipro_inference
+2026-05-12 23:40:48,704 - INFO - Saved 2465 accessions to /home/chest_ct/code/models/ct-clip/results_lipro_inference/accessions.txt
+2026-05-12 23:40:48,717 - INFO - Computed final evaluation metrics
+2026-05-12 23:40:48,749 - INFO - Saved final AUROC results to /home/chest_ct/code/models/ct-clip/results_lipro_inference/aurocs.xlsx
+2026-05-12 23:40:48,749 - INFO - Model evaluation completed successfully
+2026-05-12 23:40:48,761 - INFO - ================================================================================
+2026-05-12 23:40:48,762 - INFO - Inference pipeline completed successfully!
+2026-05-12 23:40:48,762 - INFO - ================================================================================
+4
+(2465,)
+(2465,)
+(2465,)
+(2465,)
+(2465,)
+(2465,)
+(2465,)
+(2465,)

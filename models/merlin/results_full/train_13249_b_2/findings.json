@@ -1,0 +1,28 @@
+{
+  "name": "train_13249_b_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    172
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Centriacinar nodular infiltration in the peripheral subpleural areas",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Areas of increased density consistent with linear atelectasis in the basal segments of the lower lobes",
+      "category": "Atelectasis"
+    }
+  },
+  "categories": {
+    "0": "1e",
+    "1": "2a"
+  },
+  "pixels": {
+    "0": 1482,
+    "1": 105962
+  },
+  "embedding_norm": 4.379877090454102
+}

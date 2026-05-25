@@ -1,0 +1,34 @@
+{
+  "name": "train_13092_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    206
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "5.5 mm nonspecific nodule in the subpleural region of the right upper lobe posterior segment",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Numerous calcified subcentimeter nodules in both lungs",
+      "category": "Lung Nodule"
+    },
+    "2": {
+      "text": "Focal coarse calcification in the lower lobe pleura of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "1e",
+    "2": "1f"
+  },
+  "pixels": {
+    "0": 127,
+    "1": 1515,
+    "2": 229
+  },
+  "embedding_norm": 4.404788017272949
+}
