@@ -1,0 +1,34 @@
+{
+  "name": "train_13292_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    215
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bilateral pleural effusion, more prominent on the left",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Atelectasis in both lungs adjacent to the pleural effusion",
+      "category": "Atelectasis"
+    },
+    "2": {
+      "text": "Subcentimeter centriacinar nodules in the posterior segment of the right upper lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2e",
+    "1": "2b",
+    "2": "1e"
+  },
+  "pixels": {
+    "0": 1345036,
+    "1": 105585,
+    "2": 27
+  },
+  "embedding_norm": 4.357837677001953
+}

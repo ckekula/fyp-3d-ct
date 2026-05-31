@@ -1,0 +1,22 @@
+{
+  "name": "train_13431_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    226
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Patchy ground-glass opacity in the apicoposterior segment of the left upper lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 4870
+  },
+  "embedding_norm": 4.370363712310791
+}

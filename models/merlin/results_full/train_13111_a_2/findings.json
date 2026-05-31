@@ -1,0 +1,22 @@
+{
+  "name": "train_13111_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    423
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Smooth interlobular septal thickening in the peripheral areas, more prominent in the lower lobes of both lungs",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "1d"
+  },
+  "pixels": {
+    "0": 133196
+  },
+  "embedding_norm": 4.462317943572998
+}

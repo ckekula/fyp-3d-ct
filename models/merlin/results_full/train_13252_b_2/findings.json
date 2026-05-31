@@ -1,0 +1,46 @@
+{
+  "name": "train_13252_b_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    239
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Bronchiectasis most prominently at the central level of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Bronchiectasis in both lower lobes",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Minimal thickening of the bronchial walls",
+      "category": "Others"
+    },
+    "3": {
+      "text": "Peribronchial reticulonodular densities with faint borders in the lower lobes",
+      "category": "Others"
+    },
+    "4": {
+      "text": "Subcentimeter nonspecific nodules in both lungs",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "1b",
+    "1": "1b",
+    "2": "1a",
+    "3": "1d",
+    "4": "2d"
+  },
+  "pixels": {
+    "0": 68694,
+    "1": 41909,
+    "2": 3942,
+    "3": 19452,
+    "4": 2023
+  },
+  "embedding_norm": 4.427062511444092
+}

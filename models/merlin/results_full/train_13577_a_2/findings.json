@@ -1,0 +1,22 @@
+{
+  "name": "train_13577_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    201
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Focal ground glass opacity in the laterobasal segment of the right lower lobe",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "2c"
+  },
+  "pixels": {
+    "0": 533
+  },
+  "embedding_norm": 4.415399551391602
+}

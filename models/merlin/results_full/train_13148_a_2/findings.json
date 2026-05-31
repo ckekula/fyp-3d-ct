@@ -1,0 +1,28 @@
+{
+  "name": "train_13148_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Two subpleural subcentimeter nodules measuring 4 mm at the basal level in the superior right lower lobe",
+      "category": "Lung Nodule"
+    },
+    "1": {
+      "text": "Two subpleural subcentimeter nodules measuring 4 mm in the left lower lobe",
+      "category": "Lung Nodule"
+    }
+  },
+  "categories": {
+    "0": "2d",
+    "1": "2d"
+  },
+  "pixels": {
+    "0": 218,
+    "1": 132
+  },
+  "embedding_norm": 4.416313171386719
+}

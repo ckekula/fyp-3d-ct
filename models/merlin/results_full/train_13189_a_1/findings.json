@@ -1,0 +1,34 @@
+{
+  "name": "train_13189_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    302
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Hyperaeration in the mediobasal and posterobasal segments of the right lower lobe",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Vascular structure extending to the right lower lobe from the aorta, consistent with pulmonary sequestration",
+      "category": "Others"
+    },
+    "2": {
+      "text": "Nonspecific ground glass opacities anterior to the sequestration in the lung parenchyma",
+      "category": "Lung opacity"
+    }
+  },
+  "categories": {
+    "0": "1c",
+    "1": "2d",
+    "2": "2c"
+  },
+  "pixels": {
+    "0": 579594,
+    "1": 3154,
+    "2": 50503
+  },
+  "embedding_norm": 4.458385944366455
+}

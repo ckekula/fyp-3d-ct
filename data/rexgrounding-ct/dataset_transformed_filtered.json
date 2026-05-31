@@ -1,0 +1,4974 @@
+{
+  "training": [
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_2273_a_2.nii.gz",
+      "label": "segmentations/train_2273_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "6.2 mm nodule in both lungs, largest located in the right lung near the horizontal fissure",
+      "image": "images_flat/train_1614_a_2.nii.gz",
+      "label": "segmentations/train_1614_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "3 mm nonspecific nodule adjacent to the major fissure on the right",
+      "image": "images_flat/train_1481_a_1.nii.gz",
+      "label": "segmentations/train_1481_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "3 mm ground-glass nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_2323_a_2.nii.gz",
+      "label": "segmentations/train_2323_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "4.5 mm diameter nodule extending to the pleura in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_1586_a_2.nii.gz",
+      "label": "segmentations/train_1586_a_2.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Calcified pulmonary nodule measuring 4 mm in the upper lobe of the right lung",
+      "image": "images_flat/train_1506_a_2.nii.gz",
+      "label": "segmentations/train_1506_a_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "6 mm nonspecific nodule located in the posterior part of the left upper lobe near the fissure, likely representing a subpleural lymph node",
+      "image": "images_flat/train_2245_a_2.nii.gz",
+      "label": "segmentations/train_2245_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the lower lobe of the left lung",
+      "image": "images_flat/train_1892_a_2.nii.gz",
+      "label": "segmentations/train_1892_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter non-specific subpleural nodule in the lateral basal segment of the left lower lobe",
+      "image": "images_flat/train_1398_a_2.nii.gz",
+      "label": "segmentations/train_1398_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Irregularly circumscribed nodule causing minimal structural distortion and volume loss in the anterior segment of the left upper lobe, measuring approximately 10x22 mm",
+      "image": "images_flat/train_1310_b_2.nii.gz",
+      "label": "segmentations/train_1310_b_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 6 mm in the right lung lower lobe laterobasal segment",
+      "image": "images_flat/train_2286_a_1.nii.gz",
+      "label": "segmentations/train_2286_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 5 mm in the left lower lobe",
+      "image": "images_flat/train_2286_a_1.nii.gz",
+      "label": "segmentations/train_2286_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "5.3 mm nodule in the lingula inferior segment of the left lung",
+      "image": "images_flat/train_2402_a_2.nii.gz",
+      "label": "segmentations/train_2402_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter nonspecific ground-glass nodule in the subpleural region of the right lower lobe",
+      "image": "images_flat/train_1906_a_1.nii.gz",
+      "label": "segmentations/train_1906_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "2 mm nodule at the laterobasal level in the left lung",
+      "image": "images_flat/train_1752_a_2.nii.gz",
+      "label": "segmentations/train_1752_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter parenchymal nodule with linear fibrotic changes in the middle lobe of the right lung",
+      "image": "images_flat/train_2244_a_2.nii.gz",
+      "label": "segmentations/train_2244_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "7.2x5 mm intrapulmonary nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_1891_a_2.nii.gz",
+      "label": "segmentations/train_1891_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Thick-walled lesion in the right upper lobe",
+      "image": "images_flat/train_1448_c_2.nii.gz",
+      "label": "segmentations/train_1448_c_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Stable 3.5 mm nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_2039_d_1.nii.gz",
+      "label": "segmentations/train_2039_d_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Ground-glass parenchymal nodule approximately 5 mm in diameter at the level of the major fissure in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_2241_a_2.nii.gz",
+      "label": "segmentations/train_2241_a_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest nodule is 7 mm with a pleural base in the superior segment of the right lower lobe",
+      "image": "images_flat/train_2826_a_2.nii.gz",
+      "label": "segmentations/train_2826_a_2.nii.gz",
+      "key": "4",
+      "fold": 0
+    },
+    {
+      "prompt": "4.5 mm nodule with a pleural base in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_2826_a_2.nii.gz",
+      "label": "segmentations/train_2826_a_2.nii.gz",
+      "key": "5",
+      "fold": 0
+    },
+    {
+      "prompt": "4 mm nodule adjacent to the major fissure in the superior segment of the right lower lobe",
+      "image": "images_flat/train_2985_a_2.nii.gz",
+      "label": "segmentations/train_2985_a_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Solitary nodule measuring 7.6 x 6 mm with slightly irregular borders and extending to the spicule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_2806_a_2.nii.gz",
+      "label": "segmentations/train_2806_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the lower lobe of the left lung",
+      "image": "images_flat/train_3003_a_2.nii.gz",
+      "label": "segmentations/train_3003_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter nonspecific parenchymal nodule in the anterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_2974_a_2.nii.gz",
+      "label": "segmentations/train_2974_a_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Diffuse subpleural and intraparenchymal mass lesions in all segments of both lung parenchyma",
+      "image": "images_flat/train_2965_b_2.nii.gz",
+      "label": "segmentations/train_2965_b_2.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Metastatic mass lesions in right lower lobe superior, lower lobe mediobasal, left upper lobe posterior, and left lower lobe superior segments",
+      "image": "images_flat/train_2965_b_2.nii.gz",
+      "label": "segmentations/train_2965_b_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_3694_a_1.nii.gz",
+      "label": "segmentations/train_3694_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest subpleural nodule measuring 5 mm in diameter in the inferior segment of the left lung lingula",
+      "image": "images_flat/train_2728_a_1.nii.gz",
+      "label": "segmentations/train_2728_a_1.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "6 mm subsolid nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_2728_a_1.nii.gz",
+      "label": "segmentations/train_2728_a_1.nii.gz",
+      "key": "4",
+      "fold": 0
+    },
+    {
+      "prompt": "6 mm subpleural nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_2813_a_1.nii.gz",
+      "label": "segmentations/train_2813_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Minimal fibrotic densities adjacent to the 6 mm subpleural nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_2813_a_1.nii.gz",
+      "label": "segmentations/train_2813_a_1.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest calcified nonspecific parenchymal nodule measuring 5 mm in diameter in the superior segment of the left lower lobe",
+      "image": "images_flat/train_2798_a_2.nii.gz",
+      "label": "segmentations/train_2798_a_2.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_2802_a_1.nii.gz",
+      "label": "segmentations/train_2802_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Unchanged nodule in the laterobasal segment of the right lung lower lobe from previous PET-CT examination",
+      "image": "images_flat/train_2463_a_2.nii.gz",
+      "label": "segmentations/train_2463_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the lower lobe of the left lung",
+      "image": "images_flat/train_2913_b_2.nii.gz",
+      "label": "segmentations/train_2913_b_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 3 mm in the middle lobe of the right lung",
+      "image": "images_flat/train_2948_a_2.nii.gz",
+      "label": "segmentations/train_2948_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "4 mm oval-shaped nodule with sad contour located posterolaterally in the basal segment of the right lower lobe",
+      "image": "images_flat/train_2759_a_1.nii.gz",
+      "label": "segmentations/train_2759_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific 4.8 mm nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_2730_a_5.nii.gz",
+      "label": "segmentations/train_2730_a_5.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Nodule in the right lung middle lobe near the fissure, measuring 5.8x6.8 mm with irregular contours",
+      "image": "images_flat/train_2888_a_2.nii.gz",
+      "label": "segmentations/train_2888_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "3 mm nodule in the right lung middle lobe",
+      "image": "images_flat/train_2888_a_2.nii.gz",
+      "label": "segmentations/train_2888_a_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Nodule in the superior segment of the left lower lobe measuring 6 mm",
+      "image": "images_flat/train_3713_d_2.nii.gz",
+      "label": "segmentations/train_3713_d_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest nodule measuring 6.5 mm in the lateral segment of the right lower lobe",
+      "image": "images_flat/train_2906_a_1.nii.gz",
+      "label": "segmentations/train_2906_a_1.nii.gz",
+      "key": "4",
+      "fold": 0
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the left hilar region",
+      "image": "images_flat/train_3570_a_2.nii.gz",
+      "label": "segmentations/train_3570_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subpleural nodule measuring 4 mm in diameter in middle lobe of right lung",
+      "image": "images_flat/train_2718_a_2.nii.gz",
+      "label": "segmentations/train_2718_a_2.nii.gz",
+      "key": "7",
+      "fold": 0
+    },
+    {
+      "prompt": "Subpleural subcentimeter nonspecific nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_2860_a_2.nii.gz",
+      "label": "segmentations/train_2860_a_2.nii.gz",
+      "key": "4",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific 4 mm nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_2801_a_2.nii.gz",
+      "label": "segmentations/train_2801_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "7 x 4 mm nodule at the fissure location on the left",
+      "image": "images_flat/train_6270_a_1.nii.gz",
+      "label": "segmentations/train_6270_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "4 mm nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_6455_a_2.nii.gz",
+      "label": "segmentations/train_6455_a_2.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Calcific pulmonary nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_5626_a_1.nii.gz",
+      "label": "segmentations/train_5626_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 4 mm in the lower lobe lateral segment on the left",
+      "image": "images_flat/train_5352_a_2.nii.gz",
+      "label": "segmentations/train_5352_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 6 mm in the posterobasal segment of the lower lobe on the right",
+      "image": "images_flat/train_5352_a_2.nii.gz",
+      "label": "segmentations/train_5352_a_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Subpleural ground-glass nodule measuring 7.2 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5938_a_1.nii.gz",
+      "label": "segmentations/train_5938_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "5 mm nodule in the subpleural area near the 5th vertebral body in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5740_a_2.nii.gz",
+      "label": "segmentations/train_5740_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest nodule measuring 4 mm in diameter located subpleurally in the middle lobe of the right lung",
+      "image": "images_flat/train_6408_a_2.nii.gz",
+      "label": "segmentations/train_6408_a_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Irregular nodular lesion with ill-defined borders, measuring up to 1.4 cm, at the apical level of the right upper lobe",
+      "image": "images_flat/train_6629_a_1.nii.gz",
+      "label": "segmentations/train_6629_a_1.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "3 mm nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_5719_c_2.nii.gz",
+      "label": "segmentations/train_5719_c_2.nii.gz",
+      "key": "2",
+      "fold": 0
+    },
+    {
+      "prompt": "Nodule not observed in previous examination",
+      "image": "images_flat/train_5719_c_2.nii.gz",
+      "label": "segmentations/train_5719_c_2.nii.gz",
+      "key": "3",
+      "fold": 0
+    },
+    {
+      "prompt": "Stable lesion in the right upper lobe apical segment measuring approximately 13x10 mm, consistent with fibrotic nodular formation and associated volume loss",
+      "image": "images_flat/train_7189_b_2.nii.gz",
+      "label": "segmentations/train_7189_b_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Focal calcified nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5737_a_2.nii.gz",
+      "label": "segmentations/train_5737_a_2.nii.gz",
+      "key": "0",
+      "fold": 0
+    },
+    {
+      "prompt": "Subpleural 2 mm nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_7237_a_1.nii.gz",
+      "label": "segmentations/train_7237_a_1.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 4x3.5 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_5813_a_2.nii.gz",
+      "label": "segmentations/train_5813_a_2.nii.gz",
+      "key": "1",
+      "fold": 0
+    },
+    {
+      "prompt": "Largest parenchymal nodule in the left lung lower lobe laterobasal segment",
+      "image": "images_flat/train_6487_a_1.nii.gz",
+      "label": "segmentations/train_6487_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Stable nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_7353_a_2.nii.gz",
+      "label": "segmentations/train_7353_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Irregularly circumscribed nodule measuring approximately 8x14 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5691_b_2.nii.gz",
+      "label": "segmentations/train_5691_b_2.nii.gz",
+      "key": "3",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule in the peripheral subpleural area in the anterior segment of the upper lobe of the right lung",
+      "image": "images_flat/train_5422_a_2.nii.gz",
+      "label": "segmentations/train_5422_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule in the upper lobe of the right lung measuring 7 mm",
+      "image": "images_flat/train_5422_a_2.nii.gz",
+      "label": "segmentations/train_5422_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Stable semisolid nodule adjacent to the major fissure in the superior segment of the right lower lobe, unchanged from previous examination",
+      "image": "images_flat/train_6618_b_2.nii.gz",
+      "label": "segmentations/train_6618_b_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_5960_a_2.nii.gz",
+      "label": "segmentations/train_5960_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_6161_a_1.nii.gz",
+      "label": "segmentations/train_6161_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Calcified pulmonary nodule adjacent to ground glass opacity",
+      "image": "images_flat/train_6190_a_1.nii.gz",
+      "label": "segmentations/train_6190_a_1.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 5 mm in diameter in the left lower lobe laterobasal segment",
+      "image": "images_flat/train_6190_a_1.nii.gz",
+      "label": "segmentations/train_6190_a_1.nii.gz",
+      "key": "3",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule in the posterobasal segment of the lower lobe of the right lung, 11 mm",
+      "image": "images_flat/train_8072_a_2.nii.gz",
+      "label": "segmentations/train_8072_a_2.nii.gz",
+      "key": "4",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule in the laterobasal segment of the lower lobe of the right lung, 10 mm",
+      "image": "images_flat/train_8072_a_2.nii.gz",
+      "label": "segmentations/train_8072_a_2.nii.gz",
+      "key": "5",
+      "fold": 1
+    },
+    {
+      "prompt": "Solid nodule measuring 6.7x4 mm in the middle lobe lateral segment of the right lung",
+      "image": "images_flat/train_5634_c_2.nii.gz",
+      "label": "segmentations/train_5634_c_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Solid nodule up to 6 mm in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_5634_c_2.nii.gz",
+      "label": "segmentations/train_5634_c_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "5x3 mm indeterminate nodule superimposed on the minor fissure on the right",
+      "image": "images_flat/train_6244_a_2.nii.gz",
+      "label": "segmentations/train_6244_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "2 mm calcified nodule in the middle lobe",
+      "image": "images_flat/train_6244_a_2.nii.gz",
+      "label": "segmentations/train_6244_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Subpleural 5x3 mm nodule in the laterobasal segment",
+      "image": "images_flat/train_6244_a_2.nii.gz",
+      "label": "segmentations/train_6244_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "3 mm calcific nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7072_a_1.nii.gz",
+      "label": "segmentations/train_7072_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "5x3 mm calcific nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_7072_a_1.nii.gz",
+      "label": "segmentations/train_7072_a_1.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "3 mm nodule in the apicoposterior segment of the left lung",
+      "image": "images_flat/train_7072_a_1.nii.gz",
+      "label": "segmentations/train_7072_a_1.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nonspecific calcific nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_7446_a_2.nii.gz",
+      "label": "segmentations/train_7446_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Calcified nonspecific pulmonary nodule measuring 5 mm in the subpleural region of the lower lobe of the left lung",
+      "image": "images_flat/train_8061_a_2.nii.gz",
+      "label": "segmentations/train_8061_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "6.5 mm nodular lesion in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_6803_b_2.nii.gz",
+      "label": "segmentations/train_6803_b_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Stable nodular lesion measuring 1.6x1.1 cm in the anterobasal segment of the right middle lobe",
+      "image": "images_flat/train_6000_b_1.nii.gz",
+      "label": "segmentations/train_6000_b_1.nii.gz",
+      "key": "5",
+      "fold": 1
+    },
+    {
+      "prompt": "3 mm nodule located peripherally in the superior segment of the anterior lower lobe of the right lung",
+      "image": "images_flat/train_6497_a_2.nii.gz",
+      "label": "segmentations/train_6497_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 2-3 mm in diameter in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6800_a_1.nii.gz",
+      "label": "segmentations/train_6800_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter subpleural calcific nodule in the posterobasal region of the right lower lobe",
+      "image": "images_flat/train_6884_a_2.nii.gz",
+      "label": "segmentations/train_6884_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "5.8 mm nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_7903_a_2.nii.gz",
+      "label": "segmentations/train_7903_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "Small semisolid nodule in the apicoposterior segment of the upper lobe of the left lung",
+      "image": "images_flat/train_7557_a_1.nii.gz",
+      "label": "segmentations/train_7557_a_1.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule measuring 12x7 mm in the peripheral subpleural area of the posterior segment of the right upper lobe",
+      "image": "images_flat/train_7557_a_1.nii.gz",
+      "label": "segmentations/train_7557_a_1.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "9 mm calcified nodule on the diaphragmatic side of the lower lobe of the left lung",
+      "image": "images_flat/train_5212_a_2.nii.gz",
+      "label": "segmentations/train_5212_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "4 mm subpleural nodule in the right middle lobe",
+      "image": "images_flat/train_5912_a_1.nii.gz",
+      "label": "segmentations/train_5912_a_1.nii.gz",
+      "key": "3",
+      "fold": 1
+    },
+    {
+      "prompt": "4.3 mm subpleural nodule in the left lower lobe superior segment",
+      "image": "images_flat/train_5912_a_1.nii.gz",
+      "label": "segmentations/train_5912_a_1.nii.gz",
+      "key": "4",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule in the right upper lobe posterior segment",
+      "image": "images_flat/train_5912_a_1.nii.gz",
+      "label": "segmentations/train_5912_a_1.nii.gz",
+      "key": "5",
+      "fold": 1
+    },
+    {
+      "prompt": "5.7 mm nodule in the right lower lobe laterobasal segment",
+      "image": "images_flat/train_5912_a_1.nii.gz",
+      "label": "segmentations/train_5912_a_1.nii.gz",
+      "key": "6",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_7250_h_2.nii.gz",
+      "label": "segmentations/train_7250_h_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "4.5 mm nonspecific nodule adjacent to the major fissure in the upper lobe posterior segment of the left lung",
+      "image": "images_flat/train_6899_a_1.nii.gz",
+      "label": "segmentations/train_6899_a_1.nii.gz",
+      "key": "5",
+      "fold": 1
+    },
+    {
+      "prompt": "2 mm pleural nodule in the apicoposterior segment of the right upper lobe",
+      "image": "images_flat/train_6156_a_2.nii.gz",
+      "label": "segmentations/train_6156_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the upper lobe of the left lung",
+      "image": "images_flat/train_7973_a_2.nii.gz",
+      "label": "segmentations/train_7973_a_2.nii.gz",
+      "key": "3",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter non-specific nodule at the apical level of the upper lobe of the right lung",
+      "image": "images_flat/train_5214_a_1.nii.gz",
+      "label": "segmentations/train_5214_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "10 mm nodular lesion with lobulated contours at the junction of the right middle lobe medial and upper lobe anterior segment",
+      "image": "images_flat/train_5857_a_2.nii.gz",
+      "label": "segmentations/train_5857_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Nonspecific pulmonary nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_6451_a_2.nii.gz",
+      "label": "segmentations/train_6451_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Largest nodule measuring 4.5 mm in the right lower lobe",
+      "image": "images_flat/train_7007_a_2.nii.gz",
+      "label": "segmentations/train_7007_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Pure calcified nonspecific subcentimeter nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_5817_a_2.nii.gz",
+      "label": "segmentations/train_5817_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nonspecific parenchymal nodule in the subpleural region of the right middle lobe",
+      "image": "images_flat/train_7662_a_1.nii.gz",
+      "label": "segmentations/train_7662_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "4.5 mm nonspecific nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_6578_a_1.nii.gz",
+      "label": "segmentations/train_6578_a_1.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the upper lobe of the left lung",
+      "image": "images_flat/train_6738_b_1.nii.gz",
+      "label": "segmentations/train_6738_b_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_7465_a_1.nii.gz",
+      "label": "segmentations/train_7465_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Ground-glass density pleural-based nodule in the lateral segment of the lower lobe of the right lung",
+      "image": "images_flat/train_7792_a_1.nii.gz",
+      "label": "segmentations/train_7792_a_1.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subpleural subcentimeter calcific nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_7348_a_2.nii.gz",
+      "label": "segmentations/train_7348_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Nodule measuring 22 mm in the peripheral area of the medial superior segment of the right lower lobe",
+      "image": "images_flat/train_7250_f_2.nii.gz",
+      "label": "segmentations/train_7250_f_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_7250_f_2.nii.gz",
+      "label": "segmentations/train_7250_f_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter parenchymal nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7025_a_2.nii.gz",
+      "label": "segmentations/train_7025_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Nonspecific subcentimeter parenchymal nodule in the lateral basal segment of the right lower lobe",
+      "image": "images_flat/train_5371_a_1.nii.gz",
+      "label": "segmentations/train_5371_a_1.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Non-specific subcentimeter subpleural nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_6583_a_2.nii.gz",
+      "label": "segmentations/train_6583_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "3 mm semisolid nodular lesion in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_8201_a_2.nii.gz",
+      "label": "segmentations/train_8201_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Largest nodule located in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_6549_b_2.nii.gz",
+      "label": "segmentations/train_6549_b_2.nii.gz",
+      "key": "3",
+      "fold": 1
+    },
+    {
+      "prompt": "Slightly irregularly circumscribed nodule measuring 8 mm in diameter in the posterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_5281_a_2.nii.gz",
+      "label": "segmentations/train_5281_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Minimal volume loss around the nodule in the posterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_5281_a_2.nii.gz",
+      "label": "segmentations/train_5281_a_2.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Linear density increases around the nodule in the posterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_5281_a_2.nii.gz",
+      "label": "segmentations/train_5281_a_2.nii.gz",
+      "key": "2",
+      "fold": 1
+    },
+    {
+      "prompt": "6 mm subpleural ground glass nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5478_a_2.nii.gz",
+      "label": "segmentations/train_5478_a_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nodule in the lower lobe of the left lung",
+      "image": "images_flat/train_6171_a_1.nii.gz",
+      "label": "segmentations/train_6171_a_1.nii.gz",
+      "key": "1",
+      "fold": 1
+    },
+    {
+      "prompt": "Subcentimeter nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_6187_c_2.nii.gz",
+      "label": "segmentations/train_6187_c_2.nii.gz",
+      "key": "0",
+      "fold": 1
+    },
+    {
+      "prompt": "Mass lesion measuring 19 mm in diameter in the posterior segment of the upper lobe of the right lung with slightly irregular borders and associated linear densities suggestive of scarring",
+      "image": "images_flat/train_6429_a_1.nii.gz",
+      "label": "segmentations/train_6429_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "4 mm nonspecific ground-glass nodule in the posterior part of the upper lobe of the left lung",
+      "image": "images_flat/train_6429_a_1.nii.gz",
+      "label": "segmentations/train_6429_a_1.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter non-specific nodule adjacent to the fissure in the superior-anterior segment of the right lower lobe",
+      "image": "images_flat/train_7060_a_1.nii.gz",
+      "label": "segmentations/train_7060_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_5762_a_2.nii.gz",
+      "label": "segmentations/train_5762_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest subpleural nodule measuring up to 7 mm in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5446_a_1.nii.gz",
+      "label": "segmentations/train_5446_a_1.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific parenchymal nodule in the peripheral subpleural area of the medial segment of the right middle lobe",
+      "image": "images_flat/train_5554_a_1.nii.gz",
+      "label": "segmentations/train_5554_a_1.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "3 mm nodule in the lateral basal segment of the left lower lobe",
+      "image": "images_flat/train_7119_a_2.nii.gz",
+      "label": "segmentations/train_7119_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the right lung",
+      "image": "images_flat/train_5908_a_1.nii.gz",
+      "label": "segmentations/train_5908_a_1.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 4x2 mm superimposed on the minor fissure in the right lung",
+      "image": "images_flat/train_6447_a_1.nii.gz",
+      "label": "segmentations/train_6447_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Peripheral subpleural pulmonary nodule measuring 6.7 mm with irregular borders in the superior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_5691_a_2.nii.gz",
+      "label": "segmentations/train_5691_a_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_6935_a_1.nii.gz",
+      "label": "segmentations/train_6935_a_1.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "7 mm nodule located on the fissure in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_5377_a_2.nii.gz",
+      "label": "segmentations/train_5377_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Faint ground glass opacities surrounding the 7 mm nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_5377_a_2.nii.gz",
+      "label": "segmentations/train_5377_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "4 mm subpleural nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5377_a_2.nii.gz",
+      "label": "segmentations/train_5377_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring 8 mm in the lower lobe of the right lung",
+      "image": "images_flat/train_8118_a_2.nii.gz",
+      "label": "segmentations/train_8118_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring 4 mm in the superior segment of the lower lobe of the left lung",
+      "image": "images_flat/train_8118_a_2.nii.gz",
+      "label": "segmentations/train_8118_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "2 mm nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_8174_a_1.nii.gz",
+      "label": "segmentations/train_8174_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "2 mm nodule in the laterobasal segment",
+      "image": "images_flat/train_8174_a_1.nii.gz",
+      "label": "segmentations/train_8174_a_1.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule in the superior segment of the right lower lobe, measuring approximately 1.8x2.4 cm",
+      "image": "images_flat/train_8216_a_2.nii.gz",
+      "label": "segmentations/train_8216_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_6984_a_1.nii.gz",
+      "label": "segmentations/train_6984_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific calcific nodule in the posterior subsegment of the left upper lobe apicoposterior segment",
+      "image": "images_flat/train_7294_a_2.nii.gz",
+      "label": "segmentations/train_7294_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "2 mm diameter nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_7597_a_2.nii.gz",
+      "label": "segmentations/train_7597_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific subpleural nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_7111_a_1.nii.gz",
+      "label": "segmentations/train_7111_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 5 mm with slightly spiculated contours at the apical level of the upper lobe of the left lung",
+      "image": "images_flat/train_7991_a_1.nii.gz",
+      "label": "segmentations/train_7991_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "23x20 mm nodule with spiculated contours in the anterior segment of the left lower lobe",
+      "image": "images_flat/train_5822_a_2.nii.gz",
+      "label": "segmentations/train_5822_a_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Lesion measuring 2.0 cm in diameter in the superior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_6970_b_2.nii.gz",
+      "label": "segmentations/train_6970_b_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule in the lateral part of the right middle lobe measuring approximately 5 mm in diameter",
+      "image": "images_flat/train_7822_a_1.nii.gz",
+      "label": "segmentations/train_7822_a_1.nii.gz",
+      "key": "6",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule measuring 7 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7584_b_2.nii.gz",
+      "label": "segmentations/train_7584_b_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Newly developed nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7584_b_2.nii.gz",
+      "label": "segmentations/train_7584_b_2.nii.gz",
+      "key": "4",
+      "fold": 2
+    },
+    {
+      "prompt": "Multilobar, peripheral, subpleural, dorsal localized ground-glass nodular lesions with indistinct borders in both lungs",
+      "image": "images_flat/train_7343_a_2.nii.gz",
+      "label": "segmentations/train_7343_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Pleural-based, non-specific 5 mm pulmonary nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5178_a_2.nii.gz",
+      "label": "segmentations/train_5178_a_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest lesions located in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5231_a_2.nii.gz",
+      "label": "segmentations/train_5231_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Subpleural nodule measuring 5.3 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6549_a_1.nii.gz",
+      "label": "segmentations/train_6549_a_1.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Subpleural nodule measuring 5.5 mm in the anterobasal segment of the right lower lobe",
+      "image": "images_flat/train_6549_a_1.nii.gz",
+      "label": "segmentations/train_6549_a_1.nii.gz",
+      "key": "4",
+      "fold": 2
+    },
+    {
+      "prompt": "Nonspecific nodule in the anterior superior segment of the right lower lobe",
+      "image": "images_flat/train_5417_a_2.nii.gz",
+      "label": "segmentations/train_5417_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule at the posterobasal level of the left lower lobe",
+      "image": "images_flat/train_7009_a_2.nii.gz",
+      "label": "segmentations/train_7009_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule in the lateral lower lobe of the right lung",
+      "image": "images_flat/train_7009_a_2.nii.gz",
+      "label": "segmentations/train_7009_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_7373_a_2.nii.gz",
+      "label": "segmentations/train_7373_a_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule located in the posterobasal segment of the right lower lobe, up to 4.4 mm in diameter",
+      "image": "images_flat/train_6159_a_1.nii.gz",
+      "label": "segmentations/train_6159_a_1.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule in the lateral part of the left lung upper lobe apicoposterior segment posterior subsegment",
+      "image": "images_flat/train_5691_c_2.nii.gz",
+      "label": "segmentations/train_5691_c_2.nii.gz",
+      "key": "3",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule in the left lower lobe measuring up to 5 mm",
+      "image": "images_flat/train_5296_b_2.nii.gz",
+      "label": "segmentations/train_5296_b_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring 11.5 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6803_a_2.nii.gz",
+      "label": "segmentations/train_6803_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring 5 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6803_a_2.nii.gz",
+      "label": "segmentations/train_6803_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule measuring up to 5 mm in the anterior segment of the right lower lobe",
+      "image": "images_flat/train_7543_a_2.nii.gz",
+      "label": "segmentations/train_7543_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest nodule measuring up to 5 mm in the posterior segment of the right lower lobe",
+      "image": "images_flat/train_7543_a_2.nii.gz",
+      "label": "segmentations/train_7543_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "6 mm nonspecific ground-glass nodular lesion in the lower lobe of the left lung",
+      "image": "images_flat/train_6055_a_1.nii.gz",
+      "label": "segmentations/train_6055_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Calcified, well-circumscribed nodule measuring 5 mm in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_5963_a_2.nii.gz",
+      "label": "segmentations/train_5963_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the horizontal fissure of the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6352_a_2.nii.gz",
+      "label": "segmentations/train_6352_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "5 mm nodule in the left lung, largest in the lower lobe lateral segment",
+      "image": "images_flat/train_6372_a_1.nii.gz",
+      "label": "segmentations/train_6372_a_1.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring approximately 5 mm in diameter in the inferior subsegment of the lingular segment in the upper lobe of the left lung",
+      "image": "images_flat/train_6745_a_2.nii.gz",
+      "label": "segmentations/train_6745_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "2 mm nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_5757_a_2.nii.gz",
+      "label": "segmentations/train_5757_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "2 mm nodule in the apicoposterior segment",
+      "image": "images_flat/train_5757_a_2.nii.gz",
+      "label": "segmentations/train_5757_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in both lungs, largest measuring 5.5 mm in diameter at the base of the pleura in the superior segment of the left lower lobe",
+      "image": "images_flat/train_6302_a_2.nii.gz",
+      "label": "segmentations/train_6302_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Subpleural 4 mm fibrotic nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_7935_a_2.nii.gz",
+      "label": "segmentations/train_7935_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Largest parenchymal nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_5925_a_2.nii.gz",
+      "label": "segmentations/train_5925_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule with irregular borders in the peripheral-subpleural area in the mediobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_7250_b_2.nii.gz",
+      "label": "segmentations/train_7250_b_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule measuring 2.4x1.2 cm at its widest point",
+      "image": "images_flat/train_7250_b_2.nii.gz",
+      "label": "segmentations/train_7250_b_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodular lesion measuring approximately 25x22 mm in the peripheral area of the superior segment of the right lower lobe",
+      "image": "images_flat/train_8048_a_2.nii.gz",
+      "label": "segmentations/train_8048_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Nodule formation measuring approximately 5x3 mm in the dorsal subpleural area in the lower lobe superior segment of both lungs",
+      "image": "images_flat/train_7049_a_2.nii.gz",
+      "label": "segmentations/train_7049_a_2.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 2 mm in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_7049_a_2.nii.gz",
+      "label": "segmentations/train_7049_a_2.nii.gz",
+      "key": "1",
+      "fold": 2
+    },
+    {
+      "prompt": "Well-circumscribed 13x11 mm nodule in the right middle lobe",
+      "image": "images_flat/train_6000_a_1.nii.gz",
+      "label": "segmentations/train_6000_a_1.nii.gz",
+      "key": "4",
+      "fold": 2
+    },
+    {
+      "prompt": "Slightly irregular 12 mm nodule with surrounding ground-glass appearance in the right lower lobe",
+      "image": "images_flat/train_7674_a_2.nii.gz",
+      "label": "segmentations/train_7674_a_2.nii.gz",
+      "key": "2",
+      "fold": 2
+    },
+    {
+      "prompt": "Calcified nodule adjacent to the minor fissure on the right",
+      "image": "images_flat/train_6712_a_1.nii.gz",
+      "label": "segmentations/train_6712_a_1.nii.gz",
+      "key": "0",
+      "fold": 2
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3.3 mm in diameter in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_5428_c_2.nii.gz",
+      "label": "segmentations/train_5428_c_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest nodule measuring 3.5 mm in diameter in the left upper lobe inferior lingular segment",
+      "image": "images_flat/train_6206_a_1.nii.gz",
+      "label": "segmentations/train_6206_a_1.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific 5 mm nodule in the lateral segment of the lower lobe of the left lung",
+      "image": "images_flat/train_7453_a_2.nii.gz",
+      "label": "segmentations/train_7453_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 5 mm in diameter in the posterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_6719_a_2.nii.gz",
+      "label": "segmentations/train_6719_a_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Calcified nonspecific parenchymal nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_6591_a_1.nii.gz",
+      "label": "segmentations/train_6591_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter ground-glass nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5460_a_2.nii.gz",
+      "label": "segmentations/train_5460_a_2.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest calcified nonspecific pleural nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_6368_a_2.nii.gz",
+      "label": "segmentations/train_6368_a_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Subpleural 5 mm nonspecific parenchymal nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_8015_a_1.nii.gz",
+      "label": "segmentations/train_8015_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodular lesion identified as the primary mass in the peripheral-subpleural area of the medial superior segment of the right lower lobe",
+      "image": "images_flat/train_7250_i_2.nii.gz",
+      "label": "segmentations/train_7250_i_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodular lesion measuring approximately 21 mm at its widest point",
+      "image": "images_flat/train_7250_i_2.nii.gz",
+      "label": "segmentations/train_7250_i_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Linear density increases and minimal structural distortion in the vicinity of the described lesion",
+      "image": "images_flat/train_7250_i_2.nii.gz",
+      "label": "segmentations/train_7250_i_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_7250_i_2.nii.gz",
+      "label": "segmentations/train_7250_i_2.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Calcified nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6473_a_2.nii.gz",
+      "label": "segmentations/train_6473_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring approximately 8x7 mm in the anterior part of the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_5412_a_1.nii.gz",
+      "label": "segmentations/train_5412_a_1.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter nodule in the right lung",
+      "image": "images_flat/train_5412_a_1.nii.gz",
+      "label": "segmentations/train_5412_a_1.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 5 mm in the inferior lingular segment of the left upper lobe",
+      "image": "images_flat/train_6187_a_1.nii.gz",
+      "label": "segmentations/train_6187_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 7 mm in the inferior lingular segment of the left upper lobe",
+      "image": "images_flat/train_6187_a_1.nii.gz",
+      "label": "segmentations/train_6187_a_1.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 6.5 mm in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_6187_a_1.nii.gz",
+      "label": "segmentations/train_6187_a_1.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific 5 mm nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_6905_a_1.nii.gz",
+      "label": "segmentations/train_6905_a_1.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Irregularly circumscribed nodule adjacent to the mass in the right upper lobe",
+      "image": "images_flat/train_7641_b_2.nii.gz",
+      "label": "segmentations/train_7641_b_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 10x5.6 mm in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5634_d_1.nii.gz",
+      "label": "segmentations/train_5634_d_1.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Subpleural 3 mm calcific nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_6498_a_2.nii.gz",
+      "label": "segmentations/train_6498_a_2.nii.gz",
+      "key": "5",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 6.6 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7498_a_2.nii.gz",
+      "label": "segmentations/train_7498_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 5 mm in the right middle lobe",
+      "image": "images_flat/train_7498_a_2.nii.gz",
+      "label": "segmentations/train_7498_a_2.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 4.5 mm in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_7498_a_2.nii.gz",
+      "label": "segmentations/train_7498_a_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Nodule measuring 4 mm in the lingular segment",
+      "image": "images_flat/train_7498_a_2.nii.gz",
+      "label": "segmentations/train_7498_a_2.nii.gz",
+      "key": "5",
+      "fold": 3
+    },
+    {
+      "prompt": "Fissure-based nodule measuring 3 mm in the anterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5551_a_2.nii.gz",
+      "label": "segmentations/train_5551_a_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 2-3 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5551_a_2.nii.gz",
+      "label": "segmentations/train_5551_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Ground glass density nodule in the apicoposterior segment of the upper lobe of the right lung",
+      "image": "images_flat/train_6803_c_2.nii.gz",
+      "label": "segmentations/train_6803_c_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Solid nodule measuring 12.5x11 mm in the anterior segment of the right upper lobe extending to the pleura and surrounding parenchyma",
+      "image": "images_flat/train_6671_a_2.nii.gz",
+      "label": "segmentations/train_6671_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Mild traction bronchiectasis accompanying solid nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6671_a_2.nii.gz",
+      "label": "segmentations/train_6671_a_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Thick-walled central nodule with cavitation measuring approximately 17x18 mm",
+      "image": "images_flat/train_6671_a_2.nii.gz",
+      "label": "segmentations/train_6671_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest parenchymal and subpleural nodule measuring 9.1x11 mm in the paramediastinal area of the posterior segment of the right upper lobe",
+      "image": "images_flat/train_6671_a_2.nii.gz",
+      "label": "segmentations/train_6671_a_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest nodule measuring 3.5 mm in the inferior lingular segment of the left lung",
+      "image": "images_flat/train_6384_a_1.nii.gz",
+      "label": "segmentations/train_6384_a_1.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest nodule measuring 3.2 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_5557_a_2.nii.gz",
+      "label": "segmentations/train_5557_a_2.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Calcified, nonspecific parenchymal nodule measuring 3 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_7845_b_2.nii.gz",
+      "label": "segmentations/train_7845_b_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific pleural-based nodule in the upper lobe lingular segment on the left, measuring 4 mm",
+      "image": "images_flat/train_5649_a_1.nii.gz",
+      "label": "segmentations/train_5649_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific pleural-based nodule in the upper lobe lateral segment of the left lung, measuring 5 mm",
+      "image": "images_flat/train_5649_a_1.nii.gz",
+      "label": "segmentations/train_5649_a_1.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 5.7 mm adjacent to the minor fissure in the medial segment of the right middle lobe",
+      "image": "images_flat/train_6210_a_1.nii.gz",
+      "label": "segmentations/train_6210_a_1.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 3.2 mm in the anteromediobasal segment of the left lower lobe",
+      "image": "images_flat/train_6210_a_1.nii.gz",
+      "label": "segmentations/train_6210_a_1.nii.gz",
+      "key": "4",
+      "fold": 3
+    },
+    {
+      "prompt": "Subpleural nodule measuring 8 mm in diameter in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5935_a_2.nii.gz",
+      "label": "segmentations/train_5935_a_2.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "12x8 mm nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_7994_a_2.nii.gz",
+      "label": "segmentations/train_7994_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Parenchymal nodule measuring approximately 4 mm in the right perihilar area",
+      "image": "images_flat/train_5739_a_2.nii.gz",
+      "label": "segmentations/train_5739_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "3.5 mm nodule on the left major fissure",
+      "image": "images_flat/train_6025_a_2.nii.gz",
+      "label": "segmentations/train_6025_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest parenchymal nodule in the right lower lobe laterobasal segment",
+      "image": "images_flat/train_6797_a_2.nii.gz",
+      "label": "segmentations/train_6797_a_2.nii.gz",
+      "key": "5",
+      "fold": 3
+    },
+    {
+      "prompt": "Pleural-based nodule measuring 5.5x2.8 mm superposed on the fissure in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5482_a_2.nii.gz",
+      "label": "segmentations/train_5482_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Pleural-based nodule measuring 2.5 mm in diameter in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5482_a_2.nii.gz",
+      "label": "segmentations/train_5482_a_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Nonspecific nodule measuring approximately 2.5 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6254_a_2.nii.gz",
+      "label": "segmentations/train_6254_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "7 mm nodular lesion at the basal level of the right lower lobe",
+      "image": "images_flat/train_5485_a_2.nii.gz",
+      "label": "segmentations/train_5485_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Patchy ground glass opacity with a halo sign surrounding the 7 mm nodular lesion at the basal level of the right lower lobe",
+      "image": "images_flat/train_5485_a_2.nii.gz",
+      "label": "segmentations/train_5485_a_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter calcific subpleural nodule in the anterior upper lobe of the left lung",
+      "image": "images_flat/train_6195_a_1.nii.gz",
+      "label": "segmentations/train_6195_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Ground-glass nodule measuring approximately 5 mm in diameter in the laterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_5209_a_2.nii.gz",
+      "label": "segmentations/train_5209_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "7x6 mm semisolid nodule in the posterobasal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_5754_a_1.nii.gz",
+      "label": "segmentations/train_5754_a_1.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Calcified nodule measuring 5 mm in the lateral basal segment of the left lower lobe",
+      "image": "images_flat/train_7612_a_2.nii.gz",
+      "label": "segmentations/train_7612_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "4.5 mm non-specific nodule in the peripheral subpleural region of the right lower lobe superior segment",
+      "image": "images_flat/train_8086_a_1.nii.gz",
+      "label": "segmentations/train_8086_a_1.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Calcified nodule in the upper lobe of the left lung, largest measuring 2 mm in diameter",
+      "image": "images_flat/train_7740_a_2.nii.gz",
+      "label": "segmentations/train_7740_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Largest nonspecific parenchymal nodule located at the right upper lobe anterior-middle lobe junction adjacent to the minor fissure",
+      "image": "images_flat/train_5505_a_2.nii.gz",
+      "label": "segmentations/train_5505_a_2.nii.gz",
+      "key": "7",
+      "fold": 3
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 6.8 mm in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5296_a_2.nii.gz",
+      "label": "segmentations/train_5296_a_2.nii.gz",
+      "key": "1",
+      "fold": 3
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 4.2 mm in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5296_a_2.nii.gz",
+      "label": "segmentations/train_5296_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "Lesion measuring approximately 2.0x2.0 cm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_6970_a_2.nii.gz",
+      "label": "segmentations/train_6970_a_2.nii.gz",
+      "key": "3",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter calcified subpleural nodule in the apicoposterior segment of the right upper lobe",
+      "image": "images_flat/train_5520_a_2.nii.gz",
+      "label": "segmentations/train_5520_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Multiple calcified nodular lesions, subcentimeter in size, in the lower lobe of the left lung",
+      "image": "images_flat/train_5238_a_2.nii.gz",
+      "label": "segmentations/train_5238_a_2.nii.gz",
+      "key": "2",
+      "fold": 3
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_5789_a_2.nii.gz",
+      "label": "segmentations/train_5789_a_2.nii.gz",
+      "key": "0",
+      "fold": 3
+    },
+    {
+      "prompt": "Subcentimeter nonspecific calcific nodule in the inferior lingular segment of the left upper lobe",
+      "image": "images_flat/train_7542_a_1.nii.gz",
+      "label": "segmentations/train_7542_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "4.5 mm nonspecific parenchymal nodule in the anterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6382_a_1.nii.gz",
+      "label": "segmentations/train_6382_a_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural pulmonary nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_5885_a_1.nii.gz",
+      "label": "segmentations/train_5885_a_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the anterior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_8029_a_1.nii.gz",
+      "label": "segmentations/train_8029_a_1.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule measuring 17 mm in diameter in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_7280_b_2.nii.gz",
+      "label": "segmentations/train_7280_b_2.nii.gz",
+      "key": "5",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 5 mm in diameter located subpleurally in the superior segment of the right lower lobe",
+      "image": "images_flat/train_6784_b_1.nii.gz",
+      "label": "segmentations/train_6784_b_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule measuring 8 mm in the lower lobe of the right lung",
+      "image": "images_flat/train_8118_b_1.nii.gz",
+      "label": "segmentations/train_8118_b_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule measuring 4 mm in the superior segment of the lower lobe of the left lung",
+      "image": "images_flat/train_8118_b_1.nii.gz",
+      "label": "segmentations/train_8118_b_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "5.5 mm nonspecific parenchymal nodule located subpleurally in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6031_a_1.nii.gz",
+      "label": "segmentations/train_6031_a_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "7 mm nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_6577_a_2.nii.gz",
+      "label": "segmentations/train_6577_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "5 mm pleural-based pulmonary nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5343_a_2.nii.gz",
+      "label": "segmentations/train_5343_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Nonspecific 4 mm nodule in the anterolateral segment of the left lower lobe",
+      "image": "images_flat/train_5605_a_2.nii.gz",
+      "label": "segmentations/train_5605_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule with a longest diameter of 13 mm in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_6335_b_1.nii.gz",
+      "label": "segmentations/train_6335_b_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule with a longest diameter of approximately 9 mm in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_6335_b_1.nii.gz",
+      "label": "segmentations/train_6335_b_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule with a longest diameter of 24 mm in the anterior segment of the left upper lobe, which has shrunk and fragmented following radiotherapy",
+      "image": "images_flat/train_6335_b_1.nii.gz",
+      "label": "segmentations/train_6335_b_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest calcific nodule located in the superior lingular segment of the left upper lobe",
+      "image": "images_flat/train_6111_a_1.nii.gz",
+      "label": "segmentations/train_6111_a_1.nii.gz",
+      "key": "4",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 5.2 mm in the right upper lobe anterior segment",
+      "image": "images_flat/train_5962_a_2.nii.gz",
+      "label": "segmentations/train_5962_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 5.1 mm in the left lower lobe laterobasal segment",
+      "image": "images_flat/train_5962_a_2.nii.gz",
+      "label": "segmentations/train_5962_a_2.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "2 mm nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "2 mm nodule in the right middle lobe",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the right posterobasal area",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "3 mm nodule in the right laterobasal area",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "3 mm nodule slightly superiorly in the right lung",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "4",
+      "fold": 4
+    },
+    {
+      "prompt": "3 mm nodule in the left laterobasal segment",
+      "image": "images_flat/train_6666_a_1.nii.gz",
+      "label": "segmentations/train_6666_a_1.nii.gz",
+      "key": "6",
+      "fold": 4
+    },
+    {
+      "prompt": "5 mm fissure-based nodule in the anterobasal segment of the right lower lobe",
+      "image": "images_flat/train_8193_a_2.nii.gz",
+      "label": "segmentations/train_8193_a_2.nii.gz",
+      "key": "5",
+      "fold": 4
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 6 mm in the posterolateral aspect of the right lower lobe",
+      "image": "images_flat/train_7697_a_2.nii.gz",
+      "label": "segmentations/train_7697_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "3 mm nodule in the inferior segment of the left lung lingula",
+      "image": "images_flat/train_7920_a_2.nii.gz",
+      "label": "segmentations/train_7920_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "4 mm nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_7920_a_2.nii.gz",
+      "label": "segmentations/train_7920_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest nodule in medial portion of posterior segment of right upper lobe, 2.7 cm",
+      "image": "images_flat/train_6144_a_2.nii.gz",
+      "label": "segmentations/train_6144_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Calcific pulmonary nodule measuring approximately 8 mm in diameter in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5479_a_2.nii.gz",
+      "label": "segmentations/train_5479_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Surrounding fibrotic retraction around the calcific pulmonary nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_5479_a_2.nii.gz",
+      "label": "segmentations/train_5479_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_7004_a_2.nii.gz",
+      "label": "segmentations/train_7004_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Paracardiac nodule measuring 5 mm in middle lobe of right lung",
+      "image": "images_flat/train_7081_a_1.nii.gz",
+      "label": "segmentations/train_7081_a_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "12 mm nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_7880_a_1.nii.gz",
+      "label": "segmentations/train_7880_a_1.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Nodule measuring 5 mm with a ground-glass halo in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_7683_a_2.nii.gz",
+      "label": "segmentations/train_7683_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Nonspecific subcentimeter parenchymal nodule measuring 3 mm in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_5324_a_2.nii.gz",
+      "label": "segmentations/train_5324_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 4.7 mm in the middle lobe of the right lung",
+      "image": "images_flat/train_6210_b_2.nii.gz",
+      "label": "segmentations/train_6210_b_2.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "Parenchymal nodule measuring 3.5 mm in the anterobasal segment of the left lower lobe",
+      "image": "images_flat/train_6210_b_2.nii.gz",
+      "label": "segmentations/train_6210_b_2.nii.gz",
+      "key": "4",
+      "fold": 4
+    },
+    {
+      "prompt": "Well-circumscribed nodule measuring 7x5.8 mm in a peripheral intrapulmonary location in the lateral segment of the lower lobe of the right lung",
+      "image": "images_flat/train_6846_a_2.nii.gz",
+      "label": "segmentations/train_6846_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Pleural-based subcentimeter nodule in the apical segment of the right upper lobe, 4 mm in diameter, showing minimal size increase from prior PET CT",
+      "image": "images_flat/train_6361_a_2.nii.gz",
+      "label": "segmentations/train_6361_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "3 mm nonspecific nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_12440_a_1.nii.gz",
+      "label": "segmentations/train_12440_a_1.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "4 mm subpleural nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_12440_a_1.nii.gz",
+      "label": "segmentations/train_12440_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "5 mm nonspecific nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_12440_a_1.nii.gz",
+      "label": "segmentations/train_12440_a_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "5 mm nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_10198_a_2.nii.gz",
+      "label": "segmentations/train_10198_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the subpleural area of the upper lobe posterior segment of the right lung",
+      "image": "images_flat/train_10083_a_2.nii.gz",
+      "label": "segmentations/train_10083_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the inferior part of the upper lobe anterior segment adjacent to the fissure of the right lung",
+      "image": "images_flat/train_10083_a_2.nii.gz",
+      "label": "segmentations/train_10083_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the subpleural area of the lower lobe superior segment of the right lung",
+      "image": "images_flat/train_10083_a_2.nii.gz",
+      "label": "segmentations/train_10083_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3.1 mm in the lower lobe superior segment of the left lung",
+      "image": "images_flat/train_10083_a_2.nii.gz",
+      "label": "segmentations/train_10083_a_2.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3.1 mm in the lower lobe laterobasal segment of the left lung",
+      "image": "images_flat/train_10083_a_2.nii.gz",
+      "label": "segmentations/train_10083_a_2.nii.gz",
+      "key": "4",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm in the medial segment of the right middle lobe",
+      "image": "images_flat/train_12820_a_1.nii.gz",
+      "label": "segmentations/train_12820_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm in the left lower lobe lateral basal segment",
+      "image": "images_flat/train_12820_a_1.nii.gz",
+      "label": "segmentations/train_12820_a_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "4 mm nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_11156_b_1.nii.gz",
+      "label": "segmentations/train_11156_b_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_12460_c_2.nii.gz",
+      "label": "segmentations/train_12460_c_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring approximately 7 mm in diameter in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_12551_a_1.nii.gz",
+      "label": "segmentations/train_12551_a_1.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the apical region of the right upper lobe (series 2, image 115)",
+      "image": "images_flat/train_10180_a_2.nii.gz",
+      "label": "segmentations/train_10180_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Non-specific nodule measuring 7 mm in both lungs, the largest in the lower lobe of the right lung",
+      "image": "images_flat/train_10017_a_2.nii.gz",
+      "label": "segmentations/train_10017_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "2.5 mm nonspecific parenchymal nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_11532_a_2.nii.gz",
+      "label": "segmentations/train_11532_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest nodule measuring 5.8 mm in the right lung upper lobe anterior segment",
+      "image": "images_flat/train_10320_a_2.nii.gz",
+      "label": "segmentations/train_10320_a_2.nii.gz",
+      "key": "1",
+      "fold": 4
+    },
+    {
+      "prompt": "Nonspecific 5 mm parenchymal nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_10368_a_1.nii.gz",
+      "label": "segmentations/train_10368_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Largest nodule measuring 8 mm at the pleural base of the left lower lobe anterior segment",
+      "image": "images_flat/train_10857_a_1.nii.gz",
+      "label": "segmentations/train_10857_a_1.nii.gz",
+      "key": "3",
+      "fold": 4
+    },
+    {
+      "prompt": "Anterior peribronchial nodule in the lower lobe of the right lung within a thin-walled air cyst measuring 10 mm",
+      "image": "images_flat/train_11068_a_1.nii.gz",
+      "label": "segmentations/train_11068_a_1.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "5 mm calcified parenchymal nodule in the peripheral subpleural area of the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_10937_a_2.nii.gz",
+      "label": "segmentations/train_10937_a_2.nii.gz",
+      "key": "2",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the superior lower lobe of the right lung",
+      "image": "images_flat/train_10708_a_2.nii.gz",
+      "label": "segmentations/train_10708_a_2.nii.gz",
+      "key": "0",
+      "fold": 4
+    },
+    {
+      "prompt": "Subcentimeter calcified nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_10797_a_2.nii.gz",
+      "label": "segmentations/train_10797_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "3 mm nodule in the apex of the left lower lobe",
+      "image": "images_flat/train_12075_a_2.nii.gz",
+      "label": "segmentations/train_12075_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule measuring 4 mm adjacent to the major fissure in the anterior upper lobe of the left lung",
+      "image": "images_flat/train_11385_a_1.nii.gz",
+      "label": "segmentations/train_11385_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcified pulmonary nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_11332_b_1.nii.gz",
+      "label": "segmentations/train_11332_b_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter cystic lesions in both lungs",
+      "image": "images_flat/train_10401_a_1.nii.gz",
+      "label": "segmentations/train_10401_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "5 mm nonspecific nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_11986_a_1.nii.gz",
+      "label": "segmentations/train_11986_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "8 mm nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_11776_a_2.nii.gz",
+      "label": "segmentations/train_11776_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "2 mm nodule in the anterobasal segment of the right lower lobe adjacent to the fissure",
+      "image": "images_flat/train_11776_a_2.nii.gz",
+      "label": "segmentations/train_11776_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Largest parenchymal nodule in the right lower lobe laterobasal segment",
+      "image": "images_flat/train_12511_a_2.nii.gz",
+      "label": "segmentations/train_12511_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "5 mm nodule adjacent to the major fissure in the anterior lower lobe of the left lung",
+      "image": "images_flat/train_10888_b_2.nii.gz",
+      "label": "segmentations/train_10888_b_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter ground glass nodule in the left lung",
+      "image": "images_flat/train_10888_b_2.nii.gz",
+      "label": "segmentations/train_10888_b_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Triangular nodule measuring 3 mm in the right lung, inferolateral to the minor fissure",
+      "image": "images_flat/train_10594_a_1.nii.gz",
+      "label": "segmentations/train_10594_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_11245_a_1.nii.gz",
+      "label": "segmentations/train_11245_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "2-3 mm subpleural nodule in the anterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_11245_a_1.nii.gz",
+      "label": "segmentations/train_11245_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule measuring 1.5 mm in the right lung",
+      "image": "images_flat/train_10960_a_1.nii.gz",
+      "label": "segmentations/train_10960_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_10960_a_1.nii.gz",
+      "label": "segmentations/train_10960_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Well-circumscribed parenchymal nodule measuring approximately 8x6 mm adjacent to the pneumonic infiltration in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_10895_a_2.nii.gz",
+      "label": "segmentations/train_10895_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "4 mm calcified nodule along the oblique fissure in the lower lobe of the right lung",
+      "image": "images_flat/train_11959_a_2.nii.gz",
+      "label": "segmentations/train_11959_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nodule in the lingular segment of the left upper lobe",
+      "image": "images_flat/train_10609_a_2.nii.gz",
+      "label": "segmentations/train_10609_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific parenchymal nodule superimposed on the minor fissure in the anterior middle lobe of the right lung",
+      "image": "images_flat/train_11608_a_5.nii.gz",
+      "label": "segmentations/train_11608_a_5.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural 3 mm nodule in the lateral aspect of the right upper lobe anterior segment",
+      "image": "images_flat/train_11094_a_1.nii.gz",
+      "label": "segmentations/train_11094_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "4x3 mm nodule superimposed on the lateral aspect of the minor fissure",
+      "image": "images_flat/train_11094_a_1.nii.gz",
+      "label": "segmentations/train_11094_a_1.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3 mm in diameter at the laterobasal level of the right lower lobe",
+      "image": "images_flat/train_11094_a_1.nii.gz",
+      "label": "segmentations/train_11094_a_1.nii.gz",
+      "key": "3",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural 2 mm nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_11094_a_1.nii.gz",
+      "label": "segmentations/train_11094_a_1.nii.gz",
+      "key": "4",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3 mm in diameter at the laterobasal level of the left lower lobe",
+      "image": "images_flat/train_11094_a_1.nii.gz",
+      "label": "segmentations/train_11094_a_1.nii.gz",
+      "key": "5",
+      "fold": 5
+    },
+    {
+      "prompt": "3 mm nonspecific nodule at anterior-posterior segment transition of right upper lobe",
+      "image": "images_flat/train_11800_a_1.nii.gz",
+      "label": "segmentations/train_11800_a_1.nii.gz",
+      "key": "4",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural 3 mm nonspecific parenchymal nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_11520_a_2.nii.gz",
+      "label": "segmentations/train_11520_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "5 mm calcified parenchymal nodule in the upper lobe of the left lung",
+      "image": "images_flat/train_11520_a_2.nii.gz",
+      "label": "segmentations/train_11520_a_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the superior segment of the right lung lower lobe",
+      "image": "images_flat/train_11974_a_1.nii.gz",
+      "label": "segmentations/train_11974_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the right lung",
+      "image": "images_flat/train_11974_a_1.nii.gz",
+      "label": "segmentations/train_11974_a_1.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the subpleural area of the posterior segment of the right upper lobe",
+      "image": "images_flat/train_10083_c_2.nii.gz",
+      "label": "segmentations/train_10083_c_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the inferior part of the anterior segment of the right upper lobe adjacent to the fissure",
+      "image": "images_flat/train_10083_c_2.nii.gz",
+      "label": "segmentations/train_10083_c_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 6 mm in the subpleural area of the superior segment of the right lower lobe",
+      "image": "images_flat/train_10083_c_2.nii.gz",
+      "label": "segmentations/train_10083_c_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3.1 mm in the superior segment of the left lower lobe",
+      "image": "images_flat/train_10083_c_2.nii.gz",
+      "label": "segmentations/train_10083_c_2.nii.gz",
+      "key": "4",
+      "fold": 5
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3.1 mm in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_10083_c_2.nii.gz",
+      "label": "segmentations/train_10083_c_2.nii.gz",
+      "key": "5",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter non-specific nodule at the superior level of the left lower lobe",
+      "image": "images_flat/train_10369_a_2.nii.gz",
+      "label": "segmentations/train_10369_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Calcified nodule measuring approximately 4 mm adjacent to the fissure in the right lung",
+      "image": "images_flat/train_10492_a_2.nii.gz",
+      "label": "segmentations/train_10492_a_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the right lower lobe superiorly",
+      "image": "images_flat/train_11829_b_1.nii.gz",
+      "label": "segmentations/train_11829_b_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the left upper lobe superior peripherally",
+      "image": "images_flat/train_11829_b_1.nii.gz",
+      "label": "segmentations/train_11829_b_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Halo sign characterized by a 1 cm nodule or nodular consolidation in the posterior segment of the left lower lobe and peripheral ground-glass areas",
+      "image": "images_flat/train_11619_a_1.nii.gz",
+      "label": "segmentations/train_11619_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Thin-walled cavitary lesion measuring approximately 4.0x5.5 cm in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_11880_d_1.nii.gz",
+      "label": "segmentations/train_11880_d_1.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "4 mm non-septic nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_10577_a_2.nii.gz",
+      "label": "segmentations/train_10577_a_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "5 mm parenchymal nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_12242_a_2.nii.gz",
+      "label": "segmentations/train_12242_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_12242_a_2.nii.gz",
+      "label": "segmentations/train_12242_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the anterior upper lobe of the left lung",
+      "image": "images_flat/train_11904_a_2.nii.gz",
+      "label": "segmentations/train_11904_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 6.4 mm in the upper lobe of the right lung",
+      "image": "images_flat/train_11470_a_2.nii.gz",
+      "label": "segmentations/train_11470_a_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the upper lobe of the left lung",
+      "image": "images_flat/train_10918_a_1.nii.gz",
+      "label": "segmentations/train_10918_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Largest nodule measuring 3 mm in diameter in the superior segment of the left lower lobe",
+      "image": "images_flat/train_11427_a_2.nii.gz",
+      "label": "segmentations/train_11427_a_2.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "Largest nodule in the anterior segment of the right upper lobe, approximately 4 mm in diameter",
+      "image": "images_flat/train_10641_f_2.nii.gz",
+      "label": "segmentations/train_10641_f_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm in diameter in the superior segment of the left lower lobe",
+      "image": "images_flat/train_12753_a_1.nii.gz",
+      "label": "segmentations/train_12753_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Nonspecific nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_11008_a_2.nii.gz",
+      "label": "segmentations/train_11008_a_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter calcified nodule in the left lung",
+      "image": "images_flat/train_12590_a_2.nii.gz",
+      "label": "segmentations/train_12590_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "2 mm nodule in the anterior subpleural area of the anterior segment of the right upper lobe",
+      "image": "images_flat/train_11377_a_1.nii.gz",
+      "label": "segmentations/train_11377_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "5x2 mm nodule superimposed on the minor fissure",
+      "image": "images_flat/train_11377_a_1.nii.gz",
+      "label": "segmentations/train_11377_a_1.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "2 mm nodule in the anterior subpleural area of the anterior segment of the left upper lobe",
+      "image": "images_flat/train_11377_a_1.nii.gz",
+      "label": "segmentations/train_11377_a_1.nii.gz",
+      "key": "2",
+      "fold": 5
+    },
+    {
+      "prompt": "2 mm nodule in the lateral subpleural area",
+      "image": "images_flat/train_11377_a_1.nii.gz",
+      "label": "segmentations/train_11377_a_1.nii.gz",
+      "key": "3",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the upper lobe of the left lung",
+      "image": "images_flat/train_12128_a_1.nii.gz",
+      "label": "segmentations/train_12128_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter non-specific nodule in the lower lobe of the left lung",
+      "image": "images_flat/train_11736_a_1.nii.gz",
+      "label": "segmentations/train_11736_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Subcentimeter non-specific nodule in the lower lobe of the right lung",
+      "image": "images_flat/train_11172_a_1.nii.gz",
+      "label": "segmentations/train_11172_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Three paravertebral and centrally located lesions in the posterior and lateral segment of the right lower lobe, measuring 18 mm and 10 mm",
+      "image": "images_flat/train_11164_b_2.nii.gz",
+      "label": "segmentations/train_11164_b_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Anterior segment lesion in the right upper lobe posteriorly in the paramediastinal area",
+      "image": "images_flat/train_11164_b_2.nii.gz",
+      "label": "segmentations/train_11164_b_2.nii.gz",
+      "key": "1",
+      "fold": 5
+    },
+    {
+      "prompt": "2.5 mm nonspecific nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_11921_a_1.nii.gz",
+      "label": "segmentations/train_11921_a_1.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Ground-glass nodule in the peripheral subpleural area of the superior segment of the right lower lobe",
+      "image": "images_flat/train_12953_a_2.nii.gz",
+      "label": "segmentations/train_12953_a_2.nii.gz",
+      "key": "0",
+      "fold": 5
+    },
+    {
+      "prompt": "Nodule measuring 9 mm in the lower lobe of the right lung in series 2, image 182",
+      "image": "images_flat/train_10819_a_2.nii.gz",
+      "label": "segmentations/train_10819_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nodule measuring 6 mm in the lower lobe of the right lung in series 2, image 192",
+      "image": "images_flat/train_10819_a_2.nii.gz",
+      "label": "segmentations/train_10819_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Nodule measuring 8 mm in the anterior segment of the upper lobe of the right lung in image 122 of series 2",
+      "image": "images_flat/train_10819_a_2.nii.gz",
+      "label": "segmentations/train_10819_a_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Calcific nodule measuring 6 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_10603_a_2.nii.gz",
+      "label": "segmentations/train_10603_a_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Parenchymal nodule approximately 6.2 mm in diameter with indistinct borders in the middle lobe of the right lung",
+      "image": "images_flat/train_12383_a_1.nii.gz",
+      "label": "segmentations/train_12383_a_1.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "3 mm calcified nonspecific parenchymal nodule in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_11023_b_1.nii.gz",
+      "label": "segmentations/train_11023_b_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "4.1 mm nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_12050_b_1.nii.gz",
+      "label": "segmentations/train_12050_b_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest pulmonary nodule superimposed on the vascular structure in the middle lobe of the right lung",
+      "image": "images_flat/train_10981_a_2.nii.gz",
+      "label": "segmentations/train_10981_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_10526_a_1.nii.gz",
+      "label": "segmentations/train_10526_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "4 mm pulmonary nodule in the lateral segment of the left lower lobe",
+      "image": "images_flat/train_10259_a_2.nii.gz",
+      "label": "segmentations/train_10259_a_2.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "5 mm nodule adjacent to the major fissure in the apex of the lower lobe of the right lung",
+      "image": "images_flat/train_11355_a_2.nii.gz",
+      "label": "segmentations/train_11355_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_11412_a_2.nii.gz",
+      "label": "segmentations/train_11412_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "4 mm nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_12460_a_1.nii.gz",
+      "label": "segmentations/train_12460_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Calcified parenchymal nodule measuring 5 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_12051_b_2.nii.gz",
+      "label": "segmentations/train_12051_b_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Calcified nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_12277_a_2.nii.gz",
+      "label": "segmentations/train_12277_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 2.5 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_12277_a_2.nii.gz",
+      "label": "segmentations/train_12277_a_2.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 4 mm in diameter in the superior segment of the right lower lobe",
+      "image": "images_flat/train_10815_a_1.nii.gz",
+      "label": "segmentations/train_10815_a_1.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 4 mm in the inferior lingular segment of the left lung",
+      "image": "images_flat/train_10938_a_1.nii.gz",
+      "label": "segmentations/train_10938_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 3.5 mm in the upper lobe of the right lung",
+      "image": "images_flat/train_10938_a_1.nii.gz",
+      "label": "segmentations/train_10938_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "3 mm subpleural nodule in the dorsal area of the superior segment of the right lower lobe",
+      "image": "images_flat/train_10913_a_2.nii.gz",
+      "label": "segmentations/train_10913_a_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "3 mm subpleural nodule in the lingular segment of the left lung",
+      "image": "images_flat/train_10913_a_2.nii.gz",
+      "label": "segmentations/train_10913_a_2.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "4 mm nodule at the anteromediobasal level",
+      "image": "images_flat/train_10913_a_2.nii.gz",
+      "label": "segmentations/train_10913_a_2.nii.gz",
+      "key": "5",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nodule in the right lung",
+      "image": "images_flat/train_10760_a_2.nii.gz",
+      "label": "segmentations/train_10760_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "3 mm ground-glass nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_11066_a_1.nii.gz",
+      "label": "segmentations/train_11066_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nodule measuring approximately 20x11 mm with smooth border in apical segment of upper lobe of right lung, adjacent to mediastinum",
+      "image": "images_flat/train_10991_a_1.nii.gz",
+      "label": "segmentations/train_10991_a_1.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_11971_a_1.nii.gz",
+      "label": "segmentations/train_11971_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest nodule located in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_10458_a_2.nii.gz",
+      "label": "segmentations/train_10458_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "2-3 mm nonspecific nodule in the fissure of the right middle lobe and superior segment of the lower lobe",
+      "image": "images_flat/train_10696_a_2.nii.gz",
+      "label": "segmentations/train_10696_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "4 mm nodule in the minor fissure of the middle lobe",
+      "image": "images_flat/train_11587_a_2.nii.gz",
+      "label": "segmentations/train_11587_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter pure calcified nonspecific nodule in the anterior segment of the upper lobe of the right lung",
+      "image": "images_flat/train_10539_a_2.nii.gz",
+      "label": "segmentations/train_10539_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Stable subpleural nodule measuring 3 mm in diameter at the posterobasal level of the right lower lobe",
+      "image": "images_flat/train_10198_b_2.nii.gz",
+      "label": "segmentations/train_10198_b_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Stable-appearing nodule approximately 5x4 mm in size in the superior segment of the right lower lobe",
+      "image": "images_flat/train_10198_b_2.nii.gz",
+      "label": "segmentations/train_10198_b_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific 3 mm nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_12593_a_1.nii.gz",
+      "label": "segmentations/train_12593_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "5.5 mm subpleural nodule in the anterior basal segment of the left lower lobe",
+      "image": "images_flat/train_11343_a_2.nii.gz",
+      "label": "segmentations/train_11343_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "6.5 mm diameter nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_12224_a_1.nii.gz",
+      "label": "segmentations/train_12224_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "14x17 mm nodule in the superior segment of the lower lobe of the right lung with peripheral ground glass opacity and spiculated margins",
+      "image": "images_flat/train_11150_b_2.nii.gz",
+      "label": "segmentations/train_11150_b_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "2 mm nonspecific nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_10001_a_1.nii.gz",
+      "label": "segmentations/train_10001_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subpleural subcentimeter non-specific parenchymal nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_10664_a_1.nii.gz",
+      "label": "segmentations/train_10664_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subpleural 5 mm nonspecific parenchymal nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_11848_a_2.nii.gz",
+      "label": "segmentations/train_11848_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter calcified parenchymal nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_10006_b_2.nii.gz",
+      "label": "segmentations/train_10006_b_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_12131_a_1.nii.gz",
+      "label": "segmentations/train_12131_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "5x3 mm nodule in dorsal subpleural area of superior segment of right lower lobe",
+      "image": "images_flat/train_10560_a_2.nii.gz",
+      "label": "segmentations/train_10560_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific 2.5 mm nodule in the apex of the right lung",
+      "image": "images_flat/train_11105_a_2.nii.gz",
+      "label": "segmentations/train_11105_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "8 mm ground glass nodule in the apical segment of the right upper lobe, stable",
+      "image": "images_flat/train_10239_c_2.nii.gz",
+      "label": "segmentations/train_10239_c_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_12608_a_2.nii.gz",
+      "label": "segmentations/train_12608_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Calcified pulmonary nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_12008_a_2.nii.gz",
+      "label": "segmentations/train_12008_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "4.5 mm subpleural nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_10083_b_2.nii.gz",
+      "label": "segmentations/train_10083_b_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "5.5 mm nodule in the minor fissure of the right lung, superior segment of the lower lobe",
+      "image": "images_flat/train_10083_b_2.nii.gz",
+      "label": "segmentations/train_10083_b_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Subpleural nodule measuring 4 mm in size in series 202 image 113 immediately inferior to the first nodule",
+      "image": "images_flat/train_11398_a_1.nii.gz",
+      "label": "segmentations/train_11398_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific 3 mm nodular lesion in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_11917_a_2.nii.gz",
+      "label": "segmentations/train_11917_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 1.2 mm in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_11749_a_1.nii.gz",
+      "label": "segmentations/train_11749_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "3.5 mm nonspecific parenchymal nodule in the subpleural region of the superior segment of the right lower lobe",
+      "image": "images_flat/train_13889_a_2.nii.gz",
+      "label": "segmentations/train_13889_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific subcentimeter nodule in the medial subpleural region of the superior segment of the right lower lobe",
+      "image": "images_flat/train_13832_a_2.nii.gz",
+      "label": "segmentations/train_13832_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nonspecific subpleural nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_13804_a_2.nii.gz",
+      "label": "segmentations/train_13804_a_2.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Low-density nodule measuring 6 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_13786_b_1.nii.gz",
+      "label": "segmentations/train_13786_b_1.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Non-specific nodule measuring 5 mm in the subpleural region of the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_13786_b_1.nii.gz",
+      "label": "segmentations/train_13786_b_1.nii.gz",
+      "key": "3",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest nodule measuring 3 mm in the anterobasal segment of the right lower lobe",
+      "image": "images_flat/train_13875_b_1.nii.gz",
+      "label": "segmentations/train_13875_b_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Nonspecific pulmonary nodule measuring 6 mm on the minor fissure in the middle lobe of the right lung",
+      "image": "images_flat/train_13879_a_1.nii.gz",
+      "label": "segmentations/train_13879_a_1.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the posterobasal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_13752_a_1.nii.gz",
+      "label": "segmentations/train_13752_a_1.nii.gz",
+      "key": "0",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm in diameter in the right lung laterobasal segment",
+      "image": "images_flat/train_13697_a_2.nii.gz",
+      "label": "segmentations/train_13697_a_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Low-density nodule measuring 4.5 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_13786_a_2.nii.gz",
+      "label": "segmentations/train_13786_a_2.nii.gz",
+      "key": "2",
+      "fold": 6
+    },
+    {
+      "prompt": "Largest nodule measuring 4 mm in the anterior right upper lobe",
+      "image": "images_flat/train_13757_a_2.nii.gz",
+      "label": "segmentations/train_13757_a_2.nii.gz",
+      "key": "1",
+      "fold": 6
+    },
+    {
+      "prompt": "7x6 mm nodule in the lateral aspect of the left lower lobe",
+      "image": "images_flat/train_66_a_2.nii.gz",
+      "label": "segmentations/train_66_a_2.nii.gz",
+      "key": "5",
+      "fold": 6
+    },
+    {
+      "prompt": "5 mm nodule with irregular margins in the apical segment of the upper lobe of the right lung",
+      "image": "images_flat/train_66_a_2.nii.gz",
+      "label": "segmentations/train_66_a_2.nii.gz",
+      "key": "6",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter calcified non-specific nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_229_a_1.nii.gz",
+      "label": "segmentations/train_229_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "5 mm nonspecific pulmonary nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_135_a_1.nii.gz",
+      "label": "segmentations/valid_135_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest nodule measuring 6 mm in the right lower lobe laterobasal segment",
+      "image": "images_flat/train_225_a_1.nii.gz",
+      "label": "segmentations/train_225_a_1.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "20x15 mm cavitary lesion with a thick wall in the apicoposterior segment of the left lung upper lobe",
+      "image": "images_flat/train_355_a_1.nii.gz",
+      "label": "segmentations/train_355_a_1.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Solitary pulmonary nodule in the superior segment of the right lower lobe, measuring 14x11 mm with partially smooth contours, coarse peripheral calcifications, and slight spiculated projections into the surrounding parenchyma and pleura",
+      "image": "images_flat/valid_196_a_2.nii.gz",
+      "label": "segmentations/valid_196_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_176_a_2.nii.gz",
+      "label": "segmentations/train_176_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Mass-like lesion approximately 3.5x2 cm with irregular, spiculated margins in the paramediastinal region of the left hemithorax",
+      "image": "images_flat/train_186_a_2.nii.gz",
+      "label": "segmentations/train_186_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Low-density nodule measuring 4.5 mm in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_207_a_1.nii.gz",
+      "label": "segmentations/train_207_a_1.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest centrilobular nodule measuring 4 mm in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_37_a_2.nii.gz",
+      "label": "segmentations/train_37_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Progression of lesions in the lower lobe of the right lung",
+      "image": "images_flat/train_122_c_1.nii.gz",
+      "label": "segmentations/train_122_c_1.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Cavitary lesion approximately 23 mm in diameter with air-fluid levels in the anterobasal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_332_a_1.nii.gz",
+      "label": "segmentations/train_332_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Irregularly marginated parenchymal nodule approximately 7 mm in diameter in the superior segment of the lower lobe of the left lung",
+      "image": "images_flat/train_332_a_1.nii.gz",
+      "label": "segmentations/train_332_a_1.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "Subpleural nodule measuring approximately 1.1 cm in diameter in the superior segment of the left lower lobe",
+      "image": "images_flat/train_217_a_2.nii.gz",
+      "label": "segmentations/train_217_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodule measuring 1.5 mm in the right upper lobe",
+      "image": "images_flat/train_269_a_2.nii.gz",
+      "label": "segmentations/train_269_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest nodule measuring 3.3 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_395_a_1.nii.gz",
+      "label": "segmentations/valid_395_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "6.5 mm nodule with irregular margins in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_309_a_2.nii.gz",
+      "label": "segmentations/valid_309_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "5 mm subpleural nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_309_a_2.nii.gz",
+      "label": "segmentations/valid_309_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "3 mm indeterminate nodule in the upper lobe of the left lung",
+      "image": "images_flat/valid_409_a_2.nii.gz",
+      "label": "segmentations/valid_409_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Subpleural subcentimeter indeterminate nodule in the anterior segment of the right lower lobe",
+      "image": "images_flat/valid_363_a_2.nii.gz",
+      "label": "segmentations/valid_363_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodule in the anterior aspect of the right lung measuring 7 mm in diameter, slightly more prominent on follow-up",
+      "image": "images_flat/train_119_a_2.nii.gz",
+      "label": "segmentations/train_119_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodule within the major fissure on the right, 10x3 mm",
+      "image": "images_flat/train_392_a_1.nii.gz",
+      "label": "segmentations/train_392_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest lesion in the right upper lobe regressed from 25 mm to 19 mm",
+      "image": "images_flat/valid_382_c_2.nii.gz",
+      "label": "segmentations/valid_382_c_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest nodule measuring 6 mm in the longest diameter within the lower lobe of the right lung",
+      "image": "images_flat/valid_21_a_2.nii.gz",
+      "label": "segmentations/valid_21_a_2.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "Pleural-based nodule in the right lower lobe posterobasal segment, 8 mm",
+      "image": "images_flat/valid_260_a_2.nii.gz",
+      "label": "segmentations/valid_260_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Pleural-based nodule in the left lower lobe laterobasal segment, 7 mm",
+      "image": "images_flat/valid_260_a_2.nii.gz",
+      "label": "segmentations/valid_260_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 15 mm in the medial segment of the right middle lobe",
+      "image": "images_flat/train_340_a_1.nii.gz",
+      "label": "segmentations/train_340_a_1.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 16 mm in the superior segment of the left upper lobe",
+      "image": "images_flat/train_340_a_1.nii.gz",
+      "label": "segmentations/train_340_a_1.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodule in the anterior segment of the left upper lobe, measuring 4 mm",
+      "image": "images_flat/valid_339_a_1.nii.gz",
+      "label": "segmentations/valid_339_a_1.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodule in the lingular segment of the left lung, measuring 8x5 mm",
+      "image": "images_flat/valid_339_a_1.nii.gz",
+      "label": "segmentations/valid_339_a_1.nii.gz",
+      "key": "5",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter nodule peripherally in the right lung lower lobe",
+      "image": "images_flat/train_321_a_2.nii.gz",
+      "label": "segmentations/train_321_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter nonspecific parenchymal nodule measuring 4 mm in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/valid_348_a_1.nii.gz",
+      "label": "segmentations/valid_348_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Multiple mass lesions on the right anterior chest wall",
+      "image": "images_flat/valid_276_a_2.nii.gz",
+      "label": "segmentations/valid_276_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest chest wall mass lesion measuring up to 5.5 cm",
+      "image": "images_flat/valid_276_a_2.nii.gz",
+      "label": "segmentations/valid_276_a_2.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest nodule located in the middle lobe of the right lung",
+      "image": "images_flat/train_371_a_2.nii.gz",
+      "label": "segmentations/train_371_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Nodular lesion in the medial segment of the right middle lobe, 16x9 mm",
+      "image": "images_flat/valid_83_a_2.nii.gz",
+      "label": "segmentations/valid_83_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 10 mm in the posterior segment of the right upper lobe",
+      "image": "images_flat/valid_83_a_2.nii.gz",
+      "label": "segmentations/valid_83_a_2.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "Multiple thick-walled cavitary lesions up to 5.1 cm in the right upper lobe apical level and in the lower lobe of the left lung",
+      "image": "images_flat/valid_90_a_2.nii.gz",
+      "label": "segmentations/valid_90_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Subpleural nodule in the laterobasal segment of the lower lobe of the left lung, 7.5x5 mm",
+      "image": "images_flat/valid_377_a_2.nii.gz",
+      "label": "segmentations/valid_377_a_2.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "5 mm nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_59_a_2.nii.gz",
+      "label": "segmentations/train_59_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 3.5 mm located adjacent to the minor fissure in the right lung",
+      "image": "images_flat/valid_80_a_2.nii.gz",
+      "label": "segmentations/valid_80_a_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Indeterminate nodule in the right middle lobe, 3 mm",
+      "image": "images_flat/valid_147_a_2.nii.gz",
+      "label": "segmentations/valid_147_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Indeterminate nodule in the posterobasal segment of the left lower lobe, 4 mm",
+      "image": "images_flat/valid_147_a_2.nii.gz",
+      "label": "segmentations/valid_147_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter nodular lesion in the left lower lobe",
+      "image": "images_flat/train_93_c_2.nii.gz",
+      "label": "segmentations/train_93_c_2.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "3.1 mm nonspecific subpleural nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/valid_189_a_1.nii.gz",
+      "label": "segmentations/valid_189_a_1.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "7 mm nodule with associated pleural retraction in the superior segment of the left lower lobe",
+      "image": "images_flat/valid_342_a_2.nii.gz",
+      "label": "segmentations/valid_342_a_2.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "5 mm nonspecific pulmonary nodule with surrounding fibrotic changes adjacent to the minor fissure in the lateral segment of the right middle lobe",
+      "image": "images_flat/valid_187_a_1.nii.gz",
+      "label": "segmentations/valid_187_a_1.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Stable parenchymal nodular lesions near the consolidation area",
+      "image": "images_flat/valid_90_c_2.nii.gz",
+      "label": "segmentations/valid_90_c_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "5 mm parenchymal nodule in the middle lobe of the right lung",
+      "image": "images_flat/valid_102_a_2.nii.gz",
+      "label": "segmentations/valid_102_a_2.nii.gz",
+      "key": "6",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest pulmonary nodule located in the lower lobe of the right lung",
+      "image": "images_flat/train_368_a_1.nii.gz",
+      "label": "segmentations/train_368_a_1.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Pseudotumor appearance",
+      "image": "images_flat/valid_457_d_2.nii.gz",
+      "label": "segmentations/valid_457_d_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Cavitary lesion with a central nodule in the mediobasal segment of the right lower lobe, 22x10 mm",
+      "image": "images_flat/valid_457_d_2.nii.gz",
+      "label": "segmentations/valid_457_d_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "Large cavitary lesions within areas of consolidation",
+      "image": "images_flat/train_644_b_2.nii.gz",
+      "label": "segmentations/train_644_b_2.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "Thin-walled cavitary lesions in both lungs",
+      "image": "images_flat/train_644_b_2.nii.gz",
+      "label": "segmentations/train_644_b_2.nii.gz",
+      "key": "3",
+      "fold": 7
+    },
+    {
+      "prompt": "New centriacinar nodules surrounding the cavitary lesions",
+      "image": "images_flat/train_644_b_2.nii.gz",
+      "label": "segmentations/train_644_b_2.nii.gz",
+      "key": "4",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter calcified nodule in the upper lobe of the right lung",
+      "image": "images_flat/valid_651_b_2.nii.gz",
+      "label": "segmentations/valid_651_b_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Nonspecific nodule in the laterobasal segment of the right lower lobe, 4 mm",
+      "image": "images_flat/train_606_a_2.nii.gz",
+      "label": "segmentations/train_606_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Multiple round nodular lesions within both lungs",
+      "image": "images_flat/valid_624_b_2.nii.gz",
+      "label": "segmentations/valid_624_b_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Largest round nodular lesion measuring 9.5x8 mm in posterobasal segment of left lower lobe",
+      "image": "images_flat/valid_624_b_2.nii.gz",
+      "label": "segmentations/valid_624_b_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Calcified subcentimeter nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/valid_421_a_2.nii.gz",
+      "label": "segmentations/valid_421_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule in the middle lobe of the right lung",
+      "image": "images_flat/valid_421_a_2.nii.gz",
+      "label": "segmentations/valid_421_a_2.nii.gz",
+      "key": "1",
+      "fold": 7
+    },
+    {
+      "prompt": "Subpleural 5 mm indeterminate nodule at the level of the paracostovertebral junction in the superior segment of the right lower lobe",
+      "image": "images_flat/train_498_a_2.nii.gz",
+      "label": "segmentations/train_498_a_2.nii.gz",
+      "key": "0",
+      "fold": 7
+    },
+    {
+      "prompt": "6 mm indeterminate nodule in the apical region of the right lung",
+      "image": "images_flat/train_784_e_2.nii.gz",
+      "label": "segmentations/train_784_e_2.nii.gz",
+      "key": "2",
+      "fold": 7
+    },
+    {
+      "prompt": "3 mm indeterminate nodule in the medial segment of the middle lobe of the right lung",
+      "image": "images_flat/train_679_a_2.nii.gz",
+      "label": "segmentations/train_679_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "3.5 mm pleural-based nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_782_a_1.nii.gz",
+      "label": "segmentations/train_782_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter indeterminate nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/valid_463_a_2.nii.gz",
+      "label": "segmentations/valid_463_a_2.nii.gz",
+      "key": "4",
+      "fold": 8
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_435_a_2.nii.gz",
+      "label": "segmentations/train_435_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "2 mm calcified nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_435_a_2.nii.gz",
+      "label": "segmentations/train_435_a_2.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "Cavitary lesion with air-fluid level in the apical segment of the left upper lobe, measuring 5.8 cm",
+      "image": "images_flat/train_602_a_2.nii.gz",
+      "label": "segmentations/train_602_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Near total resolution of nodular cavitary lesions in lower lobes of both lungs",
+      "image": "images_flat/train_644_d_1.nii.gz",
+      "label": "segmentations/train_644_d_1.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "Residual fibrotic band densities at levels of previous lesions in lower lobes of both lungs",
+      "image": "images_flat/train_644_d_1.nii.gz",
+      "label": "segmentations/train_644_d_1.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter nodule in the lower lobe of the right lung",
+      "image": "images_flat/valid_697_a_2.nii.gz",
+      "label": "segmentations/valid_697_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest pleural-based nodule measuring approximately 5x4.5 mm in the left lower lobe posterobasal segment",
+      "image": "images_flat/valid_676_a_2.nii.gz",
+      "label": "segmentations/valid_676_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest pleural-based nodule measuring approximately 7x3 mm in the right lower lobe posterobasal segment",
+      "image": "images_flat/valid_676_a_2.nii.gz",
+      "label": "segmentations/valid_676_a_2.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "5 mm calcified parenchymal nodule in the upper lobe of the right lung",
+      "image": "images_flat/valid_651_a_1.nii.gz",
+      "label": "segmentations/valid_651_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Ground glass nodule measuring 0.5 cm in diameter in the mediobasal segment of the left lower lobe",
+      "image": "images_flat/train_518_i_2.nii.gz",
+      "label": "segmentations/train_518_i_2.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "3 mm indeterminate nodular lesion in the upper lobe of the right lung",
+      "image": "images_flat/train_617_a_1.nii.gz",
+      "label": "segmentations/train_617_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm in diameter in the minor fissure of the right upper lobe",
+      "image": "images_flat/valid_677_a_1.nii.gz",
+      "label": "segmentations/valid_677_a_1.nii.gz",
+      "key": "5",
+      "fold": 8
+    },
+    {
+      "prompt": "3 mm nodule in the right middle lobe",
+      "image": "images_flat/valid_561_a_1.nii.gz",
+      "label": "segmentations/valid_561_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/valid_561_a_1.nii.gz",
+      "label": "segmentations/valid_561_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "4 mm nodule in the dorsal subpleural area of the right upper lobe posterior segment",
+      "image": "images_flat/valid_741_a_2.nii.gz",
+      "label": "segmentations/valid_741_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule with surrounding ground glass opacity in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/valid_587_a_2.nii.gz",
+      "label": "segmentations/valid_587_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule in the right lung middle lobe medial segment measuring 9 mm",
+      "image": "images_flat/train_622_a_2.nii.gz",
+      "label": "segmentations/train_622_a_2.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule in the right lung lower lobe laterobasal segment measuring 7 mm",
+      "image": "images_flat/train_622_a_2.nii.gz",
+      "label": "segmentations/train_622_a_2.nii.gz",
+      "key": "4",
+      "fold": 8
+    },
+    {
+      "prompt": "4 mm nodule in the lateral aspect of the superior segment of the right lower lobe",
+      "image": "images_flat/valid_565_a_1.nii.gz",
+      "label": "segmentations/valid_565_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Calcified parenchymal nodule measuring approximately 4.5 mm in the posterior segment of the right upper lobe",
+      "image": "images_flat/valid_652_a_2.nii.gz",
+      "label": "segmentations/valid_652_a_2.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "Nonspecific pulmonary nodule measuring 4.4 mm adjacent to the fissure in the posterior segment of the left lower lobe",
+      "image": "images_flat/train_409_a_2.nii.gz",
+      "label": "segmentations/train_409_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule measuring 5 mm at anterior lateral segment junction of right lower lobe",
+      "image": "images_flat/train_739_a_2.nii.gz",
+      "label": "segmentations/train_739_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 6 mm in the right middle lobe's lateral segment",
+      "image": "images_flat/train_440_b_1.nii.gz",
+      "label": "segmentations/train_440_b_1.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "New nodule with surrounding ground glass opacity in the superior segment of the left lower lobe, measuring 8 mm",
+      "image": "images_flat/train_412_a_2.nii.gz",
+      "label": "segmentations/train_412_a_2.nii.gz",
+      "key": "9",
+      "fold": 8
+    },
+    {
+      "prompt": "Pulmonary nodule measuring 4.5 mm in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_669_a_2.nii.gz",
+      "label": "segmentations/valid_669_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Pulmonary nodule measuring 10 mm in the lower lobe posterobasal segment of the right lung",
+      "image": "images_flat/valid_794_a_2.nii.gz",
+      "label": "segmentations/valid_794_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Pulmonary nodule measuring 9 mm in the inferior lingular segment of the left lung",
+      "image": "images_flat/valid_794_a_2.nii.gz",
+      "label": "segmentations/valid_794_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule superimposed on the fissure in the left lung, 6x3 mm",
+      "image": "images_flat/valid_464_a_2.nii.gz",
+      "label": "segmentations/valid_464_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter ground-glass nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_506_a_1.nii.gz",
+      "label": "segmentations/train_506_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Pleural-based nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/valid_658_a_2.nii.gz",
+      "label": "segmentations/valid_658_a_2.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "3 mm nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_720_a_2.nii.gz",
+      "label": "segmentations/valid_720_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Irregularly circumscribed nodule with surrounding ground-glass opacity in the posterior segment of the right upper lobe",
+      "image": "images_flat/valid_471_a_2.nii.gz",
+      "label": "segmentations/valid_471_a_2.nii.gz",
+      "key": "6",
+      "fold": 8
+    },
+    {
+      "prompt": "4 mm nodule in the lateral aspect of the superior segment of the right lower lobe",
+      "image": "images_flat/valid_565_b_1.nii.gz",
+      "label": "segmentations/valid_565_b_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule measuring 4.5 mm in the anterior lateral segment of the left lower lobe",
+      "image": "images_flat/train_566_a_2.nii.gz",
+      "label": "segmentations/train_566_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "7 mm nonspecific subpleural nodule superiorly in the lower lobe of the left lung",
+      "image": "images_flat/train_825_b_2.nii.gz",
+      "label": "segmentations/train_825_b_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule located in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_703_a_2.nii.gz",
+      "label": "segmentations/train_703_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest calcific nodule located in the posterior segment of the left upper lobe",
+      "image": "images_flat/valid_628_a_2.nii.gz",
+      "label": "segmentations/valid_628_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule in the lateral segment of the right middle lobe measuring 8.5 mm",
+      "image": "images_flat/train_768_a_2.nii.gz",
+      "label": "segmentations/train_768_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "5 mm spiculated nodule in the right lower lobe",
+      "image": "images_flat/train_649_a_2.nii.gz",
+      "label": "segmentations/train_649_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Well-circumscribed nodule measuring 8.9x6.7 mm in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_825_a_2.nii.gz",
+      "label": "segmentations/train_825_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter ground-glass nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_767_a_1.nii.gz",
+      "label": "segmentations/train_767_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Cavitary lesions with thick walls in both lungs",
+      "image": "images_flat/train_644_c_2.nii.gz",
+      "label": "segmentations/train_644_c_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Surrounding nodular lesions in the left upper lobe increased in size and cavitation",
+      "image": "images_flat/train_644_c_2.nii.gz",
+      "label": "segmentations/train_644_c_2.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "Subpleural nodule measuring 3 mm in diameter in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_756_a_2.nii.gz",
+      "label": "segmentations/train_756_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule in the peripheral region of the right middle lobe measuring approximately 6x7 mm",
+      "image": "images_flat/train_440_a_2.nii.gz",
+      "label": "segmentations/train_440_a_2.nii.gz",
+      "key": "6",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule measuring approximately 5 mm in the upper lobe of the right lung",
+      "image": "images_flat/train_495_a_1.nii.gz",
+      "label": "segmentations/train_495_a_1.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "2 mm subpleural nodule at the laterobasal level",
+      "image": "images_flat/valid_568_a_2.nii.gz",
+      "label": "segmentations/valid_568_a_2.nii.gz",
+      "key": "2",
+      "fold": 8
+    },
+    {
+      "prompt": "Subpleural subcentimeter nodule in the right lower lobe",
+      "image": "images_flat/train_772_a_2.nii.gz",
+      "label": "segmentations/train_772_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Calcified nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_542_a_2.nii.gz",
+      "label": "segmentations/valid_542_a_2.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter nodule in the right lung",
+      "image": "images_flat/valid_655_b_2.nii.gz",
+      "label": "segmentations/valid_655_b_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Subpleural, indeterminate 3 mm nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_898_a_1.nii.gz",
+      "label": "segmentations/valid_898_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Subpleural nodule measuring 4 mm in diameter in the apical segment of the right lung",
+      "image": "images_flat/train_865_a_1.nii.gz",
+      "label": "segmentations/train_865_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodular lesion approximately 10x14 mm with a tree-in-bud pattern in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_1265_a_2.nii.gz",
+      "label": "segmentations/valid_1265_a_2.nii.gz",
+      "key": "3",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule with slightly irregular borders, measuring approximately 9.5 mm in diameter, in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/valid_937_a_2.nii.gz",
+      "label": "segmentations/valid_937_a_2.nii.gz",
+      "key": "5",
+      "fold": 8
+    },
+    {
+      "prompt": "3 mm parenchymal nodule in the lingular segment of the left lung",
+      "image": "images_flat/train_907_a_1.nii.gz",
+      "label": "segmentations/train_907_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Largest nodule in the right lower lobe measuring approximately 5 mm",
+      "image": "images_flat/valid_927_a_1.nii.gz",
+      "label": "segmentations/valid_927_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule in the posterobasal portion of the left lower lobe",
+      "image": "images_flat/valid_1102_a_2.nii.gz",
+      "label": "segmentations/valid_1102_a_2.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule in the apical segment of the right upper lobe, 15 mm",
+      "image": "images_flat/train_913_a_1.nii.gz",
+      "label": "segmentations/train_913_a_1.nii.gz",
+      "key": "0",
+      "fold": 8
+    },
+    {
+      "prompt": "Nodule in the superior lingular segment of the left lung, 11 mm",
+      "image": "images_flat/train_913_a_1.nii.gz",
+      "label": "segmentations/train_913_a_1.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Single subpleural nodule in the right middle lobe measuring 1 mm",
+      "image": "images_flat/valid_1113_a_2.nii.gz",
+      "label": "segmentations/valid_1113_a_2.nii.gz",
+      "key": "1",
+      "fold": 8
+    },
+    {
+      "prompt": "Irregularly circumscribed solid nodule in the middle lobe of the right lung, measuring approximately 25x20 mm",
+      "image": "images_flat/valid_1103_a_2.nii.gz",
+      "label": "segmentations/valid_1103_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Newly developed nodule in the apicoposterior segment of the left upper lobe, 5 mm",
+      "image": "images_flat/valid_950_a_2.nii.gz",
+      "label": "segmentations/valid_950_a_2.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule present",
+      "image": "images_flat/valid_950_a_2.nii.gz",
+      "label": "segmentations/valid_950_a_2.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule measuring 4 mm in diameter",
+      "image": "images_flat/train_977_a_1.nii.gz",
+      "label": "segmentations/train_977_a_1.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule in the right lung",
+      "image": "images_flat/valid_1077_a_2.nii.gz",
+      "label": "segmentations/valid_1077_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Lesion in the apicoposterior segment of the right upper lobe has enlarged",
+      "image": "images_flat/train_1192_a_2.nii.gz",
+      "label": "segmentations/train_1192_a_2.nii.gz",
+      "key": "6",
+      "fold": 9
+    },
+    {
+      "prompt": "One calcified nodule measuring 2 mm in diameter in the right lung",
+      "image": "images_flat/train_1102_a_2.nii.gz",
+      "label": "segmentations/train_1102_a_2.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm ground glass nodule in the peripheral zone of the anteromedial basal segment of the left lower lobe",
+      "image": "images_flat/valid_1235_b_2.nii.gz",
+      "label": "segmentations/valid_1235_b_2.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm nodule in the subpleural area of the right upper lobe posterior segment",
+      "image": "images_flat/train_962_a_1.nii.gz",
+      "label": "segmentations/train_962_a_1.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm nodule along the interlobular fissure of the left lung",
+      "image": "images_flat/train_962_a_1.nii.gz",
+      "label": "segmentations/train_962_a_1.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Subcentimeter indeterminate nodule in the lower lobe of the left lung",
+      "image": "images_flat/valid_915_c_2.nii.gz",
+      "label": "segmentations/valid_915_c_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm pulmonary nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/train_1019_a_1.nii.gz",
+      "label": "segmentations/train_1019_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "3 mm calcified nodule subpleurally in the middle lobe of the right lung",
+      "image": "images_flat/train_1015_a_1.nii.gz",
+      "label": "segmentations/train_1015_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "7x4 mm subpleural nodule in the posterobasal segment of the right lung",
+      "image": "images_flat/valid_1091_a_1.nii.gz",
+      "label": "segmentations/valid_1091_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Enlargement of nodular lesions with irregular borders and a ground-glass halo",
+      "image": "images_flat/valid_1016_f_1.nii.gz",
+      "label": "segmentations/valid_1016_f_1.nii.gz",
+      "key": "5",
+      "fold": 9
+    },
+    {
+      "prompt": "Calcified parenchymal nodule in the lingular segment of the left lung",
+      "image": "images_flat/train_1189_a_1.nii.gz",
+      "label": "segmentations/train_1189_a_1.nii.gz",
+      "key": "6",
+      "fold": 9
+    },
+    {
+      "prompt": "Nodule in the anterior segment of the right upper lobe, measuring 5x5.5 mm",
+      "image": "images_flat/valid_1213_a_1.nii.gz",
+      "label": "segmentations/valid_1213_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "1 cm nodule in the medial segment of the right middle lobe abutting the mediastinal pleura",
+      "image": "images_flat/valid_839_a_1.nii.gz",
+      "label": "segmentations/valid_839_a_1.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "4 mm indeterminate nodule in the superior anterior segment of the right lower lobe",
+      "image": "images_flat/train_1062_a_2.nii.gz",
+      "label": "segmentations/train_1062_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Indeterminate nodule in the anterior segment of the right lower lobe, 6x4.5 mm",
+      "image": "images_flat/valid_992_a_1.nii.gz",
+      "label": "segmentations/valid_992_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Stable 3 mm subpleural nodule in the lingula of the left upper lobe",
+      "image": "images_flat/train_1124_a_2.nii.gz",
+      "label": "segmentations/train_1124_a_2.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm nodule with a fissural base in the middle lobe of the right lung",
+      "image": "images_flat/valid_837_a_2.nii.gz",
+      "label": "segmentations/valid_837_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "4 mm ground-glass nodule in the anterior segment of the right upper lobe",
+      "image": "images_flat/valid_989_a_1.nii.gz",
+      "label": "segmentations/valid_989_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule measuring approximately 9x6 mm located in the superior segment of the right lower lobe",
+      "image": "images_flat/train_845_a_1.nii.gz",
+      "label": "segmentations/train_845_a_1.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Stable nonspecific nodule in the superior segment of the right lower lobe, 4.4 mm",
+      "image": "images_flat/train_994_d_2.nii.gz",
+      "label": "segmentations/train_994_d_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Bilateral pulmonary lesions consistent with metastases",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Cavitary lesion in the lower lobe of the right lung",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Cavitary lesion with central cavitation",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Cavitary lesion with a maximum diameter of approximately 40 mm",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "Subpleural lesion with a maximum diameter of 23 mm",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "4",
+      "fold": 9
+    },
+    {
+      "prompt": "Subpleural lesion increased from 8 mm on previous imaging",
+      "image": "images_flat/train_1157_e_2.nii.gz",
+      "label": "segmentations/train_1157_e_2.nii.gz",
+      "key": "5",
+      "fold": 9
+    },
+    {
+      "prompt": "Stable 14 mm nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_856_a_2.nii.gz",
+      "label": "segmentations/train_856_a_2.nii.gz",
+      "key": "7",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm nodule in the lower lobe of the left lung",
+      "image": "images_flat/valid_1061_a_2.nii.gz",
+      "label": "segmentations/valid_1061_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "5 mm nodule at the base of the fissure in the superior segment of the lower lobe of the left lung",
+      "image": "images_flat/valid_1235_a_2.nii.gz",
+      "label": "segmentations/valid_1235_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "3 mm nodule at the fissure in the superior segment of the left lower lobe",
+      "image": "images_flat/valid_981_a_1.nii.gz",
+      "label": "segmentations/valid_981_a_1.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 12 mm in the lower lobe of the left lung",
+      "image": "images_flat/valid_1016_d_1.nii.gz",
+      "label": "segmentations/valid_1016_d_1.nii.gz",
+      "key": "4",
+      "fold": 9
+    },
+    {
+      "prompt": "4 mm nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/valid_1196_a_1.nii.gz",
+      "label": "segmentations/valid_1196_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_1196_a_1.nii.gz",
+      "label": "segmentations/valid_1196_a_1.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Subcentimeter nodule in the lower lobe of the left lung",
+      "image": "images_flat/valid_907_a_1.nii.gz",
+      "label": "segmentations/valid_907_a_1.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Nodule in the left lung, 5 mm in diameter, with a pleural base in the superior lingular segment of the upper lobe",
+      "image": "images_flat/train_1124_b_1.nii.gz",
+      "label": "segmentations/train_1124_b_1.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "Persistent, irregularly circumscribed nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_1124_b_1.nii.gz",
+      "label": "segmentations/train_1124_b_1.nii.gz",
+      "key": "5",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule in the lower lobe of the left lung measuring approximately 5 mm",
+      "image": "images_flat/train_1119_b_2.nii.gz",
+      "label": "segmentations/train_1119_b_2.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "4 mm nodule with a surrounding ground-glass halo in the apicoposterior segment of the left lung",
+      "image": "images_flat/valid_840_a_2.nii.gz",
+      "label": "segmentations/valid_840_a_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Consolidative lesion with subcentimeter area of cavitation associated with bronchial tract in anterior portion of apicoposterior segment",
+      "image": "images_flat/valid_937_d_2.nii.gz",
+      "label": "segmentations/valid_937_d_2.nii.gz",
+      "key": "6",
+      "fold": 9
+    },
+    {
+      "prompt": "Lesion more consolidative in appearance",
+      "image": "images_flat/valid_937_d_2.nii.gz",
+      "label": "segmentations/valid_937_d_2.nii.gz",
+      "key": "7",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule located in the right lung middle lobe medial segment",
+      "image": "images_flat/valid_987_a_2.nii.gz",
+      "label": "segmentations/valid_987_a_2.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring approximately 6 mm in diameter",
+      "image": "images_flat/train_1025_a_2.nii.gz",
+      "label": "segmentations/train_1025_a_2.nii.gz",
+      "key": "4",
+      "fold": 9
+    },
+    {
+      "prompt": "Well-demarcated 6 mm parenchymal nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/valid_1015_a_2.nii.gz",
+      "label": "segmentations/valid_1015_a_2.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule measuring approximately 4 mm in diameter in the posterior upper lobe of the right lung",
+      "image": "images_flat/valid_1269_a_2.nii.gz",
+      "label": "segmentations/valid_1269_a_2.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Nonspecific subcentimeter semisolid nodule measuring 5 mm in diameter in the basal segment of the left lower lobe",
+      "image": "images_flat/train_1087_a_2.nii.gz",
+      "label": "segmentations/train_1087_a_2.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "6 mm low-density nodule in the middle lobe of the right lung",
+      "image": "images_flat/valid_1038_a_1.nii.gz",
+      "label": "segmentations/valid_1038_a_1.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "3.5 mm nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/valid_1038_a_1.nii.gz",
+      "label": "segmentations/valid_1038_a_1.nii.gz",
+      "key": "4",
+      "fold": 9
+    },
+    {
+      "prompt": "Nodular lesions in bilateral lungs",
+      "image": "images_flat/valid_1016_c_1.nii.gz",
+      "label": "segmentations/valid_1016_c_1.nii.gz",
+      "key": "1",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodular lesion measuring approximately 1.6x1.2 cm in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/valid_1016_c_1.nii.gz",
+      "label": "segmentations/valid_1016_c_1.nii.gz",
+      "key": "2",
+      "fold": 9
+    },
+    {
+      "prompt": "Some nodular lesions with irregular borders",
+      "image": "images_flat/valid_1016_c_1.nii.gz",
+      "label": "segmentations/valid_1016_c_1.nii.gz",
+      "key": "3",
+      "fold": 9
+    },
+    {
+      "prompt": "Subcentimeter subpleural nodule at the junction of the anteromedial and lateral segments of the left lower lobe",
+      "image": "images_flat/valid_915_b_2.nii.gz",
+      "label": "segmentations/valid_915_b_2.nii.gz",
+      "key": "0",
+      "fold": 9
+    },
+    {
+      "prompt": "Largest nodule measuring 3.7 mm in the right middle lobe",
+      "image": "images_flat/train_860_a_1.nii.gz",
+      "label": "segmentations/train_860_a_1.nii.gz",
+      "key": "2",
+      "fold": 9
+    }
+  ],
+  "testing": [
+    {
+      "prompt": "Calcified nodule measuring 3 mm at the laterobasal level",
+      "image": "images_flat/train_13082_a_1.nii.gz",
+      "label": "segmentations/train_13082_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "4 mm nodule in the medial segment of the right middle lobe",
+      "image": "images_flat/train_13035_a_1.nii.gz",
+      "label": "segmentations/train_13035_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_13301_a_2.nii.gz",
+      "label": "segmentations/train_13301_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Stable 3 mm subcentimeter nodule near the subpleural area in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_13417_d_1.nii.gz",
+      "label": "segmentations/train_13417_d_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Calcified pulmonary nodule measuring 2 mm in the superior segment of the right lower lobe",
+      "image": "images_flat/train_13624_a_2.nii.gz",
+      "label": "segmentations/train_13624_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Largest nodule in the upper lobe of the right lung measuring approximately 5 mm in diameter",
+      "image": "images_flat/train_13013_a_1.nii.gz",
+      "label": "segmentations/train_13013_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Pleural-based nodule measuring 5x3 mm in the superior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_13430_a_2.nii.gz",
+      "label": "segmentations/train_13430_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "6x5 mm semisolid nodule in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_13020_a_2.nii.gz",
+      "label": "segmentations/train_13020_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Largest pulmonary nodule measuring 8 mm in diameter in the left lung fissure",
+      "image": "images_flat/train_13166_a_2.nii.gz",
+      "label": "segmentations/train_13166_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "5.5 mm nonspecific nodule in the subpleural region of the right upper lobe posterior segment",
+      "image": "images_flat/train_13092_a_2.nii.gz",
+      "label": "segmentations/train_13092_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "3 mm calcified nodule in the posterior segment of the left upper lobe",
+      "image": "images_flat/train_13631_a_1.nii.gz",
+      "label": "segmentations/train_13631_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm",
+      "image": "images_flat/train_13316_a_2.nii.gz",
+      "label": "segmentations/train_13316_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nodular lesions with ground glass opacity in the upper and middle lobes of the right lung",
+      "image": "images_flat/train_1742_c_2.nii.gz",
+      "label": "segmentations/train_1742_c_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nodule or nodular consolidation at the junction of the posterobasal and anterobasal segments in the lower lobe of the right lung, 30x22 mm with surrounding ground-glass appearance",
+      "image": "images_flat/train_1741_c_2.nii.gz",
+      "label": "segmentations/train_1741_c_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the anterior segment of the left upper lobe",
+      "image": "images_flat/train_2319_a_1.nii.gz",
+      "label": "segmentations/train_2319_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Nodule smaller than 5 mm in the middle lobe of the right lung, adjacent to the minor fissure",
+      "image": "images_flat/train_1867_a_2.nii.gz",
+      "label": "segmentations/train_1867_a_2.nii.gz",
+      "key": "11"
+    },
+    {
+      "prompt": "6.5 mm nodule in the left lung major fissure",
+      "image": "images_flat/train_1867_a_2.nii.gz",
+      "label": "segmentations/train_1867_a_2.nii.gz",
+      "key": "12"
+    },
+    {
+      "prompt": "5 mm calcified nodule at the anteromediobasal level of the left lower lobe",
+      "image": "images_flat/train_1694_a_2.nii.gz",
+      "label": "segmentations/train_1694_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "5 mm nodule in the superior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_2394_a_1.nii.gz",
+      "label": "segmentations/train_2394_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Nonspecific subcentimeter nodule in the superior segment of the lower lobe of the left lung",
+      "image": "images_flat/train_2394_a_1.nii.gz",
+      "label": "segmentations/train_2394_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 3 mm at the fissure level in the middle lobe of the right lung",
+      "image": "images_flat/train_1696_a_2.nii.gz",
+      "label": "segmentations/train_1696_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 2.5 mm in the laterobasal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_1696_a_2.nii.gz",
+      "label": "segmentations/train_1696_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nodular lesions measuring 7x4 mm with a ground-glass halo observed peripherally",
+      "image": "images_flat/train_1958_a_2.nii.gz",
+      "label": "segmentations/train_1958_a_2.nii.gz",
+      "key": "7"
+    },
+    {
+      "prompt": "3 mm nonspecific subpleural nodule at the posterobasal level of the lower lobe of the left lung",
+      "image": "images_flat/train_1606_a_2.nii.gz",
+      "label": "segmentations/train_1606_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "3 mm nodule at the anterobasal level of the right lower lobe",
+      "image": "images_flat/train_1331_a_1.nii.gz",
+      "label": "segmentations/train_1331_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Subpleural 5 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_1331_a_1.nii.gz",
+      "label": "segmentations/train_1331_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Subcentimeter low-density nodule in the lateral segment of the right middle lobe, indicating a nonspecific density increase",
+      "image": "images_flat/train_1568_a_2.nii.gz",
+      "label": "segmentations/train_1568_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule less than 5 mm in the right middle lobe lateral segment",
+      "image": "images_flat/train_2300_a_1.nii.gz",
+      "label": "segmentations/train_2300_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule less than 5 mm in the left lower lobe superior segment",
+      "image": "images_flat/train_2300_a_1.nii.gz",
+      "label": "segmentations/train_2300_a_1.nii.gz",
+      "key": "4"
+    },
+    {
+      "prompt": "Ground glass nodule less than 5 mm in the laterobasal segments of both lower lobes",
+      "image": "images_flat/train_2300_a_1.nii.gz",
+      "label": "segmentations/train_2300_a_1.nii.gz",
+      "key": "5"
+    },
+    {
+      "prompt": "Peripheral lesion with central solid appearance measuring 1.5 cm in the longest diameter in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_1560_a_2.nii.gz",
+      "label": "segmentations/train_1560_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Ground glass opacity surrounding the peripheral lesion in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_1560_a_2.nii.gz",
+      "label": "segmentations/train_1560_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "5 mm nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_2039_a_2.nii.gz",
+      "label": "segmentations/train_2039_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "No change in size of the nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_2039_a_2.nii.gz",
+      "label": "segmentations/train_2039_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "2 mm calcific nodule in the posterobasal region of the lower lobe of the right lung",
+      "image": "images_flat/train_1580_a_2.nii.gz",
+      "label": "segmentations/train_1580_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific 3 mm parenchymal nodule in the middle lobe of the right lung",
+      "image": "images_flat/train_1887_a_2.nii.gz",
+      "label": "segmentations/train_1887_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Well-circumscribed subpleural nodule measuring 6 mm in the laterobasal segment of the lower lobe of the right lung",
+      "image": "images_flat/train_1374_a_2.nii.gz",
+      "label": "segmentations/train_1374_a_2.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Subcentimeter nodular lesions with central cavitation in the upper lobes of both lungs",
+      "image": "images_flat/train_2149_a_1.nii.gz",
+      "label": "segmentations/train_2149_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "5 mm calcified nodule in the lateral segment of the left lower lobe",
+      "image": "images_flat/train_2251_a_2.nii.gz",
+      "label": "segmentations/train_2251_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "5x3 mm nodule in the dorsal subpleural area of the superior segment of the right lower lobe",
+      "image": "images_flat/train_1857_a_1.nii.gz",
+      "label": "segmentations/train_1857_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "4 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_1857_a_1.nii.gz",
+      "label": "segmentations/train_1857_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Calcified parenchymal nodule measuring 7.4 mm in diameter in the paracardiac area of the left lower lobe mediobasal segment",
+      "image": "images_flat/train_1968_c_1.nii.gz",
+      "label": "segmentations/train_1968_c_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Suspicious mass lesion in the posterior left lower lobe measuring 30x16 mm in axial sections",
+      "image": "images_flat/train_1405_a_2.nii.gz",
+      "label": "segmentations/train_1405_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Nonspecific pleural-based nodular lesions",
+      "image": "images_flat/train_1591_b_2.nii.gz",
+      "label": "segmentations/train_1591_b_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 2.2 mm in the middle lobe of the right lung",
+      "image": "images_flat/train_1309_a_1.nii.gz",
+      "label": "segmentations/train_1309_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Largest nodule in the peripheral area of the posterior segment of the right upper lobe",
+      "image": "images_flat/train_1686_a_1.nii.gz",
+      "label": "segmentations/train_1686_a_1.nii.gz",
+      "key": "5"
+    },
+    {
+      "prompt": "Largest nodule located in the left lung lingular segment",
+      "image": "images_flat/train_1276_a_2.nii.gz",
+      "label": "segmentations/train_1276_a_2.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "2.5 mm nodule adjacent to the major fissure in the anterobasal segment of the right lower lobe",
+      "image": "images_flat/train_2380_a_1.nii.gz",
+      "label": "segmentations/train_2380_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "2 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_2380_a_1.nii.gz",
+      "label": "segmentations/train_2380_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Pulmonary nodule approximately 6 mm in diameter in the anterior segment of the left upper lobe, adjacent to the aortic arch",
+      "image": "images_flat/train_1734_a_1.nii.gz",
+      "label": "segmentations/train_1734_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "4 mm nodule in the peripheral area of the left lower lobe superior segment",
+      "image": "images_flat/train_2400_a_1.nii.gz",
+      "label": "segmentations/train_2400_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 6.3 mm in the right lower lobe laterobasal segment",
+      "image": "images_flat/train_2403_a_1.nii.gz",
+      "label": "segmentations/train_2403_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific parenchymal nodule measuring 2.5 mm in the right lingular segment",
+      "image": "images_flat/train_2403_a_1.nii.gz",
+      "label": "segmentations/train_2403_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "6.5x5.5 mm nodule in the right lung apex",
+      "image": "images_flat/train_1267_a_1.nii.gz",
+      "label": "segmentations/train_1267_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "8x7.5 mm irregularly contoured nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_1267_a_1.nii.gz",
+      "label": "segmentations/train_1267_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Stable nodule adjacent to the consolidation in the lateral subpleural area of the posterior upper lobe of the left lung",
+      "image": "images_flat/train_1767_a_2.nii.gz",
+      "label": "segmentations/train_1767_a_2.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Variable changes in consolidated densities with some decreasing in size, some increasing, and some new lesions",
+      "image": "images_flat/train_1758_b_2.nii.gz",
+      "label": "segmentations/train_1758_b_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "New lesion measuring up to 23 mm in the paracardiac paramediastinal area, particularly in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_1758_b_2.nii.gz",
+      "label": "segmentations/train_1758_b_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "5 mm nodule in the lateral basal segment of the lower lobe of the left lung",
+      "image": "images_flat/train_1877_a_2.nii.gz",
+      "label": "segmentations/train_1877_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "3 mm nonspecific parenchymal nodule in the right lung",
+      "image": "images_flat/train_1887_b_2.nii.gz",
+      "label": "segmentations/train_1887_b_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "4.5 mm subpleural nodule in the apicoposterior segment of the left upper lobe, possibly a subpleural lymph node",
+      "image": "images_flat/train_1720_a_2.nii.gz",
+      "label": "segmentations/train_1720_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "5.6 mm nonspecific nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_1397_a_2.nii.gz",
+      "label": "segmentations/train_1397_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Subcentimeter nonspecific subpleural nodule in the posterior segment of the right upper lobe",
+      "image": "images_flat/train_2371_a_1.nii.gz",
+      "label": "segmentations/train_2371_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "4 mm intrapulmonary nodule superimposed over the right major fissure",
+      "image": "images_flat/train_1991_a_2.nii.gz",
+      "label": "segmentations/train_1991_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Macrocalcified nodular lesions in both lung parenchyma",
+      "image": "images_flat/train_1868_a_2.nii.gz",
+      "label": "segmentations/train_1868_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nonspecific 5 mm nodule in the apicoposterior segment of the left upper lobe",
+      "image": "images_flat/train_1557_a_2.nii.gz",
+      "label": "segmentations/train_1557_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Stable nonspecific parenchymal nodule measuring 5 mm in the upper lobe of the right lung",
+      "image": "images_flat/train_2039_c_2.nii.gz",
+      "label": "segmentations/train_2039_c_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Irregularly circumscribed mass lesion in the paramediastinal area of the right lung upper lobe anterior segment",
+      "image": "images_flat/train_1292_b_2.nii.gz",
+      "label": "segmentations/train_1292_b_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Stable mild bronchiectasis in the lung parenchyma adjacent to the lesions in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_1292_b_2.nii.gz",
+      "label": "segmentations/train_1292_b_2.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_2218_a_2.nii.gz",
+      "label": "segmentations/train_2218_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nodular lesion with ground-glass densities in the upper and middle lobes of the right lung",
+      "image": "images_flat/train_1742_d_2.nii.gz",
+      "label": "segmentations/train_1742_d_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Thin-walled cavitary lesion measuring approximately 5.5x6.5 cm in the basal segments of the lower lobe of the left lung",
+      "image": "images_flat/train_1542_a_1.nii.gz",
+      "label": "segmentations/train_1542_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "7 mm diameter nodule in the posterior segment of the right lung",
+      "image": "images_flat/train_1540_a_1.nii.gz",
+      "label": "segmentations/train_1540_a_1.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "15 mm diameter nodule in the anterior segment of the upper lobe of the right lung",
+      "image": "images_flat/train_1540_a_1.nii.gz",
+      "label": "segmentations/train_1540_a_1.nii.gz",
+      "key": "4"
+    },
+    {
+      "prompt": "Largest nodule measuring 5 x 5.8 mm in the subpleural region of the right lung",
+      "image": "images_flat/train_1610_a_2.nii.gz",
+      "label": "segmentations/train_1610_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Nonspecific 5 mm nodule in the upper lobe of the right lung",
+      "image": "images_flat/train_2039_b_1.nii.gz",
+      "label": "segmentations/train_2039_b_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "4 mm nodule in the superior segment of the right lower lobe",
+      "image": "images_flat/train_1854_a_1.nii.gz",
+      "label": "segmentations/train_1854_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "5 mm nodule in the superior segment of the left lower lobe",
+      "image": "images_flat/train_1854_a_1.nii.gz",
+      "label": "segmentations/train_1854_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "5 mm pulmonary nodule in the lateral segment of the right middle lobe",
+      "image": "images_flat/train_1649_a_1.nii.gz",
+      "label": "segmentations/train_1649_a_1.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 7x4 mm in the posterobasal segment of the left lower lobe",
+      "image": "images_flat/train_1340_a_2.nii.gz",
+      "label": "segmentations/train_1340_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Nonspecific nodule measuring 6 mm in diameter in the posterobasal segment of the right lower lobe",
+      "image": "images_flat/train_1340_a_2.nii.gz",
+      "label": "segmentations/train_1340_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Multiple focal nodular lesions with spiculated contours in both lungs",
+      "image": "images_flat/train_1758_a_2.nii.gz",
+      "label": "segmentations/train_1758_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Spiculated nodule in the posterior segment of the left lower lobe, measuring up to 1.8 cm",
+      "image": "images_flat/train_1758_a_2.nii.gz",
+      "label": "segmentations/train_1758_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Halo sign in the spiculated nodule in the posterior segment of the left lower lobe",
+      "image": "images_flat/train_1758_a_2.nii.gz",
+      "label": "segmentations/train_1758_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "2 mm subpleural nodule in the laterobasal segment of the right lower lobe",
+      "image": "images_flat/train_2377_a_2.nii.gz",
+      "label": "segmentations/train_2377_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the medial aspect of the anterior segment of the upper lobe",
+      "image": "images_flat/train_1774_a_1.nii.gz",
+      "label": "segmentations/train_1774_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Subcentimeter calcific nodule in the anterior upper lobe of the right lung",
+      "image": "images_flat/train_2028_a_1.nii.gz",
+      "label": "segmentations/train_2028_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Subpleural nodule approximately 5 mm in diameter in the lateral segment of the left lower lobe",
+      "image": "images_flat/train_2009_a_2.nii.gz",
+      "label": "segmentations/train_2009_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "45 mm mass lesion in the lower lobe of the left lung, reduced from 64 mm",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Increased pleuroparenchymal fibrotic density around the mass lesion in the lower lobe of the left lung",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "Development of subsegmental atelectasis around the mass lesion in the lower lobe of the left lung",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Subcentimeter nodule in the superior segment of the right lower lobe increased from 1 mm to 2 mm",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "3"
+    },
+    {
+      "prompt": "Nodule in the posterior part of the left upper lobe lingula superior segment increased from 3 mm to 4 mm",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "4"
+    },
+    {
+      "prompt": "Nodule in the posterior segment of the left upper lobe increased from 1 mm to 3 mm",
+      "image": "images_flat/train_1409_a_2.nii.gz",
+      "label": "segmentations/train_1409_a_2.nii.gz",
+      "key": "5"
+    },
+    {
+      "prompt": "Nonspecific 2 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_1960_a_2.nii.gz",
+      "label": "segmentations/train_1960_a_2.nii.gz",
+      "key": "0"
+    },
+    {
+      "prompt": "Subcentimeter nonspecific nodule in the right lung",
+      "image": "images_flat/train_1435_a_1.nii.gz",
+      "label": "segmentations/train_1435_a_1.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "4 mm nodule in the right middle lobe, less distinct compared to previous examinations",
+      "image": "images_flat/train_2342_a_5.nii.gz",
+      "label": "segmentations/train_2342_a_5.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "4 mm nodule in the posterior aspect of the left upper lobe",
+      "image": "images_flat/train_2051_a_1.nii.gz",
+      "label": "segmentations/train_2051_a_1.nii.gz",
+      "key": "1"
+    },
+    {
+      "prompt": "2 mm nodule in the laterobasal segment of the left lower lobe",
+      "image": "images_flat/train_2002_a_2.nii.gz",
+      "label": "segmentations/train_2002_a_2.nii.gz",
+      "key": "2"
+    },
+    {
+      "prompt": "Nonspecific 2.5 mm nodule in the superior segment of the lower lobe of the right lung",
+      "image": "images_flat/train_1650_a_2.nii.gz",
+      "label": "segmentations/train_1650_a_2.nii.gz",
+      "key": "0"
+    }
+  ]
+}

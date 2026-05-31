@@ -1,0 +1,22 @@
+{
+  "name": "train_13075_a_2.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    224
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Atelectatic changes at the basal levels of both lower lobes",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2b"
+  },
+  "pixels": {
+    "0": 54570
+  },
+  "embedding_norm": 4.418692111968994
+}

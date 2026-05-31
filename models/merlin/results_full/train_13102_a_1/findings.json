@@ -1,0 +1,28 @@
+{
+  "name": "train_13102_a_1.nii.gz",
+  "protocol": "val",
+  "shape": [
+    512,
+    512,
+    293
+  ],
+  "classified_findings": {
+    "0": {
+      "text": "Fibrotic changes in the middle lobe of the right lung",
+      "category": "Others"
+    },
+    "1": {
+      "text": "Fissural air cyst in the superior segment of the lower lobe of the left lung",
+      "category": "Others"
+    }
+  },
+  "categories": {
+    "0": "2a",
+    "1": "2h"
+  },
+  "pixels": {
+    "0": 856,
+    "1": 1899
+  },
+  "embedding_norm": 4.414767742156982
+}
