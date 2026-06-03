@@ -2,12 +2,14 @@ import argparse
 import os
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 from pipeline import (
     load_nifti_file,
     load_nifti_with_meta,
     normalize_binary_mask,
     apply_hu_window,
+    preprocess_ct,
     get_lung_mask,
     detect_ggo,
     suppress_vessels,
@@ -31,7 +33,7 @@ def parse_args():
                         help="Target isotropic voxel spacing in millimeters. Example: 1.0")
     parser.add_argument("--lung-threshold", type=int, default=-400,
                         help="HU threshold for lung segmentation.")
-    parser.add_argument("--ggo-range", type=int, nargs=2, default=[-800, -300],
+    parser.add_argument("--ggo-range", type=int, nargs=2, default=[-650, -250],
                         help="HU range for GGO detection.")
     parser.add_argument("--suppress-vessels", action="store_true",
                         help="Apply morphological vessel suppression to reduce false positives.")
@@ -47,13 +49,19 @@ def main():
     print("Loading CT scan...")
     ct_data, affine, header = load_nifti_with_meta(args.ct)
 
-    if args.resample is not None:
+    current_spacing = get_voxel_spacing(header)
+    preprocess_target_spacing = (args.resample,) * 3 if args.resample is not None else None
+    if preprocess_target_spacing is not None:
         print(f"Resampling scan to {args.resample}mm isotropic spacing...")
-        current_spacing = get_voxel_spacing(header)
-        ct_data = resample_scan(ct_data, current_spacing, target_spacing=(args.resample,) * 3)
 
-    print("Applying lung HU windowing for visualization...")
-    ct_windowed = apply_hu_window(ct_data, window_level=-600, window_width=1500)
+    print("Applying preprocessing and lung HU windowing for visualization...")
+    ct_data, ct_windowed = preprocess_ct(
+        ct_data,
+        current_spacing=current_spacing,
+        target_spacing=preprocess_target_spacing,
+        window_level=-600,
+        window_width=1500,
+    )
 
     print("Generating lung mask...")
     lung_mask = get_lung_mask(ct_data, threshold=args.lung_threshold)

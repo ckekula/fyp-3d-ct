@@ -1,0 +1,497 @@
+{
+    "train": [
+        {
+            "name": "train_67_a_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located patchy ground glass opacities in bilateral lungs with associated vascular enlargement"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "shape": [
+                512,
+                512,
+                496
+            ],
+            "pixels": {
+                "0": 23131
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_67\\train_67_a\\train_67_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_67_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_20_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral and central ground glass opacities in bilateral lungs"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "shape": [
+                512,
+                512,
+                512
+            ],
+            "pixels": {
+                "0": 293909
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_20\\train_20_a\\train_20_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_20_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_33_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in bilateral upper and lower lobes and the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 6
+            },
+            "shape": [
+                512,
+                512,
+                277
+            ],
+            "pixels": {
+                "0": 890062
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_33\\train_33_a\\train_33_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_33_a_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_244_b_1.nii.gz",
+            "findings": {
+                "0": "Patchy subpleural ground glass opacities in various lung segments"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                287
+            ],
+            "pixels": {
+                "0": 1514
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_244\\train_244_b\\train_244_b_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_244_b_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_298_a_2.nii.gz",
+            "findings": {
+                "0": "Minimal patchy ground glass opacities in the apical region of the left upper lobe",
+                "1": "Minimal patchy ground glass opacities in the posterobasal regions of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 2
+            },
+            "shape": [
+                512,
+                512,
+                910
+            ],
+            "pixels": {
+                "0": 13633,
+                "1": 22010
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0,
+                1
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_298\\train_298_a\\train_298_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_298_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_235_a_1.nii.gz",
+            "findings": {
+                "0": "Focal nodular ground glass opacity with a crazy paving pattern in the anterior segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "shape": [
+                512,
+                512,
+                299
+            ],
+            "pixels": {
+                "0": 1167
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_235\\train_235_a\\train_235_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_235_a_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_352_a_2.nii.gz",
+            "findings": {
+                "0": "Extensive ground glass opacities within both lungs, tending to coalesce, predominantly in peripheral regions"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                407
+            ],
+            "pixels": {
+                "0": 345087
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_352\\train_352_a\\train_352_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_352_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_68_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral scattered ground-glass nodules throughout both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                481
+            ],
+            "pixels": {
+                "0": 95015
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_68\\train_68_a\\train_68_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_68_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_588_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral nodular subpleural ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                509
+            ],
+            "pixels": {
+                "0": 175512
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_588\\train_588_a\\train_588_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_588_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_456_b_2.nii.gz",
+            "findings": {
+                "0": "Bilateral peripheral subpleural nodular ground glass opacities within the lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                509
+            ],
+            "pixels": {
+                "0": 188571
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_456\\train_456_b\\train_456_b_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_456_b_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_470_b_1.nii.gz",
+            "findings": {
+                "0": "Diffuse ground-glass opacities in both lungs, predominantly in the peripheral zones"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                231
+            ],
+            "pixels": {
+                "0": 1481933
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_470\\train_470_b\\train_470_b_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_470_b_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_491_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass infiltrates with a nodular pattern, predominantly peripheral in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                260
+            ],
+            "pixels": {
+                "0": 148368
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_491\\train_491_a\\train_491_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_491_a_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_466_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral subpleural patchy ground glass opacities in the lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                226
+            ],
+            "pixels": {
+                "0": 101538
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_466\\train_466_a\\train_466_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_466_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_564_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral and central ground glass opacities with surrounding nodules in bilateral upper and lower lobes and the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                768,
+                768,
+                221
+            ],
+            "pixels": {
+                "0": 160538
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_564\\train_564_a\\train_564_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_564_a_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_595_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral basal segments of the lower lobes with patchy ground-glass opacities and interstitial expansion"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                349
+            ],
+            "pixels": {
+                "0": 182795
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_595\\train_595_a\\train_595_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_595_a_1.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_600_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral lower lung lobes and the right upper lobe nodules with surrounding ground glass opacities in peribronchovascular and subpleural regions"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "shape": [
+                512,
+                512,
+                395
+            ],
+            "pixels": {
+                "0": 176050
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_600\\train_600_a\\train_600_a_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_600_a_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_518_g_2.nii.gz",
+            "findings": {
+                "0": "Bilateral patchy ground glass densities with surrounding halos in the lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                255
+            ],
+            "pixels": {
+                "0": 96353
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_518\\train_518_g\\train_518_g_2.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_518_g_2.nii.gz",
+            "target_category": "2c"
+        },
+        {
+            "name": "train_525_a_1.nii.gz",
+            "findings": {
+                "0": "Diffuse, patchy ground-glass opacities in all segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "shape": [
+                512,
+                512,
+                216
+            ],
+            "pixels": {
+                "0": 130322
+            },
+            "categories": {
+                "0": "2c"
+            },
+            "protocol": "protocol1",
+            "ggo_channels": [
+                0
+            ],
+            "ct_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\data_volumes\\train_525\\train_525_a\\train_525_a_1.nii.gz",
+            "seg_path": "D:\\My\\Projects\\fyp-3d-ct\\data\\segmentations\\train_525_a_1.nii.gz",
+            "target_category": "2c"
+        }
+    ],
+    "val": [],
+    "test": []
+}
