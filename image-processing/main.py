@@ -1,6 +1,7 @@
 import os
 import json
 import csv
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 
@@ -23,8 +24,10 @@ from pipeline import (
 from viewer import CTViewer
 
 
-DATASET_JSON = r"D:\My\Projects\fyp-3d-ct\data\rexgrounding-ct\dataset_img_processing.json"
-OUTPUT_DIR = r"D:\My\Projects\fyp-3d-ct\image-processing\outputs"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+DATASET_JSON = PROJECT_ROOT / "data" / "rexgrounding-ct" / "dataset_img_processing.json"
+OUTPUT_DIR = PROJECT_ROOT / "image-processing" / "outputs"
 
 SPLIT = "train"
 START_INDEX = 0

@@ -69,8 +69,8 @@ LCKSVD_CONFIG = {
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
     "variant":         "lcksvd2",
-    "n_iter":          50,    # main training iterations
-    "n_iter_init":     20,    # K-SVD warm-start iterations
+    "n_iter":          30,    # main training iterations
+    "n_iter_init":     15,    # K-SVD warm-start iterations
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }
