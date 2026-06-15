@@ -1,0 +1,15 @@
+{
+  "dice": 0.0,
+  "iou": 0.0,
+  "sensitivity": 0.0,
+  "specificity": 0.9999289039215021,
+  "precision": 0.0,
+  "f2_score": 0.0,
+  "hausdorff_95_mm": 165.80937825243953,
+  "pred_volume_ml": 3.006,
+  "gt_volume_ml": 250.403,
+  "volume_error_pct": -98.79953514933928,
+  "lung_involvement_pct": 0.0290873650524308,
+  "n_pred_lesions": 13,
+  "n_gt_lesions": 2
+}
