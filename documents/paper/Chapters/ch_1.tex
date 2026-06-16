@@ -1,0 +1,141 @@
+﻿%\index{\footnote{}}
+\chapter{Introduction}
+Developing a unified architectural pipeline for multiclass abnormality classification and grounded localization in 3D Computed
+Tomography (CT) addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
+Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
+provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is held accountable and its
+reasoning aligns with clinical diagnosis.
+
+The transition from 2D projectional radiography to volumetric CT represents a paradigm shift in medical image analysis.
+For Lung disease diagnosis, Chest Xrays (CXR) are commonly used as the first imaging test due to its low cost and low
+radiation exposure. However, studies show that their capability to detect abnormailities is limited when compared to 3D CT.
+\cite{SELF2013401}.
+
+Furthermore, CXR has historically benefited from the availability of massive, radiologist-annotated datasets, while
+the analysis of chest CT volumes has been severely constrained by a lack of such data.
+However, the recent introduction of large scale, textpaired datasets has facilitated the development of state-of-the-art
+(SotA) vision language foundation models tailored specifically for volumetric imaging \cite{baharoon2025rexgroundingct3dchestct,flores2016,chen2026dflashblockdiffusionflash}.
+
+Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LCKSVD) \cite{jiang2013lcksvd},
+Label Embedded Dictionary Learning (LEDL) and Fischer Discriminant Dictionary Learning (FDDL)
+offer viable approaches for interpretable CT analysis. All three techniques incorporate label information during the dictionary training
+process, and ensures that the sparse representation of the data is highly discriminative, making them
+wellsuited for multiabnormality tasks.
+
+The clinical utility of Deep Learning based approaches is hindered by a lack of interpretability. While tools like GradCAM
+provide post hoc explanations to model decisions, these are often insufficient for medical professionals who require a granular
+understanding of the model's decision making process. In high stakes environments, a model that produces a diagnosis without
+transparency in its reasoning is difficult to integrate into clinical workflows, as it lacks the accountability necessary for
+legal and ethical compliance.
+
+\section{Literature Review}
+The landscape of 3D CT analysis is currently divided into three primary architectural paradigms:
+\begin{itemize}
+	\item Classificationbased models that prioritize diagnostic labels
+	\item Segmentationbased models that prioritize boundary precision
+	\item Unified architectures designed for grounded localization
+\end{itemize}.
+
+SotA models are predominantly specialized in either classification or segmentation. However, recent systems, particularly
+in 2025 and 2026, are moving toward multitask learning or foundation models that can perform both diagnosis and voxellevel
+segmentation simultaneously.
+
+Table 1 summarizes the key models in each category, their primary task orientation, and their performance on standard benchmarks.
+
+\begin{center}
+\captionof{table}{Summary of major 3D CT analysis paradigms and representative models}
+\label{tab:3dctparadigms}
+\begin{tabularx}{\textwidth}{p{2.8cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Paradigm} & \textbf{Representative Models} & \textbf{Primary Task} & \textbf{Typical Strengths / Notes} \\
+\midrule
+Classificationbased & CTCLIP; Merlin; DINOv3 & Imagelevel diagnosis; retrieval; linear probing & Strong imagelevel diagnosis; good zeroshot and transfer performance; efficient inference; limited voxellevel localization. \\
+\addlinespace
+Segmentationbased & nnUNet; SegVol; SAMMed3D & Voxellevel lesion segmentation & High boundary precision and dense localization; foundation models aim for universal volumetric segmentation across organs and pathologies. \\
+\addlinespace
+Unified architectures & BiomedParse; MedImageParse; CitrusV; MTMed3D; MedVista3D & Joint diagnosis, segmentation, and reasoning & Multitask inference with grounded localization; integrates report understanding with voxel outputs; typically more complex and computationally intensive. \\
+\midrule
+\end{tabularx}
+\end{center}
+
+\subsection{Classification Architectures}
+Classificationbased models for 3D CT have shifted away from 3D Convolutional Neural Networks (CNNs) such as 3D UNet,
+3D ResNet and DenseNet pipelines, toward Vision Transformers (ViTs) and selfsupervised encoders. The benchmark for this paradigm is
+the CTRATE dataset, which introduced the first public largescale 3D medical imaging dataset with paired textual reports, enabling
+the development of Contrastive LanguageImage Pretraining for Computed Tomography (CTCLIP).
+
+CTCLIP is a VLFM designed for 3D chest CT analysis. It extends the CLIP framework to volumetric medical
+imaging by jointly learning representations from CT scans and their corresponding radiology reports. \cite{hamamci2024ctclip,radford2021clip}
+Through contrastive learning, the model aligns image features with textual descriptions, enabling tasks such as zeroshot classification,
+crossmodal retrieval, and reportguided abnormality localization. \cite{hamamci2024ctclip}
+The model is particularly effective in learning semantic relationships between radiological findings and volumetric imaging
+patterns such as GGO, consolidation, fibrosis, and pulmonary nodules. \cite{hamamci2024ctclip,rexgroundingct}
+
+Recent benchmarks such as Merlin and DINOv3 have further challenged the necessity of domainspecific pretraining.
+Merlin is a VLFM exclusively pretrained on abdominal CT scans. Despite it's training, Merlin
+has consistently demonstrated exceptional zeroshot performance on chest CT classification tasks, even when it was
+restricted to a linear probe, significantly outperforming models like CTCLIP, M3FM, and CTFM that were explicitly
+trained on thoracic data, by an average of 12.3\% in Area Under the Receiver Operating Characteristic Curve (AUROC).
+Specifically, in crossdomain retrieval tasks, Merlin surpassed CTCLIP by 24.7\%.
+
+DINOv3, a selfsupervised ViT pretrained on over 1.7 billion natural images, outperform specialized medical models like
+CTNet and CTCLIP across all metrics on several classification tasks due to it's ability to capture finegrained textural features.
+
+\subsection{Segmentation Architectures}
+The prevailing SotA for supervised volumetric segmentation remains variations of the 3D UNet, such as nnUNet, which
+utilizes an adaptive framework to optimize preprocessing and architecture for specific datasets. However, the field has
+recently shifted toward foundation models capable of universal segmentation such as SegVol and SAMMed3D.
+The SegVol model is the first 3D foundation model specifically designed for universal volumetric medical image segmentation.
+Similarly, SAMMed3D adapts the Segment Anything Model (SAM) for 3D medical data.
+
+Recent evaluations published at the Machine Learning for Healthcare (MLHC) Conference in 2025, which specifically utilized
+the ReXGroundingCT dataset, revealed that the current SotA textprompted segmentation models that demonstrate nearperfect
+performance in general computer vision tasks struggle with the nuanced clinical descriptions and illdefined boundaries
+of chest CT abnormalities.
+
+\subsection{Unified Architectures}
+Recent models have been designed to integrate abnormality detection, segmentation, and multimodal chainofthought reasoning,
+enabling pixellevel localization, structured report generation, and physicianlike diagnostic inference in a single framework.
+BiomedParse, and it's clouddeployed version MedImageParse, developed by Microsoft, are foundation models designed to parse 3D
+medical images.
+Other notable models include CitrusV, MTMed3D and MedVista3D, where each architecture incorporates a multitask learning
+(MTL) framework~\cite{citrusv2025,mtmed3d2025,medvista3d2025}, as summarized in Table~\ref{tab:3dctparadigms}.
+
+\subsection{Dictionary Learning Approaches}
+Applications of sparse dictionary learning in medical imaging have demonstrated significant success across diverse diagnostic tasks. In histopathological
+analysis, Discriminative Feature oriented Dictionary Learning (DFDL) has shown the ability to learn class specific dictionaries that achieve high classification
+accuracy even with limited training data, a critical advantage when generous training samples are not available~\cite{vu2016dfdl}. In neuroimaging, multi feature kernel supervised
+dictionary learning approaches have demonstrated superior performance in distinguishing Alzheimer\'s disease patients from cognitively unimpaired individuals,
+achieving 98.18\% classification accuracy while maintaining fast testing times~\cite{li2018mkscddl}.
+
+Most relevant to our work, dictionary learning has been successfully applied to lung disease diagnosis from CT images. One approach utilized both frozen
+dictionary learning and label consistent LCKSVD to classify COVID 19 CT scans, achieving 89\% accuracy on the CCCCII dataset~\cite{gould2007nodule}. The framework\'s key
+advantage lies in its interpretability, where the sparse coding output can be directly mapped back to the original input signal domain. This work demonstrates that
+sparse representation methods offer an effective balance between performance and explainability for lung disease classification tasks, providing clear feature
+representations while maintaining competitive accuracy. Similarly, sparse representation methods have achieved 95.4\% accuracy in classifying diffuse lung disease
+patterns on HRCT images, effectively handling the high variety and complexity of patterns~\cite{aberle2011nlst}.
+
+
+\subsection{Explainability Approaches}
+
+GradCAM is one of the most widely used posthoc explanation methods for CNNbased classifiers \cite{selvaraju2017gradcam}. 
+It generates classdiscriminative heatmaps by using gradients flowing into the final convolutional layer, allowing the user to identify
+image regions that influenced a prediction \cite{selvaraju2017gradcam}. 
+It's main limitation is that it produces lowresolution saliency maps and does not directly provide precise lesion boundaries or
+voxellevel localization, which is a major drawback for 3D CT interpretation \cite{selvaraju2017gradcam,draelos2021usehirescaminsteadgradcam}.
+
+SegGradCAM extends this idea by adapting GradCAM to semantic segmentation outputs \cite{Suara_2024}. 
+Instead of only highlighting regions that are important for imagelevel classification, it produces pixellevel relevance heatmaps for
+segmentation predictions \cite{Suara_2024}.
+This is particularly useful for volumetric medical imaging tasks where the target abnormality occupies a sparse region within a large 3D scan.
+
+HiResCAM addresses one of the key weaknesses of GradCAM by producing higherresolution and more faithful localization maps \cite{draelos2021usehirescaminsteadgradcam}. 
+This is important in chest CT because many abnormalities, such as small nodules, consolidations, or subtle interstitial changes,
+may be missed by coarse heatmaps. 
+HiResCAM aims to preserve fine spatial detail, making it more suitable for medical imaging applications where precise localization is required \cite{draelos2021usehirescaminsteadgradcam}. 
+However, like other gradientbased methods, it remains a posthoc explanation technique and does not change the internal decision process of the model.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
