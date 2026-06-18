@@ -457,19 +457,19 @@ def extract_unified(split: str = "train") -> None:
 
     raw_by_cat = {ab: labels.get_positive_volume_names(ab) for ab in abnormality_keys}
     for ab, lst in raw_by_cat.items():
-        logger.info(f"  category {ab}: {len(lst)} volumes (sample: {lst[:3]})")
+        logger.info(f"  category {ab}: {len(lst)} volumes")
 
     positive_ids: List[str] = list({
         vid
         for ab in abnormality_keys
         for vid in raw_by_cat.get(ab, [])
     })
-    logger.info(f"Raw positive IDs deduped: {len(positive_ids)} (sample: {positive_ids[:5]})")
+    logger.info(f"Raw positive IDs deduped: {len(positive_ids)}")
     positive_ids = _filter_existing(positive_ids)
     logger.info(f"After path resolution: abnormal={len(positive_ids)}")
 
     raw_normals = labels.get_normal_volume_names()
-    logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}, e.g. {raw_normals[:3]}")
+    logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}")
     if len(raw_normals) == 0:
         logger.warning(
             "No normal volumes found in metadata — dataset may contain only abnormal scans."

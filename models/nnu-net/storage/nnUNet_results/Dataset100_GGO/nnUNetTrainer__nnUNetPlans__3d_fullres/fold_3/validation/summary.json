@@ -1,0 +1,58 @@
+{
+    "foreground_mean": {
+        "Dice": 0.10871755204073724,
+        "FN": 154489.5,
+        "FP": 94044.0,
+        "IoU": 0.05757346968128204,
+        "TN": 124944006.0,
+        "TP": 13988.5,
+        "n_pred": 108032.5,
+        "n_ref": 168478.0
+    },
+    "mean": {
+        "1": {
+            "Dice": 0.10871755204073724,
+            "FN": 154489.5,
+            "FP": 94044.0,
+            "IoU": 0.05757346968128204,
+            "TN": 124944006.0,
+            "TP": 13988.5,
+            "n_pred": 108032.5,
+            "n_ref": 168478.0
+        }
+    },
+    "metric_per_case": [
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.12616078366431857,
+                    "FN": 33143,
+                    "FP": 104055,
+                    "IoU": 0.06732743266576934,
+                    "TN": 116048226,
+                    "TP": 9904,
+                    "n_pred": 113959,
+                    "n_ref": 43047
+                }
+            },
+            "prediction_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_results/Dataset100_GGO/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_3/validation/train_1371_a_1.nii.gz",
+            "reference_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_preprocessed/Dataset100_GGO/gt_segmentations/train_1371_a_1.nii.gz"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.09127432041715591,
+                    "FN": 275836,
+                    "FP": 84033,
+                    "IoU": 0.047819506696794745,
+                    "TN": 133839786,
+                    "TP": 18073,
+                    "n_pred": 102106,
+                    "n_ref": 293909
+                }
+            },
+            "prediction_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_results/Dataset100_GGO/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_3/validation/train_20_a_2.nii.gz",
+            "reference_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_preprocessed/Dataset100_GGO/gt_segmentations/train_20_a_2.nii.gz"
+        }
+    ]
+}
