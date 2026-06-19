@@ -17,7 +17,10 @@ from typing import Dict, List, Optional, Tuple
 
 import nibabel as nib
 import numpy as np
-from scipy.ndimage import zoom
+from scipy.ndimage import (
+    binary_closing, binary_fill_holes, generate_binary_structure,
+    label as nd_label, zoom,
+)
 
 from lc_ksvd.config import ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR
 
@@ -163,6 +166,48 @@ def window_and_normalise(vol: np.ndarray) -> np.ndarray:
     vol = np.clip(vol, HU_MIN,  HU_MAX)
     vol = (vol - HU_MIN) / (HU_MAX - HU_MIN)
     return vol.astype(np.float32)
+
+
+def build_lung_mask(vol_hu: np.ndarray) -> np.ndarray:
+    """Create a simple whole-lung mask from a resampled CT volume in HU."""
+    if vol_hu.ndim != 3:
+        raise ValueError(f"Expected 3-D CT, got {vol_hu.shape}.")
+
+    H, W, D = vol_hu.shape
+    body = np.zeros((H, W, D), dtype=bool)
+    structure_2d = np.ones((7, 7), dtype=bool)
+
+    # Body envelope excludes external air while keeping the lung cavities.
+    for z in range(D):
+        tissue = vol_hu[:, :, z] > -600.0
+        tissue = binary_closing(tissue, structure=structure_2d, iterations=2)
+        components, n_components = nd_label(tissue)
+        if n_components > 0:
+            sizes = np.bincount(components.ravel())
+            sizes[0] = 0
+            tissue = components == int(np.argmax(sizes))
+        body[:, :, z] = binary_fill_holes(tissue)
+
+    candidates = (vol_hu < -400.0) & body
+    components, n_components = nd_label(
+        candidates, structure=generate_binary_structure(3, 1)
+    )
+    if n_components == 0:
+        return np.zeros_like(vol_hu, dtype=np.uint8)
+
+    sizes = np.bincount(components.ravel())
+    sizes[0] = 0
+    keep = [int(i) for i in np.argsort(sizes)[::-1] if i != 0 and sizes[i] > 0][:2]
+    if not keep:
+        return np.zeros_like(vol_hu, dtype=np.uint8)
+
+    lung = np.isin(components, keep)
+    lung = binary_closing(
+        lung, structure=np.ones((3, 3, 3), dtype=bool), iterations=2
+    )
+    for z in range(D):
+        lung[:, :, z] = binary_fill_holes(lung[:, :, z])
+    return lung.astype(np.uint8)
 
 
 # ─── Metadata parsing ────────────────────────────────────────────────────────
@@ -354,7 +399,8 @@ class ScanLoader:
         # Load and resample volume
         vol_hu, spacing = load_volume(volume_name)
         vol_rs = resample_volume(vol_hu, spacing)
-        vol    = window_and_normalise(vol_rs)
+        lung_mask = build_lung_mask(vol_rs)
+        vol = window_and_normalise(vol_rs)
 
         # Load and resample mask to match the resampled volume shape exactly,
         # ignoring the mask's own header spacing to avoid shape mismatches.
@@ -369,6 +415,7 @@ class ScanLoader:
         return {
             "volume_name": volume_name,
             "volume":      vol,
+            "lung_mask":   lung_mask,
             "mask":        mask,
             "finding_map": finding_map,
         }

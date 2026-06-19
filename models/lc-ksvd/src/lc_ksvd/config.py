@@ -53,6 +53,13 @@ MIN_OVERLAP_RATIO = 0.05
 # Number of positive patches to sample per scan
 N_POSITIVE_PATCHES_PER_SCAN = 30
 
+# Training-time patch-grid strides (voxels).
+NORMAL_PATCH_STRIDE = 32      # non-overlapping normal patches
+ABNORMAL_PATCH_STRIDE = 16    # 50% overlap for abnormal patches
+
+# Retain a normal patch only when this fraction belongs to the lung mask.
+MIN_LUNG_COVERAGE = 0.90
+
 # Sliding-window stride used during inference (voxels).
 # PATCH_SIZE // 2 gives 50 % overlap; increase for speed, decrease for finer maps.
 INFERENCE_STRIDE = PATCH_SIZE // 2   # 16 voxels = 24 mm at 1.5 mm spacing
