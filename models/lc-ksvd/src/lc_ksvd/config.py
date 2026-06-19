@@ -25,12 +25,11 @@ INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii
 
 ABNORMALITY_CATEGORIES = {
     "normal": "Normal (no findings)",
-    "2b": "Atelectasis, consolidation",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }
 
-CLASS_ORDER = ["normal", "2b", "2c", "2d"]
+CLASS_ORDER = ["normal", "2c", "2d"]
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 

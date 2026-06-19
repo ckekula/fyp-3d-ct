@@ -126,7 +126,7 @@ def resample_volume(vol: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
         return vol
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        resampled = zoom(vol, factors, order=1)   # order=1 → trilinear
+        resampled = zoom(vol, factors, order=1, mode='nearest')   # order=1 → trilinear, mode='nearest' to avoid blending edge voxels with 0
     return resampled.astype(np.float32)
 
 
@@ -147,7 +147,7 @@ def resample_mask(mask: np.ndarray, target_shape: Tuple[int, int, int]) -> np.nd
     for f in range(mask.shape[0]):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            rs = zoom(mask[f], factors, order=0)
+            rs = zoom(mask[f], factors, order=0, mode='nearest')
         resampled_slices.append(rs.astype(np.uint8))
     return np.stack(resampled_slices, axis=0)
 
@@ -195,7 +195,7 @@ class MetadataRegistry:
 
         split_names = [split] if split else ["train", "val", "test"]
 
-        # Index all volumes from all splits (train, val, test)
+        # Index all volumes from all splits
         for split_name in split_names:
             if split_name not in self._raw:
                 continue
