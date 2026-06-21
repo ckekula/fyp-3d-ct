@@ -33,9 +33,15 @@ import numpy as np
 from tqdm import tqdm
 
 from lc_ksvd.config import (
+    ABNORMAL_PATCH_STRIDE,
+    CLASS_ORDER,
+    MIN_LUNG_COVERAGE,
     N_FEATURES,
-    N_POSITIVE_PATCHES_PER_SCAN, PATCH_SIZE,
-    PATCHES_DIR, RANDOM_SEED, CLASS_ORDER
+    N_POSITIVE_PATCHES_PER_SCAN,
+    NORMAL_PATCH_STRIDE,
+    PATCH_SIZE,
+    PATCHES_DIR,
+    RANDOM_SEED,
 )
 from lc_ksvd.data_loader import (
     LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
@@ -64,6 +70,56 @@ def _extract_patch(
         return None
 
     return volume[x0:x1, y0:y1, z0:z1].copy()
+
+def _axis_positions(start: int, stop: int, stride: int) -> List[int]:
+    if stride <= 0:
+        raise ValueError(f"Stride must be positive, got {stride}.")
+    if start > stop:
+        return []
+    positions = list(range(start, stop + 1, stride))
+    if positions[-1] != stop:
+        positions.append(stop)
+    return positions
+
+
+def generate_grid_centres(
+    volume_shape: Tuple[int, int, int],
+    patch_size: int,
+    stride: int,
+    centre_bounds: Optional[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]] = None,
+) -> List[Tuple[int, int, int]]:
+    half = patch_size // 2
+    H, W, D = volume_shape
+    valid_bounds = ((half, H - half), (half, W - half), (half, D - half))
+    if centre_bounds is None:
+        centre_bounds = valid_bounds
+
+    clipped = []
+    for (lo, hi), (vlo, vhi) in zip(centre_bounds, valid_bounds):
+        clipped.append((max(vlo, int(lo)), min(vhi, int(hi))))
+
+    xs = _axis_positions(*clipped[0], stride)
+    ys = _axis_positions(*clipped[1], stride)
+    zs = _axis_positions(*clipped[2], stride)
+    return [(x, y, z) for x in xs for y in ys for z in zs]
+
+
+def _mask_centre_bounds(
+    binary_mask: np.ndarray,
+) -> Optional[Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]]:
+    coords = np.argwhere(binary_mask > 0)
+    if len(coords) == 0:
+        return None
+    half = PATCH_SIZE // 2
+    mins = coords.min(axis=0)
+    maxs = coords.max(axis=0)
+    lower = mins - half + 1
+    upper = maxs + half
+    return (
+        (int(lower[0]), int(upper[0])),
+        (int(lower[1]), int(upper[1])),
+        (int(lower[2]), int(upper[2])),
+    )
 
 
 def _overlap_ratio(
@@ -102,34 +158,36 @@ def _valid_centre_range(
 
 def sample_normal_patches(
     volume: np.ndarray,
+    lung_mask: np.ndarray,
     n_patches: int,
     rng: np.random.Generator,
-    max_attempts_multiplier: int = 10,
 ) -> List[np.ndarray]:
-    """
-    Sample n_patches from anywhere in the volume.
-    No mask constraint — every in-bounds patch is a valid normal patch.
-    """
-    (xlo, xhi), (ylo, yhi), (zlo, zhi) = _valid_centre_range(volume.shape)
-    patches = []
-    max_attempts = n_patches * max_attempts_multiplier
-
-    for _ in range(max_attempts):
-        if len(patches) >= n_patches:
-            break
-        centre = (
-            int(rng.integers(xlo, xhi)),
-            int(rng.integers(ylo, yhi)),
-            int(rng.integers(zlo, zhi)),
+    """Extract normal, lung-dominant patches on a regular grid."""
+    if lung_mask.shape != volume.shape:
+        raise ValueError(
+            f"Lung mask shape {lung_mask.shape} != volume shape {volume.shape}."
         )
+
+    candidates: List[np.ndarray] = []
+    centres = generate_grid_centres(
+        volume_shape=volume.shape,
+        patch_size=PATCH_SIZE,
+        stride=NORMAL_PATCH_STRIDE,
+    )
+
+    for centre in centres:
         patch = _extract_patch(volume, centre)
-        if patch is not None:
-            patches.append(patch)
+        lung_patch = _extract_patch(lung_mask, centre)
+        if patch is None or lung_patch is None:
+            continue
+        if float(np.mean(lung_patch > 0)) < MIN_LUNG_COVERAGE:
+            continue
+        candidates.append(patch)
 
-    if len(patches) < n_patches:
-        logger.debug(f"Normal scan: only sampled {len(patches)}/{n_patches} patches.")
-
-    return patches
+    if n_patches > 0 and len(candidates) > n_patches:
+        chosen = rng.choice(len(candidates), size=n_patches, replace=False)
+        candidates = [candidates[int(i)] for i in np.sort(chosen)]
+    return candidates
 
 
 def collect_normal_patches(
@@ -157,7 +215,17 @@ def collect_normal_patches(
             logger.warning(f"Skipping {scan_id}: {e}")
             continue
 
-        patches = sample_normal_patches(scan["volume"], n_per_scan, rng)
+        lung_mask = scan.get("lung_mask")
+        if lung_mask is None or not np.any(lung_mask):
+            logger.warning(f"Skipping {scan_id}: lung mask unavailable.")
+            continue
+
+        patches = sample_normal_patches(
+            volume=scan["volume"],
+            lung_mask=lung_mask,
+            n_patches=n_per_scan,
+            rng=rng,
+        )
         all_patches.extend(patches)
         all_labels.extend([normal_class_idx] * len(patches))
         all_scan_ids.extend([scan_id] * len(patches))
@@ -270,33 +338,44 @@ def collect_abnormal_patches(
         for m in category_masks.values():
             union_mask = np.logical_or(union_mask, m).astype(np.uint8)
 
-        foreground_coords = np.argwhere(union_mask > 0)
-        if len(foreground_coords) == 0:
+        centre_bounds = _mask_centre_bounds(union_mask)
+        if centre_bounds is None:
             continue
 
-        max_attempts = n_patches_per_scan * 10
-        collected = 0
+        candidate_centres = generate_grid_centres(
+            volume_shape=volume_shape,
+            patch_size=PATCH_SIZE,
+            stride=ABNORMAL_PATCH_STRIDE,
+            centre_bounds=centre_bounds,
+        )
 
-        for _ in range(max_attempts):
-            if collected >= n_patches_per_scan:
-                break
-
-            idx    = rng.integers(0, len(foreground_coords))
-            centre = tuple(foreground_coords[idx])
+        candidates: List[Tuple[np.ndarray, int]] = []
+        for centre in candidate_centres:
+            mask_patch = _extract_patch(union_mask, centre)
+            if mask_patch is None or not np.any(mask_patch > 0):
+                continue
 
             patch = _extract_patch(scan["volume"], centre)
             if patch is None:
                 continue
 
-            # Label by highest-overlap category; no minimum overlap gate.
             best_cat, _ = _majority_class(centre, category_masks)
             if best_cat is None:
                 continue
+            candidates.append((patch, class_to_idx[best_cat]))
 
+        if n_patches_per_scan > 0 and len(candidates) > n_patches_per_scan:
+            chosen = rng.choice(
+                len(candidates), size=n_patches_per_scan, replace=False
+            )
+            candidates = [candidates[int(i)] for i in np.sort(chosen)]
+
+        for patch, class_idx in candidates:
             all_patches.append(patch)
-            all_labels.append(class_to_idx[best_cat])
+            all_labels.append(class_idx)
             all_scan_ids.append(scan_id)
-            collected += 1
+
+        collected = len(candidates)
 
         if collected < n_patches_per_scan:
             logger.debug(

@@ -1,0 +1,128 @@
+﻿\chapter{Background}
+
+\section{Dictionary Learning}
+
+\subsection{Sparse Coding and KSVD}
+
+Sparse coding is the process of representing an input signal as a linear combination of only a small number of basis elements selected from a dictionary. In the context of this project, each input signal corresponds to a vectorised 3D CT patch. For example, a patch of size $32 \times 32 \times 32$ contains 32,768 voxel values and is reshaped into a column vector before being used by the dictionary learning model.
+
+Given an input patch $y \in \mathbb{R}^{m}$ and a dictionary $D \in \mathbb{R}^{m \times K}$ containing $K$ atoms, sparse coding aims to find a coefficient vector $x \in \mathbb{R}^{K}$ such that:
+
+\[
+y \approx Dx
+\]
+
+where $D$ contains learned dictionary atoms as its columns, and $x$ is the sparse code that indicates how strongly each atom contributes to reconstructing the input patch. The term ``sparse'' means that most values in $x$ are zero, and only a small number of atoms are active for a given patch.
+
+The sparse coding problem can be formulated as:
+
+\[
+x = \arg\min_x \|y - Dx\|_2^2
+\quad \text{s.t.} \quad \|x\|_0 \leq T
+\]
+
+where $\|y - Dx\|_2^2$ measures the reconstruction error, $\|x\|_0$ counts the number of non-zero coefficients in the sparse code, and $T$ controls the maximum number of atoms that can be used to represent one patch. A smaller value of $T$ forces the model to use fewer atoms, resulting in a more compact and interpretable representation.
+
+The dictionary $D$ is typically learned using K-SVD (K-Singular Value Decomposition), which solves the following optimization problem:
+
+$$
+\min_{D, X} \|P  DX\|_F^2 \quad \text{s.t.} \quad \forall i, \|x_i\|_0 \leq T 
+$$
+
+where $P$ represents the training data, $X$ is the sparse coefficient matrix, and $T$ controls the sparsity level.
+KSVD alternates between sparse coding and dictionary update steps to minimize reconstruction error.
+However, it does not incorporate class labels, which limits its discriminative ability for classification tasks. \cite{ksvd}
+
+\subsection{LCKSVD}
+LCKSVD jointly learns a dictionary, sparse codes, a labelconsistency transform, and a linear classifier so that the learned
+representations are not only good for reconstruction but also discriminative for classification through labelconsistency constraints \cite{jiang2013lcksvd}.
+
+The standard LCKSVD objective (often referred to as LCKSVD2 when the classifier term is included) can be written compactly as:
+\begin{equation}
+\label{eq:lcksvd_obj}
+\min_{D,A,W,X} \; \|P  D X\|_F^2 + \alpha \|Q  A X\|_F^2 + \beta \|H  W X\|_F^2 \quad \text{s.t. } \forall i, \|x_i\|_0 \le T, \; \|d_k\|_2 = 1 \; \forall k
+\end{equation}
+
+Definitions of terms:
+\begin{itemize}
+    \item $P \in \mathbb{R}^{m\times N}$: training data matrix (each column is a vectorised 3D patch).
+    \item $D \in \mathbb{R}^{m\times K}$: dictionary matrix with $K$ atoms (columns $d_k$).
+    \item $X \in \mathbb{R}^{K\times N}$: sparse coefficient matrix whose $i$th column $x_i$ encodes the $i$th patch.
+    \item $T$: sparsity threshold (maximum nonzeros allowed per sparse code).
+    \item $Q \in \mathbb{R}^{p\times N}$: labelconsistency target matrix that embeds class information into a prototype space used to regularise codes.
+    \item $A \in \mathbb{R}^{p\times K}$: linear transform that maps sparse codes to the labelconsistency space (enforces that codes for the same class are similar).
+    \item $H \in \mathbb{R}^{c\times N}$: label indicator matrix (onehot encoding across $c$ classes) used for classifier training.
+    \item $W \in \mathbb{R}^{c\times K}$: linear classifier weights mapping sparse codes to class scores.
+    \item $\alpha,\beta$: nonnegative scalars controlling the strength of the labelconsistency and classification terms respectively.
+    \item $\|\cdot\|_F$: Frobenius norm; $\|x\|_0$ denotes the $\ell_0$ (sparsity) pseudonorm.
+\end{itemize}
+
+Role of each objective term:
+\begin{itemize}
+    \item $\|P  D X\|_F^2$: reconstruction fidelity; forces the dictionary and codes to accurately represent the input patches.
+    \item $\alpha \|Q  A X\|_F^2$: labelconsistency regulariser; encourages codes for the same class to be mapped close to a shared prototype.
+    \item $\beta \|H  W X\|_F^2$: supervised classification loss on sparse codes; trains a linear classifier jointly with the dictionary.
+\end{itemize}
+
+In practice LCKSVD is solved by alternating optimisation: (1) sparse coding (e.g., OMP) to estimate $X$ with $D,A,W$ fixed, and (2) closedform or SVDbased updates for $D,A,W$ while holding $X$ fixed. Variants differ in how $Q$ is constructed and whether the classifier term is included during early warmstart iterations.
+
+\subsection{Frozen Dictionary Learning}
+
+To address this limitation, we adopt a twostage dictionary learning strategy inspired by constrained dictionary learning approaches. \cite{yankelevsky2016frozen}
+In the first stage, a dictionary is learned from normal CT scans to capture healthy anatomical structures.
+In the second stage, this dictionary is frozen and kept fixed, while additional atoms are learned only from abnormal scans.
+This approach can be interpreted as:
+
+\begin{itemize}
+    \item preserving $D_{\text{normal}}$ learned from healthy data
+    \item learning $D_{\text{abnormal}}$ independently for disease patterns
+\end{itemize}
+
+This separation ensures that normal anatomical structures are not overwritten, while abnormal features are explicitly isolated,
+improving interpretability and stability.
+
+% 
+
+\section{Radiological Patterns in Lung CT Imaging}
+
+\subsection{CT Imaging}
+
+Computed Tomography (CT) imaging is widely used in lung disease diagnosis due to its ability to generate detailed crosssectional images of lung structures. \cite{sluimer2006ct} % NEW — Sluimer et al., "Computer Analysis of CT of the Lungs", Radiology, 2006
+CT scans provide highresolution visualization of abnormalities such as Ground Glass Opacity (GGO), consolidation, Atelectasis, and pulmonary nodules, enabling accurate assessment and early detection of lung diseases. \cite{hansell2008fleischner} % NEW — Hansell et al., Fleischner Society Glossary of Terms, Radiology, 2008
+
+In modern medical imaging systems, CT imaging also supports computeraided diagnosis and deep learningbased analysis for automated detection, segmentation, and classification of lung abnormalities. \cite{litjens2017survey} % NEW — Litjens et al., "A Survey on Deep Learning in Medical Image Analysis", MIA, 2017
+These capabilities improve diagnostic efficiency and assist radiologists in clinical decisionmaking.
+
+\subsection{Ground Glass Opacity (GGO)}
+
+GGO appears as hazy regions in CT images which partially obscure underlying blood vessels or airway structures.
+Typically indicates partial filling of air spaces, inflammation, or earlystage infection. \cite{park2011ggo}
+% Figure intentionally removed from here to avoid duplicate placement; retained after Pulmonary Nodules.
+\subsection{Consolidation}
+
+Consolidation appears denser than GGO, completely obscuring underlying lung structures such as vessels and airway walls. \cite{hansell2008fleischner}
+It is often associated with severe infection, fluid accumulation, or advanced disease stages.
+The transition between GGO and consolidation is clinically important, as it can indicate disease progression or worsening lung conditions. \cite{chung2021covid}
+
+\subsection{Atelectasis}
+
+Atelectasis refers to the collapse or closure of alveoli in the lungs, leading to reduced lung volume and impaired gas exchange.
+It can be caused by various factors, including mucus plugging, foreign body aspiration, or compression from external masses.
+On CT imaging, atelectasis appears as areas of increased density with volume loss and may be associated with air bronchograms. \cite{hansell2008fleischner}
+
+\subsection{Pulmonary Nodules}
+
+Pulmonary nodules are small, rounded lesions commonly observed in lung CT scans and are important indicators for early disease detection.
+They're usually less than 3 cm in diameter and can appear solid, subsolid, or groundglass in nature. \cite{macmahon2017fleischner}
+Nodules are clinically significant as they may represent benign conditions such as infections or scars, but can also indicate earlystage lung cancer in suspicious cases. \cite{gould2007nodule, aberle2011nlst}
+Careful monitoring of nodule size, shape, and growth over time is essential for accurate diagnosis.
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{\detokenize{Chapters/chapter1PIC/4 pathologies.jpg}}
+\caption{Four pathologies: example appearances of Lung nodules, groundglass opacity (GGO), consolidation, and Atelectasis.}
+\label{fig:4pathologies_pn}
+\end{figure}
+
+% 
+

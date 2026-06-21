@@ -25,12 +25,11 @@ INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii
 
 ABNORMALITY_CATEGORIES = {
     "normal": "Normal (no findings)",
-    "2b": "Atelectasis, consolidation",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }
 
-CLASS_ORDER = ["normal", "2b", "2c", "2d"]
+CLASS_ORDER = ["normal", "2c", "2d"]
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
@@ -53,6 +52,13 @@ MIN_OVERLAP_RATIO = 0.05
 
 # Number of positive patches to sample per scan
 N_POSITIVE_PATCHES_PER_SCAN = 30
+
+# Training-time patch-grid strides (voxels).
+NORMAL_PATCH_STRIDE = 32      # non-overlapping normal patches
+ABNORMAL_PATCH_STRIDE = 16    # 50% overlap for abnormal patches
+
+# Retain a normal patch only when this fraction belongs to the lung mask.
+MIN_LUNG_COVERAGE = 0.90
 
 # Sliding-window stride used during inference (voxels).
 # PATCH_SIZE // 2 gives 50 % overlap; increase for speed, decrease for finer maps.
