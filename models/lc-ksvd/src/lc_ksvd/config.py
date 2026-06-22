@@ -34,8 +34,9 @@ CLASS_ORDER = ["normal", "2c", "2d"]
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
 # HU window for lung parenchyma
-HU_MIN = -1000
-HU_MAX =  200
+HU_MIN = -900
+HU_MAX =  -200
+BACKGROUND_HU = -1000  # value to fill outside the lung mask (air)
 
 # Target isotropic voxel spacing in mm after resampling
 TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
@@ -49,9 +50,6 @@ N_FEATURES = PATCH_SIZE ** 3  # 32768 — dimensionality of each patch vector
 # for a patch to be considered a positive sample
 # (lowered from 0.10 to 0.05 to capture small lesions like opacities/consolidations)
 MIN_OVERLAP_RATIO = 0.05
-
-# Number of positive patches to sample per scan
-N_POSITIVE_PATCHES_PER_SCAN = 30
 
 # Training-time patch-grid strides (voxels).
 NORMAL_PATCH_STRIDE = 32      # non-overlapping normal patches
