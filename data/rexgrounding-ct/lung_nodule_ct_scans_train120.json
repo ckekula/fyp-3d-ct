@@ -1,0 +1,4269 @@
+{
+  "description": "RexGrounding-CT CT scans containing lung nodule categories. Subset manifest with top 120 largest-mask training cases.",
+  "split_policy": "source train -> train; source val -> test; source test ignored unless local",
+  "target_categories": [
+    "2d"
+  ],
+  "category_meanings": {
+    "1e": "diffusely distributed multiple pulmonary nodules",
+    "2d": "solitary pulmonary nodule or mass"
+  },
+  "ct_root": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed",
+  "seg_root": "/home/chest_ct/code/data/segmentations/segmentations",
+  "counts": {
+    "train": 120,
+    "val": 0,
+    "test": 13
+  },
+  "skipped": {
+    "train": {
+      "no_target_category": 1687,
+      "missing_ct": 349
+    },
+    "val": {
+      "no_target_category": 22,
+      "missing_ct": 15
+    },
+    "test": {
+      "no_target_category": 56,
+      "missing_ct": 44
+    }
+  },
+  "splits": {
+    "train": [
+      {
+        "name": "train_340_a_1.nii.gz",
+        "case_id": "train_340_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_340/train_340_a/train_340_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_340_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Mass in the left upper lobe and lingular segments causing obstruction of the upper lobe bronchus",
+          "1": "Mass indistinct from adjacent mediastinal structures",
+          "2": "Multiple bilateral pulmonary nodules",
+          "3": "Largest pulmonary nodule measuring 15 mm in the medial segment of the right middle lobe",
+          "4": "Largest pulmonary nodule measuring 16 mm in the superior segment of the left upper lobe"
+        },
+        "shape": [
+          768,
+          768,
+          215
+        ],
+        "pixels": {
+          "0": 994870,
+          "1": 994870,
+          "2": 12066,
+          "3": 4184,
+          "4": 10222
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_186_a_2.nii.gz",
+        "case_id": "train_186_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_186/train_186_a/train_186_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_186_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "1": "Mass-like lesion approximately 3.5x2 cm with irregular, spiculated margins in the paramediastinal region of the left hemithorax",
+          "2": "Poorly demarcated mass from the pulmonary conus and aortic arch in the aortopulmonary window"
+        },
+        "shape": [
+          512,
+          512,
+          535
+        ],
+        "pixels": {
+          "1": 112660,
+          "2": 1053717
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_122_b_1.nii.gz",
+        "case_id": "train_122_b_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_122/train_122_b/train_122_b_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_122_b_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Stable mass in the upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          319
+        ],
+        "pixels": {
+          "0": 1098312
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_122_a_1.nii.gz",
+        "case_id": "train_122_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_122/train_122_a/train_122_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_122_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          6
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "0": "Mass in the right upper lobe's posterior segment, measuring 11.5 cm in craniocaudal dimension and 9 cm in transverse diameter",
+          "1": "Air-filled cavities within the mass",
+          "2": "Central necrosis within the mass",
+          "6": "Stable parenchymal nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          329
+        ],
+        "pixels": {
+          "0": 911000,
+          "1": 16293,
+          "2": 47749,
+          "6": 348
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_122_c_1.nii.gz",
+        "case_id": "train_122_c_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_122/train_122_c/train_122_c_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_122_c_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          3
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "0": "Unchanged mass with necrotic content in the upper lobe of the right lung",
+          "3": "Progression of lesions in the lower lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          326
+        ],
+        "pixels": {
+          "0": 729636,
+          "3": 97702
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1213_a_2.nii.gz",
+        "case_id": "train_1213_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1213/train_1213_a/train_1213_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1213_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "1": "Primary mass in the lower lobe of the right lung obscured by consolidation",
+          "2": "Soft tissue densities in the upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "1": 543818,
+          "2": 219161
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1448_c_2.nii.gz",
+        "case_id": "train_1448_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1448/train_1448_c/train_1448_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1448_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Thick-walled lesion in the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          512
+        ],
+        "pixels": {
+          "3": 513494
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_412_c_2.nii.gz",
+        "case_id": "train_412_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_412/train_412_c/train_412_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_412_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Infiltrative mass in the left pulmonary hilum encasing and narrowing the left main bronchus",
+          "1": "Mass extends to the carina and right main bronchus, as well as mediastinal structures"
+        },
+        "shape": [
+          512,
+          512,
+          500
+        ],
+        "pixels": {
+          "0": 181417,
+          "1": 181417
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1686_a_1.nii.gz",
+        "case_id": "train_1686_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1686/train_1686_a/train_1686_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1686_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          2,
+          3,
+          5,
+          6
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "2": "2d",
+          "3": "2d",
+          "5": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "0": "Primary mass in the middle lobe of the right lung",
+          "2": "Adjacent nodular density increases in the left lower lobe superior segment",
+          "3": "Fragmented mass in the left lower lobe superior segment post-radiotherapy",
+          "5": "Largest nodule in the peripheral area of the posterior segment of the right upper lobe",
+          "6": "Metastatic nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          206
+        ],
+        "pixels": {
+          "0": 165922,
+          "2": 94103,
+          "3": 94103,
+          "5": 944,
+          "6": 1551
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_412_a_2.nii.gz",
+        "case_id": "train_412_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_412/train_412_a/train_412_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_412_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          4,
+          5,
+          9,
+          10
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "4": "2d",
+          "5": "2d",
+          "9": "2d",
+          "10": "2d"
+        },
+        "nodule_findings": {
+          "1": "Mass indistinct from the aorta and pulmonary artery",
+          "2": "Largest diameter of the mass measures 5.8 cm",
+          "4": "Nodular density in the apicoposterior segment of the left upper lobe's consolidation",
+          "5": "Soft tissue mass in the left upper lobe measures 3.1 cm",
+          "9": "New nodule with surrounding ground glass opacity in the superior segment of the left lower lobe, measuring 8 mm",
+          "10": "Indeterminate subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "1": 131389,
+          "2": 131389,
+          "4": 11354,
+          "5": 11354,
+          "9": 36350,
+          "10": 549
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2993_a_2.nii.gz",
+        "case_id": "train_2993_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2993/train_2993_a/train_2993_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2993_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Centriacinar nodular infiltrates in the lower lobe of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          423
+        ],
+        "pixels": {
+          "2": 275287
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6970_b_2.nii.gz",
+        "case_id": "train_6970_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6970/train_6970_b/train_6970_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6970_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Thick-walled cavitary mass measuring 6.7x5.7 cm in the posterobasal segment of the lower lobe of the left lung",
+          "2": "Subcentimeter nodules in the posterobasal segment of the lower lobe of the left lung",
+          "3": "Lesion measuring 2.0 cm in diameter in the superior segment of the lower lobe of the right lung",
+          "4": "Smaller nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          523
+        ],
+        "pixels": {
+          "0": 263024,
+          "2": 414,
+          "3": 6667,
+          "4": 414
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2965_b_2.nii.gz",
+        "case_id": "train_2965_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2965/train_2965_b/train_2965_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2965_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3,
+          5,
+          6
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d",
+          "5": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "2": "Diffuse subpleural and intraparenchymal mass lesions in all segments of both lung parenchyma",
+          "3": "Metastatic mass lesions in right lower lobe superior, lower lobe mediobasal, left upper lobe posterior, and left lower lobe superior segments",
+          "5": "Endobronchial spread",
+          "6": "Newly developed area measuring approximately 2.0x1.3 cm with air bronchograms in the paramediastinal area of the left lung lingula superior segment"
+        },
+        "shape": [
+          512,
+          512,
+          360
+        ],
+        "pixels": {
+          "2": 52842,
+          "3": 91017,
+          "5": 81643,
+          "6": 23026
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1292_b_2.nii.gz",
+        "case_id": "train_1292_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1292/train_1292_b/train_1292_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1292_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "0": "Irregularly circumscribed mass lesion in the paramediastinal area of the right lung upper lobe anterior segment",
+          "1": "Mass contains multiple coarse calcifications with a mildly heterogeneous internal structure",
+          "2": "Borders of the mass cannot be clearly distinguished on non-contrast examination"
+        },
+        "shape": [
+          512,
+          512,
+          203
+        ],
+        "pixels": {
+          "0": 63792,
+          "1": 63792,
+          "2": 63792
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_119_a_2.nii.gz",
+        "case_id": "train_119_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_119/train_119_a/train_119_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_119_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "0": "Centrally located mass in the right upper lobe measuring 6 cm in diameter adjacent to the mediastinum and enveloping the upper lobe bronchi",
+          "1": "Thin-walled air cyst in the lateral segment of the right middle lobe, measuring 3.8 x 2.4 cm",
+          "2": "Three closely spaced pulmonary parenchymal nodules in the anterior segment of the left upper lobe, each measuring 4 mm, decreased in size on follow-up",
+          "3": "Nodule in the anterior aspect of the right lung measuring 7 mm in diameter, slightly more prominent on follow-up"
+        },
+        "shape": [
+          512,
+          512,
+          487
+        ],
+        "pixels": {
+          "0": 105069,
+          "1": 40715,
+          "2": 38645,
+          "3": 2620
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6970_a_2.nii.gz",
+        "case_id": "train_6970_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6970/train_6970_a/train_6970_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6970_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Thick-walled cavitary mass measuring approximately 5.5x6.5 cm in the posterobasal segment of the left lower lobe",
+          "2": "Subcentimeter nodules in the posterobasal segment of the left lower lobe",
+          "3": "Lesion measuring approximately 2.0x2.0 cm in the superior segment of the right lower lobe",
+          "4": "Subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          517
+        ],
+        "pixels": {
+          "0": 158045,
+          "2": 1091,
+          "3": 11956,
+          "4": 1093
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_7641_b_2.nii.gz",
+        "case_id": "train_7641_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7641/train_7641_b/train_7641_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7641_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Cystic-necrotic mass in the posterior segment of the right upper lobe of the lung",
+          "1": "Irregularly circumscribed nodule adjacent to the mass in the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          229
+        ],
+        "pixels": {
+          "0": 147708,
+          "1": 307
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1329_b_1.nii.gz",
+        "case_id": "train_1329_b_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1329/train_1329_b/train_1329_b_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1329_b_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Mass with spiculated contours, irregular borders, and pleural retraction in the apical segment of the right upper lobe, measuring up to 48x38 mm",
+          "1": "Multiple pulmonary nodules in the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          360
+        ],
+        "pixels": {
+          "0": 121512,
+          "1": 3090
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7858_a_2.nii.gz",
+        "case_id": "train_7858_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7858/train_7858_a/train_7858_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7858_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "1": "Mass measuring 5.7x2.8 cm, increased from 4.5x1.7 cm in the previous examination",
+          "2": "Mass extending slightly into the intercostal space, particularly in the inferior part"
+        },
+        "shape": [
+          512,
+          512,
+          244
+        ],
+        "pixels": {
+          "1": 56691,
+          "2": 56691
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_856_a_2.nii.gz",
+        "case_id": "train_856_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_856/train_856_a/train_856_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_856_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3,
+          7
+        ],
+        "nodule_categories": {
+          "3": "2d",
+          "7": "2d"
+        },
+        "nodule_findings": {
+          "3": "Absence of previously noted primary mass in the lower lobe of the right lung",
+          "7": "Stable 14 mm nodule in the lateral segment of the right middle lobe"
+        },
+        "shape": [
+          512,
+          512,
+          432
+        ],
+        "pixels": {
+          "3": 91259,
+          "7": 5393
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_11880_d_1.nii.gz",
+        "case_id": "train_11880_d_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_11880/train_11880_d/train_11880_d_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_11880_d_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Thin-walled cavitary lesion measuring approximately 4.0x5.5 cm in the posterior segment of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          319
+        ],
+        "pixels": {
+          "2": 93382
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_644_b_2.nii.gz",
+        "case_id": "train_644_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_644/train_644_b/train_644_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_644_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "2": "Large cavitary lesions within areas of consolidation",
+          "3": "Thin-walled cavitary lesions in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          442
+        ],
+        "pixels": {
+          "2": 45445,
+          "3": 45445
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7244_a_1.nii.gz",
+        "case_id": "train_7244_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7244/train_7244_a/train_7244_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7244_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Irregularly circumscribed mass approximately 83x73 mm in the anterior segment of the upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          339
+        ],
+        "pixels": {
+          "0": 78312
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1409_a_2.nii.gz",
+        "case_id": "train_1409_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1409/train_1409_a/train_1409_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1409_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          3,
+          4,
+          5
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "3": "2d",
+          "4": "2d",
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "0": "45 mm mass lesion in the lower lobe of the left lung, reduced from 64 mm",
+          "3": "Subcentimeter nodule in the superior segment of the right lower lobe increased from 1 mm to 2 mm",
+          "4": "Nodule in the posterior part of the left upper lobe lingula superior segment increased from 3 mm to 4 mm",
+          "5": "Nodule in the posterior segment of the left upper lobe increased from 1 mm to 3 mm"
+        },
+        "shape": [
+          512,
+          512,
+          557
+        ],
+        "pixels": {
+          "0": 72385,
+          "3": 331,
+          "4": 1082,
+          "5": 1477
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1192_a_2.nii.gz",
+        "case_id": "train_1192_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1192/train_1192_a/train_1192_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1192_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4,
+          5,
+          6
+        ],
+        "nodule_categories": {
+          "4": "2d",
+          "5": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "4": "Multifocal nodules in both lungs with a miliary pattern",
+          "5": "Confluence of nodules in the lower lobes",
+          "6": "Lesion in the apicoposterior segment of the right upper lobe has enlarged"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "4": 1243,
+          "5": 1617,
+          "6": 68614
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_412_b_2.nii.gz",
+        "case_id": "train_412_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_412/train_412_b/train_412_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_412_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Large mass in the left pulmonary hilum with obscured margins"
+        },
+        "shape": [
+          512,
+          512,
+          488
+        ],
+        "pixels": {
+          "2": 50956
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1310_b_2.nii.gz",
+        "case_id": "train_1310_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1310/train_1310_b/train_1310_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1310_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "1": "Irregularly circumscribed nodule causing minimal structural distortion and volume loss in the anterior segment of the left upper lobe, measuring approximately 10x22 mm",
+          "2": "Subcentimeter nonspecific nodules in the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "1": 42098,
+          "2": 890
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1496_a_1.nii.gz",
+        "case_id": "train_1496_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1496/train_1496_a/train_1496_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1496_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "nodule_categories": {
+          "3": "2d",
+          "4": "2d",
+          "5": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "3": "Slight decrease in size of existing nodules in posterior upper lobe of right lung",
+          "4": "Slight decrease in size of existing nodules in posterior lower lobe of left lung",
+          "5": "Unification and increase in size of irregularly circumscribed reticulonodular densities in superior lingular segment of left lung",
+          "6": "Minimal decrease in existing densities in some areas"
+        },
+        "shape": [
+          512,
+          512,
+          326
+        ],
+        "pixels": {
+          "3": 630,
+          "4": 509,
+          "5": 17397,
+          "6": 20905
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2986_c_2.nii.gz",
+        "case_id": "train_2986_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2986/train_2986_c/train_2986_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2986_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Centriacinar pulmonary nodules of ground glass density in both lungs, particularly in the upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          204
+        ],
+        "pixels": {
+          "0": 39217
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1756_a_1.nii.gz",
+        "case_id": "train_1756_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1756/train_1756_a/train_1756_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1756_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "Surrounding ground-glass density pulmonary nodules in the left lung lower lobe superior segment",
+          "2": "Several nodular appearances in both lungs",
+          "3": "Largest nodular appearance being 1 cm in diameter in the superior segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          298
+        ],
+        "pixels": {
+          "1": 32096,
+          "2": 1758,
+          "3": 2380
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1758_a_2.nii.gz",
+        "case_id": "train_1758_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1758/train_1758_a/train_1758_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1758_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "0": "Multiple focal nodular lesions with spiculated contours in both lungs",
+          "1": "Spiculated nodule in the posterior segment of the left lower lobe, measuring up to 1.8 cm",
+          "2": "Halo sign in the spiculated nodule in the posterior segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          179
+        ],
+        "pixels": {
+          "0": 12219,
+          "1": 1901,
+          "2": 17171
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7062_a_2.nii.gz",
+        "case_id": "train_7062_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7062/train_7062_a/train_7062_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7062_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Patchy nodular densities in the posterior segment of the right upper lobe",
+          "1": "Patchy nodular densities in the lateral and medial segments of the right middle lobe",
+          "2": "Patchy nodular densities in all segments of the right lower lobe",
+          "4": "Patchy nodular densities in the lower lobes of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          546
+        ],
+        "pixels": {
+          "0": 10059,
+          "1": 4412,
+          "2": 11238,
+          "4": 3867
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1405_a_2.nii.gz",
+        "case_id": "train_1405_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1405/train_1405_a/train_1405_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1405_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Suspicious mass lesion in the posterior left lower lobe measuring 30x16 mm in axial sections"
+        },
+        "shape": [
+          512,
+          512,
+          518
+        ],
+        "pixels": {
+          "2": 27456
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2319_a_1.nii.gz",
+        "case_id": "train_2319_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2319/train_2319_a/train_2319_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2319_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          3,
+          4,
+          5
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "3": "2d",
+          "4": "2d",
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "0": "Patchy reticulonodular fibrotic density increases in the apices of both lungs",
+          "3": "Subcentimeter calcific nodule in the anterior segment of the left upper lobe",
+          "4": "Subcentimeter nonspecific solid nodules in the mediobasal subsegment and posterobasal segment of the left lower lobe",
+          "5": "Nonspecific nodules in the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          334
+        ],
+        "pixels": {
+          "0": 25148,
+          "3": 228,
+          "4": 1188,
+          "5": 356
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_317_c_2.nii.gz",
+        "case_id": "train_317_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_317/train_317_c/train_317_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_317_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Nodular opacities in the posterobasal segments of the lower lobes"
+        },
+        "shape": [
+          512,
+          512,
+          478
+        ],
+        "pixels": {
+          "2": 26320
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1504_b_2.nii.gz",
+        "case_id": "train_1504_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1504/train_1504_b/train_1504_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1504_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Mass in the medial aspect of the anterior segment of the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          485
+        ],
+        "pixels": {
+          "3": 24512
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2492_a_1.nii.gz",
+        "case_id": "train_2492_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2492/train_2492_a/train_2492_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2492_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Multiple parenchymal nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          301
+        ],
+        "pixels": {
+          "0": 23622
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_5529_a_2.nii.gz",
+        "case_id": "train_5529_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5529/train_5529_a/train_5529_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5529_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "Soft tissue with indistinguishable borders in the left lower lobe basal segment",
+          "2": "Numerous intraparenchymal nodules in the left lower lobe basal segment",
+          "3": "Suspicious increase in the size of intraparenchymal nodules in the lower lobe of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          298
+        ],
+        "pixels": {
+          "1": 21463,
+          "2": 1389,
+          "3": 360
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1758_b_2.nii.gz",
+        "case_id": "train_1758_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1758/train_1758_b/train_1758_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1758_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "New lesion measuring up to 23 mm in the paracardiac paramediastinal area, particularly in the anterior upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          186
+        ],
+        "pixels": {
+          "2": 21584
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_5822_a_2.nii.gz",
+        "case_id": "train_5822_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5822/train_5822_a/train_5822_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5822_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "3": "23x20 mm nodule with spiculated contours in the anterior segment of the left lower lobe",
+          "4": "Nonspecific nodules in the lower lobe of the right lung, the largest measuring 6 mm"
+        },
+        "shape": [
+          512,
+          512,
+          484
+        ],
+        "pixels": {
+          "3": 19936,
+          "4": 383
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1348_g_2.nii.gz",
+        "case_id": "train_1348_g_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1348/train_1348_g/train_1348_g_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1348_g_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4
+        ],
+        "nodule_categories": {
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "4": "Stable nodular infiltrates in the left lower lobe mediobasal segment"
+        },
+        "shape": [
+          512,
+          512,
+          557
+        ],
+        "pixels": {
+          "4": 19812
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7250_i_2.nii.gz",
+        "case_id": "train_7250_i_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7250/train_7250_i/train_7250_i_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7250_i_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          3
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodular lesion identified as the primary mass in the peripheral-subpleural area of the medial superior segment of the right lower lobe",
+          "1": "Nodular lesion measuring approximately 21 mm at its widest point",
+          "3": "Subcentimeter nodule in the superior segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          260
+        ],
+        "pixels": {
+          "0": 9337,
+          "1": 9337,
+          "3": 251
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_644_c_2.nii.gz",
+        "case_id": "train_644_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_644/train_644_c/train_644_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_644_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Surrounding nodular lesions in the left upper lobe increased in size and cavitation"
+        },
+        "shape": [
+          512,
+          512,
+          406
+        ],
+        "pixels": {
+          "2": 18696
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1868_a_2.nii.gz",
+        "case_id": "train_1868_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1868/train_1868_a/train_1868_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1868_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Macrocalcified nodular lesions in both lung parenchyma"
+        },
+        "shape": [
+          512,
+          512,
+          462
+        ],
+        "pixels": {
+          "1": 18414
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7250_b_2.nii.gz",
+        "case_id": "train_7250_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7250/train_7250_b/train_7250_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7250_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "Nodule with irregular borders in the peripheral-subpleural area in the mediobasal segment of the lower lobe of the right lung",
+          "2": "Nodule measuring 2.4x1.2 cm at its widest point",
+          "3": "A few subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          442
+        ],
+        "pixels": {
+          "1": 8579,
+          "2": 8579,
+          "3": 1218
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1560_a_2.nii.gz",
+        "case_id": "train_1560_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1560/train_1560_a/train_1560_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1560_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Peripheral lesion with central solid appearance measuring 1.5 cm in the longest diameter in the apicoposterior segment of the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          446
+        ],
+        "pixels": {
+          "0": 17911
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_5231_a_2.nii.gz",
+        "case_id": "train_5231_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5231/train_5231_a/train_5231_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5231_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Largest lesions located in the posterobasal segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          439
+        ],
+        "pixels": {
+          "2": 14081
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_8216_a_2.nii.gz",
+        "case_id": "train_8216_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_8216/train_8216_a/train_8216_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_8216_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Multiple nodules in both lungs",
+          "1": "Largest nodule in the superior segment of the right lower lobe, measuring approximately 1.8x2.4 cm"
+        },
+        "shape": [
+          512,
+          512,
+          464
+        ],
+        "pixels": {
+          "0": 1496,
+          "1": 12096
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_913_a_1.nii.gz",
+        "case_id": "train_913_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_913/train_913_a/train_913_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_913_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodule in the apical segment of the right upper lobe, 15 mm",
+          "1": "Nodule in the superior lingular segment of the left lung, 11 mm",
+          "2": "Multiple indeterminate subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          240
+        ],
+        "pixels": {
+          "0": 9329,
+          "1": 2108,
+          "2": 2084
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7145_a_2.nii.gz",
+        "case_id": "train_7145_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7145/train_7145_a/train_7145_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7145_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Thin-walled, well-circumscribed air cyst measuring 2.3x2.4 cm in the superior segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          236
+        ],
+        "pixels": {
+          "2": 13117
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_355_a_1.nii.gz",
+        "case_id": "train_355_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_355/train_355_a/train_355_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_355_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "20x15 mm cavitary lesion with a thick wall in the apicoposterior segment of the left lung upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          274
+        ],
+        "pixels": {
+          "3": 12639
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1767_a_2.nii.gz",
+        "case_id": "train_1767_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1767/train_1767_a/train_1767_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1767_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Stable nodule adjacent to the consolidation in the lateral subpleural area of the posterior upper lobe of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          225
+        ],
+        "pixels": {
+          "3": 12518
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2167_a_2.nii.gz",
+        "case_id": "train_2167_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2167/train_2167_a/train_2167_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2167_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "14 mm nodular hypodense finding in the right hilar region"
+        },
+        "shape": [
+          512,
+          512,
+          247
+        ],
+        "pixels": {
+          "1": 11997
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6671_a_2.nii.gz",
+        "case_id": "train_6671_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6671/train_6671_a/train_6671_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6671_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Solid nodule measuring 12.5x11 mm in the anterior segment of the right upper lobe extending to the pleura and surrounding parenchyma",
+          "2": "Thick-walled central nodule with cavitation measuring approximately 17x18 mm",
+          "3": "Multiple parenchymal and subpleural nodules in the right upper lobe",
+          "4": "Largest parenchymal and subpleural nodule measuring 9.1x11 mm in the paramediastinal area of the posterior segment of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          508
+        ],
+        "pixels": {
+          "0": 5139,
+          "2": 422,
+          "3": 2640,
+          "4": 3111
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2323_a_2.nii.gz",
+        "case_id": "train_2323_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2323/train_2323_a/train_2323_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2323_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "3 mm ground-glass nodule in the anterior segment of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          420
+        ],
+        "pixels": {
+          "0": 10683
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1540_a_1.nii.gz",
+        "case_id": "train_1540_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1540/train_1540_a/train_1540_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1540_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "2": "Soft tissue density measuring 2.5 cm in the posterior segment of the right lung containing calcifications in the subpleural area",
+          "3": "7 mm diameter nodule in the posterior segment of the right lung",
+          "4": "15 mm diameter nodule in the anterior segment of the upper lobe of the right lung"
+        },
+        "shape": [
+          768,
+          768,
+          242
+        ],
+        "pixels": {
+          "2": 8134,
+          "3": 391,
+          "4": 1130
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2886_a_2.nii.gz",
+        "case_id": "train_2886_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2886/train_2886_a/train_2886_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2886_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Newly emerging nodular consolidation areas measuring 1 cm in diameter in the lower lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          465
+        ],
+        "pixels": {
+          "3": 8916
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_321_a_2.nii.gz",
+        "case_id": "train_321_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_321/train_321_a/train_321_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_321_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          3
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "0": "Peripherally located nodules in the left lung upper and lower lobes",
+          "3": "Subcentimeter nodule peripherally in the right lung lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          440
+        ],
+        "pixels": {
+          "0": 6311,
+          "3": 2575
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1119_b_2.nii.gz",
+        "case_id": "train_1119_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1119/train_1119_b/train_1119_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1119_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Bilateral pulmonary nodules present",
+          "1": "Greater prominence of nodules on the left",
+          "2": "Largest nodule in the lower lobe of the left lung measuring approximately 5 mm",
+          "3": "New nodules not present on previous imaging",
+          "4": "Minimal increase in size of some nodules"
+        },
+        "shape": [
+          512,
+          512,
+          499
+        ],
+        "pixels": {
+          "0": 1628,
+          "1": 325,
+          "2": 925,
+          "3": 2921,
+          "4": 2921
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1396_e_2.nii.gz",
+        "case_id": "train_1396_e_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1396/train_1396_e/train_1396_e_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1396_e_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          6,
+          8
+        ],
+        "nodule_categories": {
+          "6": "2d",
+          "8": "2d"
+        },
+        "nodule_findings": {
+          "6": "Nodules in both lungs",
+          "8": "Some nodules contain air bronchograms"
+        },
+        "shape": [
+          512,
+          512,
+          439
+        ],
+        "pixels": {
+          "6": 5344,
+          "8": 3112
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6335_b_1.nii.gz",
+        "case_id": "train_6335_b_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6335/train_6335_b/train_6335_b_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6335_b_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "0": "Two adjacent nodules with irregular borders in the peripheral area of the anterior segment of the left upper lobe",
+          "1": "Nodule with a longest diameter of 13 mm in the anterior segment of the left upper lobe",
+          "2": "Nodule with a longest diameter of approximately 9 mm in the anterior segment of the left upper lobe",
+          "3": "Nodule with a longest diameter of 24 mm in the anterior segment of the left upper lobe, which has shrunk and fragmented following radiotherapy"
+        },
+        "shape": [
+          512,
+          512,
+          326
+        ],
+        "pixels": {
+          "0": 2757,
+          "1": 1915,
+          "2": 842,
+          "3": 2757
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_440_a_2.nii.gz",
+        "case_id": "train_440_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_440/train_440_a/train_440_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_440_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "nodule_categories": {
+          "5": "2d",
+          "6": "2d",
+          "7": "2d",
+          "8": "2d"
+        },
+        "nodule_findings": {
+          "5": "Bilateral pulmonary nodules",
+          "6": "Largest nodule in the peripheral region of the right middle lobe measuring approximately 6x7 mm",
+          "7": "Minimal increase in the size of the largest nodule",
+          "8": "Other subcentimeter nodules scattered throughout both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          516
+        ],
+        "pixels": {
+          "5": 1777,
+          "6": 4085,
+          "7": 1452,
+          "8": 861
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1188_c_2.nii.gz",
+        "case_id": "train_1188_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1188/train_1188_c/train_1188_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1188_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Nodular appearance at the anteromedial lateral segment junction of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          246
+        ],
+        "pixels": {
+          "1": 8024
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_24_a_2.nii.gz",
+        "case_id": "train_24_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_24/train_24_a/train_24_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_24_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Increased nodular density in the medial segment of the right middle lobe"
+        },
+        "shape": [
+          512,
+          512,
+          528
+        ],
+        "pixels": {
+          "3": 7741
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_10938_a_1.nii.gz",
+        "case_id": "train_10938_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_10938/train_10938_a/train_10938_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_10938_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nonspecific parenchymal nodule measuring 4 mm in the inferior lingular segment of the left lung",
+          "1": "Nonspecific parenchymal nodule measuring 3.5 mm in the upper lobe of the right lung"
+        },
+        "shape": [
+          512,
+          512,
+          238
+        ],
+        "pixels": {
+          "0": 183,
+          "1": 7317
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1976_a_2.nii.gz",
+        "case_id": "train_1976_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1976/train_1976_a/train_1976_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1976_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Air cyst measuring 1.5 cm in diameter in the posterobasal segment of the lower lobe of the left lung"
+        },
+        "shape": [
+          512,
+          512,
+          431
+        ],
+        "pixels": {
+          "2": 6953
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2826_a_2.nii.gz",
+        "case_id": "train_2826_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2826/train_2826_a/train_2826_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2826_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d",
+          "4": "2d",
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "2": "Subpleural nonspecific nodules in both lungs, more prominent on the right",
+          "3": "Intrapulmonary nonspecific nodules in both lungs, more prominent on the right",
+          "4": "Largest nodule is 7 mm with a pleural base in the superior segment of the right lower lobe",
+          "5": "4.5 mm nodule with a pleural base in the posterobasal segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "2": 947,
+          "3": 2292,
+          "4": 320,
+          "5": 2616
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_435_a_2.nii.gz",
+        "case_id": "train_435_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_435/train_435_a/train_435_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_435_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "2 mm subpleural nodule in the posterior segment of the right upper lobe",
+          "2": "2-3 mm nodules in the dorsal subpleural area associated with fibrosis",
+          "3": "2 mm calcified nodule in the superior segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          427
+        ],
+        "pixels": {
+          "1": 316,
+          "2": 5402,
+          "3": 426
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_5730_a_1.nii.gz",
+        "case_id": "train_5730_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5730/train_5730_a/train_5730_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5730_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodules in both lungs, the largest measuring approximately 10 mm in diameter in the lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          329
+        ],
+        "pixels": {
+          "0": 6027
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_10644_a_2.nii.gz",
+        "case_id": "train_10644_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_10644/train_10644_a/train_10644_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_10644_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Pulmonary arteriovenous malformation in the basal segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          438
+        ],
+        "pixels": {
+          "2": 5875
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_7250_f_2.nii.gz",
+        "case_id": "train_7250_f_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7250/train_7250_f/train_7250_f_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7250_f_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "Nodule measuring 22 mm in the peripheral area of the medial superior segment of the right lower lobe",
+          "2": "Subcentimeter nodule in the superior segment of the right lower lobe",
+          "3": "Subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          194
+        ],
+        "pixels": {
+          "1": 5281,
+          "2": 282,
+          "3": 282
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_622_a_2.nii.gz",
+        "case_id": "train_622_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_622/train_622_a/train_622_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_622_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3,
+          4,
+          5
+        ],
+        "nodule_categories": {
+          "3": "2d",
+          "4": "2d",
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "3": "Nodule in the right lung middle lobe medial segment measuring 9 mm",
+          "4": "Nodule in the right lung lower lobe laterobasal segment measuring 7 mm",
+          "5": "Additional subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          259
+        ],
+        "pixels": {
+          "3": 1236,
+          "4": 2146,
+          "5": 2454
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_623_a_2.nii.gz",
+        "case_id": "train_623_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_623/train_623_a/train_623_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_623_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          6
+        ],
+        "nodule_categories": {
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "6": "Subcentimeter nonspecific nodules within both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "6": 5682
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2806_a_2.nii.gz",
+        "case_id": "train_2806_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2806/train_2806_a/train_2806_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2806_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Solitary nodule measuring 7.6 x 6 mm with slightly irregular borders and extending to the spicule in the apicoposterior segment of the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          211
+        ],
+        "pixels": {
+          "0": 5657
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2906_a_1.nii.gz",
+        "case_id": "train_2906_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2906/train_2906_a/train_2906_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2906_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "3": "Nodules in both lungs",
+          "4": "Largest nodule measuring 6.5 mm in the lateral segment of the right lower lobe"
+        },
+        "shape": [
+          768,
+          768,
+          200
+        ],
+        "pixels": {
+          "3": 3282,
+          "4": 2275
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_12277_a_2.nii.gz",
+        "case_id": "train_12277_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_12277/train_12277_a/train_12277_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_12277_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          3
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "1": "Calcified nodule in the anterior segment of the right upper lobe",
+          "3": "Nonspecific nodule measuring 2.5 mm in the anterior segment of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          416
+        ],
+        "pixels": {
+          "1": 2701,
+          "3": 2701
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_11150_b_2.nii.gz",
+        "case_id": "train_11150_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_11150/train_11150_b/train_11150_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_11150_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "14x17 mm nodule in the superior segment of the lower lobe of the right lung with peripheral ground glass opacity and spiculated margins"
+        },
+        "shape": [
+          512,
+          512,
+          244
+        ],
+        "pixels": {
+          "0": 5314
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2209_a_2.nii.gz",
+        "case_id": "train_2209_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2209/train_2209_a/train_2209_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2209_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "2": "Scattered subcentimeter nodules with semisolid structure in both lungs",
+          "3": "Scattered subcentimeter nodules more prominent in the basal segments"
+        },
+        "shape": [
+          512,
+          512,
+          482
+        ],
+        "pixels": {
+          "2": 4210,
+          "3": 1061
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2394_a_1.nii.gz",
+        "case_id": "train_2394_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2394/train_2394_a/train_2394_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2394_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "2": "5 mm nodule in the superior segment of the lower lobe of the right lung",
+          "3": "Nonspecific subcentimeter nodule in the superior segment of the lower lobe of the left lung"
+        },
+        "shape": [
+          768,
+          768,
+          200
+        ],
+        "pixels": {
+          "2": 2326,
+          "3": 2843
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1835_a_1.nii.gz",
+        "case_id": "train_1835_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1835/train_1835_a/train_1835_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1835_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Two calcified parenchymal nodules in the superior segment of the left lower lobe, largest measuring 10 mm"
+        },
+        "shape": [
+          768,
+          768,
+          244
+        ],
+        "pixels": {
+          "3": 5157
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6405_a_1.nii.gz",
+        "case_id": "train_6405_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6405/train_6405_a/train_6405_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6405_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nonspecific nodules in both lungs",
+          "1": "Calcified nodules in both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          240
+        ],
+        "pixels": {
+          "0": 2486,
+          "1": 2486
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_7584_b_2.nii.gz",
+        "case_id": "train_7584_b_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7584/train_7584_b/train_7584_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7584_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "2": "Intrapulmonary nodules in both lungs",
+          "3": "Largest nodule measuring 7 mm in the anterior segment of the right upper lobe",
+          "4": "Newly developed nodule in the anterior segment of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          407
+        ],
+        "pixels": {
+          "2": 1375,
+          "3": 1732,
+          "4": 1732
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_8188_a_2.nii.gz",
+        "case_id": "train_8188_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_8188/train_8188_a/train_8188_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_8188_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          240
+        ],
+        "pixels": {
+          "3": 4821
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_644_d_1.nii.gz",
+        "case_id": "train_644_d_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_644/train_644_d/train_644_d_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_644_d_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Near total resolution of nodular cavitary lesions in lower lobes of both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          224
+        ],
+        "pixels": {
+          "2": 4802
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1591_c_2.nii.gz",
+        "case_id": "train_1591_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1591/train_1591_c/train_1591_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1591_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          5
+        ],
+        "nodule_categories": {
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "5": "Subcentimeter nonspecific parenchymal nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          463
+        ],
+        "pixels": {
+          "5": 4746
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_7697_a_2.nii.gz",
+        "case_id": "train_7697_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7697/train_7697_a/train_7697_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7697_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nonspecific nodule measuring 6 mm in the posterolateral aspect of the right lower lobe",
+          "1": "Nodular radiopacities up to 5 mm in the upper lobe of the right lung at the junction of the apicoposterior segment"
+        },
+        "shape": [
+          512,
+          512,
+          454
+        ],
+        "pixels": {
+          "0": 403,
+          "1": 4341
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_5281_a_2.nii.gz",
+        "case_id": "train_5281_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5281/train_5281_a/train_5281_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5281_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "0": "Slightly irregularly circumscribed nodule measuring 8 mm in diameter in the posterobasal segment of the lower lobe of the right lung",
+          "3": "Additional nodules in the right lung, the largest measuring approximately 5.3 mm in diameter in the lower lobe of the right lung",
+          "4": "Nodules in both lungs, more prominent on the right"
+        },
+        "shape": [
+          512,
+          512,
+          411
+        ],
+        "pixels": {
+          "0": 1471,
+          "3": 1985,
+          "4": 1180
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_6629_a_1.nii.gz",
+        "case_id": "train_6629_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6629/train_6629_a/train_6629_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6629_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Irregular nodular lesion with ill-defined borders, measuring up to 1.4 cm, at the apical level of the right upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          208
+        ],
+        "pixels": {
+          "0": 4590
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_6000_a_1.nii.gz",
+        "case_id": "train_6000_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6000/train_6000_a/train_6000_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6000_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4
+        ],
+        "nodule_categories": {
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "4": "Well-circumscribed 13x11 mm nodule in the right middle lobe"
+        },
+        "shape": [
+          768,
+          768,
+          200
+        ],
+        "pixels": {
+          "4": 4538
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_7473_a_1.nii.gz",
+        "case_id": "train_7473_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_7473/train_7473_a/train_7473_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_7473_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Thin-walled parenchymal air cysts in the anterior segment of the right upper lobe",
+          "1": "Thin-walled parenchymal air cysts in the posterobasal segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          316
+        ],
+        "pixels": {
+          "0": 907,
+          "1": 3521
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2918_a_2.nii.gz",
+        "case_id": "train_2918_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2918/train_2918_a/train_2918_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2918_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodules in both lungs, largest measuring approximately 4 mm in diameter"
+        },
+        "shape": [
+          512,
+          512,
+          509
+        ],
+        "pixels": {
+          "0": 4309
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_683_a_1.nii.gz",
+        "case_id": "train_683_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_683/train_683_a/train_683_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_683_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          5
+        ],
+        "nodule_categories": {
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "5": "Bilateral subcentimeter nonspecific nodules"
+        },
+        "shape": [
+          512,
+          512,
+          351
+        ],
+        "pixels": {
+          "5": 4287
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_835_a_2.nii.gz",
+        "case_id": "train_835_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_835/train_835_a/train_835_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_835_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Multiple pulmonary nodules bilaterally, largest 5 mm in diameter"
+        },
+        "shape": [
+          512,
+          512,
+          512
+        ],
+        "pixels": {
+          "2": 4012
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_784_f_2.nii.gz",
+        "case_id": "train_784_f_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_784/train_784_f/train_784_f_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_784_f_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2,
+          6
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "1": "Nodules in the right lung apex, measuring 6 mm",
+          "2": "Nodules in the left lung upper lobe's inferior lingula, measuring 6 mm",
+          "6": "Multiple stable subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          476
+        ],
+        "pixels": {
+          "1": 845,
+          "2": 698,
+          "6": 2392
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2504_a_2.nii.gz",
+        "case_id": "train_2504_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2504/train_2504_a/train_2504_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2504_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Increase in nodular density in the posterobasal segment of the right lower lobe",
+          "1": "Increase in nodular density in the peripheral subpleural area of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          549
+        ],
+        "pixels": {
+          "0": 2002,
+          "1": 1926
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1267_a_1.nii.gz",
+        "case_id": "train_1267_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1267/train_1267_a/train_1267_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1267_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "6.5x5.5 mm nodule in the right lung apex",
+          "1": "8x7.5 mm irregularly contoured nodule in the laterobasal segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          191
+        ],
+        "pixels": {
+          "0": 747,
+          "1": 3038
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6354_a_1.nii.gz",
+        "case_id": "train_6354_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6354/train_6354_a/train_6354_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6354_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Nonspecific subcentimeter nodules in the right lung, some of which are calcified"
+        },
+        "shape": [
+          768,
+          768,
+          228
+        ],
+        "pixels": {
+          "2": 3741
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_10083_c_2.nii.gz",
+        "case_id": "train_10083_c_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_10083/train_10083_c/train_10083_c_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_10083_c_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d",
+          "3": "2d",
+          "4": "2d",
+          "5": "2d",
+          "6": "2d"
+        },
+        "nodule_findings": {
+          "0": "Subpleural nodule measuring 6 mm in the subpleural area of the posterior segment of the right upper lobe",
+          "1": "Subpleural nodule measuring 6 mm in the inferior part of the anterior segment of the right upper lobe adjacent to the fissure",
+          "2": "Subpleural nodule measuring 6 mm in the subpleural area of the superior segment of the right lower lobe",
+          "3": "Nodular thickening measuring 8x3 mm in the fissure of the superior segment of the right lower lobe",
+          "4": "Subpleural nodule measuring 3.1 mm in the superior segment of the left lower lobe",
+          "5": "Subpleural nodule measuring 3.1 mm in the laterobasal segment of the left lower lobe",
+          "6": "Stable size and number of nodules"
+        },
+        "shape": [
+          512,
+          512,
+          498
+        ],
+        "pixels": {
+          "0": 435,
+          "1": 278,
+          "2": 562,
+          "3": 480,
+          "4": 90,
+          "5": 233,
+          "6": 1598
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2857_a_1.nii.gz",
+        "case_id": "train_2857_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2857/train_2857_a/train_2857_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2857_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4
+        ],
+        "nodule_categories": {
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "4": "Calcific nodules measuring up to 4 mm in the lower lobe of the left lung"
+        },
+        "shape": [
+          768,
+          768,
+          215
+        ],
+        "pixels": {
+          "4": 3672
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_5895_a_2.nii.gz",
+        "case_id": "train_5895_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5895/train_5895_a/train_5895_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5895_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Nodular areas with coarse calcification in left upper lobe lateral segment"
+        },
+        "shape": [
+          512,
+          512,
+          416
+        ],
+        "pixels": {
+          "2": 3644
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1199_a_1.nii.gz",
+        "case_id": "train_1199_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1199/train_1199_a/train_1199_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1199_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Multiple subcentimeter nonspecific nodules within both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          200
+        ],
+        "pixels": {
+          "0": 3607
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_8048_a_2.nii.gz",
+        "case_id": "train_8048_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_8048/train_8048_a/train_8048_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_8048_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodular lesion measuring approximately 25x22 mm in the peripheral area of the superior segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          253
+        ],
+        "pixels": {
+          "0": 3558
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1189_a_1.nii.gz",
+        "case_id": "train_1189_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1189/train_1189_a/train_1189_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1189_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          6,
+          7
+        ],
+        "nodule_categories": {
+          "6": "2d",
+          "7": "2d"
+        },
+        "nodule_findings": {
+          "6": "Calcified parenchymal nodule in the lingular segment of the left lung",
+          "7": "Indeterminate subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          214
+        ],
+        "pixels": {
+          "6": 1666,
+          "7": 1836
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6368_a_2.nii.gz",
+        "case_id": "train_6368_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6368/train_6368_a/train_6368_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6368_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2,
+          3,
+          4
+        ],
+        "nodule_categories": {
+          "2": "2d",
+          "3": "2d",
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "2": "Calcified nonspecific pleural nodules measuring 12x8 mm in the left upper lobe",
+          "3": "Calcified nonspecific pleural nodules in the right middle lobe lateral segment",
+          "4": "Largest calcified nonspecific pleural nodule in the anterior segment of the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          365
+        ],
+        "pixels": {
+          "2": 1547,
+          "3": 298,
+          "4": 1653
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2149_a_1.nii.gz",
+        "case_id": "train_2149_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2149/train_2149_a/train_2149_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2149_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Subcentimeter nodular lesions with central cavitation in the upper lobes of both lungs",
+          "1": "Noncavitary nodules in the lung parenchyma"
+        },
+        "shape": [
+          512,
+          512,
+          259
+        ],
+        "pixels": {
+          "0": 1559,
+          "1": 1906
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6803_a_2.nii.gz",
+        "case_id": "train_6803_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6803/train_6803_a/train_6803_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6803_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "0": "Three peripheral nodules measuring 10.5 mm in the apicoposterior segment of the left upper lobe",
+          "1": "Nodule measuring 11.5 mm in the laterobasal segment of the left lower lobe",
+          "2": "Nodule measuring 5 mm in the laterobasal segment of the left lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          368
+        ],
+        "pixels": {
+          "0": 1016,
+          "1": 1956,
+          "2": 486
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_1987_a_2.nii.gz",
+        "case_id": "train_1987_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1987/train_1987_a/train_1987_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1987_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Several nonspecific pulmonary nodules in both lungs, largest measuring 6 mm in the anterobasal segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          505
+        ],
+        "pixels": {
+          "0": 3453
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1905_a_2.nii.gz",
+        "case_id": "train_1905_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1905/train_1905_a/train_1905_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1905_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nodules in both lungs, largest measuring 6.5 mm in the posterobasal segment of the right lower lobe",
+          "1": "Nodules in both lungs smaller than 5 mm"
+        },
+        "shape": [
+          512,
+          512,
+          275
+        ],
+        "pixels": {
+          "0": 1192,
+          "1": 2235
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_1514_a_2.nii.gz",
+        "case_id": "train_1514_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_1514/train_1514_a/train_1514_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_1514_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nonspecific pulmonary nodules less than 5 mm in diameter in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          519
+        ],
+        "pixels": {
+          "0": 3413
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6429_a_1.nii.gz",
+        "case_id": "train_6429_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6429/train_6429_a/train_6429_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6429_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Mass lesion measuring 19 mm in diameter in the posterior segment of the upper lobe of the right lung with slightly irregular borders and associated linear densities suggestive of scarring"
+        },
+        "shape": [
+          512,
+          512,
+          118
+        ],
+        "pixels": {
+          "0": 3391
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_8179_a_1.nii.gz",
+        "case_id": "train_8179_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_8179/train_8179_a/train_8179_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_8179_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Nonspecific subcentimeter nodules"
+        },
+        "shape": [
+          768,
+          768,
+          206
+        ],
+        "pixels": {
+          "0": 3387
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_6785_a_2.nii.gz",
+        "case_id": "train_6785_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6785/train_6785_a/train_6785_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6785_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Air cyst in the basal segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          430
+        ],
+        "pixels": {
+          "0": 3371
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_2825_a_2.nii.gz",
+        "case_id": "train_2825_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2825/train_2825_a/train_2825_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2825_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Subcentimeter nonspecific parenchymal nodules in both lungs, largest measuring 5 mm in diameter"
+        },
+        "shape": [
+          512,
+          512,
+          461
+        ],
+        "pixels": {
+          "0": 3358
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_8072_a_2.nii.gz",
+        "case_id": "train_8072_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_8072/train_8072_a/train_8072_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_8072_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4,
+          5
+        ],
+        "nodule_categories": {
+          "4": "2d",
+          "5": "2d"
+        },
+        "nodule_findings": {
+          "4": "Nodule in the posterobasal segment of the lower lobe of the right lung, 11 mm",
+          "5": "Nodule in the laterobasal segment of the lower lobe of the right lung, 10 mm"
+        },
+        "shape": [
+          512,
+          512,
+          223
+        ],
+        "pixels": {
+          "4": 2151,
+          "5": 1195
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_5680_a_2.nii.gz",
+        "case_id": "train_5680_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_5680/train_5680_a/train_5680_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_5680_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1,
+          2
+        ],
+        "nodule_categories": {
+          "1": "2d",
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "1": "Nodules measuring up to 11 mm in both lungs",
+          "2": "Several larger nodules in the anterior segment of the left upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          480
+        ],
+        "pixels": {
+          "1": 562,
+          "2": 2744
+        },
+        "protocol": "protocol2"
+      },
+      {
+        "name": "train_914_a_2.nii.gz",
+        "case_id": "train_914_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_914/train_914_a/train_914_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_914_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "A few subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          493
+        ],
+        "pixels": {
+          "0": 3258
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_428_a_2.nii.gz",
+        "case_id": "train_428_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_428/train_428_a/train_428_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_428_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          446
+        ],
+        "pixels": {
+          "1": 3256
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_479_a_2.nii.gz",
+        "case_id": "train_479_a_2",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_479/train_479_a/train_479_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_479_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Small pulmonary nodules up to 6 mm in the lower lobe of the left lung and the superior lingula of the upper lobe"
+        },
+        "shape": [
+          512,
+          512,
+          292
+        ],
+        "pixels": {
+          "0": 3188
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_2739_a_1.nii.gz",
+        "case_id": "train_2739_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_2739/train_2739_a/train_2739_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_2739_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "Nonspecific subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          257
+        ],
+        "pixels": {
+          "2": 3180
+        },
+        "protocol": "protocol1"
+      },
+      {
+        "name": "train_6592_a_1.nii.gz",
+        "case_id": "train_6592_a_1",
+        "split": "train",
+        "source_split": "train",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_6592/train_6592_a/train_6592_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_6592_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Subcentimeter non-specific nodules in both lungs"
+        },
+        "shape": [
+          768,
+          768,
+          210
+        ],
+        "pixels": {
+          "0": 3167
+        },
+        "protocol": "protocol2"
+      }
+    ],
+    "val": [],
+    "test": [
+      {
+        "name": "train_13082_a_1.nii.gz",
+        "case_id": "train_13082_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13082/train_13082_a/train_13082_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13082_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Calcified nodule measuring 3 mm at the laterobasal level"
+        },
+        "shape": [
+          512,
+          512,
+          205
+        ],
+        "pixels": {
+          "3": 55
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13035_a_1.nii.gz",
+        "case_id": "train_13035_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13035/train_13035_a/train_13035_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13035_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          2
+        ],
+        "nodule_categories": {
+          "2": "2d"
+        },
+        "nodule_findings": {
+          "2": "4 mm nodule in the medial segment of the right middle lobe"
+        },
+        "shape": [
+          512,
+          512,
+          214
+        ],
+        "pixels": {
+          "2": 33
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13113_a_1.nii.gz",
+        "case_id": "train_13113_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13113/train_13113_a/train_13113_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13113_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "A few subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          334
+        ],
+        "pixels": {
+          "0": 222
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13119_c_1.nii.gz",
+        "case_id": "train_13119_c_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13119/train_13119_c/train_13119_c_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13119_c_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Subcentimeter nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          326
+        ],
+        "pixels": {
+          "1": 1040
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13492_b_2.nii.gz",
+        "case_id": "train_13492_b_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13492/train_13492_b/train_13492_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13492_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "Two nonspecific nodules measuring 4 mm in diameter in the lateral segment of the right middle lobe"
+        },
+        "shape": [
+          512,
+          512,
+          463
+        ],
+        "pixels": {
+          "0": 280
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13155_a_2.nii.gz",
+        "case_id": "train_13155_a_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13155/train_13155_a/train_13155_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13155_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Several subcentimeter nodules in both lungs, measuring less than 3 mm in short diameter"
+        },
+        "shape": [
+          512,
+          512,
+          223
+        ],
+        "pixels": {
+          "1": 140
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13624_a_2.nii.gz",
+        "case_id": "train_13624_a_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13624/train_13624_a/train_13624_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13624_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Calcified pulmonary nodule measuring 2 mm in the superior segment of the right lower lobe"
+        },
+        "shape": [
+          512,
+          512,
+          469
+        ],
+        "pixels": {
+          "1": 80
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13013_a_1.nii.gz",
+        "case_id": "train_13013_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13013/train_13013_a/train_13013_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13013_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Largest nodule in the upper lobe of the right lung measuring approximately 5 mm in diameter"
+        },
+        "shape": [
+          512,
+          512,
+          259
+        ],
+        "pixels": {
+          "3": 163
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13252_b_2.nii.gz",
+        "case_id": "train_13252_b_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13252/train_13252_b/train_13252_b_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13252_b_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          4
+        ],
+        "nodule_categories": {
+          "4": "2d"
+        },
+        "nodule_findings": {
+          "4": "Subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          239
+        ],
+        "pixels": {
+          "4": 2023
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_12994_a_1.nii.gz",
+        "case_id": "train_12994_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_12994/train_12994_a/train_12994_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_12994_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          1
+        ],
+        "nodule_categories": {
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "1": "Calcified nodules in both lung parenchyma"
+        },
+        "shape": [
+          768,
+          768,
+          239
+        ],
+        "pixels": {
+          "1": 639
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13092_a_2.nii.gz",
+        "case_id": "train_13092_a_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13092/train_13092_a/train_13092_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13092_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0
+        ],
+        "nodule_categories": {
+          "0": "2d"
+        },
+        "nodule_findings": {
+          "0": "5.5 mm nonspecific nodule in the subpleural region of the right upper lobe posterior segment"
+        },
+        "shape": [
+          512,
+          512,
+          206
+        ],
+        "pixels": {
+          "0": 127
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13398_a_1.nii.gz",
+        "case_id": "train_13398_a_1",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13398/train_13398_a/train_13398_a_1.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13398_a_1.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          3
+        ],
+        "nodule_categories": {
+          "3": "2d"
+        },
+        "nodule_findings": {
+          "3": "Subcentimeter nonspecific nodules in both lungs"
+        },
+        "shape": [
+          512,
+          512,
+          327
+        ],
+        "pixels": {
+          "3": 1505
+        },
+        "protocol": "val"
+      },
+      {
+        "name": "train_13316_a_2.nii.gz",
+        "case_id": "train_13316_a_2",
+        "split": "test",
+        "source_split": "val",
+        "ct_path": "/home/chest_ct/code/data/data_volumes/dataset/train_fixed/train_13316/train_13316_a/train_13316_a_2.nii.gz",
+        "ct_exists": true,
+        "seg_path": "/home/chest_ct/code/data/segmentations/segmentations/train_13316_a_2.nii.gz",
+        "seg_exists": true,
+        "nodule_channels": [
+          0,
+          1
+        ],
+        "nodule_categories": {
+          "0": "2d",
+          "1": "2d"
+        },
+        "nodule_findings": {
+          "0": "Multiple parenchymal nodules in both lungs",
+          "1": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm"
+        },
+        "shape": [
+          512,
+          512,
+          222
+        ],
+        "pixels": {
+          "0": 946,
+          "1": 3688
+        },
+        "protocol": "val"
+      }
+    ]
+  },
+  "subset_policy": "Top 120 train cases sorted by summed nodule mask pixel count descending; test split preserved.",
+  "source_manifest": "/home/chest_ct/code/data/rexgrounding-ct/lung_nodule_ct_scans.json"
+}
