@@ -38,12 +38,12 @@ for i, scan_name in enumerate(scan_names, start=1):
         patient_id = f"{parts[0]}_{parts[1]}"        # train_1168
         study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"  # train_1168_a
 
-        subfolder = f"dataset/train_fixed/{patient_id}/{study_id}"
+        subfolder = f"dataset/valid_fixed/{patient_id}/{study_id}"
 
         local_path = hf_hub_download(
-            repo_id="ibrahimhamamci/CT-RATE",
+            repo_id="rajpurkarlab/ReXGroundingCT",
             repo_type="dataset",
-            subfolder=subfolder,
+            subfolder="segmentations",
             filename=scan_name,
             local_dir=local_dir,
         )
