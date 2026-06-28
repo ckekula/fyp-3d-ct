@@ -204,9 +204,9 @@ def remove_small_components(mask, min_size=300):
 # Body / lung masks
 # ---------------------------------------------------------------------------
 
-def get_body_mask(ct_data, body_threshold=-700):
+def get_body_mask(ct_data, body_threshold=-900):
     """
-    Coarse whole-body mask: everything denser than air (-700 HU).
+    Coarse whole-body mask: everything denser than air (-900 HU).
 
     FIX #1: replaced ndimage.binary_fill_holes with fill_holes_per_slice so
     that body cavities are closed slice-by-slice.
