@@ -5,360 +5,296 @@ the (n_patches,) integer label vector H, and the (n_patches,) scan-ID string arr
 scan_ids required for LC-KSVD2 training and scan-level evaluation.
 
 Phase 1 — Normal scans:
-  Sample patches from anywhere in the volume (no mask constraint).
-  All labelled as class index 0 ("normal").
+  Extract a non-overlapping grid of patches (stride = PATCH_SIZE) across the entire
+  volume. Patches where more than 50% of voxels are zero (background) are discarded.
+  All accepted patches are labelled as class index 0 ("normal").
 
 Phase 2 — Abnormal scans:
-  For each scan, load all finding masks from the 4D segmentation.
-  For each finding, extract patches whose centres fall within that finding's mask
-  foreground. Each patch is labelled by its majority class across all findings in
-  that scan (handles overlapping findings via _majority_class).
-  The MIN_OVERLAP_RATIO gate has been removed: any patch whose centre lands on a
-  foreground voxel is accepted. Diffuse findings such as ground-glass opacity (2c)
-  produce patches that are predominantly normal tissue; the centre-in-foreground
-  criterion is the meaningful positive signal for such classes.
-
-Assembly:
-  After both phases, minority classes are upsampled with replacement to match the
-  patch count of the largest class, preventing the dictionary from being dominated
-  by normal or majority-abnormality patches.
+  For each scan and each category present in its finding map, compute the tight
+  bounding box of the category mask's foreground, then slide a patch window over
+  that bounding box with stride=2 in every axis direction. Every in-bounds patch
+  within the bounding box is included regardless of whether its centre overlaps
+  foreground. Patches with >50% zero voxels are discarded. Each patch is directly
+  labelled with the category being iterated.
 
 The resulting matrices are saved as compressed .npz files to PATCHES_DIR.
 """
 
 import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Generator, List, Optional, Tuple
 
 import numpy as np
 from tqdm import tqdm
 
 from lc_ksvd.config import (
-    N_FEATURES,
-    N_POSITIVE_PATCHES_PER_SCAN, PATCH_SIZE,
-    PATCHES_DIR, RANDOM_SEED, CLASS_ORDER
+    CLASS_ORDER, N_FEATURES, PATCH_SIZE, PATCHES_DIR, ABNORMAL_STRIDE, ZERO_FRACTION_THRESHOLD
 )
 from lc_ksvd.data_loader import (
-    LabelRegistry, MetadataRegistry, ScanLoader, resolve_volume_path
+    LabelRegistry,
+    MetadataRegistry,
+    ScanLoader,
+    resolve_volume_path,
 )
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 
-# ─── Core patch utilities ─────────────────────────────────────────────────────
+# ─── Low-level patch utilities ────────────────────────────────────────────────
 
 def _extract_patch(
     volume: np.ndarray,
-    centre: Tuple[int, int, int],
+    x0: int,
+    y0: int,
+    z0: int,
 ) -> Optional[np.ndarray]:
+    """
+    Extract a PATCH_SIZE³ patch with its top-left-front corner at (x0, y0, z0).
+    Returns None if the patch would exceed volume bounds.
+    """
     p = PATCH_SIZE
-    h = p // 2
-    cx, cy, cz = centre
     H, W, D = volume.shape
+    x1, y1, z1 = x0 + p, y0 + p, z0 + p
 
-    x0, x1 = cx - h, cx - h + p
-    y0, y1 = cy - h, cy - h + p
-    z0, z1 = cz - h, cz - h + p
-
-    if x0 < 0 or y0 < 0 or z0 < 0 or x1 > H or y1 > W or z1 > D:
+    if x1 > H or y1 > W or z1 > D:
         return None
 
     return volume[x0:x1, y0:y1, z0:z1].copy()
 
 
-def _overlap_ratio(
-    centre: Tuple[int, int, int],
-    binary_mask: np.ndarray,
-) -> float:
-    """
-    Fraction of patch voxels that are foreground in binary_mask.
-    Used only by _majority_class for tie-breaking between overlapping abnormalities;
-    no longer used as an acceptance gate.
-    """
-    p = PATCH_SIZE
-    h = p // 2
-    cx, cy, cz = centre
-    H, W, D = binary_mask.shape
-
-    x0, x1 = cx - h, cx - h + p
-    y0, y1 = cy - h, cy - h + p
-    z0, z1 = cz - h, cz - h + p
-
-    if x0 < 0 or y0 < 0 or z0 < 0 or x1 > H or y1 > W or z1 > D:
-        return 0.0
-
-    return float(binary_mask[x0:x1, y0:y1, z0:z1].sum()) / (p ** 3)
+def _is_background(patch: np.ndarray) -> bool:
+    """Return True if more than 50% of voxels are zero (background)."""
+    return (patch < 1e-6).mean() > ZERO_FRACTION_THRESHOLD
 
 
-def _valid_centre_range(
+# ─── Phase 1: Normal grid sampling ───────────────────────────────────────────
+
+def _grid_origins(
     volume_shape: Tuple[int, int, int],
-) -> Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int]]:
-    h = PATCH_SIZE // 2
+    stride: int,
+) -> Generator[Tuple[int, int, int], None, None]:
+    """Yield (x0, y0, z0) top-left-front corners on a regular grid."""
     H, W, D = volume_shape
-    return (h, H - h), (h, W - h), (h, D - h)
+    p = PATCH_SIZE
+    for x0 in range(0, H - p + 1, stride):
+        for y0 in range(0, W - p + 1, stride):
+            for z0 in range(0, D - p + 1, stride):
+                yield x0, y0, z0
 
-
-# ─── Phase 1: Normal patch sampling ──────────────────────────────────────────
 
 def sample_normal_patches(
     volume: np.ndarray,
-    n_patches: int,
-    rng: np.random.Generator,
-    max_attempts_multiplier: int = 10,
 ) -> List[np.ndarray]:
     """
-    Sample n_patches from anywhere in the volume.
-    No mask constraint — every in-bounds patch is a valid normal patch.
+    Extract a non-overlapping grid of patches (stride = PATCH_SIZE) over the
+    full volume, discarding patches where >50% of voxels are zero.
     """
-    (xlo, xhi), (ylo, yhi), (zlo, zhi) = _valid_centre_range(volume.shape)
-    patches = []
-    max_attempts = n_patches * max_attempts_multiplier
-
-    for _ in range(max_attempts):
-        if len(patches) >= n_patches:
-            break
-        centre = (
-            int(rng.integers(xlo, xhi)),
-            int(rng.integers(ylo, yhi)),
-            int(rng.integers(zlo, zhi)),
-        )
-        patch = _extract_patch(volume, centre)
-        if patch is not None:
-            patches.append(patch)
-
-    if len(patches) < n_patches:
-        logger.debug(f"Normal scan: only sampled {len(patches)}/{n_patches} patches.")
-
+    patches: List[np.ndarray] = []
+    for x0, y0, z0 in _grid_origins(volume.shape, stride=PATCH_SIZE):
+        patch = _extract_patch(volume, x0, y0, z0)
+        if patch is None:
+            continue
+        if _is_background(patch):
+            continue
+        patches.append(patch)
     return patches
 
 
 def collect_normal_patches(
     normal_ids: List[str],
     loader: ScanLoader,
-    n_per_scan: int,
-    rng: np.random.Generator,
 ) -> Tuple[List[np.ndarray], List[int], List[str]]:
     """
-    Phase 1: collect patches from all normal scans.
-    Returns flat lists of patches, integer class labels (all 0), and scan IDs.
+    Phase 1: grid-sample all normal scans, return flat lists of patches,
+    integer class labels (all CLASS_ORDER.index("normal")), and scan IDs.
     """
     normal_class_idx = CLASS_ORDER.index("normal")
-    all_patches: List[np.ndarray] = []
-    all_labels: List[int] = []
-    all_scan_ids: List[str] = []
+    all_patches:  List[np.ndarray] = []
+    all_labels:   List[int]        = []
+    all_scan_ids: List[str]        = []
 
-    logger.info(f"Phase 1 — sampling {n_per_scan} patches from each of "
-                f"{len(normal_ids)} normal scans…")
+    logger.info(f"Phase 1 — grid-sampling {len(normal_ids)} normal scans…")
 
     for scan_id in tqdm(normal_ids, desc="normal scans"):
         try:
             scan = loader.load(scan_id)
-        except Exception as e:
-            logger.warning(f"Skipping {scan_id}: {e}")
+        except Exception as exc:
+            logger.warning(f"Skipping {scan_id}: {exc}")
             continue
 
-        patches = sample_normal_patches(scan["volume"], n_per_scan, rng)
+        patches = sample_normal_patches(scan["volume"])
         all_patches.extend(patches)
         all_labels.extend([normal_class_idx] * len(patches))
         all_scan_ids.extend([scan_id] * len(patches))
 
-    logger.info(f"  → {len(all_patches)} normal patches collected.")
+        logger.debug(f"  {scan_id}: {len(patches)} normal patches")
+
+    logger.info(f"  → {len(all_patches)} total normal patches collected.")
     return all_patches, all_labels, all_scan_ids
 
 
-# ─── Phase 2: Abnormal patch sampling ────────────────────────────────────────
+# ─── Phase 2: Abnormal bounding-box sampling ─────────────────────────────────
 
-def _build_finding_masks(
+def _build_category_masks(
     mask_4d: np.ndarray,
     finding_map: Dict[int, str],
 ) -> Dict[str, np.ndarray]:
     """
-    Collapse the 4D mask [F, H, W, D] into per-category binary masks.
-
-    Each finding (F-index) maps to a category string via finding_map.
-    Multiple findings with the same category are OR-ed together into one mask.
-    Findings whose category is not in CLASS_ORDER are skipped.
-
-    Returns:
-        { category_str: binary_mask [H, W, D] }
+    Collapse the 4D mask [F, H, W, D] into per-category binary masks by OR-ing
+    all finding slices that share the same category. Categories absent from
+    CLASS_ORDER are skipped. Returns only masks with at least one foreground voxel.
     """
+    volume_shape = mask_4d.shape[1:]          # (H, W, D)
     category_masks: Dict[str, np.ndarray] = {}
-    volume_shape = mask_4d.shape[1:]   # (H, W, D)
 
     for f_idx, category in finding_map.items():
         if category not in CLASS_ORDER:
             continue
         if f_idx >= mask_4d.shape[0]:
-            logger.warning(f"  f_idx={f_idx} out of range for mask shape {mask_4d.shape}")
+            logger.warning(
+                f"f_idx={f_idx} out of range for mask shape {mask_4d.shape}; skipping."
+            )
             continue
 
-        finding_mask = (mask_4d[f_idx] > 0).astype(np.uint8)
-
+        finding_bin = (mask_4d[f_idx] > 0).astype(np.uint8)
         if category not in category_masks:
             category_masks[category] = np.zeros(volume_shape, dtype=np.uint8)
-        category_masks[category] = np.logical_or(
-            category_masks[category], finding_mask
-        ).astype(np.uint8)
+        np.logical_or(category_masks[category], finding_bin, out=category_masks[category])
 
     return {cat: m for cat, m in category_masks.items() if m.sum() > 0}
 
 
-def _majority_class(
-    centre: Tuple[int, int, int],
-    category_masks: Dict[str, np.ndarray],
-) -> Tuple[Optional[str], float]:
+def _foreground_bbox(
+    binary_mask: np.ndarray,
+) -> Tuple[int, int, int, int, int, int]:
     """
-    Among all per-category masks, return the one with the highest voxel overlap
-    with the patch centred at `centre`, and its overlap ratio.
-
-    The overlap ratio is used only for disambiguation between categories; it is
-    no longer used as an acceptance gate (that gate has been removed).
-    A centre that lands on foreground in exactly one category mask will have
-    overlap > 0 for that category and 0 for all others.
+    Return the tight axis-aligned bounding box of foreground voxels as
+    (x_min, x_max, y_min, y_max, z_min, z_max) — all inclusive.
+    Assumes binary_mask has at least one foreground voxel.
     """
-    best_cat, best_overlap = None, 0.0
+    coords = np.argwhere(binary_mask > 0)
+    x_min, y_min, z_min = coords.min(axis=0).tolist()
+    x_max, y_max, z_max = coords.max(axis=0).tolist()
+    return x_min, x_max, y_min, y_max, z_min, z_max
 
-    for cat, mask in category_masks.items():
-        overlap = _overlap_ratio(centre, mask)
-        if overlap > best_overlap:
-            best_overlap = overlap
-            best_cat = cat
 
-    return best_cat, best_overlap
+def _bbox_origins(
+    bbox: Tuple[int, int, int, int, int, int],
+    volume_shape: Tuple[int, int, int],
+    stride: int,
+) -> Generator[Tuple[int, int, int], None, None]:
+    """
+    Yield all patch top-left-front corners whose patch window overlaps the
+    bounding box and remains fully within the volume.
+
+    To cover the entire bbox, the starting x0 ranges from
+    max(0, x_min - PATCH_SIZE + 1) to min(H - PATCH_SIZE, x_max), and
+    analogously for y and z, stepped by `stride`.
+    """
+    p = PATCH_SIZE
+    H, W, D = volume_shape
+    x_min, x_max, y_min, y_max, z_min, z_max = bbox
+
+    x_start = max(0,        x_min - p + 1)
+    x_stop  = min(H - p,    x_max)
+    y_start = max(0,        y_min - p + 1)
+    y_stop  = min(W - p,    y_max)
+    z_start = max(0,        z_min - p + 1)
+    z_stop  = min(D - p,    z_max)
+
+    for x0 in range(x_start, x_stop + 1, stride):
+        for y0 in range(y_start, y_stop + 1, stride):
+            for z0 in range(z_start, z_stop + 1, stride):
+                yield x0, y0, z0
+
+
+def sample_abnormal_patches(
+    volume: np.ndarray,
+    category_mask: np.ndarray,
+    category: str,
+    class_to_idx: Dict[str, int],
+) -> Tuple[List[np.ndarray], List[int]]:
+    """
+    Slide a patch window with stride=ABNORMAL_STRIDE over the bounding box of
+    `category_mask`. All in-bounds patches are included regardless of foreground
+    overlap; patches with >50% zero voxels are discarded. Label is `category`.
+    """
+    patches: List[np.ndarray] = []
+    labels:  List[int]        = []
+    label_idx = class_to_idx[category]
+
+    bbox = _foreground_bbox(category_mask)
+
+    for x0, y0, z0 in _bbox_origins(bbox, volume.shape, stride=ABNORMAL_STRIDE):
+        patch = _extract_patch(volume, x0, y0, z0)
+        if patch is None:
+            continue
+        if _is_background(patch):
+            continue
+        patches.append(patch)
+        labels.append(label_idx)
+
+    return patches, labels
 
 
 def collect_abnormal_patches(
     positive_ids: List[str],
     loader: ScanLoader,
-    n_patches_per_scan: int,
-    rng: np.random.Generator,
 ) -> Tuple[List[np.ndarray], List[int], List[str]]:
     """
-    Phase 2: collect patches from all abnormal scans.
-
-    For each scan:
-      1. Build per-category masks via _build_finding_masks.
-      2. Build a union mask across all categories.
-      3. Sample patch centres from foreground voxels of the union mask.
-      4. Label each patch by the category with the highest overlap
-         (_majority_class). No minimum overlap threshold is applied —
-         any centre in a foreground voxel is accepted.
+    Phase 2: for every abnormal scan, iterate over each category present,
+    extract all bbox patches with stride=ABNORMAL_STRIDE, and label directly
+    with that category.
 
     Returns flat lists of patches, integer class labels, and scan IDs.
     """
-    all_patches: List[np.ndarray] = []
-    all_labels:  List[int]        = []
-    all_scan_ids: List[str]       = []
+    all_patches:  List[np.ndarray] = []
+    all_labels:   List[int]        = []
+    all_scan_ids: List[str]        = []
     class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
+
+    logger.info(f"Phase 2 — bbox-sampling {len(positive_ids)} abnormal scans…")
 
     for scan_id in tqdm(positive_ids, desc="abnormal scans"):
         try:
             scan = loader.load(scan_id)
-        except Exception as e:
-            logger.warning(f"Skipping {scan_id}: {e}")
+        except Exception as exc:
+            logger.warning(f"Skipping {scan_id}: {exc}")
             continue
 
         if scan["mask"] is None or not scan["finding_map"]:
+            logger.debug(f"  {scan_id}: no mask or finding_map, skipping.")
             continue
 
-        category_masks = _build_finding_masks(scan["mask"], scan["finding_map"])
+        category_masks = _build_category_masks(scan["mask"], scan["finding_map"])
         if not category_masks:
+            logger.debug(f"  {scan_id}: no valid category masks, skipping.")
             continue
 
-        volume_shape = scan["volume"].shape
-        union_mask = np.zeros(volume_shape, dtype=np.uint8)
-        for m in category_masks.values():
-            union_mask = np.logical_or(union_mask, m).astype(np.uint8)
-
-        foreground_coords = np.argwhere(union_mask > 0)
-        if len(foreground_coords) == 0:
-            continue
-
-        max_attempts = n_patches_per_scan * 10
-        collected = 0
-
-        for _ in range(max_attempts):
-            if collected >= n_patches_per_scan:
-                break
-
-            idx    = rng.integers(0, len(foreground_coords))
-            centre = tuple(foreground_coords[idx])
-
-            patch = _extract_patch(scan["volume"], centre)
-            if patch is None:
-                continue
-
-            # Label by highest-overlap category; no minimum overlap gate.
-            best_cat, _ = _majority_class(centre, category_masks)
-            if best_cat is None:
-                continue
-
-            all_patches.append(patch)
-            all_labels.append(class_to_idx[best_cat])
-            all_scan_ids.append(scan_id)
-            collected += 1
-
-        if collected < n_patches_per_scan:
+        scan_patch_count = 0
+        for category, cat_mask in category_masks.items():
+            patches, labels = sample_abnormal_patches(
+                scan["volume"], cat_mask, category, class_to_idx
+            )
+            all_patches.extend(patches)
+            all_labels.extend(labels)
+            all_scan_ids.extend([scan_id] * len(patches))
+            scan_patch_count += len(patches)
             logger.debug(
-                f"{scan_id}: collected {collected}/{n_patches_per_scan} patches."
+                f"  {scan_id} [{category}]: {len(patches)} patches from bbox"
             )
 
-    # Log per-category counts before upsampling
-    label_arr = np.array(all_labels) if all_labels else np.array([], dtype=np.int64)
+        logger.debug(f"  {scan_id}: {scan_patch_count} total patches across all categories")
+
+    # Per-category summary
+    label_arr = np.array(all_labels, dtype=np.int64) if all_labels else np.array([], dtype=np.int64)
     for category in [k for k in CLASS_ORDER if k != "normal"]:
         idx   = class_to_idx[category]
-        count = int((label_arr == idx).sum()) if len(label_arr) else 0
-        logger.info(f"  → {count} patches for {category} (before upsampling)")
+        count = int((label_arr == idx).sum())
+        logger.info(f"  → {count} patches for '{category}'")
 
+    logger.info(f"  → {len(all_patches)} total abnormal patches collected.")
     return all_patches, all_labels, all_scan_ids
-
-
-# ─── Class-balance upsampling ─────────────────────────────────────────────────
-
-def upsample_to_balance(
-    patches: List[np.ndarray],
-    labels: List[int],
-    scan_ids: List[str],
-    rng: np.random.Generator,
-) -> Tuple[List[np.ndarray], List[int], List[str]]:
-    """
-    Upsample minority classes with replacement so every class has the same
-    number of patches as the largest class.
-
-    Upsampling (rather than downsampling) is used to avoid discarding
-    hard-won abnormal patches, which are already scarce.
-
-    scan_ids are carried through so the balanced matrix remains compatible
-    with scan-level evaluation.
-    """
-    label_arr = np.array(labels, dtype=np.int64)
-    classes   = sorted(set(labels))
-    counts    = {c: int((label_arr == c).sum()) for c in classes}
-    target    = max(counts.values())
-
-    logger.info(f"Upsampling to {target} patches per class. Before: {counts}")
-
-    balanced_patches:  List[np.ndarray] = list(patches)
-    balanced_labels:   List[int]        = list(labels)
-    balanced_scan_ids: List[str]        = list(scan_ids)
-
-    for cls in classes:
-        deficit = target - counts[cls]
-        if deficit <= 0:
-            continue
-
-        cls_indices = np.where(label_arr == cls)[0]
-        chosen = rng.choice(cls_indices, size=deficit, replace=True)
-
-        for i in chosen:
-            balanced_patches.append(patches[i])
-            balanced_labels.append(labels[i])
-            balanced_scan_ids.append(scan_ids[i])
-
-    new_counts = {c: int((np.array(balanced_labels) == c).sum()) for c in classes}
-    logger.info(f"After upsampling: {new_counts}")
-
-    return balanced_patches, balanced_labels, balanced_scan_ids
 
 
 # ─── Assembly ─────────────────────────────────────────────────────────────────
@@ -367,54 +303,43 @@ def build_unified_patch_matrix(
     normal_ids: List[str],
     positive_ids: List[str],
     loader: ScanLoader,
-    rng: np.random.Generator,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Run both phases, apply class-balance upsampling, and assemble into:
-      X        — (n_features, n_patches)    float64
-      H        — (n_patches,)               int64
-      scan_ids — (n_patches,)               str  (for scan-level evaluation)
+    Run both phases and assemble into:
+      X        — (n_features, n_patches)  float64
+      H        — (n_patches,)             int64
+      scan_ids — (n_patches,)             object (str)
     """
-    n_per_scan = max(1, N_POSITIVE_PATCHES_PER_SCAN)
-
-    # Phase 1
     normal_patches, normal_labels, normal_scan_ids = collect_normal_patches(
-        normal_ids, loader, n_per_scan=n_per_scan, rng=rng
+        normal_ids, loader
     )
-
-    # Phase 2
     abnormal_patches, abnormal_labels, abnormal_scan_ids = collect_abnormal_patches(
-        positive_ids, loader, n_patches_per_scan=n_per_scan, rng=rng
+        positive_ids, loader
     )
 
-    if len(abnormal_patches) == 0:
+    if not abnormal_patches:
         raise RuntimeError(
             "No abnormal patches collected. "
-            "Check MASKS_DIR, METADATA_JSON, and the foreground mask contents."
+            "Check MASKS_DIR, METADATA_JSON, and foreground mask contents."
         )
 
-    # Combine before balancing so normal is included in the target count
     all_patches  = normal_patches  + abnormal_patches
     all_labels   = normal_labels   + abnormal_labels
     all_scan_ids = normal_scan_ids + abnormal_scan_ids
 
-    # Balance classes by upsampling minorities
-    all_patches, all_labels, all_scan_ids = upsample_to_balance(
-        all_patches, all_labels, all_scan_ids, rng
-    )
-
-    # Assemble X and H
     n_patches = len(all_patches)
     X        = np.zeros((N_FEATURES, n_patches), dtype=np.float64)
-    H        = np.empty(n_patches, dtype=np.int64)
-    scan_ids = np.empty(n_patches, dtype=object)
+    H        = np.empty(n_patches,               dtype=np.int64)
+    scan_ids = np.empty(n_patches,               dtype=object)
 
     for j, (patch, label, sid) in enumerate(zip(all_patches, all_labels, all_scan_ids)):
-        X[:, j]        = patch.ravel(order='C')
-        H[j]           = label
-        scan_ids[j]    = sid
+        X[:, j]     = patch.ravel(order="C")
+        H[j]        = label
+        scan_ids[j] = sid
 
-    logger.info(f"Final matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}")
+    logger.info(
+        f"Final matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}"
+    )
     return X, H, scan_ids
 
 
@@ -422,7 +347,7 @@ def build_unified_patch_matrix(
 
 def extract_unified(split: str = "train") -> None:
     """
-    Run both phases of patch extraction and save a single .npz:
+    Run both phases of patch extraction and save a single compressed .npz:
         patches/unified_{split}.npz
     Stores X, H, and scan_ids.
     """
@@ -430,10 +355,9 @@ def extract_unified(split: str = "train") -> None:
     out_path = PATCHES_DIR / f"unified_{split}.npz"
 
     if out_path.exists():
-        logger.info(f"Already exists: {out_path}, skipping.")
+        logger.info(f"Already exists: {out_path} — skipping.")
         return
 
-    rng      = np.random.default_rng(RANDOM_SEED)
     metadata = MetadataRegistry(split=split)
     labels   = LabelRegistry(metadata, split=split)
     loader   = ScanLoader(metadata)
@@ -449,7 +373,7 @@ def extract_unified(split: str = "train") -> None:
         if missing:
             logger.debug(
                 f"_filter_existing: {len(missing)} missing volumes "
-                f"(sample up to 5): {missing[:5]}"
+                f"(sample ≤5): {missing[:5]}"
             )
         return valid
 
@@ -457,30 +381,31 @@ def extract_unified(split: str = "train") -> None:
 
     raw_by_cat = {ab: labels.get_positive_volume_names(ab) for ab in abnormality_keys}
     for ab, lst in raw_by_cat.items():
-        logger.info(f"  category {ab}: {len(lst)} volumes (sample: {lst[:3]})")
+        logger.info(f"  category '{ab}': {len(lst)} volumes")
 
     positive_ids: List[str] = list({
         vid
         for ab in abnormality_keys
         for vid in raw_by_cat.get(ab, [])
     })
-    logger.info(f"Raw positive IDs deduped: {len(positive_ids)} (sample: {positive_ids[:5]})")
+    logger.info(f"Raw positive IDs (deduped): {len(positive_ids)}")
     positive_ids = _filter_existing(positive_ids)
     logger.info(f"After path resolution: abnormal={len(positive_ids)}")
 
     raw_normals = labels.get_normal_volume_names()
-    logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}, e.g. {raw_normals[:3]}")
-    if len(raw_normals) == 0:
+    logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}")
+    if not raw_normals:
         logger.warning(
-            "No normal volumes found in metadata — dataset may contain only abnormal scans."
+            "No normal volumes found in metadata — "
+            "dataset may contain only abnormal scans."
         )
     normal_ids = _filter_existing(raw_normals)
 
     logger.info(
-        f"Split={split} | abnormal={len(positive_ids)} | normal={len(normal_ids)}"
+        f"Split={split!r} | normal={len(normal_ids)} | abnormal={len(positive_ids)}"
     )
 
-    X, H, scan_ids = build_unified_patch_matrix(normal_ids, positive_ids, loader, rng)
+    X, H, scan_ids = build_unified_patch_matrix(normal_ids, positive_ids, loader)
 
     np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids)
     logger.info(f"Saved → {out_path}  (X: {X.shape}, H: {H.shape})")
@@ -490,7 +415,7 @@ def load_unified_patch_matrix(
     split: str = "train",
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Returns X (n_features, n_patches), H (n_patches,), scan_ids (n_patches,).
+    Load and return X (n_features, n_patches), H (n_patches,), scan_ids (n_patches,).
     """
     path = PATCHES_DIR / f"unified_{split}.npz"
     if not path.exists():

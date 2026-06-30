@@ -1,0 +1,98 @@
+\section{Literature Review}
+
+\subsection{Study 1: Hounsfield Unit-Based Lung Segmentation}
+
+Early automated lung segmentation methods primarily relied on intensity thresholding, exploiting the low radiodensity of air-filled
+lung parenchyma relative to surrounding thoracic tissues. Attenuation values expressed in Hounsfield units (HU) provide characteristic
+ranges for different anatomical structures on CT images, enabling basic separation of lung regions from the chest wall and mediastinum \cite{radiographics2015}.
+Typically, lung tissue falls within a range of approximately \(-1000\) to \(-500\) HU. While effective for healthy lungs, this approach
+becomes unreliable in the presence of pathology, where abnormal tissue alters normal intensity distributions.
+
+To address these limitations, fully automated three-dimensional segmentation frameworks were developed that combined thresholding
+with structural optimization techniques. Hu et al.\ introduced a method integrating gray-level thresholding, dynamic programming,
+and morphological operations to refine lung boundaries \cite{ieee2001}. Dynamic programming was used to optimize boundary placement
+in regions with weak intensity gradients, while morphological operations corrected artifacts such as holes and isolated regions.
+This approach established early performance benchmarks for automated lung segmentation.
+
+More recent practical implementations have focused on usability and reproducibility. Hartmann et al.\ demonstrated a Python-based
+workflow using fixed HU thresholds followed by morphological closing applied separately to the left and right lungs \cite{hartmann2020}.
+Processing the lungs independently prevented artificial fusion near the mediastinum, where anatomical proximity often confounds
+binary segmentation. These frameworks emphasize accessibility and rapid prototyping while maintaining anatomical plausibility.
+
+\subsection{Study 2: Advanced Segmentation for Diseased Lungs}
+
+Segmentation becomes significantly more challenging in diseased lungs due to fibrosis, consolidation, or interstitial abnormalities
+that disrupt normal intensity patterns. To address this, researchers have combined intensity-based methods with texture analysis.
+Uppaluri et al.\ employed gray-level thresholding together with texture-feature images derived from gray-level co-occurrence matrices
+(GLCMs) to segment lungs affected by severe interstitial disease \cite{pmc2009}. Texture features captured spatial relationships
+beyond simple intensity values, enabling improved separation of lung tissue from surrounding structures. The method achieved
+approximately 82\% overlap with expert manual annotations.
+
+Hybrid approaches integrating soft classification have further improved robustness. Fuzzy c-means clustering allows voxels to belong
+partially to multiple tissue classes, reflecting gradual biological transitions rather than hard boundaries. One such study combined
+fuzzy clustering with morphological hole filling, dilation, and reconstruction to specifically address juxtapleural nodules that
+adhere to the chest wall \cite{biomedical2017}. Morphological reconstruction selectively preserved anatomically meaningful boundaries
+while filling incomplete regions. These methods proved effective when disease obscured normal lung-chest wall interfaces.
+
+\subsection{Study 3: Ground Glass Opacity Detection Algorithms}
+
+After lung segmentation, identifying ground glass opacities (GGOs) requires distinguishing subtle increases in attenuation from
+normal lung parenchyma. Probabilistic spatial models have been widely adopted for this purpose. Markov random field (MRF)-based
+frameworks incorporate neighborhood dependencies, modeling the diffuse and spatially coherent nature of GGOs \cite{pmc_mrf}.
+Using contextual voxel relationships, one such method achieved 86.94\% sensitivity and 94.33\% specificity. To reduce false positives,
+vessel structures were removed using morphological filters targeting elongated, line-like geometries.
+
+Statistical characterization methods provide an alternative perspective. In one approach, candidate GGO regions were first segmented
+using morphological reconstruction, followed by computation of first-order statistical descriptors such as mean, variance, entropy,
+skewness, and kurtosis \cite{iet2022}. Entropy was particularly effective in capturing the heterogeneous texture typical of GGOs.
+This framework enabled probabilistic confidence scoring rather than strict binary classification.
+
+Texture-based local pattern analysis has shown strong performance in detecting nodular GGOs. Kim et al.\ proposed a boosted k-nearest
+neighbor classifier using nonparametric density estimation, followed by segmentation via texture likelihood maps \cite{pubmed2007}.
+The method successfully detected all GGOs in the evaluated dataset with minimal false positives. Integrating detection and
+segmentation into a unified pipeline improved overall robustness.
+
+Recent clinical demands, particularly during the COVID-19 pandemic, have emphasized computational efficiency. An attention-based
+thresholding method selectively emphasized diagnostically relevant regions while suppressing background noise, improving Dice
+similarity by 8.9\% while requiring less than 0.1\% of the computational cost of deep learning models \cite{sciencedirect2022}.
+Such efficiency enables deployment on standard clinical hardware.
+
+Three-dimensional geometric analysis has introduced new characterization capabilities. PointNet++ architectures applied to volumetric
+GGO segmentation achieved up to 98\% classification accuracy and 92\% intersection-over-union \cite{plos2022}. Minkowski tensors
+were used to quantify shape anisotropy and morphological complexity, enabling differentiation between GGO subtypes based on
+three-dimensional structure.
+
+\subsection{Study 4: Pulmonary Vessel Segmentation and Suppression}
+
+Pulmonary vessels pose a major challenge for GGO detection because their attenuation values overlap with those of ground glass
+regions. Multiscale vessel enhancement filters based on Hessian matrix eigenvalue analysis have become a standard solution. Frangi
+et al.\ introduced a vesselness measure that identifies tubular structures using local second-order intensity variations \cite{frangi1998}.
+Subsequent three-dimensional implementations achieved vessel segmentation accuracies between 96.2\% and 97.0\% \cite{pmc2008}.
+Multiscale analysis enables detection of vessels ranging from central arteries to peripheral branches.
+
+Dynamic contour-based methods have also been applied to vessel extraction. These approaches typically combine threshold segmentation
+with morphological filtering and geometric constraints, such as elliptical fitting based on vessel cross-sectional shape \cite{pmc2021}.
+Contour tracking preserves connectivity along vessel paths despite local intensity variation.
+
+Vessel segmentation has also been explored for quantitative analysis. Studies focusing on vessel tortuosity applied gray-level
+thresholding followed by morphological closing and Hessian-based enhancement filters \cite{pmc2014}. Distance transform techniques
+were then used to quantify vessel proximity, providing spatial context that can inform region-specific vessel suppression strategies.
+
+\subsection{Gap Analysis}
+
+Despite substantial progress, several limitations remain in current GGO detection systems. First, most methods operate as fully
+automated pipelines with limited user interaction, preventing clinicians from adjusting parameters based on patient-specific
+anatomy or pathology. Second, vessel suppression techniques often apply uniform parameters across the entire lung volume,
+ignoring regional variations in vascular density. This can lead to insufficient suppression in central regions or excessive erosion
+in peripheral areas.
+
+Third, validation studies typically report aggregate performance metrics without detailed analysis of failure modes or edge cases.
+Understanding where and why algorithms fail is critical for targeted improvement. Fourth, few systems provide volumetric quantification
+with slice-by-slice navigation, limiting correlation between three-dimensional disease extent and clinical severity. Fifth, visualization
+features such as adjustable overlay transparency are rarely emphasized, despite their importance for clinical interpretation.
+
+Finally, computational efficiency is often evaluated only at the algorithm level, neglecting the cumulative cost of preprocessing
+steps such as DICOM loading, windowing, segmentation, and visualization. These gaps motivate the development of interactive
+visualization tools that support adjustable parameters, region-aware processing, detailed validation metrics, volumetric navigation,
+transparency control, and end-to-end pipeline optimization. Such tools are essential for bridging the gap between research prototypes
+and practical clinical deployment.

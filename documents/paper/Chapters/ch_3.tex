@@ -27,10 +27,8 @@ for its more clinically relevant set of findings, as well as its detailed voxell
 After an initial review of the thoracic findings available in ReXGroundingCT, a discussion with the supervising radiologist
 produced a shortlist of the following abnormalities that are clinically significant and have sufficient representation in the datasets:
 \begin{enumerate}
-    \item Atelectasis
     \item Lung nodule
     \item GroundGlass Opacity (GGO)
-    \item Consolidation
 \end{enumerate}
 
 Both the volumes and their segmentation masks are formatted as NIfTI files. The masks are 3D volumetric segmentations
@@ -51,23 +49,24 @@ Each volume is resampled to 1.5 mm isotropic using trilinear interpolation to st
 If the current spacing is already within 1\% of target, this step is skipped.
 Each mask is also resampled to exactly match the resampled volume's spatial shape using nearestneighbour interpolation to preserve integer label values
 
-In the second step, a standard window Hounsefield unit (HU) of [1000, +200] was used to separate the lung window from the CT volume.
+In the second step, a standard window Hounsfield unit (HU) of [\-900, \-200] was used to separate the lung window from the CT volume.
 Then, a linear rescaling to [0, 1] as float32 was applied to the windowed volume, to normalize the intensity values.
 
-Finally, the preprocessed volumes are divided into overlapping 3D patches of size \(32 \times 32 \times 32\) with
-32,768 features per patch (48 mm³ at 1.5 mm spacing).
+Finally, the preprocessed volumes are divided into 3D patches of size \(16 \times 16 \times 16\) with
+4,096 features per patch (24 mm³ at 1.5 mm spacing).
 Normal and abnormal scans are processed in separate phases to ensure that the Dictionary Learning model first learns a representation of normal anatomy before being exposed to abnormalities.
 
-In phase 1, a maximum number of patches are sampled from each normal scan from any inbounds location in the volume.
-all labelled class index 0
+In phase 1, patches are extracted on a regular non-overlapping grid with stride of 32 voxels from each normal scan. 
+Only patches with at least 90\% lung mask coverage (MIN\_LUNG\_COVERAGE = 0.90) are retained. 
+All patches are labelled with class index 0 (normal).
 
-In phase 2, using the abnormal scans, we build a percategory binary mask by ORing all finding slots of the same category together; build a
-union mask across all categories; sample patch centres uniformly from the union mask foreground; each candidate patch must have
-$ \geq 5\% $ overlap with at least one category mask; the label is assigned to whichever
-category mask has the highest overlap with that patch (majorityclass rule), which handles overlapping findings correctly
+In phase 2, using the abnormal scans, we slide a 3D patch window over each abnormality's bounding box with a fixed stride of 
+\(ABNORMAL\_STRIDE = 2\) voxels. All patches within the bounding box foreground are extracted regardless of specific overlap 
+threshold. Patches with more than 50\% zero voxels (background) are discarded. Each patch is directly labeled with the category 
+being processed. For scans with multiple overlapping abnormalities, patches are extracted and labeled separately per category.
 
 Both phases share the same maximum patches/scan budget; class balance is therefore determined by the normal/abnormal scan counts in the dataset, not a hard ratio
-All patches are assembled into X (32768 x N, float64) and H (N,) int64, then saved as .npz files.
+All patches are assembled into X (4096 x N, float64) and H (N,) int64, then saved as .npz files.
 
 % \begin{figure}[H]
 % \centering
@@ -106,7 +105,7 @@ corresponding to uniform zero regions with no signal, are discarded entirely.
 
 The model is trained using LCKSVD2, a dictionary learning algorithm that jointly optimises three objectives:
 reconstruction accuracy, label consistency, and linear classification. Training proceeds in two stages:
-20iteration KSVD warmstart that initialises the dictionary on reconstruction error alone, followed by 50 LCKSVD2 iterations
+15-iteration KSVD warmstart that initialises the dictionary on reconstruction error alone, followed by 30 LCKSVD2 iterations
 that refine it under the combined objective. This twostage procedure avoids poor local minima that arise when the
 labelconsistency and classifier terms are applied before the dictionary has converged to a geometrically meaningful initialisation.
 
@@ -115,13 +114,18 @@ The key hyperparameters are a dictionary size of K = 128 atoms, a sparsity const
 On smaller datasets where the patch count N is insufficient to support 128 atoms, the dictionary size is adaptively capped at
 $ max(8, N/2) $ and the sparsity constraint is scaled proportionally.
 
+In practice, discriminative atoms are identified by selecting those atoms $d_k$ whose classifier weight $|W[c, k]|$ 
+exceeds the 75th percentile of all weights for class $c$. This filtering removes reconstruction-focused atoms that 
+lack class-specific discriminative power, focusing the backprojection on class-relevant features.
+
 At inference time, a new CT volume is loaded and preprocessed through the identical pipeline used during training.
 However, unlike training, instead of randomly sampling patches as in training,
 inference requires spatial exhaustiveness so that every region of the volume receives a classification score.
 
-This is achieved by extracting patches on a dense regular grid with a stride of half the patch width along each spatial axis.
-For a volume of size $ 512^3 $, this produces $ 32 ^ 3 = 32768 $ patches, each a $ 32^3 $ voxel window centred on a grid point.
-The 50\% overlap between adjacent patches ensures that every voxel is covered by up to 8 patch windows,
+This is achieved by extracting patches on a dense regular grid with a stride of 8 voxels along each spatial axis
+(stride = PATCH\_SIZE / 2 = 16 / 2 = 8).
+For a volume of size $ 512^3 $, this produces approximately $ 64^3 = 262144 $ patches, each a $ 16^3 $ voxel window centred on a grid point.
+The overlap between adjacent patches (stride=8, patch\_size=16) provides spatial coverage with 50\% overlap,
 providing multiple independent score estimates per spatial location for the subsequent backprojection step.
 % \begin{figure}[H]
 % \centering

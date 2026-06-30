@@ -17,9 +17,12 @@ from typing import Dict, List, Optional, Tuple
 
 import nibabel as nib
 import numpy as np
-from scipy.ndimage import zoom
+from scipy import ndimage
+from skimage.segmentation import clear_border
 
-from lc_ksvd.config import ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR
+from lc_ksvd.config import (
+    ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR, BACKGROUND_HU
+)
 
 
 # ─── Path resolution ──────────────────────────────────────────────────────────
@@ -126,7 +129,7 @@ def resample_volume(vol: np.ndarray, current_spacing: np.ndarray) -> np.ndarray:
         return vol
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        resampled = zoom(vol, factors, order=1, mode='nearest')   # order=1 → trilinear, mode='nearest' to avoid blending edge voxels with 0
+        resampled = ndimage.zoom(vol, factors, order=1, mode='nearest')   # order=1 → trilinear, mode='nearest' to avoid blending edge voxels with 0
     return resampled.astype(np.float32)
 
 
@@ -147,23 +150,89 @@ def resample_mask(mask: np.ndarray, target_shape: Tuple[int, int, int]) -> np.nd
     for f in range(mask.shape[0]):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            rs = zoom(mask[f], factors, order=0, mode='nearest')
+            rs = ndimage.zoom(mask[f], factors, order=0, mode='nearest')
         resampled_slices.append(rs.astype(np.uint8))
     return np.stack(resampled_slices, axis=0)
 
 
 # ─── HU windowing and normalisation ──────────────────────────────────────────
 
-def window_and_normalise(vol: np.ndarray) -> np.ndarray:
+def preprocess(vol: np.ndarray) -> np.ndarray:
     """
-    Apply lung window [HU_MIN, HU_MAX] and rescale to [0, 1].
-    Input:  float32 array in HU
-    Output: float32 array in [0, 1]
-    """
-    vol = np.clip(vol, HU_MIN,  HU_MAX)
-    vol = (vol - HU_MIN) / (HU_MAX - HU_MIN)
-    return vol.astype(np.float32)
+    Lung preprocessing pipeline.
 
+    Steps:
+        1. Threshold lung tissue [-900, -200] HU
+        2. Remove border-connected air regions
+        3. Keep the two largest connected components
+        4. Morphological closing
+        5. Hole filling
+        6. Apply lung mask to volume
+        8. Rescale to [0, 1]
+
+    Input:
+        vol: float32 CT volume in HU
+
+    Output:
+        float32 volume in [0, 1]
+    """
+
+    # ------------------------------------------------------------------
+    # Lung mask
+    # ------------------------------------------------------------------
+    mask = (vol >= HU_MIN) & (vol <= HU_MAX)
+
+    # Remove border-connected components slice-by-slice
+    mask_clear = np.zeros_like(mask, dtype=bool)
+
+    for z in range(mask.shape[2]):
+        mask_clear[:, :, z] = clear_border(mask[:, :, z])
+
+    # Connected components
+    labels, num = ndimage.label(mask_clear)
+
+    if num > 0:
+        sizes = ndimage.sum(mask_clear, labels, range(1, num + 1))
+
+        if len(sizes) >= 2:
+            largest_two = np.argsort(sizes)[-2:] + 1
+            lung_mask = np.isin(labels, largest_two)
+        else:
+            lung_mask = labels > 0
+    else:
+        lung_mask = mask_clear
+
+    # Morphological closing
+    structure = ndimage.generate_binary_structure(3, 2)
+
+    lung_mask = ndimage.binary_closing(
+        lung_mask,
+        structure=structure,
+        iterations=2,
+    )
+
+    # Hole filling
+    lung_mask = ndimage.binary_fill_holes(lung_mask)
+
+    # Final cleanup
+    lung_mask = ndimage.binary_closing(
+        lung_mask,
+        structure=structure,
+        iterations=2,
+    )
+
+    lung_mask = ndimage.binary_fill_holes(lung_mask)
+
+    # ------------------------------------------------------------------
+    # Apply mask
+    # ------------------------------------------------------------------
+    vol = vol.copy()
+    vol[~lung_mask] = BACKGROUND_HU # set non-lung voxels to -1000 HU (air). This is less than HU_MIN
+
+    vol = np.clip(vol, BACKGROUND_HU, HU_MAX)
+    vol = (vol - BACKGROUND_HU) / (HU_MAX - BACKGROUND_HU)
+    
+    return vol.astype(np.float32)
 
 # ─── Metadata parsing ────────────────────────────────────────────────────────
 
@@ -354,7 +423,7 @@ class ScanLoader:
         # Load and resample volume
         vol_hu, spacing = load_volume(volume_name)
         vol_rs = resample_volume(vol_hu, spacing)
-        vol    = window_and_normalise(vol_rs)
+        vol = preprocess(vol_rs)
 
         # Load and resample mask to match the resampled volume shape exactly,
         # ignoring the mask's own header spacing to avoid shape mismatches.
