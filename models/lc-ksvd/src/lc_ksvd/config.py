@@ -52,8 +52,8 @@ N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 MIN_OVERLAP_RATIO = 0.05
 
 # Training-time patch-grid strides (voxels).
-NORMAL_PATCH_STRIDE = 32      # non-overlapping normal patches
-ABNORMAL_PATCH_STRIDE = 16    # 50% overlap for abnormal patches
+NORMAL_PATCH_STRIDE = PATCH_SIZE      # non-overlapping normal patches
+ABNORMAL_PATCH_STRIDE = 4    # 50% overlap for abnormal patches
 
 # Retain a normal patch only when this fraction belongs to the lung mask.
 MIN_LUNG_COVERAGE = 0.90

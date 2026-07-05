@@ -33,48 +33,11 @@ def _stem(filename: str) -> str:
 
 
 def resolve_volume_path(volume_name: str) -> Path:
-    """
-    Reconstruct the nested volume path from a scan ID.
-
-    Naming convention: train_<study>_<series>_<number>
-    e.g. "train_1_a_1"  →  volumes/dataset/train/train_1/train_1_a/train_1_a_1.nii.gz
-
-    The nesting is: VOLUMES_DIR / train_<study> / train_<study>_<series> / <scan_id>.nii.gz
-    """
-    parts = volume_name.split("_")          # ["train", "1", "a", "1"]
-    if len(parts) < 4 or parts[0] != "train":
-        raise ValueError(f"Unexpected volume_name format: {volume_name!r}")
-
-    study  = parts[1]                   # "1"
-    series = parts[2]                   # "a"
-
-    study_dir  = f"train_{study}"                   # "train_1"
-    series_dir = f"train_{study}_{series}"          # "train_1_a"
-
-    candidate = (
-        VOLUMES_DIR
-        / study_dir
-        / series_dir
-        / f"{volume_name}.nii.gz"
-    )
-    if candidate.exists():
-        return candidate
-
-    # Fallback: some series use numeric identifiers ("train_1_1")
-    series_dir_num = f"train_{study}_{series}"
-    candidate2 = (
-        VOLUMES_DIR
-        / study_dir
-        / series_dir_num
-        / f"{volume_name}.nii.gz"
-    )
-    if candidate2.exists():
-        return candidate2
-
-    raise FileNotFoundError(
-        f"Could not find volume for volume_name={volume_name!r}. "
-        f"Tried:\n  {candidate}\n  {candidate2}"
-    )
+    """Volumes are flat in VOLUMES_DIR."""
+    path = VOLUMES_DIR / f"{volume_name}.nii.gz"
+    if not path.exists():
+        raise FileNotFoundError(f"Volume not found: {path}")
+    return path
 
 
 def resolve_mask_path(volume_name: str) -> Path:
