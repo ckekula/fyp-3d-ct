@@ -215,7 +215,6 @@ class MetadataRegistry:
             },
             ...
         ],
-        "val": [...],
         "test": [...]
     }
     """
@@ -225,7 +224,7 @@ class MetadataRegistry:
             self._raw: Dict = json.load(f)
         self._volume_index: Dict[str, Dict[int, str]] = {}
 
-        split_names = [split] if split else ["train", "val", "test"]
+        split_names = [split] if split else ["train", "test"]
 
         # Index all volumes from all splits
         for split_name in split_names:
@@ -298,7 +297,7 @@ class LabelRegistry:
             raw = json.load(f)
 
         # Index all volumes from all splits
-        split_names = [self.split] if self.split else ["train", "val", "test"]
+        split_names = [self.split] if self.split else ["train", "test"]
         for split_name in split_names:
             if split_name not in raw or not isinstance(raw[split_name], list):
                 continue

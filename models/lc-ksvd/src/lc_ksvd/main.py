@@ -299,18 +299,6 @@ def train(algorithm: str) -> Dict:
     logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
     _log_class_distribution(H, prefix="train (after zero-norm drop)")
 
-    # -- Validation set ---------------------------------------------------------
-    X_val, H_val, scan_ids_val = load_unified_patch_matrix(split="val")
-    X_val_norm, _, val_zero = normalise_columns(X_val)
-    keep_val       = ~val_zero
-    X_val_norm     = X_val_norm[:, keep_val]
-    H_val          = H_val[keep_val]
-    scan_ids_val   = scan_ids_val[keep_val]
-
-    n_dropped_val = int(val_zero.sum())
-    logger.info(f"Val: dropped {n_dropped_val} zero-norm patches; {keep_val.sum()} remaining.")
-    _log_class_distribution(H_val, prefix="val (after zero-norm drop)")
-
     # -- Train ------------------------------------------------------------------
     cfg = dict(LCKSVD_CONFIG)
     t0 = time.time()
@@ -327,7 +315,6 @@ def train(algorithm: str) -> Dict:
 
     # -- Evaluate at scan level - pass integer H and scan_ids --------------------
     train_metrics = evaluate(model, X_norm,     H,     scan_ids,     split_name="train")
-    val_metrics   = evaluate(model, X_val_norm, H_val, scan_ids_val, split_name="val")
 
     # -- Save ---------------------------------------------------------------------
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
@@ -339,7 +326,6 @@ def train(algorithm: str) -> Dict:
         "algorithm":       algorithm,
         "class_order":     CLASS_ORDER,
         "train_metrics":   train_metrics,
-        "val_metrics":     val_metrics,
         "lcksvd_config":   cfg,
         "patch_size":      PATCH_SIZE,
         "target_spacing":  TARGET_SPACING_MM,
@@ -373,17 +359,16 @@ def main():
     args = parser.parse_args()
 
     if not args.skip_extraction:
-        logger.info("Running unified patch extraction (train + val)...")
+        logger.info("Running unified patch extraction for train split...")
         extract_unified(split="train")
-        extract_unified(split="val")
 
     result = train(algorithm=args.algorithm)
 
-    vm = result["val_metrics"]
+    tm = result["train_metrics"]
     logger.info(
-        f"\nFinal val ({int(vm['n_scans'])} scans) - algorithm={args.algorithm} - "
-        f"AUROC(macro)={vm['auroc_macro']:.4f}  "
-        f"F1(macro)={vm['f1_macro']:.4f}  AP(macro)={vm['ap_macro']:.4f}"
+        f"\nFinal train ({int(tm['n_scans'])} scans) - algorithm={args.algorithm} - "
+        f"AUROC(macro)={tm['auroc_macro']:.4f}  "
+        f"F1(macro)={tm['f1_macro']:.4f}  AP(macro)={tm['ap_macro']:.4f}"
     )
 
 

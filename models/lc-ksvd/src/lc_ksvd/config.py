@@ -46,14 +46,9 @@ TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 PATCH_SIZE = 16            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
 N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 
-# Minimum fraction of patch voxels that must overlap the lesion mask
-# for a patch to be considered a positive sample
-# (lowered from 0.10 to 0.05 to capture small lesions like opacities/consolidations)
-MIN_OVERLAP_RATIO = 0.05
-
 # Training-time patch-grid strides (voxels).
-NORMAL_PATCH_STRIDE = PATCH_SIZE      # non-overlapping normal patches
-ABNORMAL_PATCH_STRIDE = 4    # 50% overlap for abnormal patches
+NORMAL_PATCH_STRIDE = PATCH_SIZE
+ABNORMAL_PATCH_STRIDE = 4
 
 # Retain a normal patch only when this fraction belongs to the lung mask.
 MIN_LUNG_COVERAGE = 0.90
