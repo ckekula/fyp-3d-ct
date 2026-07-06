@@ -28,7 +28,7 @@ import numpy as np
 from tqdm import tqdm
 
 from lc_ksvd.config import (
-    CLASS_ORDER, N_FEATURES, PATCH_SIZE, PATCHES_DIR, ABNORMAL_STRIDE, ZERO_FRACTION_THRESHOLD
+    CLASS_ORDER, N_FEATURES, PATCH_SIZE, PATCHES_DIR, NORMAL_PATCH_STRIDE, ABNORMAL_PATCH_STRIDE, ZERO_FRACTION_THRESHOLD
 )
 from lc_ksvd.data_loader import (
     LabelRegistry,
@@ -226,7 +226,8 @@ def sample_abnormal_patches(
     label_idx = class_to_idx[category]
     bbox = _foreground_bbox(category_mask)
 
-    for x0, y0, z0 in _bbox_origins(bbox, volume.shape, stride=ABNORMAL_STRIDE):
+    n_added = 0
+    for x0, y0, z0 in _bbox_origins(bbox, volume.shape, stride=ABNORMAL_PATCH_STRIDE):
         patch = _extract_patch(volume, x0, y0, z0)
         if patch is None or _is_background(patch):
             continue

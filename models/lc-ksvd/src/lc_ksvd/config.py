@@ -37,33 +37,30 @@ CLASS_ORDER = ["normal", "2c", "2d"]
 HU_MIN = -900
 HU_MAX =  -200
 BACKGROUND_HU = -1000  # value to fill outside the lung mask (air)
+UPPER_HU = 500
+LOWER_HU = -1000
 
 # Target isotropic voxel spacing in mm after resampling
 TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
-PATCH_SIZE = 16            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
+PATCH_SIZE = 32            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
 N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 
 # Training-time patch-grid strides (voxels).
 NORMAL_PATCH_STRIDE = PATCH_SIZE
 ABNORMAL_PATCH_STRIDE = 4
 
-# Retain a normal patch only when this fraction belongs to the lung mask.
-MIN_LUNG_COVERAGE = 0.90
-
-# Stride (voxels) for sliding the patch window over abnormality bounding boxes.
-ABNORMAL_STRIDE = 2
-# Fraction of zero voxels above which a patch is rejected.
+# Retain a normal patch only when the fraction of zero voxels is below this threshold.
 ZERO_FRACTION_THRESHOLD = 0.5
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
-    "n_components":    128,   # number of dictionary atoms K; ablate [64, 128, 256]
-    "n_nonzero_coefs": 10,    # sparsity T (~8% of K=128); ablate [5, 10, 20]
+    "n_components":    N_FEATURES*10,   # number of dictionary atoms K
+    "n_nonzero_coefs": 10,    # sparsity T
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
     "variant":         "lcksvd2",
@@ -72,22 +69,3 @@ LCKSVD_CONFIG = {
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }
-
-# ─── Localization / contribution map ─────────────────────────────────────────
-
-# Threshold strategy for binarizing the contribution map into a mask.
-# "otsu"  → compute Otsu threshold from the per-class score map
-# "fixed" → use CONTRIB_FIXED_THRESHOLD below
-CONTRIB_THRESHOLD_MODE = "otsu"
-CONTRIB_FIXED_THRESHOLD = 0.3
-
-# Only atoms whose classifier weight |W[class, atom]| exceeds this percentile
-# (computed per class over the full W matrix) are included in back-projection.
-# Prevents reconstruction-only atoms from polluting the localization map.
-DISCRIMINATIVE_ATOM_PERCENTILE = 75
-
-# A class is considered "detected" in a volume when the mean patch-level
-# classifier score for that class exceeds this fraction of the global score
-# range for that class across all patches in the volume.
-# Increase to be more conservative (fewer detections); decrease for higher recall.
-DETECTION_SCORE_THRESHOLD = 0.5

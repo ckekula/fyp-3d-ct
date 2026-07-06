@@ -21,7 +21,7 @@ from scipy import ndimage
 from skimage.segmentation import clear_border
 
 from lc_ksvd.config import (
-    ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR, BACKGROUND_HU
+    ABNORMALITY_CATEGORIES, HU_MAX, HU_MIN, MASKS_DIR, METADATA_JSON, TARGET_SPACING_MM, VOLUMES_DIR, BACKGROUND_HU, UPPER_HU, LOWER_HU
 )
 
 
@@ -192,9 +192,9 @@ def preprocess(vol: np.ndarray) -> np.ndarray:
     vol = vol.copy()
     vol[~lung_mask] = BACKGROUND_HU # set non-lung voxels to -1000 HU (air). This is less than HU_MIN
 
-    vol = np.clip(vol, BACKGROUND_HU, HU_MAX)
-    vol = (vol - BACKGROUND_HU) / (HU_MAX - BACKGROUND_HU)
-    
+    vol = np.clip(vol, LOWER_HU, UPPER_HU)
+    vol = (vol - LOWER_HU) / (UPPER_HU - LOWER_HU)
+
     return vol.astype(np.float32)
 
 # ─── Metadata parsing ────────────────────────────────────────────────────────
