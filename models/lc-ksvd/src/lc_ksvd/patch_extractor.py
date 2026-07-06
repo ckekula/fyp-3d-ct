@@ -18,15 +18,10 @@ Phase 2 — Abnormal scans:
   labelled with the category being iterated.
 
 The resulting matrices are saved as compressed .npz files to PATCHES_DIR.
-
-Memory note: patches are streamed to a temporary on-disk binary file as they are
-produced (see _PatchStore) rather than accumulated in Python lists, so peak RAM
-stays bounded (roughly one patch at a time) regardless of dataset size. Only the
-much smaller H (labels) and scan_ids arrays are kept fully in memory.
 """
 
+import os
 import logging
-from pathlib import Path
 from typing import Dict, Generator, List, Optional, Tuple
 
 import numpy as np
@@ -45,6 +40,24 @@ from lc_ksvd.data_loader import (
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
+class _PatchStreamWriter:
+    """Appends raveled patches (float32) to a scratch file, avoiding
+    in-memory accumulation of individual patch arrays during extraction."""
+
+    def __init__(self, path):
+        self.path = path
+        self._fh = open(path, "wb")
+        self.count = 0
+        self._closed = False
+
+    def write(self, patch: np.ndarray) -> None:
+        self._fh.write(np.ascontiguousarray(patch, dtype=np.float32).tobytes())
+        self.count += 1
+
+    def close(self) -> None:
+        if not self._closed:
+            self._fh.close()
+            self._closed = True
 
 # ─── Low-level patch utilities ────────────────────────────────────────────────
 
@@ -73,46 +86,6 @@ def _is_background(patch: np.ndarray) -> bool:
     return (patch < 1e-6).mean() > ZERO_FRACTION_THRESHOLD
 
 
-# ─── Disk-backed patch accumulation ──────────────────────────────────────────
-
-class _PatchStore:
-    """
-    Streams patch feature vectors to a temporary binary file on disk instead of
-    holding them in a Python list, so peak memory stays roughly O(1 patch)
-    regardless of how many patches the full dataset produces.
-
-    Labels and scan IDs are kept in ordinary Python lists — these are tiny
-    (one int / one short string per patch) compared to the patch data itself
-    (N_FEATURES floats per patch), so keeping them in RAM is not a concern.
-    """
-
-    def __init__(self, path: Path, n_features: int):
-        self.path = path
-        self.n_features = n_features
-        self._fh = open(path, "wb")
-        self.labels: List[int] = []
-        self.scan_ids: List[str] = []
-
-    def add(self, patch: np.ndarray, label: int, scan_id: str) -> None:
-        flat = np.ascontiguousarray(patch.ravel(order="C"), dtype=np.float64)
-        if flat.size != self.n_features:
-            raise ValueError(
-                f"Patch has {flat.size} voxels, expected N_FEATURES={self.n_features}"
-            )
-        self._fh.write(flat.tobytes())
-        self.labels.append(label)
-        self.scan_ids.append(scan_id)
-
-    def __len__(self) -> int:
-        return len(self.labels)
-
-    def close(self) -> int:
-        """Flush and close the backing file. Returns the number of patches written."""
-        self._fh.flush()
-        self._fh.close()
-        return len(self.labels)
-
-
 # ─── Phase 1: Normal grid sampling ───────────────────────────────────────────
 
 def _grid_origins(
@@ -128,40 +101,26 @@ def _grid_origins(
                 yield x0, y0, z0
 
 
-def sample_normal_patches(
-    volume: np.ndarray,
-    store: "_PatchStore",
-    label: int,
-    scan_id: str,
-) -> int:
-    """
-    Extract a non-overlapping grid of patches (stride = PATCH_SIZE) over the
-    full volume, discarding patches where >50% of voxels are zero. Accepted
-    patches are written directly to `store`. Returns the count added.
-    """
-    n_added = 0
+def sample_normal_patches(volume: np.ndarray, writer: _PatchStreamWriter) -> int:
+    """Grid-sample the volume, writing accepted patches to `writer`. Returns count."""
+    n = 0
     for x0, y0, z0 in _grid_origins(volume.shape, stride=PATCH_SIZE):
         patch = _extract_patch(volume, x0, y0, z0)
-        if patch is None:
+        if patch is None or _is_background(patch):
             continue
-        if _is_background(patch):
-            continue
-        store.add(patch, label, scan_id)
-        n_added += 1
-    return n_added
+        writer.write(patch)
+        n += 1
+    return n
 
 
 def collect_normal_patches(
     normal_ids: List[str],
     loader: ScanLoader,
-    store: "_PatchStore",
-) -> int:
-    """
-    Phase 1: grid-sample all normal scans, streaming patches into `store` and
-    labelling them all as CLASS_ORDER.index("normal"). Returns total count added.
-    """
+    writer: _PatchStreamWriter,
+) -> Tuple[List[int], List[str]]:
     normal_class_idx = CLASS_ORDER.index("normal")
-    total_added = 0
+    all_labels: List[int] = []
+    all_scan_ids: List[str] = []
 
     logger.info(f"Phase 1 — grid-sampling {len(normal_ids)} normal scans…")
 
@@ -172,13 +131,13 @@ def collect_normal_patches(
             logger.warning(f"Skipping {scan_id}: {exc}")
             continue
 
-        n_added = sample_normal_patches(scan["volume"], store, normal_class_idx, scan_id)
-        total_added += n_added
+        n = sample_normal_patches(scan["volume"], writer)
+        all_labels.extend([normal_class_idx] * n)
+        all_scan_ids.extend([scan_id] * n)
+        logger.debug(f"  {scan_id}: {n} normal patches")
 
-        logger.debug(f"  {scan_id}: {n_added} normal patches")
-
-    logger.info(f"  → {total_added} total normal patches collected.")
-    return total_added
+    logger.info(f"  → {len(all_labels)} total normal patches collected.")
+    return all_labels, all_scan_ids
 
 
 # ─── Phase 2: Abnormal bounding-box sampling ─────────────────────────────────
@@ -261,44 +220,30 @@ def sample_abnormal_patches(
     category_mask: np.ndarray,
     category: str,
     class_to_idx: Dict[str, int],
-    store: "_PatchStore",
-    scan_id: str,
-) -> int:
-    """
-    Slide a patch window with stride=ABNORMAL_STRIDE over the bounding box of
-    `category_mask`. All in-bounds patches are included regardless of foreground
-    overlap; patches with >50% zero voxels are discarded. Label is `category`.
-    Accepted patches are written directly to `store`. Returns the count added.
-    """
+    writer: _PatchStreamWriter,
+) -> List[int]:
+    labels: List[int] = []
     label_idx = class_to_idx[category]
     bbox = _foreground_bbox(category_mask)
 
-    n_added = 0
     for x0, y0, z0 in _bbox_origins(bbox, volume.shape, stride=ABNORMAL_STRIDE):
         patch = _extract_patch(volume, x0, y0, z0)
-        if patch is None:
+        if patch is None or _is_background(patch):
             continue
-        if _is_background(patch):
-            continue
-        store.add(patch, label_idx, scan_id)
-        n_added += 1
+        writer.write(patch)
+        labels.append(label_idx)
 
-    return n_added
+    return labels
 
 
 def collect_abnormal_patches(
     positive_ids: List[str],
     loader: ScanLoader,
-    store: "_PatchStore",
-) -> int:
-    """
-    Phase 2: for every abnormal scan, iterate over each category present,
-    extract all bbox patches with stride=ABNORMAL_STRIDE, and label directly
-    with that category. Patches are streamed into `store`. Returns total count added.
-    """
+    writer: _PatchStreamWriter,
+) -> Tuple[List[int], List[str]]:
+    all_labels: List[int] = []
+    all_scan_ids: List[str] = []
     class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
-    total_added = 0
-    per_category_counts: Dict[str, int] = {cls: 0 for cls in CLASS_ORDER if cls != "normal"}
 
     logger.info(f"Phase 2 — bbox-sampling {len(positive_ids)} abnormal scans…")
 
@@ -320,24 +265,24 @@ def collect_abnormal_patches(
 
         scan_patch_count = 0
         for category, cat_mask in category_masks.items():
-            n_added = sample_abnormal_patches(
-                scan["volume"], cat_mask, category, class_to_idx, store, scan_id
+            labels = sample_abnormal_patches(
+                scan["volume"], cat_mask, category, class_to_idx, writer
             )
-            total_added += n_added
-            per_category_counts[category] += n_added
-            scan_patch_count += n_added
-            logger.debug(
-                f"  {scan_id} [{category}]: {n_added} patches from bbox"
-            )
+            all_labels.extend(labels)
+            all_scan_ids.extend([scan_id] * len(labels))
+            scan_patch_count += len(labels)
+            logger.debug(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
 
         logger.debug(f"  {scan_id}: {scan_patch_count} total patches across all categories")
 
-    # Per-category summary
-    for category, count in per_category_counts.items():
+    label_arr = np.array(all_labels, dtype=np.int64) if all_labels else np.array([], dtype=np.int64)
+    for category in [k for k in CLASS_ORDER if k != "normal"]:
+        idx = class_to_idx[category]
+        count = int((label_arr == idx).sum())
         logger.info(f"  → {count} patches for '{category}'")
 
-    logger.info(f"  → {total_added} total abnormal patches collected.")
-    return total_added
+    logger.info(f"  → {len(all_labels)} total abnormal patches collected.")
+    return all_labels, all_scan_ids
 
 
 # ─── Assembly ─────────────────────────────────────────────────────────────────
@@ -346,47 +291,40 @@ def build_unified_patch_matrix(
     normal_ids: List[str],
     positive_ids: List[str],
     loader: ScanLoader,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Path]:
-    """
-    Run both phases, streaming patches to a temporary on-disk file, and assemble:
-      X        — (n_features, n_patches)  float64, a read-only memmap over the
-                  temp file (no full in-RAM copy of the patch data)
-      H        — (n_patches,)             int64
-      scan_ids — (n_patches,)             object (str)
-
-    Also returns the temp file path so the caller can delete it once X has been
-    persisted to its final destination.
-    """
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
-    tmp_path = PATCHES_DIR / ".patch_store.tmp.bin"
+    scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}.bin"
+    writer = _PatchStreamWriter(scratch_path)
 
-    store = _PatchStore(tmp_path, N_FEATURES)
     try:
-        collect_normal_patches(normal_ids, loader, store)
-        n_abnormal = collect_abnormal_patches(positive_ids, loader, store)
+        normal_labels, normal_scan_ids = collect_normal_patches(normal_ids, loader, writer)
+        abnormal_labels, abnormal_scan_ids = collect_abnormal_patches(positive_ids, loader, writer)
+
+        if not abnormal_labels:
+            raise RuntimeError(
+                "No abnormal patches collected. "
+                "Check MASKS_DIR, METADATA_JSON, and foreground mask contents."
+            )
+
+        all_labels = normal_labels + abnormal_labels
+        all_scan_ids = normal_scan_ids + abnormal_scan_ids
+        n_patches = len(all_labels)
+        writer.close()
+
+        patch_mm = np.memmap(scratch_path, dtype=np.float32, mode="r",
+                              shape=(n_patches, N_FEATURES))
+        X = np.empty((N_FEATURES, n_patches), dtype=np.float64)
+        X[:] = patch_mm.T
+        del patch_mm
     finally:
-        n_patches = store.close()
+        writer.close()
+        scratch_path.unlink(missing_ok=True)
 
-    if n_abnormal == 0:
-        tmp_path.unlink(missing_ok=True)
-        raise RuntimeError(
-            "No abnormal patches collected. "
-            "Check MASKS_DIR, METADATA_JSON, and foreground mask contents."
-        )
+    H = np.array(all_labels, dtype=np.int64)
+    scan_ids = np.array(all_scan_ids, dtype=object)
 
-    # Patches were appended row-by-row: memmap as (n_patches, n_features), then
-    # transpose (a strided view, no copy) to the expected (n_features, n_patches)
-    # orientation.
-    X = np.memmap(
-        tmp_path, dtype=np.float64, mode="r", shape=(n_patches, N_FEATURES)
-    ).T
-    H = np.array(store.labels, dtype=np.int64)
-    scan_ids = np.array(store.scan_ids, dtype=object)
-
-    logger.info(
-        f"Final matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}"
-    )
-    return X, H, scan_ids, tmp_path
+    logger.info(f"Final matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}")
+    return X, H, scan_ids
 
 
 # ─── Public API ───────────────────────────────────────────────────────────────
@@ -451,17 +389,10 @@ def extract_unified(split: str = "train") -> None:
         f"Split={split!r} | normal={len(normal_ids)} | abnormal={len(positive_ids)}"
     )
 
-    X, H, scan_ids, tmp_path = build_unified_patch_matrix(normal_ids, positive_ids, loader)
+    X, H, scan_ids = build_unified_patch_matrix(normal_ids, positive_ids, loader)
 
-    try:
-        np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids)
-    finally:
-        # X is a memmap view over tmp_path; drop the reference before deleting
-        # the backing file so no process holds it open.
-        del X
-        tmp_path.unlink(missing_ok=True)
-
-    logger.info(f"Saved → {out_path}  (H: {H.shape})")
+    np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids)
+    logger.info(f"Saved → {out_path}  (X: {X.shape}, H: {H.shape})")
 
 
 def load_unified_patch_matrix(
