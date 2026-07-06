@@ -34332,6 +34332,575 @@
       "pixels": {},
       "categories": {},
       "protocol": ""
+    }
+  ],
+  "val": [
+    {
+      "name": "train_13591_a_1.nii.gz",
+      "findings": {
+        "0": "Patchy ground glass densities in the inferior lingula of the left upper lobe",
+        "1": "Atelectatic changes in the middle lobe of the right lung"
+      },
+      "entity_counts": {
+        "0": 4,
+        "1": 5
+      },
+      "shape": [
+        512,
+        512,
+        253
+      ],
+      "pixels": {
+        "0": 16441,
+        "1": 20735
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2b"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13035_a_1.nii.gz",
+      "findings": {
+        "0": "Subsegmental atelectasis in the bilateral lower lobe posterobasal segments",
+        "1": "Dependent density increases in the bilateral lower lobe posterobasal segments",
+        "2": "4 mm nodule in the medial segment of the right middle lobe"
+      },
+      "entity_counts": {
+        "0": 7,
+        "1": 2,
+        "2": 1
+      },
+      "shape": [
+        512,
+        512,
+        214
+      ],
+      "pixels": {
+        "0": 6648,
+        "1": 5948,
+        "2": 33
+      },
+      "categories": {
+        "0": "2b",
+        "1": "2b",
+        "2": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13301_a_2.nii.gz",
+      "findings": {
+        "0": "Subcentimeter calcific nodule in the upper lobe of the right lung",
+        "1": "Subcentimeter nonspecific nodules in the upper lobe of the left lung",
+        "2": "Subcentimeter nonspecific nodules in both lungs"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 3
+      },
+      "shape": [
+        512,
+        512,
+        474
+      ],
+      "pixels": {
+        "0": 101,
+        "1": 49,
+        "2": 65
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d",
+        "2": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13113_a_1.nii.gz",
+      "findings": {
+        "0": "A few subcentimeter nonspecific nodules in both lungs"
+      },
+      "entity_counts": {
+        "0": 4
+      },
+      "shape": [
+        512,
+        512,
+        334
+      ],
+      "pixels": {
+        "0": 222
+      },
+      "categories": {
+        "0": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13256_b_2.nii.gz",
+      "findings": {
+        "0": "Diffuse ground-glass opacities in all segments of both lungs",
+        "1": "Areas of consolidation in all segments of both lungs"
+      },
+      "entity_counts": {
+        "0": 23,
+        "1": 3
+      },
+      "shape": [
+        512,
+        512,
+        466
+      ],
+      "pixels": {
+        "0": 909351,
+        "1": 7615
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2b"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13075_a_2.nii.gz",
+      "findings": {
+        "0": "Atelectatic changes at the basal levels of both lower lobes"
+      },
+      "entity_counts": {
+        "0": 4
+      },
+      "shape": [
+        512,
+        512,
+        224
+      ],
+      "pixels": {
+        "0": 54570
+      },
+      "categories": {
+        "0": "2b"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13440_a_1.nii.gz",
+      "findings": {
+        "0": "Subcentimeter nodules in both lungs"
+      },
+      "entity_counts": {
+        "0": 4
+      },
+      "shape": [
+        512,
+        512,
+        202
+      ],
+      "pixels": {
+        "0": 254
+      },
+      "categories": {
+        "0": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13426_a_2.nii.gz",
+      "findings": {
+        "0": "Subcentimeter air cyst in the posterobasal segment of the lower lobe of the right lung",
+        "1": "Two nodules, each measuring 2 mm in diameter, in the laterobasal segment of the lower lobe of the left lung"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 2
+      },
+      "shape": [
+        512,
+        512,
+        498
+      ],
+      "pixels": {
+        "0": 173,
+        "1": 152
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13141_a_1.nii.gz",
+      "findings": {
+        "0": "Diffuse patchy ground-glass opacities in both lungs"
+      },
+      "entity_counts": {
+        "0": 9
+      },
+      "shape": [
+        512,
+        512,
+        335
+      ],
+      "pixels": {
+        "0": 211293
+      },
+      "categories": {
+        "0": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_12991_a_1.nii.gz",
+      "findings": {
+        "0": "Ground-glass opacities in the peripheral subpleural areas of the lower lobes of both lungs",
+        "1": "Focal consolidations in the peripheral subpleural areas of the lower lobes of both lungs",
+        "2": "Nodular ground-glass opacities in the middle lobe of the right lung",
+        "3": "Ground-glass opacities in the basal segments of both lower lobes",
+        "4": "Nodular consolidations in the basal segments of both lower lobes"
+      },
+      "entity_counts": {
+        "0": 7,
+        "1": 2,
+        "2": 3,
+        "3": 6,
+        "4": 2
+      },
+      "shape": [
+        512,
+        512,
+        204
+      ],
+      "pixels": {
+        "0": 12432,
+        "1": 482,
+        "2": 1547,
+        "3": 47613,
+        "4": 1746
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2b",
+        "2": "2c",
+        "3": "2c",
+        "4": "2b"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13447_a_1.nii.gz",
+      "findings": {
+        "0": "Subcentimeter non-specific nodules in both lungs"
+      },
+      "entity_counts": {
+        "0": 7
+      },
+      "shape": [
+        512,
+        512,
+        214
+      ],
+      "pixels": {
+        "0": 219
+      },
+      "categories": {
+        "0": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13577_a_2.nii.gz",
+      "findings": {
+        "0": "Focal ground glass opacity in the laterobasal segment of the right lower lobe"
+      },
+      "entity_counts": {
+        "0": 1
+      },
+      "shape": [
+        512,
+        512,
+        201
+      ],
+      "pixels": {
+        "0": 533
+      },
+      "categories": {
+        "0": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13430_a_2.nii.gz",
+      "findings": {
+        "0": "Pleural-based nodule measuring 5x3 mm in the superior segment of the lower lobe of the right lung"
+      },
+      "entity_counts": {
+        "0": 2
+      },
+      "shape": [
+        512,
+        512,
+        240
+      ],
+      "pixels": {
+        "0": 131
+      },
+      "categories": {
+        "0": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13431_a_1.nii.gz",
+      "findings": {
+        "0": "Patchy ground-glass opacity in the apicoposterior segment of the left upper lobe"
+      },
+      "entity_counts": {
+        "0": 1
+      },
+      "shape": [
+        512,
+        512,
+        226
+      ],
+      "pixels": {
+        "0": 4870
+      },
+      "categories": {
+        "0": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13278_b_2.nii.gz",
+      "findings": {
+        "0": "2-3 nodules in the right lung, largest measuring approximately 4 mm in diameter",
+        "1": "Ground-glass opacities in the laterobasal segment of the right middle and lower lobes"
+      },
+      "entity_counts": {
+        "0": 2,
+        "1": 2
+      },
+      "shape": [
+        512,
+        512,
+        451
+      ],
+      "pixels": {
+        "0": 321,
+        "1": 52309
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13572_a_2.nii.gz",
+      "findings": {
+        "0": "Nodular ground glass opacities in the paraspinal area of the right lower lobe superior segment",
+        "1": "Nodular ground glass opacities in the right lower lobe posterobasal segment"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 2
+      },
+      "shape": [
+        512,
+        512,
+        456
+      ],
+      "pixels": {
+        "0": 2235,
+        "1": 2473
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13479_e_1.nii.gz",
+      "findings": {
+        "0": "Ground glass opacities observed",
+        "1": "Newly emerged consolidation area in the mediobasal segment of the right lower lobe",
+        "2": "Increase in ground glass density in the mediobasal segment of the right lower lobe"
+      },
+      "entity_counts": {
+        "0": 4,
+        "1": 1,
+        "2": 5
+      },
+      "shape": [
+        512,
+        512,
+        363
+      ],
+      "pixels": {
+        "0": 56666,
+        "1": 12715,
+        "2": 14551
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2b",
+        "2": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13481_a_2.nii.gz",
+      "findings": {
+        "0": "Areas of pneumonic consolidation with air bronchograms in the middle lobe",
+        "1": "Areas of pneumonic consolidation with air bronchograms in the lower lobes of both lungs, more prominently on the right",
+        "2": "Areas of ground-glass opacity in the lung parenchyma"
+      },
+      "entity_counts": {
+        "0": 4,
+        "1": 3,
+        "2": 5
+      },
+      "shape": [
+        512,
+        512,
+        466
+      ],
+      "pixels": {
+        "0": 123773,
+        "1": 532462,
+        "2": 36225
+      },
+      "categories": {
+        "0": "2b",
+        "1": "2b",
+        "2": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13284_a_2.nii.gz",
+      "findings": {
+        "0": "Increase in ground-glass opacity with septal thickening in the peripheral subpleural area of the upper and lower lobes of both lungs",
+        "1": "Crazy paving appearances in the upper and lower lobes of both lungs"
+      },
+      "entity_counts": {
+        "0": 26,
+        "1": 9
+      },
+      "shape": [
+        512,
+        512,
+        448
+      ],
+      "pixels": {
+        "0": 235446,
+        "1": 237239
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2c"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13148_a_2.nii.gz",
+      "findings": {
+        "0": "Two subpleural subcentimeter nodules measuring 4 mm at the basal level in the superior right lower lobe",
+        "1": "Two subpleural subcentimeter nodules measuring 4 mm in the left lower lobe"
+      },
+      "entity_counts": {
+        "0": 2,
+        "1": 2
+      },
+      "shape": [
+        512,
+        512,
+        224
+      ],
+      "pixels": {
+        "0": 218,
+        "1": 132
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13444_a_2.nii.gz",
+      "findings": {
+        "0": "One or two nonspecific parenchymal nodules in both lungs"
+      },
+      "entity_counts": {
+        "0": 3
+      },
+      "shape": [
+        512,
+        512,
+        483
+      ],
+      "pixels": {
+        "0": 196
+      },
+      "categories": {
+        "0": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13316_a_2.nii.gz",
+      "findings": {
+        "0": "Multiple parenchymal nodules in both lungs",
+        "1": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm"
+      },
+      "entity_counts": {
+        "0": 9,
+        "1": 1
+      },
+      "shape": [
+        512,
+        512,
+        222
+      ],
+      "pixels": {
+        "0": 946,
+        "1": 3688
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      },
+      "protocol": "val"
+    },
+    {
+      "name": "train_13339_a_1.nii.gz",
+      "findings": {
+        "0": "Nonspecific pulmonary nodule, 3.9 mm, in the anterobasal segment of the right lower lobe",
+        "1": "Nonspecific pulmonary nodule, 4.3 mm, in the laterobasal segment of the left lower lobe"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 1
+      },
+      "shape": [
+        512,
+        512,
+        364
+      ],
+      "pixels": {
+        "0": 118,
+        "1": 114
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      },
+      "protocol": "val"
     },
     {
       "name": "train_11880_a_5.nii.gz",
@@ -34908,1151 +35477,6 @@
       "pixels": {},
       "categories": {},
       "protocol": ""
-    },
-    {
-      "name": "train_7696_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3485_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_12534_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_10245_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_7339_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_18457_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_15455_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_12011_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_5756_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_4607_b_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3972_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_11097_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_1500_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_13046_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3871_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_375_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_5111_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_16997_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_10647_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_4944_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_10998_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_19003_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_19003_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_224_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_4255_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_8079_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_9574_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3818_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_17658_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_12725_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_18814_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_1253_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_922_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_8143_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_16763_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_2439_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_136_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_6621_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_2372_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_6506_b_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_7760_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_14806_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_11442_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_4451_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_17368_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3278_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_13248_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_8670_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_18123_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_17169_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_16891_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_16891_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_19892_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_10968_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_6760_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_3058_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_18346_a_3.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_11746_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_16588_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_5404_b_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_19798_a_2.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_720_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_12577_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    },
-    {
-      "name": "train_15129_a_1.nii.gz",
-      "findings": {},
-      "entity_counts": {},
-      "shape": [],
-      "pixels": {},
-      "categories": {},
-      "protocol": ""
-    }
-  ],
-  "val": [
-    {
-      "name": "train_13591_a_1.nii.gz",
-      "findings": {
-        "0": "Patchy ground glass densities in the inferior lingula of the left upper lobe",
-        "1": "Atelectatic changes in the middle lobe of the right lung"
-      },
-      "entity_counts": {
-        "0": 4,
-        "1": 5
-      },
-      "shape": [
-        512,
-        512,
-        253
-      ],
-      "pixels": {
-        "0": 16441,
-        "1": 20735
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2b"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13035_a_1.nii.gz",
-      "findings": {
-        "0": "Subsegmental atelectasis in the bilateral lower lobe posterobasal segments",
-        "1": "Dependent density increases in the bilateral lower lobe posterobasal segments",
-        "2": "4 mm nodule in the medial segment of the right middle lobe"
-      },
-      "entity_counts": {
-        "0": 7,
-        "1": 2,
-        "2": 1
-      },
-      "shape": [
-        512,
-        512,
-        214
-      ],
-      "pixels": {
-        "0": 6648,
-        "1": 5948,
-        "2": 33
-      },
-      "categories": {
-        "0": "2b",
-        "1": "2b",
-        "2": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13301_a_2.nii.gz",
-      "findings": {
-        "0": "Subcentimeter calcific nodule in the upper lobe of the right lung",
-        "1": "Subcentimeter nonspecific nodules in the upper lobe of the left lung",
-        "2": "Subcentimeter nonspecific nodules in both lungs"
-      },
-      "entity_counts": {
-        "0": 1,
-        "1": 1,
-        "2": 3
-      },
-      "shape": [
-        512,
-        512,
-        474
-      ],
-      "pixels": {
-        "0": 101,
-        "1": 49,
-        "2": 65
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2d",
-        "2": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13113_a_1.nii.gz",
-      "findings": {
-        "0": "A few subcentimeter nonspecific nodules in both lungs"
-      },
-      "entity_counts": {
-        "0": 4
-      },
-      "shape": [
-        512,
-        512,
-        334
-      ],
-      "pixels": {
-        "0": 222
-      },
-      "categories": {
-        "0": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13256_b_2.nii.gz",
-      "findings": {
-        "0": "Diffuse ground-glass opacities in all segments of both lungs",
-        "1": "Areas of consolidation in all segments of both lungs"
-      },
-      "entity_counts": {
-        "0": 23,
-        "1": 3
-      },
-      "shape": [
-        512,
-        512,
-        466
-      ],
-      "pixels": {
-        "0": 909351,
-        "1": 7615
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2b"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13075_a_2.nii.gz",
-      "findings": {
-        "0": "Atelectatic changes at the basal levels of both lower lobes"
-      },
-      "entity_counts": {
-        "0": 4
-      },
-      "shape": [
-        512,
-        512,
-        224
-      ],
-      "pixels": {
-        "0": 54570
-      },
-      "categories": {
-        "0": "2b"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13440_a_1.nii.gz",
-      "findings": {
-        "0": "Subcentimeter nodules in both lungs"
-      },
-      "entity_counts": {
-        "0": 4
-      },
-      "shape": [
-        512,
-        512,
-        202
-      ],
-      "pixels": {
-        "0": 254
-      },
-      "categories": {
-        "0": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13426_a_2.nii.gz",
-      "findings": {
-        "0": "Subcentimeter air cyst in the posterobasal segment of the lower lobe of the right lung",
-        "1": "Two nodules, each measuring 2 mm in diameter, in the laterobasal segment of the lower lobe of the left lung"
-      },
-      "entity_counts": {
-        "0": 1,
-        "1": 2
-      },
-      "shape": [
-        512,
-        512,
-        498
-      ],
-      "pixels": {
-        "0": 173,
-        "1": 152
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13141_a_1.nii.gz",
-      "findings": {
-        "0": "Diffuse patchy ground-glass opacities in both lungs"
-      },
-      "entity_counts": {
-        "0": 9
-      },
-      "shape": [
-        512,
-        512,
-        335
-      ],
-      "pixels": {
-        "0": 211293
-      },
-      "categories": {
-        "0": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_12991_a_1.nii.gz",
-      "findings": {
-        "0": "Ground-glass opacities in the peripheral subpleural areas of the lower lobes of both lungs",
-        "1": "Focal consolidations in the peripheral subpleural areas of the lower lobes of both lungs",
-        "2": "Nodular ground-glass opacities in the middle lobe of the right lung",
-        "3": "Ground-glass opacities in the basal segments of both lower lobes",
-        "4": "Nodular consolidations in the basal segments of both lower lobes"
-      },
-      "entity_counts": {
-        "0": 7,
-        "1": 2,
-        "2": 3,
-        "3": 6,
-        "4": 2
-      },
-      "shape": [
-        512,
-        512,
-        204
-      ],
-      "pixels": {
-        "0": 12432,
-        "1": 482,
-        "2": 1547,
-        "3": 47613,
-        "4": 1746
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2b",
-        "2": "2c",
-        "3": "2c",
-        "4": "2b"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13447_a_1.nii.gz",
-      "findings": {
-        "0": "Subcentimeter non-specific nodules in both lungs"
-      },
-      "entity_counts": {
-        "0": 7
-      },
-      "shape": [
-        512,
-        512,
-        214
-      ],
-      "pixels": {
-        "0": 219
-      },
-      "categories": {
-        "0": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13577_a_2.nii.gz",
-      "findings": {
-        "0": "Focal ground glass opacity in the laterobasal segment of the right lower lobe"
-      },
-      "entity_counts": {
-        "0": 1
-      },
-      "shape": [
-        512,
-        512,
-        201
-      ],
-      "pixels": {
-        "0": 533
-      },
-      "categories": {
-        "0": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13430_a_2.nii.gz",
-      "findings": {
-        "0": "Pleural-based nodule measuring 5x3 mm in the superior segment of the lower lobe of the right lung"
-      },
-      "entity_counts": {
-        "0": 2
-      },
-      "shape": [
-        512,
-        512,
-        240
-      ],
-      "pixels": {
-        "0": 131
-      },
-      "categories": {
-        "0": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13431_a_1.nii.gz",
-      "findings": {
-        "0": "Patchy ground-glass opacity in the apicoposterior segment of the left upper lobe"
-      },
-      "entity_counts": {
-        "0": 1
-      },
-      "shape": [
-        512,
-        512,
-        226
-      ],
-      "pixels": {
-        "0": 4870
-      },
-      "categories": {
-        "0": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13278_b_2.nii.gz",
-      "findings": {
-        "0": "2-3 nodules in the right lung, largest measuring approximately 4 mm in diameter",
-        "1": "Ground-glass opacities in the laterobasal segment of the right middle and lower lobes"
-      },
-      "entity_counts": {
-        "0": 2,
-        "1": 2
-      },
-      "shape": [
-        512,
-        512,
-        451
-      ],
-      "pixels": {
-        "0": 321,
-        "1": 52309
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13572_a_2.nii.gz",
-      "findings": {
-        "0": "Nodular ground glass opacities in the paraspinal area of the right lower lobe superior segment",
-        "1": "Nodular ground glass opacities in the right lower lobe posterobasal segment"
-      },
-      "entity_counts": {
-        "0": 1,
-        "1": 2
-      },
-      "shape": [
-        512,
-        512,
-        456
-      ],
-      "pixels": {
-        "0": 2235,
-        "1": 2473
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13479_e_1.nii.gz",
-      "findings": {
-        "0": "Ground glass opacities observed",
-        "1": "Newly emerged consolidation area in the mediobasal segment of the right lower lobe",
-        "2": "Increase in ground glass density in the mediobasal segment of the right lower lobe"
-      },
-      "entity_counts": {
-        "0": 4,
-        "1": 1,
-        "2": 5
-      },
-      "shape": [
-        512,
-        512,
-        363
-      ],
-      "pixels": {
-        "0": 56666,
-        "1": 12715,
-        "2": 14551
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2b",
-        "2": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13481_a_2.nii.gz",
-      "findings": {
-        "0": "Areas of pneumonic consolidation with air bronchograms in the middle lobe",
-        "1": "Areas of pneumonic consolidation with air bronchograms in the lower lobes of both lungs, more prominently on the right",
-        "2": "Areas of ground-glass opacity in the lung parenchyma"
-      },
-      "entity_counts": {
-        "0": 4,
-        "1": 3,
-        "2": 5
-      },
-      "shape": [
-        512,
-        512,
-        466
-      ],
-      "pixels": {
-        "0": 123773,
-        "1": 532462,
-        "2": 36225
-      },
-      "categories": {
-        "0": "2b",
-        "1": "2b",
-        "2": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13284_a_2.nii.gz",
-      "findings": {
-        "0": "Increase in ground-glass opacity with septal thickening in the peripheral subpleural area of the upper and lower lobes of both lungs",
-        "1": "Crazy paving appearances in the upper and lower lobes of both lungs"
-      },
-      "entity_counts": {
-        "0": 26,
-        "1": 9
-      },
-      "shape": [
-        512,
-        512,
-        448
-      ],
-      "pixels": {
-        "0": 235446,
-        "1": 237239
-      },
-      "categories": {
-        "0": "2c",
-        "1": "2c"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13148_a_2.nii.gz",
-      "findings": {
-        "0": "Two subpleural subcentimeter nodules measuring 4 mm at the basal level in the superior right lower lobe",
-        "1": "Two subpleural subcentimeter nodules measuring 4 mm in the left lower lobe"
-      },
-      "entity_counts": {
-        "0": 2,
-        "1": 2
-      },
-      "shape": [
-        512,
-        512,
-        224
-      ],
-      "pixels": {
-        "0": 218,
-        "1": 132
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13444_a_2.nii.gz",
-      "findings": {
-        "0": "One or two nonspecific parenchymal nodules in both lungs"
-      },
-      "entity_counts": {
-        "0": 3
-      },
-      "shape": [
-        512,
-        512,
-        483
-      ],
-      "pixels": {
-        "0": 196
-      },
-      "categories": {
-        "0": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13316_a_2.nii.gz",
-      "findings": {
-        "0": "Multiple parenchymal nodules in both lungs",
-        "1": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm"
-      },
-      "entity_counts": {
-        "0": 9,
-        "1": 1
-      },
-      "shape": [
-        512,
-        512,
-        222
-      ],
-      "pixels": {
-        "0": 946,
-        "1": 3688
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2d"
-      },
-      "protocol": "val"
-    },
-    {
-      "name": "train_13339_a_1.nii.gz",
-      "findings": {
-        "0": "Nonspecific pulmonary nodule, 3.9 mm, in the anterobasal segment of the right lower lobe",
-        "1": "Nonspecific pulmonary nodule, 4.3 mm, in the laterobasal segment of the left lower lobe"
-      },
-      "entity_counts": {
-        "0": 1,
-        "1": 1
-      },
-      "shape": [
-        512,
-        512,
-        364
-      ],
-      "pixels": {
-        "0": 118,
-        "1": 114
-      },
-      "categories": {
-        "0": "2d",
-        "1": "2d"
-      },
-      "protocol": "val"
     }
   ],
   "test": [
@@ -36704,6 +36128,582 @@
         "0": "2d"
       },
       "protocol": "test"
+    },
+    {
+      "name": "train_7696_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3485_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12534_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10245_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7339_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18457_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15455_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12011_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5756_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4607_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3972_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11097_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1500_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13046_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3871_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_375_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5111_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16997_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10647_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4944_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10998_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19003_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19003_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_224_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4255_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8079_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_9574_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3818_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17658_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12725_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18814_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_1253_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_922_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8143_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16763_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2439_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_136_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6621_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_2372_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6506_b_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_7760_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_14806_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11442_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_4451_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17368_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3278_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_13248_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_8670_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18123_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_17169_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16891_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16891_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19892_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_10968_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_6760_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_3058_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_18346_a_3.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_11746_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_16588_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_5404_b_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_19798_a_2.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_720_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_12577_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
+    },
+    {
+      "name": "train_15129_a_1.nii.gz",
+      "findings": {},
+      "entity_counts": {},
+      "shape": [],
+      "pixels": {},
+      "categories": {},
+      "protocol": ""
     }
   ]
 }

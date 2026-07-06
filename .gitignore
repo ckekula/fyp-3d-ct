@@ -58,3 +58,9 @@ Thumbs.db
 *.pkl
 *.npz
 *.npy
+*.png
+*pth
+*.b2nd
+
+.ipython/*
+.jupyter_config/*

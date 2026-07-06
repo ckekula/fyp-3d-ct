@@ -11,7 +11,7 @@ from pathlib import Path
 DATASET_ROOT = Path("/home/chest_ct/code/data")
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_3.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -34,33 +34,37 @@ CLASS_ORDER = ["normal", "2c", "2d"]
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
 # HU window for lung parenchyma
-HU_MIN = -1000
-HU_MAX =  200
+HU_MIN = -900
+HU_MAX =  -200
+BACKGROUND_HU = -1000  # value to fill outside the lung mask (air)
 
 # Target isotropic voxel spacing in mm after resampling
 TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
-PATCH_SIZE = 32            # cubic patch: 32×32×32 voxels → 48mm³ at 1.5mm spacing
-N_FEATURES = PATCH_SIZE ** 3  # 32768 — dimensionality of each patch vector
+PATCH_SIZE = 16            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
+N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 
 # Minimum fraction of patch voxels that must overlap the lesion mask
 # for a patch to be considered a positive sample
 # (lowered from 0.10 to 0.05 to capture small lesions like opacities/consolidations)
 MIN_OVERLAP_RATIO = 0.05
 
-# Number of positive patches to sample per scan
-N_POSITIVE_PATCHES_PER_SCAN = 30
+# Training-time patch-grid strides (voxels).
+NORMAL_PATCH_STRIDE = PATCH_SIZE      # non-overlapping normal patches
+ABNORMAL_PATCH_STRIDE = 4    # 50% overlap for abnormal patches
 
-# Sliding-window stride used during inference (voxels).
-# PATCH_SIZE // 2 gives 50 % overlap; increase for speed, decrease for finer maps.
-INFERENCE_STRIDE = PATCH_SIZE // 2   # 16 voxels = 24 mm at 1.5 mm spacing
+# Retain a normal patch only when this fraction belongs to the lung mask.
+MIN_LUNG_COVERAGE = 0.90
 
-# Random seed for reproducible patch sampling
-RANDOM_SEED = 42
+# Stride (voxels) for sliding the patch window over abnormality bounding boxes.
+ABNORMAL_STRIDE = 2
+# Fraction of zero voxels above which a patch is rejected.
+ZERO_FRACTION_THRESHOLD = 0.5
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
+RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
     "n_components":    128,   # number of dictionary atoms K; ablate [64, 128, 256]
@@ -68,8 +72,8 @@ LCKSVD_CONFIG = {
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
     "variant":         "lcksvd2",
-    "n_iter":          50,    # main training iterations
-    "n_iter_init":     20,    # K-SVD warm-start iterations
+    "n_iter":          30,    # main training iterations
+    "n_iter_init":     15,    # K-SVD warm-start iterations
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }

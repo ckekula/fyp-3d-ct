@@ -58,8 +58,9 @@ Finally, the preprocessed volumes are divided into overlapping 3D patches of siz
 32,768 features per patch (48 mm³ at 1.5 mm spacing).
 Normal and abnormal scans are processed in separate phases to ensure that the Dictionary Learning model first learns a representation of normal anatomy before being exposed to abnormalities.
 
-In phase 1, a maximum number of patches are sampled from each normal scan from any inbounds location in the volume.
-all labelled class index 0
+In phase 1, patches are extracted on a regular non-overlapping grid with stride of 32 voxels from each normal scan. 
+Only patches with at least 90\% lung mask coverage (MIN\_LUNG\_COVERAGE = 0.90) are retained. 
+All patches are labelled with class index 0 (normal).
 
 In phase 2, using the abnormal scans, we build a percategory binary mask by ORing all finding slots of the same category together; build a
 union mask across all categories; sample patch centres uniformly from the union mask foreground; each candidate patch must have
@@ -67,7 +68,7 @@ $ \geq 5\% $ overlap with at least one category mask; the label is assigned to w
 category mask has the highest overlap with that patch (majorityclass rule), which handles overlapping findings correctly
 
 Both phases share the same maximum patches/scan budget; class balance is therefore determined by the normal/abnormal scan counts in the dataset, not a hard ratio
-All patches are assembled into X (32768 x N, float64) and H (N,) int64, then saved as .npz files.
+All patches are assembled into X (4096 x N, float64) and H (N,) int64, then saved as .npz files.
 
 \begin{figure}[H]
 \centering
