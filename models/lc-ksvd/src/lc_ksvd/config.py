@@ -46,7 +46,7 @@ TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
-PATCH_SIZE = 32            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
+PATCH_SIZE = 16            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
 N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 
 # Training-time patch-grid strides (voxels).
@@ -55,7 +55,7 @@ ABNORMAL_PATCH_STRIDE = 4
 
 # Retain a normal patch only when the fraction of zero voxels is below this threshold.
 ZERO_FRACTION_THRESHOLD = 0.5
-LESION_FRACTION_THRESHOLD = 0.5
+LESION_FRACTION_THRESHOLD = 0.25
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42
@@ -66,8 +66,8 @@ LCKSVD_CONFIG = {
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
     "variant":         "lcksvd2",
-    "n_iter":          30,    # main training iterations
-    "n_iter_init":     15,    # K-SVD warm-start iterations
+    "n_iter":          10,    # main training iterations
+    "n_iter_init":     3,    # K-SVD warm-start iterations
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }
