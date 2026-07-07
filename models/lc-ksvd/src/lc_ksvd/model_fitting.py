@@ -13,7 +13,7 @@ from typing import Dict, List
 import numpy as np
 from sklearn.preprocessing import label_binarize
 
-from lc_ksvd.config import CLASS_ORDER, NORMAL_CLASS_IDX
+from lc_ksvd.config import CLASS_ORDER, NORMAL_CLASS_IDX, CHECKPOINT_DIR, CHECKPOINT_RESUME
 from reppi import LCKSVD
 from reppi.dictionary.frozen import IncrementalFrozenDictionary
 
@@ -95,7 +95,12 @@ def _fit_frozen(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> IncrementalFroz
     )
 
     logger.info(f"Fitting base dictionary on {X_base.shape[1]} normal patches...")
-    inc.fit_base(X_base, H_base)
+    inc.fit_base(
+        X_base,
+        H_base,
+        checkpoint_dir=str(CHECKPOINT_DIR),
+        resume=CHECKPOINT_RESUME,
+    )
 
     # -- Residual stages: add each abnormality class in CLASS_ORDER order ----
     # add_class() refits W against ALL accumulated data, so the H passed in
@@ -128,6 +133,8 @@ def _fit_frozen(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> IncrementalFroz
             H_full,
             class_label=class_idx,
             learner_kwargs_override=stage_kwargs,
+            checkpoint_dir=str(CHECKPOINT_DIR),
+            resume=CHECKPOINT_RESUME,
         )
 
     return inc

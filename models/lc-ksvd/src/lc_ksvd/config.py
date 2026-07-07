@@ -20,6 +20,8 @@ PATCHES_DIR = OUTPUT_DIR / "patches"       # saved patch matrices (.npz)
 MODELS_DIR  = OUTPUT_DIR / "models"        # saved LC-KSVD models (.pkl)
 RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii.gz)
+CHECKPOINT_DIR = OUTPUT_DIR / "checkpoints"
+CHECKPOINT_RESUME = True
 
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
