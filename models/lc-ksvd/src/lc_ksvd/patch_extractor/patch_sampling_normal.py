@@ -12,11 +12,16 @@ from typing import Generator, List, Tuple
 import numpy as np
 from tqdm import tqdm
 
-from lc_ksvd.config import CLASS_ORDER, PATCH_SIZE
+from lc_ksvd.config import CLASS_ORDER, NORMAL_PATCH_STRIDE, PATCH_SIZE, ZERO_FRACTION_THRESHOLD
 from lc_ksvd.data_loader.scan_loader import ScanLoader
-from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch, is_background
+from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
 
 logger = logging.getLogger(__name__)
+
+
+def is_background(patch: np.ndarray) -> bool:
+    """Return True if more than 50% of voxels are zero (background)."""
+    return (patch < 1e-6).mean() > ZERO_FRACTION_THRESHOLD
 
 
 def _grid_origins(
@@ -35,7 +40,7 @@ def _grid_origins(
 def sample_normal_patches(volume: np.ndarray, writer: _PatchStreamWriter) -> int:
     """Grid-sample the volume, writing accepted patches to `writer`. Returns count."""
     n = 0
-    for x0, y0, z0 in _grid_origins(volume.shape, stride=PATCH_SIZE):
+    for x0, y0, z0 in _grid_origins(volume.shape, stride=NORMAL_PATCH_STRIDE):
         patch = extract_patch(volume, x0, y0, z0)
         if patch is None or is_background(patch):
             continue

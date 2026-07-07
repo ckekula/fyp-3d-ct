@@ -8,7 +8,7 @@ from typing import Optional
 
 import numpy as np
 
-from lc_ksvd.config import PATCH_SIZE, ZERO_FRACTION_THRESHOLD
+from lc_ksvd.config import PATCH_SIZE
 
 
 class _PatchStreamWriter:
@@ -50,7 +50,3 @@ def extract_patch(
 
     return volume[x0:x1, y0:y1, z0:z1].copy()
 
-
-def is_background(patch: np.ndarray) -> bool:
-    """Return True if more than 50% of voxels are zero (background)."""
-    return (patch < 1e-6).mean() > ZERO_FRACTION_THRESHOLD

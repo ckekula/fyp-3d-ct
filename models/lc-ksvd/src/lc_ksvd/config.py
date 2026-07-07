@@ -30,6 +30,7 @@ ABNORMALITY_CATEGORIES = {
 }
 
 CLASS_ORDER = ["normal", "2c", "2d"]
+NORMAL_CLASS_IDX = 0  # CLASS_ORDER[0] == "normal"
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
@@ -54,6 +55,7 @@ ABNORMAL_PATCH_STRIDE = 4
 
 # Retain a normal patch only when the fraction of zero voxels is below this threshold.
 ZERO_FRACTION_THRESHOLD = 0.5
+LESION_FRACTION_THRESHOLD = 0.5
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42

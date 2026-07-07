@@ -13,13 +13,11 @@ from typing import Dict, List
 import numpy as np
 from sklearn.preprocessing import label_binarize
 
-from lc_ksvd.config import CLASS_ORDER
+from lc_ksvd.config import CLASS_ORDER, NORMAL_CLASS_IDX
 from reppi import LCKSVD
 from reppi.dictionary.frozen import IncrementalFrozenDictionary
 
 logger = logging.getLogger(__name__)
-
-NORMAL_CLASS_IDX = 0  # CLASS_ORDER[0] == "normal"
 
 
 def _adapt_lcksvd_kwargs(base_cfg: Dict, n_samples: int) -> Dict:
