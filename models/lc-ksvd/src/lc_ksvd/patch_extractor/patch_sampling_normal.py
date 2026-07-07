@@ -1,0 +1,71 @@
+"""
+patch_sampling_normal.py
+Phase 1 — Normal scans:
+  Extract a non-overlapping grid of patches (stride = PATCH_SIZE) across the
+  entire volume. Patches where more than 50% of voxels are zero (background)
+  are discarded. All accepted patches are labelled as class index 0 ("normal").
+"""
+
+import logging
+from typing import Generator, List, Tuple
+
+import numpy as np
+from tqdm import tqdm
+
+from lc_ksvd.config import CLASS_ORDER, PATCH_SIZE
+from lc_ksvd.data_loader.scan_loader import ScanLoader
+from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch, is_background
+
+logger = logging.getLogger(__name__)
+
+
+def _grid_origins(
+    volume_shape: Tuple[int, int, int],
+    stride: int,
+) -> Generator[Tuple[int, int, int], None, None]:
+    """Yield (x0, y0, z0) top-left-front corners on a regular grid."""
+    H, W, D = volume_shape
+    p = PATCH_SIZE
+    for x0 in range(0, H - p + 1, stride):
+        for y0 in range(0, W - p + 1, stride):
+            for z0 in range(0, D - p + 1, stride):
+                yield x0, y0, z0
+
+
+def sample_normal_patches(volume: np.ndarray, writer: _PatchStreamWriter) -> int:
+    """Grid-sample the volume, writing accepted patches to `writer`. Returns count."""
+    n = 0
+    for x0, y0, z0 in _grid_origins(volume.shape, stride=PATCH_SIZE):
+        patch = extract_patch(volume, x0, y0, z0)
+        if patch is None or is_background(patch):
+            continue
+        writer.write(patch)
+        n += 1
+    return n
+
+
+def collect_normal_patches(
+    normal_ids: List[str],
+    loader: ScanLoader,
+    writer: _PatchStreamWriter,
+) -> Tuple[List[int], List[str]]:
+    normal_class_idx = CLASS_ORDER.index("normal")
+    all_labels: List[int] = []
+    all_scan_ids: List[str] = []
+
+    logger.info(f"Phase 1 — grid-sampling {len(normal_ids)} normal scans…")
+
+    for scan_id in tqdm(normal_ids, desc="normal scans"):
+        try:
+            scan = loader.load(scan_id)
+        except Exception as exc:
+            logger.warning(f"Skipping {scan_id}: {exc}")
+            continue
+
+        n = sample_normal_patches(scan["volume"], writer)
+        all_labels.extend([normal_class_idx] * n)
+        all_scan_ids.extend([scan_id] * n)
+        logger.debug(f"  {scan_id}: {n} normal patches")
+
+    logger.info(f"  → {len(all_labels)} total normal patches collected.")
+    return all_labels, all_scan_ids
