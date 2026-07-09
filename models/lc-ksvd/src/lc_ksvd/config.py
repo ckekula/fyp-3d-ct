@@ -57,19 +57,19 @@ ABNORMAL_PATCH_STRIDE = 4
 
 # Retain a normal patch only when the fraction of zero voxels is below this threshold.
 ZERO_FRACTION_THRESHOLD = 0.5
-LESION_FRACTION_THRESHOLD = 0.25
+LESION_FRACTION_THRESHOLD = 0.5
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
-    "n_components":    N_FEATURES*10,   # number of dictionary atoms K
+    "n_components":    N_FEATURES*5,   # number of dictionary atoms K
     "n_nonzero_coefs": 10,    # sparsity T
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
     "variant":         "lcksvd2",
     "n_iter":          10,    # main training iterations
-    "n_iter_init":     3,    # K-SVD warm-start iterations
+    "n_iter_init":     2,    # K-SVD warm-start iterations
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }
