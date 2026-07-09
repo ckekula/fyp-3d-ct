@@ -73,3 +73,14 @@ LCKSVD_CONFIG = {
     "verbose":         True,
     "random_state":    RANDOM_SEED,
 }
+
+KSVD_CONFIG = {
+    "n_components":    N_FEATURES * 10,
+    "n_nonzero_coefs": 10,
+    "n_iter":          10,
+    "exact_svd":       False,
+    "mu_thresh":       0.99,
+    "mem_usage":       "normal",
+    "verbose":         True,
+    "random_state":    RANDOM_SEED,
+}
