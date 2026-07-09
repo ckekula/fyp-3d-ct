@@ -20,35 +20,32 @@ from reppi.dictionary.frozen import IncrementalFrozenDictionary
 logger = logging.getLogger(__name__)
 
 
-def _adapt_ksvd_kwargs(base_cfg: Dict, n_samples: int) -> Dict:
+def _validate_kwargs(cfg: Dict) -> Dict:
     """
-    Shrink n_components / n_nonzero_coefs to fit a (possibly small) stage's
-    sample count, mirroring the original small-dataset safeguard.
-    """
-    cfg = dict(base_cfg)
-    max_atoms = max(8, n_samples // 2)
-    cfg["n_components"] = min(cfg["n_components"], max_atoms)
-    cfg["n_nonzero_coefs"] = min(cfg["n_nonzero_coefs"], max(1, cfg["n_components"] // 2))
-    return cfg
+    Validate dictionary-learning hyperparameters.
 
-
-def _adapt_lcksvd_kwargs(base_cfg: Dict, n_samples: int) -> Dict:
+    Returns a shallow copy of ``cfg`` so callers may modify it without
+    affecting the original configuration.
     """
-    Shrink n_components / n_nonzero_coefs to fit a (possibly small) stage's
-    sample count, mirroring the original small-dataset safeguard.
-    """
-    cfg = dict(base_cfg)
-    max_atoms = max(8, n_samples // 2)
-    cfg["n_components"] = min(cfg["n_components"], max_atoms)
-    cfg["n_nonzero_coefs"] = min(cfg["n_nonzero_coefs"], max(1, cfg["n_components"] // 2))
-    return cfg
+    if cfg["n_components"] <= 0:
+        raise ValueError("n_components must be positive.")
 
+    if cfg["n_nonzero_coefs"] <= 0:
+        raise ValueError("n_nonzero_coefs must be positive.")
+
+    if cfg["n_nonzero_coefs"] > cfg["n_components"]:
+        raise ValueError(
+            f"n_nonzero_coefs ({cfg['n_nonzero_coefs']}) cannot exceed "
+            f"n_components ({cfg['n_components']})."
+        )
+
+    return dict(cfg)
 
 # --- Joint LC-KSVD2 training (original behaviour) ---------------------------
 
 def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     """Train a single LC-KSVD2 model jointly over all classes."""
-    stage_cfg = _adapt_lcksvd_kwargs(cfg, X_norm.shape[1])
+    stage_cfg = _validate_kwargs(cfg)
     model = LCKSVD(**stage_cfg)
     logger.info("Starting LC-KSVD2 training (joint, all classes)...")
 
@@ -114,7 +111,7 @@ def _fit_frozen(
     X_base = X_norm[:, base_mask]
     H_base = np.ones((1, X_base.shape[1]), dtype=np.float64)
 
-    base_kwargs = _adapt_ksvd_kwargs(base_cfg, X_base.shape[1])
+    base_kwargs = _validate_kwargs(base_cfg)
 
     # Constructor-level default for residual_learner_kwargs: always
     # overridden per-stage below via learner_kwargs_override, but must
@@ -165,7 +162,7 @@ def _fit_frozen(
         stage_cfg["n_components"] = residual_n_components_by_class.get(
             cls_name, base_cfg["n_components"]
         )
-        stage_kwargs = _adapt_ksvd_kwargs(stage_cfg, n_class)
+        stage_kwargs = _validate_kwargs(stage_cfg)
 
         logger.info(
             f"Adding residual dictionary for class '{cls_name}' "
