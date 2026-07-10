@@ -37,7 +37,7 @@ However, it does not incorporate class labels, which limits its discriminative a
 LCKSVD jointly learns a dictionary, sparse codes, a labelconsistency transform, and a linear classifier so that the learned
 representations are not only good for reconstruction but also discriminative for classification through labelconsistency constraints \cite{jiang2013lcksvd}.
 
-The standard LCKSVD objective (often referred to as LCKSVD2 when the classifier term is included) can be written compactly as:
+The standard LC-KSVD objective (often referred to as LC-KSVD2 when the classifier term is included) can be written compactly as:
 \begin{equation}
 \label{eq:lcksvd_obj}
 \min_{D,A,W,X} \; \|P  D X\|_F^2 + \alpha \|Q  A X\|_F^2 + \beta \|H  W X\|_F^2 \quad \text{s.t. } \forall i, \|x_i\|_0 \le T, \; \|d_k\|_2 = 1 \; \forall k

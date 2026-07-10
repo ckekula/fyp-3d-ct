@@ -6,7 +6,7 @@ We implement a six-stage pipeline for our study, consisting of:
     \item Data Preprocessing
     \item Implementation of the LC-KSVD Approach
     \item Abnormality Classification
-    \item BackProjecting Class-Discriminative Atoms and Deriving Explainability through Segmentation Masks
+    \item Back-Projecting Class-Discriminative Atoms and Deriving Explainability through Segmentation Masks
     \item Evaluation and Benchmarking
 \end{enumerate}
 
@@ -75,7 +75,7 @@ All patches are assembled into X (4096 x N, float64) and H (N,) int64, then save
 % \label{fig:preprocessing}
 % \end{figure}
 
-\section{Implementation of the LCKSVD Approach}
+\section{Implementation of the LC-KSVD Approach}
 To implement the Dictionary Learning approach for our study, we required a concrete implementation of the LC-KSVD algorithm. \cite{jiang2013lcksvd}
 Currently, many of the available standard implementations of KSVD and LC-KSVD are developed using MATLAB, which is not ideal
 for integration with our Python-based data processing and evaluation pipeline. Although A few open-source Python implementations
@@ -88,7 +88,7 @@ The implementation follows a modular design, consisting of four separate compone
     \item SRC - Utility Functions shared across Sparse Coding Algorithms
     \item OMP - Implementation of Batch-OMP and OMP-Cholesky approaches for Sparse Coding
     \item KSVD - Implementation of KSVD Dictionary Learning Algorithm
-    \item LCKSVD - Implementation of LC-KSVD1 and LC-KSVD2 Dictionary Learning Algorithms
+    \item LC-KSVD - Implementation of LC-KSVD1 and LC-KSVD2 Dictionary Learning Algorithms
 \end{enumerate}
 
 This design also allows for flexibility in integrating alternative sparse coding methods in the future.
@@ -105,7 +105,7 @@ corresponding to uniform zero regions with no signal, are discarded entirely.
 
 The model is trained using LC-KSVD2, a dictionary learning algorithm that jointly optimises three objectives:
 reconstruction accuracy, label consistency, and linear classification. Training proceeds in two stages:
-15-iteration KSVD warmstart that initialises the dictionary on reconstruction error alone, followed by 30 LCKSVD2 iterations
+15-iteration KSVD warmstart that initialises the dictionary on reconstruction error alone, followed by 30 LC-KSVD2 iterations
 that refine it under the combined objective. This two-stage procedure avoids poor local minima that arise when the
 label-consistency and classifier terms are applied before the dictionary has converged to a geometrically meaningful initialisation.
 
@@ -116,7 +116,7 @@ $ max(8, N/2) $ and the sparsity constraint is scaled proportionally.
 
 In practice, discriminative atoms are identified by selecting those atoms $d_k$ whose classifier weight $|W[c, k]|$ 
 exceeds the 75th percentile of all weights for class $c$. This filtering removes reconstruction-focused atoms that 
-lack class-specific discriminative power, focusing the backprojection on class-relevant features.
+lack class-specific discriminative power, focusing the back-projection on class-relevant features.
 
 At inference time, a new CT volume is loaded and preprocessed through the identical pipeline used during training.
 However, unlike training, instead of randomly sampling patches as in training,
@@ -134,7 +134,7 @@ providing multiple independent score estimates per spatial location for the subs
 % \label{fig:training_grid}
 % \end{figure}
 
-\section{Back-Projecting ClassDiscriminative Atoms}
+\section{Back-Projecting Class-Discriminative Atoms}
 The unique intuition we propose in our approach is to generate spatial contribution maps through back-projection. Because
 each atom in the dictionary $D$ is associated with a specific class label through the matrix $Q$ \cite{jiang2013lcksvd}, the model can theoretically
 "explain" its decision for a test patch by examining which atoms were used in its sparse representation.
@@ -147,7 +147,7 @@ $$C_c = \sum_{k \in \text{Class } c} d_k x_k$$
 
 This process back-projects the class-specific features into the original voxel space, creating a map
 that highlights the regions contributing to the detection of a specific abnormality. for class-discriminative atoms
-operating on raw voxel-space inputs, the back-projection is an exact, closedform spatial attribution.
+operating on raw voxel-space inputs, the back-projection is an exact, closed-form spatial attribution.
 
 \section{Deriving Explainability through Segmentation Masks}
 To evaluate the clinical accuracy of LC-KSVD, these contribution maps are converted into binary segmentation masks for
@@ -159,7 +159,7 @@ LC-KSVD's contribution map has only one source of imprecision: the thresholding 
 The map itself — before thresholding — is exact given the sparse code and the dictionary.
 
 
-Unlike the passive Grad-CAM approach, atom backprojection is generative. The atoms are what the model actually used to
+Unlike the passive Grad-CAM approach, atom back-projection is generative. The atoms are what the model actually used to
 reconstruct and classify the signal. There's no proxy involved. The localization evidence is produced by the same
 computation that produced the classification, not by a separate post-hoc analysis run afterwards.
 

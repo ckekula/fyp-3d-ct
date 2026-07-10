@@ -64,7 +64,7 @@ Role of each objective term:
     \item $\beta \|H  W X\|_F^2$: supervised classification loss on sparse codes; trains a linear classifier jointly with the dictionary.
 \end{itemize}
 
-In practice LC-KSVD is solved by alternating optimisation: (1) sparse coding (e.g., OMP) to estimate $X$ with $D,A,W$ fixed, and (2) closedform or SVDbased updates for $D,A,W$ while holding $X$ fixed. Variants differ in how $Q$ is constructed and whether the classifier term is included during early warmstart iterations.
+In practice LC-KSVD is solved by alternating optimisation: (1) sparse coding (e.g., OMP) to estimate $X$ with $D,A,W$ fixed, and (2) closed-form or SVD-based updates for $D,A,W$ while holding $X$ fixed. Variants differ in how $Q$ is constructed and whether the classifier term is included during early warmstart iterations.
 
 \subsection{Frozen Dictionary Learning}
 

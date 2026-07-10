@@ -25,7 +25,7 @@ However, the recent introduction of largescale, textpaired datasets has facilita
 (SotA) vision-language foundation models tailored specifically for volumetric imaging \cite{baharoon2025rexgroundingct3dchestct,flores2016,chen2026dflashblockdiffusionflash}.
 
 
-Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LCKSVD) \cite{jiang2013lcksvd},
+Beyond deep learning approaches, Dictionary Learning algorithms, particularly, Label Consistent KSVD (LC-KSVD) \cite{jiang2013lcksvd},
 Label Embedded Dictionary Learning (LEDL) and Fischer Discriminant Dictionary Learning (FDDL)
 offer viable approaches for interpretable CT analysis. All three techniques incorporate label information during the dictionary training
 process, and ensures that the sparse representation of the data is highly discriminative, making them
@@ -186,7 +186,7 @@ Chapter 1 introduces the research problem, background, objectives, scope, and li
 Chapter 2 presents the theoretical background required for this study, including sparse representation, dictionary learning, K-SVD, LC-KSVD, frozen dictionary learning, and Vision Transformers used in medical imaging.
 
 
-Chapter 3 describes the proposed methodology of the project. This includes dataset acquisition, preprocessing steps, patch extraction, implementation of the LC-KSVD framework, abnormality classification pipeline, and the proposed backprojection mechanism used for interpretable localization and explainability generation.
+Chapter 3 describes the proposed methodology of the project. This includes dataset acquisition, preprocessing steps, patch extraction, implementation of the LC-KSVD framework, abnormality classification pipeline, and the proposed back-projection mechanism used for interpretable localization and explainability generation.
 
 Chapter 4 explains the experimentation and evaluation framework used in this research. It presents the selected baseline models, evaluation metrics, and the three evaluation axes: classification accuracy, grounded localization quality, and explainability. The chapter also summarizes the current progress of the project and planned evaluations.
 
