@@ -41,7 +41,7 @@ and ethical compliance.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{Chapters/chapter1PIC/HIresCAM.jpg}
-\caption{HiRes-CAM example illustrating higherresolution localization compared with GradCAM.}
+\caption{HiRes-CAM example illustrating higherresolution localization compared with Grad-CAM.}
 \label{fig:hirescam}
 \end{figure}
 
@@ -160,7 +160,7 @@ patterns on HRCT images, effectively handling the high variety and complexity of
 
 \subsection{Explainability Approaches}
 
-GradCAM is one of the most widely used post-hoc explanation methods for CNNbased classifiers \cite{selvaraju2017gradcam}. 
+Grad-CAM is one of the most widely used post-hoc explanation methods for CNNbased classifiers \cite{selvaraju2017gradcam}. 
 It generates class-discriminative heatmaps by using gradients flowing into the final convolutional layer, allowing the user to identify
 image regions that influenced a prediction \cite{selvaraju2017gradcam}. 
 It's main limitation is that it produces low-resolution saliency maps and does not directly provide precise lesion boundaries or
@@ -171,7 +171,7 @@ Instead of only highlighting regions that are important for image-level classifi
 segmentation predictions \cite{Suara_2024}.
 This is particularly useful for volumetric medical imaging tasks where the target abnormality occupies a sparse region within a large 3D scan.
 
-HiResCAM addresses one of the key weaknesses of GradCAM by producing higher-resolution and more faithful localization maps \cite{draelos2021usehirescaminsteadgradcam}. 
+HiResCAM addresses one of the key weaknesses of Grad-CAM by producing higher-resolution and more faithful localization maps \cite{draelos2021usehirescaminsteadgradcam}. 
 This is important in chest CT because many abnormalities, such as small nodules, consolidations, or subtle interstitial changes,
 may be missed by coarse heatmaps. 
 HiRes-CAM aims to preserve fine spatial detail, making it more suitable for medical imaging applications where precise localization is required \cite{draelos2021usehirescaminsteadgradcam}. 
