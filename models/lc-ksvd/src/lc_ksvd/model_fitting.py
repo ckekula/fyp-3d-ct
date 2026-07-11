@@ -20,33 +20,11 @@ from reppi.dictionary.frozen import IncrementalFrozenDictionary
 logger = logging.getLogger(__name__)
 
 
-def _validate_kwargs(cfg: Dict) -> Dict:
-    """
-    Validate dictionary-learning hyperparameters.
-
-    Returns a shallow copy of ``cfg`` so callers may modify it without
-    affecting the original configuration.
-    """
-    if cfg["n_components"] <= 0:
-        raise ValueError("n_components must be positive.")
-
-    if cfg["n_nonzero_coefs"] <= 0:
-        raise ValueError("n_nonzero_coefs must be positive.")
-
-    if cfg["n_nonzero_coefs"] > cfg["n_components"]:
-        raise ValueError(
-            f"n_nonzero_coefs ({cfg['n_nonzero_coefs']}) cannot exceed "
-            f"n_components ({cfg['n_components']})."
-        )
-
-    return dict(cfg)
-
 # --- Joint LC-KSVD2 training (original behaviour) ---------------------------
 
 def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     """Train a single LC-KSVD2 model jointly over all classes."""
-    stage_cfg = _validate_kwargs(cfg)
-    model = LCKSVD(**stage_cfg)
+    model = LCKSVD(**cfg)
     logger.info("Starting LC-KSVD2 training (joint, all classes)...")
 
     classes  = list(range(len(CLASS_ORDER)))
@@ -110,26 +88,23 @@ def _fit_frozen(
     base_mask = H == NORMAL_CLASS_IDX
     X_base = X_norm[:, base_mask]
     H_base = np.ones((1, X_base.shape[1]), dtype=np.float64)
-
-    base_kwargs = _validate_kwargs(base_cfg)
-
     # Constructor-level default for residual_learner_kwargs: always
     # overridden per-stage below via learner_kwargs_override, but must
     # still be a sane, correctly-shaped default in case add_class is ever
     # called directly without an override.
     inc = IncrementalFrozenDictionary(
         base_learner_class=KSVD,
-        base_learner_kwargs=base_kwargs,
+        base_learner_kwargs=base_cfg,
         residual_learner_class=KSVD,
-        residual_learner_kwargs=dict(base_kwargs),
-        n_nonzero_coefs=base_kwargs["n_nonzero_coefs"],
+        residual_learner_kwargs=dict(base_cfg),
+        n_nonzero_coefs=base_cfg["n_nonzero_coefs"],
         refit_classifier=True,
         freeze_classifier=False,
     )
 
     logger.info(
         f"Fitting base dictionary on {X_base.shape[1]} normal patches "
-        f"(n_components={base_kwargs['n_components']})..."
+        f"(n_components={base_cfg['n_components']})..."
     )
     inc.fit_base(
         X_base,
@@ -162,17 +137,16 @@ def _fit_frozen(
         stage_cfg["n_components"] = residual_n_components_by_class.get(
             cls_name, base_cfg["n_components"]
         )
-        stage_kwargs = _validate_kwargs(stage_cfg)
 
         logger.info(
             f"Adding residual dictionary for class '{cls_name}' "
-            f"({n_class} patches, n_components={stage_kwargs['n_components']})..."
+            f"({n_class} patches, n_components={stage_cfg['n_components']})..."
         )
         inc.add_class(
             X_class,
             H_full,
             class_label=class_idx,
-            learner_kwargs_override=stage_kwargs,
+            learner_kwargs_override=stage_cfg,
             checkpoint_dir=str(CHECKPOINT_DIR),
             resume=CHECKPOINT_RESUME,
         )

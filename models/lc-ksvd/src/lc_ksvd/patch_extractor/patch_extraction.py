@@ -103,7 +103,7 @@ def extract_unified(split: str = "train") -> None:
 
     raw_by_cat = {ab: labels.get_positive_volume_names(ab) for ab in abnormality_keys}
     for ab, lst in raw_by_cat.items():
-        logger.info(f"  category '{ab}': {len(lst)} volumes")
+        logger.info(f"  volumes containing category '{ab}': {len(lst)}")
 
     positive_ids: List[str] = list({
         vid
