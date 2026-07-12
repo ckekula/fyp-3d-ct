@@ -42,6 +42,15 @@ What evaluation metrics are reported?
 
 \subsection{BioMedParse}
 
+BiomedParse is a foundation model for segmentation, detection, and recognition that extends prompt driven parsing to medical imaging tasks \cite{zhao2025foundation}.
+Rather than relying on a fixed label set during inference, the model accepts a natural language prompt describing the target anatomy or pathology and produces a pixel level mask for the queried concept.
+This makes BiomedParse especially useful in settings where the structures of interest are heterogeneous, difficult to enumerate in advance, or described differently across institutions and reports.
+
+In the context of chest CT, BiomedParse is attractive because many clinically relevant findings such as lung nodules, lung opacity, consolidation, and atelectasis can be queried directly with disease specific text prompts.
+The model combines image encoding with language understanding and uses a transformer based decoder to align the prompt with the visual features extracted from the scan \cite{zhao2025foundation}. 
+The output is not only a segmentation map but also a form of interpretable localization, since the generated mask indicates where the model believes the prompted abnormality is present.
+Therefore, BiomedParse serves both as a SotA reference model and as a practical contrast for discussing performance, localization quality, and interpretability in 3D chest CT analysis.
+
 \subsection{TotalSegmentor}
 
 \subsection{Merlin}
