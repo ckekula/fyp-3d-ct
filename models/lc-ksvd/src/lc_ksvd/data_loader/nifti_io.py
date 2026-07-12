@@ -14,13 +14,17 @@ from typing import Tuple
 import nibabel as nib
 import numpy as np
 from scipy import ndimage
-from skimage.segmentation import clear_border
+import SimpleITK as sitk
+
+from lungmask import LMInferer
+
 
 from lc_ksvd.config import (
     BACKGROUND_HU, HU_MAX, HU_MIN, LOWER_HU, MASKS_DIR, TARGET_SPACING_MM,
     UPPER_HU, VOLUMES_DIR,
 )
 
+lung_inferer = LMInferer()
 
 # ─── Path resolution ──────────────────────────────────────────────────────────
 
@@ -115,80 +119,47 @@ def resample_mask(mask: np.ndarray, target_shape: Tuple[int, int, int]) -> np.nd
     return np.stack(resampled_slices, axis=0)
 
 
-# ─── HU windowing and normalisation ──────────────────────────────────────────
 
 def preprocess(vol: np.ndarray) -> np.ndarray:
     """
-    Lung preprocessing pipeline.
+    Lung preprocessing using lungmask.
 
     Steps:
-        1. Threshold lung tissue [-900, -200] HU
-        2. Remove border-connected air regions
-        3. Keep the two largest connected components
-        4. Morphological closing
-        5. Hole filling
-        6. Apply lung mask to volume
-        8. Rescale to [0, 1]
+        1. Convert numpy CT volume to SimpleITK image
+        2. Predict lung segmentation using lungmask
+        3. Apply lung mask to CT
+        4. Set outside-lung voxels to -1000 HU
+        5. Clip HU range
+        6. Rescale to [0,1]
 
     Input:
         vol: float32 CT volume in HU
+              Shape expected: (H, W, D)
 
     Output:
-        float32 volume in [0, 1]
+        float32 volume in [0,1]
     """
 
-    # ------------------------------------------------------------------
-    # Lung mask
-    # ------------------------------------------------------------------
-    mask = (vol >= HU_MIN) & (vol <= HU_MAX)
+    # SimpleITK expects (z,y,x)
+    vol_sitk = sitk.GetImageFromArray(np.transpose(vol, (2, 0, 1)))
+    segmentation = lung_inferer.apply(vol_sitk)
 
-    # Remove border-connected components slice-by-slice
-    mask_clear = np.zeros_like(mask, dtype=bool)
+    # lungmask returns:
+    # 0 = background
+    # 1 = left lung
+    # 2 = right lung
 
-    for z in range(mask.shape[2]):
-        mask_clear[:, :, z] = clear_border(mask[:, :, z])
+    lung_mask = segmentation > 0
 
-    # Connected components
-    labels, num = ndimage.label(mask_clear)
 
-    if num > 0:
-        sizes = ndimage.sum(mask_clear, labels, range(1, num + 1))
-
-        if len(sizes) >= 2:
-            largest_two = np.argsort(sizes)[-2:] + 1
-            lung_mask = np.isin(labels, largest_two)
-        else:
-            lung_mask = labels > 0
-    else:
-        lung_mask = mask_clear
-
-    # Morphological closing
-    structure = ndimage.generate_binary_structure(3, 2)
-
-    lung_mask = ndimage.binary_closing(
+    # Convert back to (H,W,D)
+    lung_mask = np.transpose(
         lung_mask,
-        structure=structure,
-        iterations=2,
+        (1,2,0)
     )
 
-    # Hole filling
-    lung_mask = ndimage.binary_fill_holes(lung_mask)
-
-    # Final cleanup
-    lung_mask = ndimage.binary_closing(
-        lung_mask,
-        structure=structure,
-        iterations=2,
-    )
-
-    lung_mask = ndimage.binary_fill_holes(lung_mask)
-
-    # ------------------------------------------------------------------
-    # Apply mask
-    # ------------------------------------------------------------------
     vol = vol.copy()
-    vol[~lung_mask] = BACKGROUND_HU # set non-lung voxels to -1000 HU (air). This is less than HU_MIN
-
+    vol[~lung_mask] = BACKGROUND_HU
     vol = np.clip(vol, LOWER_HU, UPPER_HU)
     vol = (vol - LOWER_HU) / (UPPER_HU - LOWER_HU)
 
