@@ -9,7 +9,7 @@ Requires-Dist: matplotlib>=3.10.9
 Requires-Dist: nibabel>=5.4.2
 Requires-Dist: numpy>=2.4.4
 Requires-Dist: pandas>=3.0.2
-Requires-Dist: reppi==0.1.21
+Requires-Dist: reppi==0.1.26
 Requires-Dist: scikit-image>=0.26.0
 Requires-Dist: scikit-learn>=1.8.0
 Requires-Dist: scipy>=1.17.1
