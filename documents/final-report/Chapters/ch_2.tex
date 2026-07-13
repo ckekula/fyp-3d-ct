@@ -48,7 +48,54 @@ What evaluation metrics are reported?
 
 \subsection{BioMedParse}
 
-\subsection{TotalSegmentor}
+BiomedParse is a foundation model for segmentation, detection, and recognition that extends prompt driven parsing to medical imaging tasks \cite{zhao2025foundation}.
+Rather than relying on a fixed label set during inference, the model accepts a natural language prompt describing the target anatomy or pathology and produces a pixel level mask for the queried concept.
+This makes BiomedParse especially useful in settings where the structures of interest are heterogeneous, difficult to enumerate in advance, or described differently across institutions and reports.
+
+In the context of chest CT, BiomedParse is attractive because many clinically relevant findings such as lung nodules, lung opacity, consolidation, and atelectasis can be queried directly with disease specific text prompts.
+The model combines image encoding with language understanding and uses a transformer based decoder to align the prompt with the visual features extracted from the scan \cite{zhao2025foundation}. 
+The output is not only a segmentation map but also a form of interpretable localization, since the generated mask indicates where the model believes the prompted abnormality is present.
+Therefore, BiomedParse serves both as a SotA reference model and as a practical contrast for discussing performance, localization quality, and interpretability in 3D chest CT analysis.
+
+
+\subsection{TotalSegmentator}
+
+Accurate anatomical segmentation is an important step in CT-based
+computer-aided diagnosis (CAD). Earlier deep learning methods were mainly
+developed to segment only a few organs. To solve this problem, Wasserthal
+\textit{et al.} introduced \textbf{TotalSegmentator}, a deep learning framework
+that can automatically segment 104 anatomical structures from a single CT scan
+\cite{wasserthal2023totalsegmentator}. The framework is built on the
+\textit{nnU-Net} architecture, which automatically adjusts the training process
+to different datasets. This helps the model achieve reliable segmentation on
+different clinical CT images.
+
+The model was trained using more than 1,200 routine clinical CT scans collected
+from different hospitals and patient groups. It achieved a mean Dice Similarity
+Coefficient (DSC) of about 0.94, showing high segmentation accuracy. Because of
+its good performance, TotalSegmentator is widely used as a preprocessing tool in
+medical image analysis, including computer-aided diagnosis, surgical planning,
+and radiotherapy planning \cite{wasserthal2023totalsegmentator}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/Chapter 2/totalsegmentator_output.png}
+    \caption{Example of automatic multi-organ segmentation produced by TotalSegmentator on a CT scan (adapted from \cite{wasserthal2023totalsegmentator}).}
+    \label{fig:totalsegmentator}
+\end{figure}
+
+Although TotalSegmentator provides accurate anatomical segmentation, it is not
+designed to classify pulmonary abnormalities such as lung nodules or
+ground-glass opacities. It also does not explain how its predictions are made.
+Therefore, additional methods are needed for disease classification and
+interpretable clinical decision-making.
+
+The proposed research aims to overcome these limitations by developing an
+interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
+abnormality classification and grounded localization. While TotalSegmentator
+provides useful anatomical information, the proposed framework focuses on
+improving both classification performance and the interpretability of the
+results.
 
 \subsection{Merlin}
 
@@ -56,12 +103,85 @@ What evaluation metrics are reported?
 
 \subsection{CT-CLIP}
 
+CT images contain valuable information for diagnosing pulmonary diseases, while
+radiology reports provide detailed clinical descriptions. To learn information
+from both sources, Hamamci \textit{et al.} proposed \textbf{CT-CLIP}, a
+vision-language foundation model for chest CT images
+\cite{hamamci2024ctclip}. Unlike traditional supervised models that require
+large amounts of labeled data, CT-CLIP learns the relationship between CT scans
+and their corresponding radiology reports using contrastive learning. This
+allows the model to learn meaningful image and text representations without
+task-specific annotations.
+
+CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder
+extracts features from CT volumes, while the text encoder processes the
+corresponding radiology reports. During training, the model learns to match
+each CT scan with its correct report in a shared feature space. The model was
+trained on thousands of chest CT scans paired with radiology reports, allowing
+it to learn both anatomical and pathological information. It has shown strong
+performance in pulmonary disease classification, image retrieval, and zero-shot
+learning tasks \cite{hamamci2024ctclip}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\linewidth]{images/Chapter 2/ctclip_framework.png}
+\caption{Overview of the CT-CLIP framework showing contrastive learning between
+CT images and paired radiology reports (adapted from
+\cite{hamamci2024ctclip}).}
+\label{fig:ctclip}
+\end{figure}
+
+Although CT-CLIP achieves good performance, it mainly learns high-level feature
+representations instead of directly localizing pulmonary abnormalities. It also
+does not provide inherent explanations for its predictions, making the decision
+process difficult to understand.
+
+The proposed research aims to overcome these limitations by developing an
+interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
+abnormality classification and grounded localization. While CT-CLIP learns rich
+image and text representations, the proposed framework focuses on providing
+transparent and interpretable diagnostic results.
+
+
+
+
 \section{Explainable AI (XAI) in Medical Imaging}
 
-Why is interpretability important in healthcare?
-What regulatory and ethical requirements exist?
-Why do clinicians require explanations?
-Why is explainability especially important for CT diagnosis?
+
+% Why is interpretability important in healthcare?
+% What regulatory and ethical requirements exist?
+% Why do clinicians require explanations?
+% Why is explainability especially important for CT diagnosis?
+
+Artificial intelligence (AI) has become an important tool in medical imaging by
+supporting tasks such as disease detection, classification, and image analysis.
+Many deep learning models achieve high accuracy, but their decision-making
+process is often difficult to understand. These models are commonly referred to
+as "black-box" models because they do not clearly explain how a prediction is
+made \cite{samek2017explainable,guidotti2018survey}. In healthcare, this lack of
+transparency can reduce clinicians' confidence in AI-assisted diagnosis.
+
+Interpretability is important because medical decisions directly affect patient
+care. Clinicians need to understand why a model predicts a particular disease
+before using its results in clinical practice. Explainable AI (XAI) provides
+methods that help users understand how AI models make decisions. This improves
+trust, supports clinical decision-making, and helps identify possible model
+errors or biases \cite{tjoa2020survey}.
+
+The importance of XAI has also increased due to ethical and regulatory
+requirements. Healthcare AI systems are expected to be transparent, reliable,
+and accountable before they are used in real clinical environments.
+Explainable models help meet these requirements by providing evidence that
+supports their predictions instead of producing results without explanation
+\cite{guidotti2018survey,tjoa2020survey}.
+
+Explainability is especially important for chest CT diagnosis because pulmonary
+abnormalities such as lung nodules and ground-glass opacities can be difficult
+to identify. Clinicians need to know which regions of the CT scan influenced the
+model's prediction. This helps verify the diagnosis and increases confidence in
+AI-assisted clinical decisions. Therefore, improving interpretability has become
+an important research direction in computer-aided diagnosis systems
+\cite{tjoa2020survey}.
 
 \subsection{SHAP}
 
