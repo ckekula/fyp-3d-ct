@@ -11,7 +11,7 @@ from pathlib import Path
 DATASET_ROOT = Path("/home/chest_ct/code/data")
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_filtered.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_new.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
