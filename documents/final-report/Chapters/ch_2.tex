@@ -1,10 +1,16 @@
 \chapter{Literature Review}
 
-\section{Pulmonary Disease}
+\section{Clinical Background}
 
-Statistics on lung disease prevalence, morbidity, and mortality \cite{Wisnivesky2019}.
+Chronic respiratory diseases account for more than 4 million deaths globally per year \cite{}.
+Research shows that early detection of pulmonary diseases, particularly lung cancer and Chronic Obstructive Pulmonary Disease
+(COPD) dramatically lowers mortality rates.
+Two landmark studies, the National Lung Screening Trial (NLST) and the Nederlands-Leuvens Longkanker Screenings Onderzoek (NELSON)
+trial, have shown that low-dose CT (LDCT) screening educes lung cancer mortality by 20\% to 33\% compared to CXR \cite{nlst2011, nelson2020}.
 
 \subsection{GGO and Pulmonary Nodules}
+
+LDCT is commonly used to detect abnormalities such as pulmonary nodules and GGO in the lungs.
 
 What are pulmonary nodules and ground-glass opacities (GGOs)?
 Why are they clinically important?
@@ -174,6 +180,42 @@ an important research direction in computer-aided diagnosis systems
 
 
 \subsection{SHAP}
+
+SHapley Additive exPlanations (SHAP) is a widely used explainable artificial
+intelligence (XAI) method for interpreting machine learning models. It is based
+on Shapley values from cooperative game theory, where each feature is assigned
+an importance value according to its contribution to the final prediction. This
+provides a consistent and theoretically sound approach for explaining both
+traditional machine learning and deep learning models
+\cite{lundberg2017unified}.
+
+One of the main advantages of SHAP is that it provides both global and local
+explanations. Global explanations identify the features that have the greatest
+overall influence on model predictions across the entire dataset. Local
+explanations show how each feature contributes to the prediction of an
+individual sample. SHAP values can be positive or negative, indicating whether
+a feature increases or decreases the predicted outcome. These explanations help
+users understand why a model makes a particular decision and improve confidence
+in AI-based systems \cite{lundberg2017unified,tjoa2021survey}.
+
+In medical imaging, SHAP has been widely used to improve the transparency and
+interpretability of artificial intelligence models. It helps researchers and
+clinicians identify the imaging features and clinical variables that have the
+greatest influence on model predictions. This makes it easier to determine
+whether the model is learning meaningful medical information rather than
+irrelevant patterns. As a result, SHAP supports the development of more
+reliable and trustworthy computer-aided diagnosis systems
+\cite{holzinger2019causability,tjoa2021survey}.
+
+For pulmonary disease analysis using CT images, SHAP can explain the factors
+that influence a model's predictions by measuring the contribution of each
+input feature. These explanations help clinicians understand AI-assisted
+decisions, verify whether the model focuses on clinically relevant information,
+and identify possible prediction errors. Therefore, SHAP improves the
+interpretability, reliability, and clinical acceptance of deep learning models
+used for pulmonary disease diagnosis
+\cite{lundberg2017unified,tjoa2021survey}.
+
 
 \subsection{LIME}
 
