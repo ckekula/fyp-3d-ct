@@ -45,8 +45,7 @@ def main():
     )
     parser.add_argument(
         "--algorithm", choices=["frozen", "lcksvd"], default="frozen",
-        help="'frozen' = IncrementalFrozenDictionary (LC-KSVD-based Frozen "
-             "Dictionary Learning, default). 'lcksvd' = original joint LC-KSVD2."
+        help="'frozen' = IncrementalFrozenDictionary. 'lcksvd' = original joint LC-KSVD2."
     )
     args = parser.parse_args()
 

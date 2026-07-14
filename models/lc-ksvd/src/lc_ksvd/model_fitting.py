@@ -34,22 +34,6 @@ def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     return model
 
 
-# --- Incremental Frozen Dictionary (KSVD-based) training ---------------------
-
-def _onehot(labels: np.ndarray, n_classes: int) -> np.ndarray:
-    """
-    Build a (n_classes, n_samples) one-hot matrix.
-
-    sklearn's label_binarize collapses the n_classes == 2 case to a single
-    column, which IncrementalFrozenDictionary's class-counting logic does
-    not expect, so that case is handled explicitly.
-    """
-    if n_classes == 2:
-        row1 = labels.astype(np.float64)
-        return np.vstack([1.0 - row1, row1])
-    return label_binarize(labels, classes=list(range(n_classes))).T.astype(np.float64)
-
-
 def _fit_frozen(
     X_norm: np.ndarray,
     H: np.ndarray,
@@ -64,10 +48,9 @@ def _fit_frozen(
                                abnormality class at a time, in CLASS_ORDER,
                                each sized independently via
                                residual_n_components_by_class.
-
+ 
     All prior atoms (base + previously added classes) are frozen at each
-    add_class() step; the classifier W is refit jointly over all
-    accumulated data after every stage.
+    add_class() step.
 
     Parameters
     ----------
@@ -87,7 +70,6 @@ def _fit_frozen(
     # -- Base stage: normal patches only -------------------------------------
     base_mask = H == NORMAL_CLASS_IDX
     X_base = X_norm[:, base_mask]
-    H_base = np.ones((1, X_base.shape[1]), dtype=np.float64)
     # Constructor-level default for residual_learner_kwargs: always
     # overridden per-stage below via learner_kwargs_override, but must
     # still be a sane, correctly-shaped default in case add_class is ever
@@ -98,57 +80,43 @@ def _fit_frozen(
         residual_learner_class=KSVD,
         residual_learner_kwargs=dict(base_cfg),
         n_nonzero_coefs=base_cfg["n_nonzero_coefs"],
-        refit_classifier=True,
-        freeze_classifier=False,
     )
-
+ 
     logger.info(
         f"Fitting base dictionary on {X_base.shape[1]} normal patches "
         f"(n_components={base_cfg['n_components']})..."
     )
     inc.fit_base(
         X_base,
-        H_base,
         class_label=NORMAL_CLASS_IDX,
         checkpoint_dir=str(CHECKPOINT_DIR),
         resume=CHECKPOINT_RESUME,
     )
-
-    accumulated_label_chunks: List[np.ndarray] = [
-        np.zeros(X_base.shape[1], dtype=np.int64)
-    ]
-
-    for stage, class_idx in enumerate(abnormal_indices, start=1):
+ 
+    for class_idx in abnormal_indices:
         class_mask = H == class_idx
         X_class = X_norm[:, class_mask]
         n_class = X_class.shape[1]
-
-        accumulated_label_chunks.append(np.full(n_class, stage, dtype=np.int64))
-        n_classes_so_far = stage + 1
-
-        all_labels = np.concatenate(accumulated_label_chunks)
-        H_full = _onehot(all_labels, n_classes_so_far)
-
+ 
         cls_name = CLASS_ORDER[class_idx]
-
+ 
         # Per-class residual atom count, falling back to the base's if this
         # class wasn't given its own entry.
         stage_cfg = dict(base_cfg)
         stage_cfg["n_components"] = residual_n_components_by_class.get(
             cls_name, base_cfg["n_components"]
         )
-
+ 
         logger.info(
             f"Adding residual dictionary for class '{cls_name}' "
             f"({n_class} patches, n_components={stage_cfg['n_components']})..."
         )
         inc.add_class(
             X_class,
-            H_full,
             class_label=class_idx,
             learner_kwargs_override=stage_cfg,
             checkpoint_dir=str(CHECKPOINT_DIR),
             resume=CHECKPOINT_RESUME,
         )
-
+ 
     return inc
