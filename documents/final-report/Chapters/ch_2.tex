@@ -283,6 +283,7 @@ multiple objects of the same class in an image, since it may highlight them
 all together instead of separately \cite{ennab2025advancing}.
 
 \subsection{Grad-CAM++}
+
 Grad-CAM++ is an improved version of Grad-CAM. It was made to fix some of
 Grad-CAM's problems, especially when an image has more than one object of the
 same class, or when the object is small \cite{chattopadhay2018grad}.
@@ -311,10 +312,12 @@ Grad-CAM, since it needs to calculate higher-order gradients
 Grad-CAM, since it also relies on the last convolutional layer and needs
 upsampling to match the input image size \cite{ennab2025advancing}.
 
-\subsection{Other CAM Methods}
-Hires-CAM, Score-CAM, XGrad-CAM, etc.
+
 
 \subsection{Other CAM Methods}
+
+%
+
 Besides Grad-CAM and Grad-CAM++, several other CAM-based methods have been
 proposed to address specific weaknesses in the original approach. Three
 common ones are HiResCAM, Score-CAM, and XGrad-CAM.
@@ -434,7 +437,44 @@ What is discriminative dictionary learning?
 
 \subsection{Frozen Dictionary Learning}
 
-\section{Dictionary Learning in Medical Imaging}
+\subsection{Dictionary Learning in Medical Imaging}
+
+Dictionary learning has been applied to many areas of medical image
+analysis over the past two decades. The main idea is to learn a set of
+atoms directly from the data, so that each image or patch can be
+represented as a sparse combination of these atoms. This approach was
+first popularised by the K-SVD algorithm, which learns an overcomplete
+dictionary by alternating between sparse coding and dictionary update
+steps \cite{aharon2006ksvd}. Later, Jiang et al. extended this idea to
+classification tasks by proposing Label Consistent K-SVD (LC-KSVD), which
+adds a label consistency term so that the learned dictionary is more
+discriminative for classification \cite{jiang2013lcksvd}.
+
+In medical imaging, dictionary learning has been used for a wide range of
+tasks. Ravishankar and Bresler used dictionary learning to reconstruct MRI
+images from undersampled k-space data, allowing shorter scan times without
+losing image quality \cite{ravishankar2011mri}. Tong et al. applied
+discriminative dictionary learning to segment the hippocampus from brain
+MRI scans, showing that sparse coding can capture useful anatomical
+patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
+Ben-Cohen et al. combined a fully convolutional network with
+sparsity-based dictionary learning to detect liver lesions, showing that
+dictionary learning can also be used alongside deep learning models rather
+than as a replacement for them \cite{bencohen2018liver}. A broader survey
+by Song and Cai reviewed the use of dictionary learning across denoising,
+classification, and segmentation tasks in medical imaging, and noted that
+discriminative dictionary learning methods, including LC-KSVD, are
+particularly useful when only a small number of labelled training samples
+are available \cite{song2019survey}.
+
+These studies show that dictionary learning methods, and LC-KSVD in
+particular, remain a relevant classical approach in medical imaging. They
+are especially useful in settings with limited training data, and their
+sparse representations offer a natural way to interpret which parts of an
+image contributed to a decision. This makes dictionary learning a suitable
+classical baseline for comparison against deep learning-based
+interpretability methods.
+
 
 \subsection{Image Reconstruction}
 
