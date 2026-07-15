@@ -7,15 +7,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 
 from lc_ksvd.config import MODELS_DIR, SPARSE_CODE_DIR
-from lc_ksvd.data_loader.unified_loader import load_unified_patch_matrix
-from lc_ksvd.preprocessing import normalise_columns  # adjust import path if different
+from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
+from lc_ksvd.metrics import normalise_columns  # adjust import path if different
 from reppi import OMP
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-DICT_MODEL_PATH = MODELS_DIR / "unified_frozen_lcksvd.pkl"
-SPARSE_CODES_PATH = SPARSE_CODE_DIR / "sparse_codes.npz"
+DICT_MODEL_PATH = MODELS_DIR / "unified_frozen.pkl"
 SVM_MODEL_PATH = MODELS_DIR / "svm_model.pkl"
 LOG_REG_MODEL_PATH = MODELS_DIR / "log_reg_model.pkl"
 
@@ -59,18 +58,24 @@ def main() -> None:
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     SPARSE_CODE_DIR.mkdir(parents=True, exist_ok=True)
 
+    split = "train"
     # -- Load patches and labels ------------------------------------------------
-    X, labels, _scan_ids = load_unified_patch_matrix(split="train")
+    X, labels, _scan_ids = load_unified_patch_matrix(split=split)
 
     # -- Load trained dictionary --------------------------------------------------
     D = load_dictionary(DICT_MODEL_PATH)
 
     # -- Sparse-code patches against the dictionary -------------------------------
-    Gamma = encode_patches(X, D)
+    if (SPARSE_CODE_DIR / f"{split}_sparse_codes.npz").exists():
+        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{split}_sparse_codes.npz'}")
+        data = np.load(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz")
+        Gamma = data["Gamma"]
+    else:
+        Gamma = encode_patches(X, D)
 
-    # -- Save sparse codes (dense) alongside labels for reuse ---------------------
-    np.savez_compressed(SPARSE_CODES_PATH, Gamma=Gamma, labels=labels)
-    logger.info(f"Saved sparse codes -> {SPARSE_CODES_PATH}")
+        # -- Save sparse codes (dense) alongside labels for reuse ---------------------
+        np.savez_compressed(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz", Gamma=Gamma, labels=labels)
+        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / 'sparse_codes.npz'}")
 
     # -- Train SVM ------------------------------------------------------------------
     logger.info("Training LinearSVC...")

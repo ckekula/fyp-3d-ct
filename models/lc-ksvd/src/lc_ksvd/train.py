@@ -92,7 +92,7 @@ def train(algorithm: str) -> Dict:
     logger.info(f"Training complete in {elapsed:.1f}s")
 
     # -- Evaluate at scan level - pass integer H and scan_ids --------------------
-    train_metrics = evaluate(model, X, H, scan_ids, split_name="train")
+    # train_metrics = evaluate(model, X_norm,     H,     scan_ids,     split_name="train")
 
     # -- Save ---------------------------------------------------------------------
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
@@ -103,7 +103,7 @@ def train(algorithm: str) -> Dict:
         "model":           model,
         "algorithm":       algorithm,
         "class_order":     CLASS_ORDER,
-        "train_metrics":   train_metrics,
+        # "train_metrics":   train_metrics,
         "config":          cfg,
         "patch_size":      PATCH_SIZE,
         "target_spacing":  TARGET_SPACING_MM,
