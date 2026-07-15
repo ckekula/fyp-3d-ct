@@ -428,14 +428,110 @@ What optimization algorithms exist?
 \subsection{Online Dictionary Learning (ODL)}
 
 \section{Discriminative Dictionary Learning}
-Why isn't reconstruction enough?
-What is discriminative dictionary learning?
 
-\subsection{Label-Consistent K-SVD (LC-KSVD)}
+Traditional dictionary learning methods mainly focus on minimizing the
+reconstruction error between the input data and its sparse representation
+\cite{aharon2006ksvd}. However, good reconstruction does not necessarily 
+produce features that are useful for classification. Samples from different 
+classes may activate similar atoms if the learned dictionary only captures 
+common structures in the data.
 
-\subsection{Fischer Discriminative Dictionary Learning (FDDL)}
+Discriminative dictionary learning addresses this limitation by incorporating
+class information during dictionary optimization. The objective is not only to
+represent the input samples accurately but also to learn sparse codes that
+improve the separation between different classes. By learning class aware atoms, 
+discriminative dictionary learning can provide both classification capability 
+and a more interpretable representation. Several approaches have been proposed, 
+including Label Consistent K-SVD (LC-KSVD) and Fisher Discriminative Dictionary 
+Learning (FDDL), which extend the K-SVD framework by introducing supervised 
+learning constraints.
 
-\subsection{Frozen Dictionary Learning}
+\subsection{Label Consistent K-SVD (LC-KSVD)}
+
+Label Consistent K-SVD (LC-KSVD), introduced by Jiang et al. \cite{jiang2013lcksvd}, 
+extends the classic K-SVD framework by embedding label consistency into the 
+dictionary update process. The core idea is to encourage sparse codes from 
+samples of the same class to exhibit similar activation patterns, while those 
+from different classes diverge. This is achieved without sacrificing the 
+algorithm's efficient iterative structure involving sparse coding and dictionary 
+refinement.
+
+The method comes in two main variants. LC-KSVD1 incorporates a label consistency 
+term that aligns the sparse codes with an ideal discriminative structure through 
+a linear transformation:
+
+\begin{equation}
+\min_{D, A, A_c} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T \ \forall i.
+\end{equation}
+
+Here, \(Q\) is a target matrix encoding class specific indicator patterns, and 
+\(A_c\) learns to map codes toward this structure. LC-KSVD2 extends LC-KSVD1 by 
+adding a classifier learning term. The dictionary, sparse codes, label consistency 
+transformation, and classifier are jointly optimized:
+
+\begin{equation}
+\min_{D, A, A_c, W} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 + \beta \|H - W A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T,
+\end{equation}
+
+where \(H\) contains the label information. The additional classification term 
+allows the learned sparse representation to be directly optimized for prediction. 
+Due to its ability to learn class specific atoms, LC-KSVD has been applied in 
+image classification tasks where interpretability of learned features is important 
+\cite{jiang2013lcksvd}.
+
+\subsection{Fisher Discriminative Dictionary Learning (FDDL)}
+
+Fisher Discriminative Dictionary Learning (FDDL), proposed by Yang et al. \cite{yang2011fisher}, 
+is another supervised dictionary learning approach that directly enforces 
+Fisher like criteria on both the dictionary atoms and the sparse coefficients. 
+It learns a structured dictionary \(D = [D_1, D_2, \dots, D_c]\) with class specific 
+sub dictionaries \(D_i\) while promoting sparse codes \(A\) that exhibit low 
+within class scatter and high between class scatter.
+
+The core objective combines a discriminative fidelity term \(r(\cdot)\) 
+(ensuring good reconstruction within class and poor reconstruction across classes) 
+with a Fisher discrimination penalty on coefficients:
+
+\begin{equation}
+\min_{D, X} \sum_i r(A_i, D, X_i) + \lambda_1 \|X\|_1 + \lambda_2 \Big( \operatorname{tr}(S_W(X)) - \operatorname{tr}(S_B(X)) + \eta \|X\|_F^2 \Big),
+\end{equation}
+
+where \(r(\cdot)\) encourages each class to be well represented by its own 
+sub dictionary while poorly represented by others. \(S_W\) and \(S_B\) denote 
+the within class and between class scatter matrices of the sparse codes. 
+The elastic term controlled by \(\eta\) is added to guarantee that the overall 
+Fisher discrimination function remains convex, which greatly improves optimization 
+stability \cite{yang2011fddl}.
+
+Compared with LC-KSVD, which introduces label consistency through a learned
+transformation and classifier, FDDL focuses on improving the statistical
+distribution of sparse codes. This makes it suitable for classification tasks
+where the separation between classes is important.
+
+\subsection{Frozen Dictionary Learning for Outlier Separation}
+
+While most discriminative methods update the entire dictionary during training, 
+certain scenarios benefit from preserving previously acquired knowledge. 
+Frozen dictionary learning, as introduced in the Outlier Learning via Augmented 
+Frozen (OLAF) Dictionaries framework \cite{carroll2017frozen}, addresses this 
+by fixing a subset of atoms learned from baseline (normal) data while allowing 
+new atoms to adapt to anomalous samples.
+
+The composite dictionary takes the partitioned form \(D = [D_f \ | \ D_u]\), 
+where \(D_f\) remains frozen after initial training on normal data, and only 
+the unfrozen portion \(D_u\) is updated on data containing deviations. Both 
+K-SVD and Alternating Minimization algorithms can be modified straightforwardly 
+to respect this constraint by skipping updates on frozen columns during the 
+dictionary refinement stage \cite{carroll2017frozen}.
+
+This approach is particularly useful when preserving existing knowledge is 
+important. In medical imaging, a dictionary learned from normal anatomy can be 
+kept fixed, while additional atoms are learned from abnormal cases. This 
+separation helps maintain normal structural information and improves the 
+interpretability of disease related atoms. However, the effectiveness of this 
+method depends on the quality of the initial frozen dictionary, since an 
+incomplete initial representation may limit the ability of the model to adapt 
+to new patterns.
 
 \subsection{Dictionary Learning in Medical Imaging}
 
@@ -444,7 +540,7 @@ analysis over the past two decades. The main idea is to learn a set of
 atoms directly from the data, so that each image or patch can be
 represented as a sparse combination of these atoms. This approach was
 first popularised by the K-SVD algorithm, which learns an overcomplete
-dictionary by alternating between sparse coding and dictionary update
+dictionary by alternating between sparse coding and dictionary updateq
 steps \cite{aharon2006ksvd}. Later, Jiang et al. extended this idea to
 classification tasks by proposing Label Consistent K-SVD (LC-KSVD), which
 adds a label consistency term so that the learned dictionary is more
