@@ -77,13 +77,6 @@ its good performance, TotalSegmentator is widely used as a preprocessing tool in
 medical image analysis, including computer-aided diagnosis, surgical planning,
 and radiotherapy planning \cite{wasserthal2023totalsegmentator}.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/Chapter 2/totalsegmentator_output.png}
-    \caption{Example of automatic multi-organ segmentation produced by TotalSegmentator on a CT scan (adapted from \cite{wasserthal2023totalsegmentator}).}
-    \label{fig:totalsegmentator}
-\end{figure}
-
 Although TotalSegmentator provides accurate anatomical segmentation, it is not
 designed to classify pulmonary abnormalities such as lung nodules or
 ground-glass opacities. It also does not explain how its predictions are made.
@@ -360,6 +353,7 @@ or speed matters most for the task at hand
 
 
 \subsection{Limitations of XAI Methods}
+
 XAI methods like LIME and Grad-CAM have made deep learning models easier to
 understand. But they still have some important limitations.
 
@@ -460,16 +454,14 @@ patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
 Ben-Cohen et al. combined a fully convolutional network with
 sparsity-based dictionary learning to detect liver lesions, showing that
 dictionary learning can also be used alongside deep learning models rather
-than as a replacement for them \cite{bencohen2018liver}. A broader survey
-by Song and Cai reviewed the use of dictionary learning across denoising,
-classification, and segmentation tasks in medical imaging, and noted that
-discriminative dictionary learning methods, including LC-KSVD, are
-particularly useful when only a small number of labelled training samples
-are available \cite{song2019survey}.
+than as a replacement for them \cite{bencohen2017liver}. A broader survey
+by Zhao et al. reviewed the use of dictionary learning for CT image
+de-noising and histopathological image classification, and applied
+low-rank shared dictionary learning to glaucoma diagnosis on fundus images
+\cite{zhao2019survey}.
 
 These studies show that dictionary learning methods, and LC-KSVD in
-particular, remain a relevant classical approach in medical imaging. They
-are especially useful in settings with limited training data, and their
+particular, remain a relevant classical approach in medical imaging. Their
 sparse representations offer a natural way to interpret which parts of an
 image contributed to a decision. This makes dictionary learning a suitable
 classical baseline for comparison against deep learning-based
@@ -482,23 +474,197 @@ interpretability methods.
 
 \section{Evaluation Metrics}
 
+The evaluation of medical image analysis systems requires multiple metrics because
+different measures capture different aspects of model behaviour. In chest CT
+analysis, classification metrics describe the ability of the model to identify
+abnormal findings, segmentation metrics measure spatial agreement with reference
+annotations, and interpretability metrics evaluate whether the learned
+representations provide meaningful explanations.
+
 \subsection{Classification}
-Accuracy
-Precision
-Recall
-F1
-ROC-AUC
+
+For a binary classification problem, let $TP$, $TN$, $FP$, and $FN$ represent
+true positives, true negatives, false positives, and false negatives,
+respectively. Accuracy measures the overall proportion of correctly classified
+samples:
+
+\begin{equation}
+\mathrm{Accuracy} =
+\frac{TP+TN}{TP+TN+FP+FN}.
+\end{equation}
+
+Although accuracy provides an overall performance estimate, it can become
+misleading when the dataset contains class imbalance. Therefore, additional
+metrics based on positive class prediction are considered.
+
+Precision indicates the reliability of positive predictions by measuring the
+fraction of detected abnormalities that are correct:
+
+\begin{equation}
+\mathrm{Precision} =
+\frac{TP}{TP+FP}.
+\end{equation}
+
+Recall, also referred to as sensitivity, measures the ability of the model to
+recover existing abnormal cases:
+
+\begin{equation}
+\mathrm{Recall} =
+\frac{TP}{TP+FN}.
+\end{equation}
+
+The F1-score combines precision and recall into a single measure and provides a
+balanced evaluation when both false positive and false negative errors are
+important:
+
+\begin{equation}
+\mathrm{F1} =
+\frac{2 \times \mathrm{Precision} \times \mathrm{Recall}}
+{\mathrm{Precision}+\mathrm{Recall}}.
+\end{equation}
+
+The Area Under the Receiver Operating Characteristic Curve (AUROC) evaluates
+the ability of a classifier to separate positive and negative samples over all
+possible decision thresholds. It is calculated from the relationship between
+the true positive rate (TPR) and false positive rate (FPR):
+
+\begin{equation}
+\mathrm{AUROC}
+=
+\int_{0}^{1} \mathrm{TPR}(\mathrm{FPR})\,d\mathrm{FPR}.
+\end{equation}
+
+A higher AUROC indicates that the model can better distinguish between
+abnormal and normal cases without depending on a particular classification
+threshold.
+
+Average Precision (AP) summarizes the precision-recall relationship and is
+particularly useful for medical datasets where abnormal cases may represent a
+smaller proportion of the data:
+
+\begin{equation}
+\mathrm{AP}
+=
+\sum_n(R_n-R_{n-1})P_n,
+\end{equation}
+
+where $P_n$ and $R_n$ represent precision and recall values at different
+classification thresholds. Higher average precision indicates better detection
+of positive cases under class imbalance.
+
+The reliability of predicted probabilities is measured using Expected
+Calibration Error (ECE). The metric compares predicted confidence with the
+actual accuracy within confidence intervals:
+
+\begin{equation}
+\mathrm{ECE}
+=
+\sum_{m=1}^{M}
+\frac{|B_m|}{N}
+|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|.
+\end{equation}
+
+Lower ECE values indicate that the predicted confidence scores better reflect
+the actual likelihood of correctness.
 
 \subsection{Localization and Segmentation}
-Dice
-IoU
-Hausdorff
-Sensitivity
 
-\subsection{Interpretability}
-Faithfulness
-Localization accuracy
-Sparsity
-Clinical plausibility
+For segmentation evaluation, let $P$ represent the predicted region and $G$
+represent the ground-truth annotation. The Dice coefficient measures the overlap
+between the two regions:
+
+\begin{equation}
+\mathrm{Dice}(P,G)
+=
+\frac{2|P\cap G|}
+{|P|+|G|}.
+\end{equation}
+
+Intersection over Union (IoU), also known as the Jaccard index, measures the
+ratio between the intersection and union of the predicted and reference regions:
+
+\begin{equation}
+\mathrm{IoU}(P,G)
+=
+\frac{|P\cap G|}
+{|P\cup G|}.
+\end{equation}
+
+Dice and IoU provide complementary information about segmentation quality,
+where higher values indicate better spatial agreement between predicted and
+reference regions.
+
+
+\subsection{Interpretability of Sparse Dictionary Learning}
+
+In sparse dictionary learning, interpretability is obtained from the learned
+dictionary atoms and their corresponding sparse representations. Therefore,
+evaluation focuses on whether the dictionary provides compact, meaningful, and
+discriminative representations of CT image patterns.
+
+The reconstruction error measures how effectively the learned dictionary
+represents the input data. Given an input patch $x$, dictionary $D$, and sparse
+coefficient vector $\alpha$, the reconstruction error is defined as:
+
+\begin{equation}
+\mathrm{Reconstruction\ Error}
+=
+\|x-D\alpha\|_2^2.
+\end{equation}
+
+A lower reconstruction error indicates that the dictionary captures important
+structures present in the image data.
+
+The sparsity of the representation describes how many atoms contribute to the
+reconstruction. It is measured using the number of non-zero coefficients:
+
+\begin{equation}
+\mathrm{Sparsity}
+=
+\|\alpha\|_0 .
+\end{equation}
+
+Lower values indicate that only a small number of atoms are required to explain
+a sample, making the representation easier to interpret.
+
+Dictionary coherence evaluates the similarity between different atoms in the
+learned dictionary. The mutual coherence is defined as:
+
+\begin{equation}
+\mu(D)
+=
+\max_{i\neq j}
+\frac{|d_i^Td_j|}
+{\|d_i\|_2\|d_j\|_2}.
+\end{equation}
+
+A lower coherence value indicates that the dictionary contains less redundant
+atoms and that individual atoms capture more distinct image characteristics.
+
+Atom utilization measures how frequently each dictionary atom contributes to
+the representation of the dataset:
+
+\begin{equation}
+U_k
+=
+\sum_{i=1}^{N}
+\mathbb{1}(\alpha_{k,i}\neq0),
+\end{equation}
+
+where $U_k$ represents the activation frequency of atom $k$. This metric helps
+identify whether the learned dictionary is effectively utilized or dominated by
+a limited number of atoms.
+
+For supervised dictionary learning approaches such as LC-KSVD, class-specific
+atom activation provides additional interpretability. Disease-related atoms are
+expected to activate more frequently for samples belonging to their associated
+class compared with unrelated classes. This indicates that the learned atoms
+capture discriminative patterns rather than only general image structures.
+
+Finally, visual inspection of reconstructed dictionary atoms is used as a
+qualitative interpretability assessment. By examining representative atoms,
+their relationship with anatomical structures or pathological appearances can
+be analysed, providing an intuitive understanding of the features learned by
+the model.
 
 \section{Research Gaps}
