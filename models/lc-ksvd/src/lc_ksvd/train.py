@@ -9,17 +9,19 @@ import logging
 import pickle
 import time
 from typing import Dict
+import numpy as np
 
 from lc_ksvd.config import (
     CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, N_FEATURES,
     NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM,
 )
-from lc_ksvd.metrics import evaluate, log_class_distribution, normalise_columns
+from lc_ksvd.metrics import evaluate, log_class_distribution
 from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
 
+DROP_ZERO_NORM_PATCHES = True
 
 def _build_residual_n_components_by_class() -> Dict[str, int]:
     """
@@ -54,16 +56,19 @@ def train(algorithm: str) -> Dict:
     logger.info(f"Train - X: {X.shape}, H: {H.shape}")
     log_class_distribution(H, prefix="train (raw)")
 
-    # -- Normalise + drop zero patches ----------------------------------------
-    X_norm, _, zero_mask = normalise_columns(X)
-    keep   = ~zero_mask
-    X_norm   = X_norm[:, keep]
-    H        = H[keep]
-    scan_ids = scan_ids[keep]
+    # -- Drop zero-norm patches -----------------------------------------------
+    if DROP_ZERO_NORM_PATCHES:
+        norms = np.linalg.norm(X, axis=0)
+        zero_mask = norms < 1e-10
 
-    n_dropped = int(zero_mask.sum())
-    logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
-    log_class_distribution(H, prefix="train (after zero-norm drop)")
+        keep = ~zero_mask
+        X = X[:, keep]
+        H = H[keep]
+        scan_ids = scan_ids[keep]
+
+        n_dropped = int(zero_mask.sum())
+        logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
+        log_class_distribution(H, prefix="train (after zero-norm drop)")
 
     # -- Train ------------------------------------------------------------------
     frozen_cfg = dict(KSVD_CONFIG)
@@ -74,12 +79,12 @@ def train(algorithm: str) -> Dict:
     if algorithm == "frozen":
         cfg = frozen_cfg
         model = _fit_frozen(
-            X_norm, H, frozen_cfg,
+            X, H, frozen_cfg,
             residual_n_components_by_class=_build_residual_n_components_by_class(),
         )
     elif algorithm == "lcksvd":
         cfg = lcksvd_cfg
-        model = _fit_lcksvd(X_norm, H, lcksvd_cfg)
+        model = _fit_lcksvd(X, H, lcksvd_cfg)
     else:
         raise ValueError(f"Unknown algorithm: {algorithm!r}")
 
@@ -87,7 +92,7 @@ def train(algorithm: str) -> Dict:
     logger.info(f"Training complete in {elapsed:.1f}s")
 
     # -- Evaluate at scan level - pass integer H and scan_ids --------------------
-    train_metrics = evaluate(model, X_norm,     H,     scan_ids,     split_name="train")
+    train_metrics = evaluate(model, X, H, scan_ids, split_name="train")
 
     # -- Save ---------------------------------------------------------------------
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
