@@ -77,13 +77,6 @@ its good performance, TotalSegmentator is widely used as a preprocessing tool in
 medical image analysis, including computer-aided diagnosis, surgical planning,
 and radiotherapy planning \cite{wasserthal2023totalsegmentator}.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/Chapter 2/totalsegmentator_output.png}
-    \caption{Example of automatic multi-organ segmentation produced by TotalSegmentator on a CT scan (adapted from \cite{wasserthal2023totalsegmentator}).}
-    \label{fig:totalsegmentator}
-\end{figure}
-
 Although TotalSegmentator provides accurate anatomical segmentation, it is not
 designed to classify pulmonary abnormalities such as lung nodules or
 ground-glass opacities. It also does not explain how its predictions are made.
@@ -360,6 +353,7 @@ or speed matters most for the task at hand
 
 
 \subsection{Limitations of XAI Methods}
+
 XAI methods like LIME and Grad-CAM have made deep learning models easier to
 understand. But they still have some important limitations.
 
@@ -556,16 +550,14 @@ patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
 Ben-Cohen et al. combined a fully convolutional network with
 sparsity-based dictionary learning to detect liver lesions, showing that
 dictionary learning can also be used alongside deep learning models rather
-than as a replacement for them \cite{bencohen2018liver}. A broader survey
-by Song and Cai reviewed the use of dictionary learning across denoising,
-classification, and segmentation tasks in medical imaging, and noted that
-discriminative dictionary learning methods, including LC-KSVD, are
-particularly useful when only a small number of labelled training samples
-are available \cite{song2019survey}.
+than as a replacement for them \cite{bencohen2017liver}. A broader survey
+by Zhao et al. reviewed the use of dictionary learning for CT image
+de-noising and histopathological image classification, and applied
+low-rank shared dictionary learning to glaucoma diagnosis on fundus images
+\cite{zhao2019survey}.
 
 These studies show that dictionary learning methods, and LC-KSVD in
-particular, remain a relevant classical approach in medical imaging. They
-are especially useful in settings with limited training data, and their
+particular, remain a relevant classical approach in medical imaging. Their
 sparse representations offer a natural way to interpret which parts of an
 image contributed to a decision. This makes dictionary learning a suitable
 classical baseline for comparison against deep learning-based

@@ -21,6 +21,7 @@ MODELS_DIR  = OUTPUT_DIR / "models"        # saved LC-KSVD models (.pkl)
 RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii.gz)
 CHECKPOINT_DIR = OUTPUT_DIR / "checkpoints"
+SPARSE_CODE_DIR = OUTPUT_DIR / "sparse_codes"
 CHECKPOINT_RESUME = True
 
 # ─── Abnormality classes ──────────────────────────────────────────────────────
