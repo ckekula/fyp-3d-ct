@@ -115,12 +115,12 @@ def sample_abnormal_patches(
         patch = extract_patch(volume, x0, y0, z0)
         if patch is None:
             continue
-        
+
         mask_patch = extract_patch(category_mask, x0, y0, z0)
         if mask_patch is None or not has_sufficient_lesion(mask_patch):
             continue
 
-        writer.write(patch)
+        writer.write(patch, (x0, y0, z0))
         labels.append(label_idx)
 
     return labels
@@ -130,7 +130,7 @@ def collect_abnormal_patches(
     positive_ids: List[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
-) -> Tuple[List[int], List[str]]:
+) -> Tuple[List[int], List[str], List[Tuple[int, int, int]]]:
     all_labels: List[int] = []
     all_scan_ids: List[str] = []
     class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
@@ -145,12 +145,12 @@ def collect_abnormal_patches(
             continue
 
         if scan["mask"] is None or not scan["finding_map"]:
-            logger.debug(f"  {scan_id}: no mask or finding_map, skipping.")
+            logger.info(f"  {scan_id}: no mask or finding_map, skipping.")
             continue
 
         category_masks = _build_category_masks(scan["mask"], scan["finding_map"])
         if not category_masks:
-            logger.debug(f"  {scan_id}: no valid category masks, skipping.")
+            logger.info(f"  {scan_id}: no valid category masks, skipping.")
             continue
 
         scan_patch_count = 0
@@ -161,9 +161,9 @@ def collect_abnormal_patches(
             all_labels.extend(labels)
             all_scan_ids.extend([scan_id] * len(labels))
             scan_patch_count += len(labels)
-            logger.debug(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
+            logger.info(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
 
-        logger.debug(f"  {scan_id}: {scan_patch_count} total patches across all categories")
+        logger.info(f"  {scan_id}: {scan_patch_count} total patches across all categories")
 
     label_arr = np.array(all_labels, dtype=np.int64) if all_labels else np.array([], dtype=np.int64)
     for category in [k for k in CLASS_ORDER if k != "normal"]:
@@ -172,4 +172,4 @@ def collect_abnormal_patches(
         logger.info(f"  → {count} patches for '{category}'")
 
     logger.info(f"  → {len(all_labels)} total abnormal patches collected.")
-    return all_labels, all_scan_ids
+    return all_labels, all_scan_ids, writer.coords

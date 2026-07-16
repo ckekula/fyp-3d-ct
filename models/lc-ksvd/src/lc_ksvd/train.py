@@ -15,7 +15,7 @@ from lc_ksvd.config import (
     CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, N_FEATURES,
     NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM,
 )
-from lc_ksvd.metrics import evaluate, log_class_distribution
+from lc_ksvd.metrics import log_class_distribution
 from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
@@ -52,7 +52,7 @@ def train(algorithm: str) -> Dict:
     logger.info(f"\n{'='*60}\nTraining unified model (algorithm={algorithm})\n{'='*60}")
 
     # -- Load patches ---------------------------------------------------------
-    X, H, scan_ids = load_unified_patch_matrix(split="train")
+    X, H, scan_ids, _coords = load_unified_patch_matrix(split="train")
     logger.info(f"Train - X: {X.shape}, H: {H.shape}")
     log_class_distribution(H, prefix="train (raw)")
 

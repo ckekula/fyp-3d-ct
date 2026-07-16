@@ -50,7 +50,7 @@ def main() -> None:
 
     split = "test"
     # -- Load patches and labels ------------------------------------------------
-    X, labels, _scan_ids = load_unified_patch_matrix(split=split)
+    X, labels, _scan_ids, _coords = load_unified_patch_matrix(split=split)
 
     # -- Load trained dictionary --------------------------------------------------
     D = load_dictionary(DICT_MODEL_PATH)
