@@ -15,16 +15,14 @@ import nibabel as nib
 import numpy as np
 from scipy import ndimage
 import SimpleITK as sitk
-
 from lungmask import LMInferer
 
-
 from lc_ksvd.config import (
-    BACKGROUND_HU, HU_MAX, HU_MIN, LOWER_HU, MASKS_DIR, TARGET_SPACING_MM,
+    BACKGROUND_HU, LOWER_HU, MASKS_DIR, TARGET_SPACING_MM,
     UPPER_HU, VOLUMES_DIR,
 )
 
-lung_inferer = LMInferer()
+lung_inferer = LMInferer(tqdm_disable=True)
 
 # ─── Path resolution ──────────────────────────────────────────────────────────
 

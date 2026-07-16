@@ -14,8 +14,7 @@ import numpy as np
 from sklearn.preprocessing import label_binarize
 
 from lc_ksvd.config import CLASS_ORDER, NORMAL_CLASS_IDX, CHECKPOINT_DIR, CHECKPOINT_RESUME
-from reppi import KSVD, LCKSVD
-from reppi.dictionary.frozen import IncrementalFrozenDictionary
+from reppi import KSVD, LCKSVD, IncrementalFrozenDictionary
 
 logger = logging.getLogger(__name__)
 
@@ -82,10 +81,6 @@ def _fit_frozen(
         n_nonzero_coefs=base_cfg["n_nonzero_coefs"],
     )
  
-    logger.info(
-        f"Fitting base dictionary on {X_base.shape[1]} normal patches "
-        f"(n_components={base_cfg['n_components']})..."
-    )
     inc.fit_base(
         X_base,
         class_label=NORMAL_CLASS_IDX,

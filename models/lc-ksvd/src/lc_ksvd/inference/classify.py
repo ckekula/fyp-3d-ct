@@ -7,15 +7,16 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 
 from lc_ksvd.config import MODELS_DIR, SPARSE_CODE_DIR
-from lc_ksvd.data_loader.unified_loader import load_unified_patch_matrix
-from lc_ksvd.preprocessing import normalise_columns  # adjust import path if different
+from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
+from lc_ksvd.metrics import normalise_columns
+from lc_ksvd.inference.evaluate import evaluate
+
 from reppi import OMP
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-DICT_MODEL_PATH = MODELS_DIR / "unified_frozen_lcksvd.pkl"
-SPARSE_CODES_PATH = SPARSE_CODE_DIR / "sparse_codes.npz"
+DICT_MODEL_PATH = MODELS_DIR / "unified_frozen.pkl"
 SVM_MODEL_PATH = MODELS_DIR / "svm_model.pkl"
 LOG_REG_MODEL_PATH = MODELS_DIR / "log_reg_model.pkl"
 
@@ -43,46 +44,43 @@ def encode_patches(X: np.ndarray, D: np.ndarray, n_nonzero_coefs: int = N_NONZER
     return Gamma
 
 
-def train_svm(gamma: np.ndarray, labels: np.ndarray) -> LinearSVC:
-    clf = LinearSVC(C=1.0, dual=False)
-    clf.fit(gamma.T, labels)
-    return clf
-
-
-def train_log_reg(gamma: np.ndarray, labels: np.ndarray) -> LogisticRegression:
-    clf = LogisticRegression(solver="saga", penalty="l2", max_iter=5000)
-    clf.fit(gamma.T, labels)
-    return clf
-
-
 def main() -> None:
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     SPARSE_CODE_DIR.mkdir(parents=True, exist_ok=True)
 
+    split = "test"
     # -- Load patches and labels ------------------------------------------------
-    X, labels, _scan_ids = load_unified_patch_matrix(split="train")
+    X, labels, _scan_ids, _coords = load_unified_patch_matrix(split=split)
 
     # -- Load trained dictionary --------------------------------------------------
     D = load_dictionary(DICT_MODEL_PATH)
 
     # -- Sparse-code patches against the dictionary -------------------------------
-    Gamma = encode_patches(X, D)
+    if (SPARSE_CODE_DIR / f"{split}_sparse_codes.npz").exists():
+        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{split}_sparse_codes.npz'}")
+        data = np.load(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz")
+        Gamma = data["Gamma"]
+    else:
+        Gamma = encode_patches(X, D)
 
-    # -- Save sparse codes (dense) alongside labels for reuse ---------------------
-    np.savez_compressed(SPARSE_CODES_PATH, Gamma=Gamma, labels=labels)
-    logger.info(f"Saved sparse codes -> {SPARSE_CODES_PATH}")
+        # -- Save sparse codes (dense) alongside labels for reuse ---------------------
+        np.savez_compressed(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz", Gamma=Gamma, labels=labels)
+        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / 'sparse_codes.npz'}")
 
-    # -- Train SVM ------------------------------------------------------------------
-    logger.info("Training LinearSVC...")
-    svm_clf = train_svm(Gamma, labels)
-    joblib.dump(svm_clf, SVM_MODEL_PATH)
-    logger.info(f"Saved SVM model -> {SVM_MODEL_PATH}")
 
-    # -- Train Logistic Regression ---------------------------------------------------
-    logger.info("Training LogisticRegression...")
-    log_reg_clf = train_log_reg(Gamma, labels)
-    joblib.dump(log_reg_clf, LOG_REG_MODEL_PATH)
-    logger.info(f"Saved LogReg model -> {LOG_REG_MODEL_PATH}")
+    # -- Inference and evaluate using SVM ------------------------------------------------------------------
+    logger.info("Inferencing from LinearSVC...")
+    svm_clf = joblib.load(SVM_MODEL_PATH)
+    y_pred_svm = svm_clf.predict(Gamma.T)
+    evaluate(y_pred_svm, labels)
+
+
+
+    # -- Inference and evaluate using Logistic Regression ---------------------------------------------------
+    logger.info("Inferencing from LogisticRegression...")
+    log_reg_clf = joblib.load(LOG_REG_MODEL_PATH)
+    y_pred_log_reg = log_reg_clf.predict(Gamma.T)
+    evaluate(y_pred_log_reg, labels)
 
 
 if __name__ == "__main__":

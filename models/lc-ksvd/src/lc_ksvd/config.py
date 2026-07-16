@@ -27,7 +27,6 @@ CHECKPOINT_RESUME = True
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
-    "normal": "Normal (no findings)",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }
