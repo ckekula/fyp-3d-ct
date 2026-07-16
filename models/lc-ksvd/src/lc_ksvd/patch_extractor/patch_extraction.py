@@ -178,4 +178,4 @@ def load_unified_patch_matrix(
     return X, H, scan_ids, coords
 
 if __name__ == "__main__":
-    extract_unified(split="train")
+    extract_unified(split="test")
