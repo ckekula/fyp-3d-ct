@@ -21,7 +21,7 @@ from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
 
-DROP_ZERO_NORM_PATCHES = True
+DROP_ZERO_NORM_PATCHES = False
 
 def _build_residual_n_components_by_class() -> Dict[str, int]:
     """
