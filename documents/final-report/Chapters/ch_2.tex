@@ -1,10 +1,16 @@
 \chapter{Literature Review}
 
-\section{Pulmonary Disease}
+\section{Clinical Background}
 
-Statistics on lung disease prevalence, morbidity, and mortality \cite{Wisnivesky2019}.
+Chronic respiratory diseases account for more than 4 million deaths globally per year \cite{}.
+Research shows that early detection of pulmonary diseases, particularly lung cancer and Chronic Obstructive Pulmonary Disease
+(COPD) dramatically lowers mortality rates.
+Two landmark studies, the National Lung Screening Trial (NLST) and the Nederlands-Leuvens Longkanker Screenings Onderzoek (NELSON)
+trial, have shown that low-dose CT (LDCT) screening educes lung cancer mortality by 20\% to 33\% compared to CXR \cite{nlst2011, nelson2020}.
 
 \subsection{GGO and Pulmonary Nodules}
+
+LDCT is commonly used to detect abnormalities such as pulmonary nodules and GGO in the lungs.
 
 What are pulmonary nodules and ground-glass opacities (GGOs)?
 Why are they clinically important?
@@ -59,7 +65,38 @@ The model combines image encoding with language understanding and uses a transfo
 The output is not only a segmentation map but also a form of interpretable localization, since the generated mask indicates where the model believes the prompted abnormality is present.
 Therefore, BiomedParse serves both as a SotA reference model and as a practical contrast for discussing performance, localization quality, and interpretability in 3D chest CT analysis.
 
-\subsection{TotalSegmentor}
+
+\subsection{TotalSegmentator}
+
+Accurate anatomical segmentation is an important step in CT-based
+computer-aided diagnosis (CAD). Earlier deep learning methods were mainly
+developed to segment only a few organs. To solve this problem, Wasserthal
+\textit{et al.} introduced \textbf{TotalSegmentator}, a deep learning framework
+that can automatically segment 104 anatomical structures from a single CT scan
+\cite{wasserthal2023totalsegmentator}. The framework is built on the
+\textit{nnU-Net} architecture, which automatically adjusts the training process
+to different datasets. This helps the model achieve reliable segmentation on
+different clinical CT images.
+
+The model was trained using more than 1,200 routine clinical CT scans collected
+from different hospitals and patient groups. It achieved a mean Dice Similarity
+Coefficient (DSC) of about 0.94, showing high segmentation accuracy. Because of
+its good performance, TotalSegmentator is widely used as a preprocessing tool in
+medical image analysis, including computer-aided diagnosis, surgical planning,
+and radiotherapy planning \cite{wasserthal2023totalsegmentator}.
+
+Although TotalSegmentator provides accurate anatomical segmentation, it is not
+designed to classify pulmonary abnormalities such as lung nodules or
+ground-glass opacities. It also does not explain how its predictions are made.
+Therefore, additional methods are needed for disease classification and
+interpretable clinical decision-making.
+
+The proposed research aims to overcome these limitations by developing an
+interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
+abnormality classification and grounded localization. While TotalSegmentator
+provides useful anatomical information, the proposed framework focuses on
+improving both classification performance and the interpretability of the
+results.
 
 \subsection{Merlin}
 
@@ -75,25 +112,294 @@ Merlin is part of a broader wave of work bringing vision-language modeling into 
 
 \subsection{CT-CLIP}
 
+CT images contain valuable information for diagnosing pulmonary diseases, while
+radiology reports provide detailed clinical descriptions. To learn information
+from both sources, Hamamci \textit{et al.} proposed \textbf{CT-CLIP}, a
+vision-language foundation model for chest CT images
+\cite{hamamci2024ctclip}. Unlike traditional supervised models that require
+large amounts of labeled data, CT-CLIP learns the relationship between CT scans
+and their corresponding radiology reports using contrastive learning. This
+allows the model to learn meaningful image and text representations without
+task-specific annotations.
+
+CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder
+extracts features from CT volumes, while the text encoder processes the
+corresponding radiology reports. During training, the model learns to match
+each CT scan with its correct report in a shared feature space. The model was
+trained on thousands of chest CT scans paired with radiology reports, allowing
+it to learn both anatomical and pathological information. It has shown strong
+performance in pulmonary disease classification, image retrieval, and zero-shot
+learning tasks \cite{hamamci2024ctclip}.
+
+\begin{figure}[ht]
+\centering
+% \includegraphics[width=0.85\linewidth]{images/Chapter 2/ctclip_framework.png}
+\caption{Overview of the CT-CLIP framework showing contrastive learning between
+CT images and paired radiology reports (adapted from
+\cite{hamamci2024ctclip}).}
+\label{fig:ctclip}
+\end{figure}
+
+Although CT-CLIP achieves good performance, it mainly learns high-level feature
+representations instead of directly localizing pulmonary abnormalities. It also
+does not provide inherent explanations for its predictions, making the decision
+process difficult to understand.
+
+The proposed research aims to overcome these limitations by developing an
+interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
+abnormality classification and grounded localization. While CT-CLIP learns rich
+image and text representations, the proposed framework focuses on providing
+transparent and interpretable diagnostic results.
+
 \section{Explainable AI (XAI) in Medical Imaging}
 
-Why is interpretability important in healthcare?
-What regulatory and ethical requirements exist?
-Why do clinicians require explanations?
-Why is explainability especially important for CT diagnosis?
+Artificial intelligence (AI) has become an important tool in medical imaging by
+supporting tasks such as disease detection, classification, and image analysis.
+Many deep learning models achieve high accuracy, but their decision-making
+process is often difficult to understand. These models are commonly referred to
+as "black-box" models because they do not clearly explain how a prediction is
+made \cite{samek2017explainable,guidotti2018survey}. In healthcare, this lack of
+transparency can reduce clinicians' confidence in AI-assisted diagnosis.
+
+Interpretability is important because medical decisions directly affect patient
+care. Clinicians need to understand why a model predicts a particular disease
+before using its results in clinical practice. Explainable AI (XAI) provides
+methods that help users understand how AI models make decisions. This improves
+trust, supports clinical decision-making, and helps identify possible model
+errors or biases \cite{tjoa2021survey}.
+
+The importance of XAI has also increased due to ethical and regulatory
+requirements. Healthcare AI systems are expected to be transparent, reliable,
+and accountable before they are used in real clinical environments.
+Explainable models help meet these requirements by providing evidence that
+supports their predictions instead of producing results without explanation
+\cite{guidotti2018survey,tjoa2021survey}.
+
+Explainability is especially important for chest CT diagnosis because pulmonary
+abnormalities such as lung nodules and ground-glass opacities can be difficult
+to identify. Clinicians need to know which regions of the CT scan influenced the
+model's prediction. This helps verify the diagnosis and increases confidence in
+AI-assisted clinical decisions. Therefore, improving interpretability has become
+an important research direction in computer-aided diagnosis systems
+\cite{tjoa2021survey}.
+
 
 \subsection{SHAP}
 
+SHapley Additive exPlanations (SHAP) is a widely used explainable artificial
+intelligence (XAI) method for interpreting machine learning models. It is based
+on Shapley values from cooperative game theory, where each feature is assigned
+an importance value according to its contribution to the final prediction. This
+provides a consistent and theoretically sound approach for explaining both
+traditional machine learning and deep learning models
+\cite{lundberg2017unified}.
+
+One of the main advantages of SHAP is that it provides both global and local
+explanations. Global explanations identify the features that have the greatest
+overall influence on model predictions across the entire dataset. Local
+explanations show how each feature contributes to the prediction of an
+individual sample. SHAP values can be positive or negative, indicating whether
+a feature increases or decreases the predicted outcome. These explanations help
+users understand why a model makes a particular decision and improve confidence
+in AI-based systems \cite{lundberg2017unified,tjoa2021survey}.
+
+In medical imaging, SHAP has been widely used to improve the transparency and
+interpretability of artificial intelligence models. It helps researchers and
+clinicians identify the imaging features and clinical variables that have the
+greatest influence on model predictions. This makes it easier to determine
+whether the model is learning meaningful medical information rather than
+irrelevant patterns. As a result, SHAP supports the development of more
+reliable and trustworthy computer-aided diagnosis systems
+\cite{holzinger2019causability,tjoa2021survey}.
+
+For pulmonary disease analysis using CT images, SHAP can explain the factors
+that influence a model's predictions by measuring the contribution of each
+input feature. These explanations help clinicians understand AI-assisted
+decisions, verify whether the model focuses on clinically relevant information,
+and identify possible prediction errors. Therefore, SHAP improves the
+interpretability, reliability, and clinical acceptance of deep learning models
+used for pulmonary disease diagnosis
+\cite{lundberg2017unified,tjoa2021survey}.
+
+
+
 \subsection{LIME}
+Local Interpretable Model-agnostic Explanations (LIME) is a popular XAI method
+used to explain the predictions of machine learning models. It is model-agnostic,
+which means it can be used with any type of model, no matter how it works
+internally. LIME explains one prediction at a time by building a simple model
+that approximates how the original model behaves near that prediction
+\cite{ribeiro2016should}.
+
+For image data, LIME first divides the image into small regions, called
+superpixels. In medical images, these regions can also be meaningful patches
+of the scan. LIME then creates many versions of the image by hiding or
+changing some of these regions and checks how the model's prediction changes
+each time. A simple linear model is then fitted to these results, and the
+regions with the highest importance are shown as the explanation
+\cite{ribeiro2016should,tjoa2021survey}.
+
+In medical imaging, this helps researchers and doctors see which parts of an
+image the model used to make its decision. This makes it easier to check if
+the model is looking at real medical features instead of irrelevant patterns
+\cite{holzinger2019causability,tjoa2021survey}. For pulmonary disease detection
+using CT scans, LIME can point out the regions linked to abnormalities, helping
+clinicians confirm that the model is making sensible decisions and catch
+possible errors \cite{tjoa2021survey}.
+
+However, LIME also has some drawbacks. Its explanations can change between
+runs because of the randomness in how it perturbs the input, and the results
+depend on settings like the number of samples used
+\cite{ribeiro2016should}. It is also slow to run on large 3D CT scans, since
+each perturbed sample needs a separate prediction from the model. Because of
+this, gradient-based methods like Grad-CAM are often preferred for 3D medical
+imaging tasks \cite{tjoa2021survey}.
+
+
+
+%Also add Grad-CAM++
 
 \subsection{Grad-CAM}
 
-Also add Grad-CAM++
+Gradient-weighted Class Activation Mapping (Grad-CAM) is a popular XAI method
+used to explain the predictions of convolutional neural networks (CNNs). It is
+not model-agnostic like LIME. It only works with CNN models, because it uses
+the gradients from the last convolutional layer to find out which parts of the
+image the model looked at \cite{selvaraju2017grad}.
+
+Grad-CAM works by looking at the feature maps from the last convolutional
+layer. It calculates the gradient of the predicted class score with respect
+to these feature maps. These gradients are averaged to get an importance
+weight for each feature map. The feature maps are then combined using these
+weights and passed through a ReLU function, so only the parts with a positive
+effect on the prediction are kept. This gives a coarse heatmap that shows the
+regions of the image that mattered most for the prediction
+\cite{selvaraju2017grad}.
+
+In medical imaging, Grad-CAM is used a lot because it is fast and can be
+applied to any CNN without changing the model. It helps check if a deep
+learning model is looking at real abnormalities, like tumours or lesions,
+instead of random background areas \cite{ennab2025advancing,tjoa2021survey}.
+For pulmonary disease detection using CT images, Grad-CAM can highlight areas
+linked to nodules or ground-glass opacities (GGOs), helping doctors confirm
+the model's decision is based on meaningful areas \cite{tjoa2021survey}.
+
+However, Grad-CAM has some limitations. Since it uses the last convolutional
+layer, its heatmap has lower resolution than the input image and needs to be
+upsampled. This can make the explanation blurry and less accurate for small
+abnormalities \cite{selvaraju2017grad}. It can also struggle when there are
+multiple objects of the same class in an image, since it may highlight them
+all together instead of separately \cite{ennab2025advancing}.
+
+\subsection{Grad-CAM++}
+
+Grad-CAM++ is an improved version of Grad-CAM. It was made to fix some of
+Grad-CAM's problems, especially when an image has more than one object of the
+same class, or when the object is small \cite{chattopadhay2018grad}.
+
+The main difference is how the importance weight for each feature map is
+calculated. Grad-CAM uses a simple average of the gradients. Grad-CAM++ uses a
+weighted combination of higher-order derivatives instead. This gives more
+importance to the pixels that contribute the most to the prediction, instead
+of treating all pixels equally \cite{chattopadhay2018grad}. Because of this,
+Grad-CAM++ can locate objects better when there are multiple instances of the
+same class, and it can highlight the full object more accurately than
+Grad-CAM.
+
+In medical imaging, this is useful when there is more than one abnormality of
+the same type in a scan, like multiple lung nodules in one CT slice.
+Grad-CAM++ can separate and highlight each nodule clearly, giving a fuller
+explanation than Grad-CAM, which may only focus on the biggest one
+\cite{chattopadhay2018grad,ennab2025advancing}. For pulmonary CT analysis,
+this means Grad-CAM++ can help doctors see all the important abnormal areas
+in a scan, not just the most obvious one. This matters because missing a
+small nodule could lead to a missed diagnosis.
+
+However, Grad-CAM++ also has drawbacks. It costs more to compute than
+Grad-CAM, since it needs to calculate higher-order gradients
+\cite{chattopadhay2018grad}. It also has the same resolution problem as
+Grad-CAM, since it also relies on the last convolutional layer and needs
+upsampling to match the input image size \cite{ennab2025advancing}.
+
+
 
 \subsection{Other CAM Methods}
-Hires-CAM, Score-CAM, XGrad-CAM, etc.
+
+%
+
+Besides Grad-CAM and Grad-CAM++, several other CAM-based methods have been
+proposed to address specific weaknesses in the original approach. Three
+common ones are HiResCAM, Score-CAM, and XGrad-CAM.
+
+HiResCAM was introduced to fix a problem with how Grad-CAM averages
+gradients. This averaging step can sometimes make Grad-CAM highlight regions
+that the model did not actually use for its prediction. HiResCAM solves this
+by multiplying the gradients with the feature maps directly, instead of
+averaging the gradients first. This produces an explanation that is more
+faithful to what the model actually used to make its decision
+\cite{draelos2020hirescam}. HiResCAM has been applied to 3D medical imaging
+tasks, such as detecting abnormalities across CT slices, where faithful
+localisation is especially important \cite{draelos2020hirescam}.
+
+Score-CAM takes a different approach. Instead of using gradients at all, it
+measures the importance of each feature map by masking the input image with
+that feature map and checking how much the model's confidence score changes.
+Feature maps that cause a bigger increase in confidence are given a higher
+weight \cite{wang2020scorecam}. Because it does not use gradients, Score-CAM
+avoids some of the noise and instability that gradient-based methods can
+have. However, it is much slower, since it needs a separate forward pass
+through the model for every feature map \cite{wang2020scorecam}.
+
+XGrad-CAM was designed to make Grad-CAM more mathematically consistent. The
+authors introduced two properties, called sensitivity and conservation, that
+a good explanation method should satisfy. Grad-CAM does not fully satisfy
+these properties, so XGrad-CAM changes how the importance weights are
+calculated to better meet them \cite{fu2020xgradcam}. In practice, this gives
+XGrad-CAM better localisation than Grad-CAM while still being fast to compute,
+since it does not need the extra higher-order gradients that Grad-CAM++
+requires \cite{fu2020xgradcam}.
+
+Each of these methods offers a different trade-off. HiResCAM improves
+faithfulness with almost no extra cost, Score-CAM improves stability at the
+cost of speed, and XGrad-CAM improves theoretical grounding while staying
+efficient. For 3D medical imaging tasks such as pulmonary CT analysis, this
+means the choice of method should depend on whether faithfulness, stability,
+or speed matters most for the task at hand
+\cite{draelos2020hirescam,wang2020scorecam,fu2020xgradcam}.
+
 
 \subsection{Limitations of XAI Methods}
+
+XAI methods like LIME and Grad-CAM have made deep learning models easier to
+understand. But they still have some important limitations.
+
+One issue is that many of these methods only give an approximate explanation,
+not an exact one. LIME builds a simple model around a prediction to explain
+it. But this simple model may not always match the real model well, especially
+for complex, non-linear networks \cite{ribeiro2016should,guidotti2018survey}.
+
+Another problem is instability. Running the same method on the same input
+more than once can give slightly different results. This makes it harder for
+doctors to trust the explanation if it keeps changing \cite{ribeiro2016should,tjoa2021survey}.
+
+Gradient-based methods like Grad-CAM have their own issues too. They rely on
+the last convolutional layer, so the heatmap has low resolution and needs to
+be upsampled. This can make it harder to localise small abnormalities
+precisely \cite{selvaraju2017grad,ennab2025advancing}.
+
+Most XAI methods also only show where the model looked, not why it made that
+decision. They do not explain the deeper reasoning behind a prediction
+\cite{holzinger2017we,samek2017explainable}. This is a real problem in medical
+imaging, since doctors often need to understand the reasoning, not just the
+location.
+
+Finally, there is no single standard way to measure how good an explanation
+is. Different XAI methods are often evaluated with different metrics, which
+makes it hard to compare them fairly \cite{tjoa2021survey,guidotti2018survey}.
+
+Because of these limitations, XAI methods should be used carefully. Their
+explanations need to be checked before being trusted in real clinical
+decisions.
 
 \section{Sparse Representation}
 Why is sparsity useful?
@@ -199,16 +505,147 @@ D_t = \arg\min_{D} \ \frac{1}{t}\sum_{i=1}^{t} \left( \frac{1}{2}\|x_i - D\alpha
 which can be solved efficiently using $A_t$ and $B_t$ instead of storing all past samples. This makes ODL well suited for large-scale problems, including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{[10.1145/1553374.1553463]}.
 
 \section{Discriminative Dictionary Learning}
-Why isn't reconstruction enough?
-What is discriminative dictionary learning?
 
-\subsection{Label-Consistent K-SVD (LC-KSVD)}
+Traditional dictionary learning methods mainly focus on minimizing the
+reconstruction error between the input data and its sparse representation
+\cite{aharon2006ksvd}. However, good reconstruction does not necessarily 
+produce features that are useful for classification. Samples from different 
+classes may activate similar atoms if the learned dictionary only captures 
+common structures in the data.
 
-\subsection{Fischer Discriminative Dictionary Learning (FDDL)}
+Discriminative dictionary learning addresses this limitation by incorporating
+class information during dictionary optimization. The objective is not only to
+represent the input samples accurately but also to learn sparse codes that
+improve the separation between different classes. By learning class aware atoms, 
+discriminative dictionary learning can provide both classification capability 
+and a more interpretable representation. Several approaches have been proposed, 
+including Label Consistent K-SVD (LC-KSVD) and Fisher Discriminative Dictionary 
+Learning (FDDL), which extend the K-SVD framework by introducing supervised 
+learning constraints.
 
-\subsection{Frozen Dictionary Learning}
+\subsection{Label Consistent K-SVD (LC-KSVD)}
 
-\section{Dictionary Learning in Medical Imaging}
+Label Consistent K-SVD (LC-KSVD), introduced by Jiang et al. \cite{jiang2013lcksvd}, 
+extends the classic K-SVD framework by embedding label consistency into the 
+dictionary update process. The core idea is to encourage sparse codes from 
+samples of the same class to exhibit similar activation patterns, while those 
+from different classes diverge. This is achieved without sacrificing the 
+algorithm's efficient iterative structure involving sparse coding and dictionary 
+refinement.
+
+The method comes in two main variants. LC-KSVD1 incorporates a label consistency 
+term that aligns the sparse codes with an ideal discriminative structure through 
+a linear transformation:
+
+\begin{equation}
+\min_{D, A, A_c} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T \ \forall i.
+\end{equation}
+
+Here, \(Q\) is a target matrix encoding class specific indicator patterns, and 
+\(A_c\) learns to map codes toward this structure. LC-KSVD2 extends LC-KSVD1 by 
+adding a classifier learning term. The dictionary, sparse codes, label consistency 
+transformation, and classifier are jointly optimized:
+
+\begin{equation}
+\min_{D, A, A_c, W} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 + \beta \|H - W A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T,
+\end{equation}
+
+where \(H\) contains the label information. The additional classification term 
+allows the learned sparse representation to be directly optimized for prediction. 
+Due to its ability to learn class specific atoms, LC-KSVD has been applied in 
+image classification tasks where interpretability of learned features is important 
+\cite{jiang2013lcksvd}.
+
+\subsection{Fisher Discriminative Dictionary Learning (FDDL)}
+
+Fisher Discriminative Dictionary Learning (FDDL), proposed by Yang et al. \cite{yang2011fddl}, 
+is another supervised dictionary learning approach that directly enforces 
+Fisher like criteria on both the dictionary atoms and the sparse coefficients. 
+It learns a structured dictionary \(D = [D_1, D_2, \dots, D_c]\) with class specific 
+sub dictionaries \(D_i\) while promoting sparse codes \(A\) that exhibit low 
+within class scatter and high between class scatter.
+
+The core objective combines a discriminative fidelity term \(r(\cdot)\) 
+(ensuring good reconstruction within class and poor reconstruction across classes) 
+with a Fisher discrimination penalty on coefficients:
+
+\begin{equation}
+\min_{D, X} \sum_i r(A_i, D, X_i) + \lambda_1 \|X\|_1 + \lambda_2 \Big( \operatorname{tr}(S_W(X)) - \operatorname{tr}(S_B(X)) + \eta \|X\|_F^2 \Big),
+\end{equation}
+
+where \(r(\cdot)\) encourages each class to be well represented by its own 
+sub dictionary while poorly represented by others. \(S_W\) and \(S_B\) denote 
+the within class and between class scatter matrices of the sparse codes. 
+The elastic term controlled by \(\eta\) is added to guarantee that the overall 
+Fisher discrimination function remains convex, which greatly improves optimization 
+stability \cite{yang2011fddl}.
+
+Compared with LC-KSVD, which introduces label consistency through a learned
+transformation and classifier, FDDL focuses on improving the statistical
+distribution of sparse codes. This makes it suitable for classification tasks
+where the separation between classes is important.
+
+\subsection{Frozen Dictionary Learning for Outlier Separation}
+
+While most discriminative methods update the entire dictionary during training, 
+certain scenarios benefit from preserving previously acquired knowledge. 
+Frozen dictionary learning, as introduced in the Outlier Learning via Augmented 
+Frozen (OLAF) Dictionaries framework \cite{carroll2017frozen}, addresses this 
+by fixing a subset of atoms learned from baseline (normal) data while allowing 
+new atoms to adapt to anomalous samples.
+
+The composite dictionary takes the partitioned form \(D = [D_f \ | \ D_u]\), 
+where \(D_f\) remains frozen after initial training on normal data, and only 
+the unfrozen portion \(D_u\) is updated on data containing deviations. Both 
+K-SVD and Alternating Minimization algorithms can be modified straightforwardly 
+to respect this constraint by skipping updates on frozen columns during the 
+dictionary refinement stage \cite{carroll2017frozen}.
+
+This approach is particularly useful when preserving existing knowledge is 
+important. In medical imaging, a dictionary learned from normal anatomy can be 
+kept fixed, while additional atoms are learned from abnormal cases. This 
+separation helps maintain normal structural information and improves the 
+interpretability of disease related atoms. However, the effectiveness of this 
+method depends on the quality of the initial frozen dictionary, since an 
+incomplete initial representation may limit the ability of the model to adapt 
+to new patterns.
+
+\subsection{Dictionary Learning in Medical Imaging}
+
+Dictionary learning has been applied to many areas of medical image
+analysis over the past two decades. The main idea is to learn a set of
+atoms directly from the data, so that each image or patch can be
+represented as a sparse combination of these atoms. This approach was
+first popularised by the K-SVD algorithm, which learns an overcomplete
+dictionary by alternating between sparse coding and dictionary updateq
+steps \cite{aharon2006ksvd}. Later, Jiang et al. extended this idea to
+classification tasks by proposing Label Consistent K-SVD (LC-KSVD), which
+adds a label consistency term so that the learned dictionary is more
+discriminative for classification \cite{jiang2013lcksvd}.
+
+In medical imaging, dictionary learning has been used for a wide range of
+tasks. Ravishankar and Bresler used dictionary learning to reconstruct MRI
+images from undersampled k-space data, allowing shorter scan times without
+losing image quality \cite{ravishankar2011mri}. Tong et al. applied
+discriminative dictionary learning to segment the hippocampus from brain
+MRI scans, showing that sparse coding can capture useful anatomical
+patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
+Ben-Cohen et al. combined a fully convolutional network with
+sparsity-based dictionary learning to detect liver lesions, showing that
+dictionary learning can also be used alongside deep learning models rather
+than as a replacement for them \cite{bencohen2017liver}. A broader survey
+by Zhao et al. reviewed the use of dictionary learning for CT image
+de-noising and histopathological image classification, and applied
+low-rank shared dictionary learning to glaucoma diagnosis on fundus images
+\cite{zhao2019survey}.
+
+These studies show that dictionary learning methods, and LC-KSVD in
+particular, remain a relevant classical approach in medical imaging. Their
+sparse representations offer a natural way to interpret which parts of an
+image contributed to a decision. This makes dictionary learning a suitable
+classical baseline for comparison against deep learning-based
+interpretability methods.
+
 
 \subsection{Image Reconstruction}
 
@@ -216,23 +653,197 @@ What is discriminative dictionary learning?
 
 \section{Evaluation Metrics}
 
+The evaluation of medical image analysis systems requires multiple metrics because
+different measures capture different aspects of model behaviour. In chest CT
+analysis, classification metrics describe the ability of the model to identify
+abnormal findings, segmentation metrics measure spatial agreement with reference
+annotations, and interpretability metrics evaluate whether the learned
+representations provide meaningful explanations.
+
 \subsection{Classification}
-Accuracy
-Precision
-Recall
-F1
-ROC-AUC
+
+For a binary classification problem, let $TP$, $TN$, $FP$, and $FN$ represent
+true positives, true negatives, false positives, and false negatives,
+respectively. Accuracy measures the overall proportion of correctly classified
+samples:
+
+\begin{equation}
+\mathrm{Accuracy} =
+\frac{TP+TN}{TP+TN+FP+FN}.
+\end{equation}
+
+Although accuracy provides an overall performance estimate, it can become
+misleading when the dataset contains class imbalance. Therefore, additional
+metrics based on positive class prediction are considered.
+
+Precision indicates the reliability of positive predictions by measuring the
+fraction of detected abnormalities that are correct:
+
+\begin{equation}
+\mathrm{Precision} =
+\frac{TP}{TP+FP}.
+\end{equation}
+
+Recall, also referred to as sensitivity, measures the ability of the model to
+recover existing abnormal cases:
+
+\begin{equation}
+\mathrm{Recall} =
+\frac{TP}{TP+FN}.
+\end{equation}
+
+The F1-score combines precision and recall into a single measure and provides a
+balanced evaluation when both false positive and false negative errors are
+important:
+
+\begin{equation}
+\mathrm{F1} =
+\frac{2 \times \mathrm{Precision} \times \mathrm{Recall}}
+{\mathrm{Precision}+\mathrm{Recall}}.
+\end{equation}
+
+The Area Under the Receiver Operating Characteristic Curve (AUROC) evaluates
+the ability of a classifier to separate positive and negative samples over all
+possible decision thresholds. It is calculated from the relationship between
+the true positive rate (TPR) and false positive rate (FPR):
+
+\begin{equation}
+\mathrm{AUROC}
+=
+\int_{0}^{1} \mathrm{TPR}(\mathrm{FPR})\,d\mathrm{FPR}.
+\end{equation}
+
+A higher AUROC indicates that the model can better distinguish between
+abnormal and normal cases without depending on a particular classification
+threshold.
+
+Average Precision (AP) summarizes the precision-recall relationship and is
+particularly useful for medical datasets where abnormal cases may represent a
+smaller proportion of the data:
+
+\begin{equation}
+\mathrm{AP}
+=
+\sum_n(R_n-R_{n-1})P_n,
+\end{equation}
+
+where $P_n$ and $R_n$ represent precision and recall values at different
+classification thresholds. Higher average precision indicates better detection
+of positive cases under class imbalance.
+
+The reliability of predicted probabilities is measured using Expected
+Calibration Error (ECE). The metric compares predicted confidence with the
+actual accuracy within confidence intervals:
+
+\begin{equation}
+\mathrm{ECE}
+=
+\sum_{m=1}^{M}
+\frac{|B_m|}{N}
+|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|.
+\end{equation}
+
+Lower ECE values indicate that the predicted confidence scores better reflect
+the actual likelihood of correctness.
 
 \subsection{Localization and Segmentation}
-Dice
-IoU
-Hausdorff
-Sensitivity
 
-\subsection{Interpretability}
-Faithfulness
-Localization accuracy
-Sparsity
-Clinical plausibility
+For segmentation evaluation, let $P$ represent the predicted region and $G$
+represent the ground-truth annotation. The Dice coefficient measures the overlap
+between the two regions:
+
+\begin{equation}
+\mathrm{Dice}(P,G)
+=
+\frac{2|P\cap G|}
+{|P|+|G|}.
+\end{equation}
+
+Intersection over Union (IoU), also known as the Jaccard index, measures the
+ratio between the intersection and union of the predicted and reference regions:
+
+\begin{equation}
+\mathrm{IoU}(P,G)
+=
+\frac{|P\cap G|}
+{|P\cup G|}.
+\end{equation}
+
+Dice and IoU provide complementary information about segmentation quality,
+where higher values indicate better spatial agreement between predicted and
+reference regions.
+
+
+\subsection{Interpretability of Sparse Dictionary Learning}
+
+In sparse dictionary learning, interpretability is obtained from the learned
+dictionary atoms and their corresponding sparse representations. Therefore,
+evaluation focuses on whether the dictionary provides compact, meaningful, and
+discriminative representations of CT image patterns.
+
+The reconstruction error measures how effectively the learned dictionary
+represents the input data. Given an input patch $x$, dictionary $D$, and sparse
+coefficient vector $\alpha$, the reconstruction error is defined as:
+
+\begin{equation}
+\mathrm{Reconstruction\ Error}
+=
+\|x-D\alpha\|_2^2.
+\end{equation}
+
+A lower reconstruction error indicates that the dictionary captures important
+structures present in the image data.
+
+The sparsity of the representation describes how many atoms contribute to the
+reconstruction. It is measured using the number of non-zero coefficients:
+
+\begin{equation}
+\mathrm{Sparsity}
+=
+\|\alpha\|_0 .
+\end{equation}
+
+Lower values indicate that only a small number of atoms are required to explain
+a sample, making the representation easier to interpret.
+
+Dictionary coherence evaluates the similarity between different atoms in the
+learned dictionary. The mutual coherence is defined as:
+
+\begin{equation}
+\mu(D)
+=
+\max_{i\neq j}
+\frac{|d_i^Td_j|}
+{\|d_i\|_2\|d_j\|_2}.
+\end{equation}
+
+A lower coherence value indicates that the dictionary contains less redundant
+atoms and that individual atoms capture more distinct image characteristics.
+
+Atom utilization measures how frequently each dictionary atom contributes to
+the representation of the dataset:
+
+\begin{equation}
+U_k
+=
+\sum_{i=1}^{N}
+\mathbb{1}(\alpha_{k,i}\neq0),
+\end{equation}
+
+where $U_k$ represents the activation frequency of atom $k$. This metric helps
+identify whether the learned dictionary is effectively utilized or dominated by
+a limited number of atoms.
+
+For supervised dictionary learning approaches such as LC-KSVD, class-specific
+atom activation provides additional interpretability. Disease-related atoms are
+expected to activate more frequently for samples belonging to their associated
+class compared with unrelated classes. This indicates that the learned atoms
+capture discriminative patterns rather than only general image structures.
+
+Finally, visual inspection of reconstructed dictionary atoms is used as a
+qualitative interpretability assessment. By examining representative atoms,
+their relationship with anatomical structures or pathological appearances can
+be analysed, providing an intuitive understanding of the features learned by
+the model.
 
 \section{Research Gaps}

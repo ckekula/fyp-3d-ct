@@ -44,7 +44,7 @@ def sample_normal_patches(volume: np.ndarray, writer: _PatchStreamWriter) -> int
         patch = extract_patch(volume, x0, y0, z0)
         if patch is None or is_background(patch):
             continue
-        writer.write(patch)
+        writer.write(patch, (x0, y0, z0))
         n += 1
     return n
 
@@ -53,7 +53,7 @@ def collect_normal_patches(
     normal_ids: List[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
-) -> Tuple[List[int], List[str]]:
+) -> Tuple[List[int], List[str], List[Tuple[int, int, int]]]:
     normal_class_idx = CLASS_ORDER.index("normal")
     all_labels: List[int] = []
     all_scan_ids: List[str] = []
@@ -70,7 +70,7 @@ def collect_normal_patches(
         n = sample_normal_patches(scan["volume"], writer)
         all_labels.extend([normal_class_idx] * n)
         all_scan_ids.extend([scan_id] * n)
-        logger.debug(f"  {scan_id}: {n} normal patches")
+        logger.info(f"  {scan_id}: {n} normal patches")
 
     logger.info(f"  → {len(all_labels)} total normal patches collected.")
-    return all_labels, all_scan_ids
+    return all_labels, all_scan_ids, writer.coords

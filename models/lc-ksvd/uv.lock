@@ -476,7 +476,7 @@ requires-dist = [
     { name = "nibabel", specifier = ">=5.4.2" },
     { name = "numpy", specifier = ">=2.4.4" },
     { name = "pandas", specifier = ">=3.0.2" },
-    { name = "reppi", specifier = "==0.1.21" },
+    { name = "reppi", specifier = "==0.1.36" },
     { name = "scikit-image", specifier = ">=0.26.0" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
     { name = "scipy", specifier = ">=1.17.1" },
@@ -1038,15 +1038,16 @@ wheels = [
 
 [[package]]
 name = "reppi"
-version = "0.1.21"
+version = "0.1.36"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
     { name = "scipy" },
+    { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/55/58/f57cdb1d4add91c4f941b842c30dcf24b53982699203224009fd9d3517a8/reppi-0.1.21.tar.gz", hash = "sha256:03971df9accda58d3f294d013bb8dc9813f6808cb7c6631876e0110d35657746", size = 31584, upload-time = "2026-07-09T15:52:16.241Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/d4/32965061918d00ecb7051895c62f19440a7efee581e3640fadbb9913984b/reppi-0.1.36.tar.gz", hash = "sha256:68143ec231ea4a9b76b9e959bdd6976a9a4ad6a5b1170a7c8f4725ce1b786751", size = 54014, upload-time = "2026-07-15T03:59:21.861Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/aa/2a/e3dbd675c3dcc95783fe24be9750b94414b5c4a8024a7523369972a0ed08/reppi-0.1.21-py3-none-any.whl", hash = "sha256:e0b2d22ad142a345f3a087b5fcc2b3b7fbbbfecb7b4726f99baea54167ed1f96", size = 39383, upload-time = "2026-07-09T15:52:15.098Z" },
+    { url = "https://files.pythonhosted.org/packages/e5/03/59ab6409ba8b95a82820e350e72787a0306c8ea107fd37d7ab909aa245c1/reppi-0.1.36-py3-none-any.whl", hash = "sha256:a184ceceb891374ecf25b37f5456519cc7e6bc957013eb25cab08d73d70e45de", size = 69708, upload-time = "2026-07-15T03:59:20.53Z" },
 ]
 
 [[package]]
@@ -1359,14 +1360,14 @@ wheels = [
 
 [[package]]
 name = "tqdm"
-version = "4.67.3"
+version = "4.68.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/09/a9/6ba95a270c6f1fbcd8dac228323f2777d886cb206987444e4bce66338dd4/tqdm-4.67.3.tar.gz", hash = "sha256:7d825f03f89244ef73f1d4ce193cb1774a8179fd96f31d7e1dcde62092b960bb", size = 169598, upload-time = "2026-02-03T17:35:53.048Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ae/5f/57ff8b434839e70dab45601284ea413e947a63799891b7553e5960a793a8/tqdm-4.68.4.tar.gz", hash = "sha256:19829c9673638f2a0b8617da4cdcb927e831cd88bcfcb6e78d42a4d1af131520", size = 792418, upload-time = "2026-07-07T09:58:18.369Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/e1/3079a9ff9b8e11b846c6ac5c8b5bfb7ff225eee721825310c91b3b50304f/tqdm-4.67.3-py3-none-any.whl", hash = "sha256:ee1e4c0e59148062281c49d80b25b67771a127c85fc9676d3be5f243206826bf", size = 78374, upload-time = "2026-02-03T17:35:50.982Z" },
+    { url = "https://files.pythonhosted.org/packages/22/2a/5e5e750890ada51017d18d0d4c30da696e5b5bd3180947729927628fc3cb/tqdm-4.68.4-py3-none-any.whl", hash = "sha256:5168118b2368f48c561afda8020fd79195b1bdb0bdf8086b88442c267a315dc2", size = 676612, upload-time = "2026-07-07T09:58:16.256Z" },
 ]
 
 [[package]]

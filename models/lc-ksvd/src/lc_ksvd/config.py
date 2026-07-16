@@ -11,7 +11,7 @@ from pathlib import Path
 DATASET_ROOT = Path("/home/chest_ct/code/data")
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_filtered.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_last.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -21,12 +21,12 @@ MODELS_DIR  = OUTPUT_DIR / "models"        # saved LC-KSVD models (.pkl)
 RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
 INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii.gz)
 CHECKPOINT_DIR = OUTPUT_DIR / "checkpoints"
+SPARSE_CODE_DIR = OUTPUT_DIR / "sparse_codes"
 CHECKPOINT_RESUME = True
 
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
-    "normal": "Normal (no findings)",
     "2c": "Groundglass opacity",
     "2d": "Pulmonary nodules/masses",
 }

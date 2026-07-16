@@ -3,12 +3,12 @@ from pathlib import Path
 import pandas as pd
 import json
 
-with open("/home/chest_ct/code/data/rexgrounding-ct/dataset.json", "r") as file:
+with open("/home/chest_ct/code/data/rexgrounding-ct/dataset_2_last.json", "r") as file:
     rex_data = json.load(file)
 
 scans_with_only_2d = []
 
-for split in ["train", "val", "test"]:
+for split in ["train", "test"]:
     df = pd.DataFrame(rex_data[split])
 
     for _, row in df.iterrows():
@@ -27,23 +27,12 @@ failed_files = []
 
 for i, scan_name in enumerate(scan_names, start=1):
     try:
-        # Example:
-        # scan_name = train_1168_a_2.nii.gz
-        # patient_id = train_1168
-        # study_id   = train_1168_a
-
-        name_no_ext = scan_name.replace(".nii.gz", "")
-
-        parts = name_no_ext.split("_")
-        patient_id = f"{parts[0]}_{parts[1]}"        # train_1168
-        study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"  # train_1168_a
-
-        subfolder = f"dataset/valid_fixed/{patient_id}/{study_id}"
+        subfolder = "dataset/train_fixed"
 
         local_path = hf_hub_download(
-            repo_id="rajpurkarlab/ReXGroundingCT",
+            repo_id="ibrahimhamamci/CT-RATE",
             repo_type="dataset",
-            subfolder="segmentations",
+            subfolder=subfolder,
             filename=scan_name,
             local_dir=local_dir,
         )
