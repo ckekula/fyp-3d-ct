@@ -52,7 +52,7 @@ for i, scan_name in enumerate(scan_names, start=1):
         patient_id = f"{parts[0]}_{parts[1]}"
         study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"
 
-        subfolder = f"dataset/train_fixed/{patient_id}/{study_id}"
+        subfolder = f"dataset/valid_fixed/{patient_id}/{study_id}"
 
         local_path = Path(
             hf_hub_download(
