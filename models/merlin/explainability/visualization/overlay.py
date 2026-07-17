@@ -1,12 +1,7 @@
-"""
-overlay.py — overlays a normalized [0,1] 3D CAM on top of the CT volume slices.
-"""
-
 import numpy as np
 
 
 def overlay_slice(ct_slice, cam_slice, alpha=0.45, cmap_thresh=0.15):
-    """Returns an RGB uint8 image blending a grayscale CT slice with a heatmap."""
     import matplotlib.cm as cm
 
     ct_norm = (ct_slice - ct_slice.min()) / (np.ptp(ct_slice) + 1e-8)
@@ -20,6 +15,5 @@ def overlay_slice(ct_slice, cam_slice, alpha=0.45, cmap_thresh=0.15):
 
 
 def best_slice_index(cam, axis=0):
-    """Pick the slice along `axis` with the strongest CAM response."""
     energy = cam.sum(axis=tuple(a for a in range(3) if a != axis))
     return int(np.argmax(energy))

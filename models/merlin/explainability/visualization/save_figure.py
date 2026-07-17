@@ -1,7 +1,3 @@
-"""
-save_figure.py — writes overlay PNGs and the raw CAM as .npy / .nii.gz.
-"""
-
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
@@ -13,7 +9,6 @@ def save_cam_png(ct_volume, cam, out_path, axis=0):
     idx = best_slice_index(cam, axis=axis)
     ct_slice = np.take(ct_volume, idx, axis=axis)
     cam_slice = np.take(cam, idx, axis=axis)
-
     img = overlay_slice(ct_slice, cam_slice)
     plt.imsave(out_path, img)
     return out_path, idx

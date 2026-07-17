@@ -1,21 +1,21 @@
 """
-target.py — defines what scalar score Grad-CAM should backprop from.
-Pick whichever matches how you constructed the model in load_model.py.
+target.py -- defines what scalar score Grad-CAM should backprop from.
 """
 
 import torch
 
 
 class ImageEmbeddingNormTarget:
-    """Generic saliency: what drove the overall image embedding."""
+    """Generic saliency: what drove the overall image embedding.
+    Works whether model output is a plain tensor (ImageEmbedding=True,
+    matches merlin_ct_pipeline.py) or a tuple (ImageEmbedding=False)."""
     def __call__(self, output):
         emb = output[0] if isinstance(output, (tuple, list)) else output
         return emb.norm(dim=-1).sum()
 
 
 class PhenotypeTarget:
-    """Requires model built with ImageEmbedding=False, PhenotypeCls not needed
-    since default Merlin() already returns phenotype logits as output[1]."""
+    """Requires model built with image_embedding_only=False."""
     def __init__(self, class_idx):
         self.class_idx = class_idx
 
@@ -27,8 +27,7 @@ class PhenotypeTarget:
 class TextSimilarityTarget:
     """
     Text-driven Grad-CAM: 'why does this region look like <text>?'
-    model must be built with ImageEmbedding=False (full contrastive model)
-    since it needs encode_text.
+    Requires model built with image_embedding_only=False (needs encode_text).
     """
     def __init__(self, model, text):
         with torch.no_grad():

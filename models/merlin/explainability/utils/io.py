@@ -1,7 +1,3 @@
-"""
-io.py — small filesystem helpers used by run_gradcam.py.
-"""
-
 import os
 import numpy as np
 

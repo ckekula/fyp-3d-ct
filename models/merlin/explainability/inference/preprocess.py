@@ -1,44 +1,56 @@
 """
-preprocess.py — mirrors load_and_preprocess_ct() from pipelineall.py exactly,
-so Grad-CAM sees the same input distribution the model was actually run on.
+preprocess.py
+
+Mirrors load_and_preprocess_ct() from merlin_ct_pipeline.py line for
+line, including [::4, ::4, ::2] downsampling, so the tensor fed to
+Grad-CAM is identical to what the model saw in production.
 """
 
 import numpy as np
 import nibabel as nib
 import torch
 
-from explainability.configs.config import DEVICE, WINDOW_MIN, WINDOW_MAX
+from explainability.configs.config import DEVICE, WINDOW_MIN, WINDOW_MAX, DOWNSAMPLE_STRIDE
 
 
 class CTPreprocessor:
     def __init__(self):
         self.affine = None
+        self.full_res_shape = None
 
     def preprocess(self, nii_path):
         img = nib.load(str(nii_path))
-        volume = img.get_fdata(dtype=np.float32)
-        np.nan_to_num(volume, nan=0.0, copy=False)
+        volume = img.get_fdata()
 
         if volume.ndim == 4:
-            volume = np.mean(volume, axis=0, dtype=np.float32)
-        volume = np.squeeze(volume)
-        assert volume.ndim == 3, f"Expected 3D volume, got {volume.shape}"
+            volume = volume[..., 0]
 
-        np.clip(volume, WINDOW_MIN, WINDOW_MAX, out=volume)
-        volume += abs(WINDOW_MIN)
-        volume /= (WINDOW_MAX - WINDOW_MIN)
-
-        tensor = torch.tensor(volume, dtype=torch.float32)
-        tensor = tensor.unsqueeze(0).unsqueeze(0)  # (1,1,D,H,W)
+        volume = np.clip(volume, WINDOW_MIN, WINDOW_MAX)
+        volume = (volume - WINDOW_MIN) / (WINDOW_MAX - WINDOW_MIN)
+        volume = np.nan_to_num(volume, nan=0.0).astype(np.float32)
 
         self.affine = img.affine.copy()
-        orig_shape = volume.shape
+        self.full_res_shape = volume.shape  # (H, W, D), pre-downsample
         del img
 
-        return tensor.to(DEVICE), orig_shape, self.affine
+        sh, sw, sd = DOWNSAMPLE_STRIDE
+        volume_ds = volume[::sh, ::sw, ::sd]
+
+        tensor = torch.tensor(volume_ds, dtype=torch.float32)
+        tensor = tensor.unsqueeze(0).unsqueeze(0)  # (1,1,H,W,D)
+
+        return tensor.to(DEVICE), volume_ds.shape, self.affine, self.full_res_shape
 
 
 def preprocess_ct(image_path):
     proc = CTPreprocessor()
-    tensor, orig_shape, affine = proc.preprocess(image_path)
-    return tensor, orig_shape, affine
+    return proc.preprocess(image_path)
+
+
+if __name__ == "__main__":
+    # STEP 2 sanity check -- see run order in chat.
+    import sys
+    tensor, ds_shape, affine, full_shape = preprocess_ct(sys.argv[1])
+    print("Downsampled tensor shape:", tensor.shape)
+    print("Full-res shape:", full_shape)
+    print("Device:", tensor.device)

@@ -1,18 +1,18 @@
 """
-load_model.py — Merlin loader.
+load_model.py
 
-IMPORTANT: Merlin() downloads/loads its pretrained weights internally
-(from the merlin-vlm package / HuggingFace). There is no local
-checkpoint to load — do not add torch.load() here.
+NOTE: Merlin() downloads/loads its pretrained weights internally
+(merlin-vlm package / HuggingFace). There is no local checkpoint
+file to load -- do not add torch.load() here.
 """
 
 from merlin import Merlin
-from explainability.configs.config import DEVICE, TARGET_LAYER
+from explainability.configs.config import DEVICE, TARGET_LAYER_PATH
 
 
 class MerlinLoader:
     def __init__(self, image_embedding_only=True):
-        # image_embedding_only=True -> forward(image) returns (embedding,)
+        # image_embedding_only=True  -> forward(image) returns embedding tensor directly
         # image_embedding_only=False -> forward(image, text) returns
         #   (contrastive_img_emb, phenotype_logits, contrastive_text_emb)
         self.device = DEVICE
@@ -29,9 +29,8 @@ class MerlinLoader:
         return model
 
     def get_target_layer(self):
-        modules = TARGET_LAYER.split(".")
-        layer = self.model.model  # model.model.encode_image....
-        for m in modules[1:] if modules[0] == "model" else modules:
+        layer = self.model.model  # -> model.model.encode_image...
+        for m in TARGET_LAYER_PATH.split("."):
             layer = getattr(layer, m)
         return layer
 
@@ -44,5 +43,6 @@ def load_merlin(image_embedding_only=True):
 
 
 if __name__ == "__main__":
+    # STEP 1 sanity check -- see run order in chat.
     model, target = load_merlin()
     print("Target layer:", target)
