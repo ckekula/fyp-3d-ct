@@ -62,16 +62,18 @@ def run(nii_path, out_dir, text_query=None, gt_mask_path=None,
     if gt_mask_path is not None:
         if gt_mask_path.endswith(".npz"):
             npz = np.load(gt_mask_path)
-            gt_mask = npz[list(npz.keys())[0]]
+            keys = list(npz.keys())
+            if len(keys) != 1:
+                raise ValueError(
+                    f"Expected exactly one array in {gt_mask_path}, found {keys}"
+                )
+            gt_mask = npz[keys[0]]
         else:
             gt_mask = nib.load(gt_mask_path).get_fdata().astype(np.float32)
         if gt_mask.shape != cam.shape:
             gt_t = torch.tensor(gt_mask, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
             gt_mask = F.interpolate(gt_t, size=cam.shape, mode="trilinear",
                                      align_corners=False).squeeze().numpy()
-
-    def forward_fn(x, text=None):
-        return predictor.forward(x, text=text)
 
     metrics = evaluate_gradcam(
         predictor, tensor, cam, target, text=text_query,

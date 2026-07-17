@@ -16,7 +16,6 @@ for split in ["train", "test"]:
     df = pd.DataFrame(rex_data[split])
     scan_names.extend(df["name"].tolist())
 
-
 # -------------------------------------------------------------------------
 # Download settings
 # -------------------------------------------------------------------------
