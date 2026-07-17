@@ -20,7 +20,7 @@ class PhenotypeTarget:
         self.class_idx = class_idx
 
     def __call__(self, output):
-        logits = output[1]
+        logits = output[1] if isinstance(output, (tuple, list)) else output
         return logits[:, self.class_idx].sum()
 
 

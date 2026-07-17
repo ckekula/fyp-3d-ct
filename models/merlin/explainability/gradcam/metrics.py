@@ -70,9 +70,11 @@ def deletion_insertion_auc(predictor, image_tensor, cam, target, text=None, step
         ins_mask[idx] = 1.0
         insertion_scores.append(score_at(ins_mask))
 
+    dx = 1.0 / max(steps, 1)
+
     return {
-        "deletion_auc": float(np.trapz(deletion_scores) / len(deletion_scores)),
-        "insertion_auc": float(np.trapz(insertion_scores) / len(insertion_scores)),
+        "deletion_auc": float(np.trapezoid(deletion_scores, dx=dx)),
+        "insertion_auc": float(np.trapezoid(insertion_scores, dx=dx)),
     }
 
 
