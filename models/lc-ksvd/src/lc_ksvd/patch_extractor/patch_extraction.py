@@ -4,10 +4,9 @@ Assembles the (n_features, n_patches) matrix X, the (n_patches,) integer label
 vector H, and the (n_patches,) scan-ID string array scan_ids required for
 LC-KSVD2 training and scan-level evaluation, by combining the Phase 1 (normal)
 and Phase 2 (abnormal) sampling passes. Output is split into one .npz file
-per class (per CLASS_ORDER) rather than a single unified file; the public
-load_unified_patch_matrix entry point concatenates them back together in
-CLASS_ORDER, so downstream callers see the same (X, H, scan_ids) contract
-as before.
+per class (per CLASS_ORDER); the public load_unified_patch_matrix entry point
+concatenates them back together in CLASS_ORDER, so downstream callers see the
+same (X, H, scan_ids) contract as before.
 """
 
 import logging
@@ -39,7 +38,7 @@ def _class_out_path(split: str, class_name: str) -> Path:
     return PATCHES_DIR / f"unified_{split}_{class_name}.npz"
 
 
-def build_class_patch_matrix(
+def build_normal_class_patch_matrix(
     ids: List[str],
     loader: ScanLoader,
     collector: PatchCollector,
@@ -73,6 +72,40 @@ def build_class_patch_matrix(
     coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
     return X, H, scan_ids_arr, coords_arr
 
+def build_abnormal_patch_matrix(
+    ids: List[str],
+    loader: ScanLoader,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Run collect_abnormal_patches once over the union of all abnormal scan ids.
+    A scan positive for multiple categories contributes patches for each
+    category in a single pass (sample_abnormal_patches already labels each
+    patch by its source category mask). Returns the full (X, H, scan_ids,
+    coords) spanning all abnormal classes together; callers split by H.
+    """
+    PATCHES_DIR.mkdir(parents=True, exist_ok=True)
+    scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}_abnormal.bin"
+    writer = _PatchStreamWriter(scratch_path)
+
+    try:
+        labels, scan_ids, coords = collect_abnormal_patches(ids, loader, writer)
+        n_patches = len(labels)
+        writer.close()
+
+        X = np.empty((N_FEATURES, n_patches), dtype=np.float64)
+        if n_patches:
+            patch_mm = np.memmap(scratch_path, dtype=np.float32, mode="r",
+                                  shape=(n_patches, N_FEATURES))
+            X[:] = patch_mm.T
+            del patch_mm
+    finally:
+        writer.close()
+        scratch_path.unlink(missing_ok=True)
+
+    H = np.array(labels, dtype=np.int64)
+    scan_ids_arr = np.array(scan_ids, dtype=object)
+    coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
+    return X, H, scan_ids_arr, coords_arr
 
 def _filter_existing(ids: List[str], class_name: str = "") -> List[str]:
     valid, missing = [], []
@@ -89,21 +122,42 @@ def _filter_existing(ids: List[str], class_name: str = "") -> List[str]:
         )
     return valid
 
+def _split_and_save_by_class(
+    split: str,
+    class_name: str,
+    class_idx: int,
+    X: np.ndarray,
+    H: np.ndarray,
+    scan_ids: np.ndarray,
+    coords: np.ndarray,
+) -> None:
+    mask = H == class_idx
+    out_path = _class_out_path(split, class_name)
+    np.savez_compressed(
+        out_path,
+        X=X[:, mask],
+        H=H[mask],
+        scan_ids=scan_ids[mask],
+        coords=coords[mask],
+    )
+    logger.info(f"Saved → {out_path}  (X: {X[:, mask].shape}, H: {H[mask].shape})")
+
 
 def extract_unified(split: str = "train") -> None:
     """
-    Run patch extraction for every class in CLASS_ORDER and save one
-    compressed .npz per class:
+    Run patch extraction once per phase (normal grid-sampling, abnormal
+    bbox-sampling over the union of abnormal scans) and save one compressed
+    .npz per class in CLASS_ORDER:
         patches/unified_{split}_{class_name}.npz
-    Each file stores X, H, scan_ids for that class only.
     """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
 
     metadata = MetadataRegistry(split=split)
-    labels   = LabelRegistry(metadata, split=split)
+    labels   = LabelRegistry(metadata)
     loader   = ScanLoader(metadata)
 
     abnormality_keys = [k for k in CLASS_ORDER if k != "normal"]
+    class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
 
     class_ids = {}
 
@@ -116,35 +170,53 @@ def extract_unified(split: str = "train") -> None:
         )
     class_ids["normal"] = _filter_existing(raw_normals, class_name="normal")
 
+    seen = set()
+    union_abnormal_ids: List[str] = []
     for ab in abnormality_keys:
         raw_ids = labels.get_positive_volume_names(ab)
         logger.info(f"  category '{ab}': {len(raw_ids)} volumes")
-        class_ids[ab] = _filter_existing(raw_ids, class_name=ab)
+        filtered = _filter_existing(raw_ids, class_name=ab)
+        class_ids[ab] = filtered
+        for vid in filtered:
+            if vid not in seen:
+                seen.add(vid)
+                union_abnormal_ids.append(vid)
 
-    total_abnormal = sum(len(class_ids[ab]) for ab in abnormality_keys)
-    if total_abnormal == 0:
+    if not union_abnormal_ids:
         raise RuntimeError(
             "No abnormal patches collected. "
             "Check MASKS_DIR, METADATA_JSON, and foreground mask contents."
         )
 
     logger.info(
-        f"Split={split!r} | normal={len(class_ids['normal'])} | "
-        f"abnormal={total_abnormal}"
+        f"Split={split!r} | normal scans={len(class_ids['normal'])} | "
+        f"abnormal scans={len(union_abnormal_ids)}"
     )
 
-    for class_name in CLASS_ORDER:
-        out_path = _class_out_path(split, class_name)
-        if out_path.exists():
-            logger.info(f"Already exists: {out_path} — skipping.")
+    # --- Normal class ---
+    normal_path = _class_out_path(split, "normal")
+    if normal_path.exists():
+        logger.info(f"Already exists: {normal_path} — skipping.")
+    else:
+        X, H, scan_ids, coords = build_normal_class_patch_matrix(
+            class_ids["normal"], loader, collect_normal_patches, scratch_tag="normal"
+        )
+        np.savez_compressed(normal_path, X=X, H=H, scan_ids=scan_ids, coords=coords)
+        logger.info(f"Saved → {normal_path}  (X: {X.shape}, H: {H.shape})")
+
+    # --- Abnormal classes: single pass, then split by label ---
+    missing_abnormal = [c for c in abnormality_keys if not _class_out_path(split, c).exists()]
+    if not missing_abnormal:
+        logger.info("All abnormal class files already exist — skipping extraction.")
+        return
+
+    X, H, scan_ids, coords = build_abnormal_patch_matrix(union_abnormal_ids, loader)
+
+    for class_name in abnormality_keys:
+        if _class_out_path(split, class_name).exists():
+            logger.info(f"Already exists: {_class_out_path(split, class_name)} — skipping.")
             continue
-
-        ids = class_ids[class_name]
-        collector = collect_normal_patches if class_name == "normal" else collect_abnormal_patches
-
-        X, H, scan_ids, coords = build_class_patch_matrix(ids, loader, collector, scratch_tag=class_name)
-        np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids, coords=coords)
-        logger.info(f"Saved → {out_path}  (X: {X.shape}, H: {H.shape})")
+        _split_and_save_by_class(split, class_name, class_to_idx[class_name], X, H, scan_ids, coords)
 
 
 def load_unified_patch_matrix(

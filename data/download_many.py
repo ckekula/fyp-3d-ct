@@ -27,7 +27,18 @@ failed_files = []
 
 for i, scan_name in enumerate(scan_names, start=1):
     try:
-        subfolder = "dataset/train_fixed"
+        # Example:
+        # scan_name = train_1168_a_2.nii.gz
+        # patient_id = train_1168
+        # study_id   = train_1168_a
+
+        name_no_ext = scan_name.replace(".nii.gz", "")
+
+        parts = name_no_ext.split("_")
+        patient_id = f"{parts[0]}_{parts[1]}"        # train_1168
+        study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"  # train_1168_a
+
+        subfolder = f"dataset/train_fixed/{patient_id}/{study_id}"
 
         local_path = hf_hub_download(
             repo_id="ibrahimhamamci/CT-RATE",
