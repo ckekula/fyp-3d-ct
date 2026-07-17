@@ -2,7 +2,11 @@ from huggingface_hub import hf_hub_download
 from pathlib import Path
 import pandas as pd
 import json
+import shutil
 
+# -------------------------------------------------------------------------
+# Load dataset
+# -------------------------------------------------------------------------
 with open("/home/chest_ct/code/data/rexgrounding-ct/dataset_2_last.json", "r") as file:
     rex_data = json.load(file)
 
@@ -20,12 +24,29 @@ for split in ["train", "test"]:
 scans_with_only_2d_df = pd.DataFrame(scans_with_only_2d)
 scan_names = scans_with_only_2d_df["name"].tolist()
 
+# -------------------------------------------------------------------------
+# Download settings
+# -------------------------------------------------------------------------
 local_dir = Path("data_volumes")
+target_dir = local_dir / "dataset" / "train_fixed"
+target_dir.mkdir(parents=True, exist_ok=True)
 
 downloaded_files = []
+skipped_files = []
 failed_files = []
 
+# -------------------------------------------------------------------------
+# Download loop
+# -------------------------------------------------------------------------
 for i, scan_name in enumerate(scan_names, start=1):
+    final_path = target_dir / scan_name
+
+    # Skip if already downloaded
+    if final_path.exists():
+        skipped_files.append(str(final_path))
+        print(f"[{i}/{len(scan_names)}] Skipped: {scan_name} (already exists)")
+        continue
+
     try:
         # Example:
         # scan_name = train_1168_a_2.nii.gz
@@ -35,22 +56,28 @@ for i, scan_name in enumerate(scan_names, start=1):
         name_no_ext = scan_name.replace(".nii.gz", "")
 
         parts = name_no_ext.split("_")
-        patient_id = f"{parts[0]}_{parts[1]}"        # train_1168
-        study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"  # train_1168_a
+        patient_id = f"{parts[0]}_{parts[1]}"
+        study_id = f"{parts[0]}_{parts[1]}_{parts[2]}"
 
         subfolder = f"dataset/train_fixed/{patient_id}/{study_id}"
 
-        local_path = hf_hub_download(
-            repo_id="ibrahimhamamci/CT-RATE",
-            repo_type="dataset",
-            subfolder=subfolder,
-            filename=scan_name,
-            local_dir=local_dir,
+        local_path = Path(
+            hf_hub_download(
+                repo_id="ibrahimhamamci/CT-RATE",
+                repo_type="dataset",
+                subfolder=subfolder,
+                filename=scan_name,
+                local_dir=local_dir,
+            )
         )
 
-        downloaded_files.append(local_path)
+        # Move to flattened directory
+        shutil.move(local_path, final_path)
+
+        downloaded_files.append(str(final_path))
+
         print(f"[{i}/{len(scan_names)}] Downloaded: {scan_name}")
-        print(f"    Saved to: {local_path}")
+        print(f"    Saved to: {final_path}")
 
     except Exception as e:
         failed_files.append({
@@ -60,12 +87,12 @@ for i, scan_name in enumerate(scan_names, start=1):
 
         print(f"[{i}/{len(scan_names)}] FAILED: {scan_name}")
         print(f"    Error: {e}")
-        continue
 
 print("\nDownload summary")
 print(f"Requested:   {len(scan_names)}")
-print(f"Downloaded: {len(downloaded_files)}")
-print(f"Failed:     {len(failed_files)}")
+print(f"Downloaded:  {len(downloaded_files)}")
+print(f"Skipped:     {len(skipped_files)}")
+print(f"Failed:      {len(failed_files)}")
 
 if failed_files:
     failed_df = pd.DataFrame(failed_files)
