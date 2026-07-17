@@ -110,19 +110,13 @@ CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder
 extracts features from CT volumes, while the text encoder processes the
 corresponding radiology reports. During training, the model learns to match
 each CT scan with its correct report in a shared feature space. The model was
-trained on thousands of chest CT scans paired with radiology reports, allowing
-it to learn both anatomical and pathological information. It has shown strong
-performance in pulmonary disease classification, image retrieval, and zero-shot
-learning tasks \cite{hamamci2024ctclip}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.85\linewidth]{images/Chapter 2/ctclip_framework.png}
-\caption{Overview of the CT-CLIP framework showing contrastive learning between
-CT images and paired radiology reports (adapted from
-\cite{hamamci2024ctclip}).}
-\label{fig:ctclip}
-\end{figure}
+trained using the CT-RATE dataset, which pairs over 50,000 reconstructed 3D
+chest CT volumes from around 25,700 scans of over 21,000 patients with their
+corresponding radiology reports, allowing it to learn both anatomical and
+pathological information. It has shown strong performance in pulmonary
+disease classification, image retrieval, and zero-shot learning tasks,
+outperforming fully supervised models across key metrics
+\cite{hamamci2024ctclip}.
 
 Although CT-CLIP achieves good performance, it mainly learns high-level feature
 representations instead of directly localizing pulmonary abnormalities. It also
@@ -159,17 +153,18 @@ Explainable models help meet these requirements by providing evidence that
 supports their predictions instead of producing results without explanation
 \cite{guidotti2018survey,tjoa2021survey}.
 
-Explainability is especially important for chest CT diagnosis because pulmonary
-abnormalities such as lung nodules and ground-glass opacities can be difficult
-to identify. Clinicians need to know which regions of the CT scan influenced the
-model's prediction. This helps verify the diagnosis and increases confidence in
-AI-assisted clinical decisions. Therefore, improving interpretability has become
-an important research direction in computer-aided diagnosis systems
-\cite{tjoa2021survey}.
+Explainability is especially important in medical imaging because subtle
+abnormalities can be difficult for even experienced clinicians to identify
+consistently. When an AI system flags a region of a scan as diagnostically
+significant, clinicians need to know which features or regions influenced
+that prediction. This helps verify the diagnosis, exposes potential model
+errors or biases before they affect patient care, and increases confidence
+in AI-assisted clinical decisions. Therefore, improving interpretability has
+become an important research direction in computer-aided diagnosis systems
+\cite{tjoa2021survey,samek2017explainable}.
 
 
 \subsection{SHAP}
-
 SHapley Additive exPlanations (SHAP) is a widely used explainable artificial
 intelligence (XAI) method for interpreting machine learning models. It is based
 on Shapley values from cooperative game theory, where each feature is assigned
@@ -178,32 +173,36 @@ provides a consistent and theoretically sound approach for explaining both
 traditional machine learning and deep learning models
 \cite{lundberg2017unified}.
 
-One of the main advantages of SHAP is that it provides both global and local
-explanations. Global explanations identify the features that have the greatest
-overall influence on model predictions across the entire dataset. Local
-explanations show how each feature contributes to the prediction of an
-individual sample. SHAP values can be positive or negative, indicating whether
-a feature increases or decreases the predicted outcome. These explanations help
-users understand why a model makes a particular decision and improve confidence
-in AI-based systems \cite{lundberg2017unified,tjoa2021survey}.
+SHAP provides local explanations by design: for a given prediction, it
+attributes a signed contribution to each input feature, showing whether that
+feature increased or decreased the predicted outcome relative to a baseline
+expectation \cite{lundberg2017unified}. Building on this local formulation,
+later work showed that many local SHAP explanations can be aggregated across a
+dataset to reveal global patterns in a model's behavior, such as which features
+matter most overall or how risk factors interact across a population
+\cite{lundberg2020local}. Together, these properties help users understand why
+a model makes a particular decision and improve confidence in AI-based systems
+\cite{tjoa2021survey}.
 
-In medical imaging, SHAP has been widely used to improve the transparency and
+In medical imaging, SHAP has been used to improve the transparency and
 interpretability of artificial intelligence models. It helps researchers and
 clinicians identify the imaging features and clinical variables that have the
 greatest influence on model predictions. This makes it easier to determine
 whether the model is learning meaningful medical information rather than
 irrelevant patterns. As a result, SHAP supports the development of more
 reliable and trustworthy computer-aided diagnosis systems
-\cite{holzinger2019causability,tjoa2021survey}.
+\cite{tjoa2021survey}.
 
-For pulmonary disease analysis using CT images, SHAP can explain the factors
-that influence a model's predictions by measuring the contribution of each
-input feature. These explanations help clinicians understand AI-assisted
-decisions, verify whether the model focuses on clinically relevant information,
-and identify possible prediction errors. Therefore, SHAP improves the
-interpretability, reliability, and clinical acceptance of deep learning models
-used for pulmonary disease diagnosis
-\cite{lundberg2017unified,tjoa2021survey}.
+For pulmonary disease analysis using CT images, SHAP has been applied to
+highlight the image regions and features driving a model's predictions. For
+example, in CNN-based lung cancer classification from CT scans, SHAP
+attributions have been shown to emphasize irregular, dense tissue and
+spiculated margins for malignant predictions, while benign predictions were
+associated with smooth, well-defined nodule boundaries \cite{rai2025lungshap}.
+These explanations help clinicians verify whether a model focuses on
+clinically relevant information and identify possible prediction errors.
+Therefore, SHAP improves the interpretability, reliability, and clinical
+acceptance of deep learning models used for pulmonary disease diagnosis.
 
 
 
