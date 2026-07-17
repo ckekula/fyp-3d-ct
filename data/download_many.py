@@ -10,19 +10,12 @@ import shutil
 with open("/home/chest_ct/code/data/rexgrounding-ct/dataset_2_last.json", "r") as file:
     rex_data = json.load(file)
 
-scans_with_only_2d = []
+scan_names = []
 
 for split in ["train", "test"]:
     df = pd.DataFrame(rex_data[split])
+    scan_names.extend(df["name"].tolist())
 
-    for _, row in df.iterrows():
-        cats = set(row["categories"].values())
-
-        if cats == {"2d"}:
-            scans_with_only_2d.append(row)
-
-scans_with_only_2d_df = pd.DataFrame(scans_with_only_2d)
-scan_names = scans_with_only_2d_df["name"].tolist()
 
 # -------------------------------------------------------------------------
 # Download settings
