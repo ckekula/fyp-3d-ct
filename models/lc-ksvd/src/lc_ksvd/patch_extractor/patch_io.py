@@ -13,23 +13,25 @@ from lc_ksvd.config import PATCH_SIZE
 
 class _PatchStreamWriter:
     """Appends raveled patches (float32) to a scratch file, avoiding
-    in-memory accumulation of individual patch arrays during extraction."""
+    in-memory accumulation of individual patch arrays during extraction.
+    Also accumulates the (x0, y0, z0) origin of each written patch."""
 
     def __init__(self, path):
         self.path = path
         self._fh = open(path, "wb")
         self.count = 0
         self._closed = False
+        self.coords: list[tuple[int, int, int]] = []
 
-    def write(self, patch: np.ndarray) -> None:
+    def write(self, patch: np.ndarray, coord: tuple[int, int, int]) -> None:
         self._fh.write(np.ascontiguousarray(patch, dtype=np.float32).tobytes())
+        self.coords.append(coord)
         self.count += 1
 
     def close(self) -> None:
         if not self._closed:
             self._fh.close()
             self._closed = True
-
 
 def extract_patch(
     volume: np.ndarray,

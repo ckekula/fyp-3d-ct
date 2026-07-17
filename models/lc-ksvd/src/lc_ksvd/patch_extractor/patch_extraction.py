@@ -30,8 +30,10 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # Signature shared by collect_normal_patches / collect_abnormal_patches.
-PatchCollector = Callable[[List[str], ScanLoader, _PatchStreamWriter], Tuple[List[int], List[str]]]
-
+PatchCollector = Callable[
+    [List[str], ScanLoader, _PatchStreamWriter],
+    Tuple[List[int], List[str], List[Tuple[int, int, int]]],
+]
 
 def _class_out_path(split: str, class_name: str) -> Path:
     return PATCHES_DIR / f"unified_{split}_{class_name}.npz"
@@ -42,17 +44,17 @@ def build_class_patch_matrix(
     loader: ScanLoader,
     collector: PatchCollector,
     scratch_tag: str,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Run a single collector (normal or abnormal) over `ids` and return the
-    resulting (X, H, scan_ids) for that class alone.
+    resulting (X, H, scan_ids, coords) for that class alone.
     """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
     scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}_{scratch_tag}.bin"
     writer = _PatchStreamWriter(scratch_path)
 
     try:
-        labels, scan_ids = collector(ids, loader, writer)
+        labels, scan_ids, coords = collector(ids, loader, writer)
         n_patches = len(labels)
         writer.close()
 
@@ -68,10 +70,11 @@ def build_class_patch_matrix(
 
     H = np.array(labels, dtype=np.int64)
     scan_ids_arr = np.array(scan_ids, dtype=object)
-    return X, H, scan_ids_arr
+    coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
+    return X, H, scan_ids_arr, coords_arr
 
 
-def _filter_existing(ids: List[str]) -> List[str]:
+def _filter_existing(ids: List[str], class_name: str = "") -> List[str]:
     valid, missing = [], []
     for vid in ids:
         try:
@@ -80,9 +83,9 @@ def _filter_existing(ids: List[str]) -> List[str]:
         except Exception:
             missing.append(vid)
     if missing:
-        logger.debug(
-            f"_filter_existing: {len(missing)} missing volumes "
-            f"(sample ≤5): {missing[:5]}"
+        tag = f"[{class_name}] " if class_name else ""
+        logger.info(
+            f"_filter_existing: {tag}{len(missing)}/{len(ids)} missing volumes: {missing}"
         )
     return valid
 
@@ -111,12 +114,12 @@ def extract_unified(split: str = "train") -> None:
             "No normal volumes found in metadata — "
             "dataset may contain only abnormal scans."
         )
-    class_ids["normal"] = _filter_existing(raw_normals)
+    class_ids["normal"] = _filter_existing(raw_normals, class_name="normal")
 
     for ab in abnormality_keys:
         raw_ids = labels.get_positive_volume_names(ab)
         logger.info(f"  category '{ab}': {len(raw_ids)} volumes")
-        class_ids[ab] = _filter_existing(raw_ids)
+        class_ids[ab] = _filter_existing(raw_ids, class_name=ab)
 
     total_abnormal = sum(len(class_ids[ab]) for ab in abnormality_keys)
     if total_abnormal == 0:
@@ -139,20 +142,20 @@ def extract_unified(split: str = "train") -> None:
         ids = class_ids[class_name]
         collector = collect_normal_patches if class_name == "normal" else collect_abnormal_patches
 
-        X, H, scan_ids = build_class_patch_matrix(ids, loader, collector, scratch_tag=class_name)
-        np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids)
+        X, H, scan_ids, coords = build_class_patch_matrix(ids, loader, collector, scratch_tag=class_name)
+        np.savez_compressed(out_path, X=X, H=H, scan_ids=scan_ids, coords=coords)
         logger.info(f"Saved → {out_path}  (X: {X.shape}, H: {H.shape})")
 
 
 def load_unified_patch_matrix(
     split: str = "train",
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
-    Load each per-class .npz (in CLASS_ORDER) and concatenate them into the
-    same (X, H, scan_ids) contract the old unified loader returned:
-        X: (n_features, n_patches), H: (n_patches,), scan_ids: (n_patches,)
+    Load each per-class .npz (in CLASS_ORDER) and concatenate them into
+        X: (n_features, n_patches), H: (n_patches,), scan_ids: (n_patches,),
+        coords: (n_patches, 3)
     """
-    X_parts, H_parts, scan_id_parts = [], [], []
+    X_parts, H_parts, scan_id_parts, coord_parts = [], [], [], []
 
     for class_name in CLASS_ORDER:
         path = _class_out_path(split, class_name)
@@ -164,14 +167,15 @@ def load_unified_patch_matrix(
         X_parts.append(data["X"])
         H_parts.append(data["H"])
         scan_id_parts.append(data["scan_ids"])
+        coord_parts.append(data["coords"])
 
     X = np.concatenate(X_parts, axis=1)
     H = np.concatenate(H_parts, axis=0)
     scan_ids = np.concatenate(scan_id_parts, axis=0)
+    coords = np.concatenate(coord_parts, axis=0)
 
-    logger.info(f"Loaded matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}")
-    return X, H, scan_ids
-
+    logger.info(f"Loaded matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}, coords={coords.shape}")
+    return X, H, scan_ids, coords
 
 if __name__ == "__main__":
-    extract_unified(split="train")
+    extract_unified(split="test")
