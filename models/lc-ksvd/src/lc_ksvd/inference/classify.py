@@ -7,7 +7,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 
 from lc_ksvd.config import MODELS_DIR, SPARSE_CODE_DIR
-from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
+from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix, extract_unified
 from lc_ksvd.metrics import normalise_columns
 from lc_ksvd.inference.evaluate import evaluate
 
@@ -21,6 +21,7 @@ SVM_MODEL_PATH = MODELS_DIR / "svm_model.pkl"
 LOG_REG_MODEL_PATH = MODELS_DIR / "log_reg_model.pkl"
 
 N_NONZERO_COEFS = 10
+SPLIT = "test"
 
 
 def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
@@ -48,23 +49,23 @@ def main() -> None:
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     SPARSE_CODE_DIR.mkdir(parents=True, exist_ok=True)
 
-    split = "test"
+    extract_unified(split=SPLIT)  # Ensure patches are extracted for the specified split
     # -- Load patches and labels ------------------------------------------------
-    X, labels, _scan_ids, _coords = load_unified_patch_matrix(split=split)
+    X, labels, _scan_ids, _coords = load_unified_patch_matrix(split=SPLIT)
 
     # -- Load trained dictionary --------------------------------------------------
     D = load_dictionary(DICT_MODEL_PATH)
 
     # -- Sparse-code patches against the dictionary -------------------------------
-    if (SPARSE_CODE_DIR / f"{split}_sparse_codes.npz").exists():
-        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{split}_sparse_codes.npz'}")
-        data = np.load(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz")
+    if (SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz").exists():
+        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz'}")
+        data = np.load(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz")
         Gamma = data["Gamma"]
     else:
         Gamma = encode_patches(X, D)
 
         # -- Save sparse codes (dense) alongside labels for reuse ---------------------
-        np.savez_compressed(SPARSE_CODE_DIR / f"{split}_sparse_codes.npz", Gamma=Gamma, labels=labels)
+        np.savez_compressed(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz", Gamma=Gamma, labels=labels)
         logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / 'sparse_codes.npz'}")
 
 
@@ -77,10 +78,10 @@ def main() -> None:
 
 
     # -- Inference and evaluate using Logistic Regression ---------------------------------------------------
-    logger.info("Inferencing from LogisticRegression...")
-    log_reg_clf = joblib.load(LOG_REG_MODEL_PATH)
-    y_pred_log_reg = log_reg_clf.predict(Gamma.T)
-    evaluate(y_pred_log_reg, labels)
+    # logger.info("Inferencing from LogisticRegression...")
+    # log_reg_clf = joblib.load(LOG_REG_MODEL_PATH)
+    # y_pred_log_reg = log_reg_clf.predict(Gamma.T)
+    # evaluate(y_pred_log_reg, labels)
 
 
 if __name__ == "__main__":

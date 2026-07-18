@@ -58,6 +58,12 @@ ABNORMAL_PATCH_STRIDE = 4
 # Retain a normal patch only when the fraction of zero voxels is below this threshold.
 ZERO_FRACTION_THRESHOLD = 0.5
 LESION_FRACTION_THRESHOLD = 0.5
+LESION_THRESHOLDS = {
+    "2c": 0.50,   # 50%
+    "2d": 0.10,   # 10%
+}
+
+DROP_ZERO_NORM_PATCHES = False
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42

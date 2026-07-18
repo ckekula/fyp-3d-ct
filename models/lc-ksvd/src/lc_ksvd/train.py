@@ -13,7 +13,7 @@ import numpy as np
 
 from lc_ksvd.config import (
     CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, N_FEATURES,
-    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM,
+    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES
 )
 from lc_ksvd.metrics import log_class_distribution
 from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd
@@ -21,7 +21,6 @@ from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
 
-DROP_ZERO_NORM_PATCHES = False
 
 def _build_residual_n_components_by_class() -> Dict[str, int]:
     """
@@ -96,7 +95,7 @@ def train(algorithm: str) -> Dict:
 
     # -- Save ---------------------------------------------------------------------
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    model_filename = "unified_frozen_lcksvd.pkl" if algorithm == "frozen" else "unified_lcksvd2.pkl"
+    model_filename = "unified_frozen.pkl" if algorithm == "frozen" else "unified_lcksvd2.pkl"
     model_path = MODELS_DIR / model_filename
 
     payload = {
