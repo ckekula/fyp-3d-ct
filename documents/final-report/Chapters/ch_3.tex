@@ -1,5 +1,309 @@
 \chapter{Methodology}
+\section{Data Acquisition}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% END OF FILE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The quality and consistency of the input data has a direct bearing on how well the
+dictionary learning stage can later separate abnormalities from normal lung, 
+so a fair amount of the early project time went into getting this part
+right before any model code was written. This section walks through the datasets
+that were chosen, how the raw CT volumes were loaded and explored, the different
+lung segmentation strategies that were tried (and in one case abandoned), and how
+the final lung volumes were cut down into the 3D patches that feed the K-SVD and
+LC-KSVD pipelines.
+
+\subsection{Datasets}
+
+Two publicly available chest CT collections were combined for this project rather
+than relying on a single source, mainly because no single dataset offered both a
+large enough pool of normal scans and fine-grained, spatially localized annotations
+for the specific abnormalities of interest.
+
+The first is \textbf{CT-RATE}, a large-scale chest CT dataset hosted on Hugging
+Face (\texttt{ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
+annotations across 18 abnormality categories. The released label files cover
+47{,}149 training volumes and 3{,}039 validation volumes, giving 50{,}188 labelled
+scans in total. Table-level counts confirm that the dataset is reasonably
+well populated for the abnormalities most relevant to this study -- lung nodules
+appear as a positive finding in 21{,}382 scans and consolidation in 8{,}319 -- while
+also containing 5{,}226 scans with no positive label at all, which is what made it
+a practical source of ``normal'' lung examples. Because of the dataset's size,
+only a subset of roughly 2{,}465 volumes was actually downloaded locally through a
+small helper script that queries the CT-RATE repository tree via the Hugging Face
+Hub API and pulls specific volume files on demand.
+
+The second dataset, \textbf{ReXGroundingCT}, was brought in specifically because it
+supplies per-finding segmentation masks rather than just volume-level tags. It is
+organised as 2{,}992 training, 50 validation and 100 test studies (3{,}142 in
+total), each annotated with one or more of 14 finding categories. For this
+project, attention was narrowed to three categories that best matched the target
+abnormalities agreed on with the radiologists: atelectasis/consolidation
+(category \texttt{2b}), ground-glass opacity (\texttt{2c}) and pulmonary
+nodules/masses (\texttt{2d}). After filtering the metadata down to studies
+containing at least one of these categories, 1{,}418 studies remained (1{,}354
+train, 23 validation, 41 test), split roughly as 659 atelectasis/consolidation,
+871 GGO and 908 nodule/mass cases -- the two abnormality categories occur together
+less often than one might expect (correlation of about $-0.32$), which turned out
+to be convenient for keeping the classes reasonably separable. A further 347 scans
+in ReXGroundingCT had no annotated findings at all and were folded in alongside
+the CT-RATE normals to build a combined pool of negative examples. Each finding
+mask is stored as a 4D NIfTI volume of shape $[F, H, W, D]$, with one binary
+channel per annotated finding, which later made it straightforward to collapse
+multiple findings of the same category into a single lesion mask per scan.
+
+An exploratory data analysis (EDA) was carried out before any model work began, and
+it shaped a number of decisions described later in this chapter. Beyond simple
+label counts, the EDA looked at volume dimensions, voxel spacing, and the
+Hounsfield Unit (HU) intensity distribution inside the lungs for each target
+category. Raw volumes were consistently $512 \times 512$ in-plane, but the number
+of slices varied widely from scan to scan (values such as 220, 238, 251, 466 and
+538 slices were all observed), and voxel spacing was not isotropic either --
+a typical example measured roughly $0.74\,\text{mm} \times 0.74\,\text{mm}$
+in-plane against $1.5\,\text{mm}$ between slices. This kind of inconsistency across
+scanners and acquisition protocols meant that resampling to a common spacing was
+unavoidable before patches from different scans could be treated as comparable
+inputs, which is discussed further in Section~3.3. Per-category HU histograms
+computed over lung voxels also showed that nodules, consolidation and GGO occupy
+overlapping but distinguishable intensity ranges, which gave some early confidence
+that a patch-based, intensity-driven representation was a reasonable direction to
+pursue.
+
+\subsection{Target Abnormality Selection}
+
+Rather than picking abnormality classes purely on the basis of which labels
+happened to have the most examples, the target classes were decided together with
+practising radiologists over a series of consultation sessions. The datasets on
+their own contain dozens of possible findings, many of which are either too rare
+to model reliably or of limited diagnostic priority compared to others, therefore
+clinical input was needed to narrow this down to something both meaningful and
+tractable.
+
+The radiologists were shown the available label distributions from CT-RATE and
+the finding categories in ReXGroundingCT and asked which abnormalities would be
+most valuable to detect automatically, and which were common enough in practice to
+justify the modelling effort. Two considerations came up repeatedly in these
+discussions: first, that pulmonary nodules and ground-glass/consolidation patterns
+are among the most frequently missed or delayed findings on routine chest CT, and
+second, that both have a well-established radiological basis for early
+intervention, making them good candidates for a proof-of-concept detection system.
+Based on this feedback, and cross-checked against how well each candidate class
+was actually represented in the annotated data, the following were fixed as the
+target classes for this study:
+
+\begin{itemize}
+    \item 2C : Ground-glass opacity (GGO) / consolidation
+    \item 2d : Lung nodule
+\end{itemize}
+
+This clinical grounding mattered in a second, more practical way as well: it
+directly influenced the segmentation and patch-extraction requirements described
+in the rest of this section, since both target abnormalities tend to sit close to
+the lung boundary or alter the surrounding tissue in ways that are easy for naive
+segmentation methods to mishandle.
+
+\subsection{CT Volume Loading}
+
+All CT scans in this study were distributed in NIfTI format, which keeps both the
+3D voxel array and the spatial metadata (orientation, spacing, origin) bundled
+together in one file. Volumes were read using \texttt{nibabel} and converted into
+float32 HU arrays, with each scan represented as
+
+\begin{equation}
+I(x,y,z) \in \mathbb{R}^{H \times W \times D}
+\end{equation}
+
+where $H$, $W$ and $D$ denote the height, width and depth of the volume. Alongside
+the intensity array, the voxel spacing recorded in the NIfTI header was retained
+for every scan, since, as noted above, spacing was not consistent across the
+dataset and this information is needed later to resample volumes onto a common
+grid.
+
+Where ground-truth finding masks were available (ReXGroundingCT), the
+corresponding 4D mask volume was loaded through the same pathway and kept aligned
+with its source CT volume via a shared volume identifier, therefore that a mask could
+always be traced back to the exact scan and finding it belongs to.
+
+Loading a scan or a mask, however, was never just a matter of reading the NIfTI
+file and handing back an array -- both paths funnel through a shared loading
+routine that also decides whether resampling and lung preprocessing are required
+before the data is considered ready to use. Figure~\ref{fig:loading-diagram}
+summarises this routine. After a volume or mask is read with NiBabel, its voxel
+spacing is compared against the target spacing of $1.5\,\text{mm}$ isotropic; if
+the two already match, the array is passed through unchanged, but if not, it is
+resampled using trilinear interpolation for CT intensities or nearest-neighbour
+interpolation for masks, mirroring the distinction made earlier for
+\texttt{resample\_volume} and \texttt{resample\_mask} -- nearest-neighbour is used
+specifically to avoid inventing intermediate label values between the discrete
+finding categories in a mask. Only volumes, and never masks, are then routed
+through the preprocessing block, where lung segmentation, HU clipping to
+$[-1000, 500]$ and min-max normalisation are applied in sequence before the final
+volume is returned; masks skip this block entirely and are returned as soon as
+resampling is done, since a binary or categorical finding mask has no HU values to
+clip or normalise and does not need to be run through the lung segmentation model.
+Keeping this branching logic in one place meant that every scan and every mask
+used later in the pipeline, regardless of which dataset it came from, had been
+through exactly the same spacing correction and (where relevant) the same
+preprocessing steps, so patches extracted from different scans remained directly
+comparable.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/loading_volumescan.png}
+    \caption{Shared loading pipeline for CT volumes and finding masks, showing the
+    spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
+    masks) and the preprocessing block applied only to volumes.}
+    \label{fig:loading-diagram}
+\end{figure}
+
+\subsection{Preprocessing}
+
+Before any patches could be extracted, the raw volumes had to be reduced to just
+the lung region. A whole-volume approach was ruled out fairly early: bones, soft
+tissue and background air all add computational overhead without contributing
+anything useful to dictionary learning, and worse, they risk letting the model
+pick up spurious patterns unrelated to lung pathology. Three different approaches
+to isolating the lungs were tried over the course of the project, in the order
+described below, before settling on a final method.
+
+\subsubsection{Classical Image Processing-Based Lung Segmentation}
+
+The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
+is normally well separated from surrounding structures in intensity. Each volume
+was first thresholded to keep only voxels between $-900$ and $-200$ HU, the range
+typically associated with aerated lung parenchyma:
+
+\begin{equation}
+M_{thresh}(x,y,z) = \begin{cases} 1, & -900 \leq I(x,y,z) \leq -200 \\ 0, & \text{otherwise} \end{cases}
+\end{equation}
+
+This crude threshold mask is noisy on its own, so it was cleaned up with a short
+sequence of morphological steps applied slice-by-slice and volume-wise using
+\texttt{scipy.ndimage} and \texttt{skimage.segmentation}. Border-connected regions
+were removed on each axial slice with \texttt{clear\_border} (mainly to drop the
+surrounding air and imaging-table artefacts that also fall inside the HU window),
+after which only the two largest connected components were kept -- under the
+assumption that these correspond to the left and right lung:
+
+A 3D binary closing (a $3\times3\times3$ connectivity structure, 2 iterations) was
+then used to smooth the boundary and reconnect thin gaps, followed by
+\texttt{binary\_fill\_holes} to plug any internal cavities left inside the mask --
+these two steps are exactly what a lung mask needs, since vessels, bronchi and
+small nodules would otherwise show up as holes in an otherwise solid lung region.
+
+On visibly normal scans, this five-stage pipeline (threshold $\rightarrow$ clear
+border $\rightarrow$ largest components $\rightarrow$ closing $\rightarrow$ hole
+filling) produced reasonable-looking lung masks when checked slice-by-slice. The
+problem showed up once pathology entered the picture. Consolidation and areas of
+lung opacity raise the local tissue density towards that of soft tissue, so the
+affected voxels are not registered as lung parenchyma at all under the initial
+$-900$ to $-200$ HU window -- they get cut out of the mask at the very first
+thresholding step, before any of the later stages ever see them.
+
+What happens next depends on where the abnormality sits and how large it is. When
+the affected region is small and fully surrounded by normal, correctly thresholded
+lung tissue, it behaves like just another gap in the mask, and the binary closing
+and hole-filling steps are usually enough to patch it back in -- the same
+mechanism that is meant to fill in small vessels and airways ends up rescuing
+these interior lesions almost by accident. But when the abnormality is larger, or
+sits close to the lung boundary rather than fully enclosed within it, closing and
+hole-filling can no longer bridge the gap: the affected region gets left connected
+to the outside of the lung rather than treated as an enclosed hole, so it is
+excluded from the final mask along with everything else outside the lung
+boundary. This is exactly the pattern that shows up when the intermediate masks
+are stepped through and overlaid on the source slice -- a large opacity running
+along the pleural surface is visibly missing from the final lung segmentation and
+from the CT after the mask is applied, while the ground-truth annotation for that
+same region sits entirely outside the segmented lung. The five-stage pipeline was
+checked this way across several scans, and the failure was consistent whenever the
+abnormal region was either large or adjacent to the lung border, rather than an
+isolated case.
+
+For a project whose entire purpose is to detect exactly these kinds of
+abnormalities, a segmentation step that only reliably preserves lesions small
+enough to be treated as incidental holes is not something that could be fixed with
+more morphological post-processing -- the information is already lost at the
+thresholding step, since abnormal tissue often does not fall inside the normal
+lung parenchyma HU window in the first place. This is what motivated the move away
+from purely intensity-based segmentation and towards a learned segmentation model,
+LungMask's \texttt{LMInferer}, described next.
+
+\subsubsection{LungMask-Based Lung Segmentation}
+
+The method that was ultimately adopted is the \texttt{LungMask} library, accessed
+through its \texttt{LMInferer} interface. Unlike the classical pipeline, LungMask
+is a trained segmentation network built specifically for whole-lung extraction, and
+it proved noticeably more stable when abnormal tissue was present -- consolidation
+and GGO regions inside the lung boundary were retained rather than excluded, which
+directly addressed the main failure observed with classical image processing approach.
+
+Given a CT volume, LungMask returns a label map with three values: 0 for
+background, 1 for the left lung and 2 for the right lung. This was converted into a
+binary mask and applied to the original volume:
+
+\begin{equation}
+I_{lung}=I \times M_{lung}
+\end{equation}
+
+where $I$ is the original CT volume and $M_{lung}$ is the binary lung mask
+produced by LungMask. Voxels falling outside the mask were reset to a fixed
+background value of $-1000$ HU (approximating air), after which the volume was
+clipped to the range $[-1000, 500]$ HU and linearly rescaled to $[0,1]$. This
+combination of segmentation, HU clipping and normalisation was wrapped into a
+single preprocessing routine that also resamples each volume to an isotropic
+$1.5\,\text{mm}$ spacing beforehand, therefore that every scan reaching the patch
+extraction stage has a consistent voxel grid regardless of its original
+acquisition parameters.
+
+\subsection{Patch Extraction}
+
+With a clean, normalised lung volume in hand, the final data acquisition step was
+to break each volume down into smaller 3D patches. Feeding entire volumes directly
+into the dictionary learning stage was never really practical -- a single scan can
+contain tens of millions of voxels -- and patch-based sampling has the added
+benefit of letting the model focus on local structural patterns rather than
+whole-organ context, which fits naturally with how K-SVD and LC-KSVD represent
+signals as sparse combinations of small dictionary atoms.
+
+Each patch is a fixed $16 \times 16 \times 16$ voxel cube, which at the resampled
+$1.5\,\text{mm}$ spacing corresponds to roughly a $24\,\text{mm}^3$ region of lung
+tissue -- large enough to capture a typical small nodule or a local patch of
+opacity, without dragging in unrelated anatomy. Patches were sampled differently
+depending on whether they were meant to represent normal tissue or a target
+abnormality:
+
+\begin{enumerate}
+    \item \textbf{Normal patches} were drawn on a non-overlapping grid across the
+    entire lung volume, with a stride equal to the patch size. A patch was
+    discarded if more than half of its voxels were near-zero after masking, since
+    that generally indicates the patch sits mostly outside the lung region rather
+    than within actual tissue.
+    \item \textbf{Abnormal patches} were sampled only from scans with an
+    annotated finding mask. The relevant finding channels were first collapsed
+    into a single binary lesion mask per target category, a tight bounding box was
+    computed around the lesion, and the patch window was then slid across that box
+    with a much smaller stride of 4 voxels, giving denser, overlapping coverage of
+    the pathological region. A patch was only kept if at least half of its voxels
+    within the corresponding mask region were labelled as lesion, ensuring each
+    retained abnormal patch is genuinely representative of that finding rather
+    than incidentally touching its edge.
+\end{enumerate}
+
+Formally, each extracted patch can be written as
+
+\begin{equation}
+P_i \in \mathbb{R}^{p \times p \times p}, \quad p = 16
+\end{equation}
+
+and is subsequently flattened into a vector representation before being handed to
+the dictionary learning algorithms:
+
+\begin{equation}
+x_i \in \mathbb{R}^{n}, \quad n = p^3 = 4096
+\end{equation}
+
+Patches extracted this way were saved per scan and per class (normal, GGO, nodule)
+as compressed archives containing the flattened feature matrix, class labels, the
+originating scan identifiers and the voxel coordinates of each patch, and were
+later concatenated across classes to build the full training matrix used for
+K-SVD, frozen dictionary learning, and LC-KSVD. This patch-based representation
+keeps memory requirements manageable while still allowing the learned dictionary
+atoms to specialise in the local structural signatures associated with each target
+pulmonary abnormality.
