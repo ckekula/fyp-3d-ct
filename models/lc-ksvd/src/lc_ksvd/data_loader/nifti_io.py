@@ -146,9 +146,7 @@ def preprocess(vol: np.ndarray) -> np.ndarray:
     # 0 = background
     # 1 = left lung
     # 2 = right lung
-
     lung_mask = segmentation > 0
-
 
     # Convert back to (H,W,D)
     lung_mask = np.transpose(

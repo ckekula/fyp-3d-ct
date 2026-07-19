@@ -15,16 +15,17 @@ from typing import Dict, Generator, List, Tuple
 import numpy as np
 from tqdm import tqdm
 
-from lc_ksvd.config import ABNORMAL_PATCH_STRIDE, CLASS_ORDER, LESION_FRACTION_THRESHOLD, PATCH_SIZE
+from lc_ksvd.config import ABNORMAL_PATCH_STRIDE, CLASS_ORDER, LESION_FRACTION_THRESHOLD, PATCH_SIZE, LESION_THRESHOLDS
 from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
 
 logger = logging.getLogger(__name__)
 
 
-def has_sufficient_lesion(mask_patch: np.ndarray) -> bool:
-    """Return True if more than 50% of voxels are non-zero (lesion)."""
-    return (mask_patch > 0).mean() >= LESION_FRACTION_THRESHOLD
+
+def has_sufficient_lesion(mask_patch: np.ndarray, threshold: float) -> bool:
+    """Return True if the lesion fraction meets the given threshold."""
+    return (mask_patch > 0).mean() >= threshold
 
 
 def _build_category_masks(
@@ -117,7 +118,9 @@ def sample_abnormal_patches(
             continue
 
         mask_patch = extract_patch(category_mask, x0, y0, z0)
-        if mask_patch is None or not has_sufficient_lesion(mask_patch):
+
+        threshold = LESION_THRESHOLDS.get(category, LESION_FRACTION_THRESHOLD)
+        if mask_patch is None or not has_sufficient_lesion(mask_patch, threshold):
             continue
 
         writer.write(patch, (x0, y0, z0))
