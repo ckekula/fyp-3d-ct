@@ -14,7 +14,7 @@ import numpy as np
 from sklearn.preprocessing import label_binarize
 
 from lc_ksvd.config import CLASS_ORDER, NORMAL_CLASS_IDX, CHECKPOINT_DIR, CHECKPOINT_RESUME
-from reppi import KSVD, LCKSVD, IncrementalFrozenDictionary
+from reppi import KSVD, LCKSVD, IncrementalFrozenDictionary, FDDL
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +32,16 @@ def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     model.fit(X_norm, H_onehot)
     return model
 
+def _fit_fddl(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> FDDL:
+    """Train a single FDDL model jointly over all classes."""
+    model = FDDL(**cfg)
+    logger.info("Starting FDDL training (joint, all classes)...")
+    model.fit(
+        X_norm, H,
+        checkpoint_dir=str(CHECKPOINT_DIR),
+        resume=CHECKPOINT_RESUME,
+    )
+    return model
 
 def _fit_frozen(
     X_norm: np.ndarray,

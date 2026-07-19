@@ -5,6 +5,7 @@ Edit paths and hyperparameters here; everything else reads from this file.
 """
 
 from pathlib import Path
+from sklearn.svm import LinearSVC
 
 # ─── Dataset paths ────────────────────────────────────────────────────────────
 
@@ -48,7 +49,7 @@ TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
-PATCH_SIZE = 16            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
+PATCH_SIZE = 12            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
 N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
 
 # Training-time patch-grid strides (voxels).
@@ -60,16 +61,17 @@ ZERO_FRACTION_THRESHOLD = 0.5
 LESION_FRACTION_THRESHOLD = 0.5
 LESION_THRESHOLDS = {
     "2c": 0.50,   # 50%
-    "2d": 0.10,   # 10%
+    "2d": 0.25,   # 10%
 }
 
 DROP_ZERO_NORM_PATCHES = False
+SHUFFLE_PATCHES = True
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────
 RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
-    "n_components":    N_FEATURES*5,   # number of dictionary atoms K
+    "n_components":    N_FEATURES*7,   # number of dictionary atoms K
     "n_nonzero_coefs": 10,    # sparsity T
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
@@ -77,6 +79,7 @@ LCKSVD_CONFIG = {
     "n_iter":          10,    # main training iterations
     "n_iter_init":     2,    # K-SVD warm-start iterations
     "verbose":         True,
+    "classifier":      LinearSVC(),
     "random_state":    RANDOM_SEED,
 }
 
@@ -89,4 +92,24 @@ KSVD_CONFIG = {
     "mem_usage":       "normal",
     "verbose":         True,
     "random_state":    RANDOM_SEED,
+}
+
+FDDL_CONFIG = {
+    "n_components": N_FEATURES*7,
+    "lambda1": 0.005,
+    "lambda2": 0.005,
+    "eta": 1.0,
+    "n_iter": 15,
+    "tol": 1e-4,
+    "coding_max_iter": 200,
+    "coding_tol": 1e-6,
+    "dict_max_iter": 1,
+    "dict_tol": 1e-6,
+    "classifier": "gc",
+    "gamma": 0.001,
+    "w": 0.05,
+    "gamma1": 0.005,
+    "gamma2": 0.005,
+    "random_state": RANDOM_SEED,
+    "verbose": True,
 }
