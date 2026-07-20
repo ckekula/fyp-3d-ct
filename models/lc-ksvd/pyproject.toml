@@ -10,7 +10,7 @@ dependencies = [
     "nibabel>=5.4.2",
     "numpy>=2.4.4",
     "pandas>=3.0.2",
-    "reppi==0.1.36",
+    "reppi==0.1.39",
     "scikit-image>=0.26.0",
     "scikit-learn>=1.8.0",
     "scipy>=1.17.1",

@@ -29,7 +29,10 @@ def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     classes  = list(range(len(CLASS_ORDER)))
     H_onehot = label_binarize(H, classes=classes).T  # (n_classes, n_patches)
 
-    model.fit(X_norm, H_onehot)
+    model.fit(X_norm, H_onehot,
+        checkpoint_dir=str(CHECKPOINT_DIR),
+        resume=CHECKPOINT_RESUME,
+    )
     return model
 
 def _fit_fddl(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> FDDL:

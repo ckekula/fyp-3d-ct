@@ -13,7 +13,7 @@ import numpy as np
 
 from lc_ksvd.config import (
     CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, FDDL_CONFIG, N_FEATURES, SHUFFLE_PATCHES,
-    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES
+    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES, PATCHES_DIR
 )
 from lc_ksvd.metrics import log_class_distribution
 from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd, _fit_fddl
@@ -79,7 +79,7 @@ def train(algorithm: str) -> Dict:
         H = H[perm]
         scan_ids = scan_ids[perm]
         np.savez(
-            "unified_train_shuffled.npz",
+            PATCHES_DIR / "unified_train_shuffled.npz",
             X=X[:, perm],
             H=H[perm],
             scan_ids=scan_ids[perm],
