@@ -17,7 +17,7 @@ than relying on a single source, mainly because no single dataset offered both a
 large enough pool of normal scans and fine-grained, spatially localized annotations
 for the specific abnormalities of interest.
 
-The first is \textbf{CT-RATE}, a large-scale chest CT dataset hosted on Hugging
+The first is \textbf{CT-RATE}\cite{hamamci2024ctrate}, a large-scale chest CT dataset hosted on Hugging
 Face (\texttt{ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
 annotations across 18 abnormality categories. The released label files cover
 47{,}149 training volumes and 3{,}039 validation volumes, giving 50{,}188 labelled
@@ -30,7 +30,7 @@ only a subset of roughly 2{,}465 volumes was actually downloaded locally through
 small helper script that queries the CT-RATE repository tree via the Hugging Face
 Hub API and pulls specific volume files on demand.
 
-The second dataset, \textbf{ReXGroundingCT}, was brought in specifically because it
+The second dataset, \textbf{ReXGroundingCT}\cite{rajpurkar2024rexgroundingct}, was brought in specifically because it
 supplies per-finding segmentation masks rather than just volume-level tags. It is
 organised as 2{,}992 training, 50 validation and 100 test studies (3{,}142 in
 total), each annotated with one or more of 14 finding categories. For this
@@ -275,16 +275,52 @@ abnormality:
     discarded if more than half of its voxels were near-zero after masking, since
     that generally indicates the patch sits mostly outside the lung region rather
     than within actual tissue.
-    \item \textbf{Abnormal patches} were sampled only from scans with an
-    annotated finding mask. The relevant finding channels were first collapsed
-    into a single binary lesion mask per target category, a tight bounding box was
-    computed around the lesion, and the patch window was then slid across that box
-    with a much smaller stride of 4 voxels, giving denser, overlapping coverage of
-    the pathological region. A patch was only kept if at least half of its voxels
-    within the corresponding mask region were labelled as lesion, ensuring each
-    retained abnormal patch is genuinely representative of that finding rather
-    than incidentally touching its edge.
+    \item \textbf{Abnormal patches} were sampled only from scans carrying a
+    ground-truth finding mask. Since a single scan can have several individual
+    findings that belong to the same target category, the relevant finding
+    channels of the 4D mask were first OR-combined into one binary lesion mask
+    per category present in that scan. A tight axis-aligned bounding box was then
+    computed around the foreground of that lesion mask, and the patch window was
+    slid across the box with a stride of 4 voxels in each direction -- markedly
+    denser than the normal-patch grid, since the region of interest here is
+    already small and every overlapping view of it is potentially useful. Each
+    candidate patch was only kept if the fraction of lesion-labelled voxels
+    within its corresponding mask region reached a category-specific threshold:
+    50\% for ground-glass opacity/consolidation patches, but only 10\% for
+    nodule/mass patches, reflecting how much smaller and more localised a
+    pulmonary nodule typically is compared with a spread-out opacity -- a fixed
+    50\% cutoff would have discarded almost every genuine nodule patch. A scan
+    positive for both target categories simply contributes patches to both, each
+    filtered against its own bounding box and threshold.
 \end{enumerate}
+
+Figure~\ref{fig:patch-extraction-diagram} lays out this branching more concretely.
+The first decision is simply whether the loaded scan is one of the designated
+normal volumes or one that carries a ground-truth abnormality mask. Normal scans
+go straight into a regular sampling grid built over the whole volume, whereas
+scans with an annotation instead have a 3D bounding box generated directly around
+the ground-truth lesion, so that patch sampling is concentrated on the region that
+actually contains the finding rather than scattered across the entire lung.
+Whichever route a patch takes, it still has to pass one final check before it is
+accepted: patches coming from the normal grid are rejected if more than half of
+their voxels sit at background level ($-1000\,\text{HU}$, i.e. outside the lung
+after masking), while patches coming from a lesion bounding box are rejected
+unless their lesion-voxel fraction meets that category's threshold. Only patches
+that clear this check are appended to the patch matrix; everything else is
+discarded before it ever reaches the dictionary learning stage. Structuring the
+two branches this way keeps the normal and abnormal sampling logic independent
+while funnelling both into the same final acceptance criterion and the same
+output matrix.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/patchExtraction.png}
+    \caption{Patch extraction workflow, showing the normal-scan sampling grid and
+    the lesion bounding-box branch for annotated scans, each filtered by its own
+    background/lesion-fraction threshold before patches are added to the patch
+    matrix.}
+    \label{fig:patch-extraction-diagram}
+\end{figure}
 
 Formally, each extracted patch can be written as
 
