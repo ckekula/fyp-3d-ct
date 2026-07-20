@@ -12,11 +12,11 @@ from typing import Dict
 import numpy as np
 
 from lc_ksvd.config import (
-    CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, N_FEATURES,
-    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES
+    CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, FDDL_CONFIG, N_FEATURES, SHUFFLE_PATCHES,
+    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES
 )
 from lc_ksvd.metrics import log_class_distribution
-from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd
+from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd, _fit_fddl
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
@@ -51,7 +51,7 @@ def train(algorithm: str) -> Dict:
     logger.info(f"\n{'='*60}\nTraining unified model (algorithm={algorithm})\n{'='*60}")
 
     # -- Load patches ---------------------------------------------------------
-    X, H, scan_ids, _coords = load_unified_patch_matrix(split="train")
+    X, H, scan_ids, coords = load_unified_patch_matrix(split="train")
     logger.info(f"Train - X: {X.shape}, H: {H.shape}")
     log_class_distribution(H, prefix="train (raw)")
 
@@ -69,10 +69,29 @@ def train(algorithm: str) -> Dict:
         logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
         log_class_distribution(H, prefix="train (after zero-norm drop)")
 
+    # -- Shuffle patches --------------------------------------------------------
+    if SHUFFLE_PATCHES:
+        rng = np.random.default_rng(RANDOM_SEED)
+
+        perm = rng.permutation(X.shape[1])
+
+        X = X[:, perm]
+        H = H[perm]
+        scan_ids = scan_ids[perm]
+        np.savez(
+            "unified_train_shuffled.npz",
+            X=X[:, perm],
+            H=H[perm],
+            scan_ids=scan_ids[perm],
+            coords=coords[perm],
+        )
+        logger.info("Shuffled patches randomly.")
+
     # -- Train ------------------------------------------------------------------
     frozen_cfg = dict(KSVD_CONFIG)
     frozen_cfg["n_components"] = N_FEATURES * 4  # base dictionary size
     lcksvd_cfg = dict(LCKSVD_CONFIG)
+    fddl_cfg = dict(FDDL_CONFIG)
     t0 = time.time()
 
     if algorithm == "frozen":
@@ -84,6 +103,9 @@ def train(algorithm: str) -> Dict:
     elif algorithm == "lcksvd":
         cfg = lcksvd_cfg
         model = _fit_lcksvd(X, H, lcksvd_cfg)
+    elif algorithm == "fddl":
+        cfg = fddl_cfg
+        model = _fit_fddl(X, H, fddl_cfg)
     else:
         raise ValueError(f"Unknown algorithm: {algorithm!r}")
 
@@ -95,7 +117,11 @@ def train(algorithm: str) -> Dict:
 
     # -- Save ---------------------------------------------------------------------
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    model_filename = "unified_frozen.pkl" if algorithm == "frozen" else "unified_lcksvd2.pkl"
+    model_filename = {
+        "frozen": "unified_frozen.pkl",
+        "lcksvd": "unified_lcksvd2.pkl",
+        "fddl":   "unified_fddl.pkl",
+    }[algorithm]
     model_path = MODELS_DIR / model_filename
 
     payload = {

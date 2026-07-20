@@ -53,14 +53,7 @@ def main():
         logger.info("Running unified patch extraction for train split...")
         extract_unified(split="train")
 
-    result = train(algorithm=args.algorithm)
-
-    # tm = result["train_metrics"]
-    # logger.info(
-    #     f"\nFinal train ({int(tm['n_scans'])} scans) - algorithm={args.algorithm} - "
-    #     f"AUROC(macro)={tm['auroc_macro']:.4f}  "
-    #     f"F1(macro)={tm['f1_macro']:.4f}  AP(macro)={tm['ap_macro']:.4f}"
-    # )
+    train(algorithm=args.algorithm)
 
 
 if __name__ == "__main__":
