@@ -16,7 +16,7 @@ from lc_ksvd.config import (
     NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES, PATCHES_DIR
 )
 from lc_ksvd.metrics import log_class_distribution
-from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd, _fit_fddl
+from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd, _fit_fddl, _fit_ksvd
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
@@ -92,6 +92,7 @@ def train(algorithm: str) -> Dict:
     frozen_cfg["n_components"] = N_FEATURES * 4  # base dictionary size
     lcksvd_cfg = dict(LCKSVD_CONFIG)
     fddl_cfg = dict(FDDL_CONFIG)
+    ksvd_cfg = dict(KSVD_CONFIG)
     t0 = time.time()
 
     if algorithm == "frozen":
@@ -106,6 +107,9 @@ def train(algorithm: str) -> Dict:
     elif algorithm == "fddl":
         cfg = fddl_cfg
         model = _fit_fddl(X, H, fddl_cfg)
+    elif algorithm == 'ksvd':
+        cfg = ksvd_cfg
+        model = _fit_ksvd(X, H, ksvd_cfg)
     else:
         raise ValueError(f"Unknown algorithm: {algorithm!r}")
 
@@ -121,6 +125,7 @@ def train(algorithm: str) -> Dict:
         "frozen": "unified_frozen.pkl",
         "lcksvd": "unified_lcksvd2.pkl",
         "fddl":   "unified_fddl.pkl",
+        "ksvd":   "unified_ksvd.pkl",
     }[algorithm]
     model_path = MODELS_DIR / model_filename
 
@@ -128,7 +133,6 @@ def train(algorithm: str) -> Dict:
         "model":           model,
         "algorithm":       algorithm,
         "class_order":     CLASS_ORDER,
-        # "train_metrics":   train_metrics,
         "config":          cfg,
         "patch_size":      PATCH_SIZE,
         "target_spacing":  TARGET_SPACING_MM,

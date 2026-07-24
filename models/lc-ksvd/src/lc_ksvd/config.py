@@ -71,7 +71,7 @@ SHUFFLE_PATCHES = True
 RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
-    "n_components":    N_FEATURES*7,   # number of dictionary atoms K
+    "n_components":    N_FEATURES*5,   # number of dictionary atoms K
     "n_nonzero_coefs": 10,    # sparsity T
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only
@@ -79,12 +79,11 @@ LCKSVD_CONFIG = {
     "n_iter":          10,    # main training iterations
     "n_iter_init":     2,    # K-SVD warm-start iterations
     "verbose":         True,
-    "classifier":      LinearSVC(),
     "random_state":    RANDOM_SEED,
 }
 
 KSVD_CONFIG = {
-    "n_components":    N_FEATURES * 10,
+    "n_components":    N_FEATURES * 7,
     "n_nonzero_coefs": 10,
     "n_iter":          10,
     "exact_svd":       False,
@@ -96,20 +95,10 @@ KSVD_CONFIG = {
 
 FDDL_CONFIG = {
     "n_components": N_FEATURES*7,
-    "lambda1": 0.005,
-    "lambda2": 0.005,
-    "eta": 1.0,
-    "n_iter": 15,
-    "tol": 1e-4,
-    "coding_max_iter": 200,
-    "coding_tol": 1e-6,
+    "n_iter": 10,
     "dict_max_iter": 1,
-    "dict_tol": 1e-6,
-    "classifier": "gc",
-    "gamma": 0.001,
-    "w": 0.05,
-    "gamma1": 0.005,
-    "gamma2": 0.005,
+    "coding_max_iter": 100,
     "random_state": RANDOM_SEED,
     "verbose": True,
+    "coding_chunk_size": 131072
 }

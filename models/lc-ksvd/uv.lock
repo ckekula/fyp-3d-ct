@@ -476,7 +476,7 @@ requires-dist = [
     { name = "nibabel", specifier = ">=5.4.2" },
     { name = "numpy", specifier = ">=2.4.4" },
     { name = "pandas", specifier = ">=3.0.2" },
-    { name = "reppi", specifier = "==0.1.39" },
+    { name = "reppi", specifier = "==0.1.55" },
     { name = "scikit-image", specifier = ">=0.26.0" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
     { name = "scipy", specifier = ">=1.17.1" },
@@ -1038,16 +1038,16 @@ wheels = [
 
 [[package]]
 name = "reppi"
-version = "0.1.39"
+version = "0.1.55"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
     { name = "scipy" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/79/0e/f3501664056203151466e9d8ed298622bc1d3bc0b8124a79254bb91cd6e7/reppi-0.1.39.tar.gz", hash = "sha256:82ab22801b2580674505e2ba24eef1b4d6334cf69d98713aa50143cb854a7342", size = 55776, upload-time = "2026-07-20T06:51:43.115Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/1f/9332a8baf0e2a7ecc6e5cd69067d5671671f2ecba181a1ec1c1f21eef8e4/reppi-0.1.55.tar.gz", hash = "sha256:76c92d119cb257bbebd9fd7805eb42acd2559abfa91ce58c32a886882cdf1ed5", size = 63712, upload-time = "2026-07-24T06:02:29.402Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/b6/61baff2ac6ac2d5050a99a264129520762c08a9264ab9937c2a2302c4273/reppi-0.1.39-py3-none-any.whl", hash = "sha256:107e0de18dd1be18fbd9549be1ebfc1e51bca6f4406ac9061cb8532a90c7e243", size = 71569, upload-time = "2026-07-20T06:51:41.78Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/0e/c436b2c5c363b0c1f1331108283dc49af24c9871241c830f3ea24a5ed88a/reppi-0.1.55-py3-none-any.whl", hash = "sha256:d107194046148cf5ce2ef5e8bf7b9db2f4fd9982bcbefdb6a56308ef411ed30b", size = 79407, upload-time = "2026-07-24T06:02:28.037Z" },
 ]
 
 [[package]]

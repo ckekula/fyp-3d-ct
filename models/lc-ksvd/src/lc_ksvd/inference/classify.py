@@ -18,10 +18,10 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 DICT_MODEL_PATH = MODELS_DIR / "unified_frozen.pkl"
 SVM_MODEL_PATH = MODELS_DIR / "svm_model.pkl"
-LOG_REG_MODEL_PATH = MODELS_DIR / "log_reg_model.pkl"
 
 N_NONZERO_COEFS = 10
 SPLIT = "test"
+MODEL = "ksvd"
 
 
 def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
@@ -57,21 +57,21 @@ def main() -> None:
     D = load_dictionary(DICT_MODEL_PATH)
 
     # -- Sparse-code patches against the dictionary -------------------------------
-    if (SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz").exists():
-        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz'}")
-        data = np.load(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz")
+    if (SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}").exists():
+        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz_{MODEL}'}")
+        data = np.load(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}")
         Gamma = data["Gamma"]
     else:
         Gamma = encode_patches(X, D)
 
         # -- Save sparse codes (dense) alongside labels for reuse ---------------------
-        np.savez_compressed(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz", Gamma=Gamma, labels=labels)
-        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / 'sparse_codes.npz'}")
+        np.savez_compressed(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}", Gamma=Gamma, labels=labels)
+        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz_{MODEL}'}")
 
 
     # -- Inference and evaluate using SVM ------------------------------------------------------------------
-    logger.info("Inferencing from LinearSVC...")
     svm_clf = joblib.load(SVM_MODEL_PATH)
+    logger.info(f"Inferencing from LinearSVC: {SVM_MODEL_PATH}")
     y_pred_svm = svm_clf.predict(Gamma.T)
     evaluate(y_pred_svm, labels)
 

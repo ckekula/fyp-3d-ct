@@ -44,7 +44,7 @@ def main():
         help="Skip patch extraction and use existing unified .npz files."
     )
     parser.add_argument(
-        "--algorithm", choices=["frozen", "lcksvd", "fddl"], default="frozen",
+        "--algorithm", choices=["frozen", "lcksvd", "fddl", "ksvd"], default="frozen",
         help="'frozen' = IncrementalFrozenDictionary. 'lcksvd' = original joint LC-KSVD2."
     )
     args = parser.parse_args()

@@ -21,6 +21,17 @@ logger = logging.getLogger(__name__)
 
 # --- Joint LC-KSVD2 training (original behaviour) ---------------------------
 
+def _fit_ksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> KSVD:
+    """Train a single K-SVD model jointly over all classes."""
+    model = KSVD(**cfg)
+    logger.info("Starting K-SVD training...")
+    model.fit(
+        X_norm,
+        checkpoint_dir=str(CHECKPOINT_DIR),
+        resume=CHECKPOINT_RESUME,
+    )
+    return model
+
 def _fit_lcksvd(X_norm: np.ndarray, H: np.ndarray, cfg: Dict) -> LCKSVD:
     """Train a single LC-KSVD2 model jointly over all classes."""
     model = LCKSVD(**cfg)
