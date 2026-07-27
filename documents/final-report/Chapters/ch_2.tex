@@ -164,7 +164,7 @@ features extracted from the scan \cite{zhao2025foundation}. Figure \ref{fig:biom
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-flowchart.png}
-    \caption{BiomedParse architecture, showing the image encoder, text encoder, and transformer decoder that aligns the prompt with visual features to produce a segmentation mask.}
+    \caption{BiomedParse architecture}
     \label{fig:biomedparse-flowchart}
 \end{figure}
 
@@ -173,7 +173,7 @@ The output is a segmentation mask, as shown in Figure \ref{fig:biomedparse-outpu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-output.png}
-    \caption{Example outputs of BiomedParse, showing the segmentation masks for prompted abnormalities.}
+    \caption{Example outputs of BiomedParse}
     \label{fig:biomedparse-output}
 \end{figure}
 
@@ -190,21 +190,14 @@ which include 27 organs, 59 bones, 10 muscles, 8 vessels.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/totalsegmentator.png}
-    \caption{Main classes of TotalSegmentator.}
+    \caption{Main classes of TotalSegmentator}
     \label{fig:totalsegmentator-output}
 \end{figure}
 
 The framework is built on the nnU-Net architecture and was trained using more than 1,200 routine clinical
-CT scans collected from different hospitals and patient groups.
+CT scans collected from different hospitals and patient groups \cite{wasserthal2023totalsegmentator}.
 It achieved a mean Dice Similarity Coefficient (DSC) of about 0.94. Because of its high segmentation accuracy,
 TotalSegmentator is commonly used as a preprocessing tool in medical image research \cite{yang2025seg2med}.
-
-Although TotalSegmentator provides accurate anatomical segmentation, it is not
-designed to classify pulmonary abnormalities such as lung nodules or
-ground-glass opacities. It also does not explain how its predictions are made.
-Therefore, additional methods are needed for disease classification and
-interpretable clinical decision-making.
-
 
 \subsection{Merlin}
 
@@ -227,42 +220,34 @@ Merlin is part of a broader wave of work bringing vision-language modeling into 
 which uses the same contrastive approach but focuses on chest CT scans\cite{Blankemeier_2026}. Overall, Merlin shows that learning directly
 from full 3D volumes and everyday hospital data, rather than small 2D datasets with manual labels, can produce useful for reducing radiologist workload.
 
-% \subsection{MedSAM}
+\subsection{MedSAM}
 
 \subsection{CT-CLIP}
 
-CT images contain valuable information for diagnosing pulmonary diseases, while
-radiology reports provide detailed clinical descriptions. To learn information
-from both sources, Hamamci \textit{et al.} proposed \textbf{CT-CLIP}, a
-vision-language foundation model for chest CT images
-\cite{hamamci2024ctclip}. Unlike traditional supervised models that require
-large amounts of labeled data, CT-CLIP learns the relationship between CT scans
-and their corresponding radiology reports using contrastive learning. This
-allows the model to learn meaningful image and text representations without
-task-specific annotations.
+CT images contain valuable information for diagnosing pulmonary diseases and are used by many Deep Learning approaches as the
+only source of information. However, radiology reports provide detailed clinical descriptions.
+Hamamci et al. proposed Computed Tomography Contrastive Language-Image Pre-training (CT-CLIP) \cite{hamamci2024ctclip},
+a vision-language foundation model for chest CT images, which utilizes both modalities.
+Unlike traditional supervised models that require large amounts of labeled data, CT-CLIP learns the relationship between CT scans
+and their corresponding radiology reports using contrastive learning.
+This allows the model to learn meaningful image and text representations without task-specific annotations.
 
-CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder
-extracts features from CT volumes, while the text encoder processes the
-corresponding radiology reports. During training, the model learns to match
-each CT scan with its correct report in a shared feature space. The model was
-trained using the CT-RATE dataset, which pairs over 50,000 reconstructed 3D
-chest CT volumes from around 25,700 scans of over 21,000 patients with their
-corresponding radiology reports, allowing it to learn both anatomical and
-pathological information. It has shown strong performance in pulmonary
-disease classification, image retrieval, and zero-shot learning tasks,
-outperforming fully supervised models across key metrics
-\cite{hamamci2024ctclip}.
+CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder extracts features from CT volumes,
+while the text encoder processes the corresponding radiology reports. Figure \ref{fig:ct-clip} shows the architecture of CT-CLIP.
 
-Although CT-CLIP achieves good performance, it mainly learns high-level feature
-representations instead of directly localizing pulmonary abnormalities. It also
-does not provide inherent explanations for its predictions, making the decision
-process difficult to understand.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/CT-CLIP.png}
+    \caption{CT-CLIP architecture}
+    \label{fig:ct-clip}
+\end{figure}
 
-The proposed research aims to overcome these limitations by developing an
-interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
-abnormality classification and grounded localization. While CT-CLIP learns rich
-image and text representations, the proposed framework focuses on providing
-transparent and interpretable diagnostic results.
+During training, the model learns to match each CT scan with its correct report in a shared feature space.
+The model was trained using the CT-RATE dataset \cite{hamamci2024ctrate},
+which pairs over 50,000 reconstructed 3D chest CT volumes from around 25,700 scans of over 21,000 patients with their
+corresponding radiology reports. It has shown strong performance in pulmonary disease classification, image retrieval,
+and zero-shot learning tasks, outperforming fully supervised models across key metrics \cite{hamamci2024ctclip}.
+
 
 \section{Explainable AI (XAI) in Medical Imaging}
 
