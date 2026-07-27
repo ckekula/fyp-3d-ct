@@ -133,20 +133,40 @@ Which datasets are commonly used?
 What evaluation metrics are reported?
 
 \subsection{nnU-Net}
-The nnU-Net addresses a persistent problem in biomedical image segmentation. Even well-established architectures like the U-Net require extensive,
-dataset-specific manual tuning of preprocessing, network topology, and training parameters, and small misconfigurations can cause large performance drops.
-Rather than proposing a new architecture, nnU-Net systematizes this configuration process itself. It decomposes design decisions into three categories:
+The nnU-Net addresses a persistent problem in biomedical image segmentation. Even well-established architectures
+like the U-Net require extensive, dataset-specific manual tuning of preprocessing, network topology, and training parameters.
+Small misconfigurations can cause large performance drops. Rather than proposing a new architecture, nnU-Net systematizes this
+configuration process itself. It decomposes design decisions into three categories:
+
 \begin{enumerate}
     \item Fixed parameters that generalize across datasets (e.g., architecture template, loss function, optimizer).
     \item Rule-based parameters derived automatically from a "dataset fingerprint" (image size, spacing, intensity distribution, modality) via heuristics (e.g., target spacing, patch size, batch size, network depth).
     \item A small set of empirical parameters selected via cross-validation (choice among 2D, 3D, and 3D cascade configurations, and whether to apply post-processing such as largest-component suppression).
 \end{enumerate}
 
+Figure \ref{fig:nnunet} shows the nnU-Net configuration method:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/nnunet.png}
+    \caption{nnU-Net configuration method}
+    \label{fig:nnunet}
+\end{figure}
+
 Evaluated across 23 public datasets and 53 segmentation tasks spanning MRI, CT, electron microscopy, and fluorescence microscopy,
-nnU-Net outperformed most specialized, task-tuned pipelines without any manual intervention, setting a new state of the art on 33 of 53 target structures.
-Notably, the authors' analysis of the KiTS 2019 leaderboard showed that configuration choices (patch size, spacing, normalization)
-affected performance more than architectural modifications (e.g., residual or dense connections, attention), suggesting that careful pipeline
-configuration—not novel network design—is often the primary bottleneck in medical image segmentation.
+nnU-Net outperformed most specialized, task-tuned pipelines without any manual intervention, setting a new state of the art on
+33 of 53 target structures. Notably, the authors' analysis of the KiTS 2019 leaderboard showed that configuration choices
+such as patch size, spacing, normalization affected performance more than architectural modifications.
+Figure \ref{fig:nnunet-examples} shows example segmentations produced by nnU-Net on different datasets:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/nnunet-examples.png}
+    \caption{Example segmentations by nnU-Net}
+    \label{fig:nnunet-examples}
+\end{figure}
+
+This suggests that careful pipeline configuration  is often the primary bottleneck in medical image segmentation.
 This positions nnU-Net less as a competing architecture and more as a strong, reproducible baseline and out-of-the-box framework,
 and it is frequently cited in the literature as the standard benchmark against which new segmentation methods are compared.
 
