@@ -59,6 +59,8 @@ Thumbs.db
 *.npz
 *.npy
 *.png
+!/documents/final-report/Images
+!/documents/final-report/Images**/*.png
 *pth
 *.b2nd
 

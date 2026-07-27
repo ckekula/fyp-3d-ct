@@ -6,43 +6,123 @@ Chronic respiratory diseases account for more than 4 million deaths globally per
 Research shows that early detection of pulmonary diseases, particularly lung cancer and Chronic Obstructive Pulmonary Disease
 (COPD) dramatically lowers mortality rates.
 Two landmark studies, the National Lung Screening Trial (NLST) and the Nederlands-Leuvens Longkanker Screenings Onderzoek (NELSON)
-trial, have shown that low-dose CT (LDCT) screening educes lung cancer mortality by 20\% to 33\% compared to CXR \cite{nlst2011, nelson2020}.
+trial, have shown that low-dose CT (LDCT) screening reduces lung cancer mortality by 20\% to 33\% compared to CXR \cite{nlst2011, nelson2020}.
 
 \subsection{GGO and Pulmonary Nodules}
 
-LDCT is commonly used to detect abnormalities such as pulmonary nodules and GGO in the lungs.
+A pulmonary nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
+either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A ground-glass opacity (GGO) refers
+specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
+structures passing through it, described radiologically as a lung parenchymal area with increased attenuation and preserved
+bronchial and vascular structures. GGOs are further subdivided into pure GGNs, which contain no solid component, and mixed
+(subsolid) GGNs, which contain a solid portion alongside the ground-glass component, divided into pure ground glass nodules without
+solid components and mixed ground glass nodules containing solid components.
 
-What are pulmonary nodules and ground-glass opacities (GGOs)?
-Why are they clinically important?
-Why is early detection essential?
-Why are these abnormalities difficult to detect?
+These findings are clinically important because GGNs are frequently associated with early lung cancer and its preinvasive precursors.
+Slowly growing or stable GGNs are often early lung cancers or their preinvasive lesions, such as atypical adenomatous hyperplasia
+or adenocarcinoma in situ, which grow along preexisting alveolar structures while maintaining the air space. Notably, GGNs are not
+uniformly benign or malignant risk indicators equivalent to solid nodules; ground glass nodules are, in fact, more likely to be
+malignant than solid nodules, and the malignant rate of mixed GGNs is higher than that of pure GGNs.
+
+Early detection of these abnormalities is essential because lung cancer prognosis is highly stage-dependent, and most patients are
+still diagnosed too late for optimal outcomes. Despite improvements in surgery, chemoradiotherapy, and immunotherapy, the overall
+five-year survival rate for lung cancer remains only about 10-20\% in most countries, largely because most patients are diagnosed at
+a late stage.
+
+Despite their importance, GGOs and small pulmonary nodules remain difficult to detect and characterize reliably. The detection of
+GGO pulmonary nodules have long been a focus and difficulty in imaging studies, in part because small GGO nodules are limited in
+size, making accurate early-stage biopsy or intervention difficult and necessitating repeated imaging to track their evolution.
+Their subtle, hazy appearance does not fully obscure underlying lung architecture, producing low contrast against normal
+parenchyma and background vasculature, unlike solid nodules or densely attenuating structures such as bone.
+This low-contrast appearance, combined with substantial variability in nodule size, shape, and solid-component proportion,
+makes both manual radiological interpretation and automated computer-aided detection challenging. This has led to research in
+computer-aided detection systems for ground-glass nodules to develop more slowly and with fewer results than corresponding systems for solid nodules.
 
 \subsection{Computed Tomography (CT)}
 
-What role does CT play compared to other imaging modalities?
-What challenges exist in interpreting 3D chest CT scans?
+X-ray computed tomography (CT) generates three-dimensional structural information by acquiring 2D radiographic projections
+of an object from many angles and computationally reconstructing them into a stack of cross-sectional slices via algorithms
+such as filtered backprojection. Compared with other imaging modalities, CT's central advantage is its non-destructive,
+quantitative access to internal 3D structure: unlike optical microscopy or histology, which typically require physical sectioning
+and are limited to surface or 2D views, CT can visualize and quantify internal features (organs, lesions, cracks, pores)
+throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
+the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
+bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
+between materials of similar composition and density (e.g., different soft tissues), a limitation that phase-contrast and other
+advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
+
+Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
+Reconstructions are inherently affected by noise and by artifacts such as beam hardening (cupping/streaking between dense structures
+like bone or contrast-enhanced vessels), motion artifacts from breathing or cardiac movement, ring artifacts, and the partial volume effect,
+where a single voxel spans more than one tissue type, producing intermediate intensities that blur boundaries between structures.
+These effects broaden and overlap the intensity histograms of different tissues, making simple threshold-based segmentation unreliable
+and often necessitating boundary-based, region-growing, or learning-based segmentation methods instead. Additionally, chest CT poses a
+specific challenge in that it contains a highly heterogeneous mix of anatomical structures with widely varying size, shape, and contrast
+(lungs, airways, vasculature, mediastinal organs, ribs), and pathological targets such as nodules or lesions
+can be small relative to voxel size, low-contrast against surrounding tissue, and irregular in shape—compounding the difficulty
+of both manual interpretation and automated analysis. These challenges motivate the shift toward automated, learning-based
+segmentation approaches capable of handling such structural diversity without extensive manual tuning per dataset.
 
 \section{Computer-Aided Diagnosis (CAD) Systems}
 
-Computer Aided Diagnosis (CAD) are computer based tools that help medical personnel in analysis of imaging studies and help in making better diagnostic decisions. CAD does not replace doctors. Instead, it acts as a second opinion by identifying suspicious areas in medical images and providing useful information to support diagnosis. The final diagnosis is always made by the doctor\cite{DOI2007198} .
+Computer Aided Diagnosis (CAD) are computer based tools that help medical personnel in analysis of imaging studies
+and help in making better diagnostic decisions. CAD does not replace doctors. Instead, it acts as a second opinion
+by identifying suspicious areas in medical images and providing useful information to support diagnosis. The final
+diagnosis is always made by the doctor\cite{DOI2007198} .
 
-Classification involves identifying the nature of a finding, such as labeling a nodule as malignant or benign. Detection requires scanning the entire image to locate suspicious areas, like microcalcifications or lung nodules, that a human might miss \cite{article}. Localization marks the precise coordinates of an abnormality, directing the clinician's attention to that specific region .
+Classification involves identifying the nature of a finding, such as labeling a nodule as malignant or benign.
+Detection requires scanning the entire image to locate suspicious areas, like microcalcifications or lung nodules,
+that a human might miss \cite{article}. Localization marks the precise coordinates of an abnormality,
+directing the clinician's attention to that specific region.
 
 \subsection{Evolution of CAD Systems}
 
-CAD funtions as a digital "second opinion" by analyzing medical imagery, such as CT scans, X rays or momograms. However, The system flgs anomalies that might escape a manual review\cite{DOI2007198}. It isnt a replacement for the physician. Insted, CAD operators as supportive tool to increase diagnostic speed and reliability.
+CAD funtions as a digital "second opinion" by analyzing medical imagery, such as CT scans, X rays or momograms.
+However, The system flgs anomalies that might escape a manual review\cite{DOI2007198}. It isnt a replacement for the physician.
+Insted, CAD operators as supportive tool to increase diagnostic speed and reliability.
 
-These systems changed significantly over time. During the 1960s, researchers attempted to build programs for the automatic diagnosis of chest diseases and bone tumors. They failed. Computers lacked power and digital images were hard to obtain. By the 1980s, the University of Chicago shifted the objective. Rather than replacing the radiologist, the computer would act as a second reader. This shift defined the modern CAD framework \cite{DOI2007198}. Early iterations relied on manual image processing, using edge detection, filtering, and feature extraction to locate nodules in chest X-rays or microcalcifications in mammograms . Chan et al. provided a pivotal study showing that radiologists using CAD identified more clustered microcalcifications than those working alone, despite a high rate of false positives. This offered the first concrete evidence that CAD increases diagnostic accuracy \cite{doi:10.2214/AJR.04.1300}.
+These systems changed significantly over time. During the 1960s, researchers attempted to build programs for the
+automatic diagnosis of chest diseases and bone tumors. They failed. Computers lacked power and digital images were hard to obtain.
+By the 1980s, the University of Chicago shifted the objective. Rather than replacing the radiologist,
+the computer would act as a second reader. This shift defined the modern CAD framework \cite{DOI2007198}.
+Early iterations relied on manual image processing, using edge detection, filtering, and feature extraction to
+locate nodules in chest X-rays or microcalcifications in mammograms . Chan et al. provided a pivotal study showing
+that radiologists using CAD identified more clustered microcalcifications than those working alone, despite a high
+rate of false positives. This offered the first concrete evidence that CAD increases diagnostic accuracy \cite{doi:10.2214/AJR.04.1300}.
 
-Over the 1990s and 2000s, CAD spread to many other areas: lung cancer detection on chest X-rays and CT scans, detection of vertebral fractures linked to osteoporosis, brain aneurysm detection using MR angiography, and tracking interval changes in bone scans \cite{doi:10.1148/radiol.2203001282}. Prospective studies on mammography CAD, covering tens of thousands of patients, showed a steady rise in cancer detection rates. This included finding small invasive tumors earlier . Accuracy also climbed. Sensitivity for microcalcification clusters rose from roughly 87\% in the early 1990s to about 98\% by the mid-2000s, while false positives dropped \cite{article2004}. This "classical CAD" era relied on statistical pattern recognition and manually engineered features.
+Over the 1990s and 2000s, CAD spread to many other areas: lung cancer detection on chest X-rays and CT scans,
+detection of vertebral fractures linked to osteoporosis, brain aneurysm detection using MR angiography,
+and tracking interval changes in bone scans \cite{doi:10.1148/radiol.2203001282}. Prospective studies on mammography CAD,
+covering tens of thousands of patients, showed a steady rise in cancer detection rates.
+This included finding small invasive tumors earlier . Accuracy also climbed. Sensitivity for microcalcification clusters
+rose from roughly 87\% in the early 1990s to about 98\% by the mid-2000s, while false positives dropped \cite{article2004}.
+This "classical CAD" era relied on statistical pattern recognition and manually engineered features.
 
-Deep learning has since become the dominant approach in CAD, replacing most classical, hand-crafted methods. The shift from classical methods to deep learning  occurred for a few reasons. Firstly, deep learning models including convolutional neural networks (CNNs) mainly have the ability to learn specific image features from pixel data directly rather than having to manually design filters and rules for all types of lesions. This makes deep learning models more flexible and often more accurate across different diseases and imaging types. Secondly, the emerging of large labeled medical imaging datasets and the availability of powerful GPU computing have made it possible to train these deep networks effectively which was not feasible in early decades. Thirdly, deep learning networks are better in image quality, patient anatomy and scanner types compared to rule based systems with narrow training conditions. Finally, deep learning has continuously outperformed classical CAD methods in pivotal studies in aspects of tumor classification and lesion detection, drawing attention of companies as well as researchers to adopt it as the new standard.
+Deep learning has since become the dominant approach in CAD, replacing most classical, hand-crafted methods.
+The shift from classical methods to deep learning  occurred for a few reasons. Firstly, deep learning models
+including convolutional neural networks (CNNs) mainly have the ability to learn specific image features from pixel data directly
+rather than having to manually design filters and rules for all types of lesions. This makes deep learning models more flexible
+and often more accurate across different diseases and imaging types. Secondly, the emerging of large labeled medical imaging datasets
+and the availability of powerful GPU computing have made it possible to train these deep networks effectively
+which was not feasible in early decades. Thirdly, deep learning networks are better in image quality,
+patient anatomy and scanner types compared to rule based systems with narrow training conditions.
+Finally, deep learning has continuously outperformed classical CAD methods in pivotal studies in aspects of tumor classification
+and lesion detection, drawing attention of companies as well as researchers to adopt it as the new standard.
 
-The purpose of CAD has also grown. Early tools mostly focused on detection by flagging suspicious zones. Later versions added differential diagnosis to estimate if a nodule was malignant or benign. Some systems even retrieve similar past cases from hospital image archives (PACS) for comparison . Observer studies indicate that likelihood-of-malignancy scores improve radiologist decisions in subtle cases. Interestingly, doctors still rely on their own judgment for obvious cases. CAD provides the most utility in borderline situations \cite{DOI2007198}.
+The purpose of CAD has also grown. Early tools mostly focused on detection by flagging suspicious zones.
+Later versions added differential diagnosis to estimate if a nodule was malignant or benign.
+Some systems even retrieve similar past cases from hospital image archives (PACS) for comparison.
+Observer studies indicate that likelihood-of-malignancy scores improve radiologist decisions in subtle cases.
+Interestingly, doctors still rely on their own judgment for obvious cases. CAD provides the most utility in borderline situations \cite{DOI2007198}.
 
-Future CAD development will likely move away from stand-alone tools. Instead, these will be integrated packages within PACS, allowing a single scan to be screened for multiple conditions simultaneously\cite{DOI2007198}. Deep learning has sped up this process. A single trained model can often be adapted for various abnormalities with far less manual effort than previous systems required.
+Future CAD development will likely move away from stand-alone tools. Instead, these will be integrated packages within PACS,
+allowing a single scan to be screened for multiple conditions simultaneously\cite{DOI2007198}. Deep learning has sped up this process.
+A single trained model can often be adapted for various abnormalities with far less manual effort than previous systems required.
 
-In short, CAD systems evolved from early failed attempts at full automation, to assistive "second opinion" tools using hand-crafted image processing, to today's deep learning–driven systems that learn features directly from data. Deep learning has drawn more attention due to its lower need of manual feature design, better performance on complex and varied medical images and ability to scale using large datasets and modern computing power.
+In short, CAD systems evolved from early failed attempts at full automation, to assistive "second opinion"
+tools using hand-crafted image processing, to today's deep learning–driven systems that learn features directly from data.
+Deep learning has drawn more attention due to its lower need of manual feature design, better performance on complex and varied medical
+images and ability to scale using large datasets and modern computing power.
 
 \section{Deep Learning Approaches}
 
@@ -53,6 +133,22 @@ Which datasets are commonly used?
 What evaluation metrics are reported?
 
 \subsection{nnU-Net}
+The nnU-Net addresses a persistent problem in biomedical image segmentation. Even well-established architectures like the U-Net require extensive,
+dataset-specific manual tuning of preprocessing, network topology, and training parameters, and small misconfigurations can cause large performance drops.
+Rather than proposing a new architecture, nnU-Net systematizes this configuration process itself. It decomposes design decisions into three categories:
+\begin{enumerate}
+    \item Fixed parameters that generalize across datasets (e.g., architecture template, loss function, optimizer).
+    \item Rule-based parameters derived automatically from a "dataset fingerprint" (image size, spacing, intensity distribution, modality) via heuristics (e.g., target spacing, patch size, batch size, network depth).
+    \item A small set of empirical parameters selected via cross-validation (choice among 2D, 3D, and 3D cascade configurations, and whether to apply post-processing such as largest-component suppression).
+\end{enumerate}
+
+Evaluated across 23 public datasets and 53 segmentation tasks spanning MRI, CT, electron microscopy, and fluorescence microscopy,
+nnU-Net outperformed most specialized, task-tuned pipelines without any manual intervention, setting a new state of the art on 33 of 53 target structures.
+Notably, the authors' analysis of the KiTS 2019 leaderboard showed that configuration choices (patch size, spacing, normalization)
+affected performance more than architectural modifications (e.g., residual or dense connections, attention), suggesting that careful pipeline
+configuration—not novel network design—is often the primary bottleneck in medical image segmentation.
+This positions nnU-Net less as a competing architecture and more as a strong, reproducible baseline and out-of-the-box framework,
+and it is frequently cited in the literature as the standard benchmark against which new segmentation methods are compared.
 
 \subsection{BioMedParse}
 
@@ -100,15 +196,26 @@ results.
 
 \subsection{Merlin}
 
-Merlin is an AI model that can help interpret CT scans automatically. 3D vision-language model (VLM) built to understand abdominal CT scans by learning jointly from the images, radiology reports, and electronic health record (EHR) data \cite{Blankemeier_2026}.
+Merlin is an AI model that can help interpret CT scans automatically. 3D vision-language model (VLM) built to understand abdominal CT scans by learning jointly
+from the images, radiology reports, and electronic health record (EHR) data \cite{Blankemeier_2026}.
 
-Most earlier medical vision-language models were built for 2D images, such as chest X-rays, paired with short captions. CT scans are different, they are 3D volumes made of hundreds of slices, and simply applying a 2D model slice-by-slice throws away important 3D spatial information, like how a lesion connects across neighboring slices. Merlin was built to fix this by processing the full 3D CT volume directly, instead of treating it as a stack of unrelated 2D images \cite{Blankemeier_2026}.
+Most earlier medical vision-language models were built for 2D images, such as chest X-rays, paired with short captions. CT scans are different,
+they are 3D volumes made of hundreds of slices, and simply applying a 2D model slice-by-slice throws away important 3D spatial information,
+like how a lesion connects across neighboring slices. Merlin was built to fix this by processing the full 3D CT volume directly,
+instead of treating it as a stack of unrelated 2D images \cite{Blankemeier_2026}.
 
-Merlin is trained using over 6 million CT images from more than 15,000 scans, paired with over 1.8 million EHR diagnosis codes and more than 6 million tokens of radiology report text \cite{Blankemeier_2026}. Instead of relying only on manually labeled data, which is slow and expensive to collect, Merlin learns from data hospitals already generate: doctors' reports and diagnosis codes. Merlin follows the concept introduced by CLIP, a foundational vision-language model designed originally for natural images. In CLIP style training, similar or matching image or text pairs closer to eachother in a shared representation space while non-matching pairs are pushed apart making the model learn which images and text describe the same thing. Merlin adapts this idea to 3D CT data and adds EHR code supervision on top, which earlier medical VLMs generally did not use \cite{Blankemeier_2026}.
+Merlin is trained using over 6 million CT images from more than 15,000 scans, paired with over 1.8 million EHR diagnosis codes and more than 6 million
+tokens of radiology report text \cite{Blankemeier_2026}. Instead of relying only on manually labeled data, which is slow and expensive to collect,
+Merlin learns from data hospitals already generate: doctors' reports and diagnosis codes. Merlin follows the concept introduced by CLIP,
+a foundational vision-language model designed originally for natural images. In CLIP style training, similar or matching image or text pairs
+closer to each other in a shared representation space while non-matching pairs are pushed apart making the model learn which images and text describe the same thing.
+Merlin adapts this idea to 3D CT data and adds EHR code supervision on top, which earlier medical VLMs generally did not use \cite{Blankemeier_2026}.
 
-Merlin is part of a broader wave of work bringing vision-language modeling into 3D medical imaging, alongside similar efforts like CT-CLIP, which uses the same contrastive approach but focuses on chest CT scans\cite{Blankemeier_2026}. Overall, Merlin shows that learning directly from full 3D volumes and everyday hospital data, rather than small 2D datasets with manual labels, can produce useful for reducing radiologist workload.
+Merlin is part of a broader wave of work bringing vision-language modeling into 3D medical imaging, alongside similar efforts like CT-CLIP,
+which uses the same contrastive approach but focuses on chest CT scans\cite{Blankemeier_2026}. Overall, Merlin shows that learning directly
+from full 3D volumes and everyday hospital data, rather than small 2D datasets with manual labels, can produce useful for reducing radiologist workload.
 
-\subsection{MedSAM}
+% \subsection{MedSAM}
 
 \subsection{CT-CLIP}
 
@@ -405,30 +512,95 @@ Why is sparsity useful?
 How is sparse representation learned?
 
 \subsection{Sparse Coding}
-What is sparse coding?
-What is overcomplete representation?
-Why is sparse representation robust?
+Sparse coding is a signal representation framework in which a signal is expressed as a linear combination of only a small number
+of elements ("atoms") drawn from a dictionary, rather than as a dense combination over an orthogonal basis. Formally, given a
+signal x and a dictionary D whose columns are atoms, sparse coding seeks a coefficient vector $\alpha$ such that:
 
-Two types: Greedy Algorithms and Convex Relaxation
+\[
+x \approx D\alpha,
+\]
 
-\subsection{Greedy Algorithms}
+with $\alpha$ containing mostly zero entries. A key aspect of this framework is the use of overcomplete representations,
+where the dictionary D has more atoms than the dimensionality of the signal itself (i.e., more columns than rows). This redundancy
+is deliberate: it gives the representation greater flexibility to match the underlying structure of the signal, allowing different
+signals to be well-approximated by different small subsets of atoms, which improves representational power, robustness to noise,
+and the ability to capture diverse structural patterns compared to a complete (non-redundant) basis. The trade-off is that recovering
+$\alpha$ becomes an underdetermined and generally NP-hard combinatorial problem, since many possible coefficient vectors could
+reconstruct x, and one must impose sparsity as a constraint or penalty to select a meaningful solution.
 
-\subsubsection{Matching Pursuit (MP)}
+Because exact sparsest-solution search is computationally intractable, two main families of practical algorithms are used:
 
-\subsubsection{Orthogonal Matching Pursuit (OMP)}
+\begin{enumerate}
+    \item Greedy Algorithms (Matching Pursuit, OMP)
+    \item Convex relaxation Algorithms (LARS, FISTA)
+\end{enumerate}
 
-\subsection{Convex Relaxation Algorithms}
+Greedy methods iteratively select the atom most correlated with the current residual, add it to the active support set,
+and update the coefficients, repeating until a stopping criterion (sparsity level or residual error) is met; these methods are
+fast and simple but only approximate the optimal solution.
 
-\subsubsection{Least Angle Regression (LARS)}
+Convex relaxation methods instead replace the intractable $\ell0$-norm (which counts nonzero entries) with the $\ell1$-norm,
+yielding a convex optimization problem—as in Basis Pursuit or the Lasso—that can be solved reliably and, under certain conditions
+on the dictionary (e.g., restricted isometry or incoherence properties), provably recovers the same sparse solution as the
+original $\ell0$ problem. In practice, greedy methods are often preferred for speed and low-sparsity regimes, while convex
+relaxation approaches tend to offer stronger theoretical guarantees and more stable solutions in noisier or higher-sparsity settings.
 
-\subsubsection{Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)}
+\subsection{Matching Pursuit (MP)}
+
+Matching Pursuit is a greedy algorithm for approximating a signal x as a sparse combination of atoms from a dictionary D.
+It proceeds iteratively: at each step, it computes the inner product between the current residual (initially the signal itself)
+and every atom in the dictionary, selects the atom with the highest absolute correlation, and updates the coefficient for that
+atom by projecting the residual onto it. The residual is then updated by subtracting this contribution, and the process repeats
+until a stopping criterion is reached (target sparsity or residual energy threshold). MP is simple and computationally cheap,
+but because it only updates one coefficient per iteration without adjusting previously selected coefficients, it can select
+the same atom multiple times and converges slowly, and its solutions are generally suboptimal compared to more refined methods.
+
+\subsection{Orthogonal Matching Pursuit (OMP)}
+
+OMP improves on MP by re-optimizing all currently selected coefficients at every iteration rather than only the most recently
+added one. At each step, it selects the atom most correlated with the residual (as in MP), adds it to the active support set,
+and then solves a least-squares problem over all atoms currently in the support to obtain new coefficients that minimize the
+residual jointly. Because the residual is then orthogonal to all previously selected atoms, OMP never reselects the same atom
+twice, and it typically converges in fewer iterations and yields more accurate reconstructions than plain MP. The added cost is
+the least-squares solve at each iteration, making OMP more computationally expensive per step, though still tractable for
+moderate sparsity levels.
+
+\subsection{Least Angle Regression (LARS)}
+
+LARS is an efficient algorithm for computing the entire regularization path of the Lasso ($\ell1$-penalized least squares) problem.
+Rather than fixing a penalty parameter $\lambda$ and solving a single optimization, LARS starts with all coefficients at zero and
+iteratively identifies the predictor (atom) most correlated with the current residual, moving the coefficient in that predictor's
+direction. Instead of moving all the way to the least-squares solution as in stepwise regression, LARS moves only until another
+predictor becomes equally correlated with the residual, at which point that predictor is added to the active set and the direction
+is updated to remain equiangular between all active predictors. With a simple modification (allowing coefficients to be dropped
+from the active set when they cross zero), LARS exactly reproduces the full Lasso solution path with a computational cost
+comparable to ordinary least squares, making it a popular and efficient tool for convex-relaxation-based sparse coding,
+particularly when the full path of solutions across sparsity levels is of interest.
+
+\subsection{Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)}
+
+FISTA solves $\ell1$-regularized sparse coding problems, where the goal is to minimize:
+
+\[
+\sqrt{\|x - D\alpha\|}^2 + \lambda\|\alpha\|_1
+\]
+
+It builds on the Iterative Shrinkage-Thresholding Algorithm (ISTA), which alternates between a gradient descent step on the
+data-fidelity term and a soft-thresholding (shrinkage) step that enforces sparsity by shrinking small coefficients toward zero.
+While ISTA converges at a sublinear rate of O(1/k), FISTA accelerates this by incorporating a momentum term—extrapolating using
+a weighted combination of the current and previous iterates—which improves the convergence rate to O(1/k²) without increasing
+per-iteration cost. This makes FISTA well-suited to large-scale sparse coding and compressed sensing problems where fast,
+reliable convergence to the $\ell1$-regularized solution is needed.
 
 \section{Dictionary Learning}
 
-Dictionary learning is a technique in which an image patch or a region of a medical scan is represented as a combination of a small number of basic building blocks, rather than by describing every pixel value directly. This idea comes from sparse coding theory and is widely used in image denoising, compression, and interpretable machine learning, including medical image analysis~\cite{9577340} \cite{LI2016298}.
+Dictionary learning is a technique in which an image patch or a region of a medical scan is represented as a combination of a small number of basic building blocks,
+rather than by describing every pixel value directly. This idea comes from sparse coding theory and is widely used in image denoising, compression,
+and interpretable machine learning, including medical image analysis~\cite{9577340} \cite{LI2016298}.
 
 
-A dictionary is a matrix, written as $D \in \mathbb{R}^{n \times k},$ where each column $d_i$ is called an atom. Each atom is a small, fixed pattern, for example a short edge, a texture, or a simple shape, that acts like a basic building block for describing images~\cite{9577340}.
+A dictionary is a matrix, written as $D \in \mathbb{R}^{n \times k},$ where each column $d_i$ is called an atom. Each atom is a small, fixed pattern,
+for example a short edge, a texture, or a simple shape, that acts like a basic building block for describing images~\cite{9577340}.
 
 \[
 D = [\,d_1, d_2, \dots, d_k\,], \qquad \|d_i\|_2 = 1 \ \forall i
@@ -443,23 +615,29 @@ Once a dictionary is available, any image $x \in \mathbb{R}^n$ is approximated a
 x \approx D\alpha = \sum_{i=1}^{k} \alpha_i d_i
 \]
 
-Here, $\alpha \in \mathbb{R}^k$ is the sparse code; most of its values are zero, and only a few atoms are actually used to rebuild the image. Finding this code is called sparse coding, and it can be solved by minimizing the reconstruction error together with a sparsity penalty~\cite{LI2016298} \cite{NIPS2006_2d71b2ae}:
+Here, $\alpha \in \mathbb{R}^k$ is the sparse code; most of its values are zero, and only a few atoms are actually used to rebuild the image.
+Finding this code is called sparse coding, and it can be solved by minimizing the reconstruction error together with a sparsity penalty~\cite{LI2016298} \cite{NIPS2006_2d71b2ae}:
 
 \[
 \min_{\alpha} \ \frac{1}{2}\|x - D\alpha\|_2^2 + \lambda \|\alpha\|_1
 \]
 
-This is the Lasso formulation, where $\lambda$ controls how sparse the solution is~\cite{1710377}. When the dictionary itself is learned from training data $X = [x_1, \dots, x_m]$, both $D$ and the codes $A = [\alpha_1, \dots, \alpha_m]$ are optimized together
+This is the Lasso formulation, where $\lambda$ controls how sparse the solution is~\cite{1710377}.
+When the dictionary itself is learned from training data $X = [x_1, \dots, x_m]$, both $D$ and the codes $A = [\alpha_1, \dots, \alpha_m]$ are optimized together
 
 \[
 \min_{D, A} \ \|X - DA\|_F^2 + \lambda \|A\|_1 \quad \text{subject to} \quad \|d_i\|_2 = 1
 \]
 
 
-Learned atoms are not random they turn out to look like meaningful patterns. Scince each image patch is reconstructed using only a small number of atoms. each atoms tends to specialize in representing a simple pattern rather than blending many patterns together. This lets a person actually look at a lerned dictionary and understand what each atom represents, wich is must harder with internal weights of a deep neural network. In medical imaging, atoms can end up representing specific tissue textures or lesion patterns that a radiologist can vissually recognize\cite{5456190}.
+Learned atoms are not random they turn out to look like meaningful patterns. Scince each image patch is reconstructed using only a small number of atoms.
+Each atoms tends to specialize in representing a simple pattern rather than blending many patterns together. This lets a person actually look at a lerned
+dictionary and understand what each atom represents, wich is must harder with internal weights of a deep neural network. In medical imaging,
+atoms can end up representing specific tissue textures or lesion patterns that a radiologist can vissually recognize\cite{5456190}.
 
 
-Learning a dictionary is usually done by fixing the dictionary and solving for sparse codes, then fixing the codes and updating the dictionary. The sparse coding step is commonly solved with Orthogonal Matching Pursuit (OMP), a greedy method that adds one atom at a time \cite{342465}
+Learning a dictionary is usually done by fixing the dictionary and solving for sparse codes, then fixing the codes and updating the dictionary.
+The sparse coding step is commonly solved with Orthogonal Matching Pursuit (OMP), a greedy method that adds one atom at a time \cite{342465}
 \[
 i^* = \arg\max_i \ |d_i^T r|, \qquad r = x - D\alpha
 \]
@@ -475,23 +653,33 @@ K-SVD is one of the most widely used algorithms for learning a dictionary, and i
 \min_{D, X} \left\{ \|Y - DX\|_F^2 \right\} \quad \text{subject to} \quad \forall i, \ \|x_i\|_0 \leq T_0
 \]
 
-Here, $Y$ is the matrix of training data, for example CT image patches, $D$ is the dictionary being learned, and $X$ is the matrix of sparse codes, where each column $x_i$ is the code for one training sample. The constraint $\|x_i\|_0 \leq T_0$ means that each code is allowed to use at most $T_0$ atoms, using the $\ell_0$ norm to directly count non-zero entries rather than approximating sparsity with an $\ell_1$ penalty like Lasso does. This gives K-SVD tighter control over exactly how sparse each representation is.
+Here, $Y$ is the matrix of training data, for example CT image patches, $D$ is the dictionary being learned, and $X$ is the matrix of sparse codes,
+where each column $x_i$ is the code for one training sample. The constraint $\|x_i\|_0 \leq T_0$ means that each code is allowed to use at most $T_0$ atoms,
+using the $\ell_0$ norm to directly count non-zero entries rather than approximating sparsity with an $\ell_1$ penalty like Lasso does. This gives K-SVD
+tighter control over exactly how sparse each representation is.
 
-K-SVD solves this problem by alternating between two steps. First, with the dictionary $D$ fixed, it finds the sparse codes $X$ using a pursuit algorithm such as Orthogonal Matching Pursuit. Second, with the codes fixed, it updates the dictionary one atom at a time instead of all at once, which makes it converge faster and produce sharper, more specific atoms \cite{1710377}.
+K-SVD solves this problem by alternating between two steps. First, with the dictionary $D$ fixed, it finds the sparse codes $X$ using a pursuit algorithm
+such as Orthogonal Matching Pursuit. Second, with the codes fixed, it updates the dictionary one atom at a time instead of all at once, which makes it
+converge faster and produce sharper, more specific atoms \cite{1710377}.
 
 \subsection{Method of Optimized Directions (MOD)}
 
-Method of Optimized Directions is an earlier and simpler approach than K-SVD. Instead of updating atoms one at a time, MOD updates the entire dictionary at once, using a direct least-squares solution \cite{[760624]}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
+Method of Optimized Directions is an earlier and simpler approach than K-SVD. Instead of updating atoms one at a time, MOD updates the entire dictionary at once,
+using a direct least-squares solution \cite{[760624]}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
 
 \[
 D = X A^T (A A^T)^{-1}
 \]
 
-This comes directly from setting the derivative of the reconstruction error $\|X - DA\|_F^2$ to zero and solving for $D$. MOD is fast and easy to implement, but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{[760624]}.
+This comes directly from setting the derivative of the reconstruction error $\|X - DA\|_F^2$ to zero and solving for $D$. MOD is fast and easy to implement,
+but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{[760624]}.
 
 \subsection{Online Dictionary Learning (ODL)}
 
-Both K-SVD and MOD assume the entire training dataset fits in memory and is processed all at once, which becomes impractical for very large image datasets. Online Dictionary Learning solves this by processing the data in small batches, updating the dictionary incrementally as new samples arrive, instead of waiting to see the whole dataset \cite{[10.1145/1553374.1553463]}. At each step $t$, a new sample $x_t$ is drawn, its sparse code $\alpha_t$ is computed using the current dictionary, and then the dictionary is updated using accumulated statistics from all samples seen so far:
+Both K-SVD and MOD assume the entire training dataset fits in memory and is processed all at once, which becomes impractical for very large image datasets.
+Online Dictionary Learning solves this by processing the data in small batches, updating the dictionary incrementally as new samples arrive,
+instead of waiting to see the whole dataset \cite{[10.1145/1553374.1553463]}. At each step $t$, a new sample $x_t$ is drawn,
+its sparse code $\alpha_t$ is computed using the current dictionary, and then the dictionary is updated using accumulated statistics from all samples seen so far:
 
 \[
 A_t = A_{t-1} + \alpha_t \alpha_t^T, \qquad B_t = B_{t-1} + x_t \alpha_t^T
@@ -501,7 +689,8 @@ A_t = A_{t-1} + \alpha_t \alpha_t^T, \qquad B_t = B_{t-1} + x_t \alpha_t^T
 D_t = \arg\min_{D} \ \frac{1}{t}\sum_{i=1}^{t} \left( \frac{1}{2}\|x_i - D\alpha_i\|_2^2 \right)
 \]
 
-which can be solved efficiently using $A_t$ and $B_t$ instead of storing all past samples. This makes ODL well suited for large-scale problems, including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{[10.1145/1553374.1553463]}.
+which can be solved efficiently using $A_t$ and $B_t$ instead of storing all past samples. This makes ODL well suited for large-scale problems,
+including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{[10.1145/1553374.1553463]}.
 
 \section{Discriminative Dictionary Learning}
 
@@ -584,7 +773,7 @@ transformation and classifier, FDDL focuses on improving the statistical
 distribution of sparse codes. This makes it suitable for classification tasks
 where the separation between classes is important.
 
-\subsection{Frozen Dictionary Learning for Outlier Separation}
+\subsection{Frozen Dictionary Learning}
 
 While most discriminative methods update the entire dictionary during training, 
 certain scenarios benefit from preserving previously acquired knowledge. 
@@ -670,6 +859,7 @@ interpretability and limited training data are important
 
 \subsection{Classification and Segmentation}
 
+<<<<<<< HEAD
 In addition to reconstruction, dictionary learning has been applied to
 medical image classification and segmentation tasks. In these applications,
 image patches are converted into sparse representations, and the learned
@@ -894,5 +1084,7 @@ their relationship with anatomical structures or pathological appearances can
 be analysed, providing an intuitive understanding of the features learned by
 the model.
 
+=======
+>>>>>>> b058374df99af8ff6896c419bd5551bef9d32b98
 \section{Research Gaps}
 
