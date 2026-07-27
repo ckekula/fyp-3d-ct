@@ -10,17 +10,58 @@ trial, have shown that low-dose CT (LDCT) screening reduces lung cancer mortalit
 
 \subsection{GGO and Pulmonary Nodules}
 
-LDCT is commonly used to detect abnormalities such as pulmonary nodules and GGO in the lungs.
+A pulmonary nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
+either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A ground-glass opacity (GGO) refers
+specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
+structures passing through it, described radiologically as a lung parenchymal area with increased attenuation and preserved
+bronchial and vascular structures. GGOs are further subdivided into pure GGNs, which contain no solid component, and mixed
+(subsolid) GGNs, which contain a solid portion alongside the ground-glass component, divided into pure ground glass nodules without
+solid components and mixed ground glass nodules containing solid components.
 
-What are pulmonary nodules and ground-glass opacities (GGOs)?
-Why are they clinically important?
-Why is early detection essential?
-Why are these abnormalities difficult to detect?
+These findings are clinically important because GGNs are frequently associated with early lung cancer and its preinvasive precursors.
+Slowly growing or stable GGNs are often early lung cancers or their preinvasive lesions, such as atypical adenomatous hyperplasia
+or adenocarcinoma in situ, which grow along preexisting alveolar structures while maintaining the air space. Notably, GGNs are not
+uniformly benign or malignant risk indicators equivalent to solid nodules; ground glass nodules are, in fact, more likely to be
+malignant than solid nodules, and the malignant rate of mixed GGNs is higher than that of pure GGNs.
+
+Early detection of these abnormalities is essential because lung cancer prognosis is highly stage-dependent, and most patients are
+still diagnosed too late for optimal outcomes. Despite improvements in surgery, chemoradiotherapy, and immunotherapy, the overall
+five-year survival rate for lung cancer remains only about 10-20\% in most countries, largely because most patients are diagnosed at
+a late stage.
+
+Despite their importance, GGOs and small pulmonary nodules remain difficult to detect and characterize reliably. The detection of
+GGO pulmonary nodules have long been a focus and difficulty in imaging studies, in part because small GGO nodules are limited in
+size, making accurate early-stage biopsy or intervention difficult and necessitating repeated imaging to track their evolution.
+Their subtle, hazy appearance does not fully obscure underlying lung architecture, producing low contrast against normal
+parenchyma and background vasculature, unlike solid nodules or densely attenuating structures such as bone.
+This low-contrast appearance, combined with substantial variability in nodule size, shape, and solid-component proportion,
+makes both manual radiological interpretation and automated computer-aided detection challenging. This has led to research in
+computer-aided detection systems for ground-glass nodules to develop more slowly and with fewer results than corresponding systems for solid nodules.
 
 \subsection{Computed Tomography (CT)}
 
-What role does CT play compared to other imaging modalities?
-What challenges exist in interpreting 3D chest CT scans?
+X-ray computed tomography (CT) generates three-dimensional structural information by acquiring 2D radiographic projections
+of an object from many angles and computationally reconstructing them into a stack of cross-sectional slices via algorithms
+such as filtered backprojection. Compared with other imaging modalities, CT's central advantage is its non-destructive,
+quantitative access to internal 3D structure: unlike optical microscopy or histology, which typically require physical sectioning
+and are limited to surface or 2D views, CT can visualize and quantify internal features (organs, lesions, cracks, pores)
+throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
+the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
+bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
+between materials of similar composition and density (e.g., different soft tissues), a limitation that phase-contrast and other
+advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
+
+Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
+Reconstructions are inherently affected by noise and by artifacts such as beam hardening (cupping/streaking between dense structures
+like bone or contrast-enhanced vessels), motion artifacts from breathing or cardiac movement, ring artifacts, and the partial volume effect,
+where a single voxel spans more than one tissue type, producing intermediate intensities that blur boundaries between structures.
+These effects broaden and overlap the intensity histograms of different tissues, making simple threshold-based segmentation unreliable
+and often necessitating boundary-based, region-growing, or learning-based segmentation methods instead. Additionally, chest CT poses a
+specific challenge in that it contains a highly heterogeneous mix of anatomical structures with widely varying size, shape, and contrast
+(lungs, airways, vasculature, mediastinal organs, ribs), and pathological targets such as nodules or lesions
+can be small relative to voxel size, low-contrast against surrounding tissue, and irregular in shape—compounding the difficulty
+of both manual interpretation and automated analysis. These challenges motivate the shift toward automated, learning-based
+segmentation approaches capable of handling such structural diversity without extensive manual tuning per dataset.
 
 \section{Computer-Aided Diagnosis (CAD) Systems}
 
@@ -174,7 +215,7 @@ Merlin is part of a broader wave of work bringing vision-language modeling into 
 which uses the same contrastive approach but focuses on chest CT scans\cite{Blankemeier_2026}. Overall, Merlin shows that learning directly
 from full 3D volumes and everyday hospital data, rather than small 2D datasets with manual labels, can produce useful for reducing radiologist workload.
 
-\subsection{MedSAM}
+% \subsection{MedSAM}
 
 \subsection{CT-CLIP}
 
@@ -471,23 +512,85 @@ Why is sparsity useful?
 How is sparse representation learned?
 
 \subsection{Sparse Coding}
-What is sparse coding?
-What is overcomplete representation?
-Why is sparse representation robust?
+Sparse coding is a signal representation framework in which a signal is expressed as a linear combination of only a small number
+of elements ("atoms") drawn from a dictionary, rather than as a dense combination over an orthogonal basis. Formally, given a
+signal x and a dictionary D whose columns are atoms, sparse coding seeks a coefficient vector $\alpha$ such that:
 
-Two types: Greedy Algorithms and Convex Relaxation
+\[
+x \approx D\alpha,
+\]
 
-\subsection{Greedy Algorithms}
+with $\alpha$ containing mostly zero entries. A key aspect of this framework is the use of overcomplete representations,
+where the dictionary D has more atoms than the dimensionality of the signal itself (i.e., more columns than rows). This redundancy
+is deliberate: it gives the representation greater flexibility to match the underlying structure of the signal, allowing different
+signals to be well-approximated by different small subsets of atoms, which improves representational power, robustness to noise,
+and the ability to capture diverse structural patterns compared to a complete (non-redundant) basis. The trade-off is that recovering
+$\alpha$ becomes an underdetermined and generally NP-hard combinatorial problem, since many possible coefficient vectors could
+reconstruct x, and one must impose sparsity as a constraint or penalty to select a meaningful solution.
 
-\subsubsection{Matching Pursuit (MP)}
+Because exact sparsest-solution search is computationally intractable, two main families of practical algorithms are used:
 
-\subsubsection{Orthogonal Matching Pursuit (OMP)}
+\begin{enumerate}
+    \item Greedy Algorithms (Matching Pursuit, OMP)
+    \item Convex relaxation Algorithms (LARS, FISTA)
+\end{enumerate}
 
-\subsection{Convex Relaxation Algorithms}
+Greedy methods iteratively select the atom most correlated with the current residual, add it to the active support set,
+and update the coefficients, repeating until a stopping criterion (sparsity level or residual error) is met; these methods are
+fast and simple but only approximate the optimal solution.
 
-\subsubsection{Least Angle Regression (LARS)}
+Convex relaxation methods instead replace the intractable $\ell0$-norm (which counts nonzero entries) with the $\ell1$-norm,
+yielding a convex optimization problem—as in Basis Pursuit or the Lasso—that can be solved reliably and, under certain conditions
+on the dictionary (e.g., restricted isometry or incoherence properties), provably recovers the same sparse solution as the
+original $\ell0$ problem. In practice, greedy methods are often preferred for speed and low-sparsity regimes, while convex
+relaxation approaches tend to offer stronger theoretical guarantees and more stable solutions in noisier or higher-sparsity settings.
 
-\subsubsection{Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)}
+\subsection{Matching Pursuit (MP)}
+
+Matching Pursuit is a greedy algorithm for approximating a signal x as a sparse combination of atoms from a dictionary D.
+It proceeds iteratively: at each step, it computes the inner product between the current residual (initially the signal itself)
+and every atom in the dictionary, selects the atom with the highest absolute correlation, and updates the coefficient for that
+atom by projecting the residual onto it. The residual is then updated by subtracting this contribution, and the process repeats
+until a stopping criterion is reached (target sparsity or residual energy threshold). MP is simple and computationally cheap,
+but because it only updates one coefficient per iteration without adjusting previously selected coefficients, it can select
+the same atom multiple times and converges slowly, and its solutions are generally suboptimal compared to more refined methods.
+
+\subsection{Orthogonal Matching Pursuit (OMP)}
+
+OMP improves on MP by re-optimizing all currently selected coefficients at every iteration rather than only the most recently
+added one. At each step, it selects the atom most correlated with the residual (as in MP), adds it to the active support set,
+and then solves a least-squares problem over all atoms currently in the support to obtain new coefficients that minimize the
+residual jointly. Because the residual is then orthogonal to all previously selected atoms, OMP never reselects the same atom
+twice, and it typically converges in fewer iterations and yields more accurate reconstructions than plain MP. The added cost is
+the least-squares solve at each iteration, making OMP more computationally expensive per step, though still tractable for
+moderate sparsity levels.
+
+\subsection{Least Angle Regression (LARS)}
+
+LARS is an efficient algorithm for computing the entire regularization path of the Lasso ($\ell1$-penalized least squares) problem.
+Rather than fixing a penalty parameter $\lambda$ and solving a single optimization, LARS starts with all coefficients at zero and
+iteratively identifies the predictor (atom) most correlated with the current residual, moving the coefficient in that predictor's
+direction. Instead of moving all the way to the least-squares solution as in stepwise regression, LARS moves only until another
+predictor becomes equally correlated with the residual, at which point that predictor is added to the active set and the direction
+is updated to remain equiangular between all active predictors. With a simple modification (allowing coefficients to be dropped
+from the active set when they cross zero), LARS exactly reproduces the full Lasso solution path with a computational cost
+comparable to ordinary least squares, making it a popular and efficient tool for convex-relaxation-based sparse coding,
+particularly when the full path of solutions across sparsity levels is of interest.
+
+\subsection{Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)}
+
+FISTA solves $\ell1$-regularized sparse coding problems, where the goal is to minimize:
+
+\[
+\sqrt{\|x - D\alpha\|}^2 + \lambda\|\alpha\|_1
+\]
+
+It builds on the Iterative Shrinkage-Thresholding Algorithm (ISTA), which alternates between a gradient descent step on the
+data-fidelity term and a soft-thresholding (shrinkage) step that enforces sparsity by shrinking small coefficients toward zero.
+While ISTA converges at a sublinear rate of O(1/k), FISTA accelerates this by incorporating a momentum term—extrapolating using
+a weighted combination of the current and previous iterates—which improves the convergence rate to O(1/k²) without increasing
+per-iteration cost. This makes FISTA well-suited to large-scale sparse coding and compressed sensing problems where fast,
+reliable convergence to the $\ell1$-regularized solution is needed.
 
 \section{Dictionary Learning}
 
@@ -670,7 +773,7 @@ transformation and classifier, FDDL focuses on improving the statistical
 distribution of sparse codes. This makes it suitable for classification tasks
 where the separation between classes is important.
 
-\subsection{Frozen Dictionary Learning for Outlier Separation}
+\subsection{Frozen Dictionary Learning}
 
 While most discriminative methods update the entire dictionary during training, 
 certain scenarios benefit from preserving previously acquired knowledge. 
@@ -735,200 +838,5 @@ interpretability methods.
 \subsection{Image Reconstruction}
 
 \subsection{Classification and Segmentation}
-
-\section{Evaluation Metrics}
-
-The evaluation of medical image analysis systems requires multiple metrics because
-different measures capture different aspects of model behaviour. In chest CT
-analysis, classification metrics describe the ability of the model to identify
-abnormal findings, segmentation metrics measure spatial agreement with reference
-annotations, and interpretability metrics evaluate whether the learned
-representations provide meaningful explanations.
-
-\subsection{Classification}
-
-For a binary classification problem, let $TP$, $TN$, $FP$, and $FN$ represent
-true positives, true negatives, false positives, and false negatives,
-respectively. Accuracy measures the overall proportion of correctly classified
-samples:
-
-\begin{equation}
-\mathrm{Accuracy} =
-\frac{TP+TN}{TP+TN+FP+FN}.
-\end{equation}
-
-Although accuracy provides an overall performance estimate, it can become
-misleading when the dataset contains class imbalance. Therefore, additional
-metrics based on positive class prediction are considered.
-
-Precision indicates the reliability of positive predictions by measuring the
-fraction of detected abnormalities that are correct:
-
-\begin{equation}
-\mathrm{Precision} =
-\frac{TP}{TP+FP}.
-\end{equation}
-
-Recall, also referred to as sensitivity, measures the ability of the model to
-recover existing abnormal cases:
-
-\begin{equation}
-\mathrm{Recall} =
-\frac{TP}{TP+FN}.
-\end{equation}
-
-The F1-score combines precision and recall into a single measure and provides a
-balanced evaluation when both false positive and false negative errors are
-important:
-
-\begin{equation}
-\mathrm{F1} =
-\frac{2 \times \mathrm{Precision} \times \mathrm{Recall}}
-{\mathrm{Precision}+\mathrm{Recall}}.
-\end{equation}
-
-The Area Under the Receiver Operating Characteristic Curve (AUROC) evaluates
-the ability of a classifier to separate positive and negative samples over all
-possible decision thresholds. It is calculated from the relationship between
-the true positive rate (TPR) and false positive rate (FPR):
-
-\begin{equation}
-\mathrm{AUROC}
-=
-\int_{0}^{1} \mathrm{TPR}(\mathrm{FPR})\,d\mathrm{FPR}.
-\end{equation}
-
-A higher AUROC indicates that the model can better distinguish between
-abnormal and normal cases without depending on a particular classification
-threshold.
-
-Average Precision (AP) summarizes the precision-recall relationship and is
-particularly useful for medical datasets where abnormal cases may represent a
-smaller proportion of the data:
-
-\begin{equation}
-\mathrm{AP}
-=
-\sum_n(R_n-R_{n-1})P_n,
-\end{equation}
-
-where $P_n$ and $R_n$ represent precision and recall values at different
-classification thresholds. Higher average precision indicates better detection
-of positive cases under class imbalance.
-
-The reliability of predicted probabilities is measured using Expected
-Calibration Error (ECE). The metric compares predicted confidence with the
-actual accuracy within confidence intervals:
-
-\begin{equation}
-\mathrm{ECE}
-=
-\sum_{m=1}^{M}
-\frac{|B_m|}{N}
-|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|.
-\end{equation}
-
-Lower ECE values indicate that the predicted confidence scores better reflect
-the actual likelihood of correctness.
-
-\subsection{Localization and Segmentation}
-
-For segmentation evaluation, let $P$ represent the predicted region and $G$
-represent the ground-truth annotation. The Dice coefficient measures the overlap
-between the two regions:
-
-\begin{equation}
-\mathrm{Dice}(P,G)
-=
-\frac{2|P\cap G|}
-{|P|+|G|}.
-\end{equation}
-
-Intersection over Union (IoU), also known as the Jaccard index, measures the
-ratio between the intersection and union of the predicted and reference regions:
-
-\begin{equation}
-\mathrm{IoU}(P,G)
-=
-\frac{|P\cap G|}
-{|P\cup G|}.
-\end{equation}
-
-Dice and IoU provide complementary information about segmentation quality,
-where higher values indicate better spatial agreement between predicted and
-reference regions.
-
-
-\subsection{Interpretability of Sparse Dictionary Learning}
-
-In sparse dictionary learning, interpretability is obtained from the learned
-dictionary atoms and their corresponding sparse representations. Therefore,
-evaluation focuses on whether the dictionary provides compact, meaningful, and
-discriminative representations of CT image patterns.
-
-The reconstruction error measures how effectively the learned dictionary
-represents the input data. Given an input patch $x$, dictionary $D$, and sparse
-coefficient vector $\alpha$, the reconstruction error is defined as:
-
-\begin{equation}
-\mathrm{Reconstruction\ Error}
-=
-\|x-D\alpha\|_2^2.
-\end{equation}
-
-A lower reconstruction error indicates that the dictionary captures important
-structures present in the image data.
-
-The sparsity of the representation describes how many atoms contribute to the
-reconstruction. It is measured using the number of non-zero coefficients:
-
-\begin{equation}
-\mathrm{Sparsity}
-=
-\|\alpha\|_0 .
-\end{equation}
-
-Lower values indicate that only a small number of atoms are required to explain
-a sample, making the representation easier to interpret.
-
-Dictionary coherence evaluates the similarity between different atoms in the
-learned dictionary. The mutual coherence is defined as:
-
-\begin{equation}
-\mu(D)
-=
-\max_{i\neq j}
-\frac{|d_i^Td_j|}
-{\|d_i\|_2\|d_j\|_2}.
-\end{equation}
-
-A lower coherence value indicates that the dictionary contains less redundant
-atoms and that individual atoms capture more distinct image characteristics.
-
-Atom utilization measures how frequently each dictionary atom contributes to
-the representation of the dataset:
-
-\begin{equation}
-U_k
-=
-\sum_{i=1}^{N}
-\mathbb{1}(\alpha_{k,i}\neq0),
-\end{equation}
-
-where $U_k$ represents the activation frequency of atom $k$. This metric helps
-identify whether the learned dictionary is effectively utilized or dominated by
-a limited number of atoms.
-
-For supervised dictionary learning approaches such as LC-KSVD, class-specific
-atom activation provides additional interpretability. Disease-related atoms are
-expected to activate more frequently for samples belonging to their associated
-class compared with unrelated classes. This indicates that the learned atoms
-capture discriminative patterns rather than only general image structures.
-
-Finally, visual inspection of reconstructed dictionary atoms is used as a
-qualitative interpretability assessment. By examining representative atoms,
-their relationship with anatomical structures or pathological appearances can
-be analysed, providing an intuitive understanding of the features learned by
-the model.
 
 \section{Research Gaps}
