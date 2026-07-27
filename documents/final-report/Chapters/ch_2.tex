@@ -648,7 +648,56 @@ interpretability methods.
 
 \subsection{Image Reconstruction}
 
+Dictionary learning was
+first widely applied to image reconstruction problems such as MRI and CT
+reconstruction. Medical images often contain noise, missing information,
+or require long acquisition times. Dictionary learning helps overcome
+these problems by representing image patches as sparse combinations of
+learned dictionary atoms, allowing high-quality images to be reconstructed
+from incomplete or degraded data.
+
+Ravishankar and Bresler applied adaptive dictionary learning for compressed
+sensing MRI reconstruction, where the dictionary was learned directly from
+the image data instead of using fixed transform bases. Their method
+achieved improved image quality while reducing MRI acquisition time
+\cite{ravishankar2011mri}. Similar sparse representation methods have also
+been used for low-dose CT reconstruction and image denoising, where
+learned dictionaries help reduce noise while preserving important
+anatomical details \cite{zhao2019survey}. These studies show that
+dictionary learning is useful for reconstruction tasks, especially when
+interpretability and limited training data are important
+
+
 \subsection{Classification and Segmentation}
+
+In addition to reconstruction, dictionary learning has been applied to
+medical image classification and segmentation tasks. In these applications,
+image patches are converted into sparse representations, and the learned
+features are used to identify diseases or important anatomical structures.
+LC-KSVD improved this process by learning both a dictionary and a
+classifier while ensuring that the sparse codes remain consistent with
+their class labels \cite{jiang2013lcksvd}.
+
+Several studies have shown the effectiveness of dictionary learning for
+medical image analysis. Tong et al. used discriminative dictionary
+learning for hippocampus segmentation from brain MRI images, where sparse
+features captured important anatomical patterns
+\cite{tong2013hippocampus}.
+
+In CT imaging, Ben-Cohen et al. combined
+dictionary learning with a fully convolutional network for liver lesion
+detection, showing that dictionary learning can work together with deep
+learning methods \cite{bencohen2017liver}.
+
+Also, dictionary
+learning has been applied to disease classification tasks such as
+histopathology analysis and glaucoma diagnosis
+\cite{zhao2019survey}. These applications demonstrate that dictionary
+learning provides interpretable features and remains a valuable classical
+baseline for comparison with modern deep learning models.
+
+
+
 
 \section{Evaluation Metrics}
 
@@ -846,3 +895,4 @@ be analysed, providing an intuitive understanding of the features learned by
 the model.
 
 \section{Research Gaps}
+
