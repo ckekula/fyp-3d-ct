@@ -242,6 +242,32 @@ from full 3D volumes and everyday hospital data, rather than small 2D datasets w
 
 \subsection{MedSAM}
 
+MedSAM adapts the Segment Anything Model (SAM), originally developed for natural images, 
+into a general-purpose segmentation model for medical scans \cite{ma2024medsam}.
+Rather than training a separate network for each organ or modality, 
+a single fine-tuned model is reused across many segmentation tasks.
+A key limitation is that MedSAM operates on 2D slices.
+Applying it to a 3D chest CT volume therefore requires a separate bounding box on every slice, 
+and the resulting masks do not capture how a nodule connects across neighbouring slices. 
+
+MedSAM2 addresses this limitation by building on the SAM2 architecture and its memory-attention mechanism, 
+allowing a single prompt to be propagated across an entire volume instead of being redrawn slice by slice, 
+which substantially reduces the annotation effort required \cite{ravi2025medsam2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Architecture_MEDSAM2.png}
+    \caption{Architecture of MedSAM2}
+    \label{fig:medsam2-architecture}
+\end{figure}
+
+Despite this improvement, pulmonary findings remain difficult for these models to segment accurately.
+A benchmarking study comparing MedSAM and MedSAM2 against standard segmentation networks 
+found that both achieved strong performance on whole-lung segmentation but 
+performed noticeably worse on individual tumours and small nodules, 
+with results sensitive to the quality and consistency of the box prompts \cite{ayllon2025benchmarking}.
+This reflects a broader limitation of prompt-driven segmentation models.
+
 \subsection{CT-CLIP}
 
 CT images contain valuable information for diagnosing pulmonary diseases and are used by many Deep Learning approaches as the
