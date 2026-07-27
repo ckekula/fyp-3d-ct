@@ -2,7 +2,7 @@
 
 \section{Clinical Background}
 
-Chronic respiratory diseases account for more than 4 million deaths globally per year \cite{}.
+Chronic respiratory diseases account for more than 4 million deaths globally per year \cite{murray2022global}.
 Research shows that early detection of pulmonary diseases, particularly lung cancer and Chronic Obstructive Pulmonary Disease
 (COPD) dramatically lowers mortality rates.
 Two landmark studies, the National Lung Screening Trial (NLST) and the Nederlands-Leuvens Longkanker Screenings Onderzoek (NELSON)
@@ -65,10 +65,10 @@ segmentation approaches capable of handling such structural diversity without ex
 
 \section{Computer-Aided Diagnosis (CAD) Systems}
 
-Computer Aided Diagnosis (CAD) are computer based tools that help medical personnel in analysis of imaging studies
+CAD systems are computer based tools that help medical personnel in analysis of imaging studies
 and help in making better diagnostic decisions. CAD does not replace doctors. Instead, it acts as a second opinion
 by identifying suspicious areas in medical images and providing useful information to support diagnosis. The final
-diagnosis is always made by the doctor\cite{DOI2007198} .
+diagnosis is always made by the doctor\cite{DOI2007198}.
 
 Classification involves identifying the nature of a finding, such as labeling a nodule as malignant or benign.
 Detection requires scanning the entire image to locate suspicious areas, like microcalcifications or lung nodules,
@@ -152,34 +152,52 @@ and it is frequently cited in the literature as the standard benchmark against w
 
 \subsection{BioMedParse}
 
-BiomedParse is a foundation model for segmentation, detection, and recognition that extends prompt driven parsing to medical imaging tasks \cite{zhao2025foundation}.
-Rather than relying on a fixed label set during inference, the model accepts a natural language prompt describing the target anatomy or pathology and produces a pixel level mask for the queried concept.
-This makes BiomedParse especially useful in settings where the structures of interest are heterogeneous, difficult to enumerate in advance, or described differently across institutions and reports.
+BiomedParse is a "Foundation Model for Joint Segmentation, Detection, and Recognition of Biomedical Objects Across Nine Modalities" \cite{zhao2025foundation}.
+Rather than relying on a fixed label set during inference, the model accepts a natural language prompt describing the target anatomy
+or pathology and produces a pixel level mask for the queried concept.
+This makes BiomedParse especially useful in settings where the structures of interest are heterogeneous, difficult to enumerate in
+advance, or described differently across institutions and reports.
 
-In the context of chest CT, BiomedParse is attractive because many clinically relevant findings such as lung nodules, lung opacity, consolidation, and atelectasis can be queried directly with disease specific text prompts.
-The model combines image encoding with language understanding and uses a transformer based decoder to align the prompt with the visual features extracted from the scan \cite{zhao2025foundation}. 
-The output is not only a segmentation map but also a form of interpretable localization, since the generated mask indicates where the model believes the prompted abnormality is present.
-Therefore, BiomedParse serves both as a SotA reference model and as a practical contrast for discussing performance, localization quality, and interpretability in 3D chest CT analysis.
+The model combines image encoding with language understanding and uses a transformer based decoder to align the prompt with the visual
+features extracted from the scan \cite{zhao2025foundation}. Figure \ref{fig:biomedparse-flowchart} shows the flowchart of the architecture:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-flowchart.png}
+    \caption{BiomedParse architecture, showing the image encoder, text encoder, and transformer decoder that aligns the prompt with visual features to produce a segmentation mask.}
+    \label{fig:biomedparse-flowchart}
+\end{figure}
+
+The output is a segmentation mask, as shown in Figure \ref{fig:biomedparse-output}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-output.png}
+    \caption{Example outputs of BiomedParse, showing the segmentation masks for prompted abnormalities.}
+    \label{fig:biomedparse-output}
+\end{figure}
+
+BiomedParse serves as a SotA reference model for discussing localization quality, and interpretability in our study.
 
 
 \subsection{TotalSegmentator}
 
-Accurate anatomical segmentation is an important step in CT-based
-computer-aided diagnosis (CAD). Earlier deep learning methods were mainly
-developed to segment only a few organs. To solve this problem, Wasserthal
-\textit{et al.} introduced \textbf{TotalSegmentator}, a deep learning framework
-that can automatically segment 104 anatomical structures from a single CT scan
-\cite{wasserthal2023totalsegmentator}. The framework is built on the
-\textit{nnU-Net} architecture, which automatically adjusts the training process
-to different datasets. This helps the model achieve reliable segmentation on
-different clinical CT images.
+Many deep learning methods were developed to segment only one or a few organs. Wasserthal et al. introduced
+TotalSegmentator, a deep learning framework that can automatically segment 104 anatomical structures from a single CT scan
+\cite{wasserthal2023totalsegmentator}. Figure \ref{fig:totalsegmentator-output} shows the main classes of TotalSegmentator,
+which include 27 organs, 59 bones, 10 muscles, 8 vessels.
 
-The model was trained using more than 1,200 routine clinical CT scans collected
-from different hospitals and patient groups. It achieved a mean Dice Similarity
-Coefficient (DSC) of about 0.94, showing high segmentation accuracy. Because of
-its good performance, TotalSegmentator is widely used as a preprocessing tool in
-medical image analysis, including computer-aided diagnosis, surgical planning,
-and radiotherapy planning \cite{wasserthal2023totalsegmentator}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/totalsegmentator.png}
+    \caption{Main classes of TotalSegmentator.}
+    \label{fig:totalsegmentator-output}
+\end{figure}
+
+The framework is built on the nnU-Net architecture and was trained using more than 1,200 routine clinical
+CT scans collected from different hospitals and patient groups.
+It achieved a mean Dice Similarity Coefficient (DSC) of about 0.94. Because of its high segmentation accuracy,
+TotalSegmentator is commonly used as a preprocessing tool in medical image research \cite{yang2025seg2med}.
 
 Although TotalSegmentator provides accurate anatomical segmentation, it is not
 designed to classify pulmonary abnormalities such as lung nodules or
@@ -187,17 +205,11 @@ ground-glass opacities. It also does not explain how its predictions are made.
 Therefore, additional methods are needed for disease classification and
 interpretable clinical decision-making.
 
-The proposed research aims to overcome these limitations by developing an
-interpretable Label Consistent K-SVD (LC-KSVD) framework for pulmonary
-abnormality classification and grounded localization. While TotalSegmentator
-provides useful anatomical information, the proposed framework focuses on
-improving both classification performance and the interpretability of the
-results.
 
 \subsection{Merlin}
 
-Merlin is an AI model that can help interpret CT scans automatically. 3D vision-language model (VLM) built to understand abdominal CT scans by learning jointly
-from the images, radiology reports, and electronic health record (EHR) data \cite{Blankemeier_2026}.
+Merlin is an AI model that can help interpret CT scans automatically. 3D vision-language model (VLM) built to understand abdominal
+CT scans by learning jointly from the images, radiology reports, and electronic health record (EHR) data \cite{Blankemeier_2026}.
 
 Most earlier medical vision-language models were built for 2D images, such as chest X-rays, paired with short captions. CT scans are different,
 they are 3D volumes made of hundreds of slices, and simply applying a 2D model slice-by-slice throws away important 3D spatial information,

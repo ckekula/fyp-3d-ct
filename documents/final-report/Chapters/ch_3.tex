@@ -144,14 +144,14 @@ through exactly the same spacing correction and (where relevant) the same
 preprocessing steps, so patches extracted from different scans remained directly
 comparable.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/loading_volumescan.png}
-%     \caption{Shared loading pipeline for CT volumes and finding masks, showing the
-%     spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
-%     masks) and the preprocessing block applied only to volumes.}
-%     \label{fig:loading-diagram}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/loading_volumescan.png}
+    \caption{Shared loading pipeline for CT volumes and finding masks, showing the
+    spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
+    masks) and the preprocessing block applied only to volumes.}
+    \label{fig:loading-diagram}
+\end{figure}
 
 \subsection{Preprocessing}
 
@@ -312,15 +312,15 @@ two branches this way keeps the normal and abnormal sampling logic independent
 while funnelling both into the same final acceptance criterion and the same
 output matrix.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/patchExtraction.png}
-%     \caption{Patch extraction workflow, showing the normal-scan sampling grid and
-%     the lesion bounding-box branch for annotated scans, each filtered by its own
-%     background/lesion-fraction threshold before patches are added to the patch
-%     matrix.}
-%     \label{fig:patch-extraction-diagram}
-% \end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/patchExtraction.png}
+    \caption{Patch extraction workflow, showing the normal-scan sampling grid and
+    the lesion bounding-box branch for annotated scans, each filtered by its own
+    background/lesion-fraction threshold before patches are added to the patch
+    matrix.}
+    \label{fig:patch-extraction-diagram}
+\end{figure}
 
 Formally, each extracted patch can be written as
 
