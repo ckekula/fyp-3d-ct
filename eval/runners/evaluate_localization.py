@@ -77,6 +77,17 @@ def load_localization_samples(
         )
         return adapter.load()
 
+    if model == "medsam2":
+        from eval.adapters.medsam2_adapter import MedSAM2LocalizationAdapter
+
+        adapter = MedSAM2LocalizationAdapter(
+            output_dir=predictions_dir,
+            gt_mask_root=gt_mask_root,
+            metadata_json=metadata_json,
+            model_name=model_name,
+        )
+        return adapter.load()
+
     if model == "nnunet":
         from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter  # type: ignore
 
@@ -90,8 +101,8 @@ def load_localization_samples(
 
     raise ValueError(
         f"Unsupported localization model: {model}. "
-        "Supported now: biomed_parse, lc_ksvd. "
-        "Add more adapters for medsam2, segvol, nnunet, swin_unetr."
+        "Supported now: biomed_parse, lc_ksvd, merlin, medsam2, nnunet. "
+        "Add more adapters for segvol, swin_unetr."
     )
 
 
