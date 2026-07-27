@@ -234,6 +234,13 @@ MedSAM2 addresses this limitation by building on the SAM2 architecture and its m
 allowing a single prompt to be propagated across an entire volume instead of being redrawn slice by slice, 
 which substantially reduces the annotation effort required \cite{ravi2025medsam2}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Architecture_MEDSAM2.png}
+    \caption{Architecture of MedSAM2}
+    \label{fig:medsam2-architecture}
+\end{figure}
+
 Despite this improvement, pulmonary findings remain difficult for these models to segment accurately.
 A benchmarking study comparing MedSAM and MedSAM2 against standard segmentation networks 
 found that both achieved strong performance on whole-lung segmentation but 
