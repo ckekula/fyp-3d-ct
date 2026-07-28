@@ -75,6 +75,18 @@
   year={2020},
   publisher={Mass Medical Soc}
 }
+
+@article{withers2021x,
+  title={X-ray computed tomography},
+  author={Withers, Philip J and Bouman, Charles and Carmignato, Simone and Cnudde, Veerle and Grimaldi, David and Hagen, Charlotte K and Maire, Eric and Manley, Marena and Du Plessis, Anton and Stock, Stuart R},
+  journal={Nature Reviews Methods Primers},
+  volume={1},
+  number={1},
+  pages={18},
+  year={2021},
+  publisher={Nature Publishing Group UK London}
+}
+
 @article{wasserthal2023totalsegmentator,
   title={TotalSegmentator: Robust Segmentation of 104 Anatomic Structures in CT Images},
   author={Wasserthal, Jakob and Breit, Hartwig Christoph and Meyer, Michael T. and others},
@@ -169,7 +181,6 @@
   year={2017}
 }
 
-
 @article{guidotti2018survey,
   title={A Survey of Methods for Explaining Black Box Models},
   author={Guidotti, Riccardo and Monreale, Anna and Ruggieri, Salvatore and Turini, Franco and Giannotti, Fosca and Pedreschi, Dino},
@@ -182,24 +193,6 @@
   doi={10.1145/3236009}
 }
 
-
-@misc{who2021ethics,
-  title={Ethics and Governance of Artificial Intelligence for Health},
-  author={{World Health Organization}},
-  year={2021},
-  publisher={World Health Organization},
-  address={Geneva, Switzerland},
-  isbn={978-92-4-002920-0}
-}
-
-
-@misc{eu2019ethics,
-  title={Ethics Guidelines for Trustworthy AI},
-  author={{European Commission High-Level Expert Group on Artificial Intelligence}},
-  year={2019},
-  publisher={European Commission},
-  address={Brussels, Belgium}
-}
 @article{zhao2025foundation,
   title={A foundation model for joint segmentation, detection and recognition of biomedical objects across nine modalities},
   author={Zhao, Theodore and Gu, Yu and Yang, Jianwei and Usuyama, Naoto and Lee, Ho Hin and Kiblawi, Sid and Naumann, Tristan and Gao, Jianfeng and Crabtree, Angela and Abel, Jacob and others},
@@ -438,12 +431,11 @@ series = {ICML '09}
 
 
 %SHAP
-@inproceedings{lundberg2017unified,
-  title={A Unified Approach to Interpreting Model Predictions},
-  author={Lundberg, Scott M. and Lee, Su-In},
-  booktitle={Advances in Neural Information Processing Systems},
+@article{lundberg2017unified,
+  title={A unified approach to interpreting model predictions},
+  author={Lundberg, Scott M and Lee, Su-In},
+  journal={Advances in neural information processing systems},
   volume={30},
-  pages={4765--4774},
   year={2017}
 }
 
@@ -489,6 +481,8 @@ series = {ICML '09}
   doi={10.1109/ICCV.2017.74}
 }
 
+%other cam methods
+
 @inproceedings{chattopadhay2018grad,
   title={Grad-CAM++: Generalized Gradient-Based Visual Explanations for Deep Convolutional Networks},
   author={Chattopadhay, Aditya and Sarkar, Anirban and Howlader, Prantik and Balasubramanian, Vineeth N.},
@@ -497,16 +491,6 @@ series = {ICML '09}
   year={2018},
   publisher={IEEE},
   doi={10.1109/WACV.2018.00097}
-}
-
-
-%other cam methods
-
-@article{draelos2020hirescam,
-  title={Use HiResCAM instead of Grad-CAM for faithful explanations of convolutional neural networks},
-  author={Draelos, Rachel L. and Carin, Lawrence},
-  journal={arXiv preprint arXiv:2011.08891},
-  year={2020}
 }
 
 @inproceedings{wang2020scorecam,
@@ -518,15 +502,62 @@ series = {ICML '09}
   doi={10.1109/CVPRW50498.2020.00020}
 }
 
-@inproceedings{fu2020xgradcam,
-  title={Axiom-based Grad-CAM: Towards Accurate Visualization and Explanation of CNNs},
-  author={Fu, Ruigang and Hu, Qingyong and Dong, Xiaohu and Guo, Yulan and Gao, Yinghui and Li, Biao},
-  booktitle={Proceedings of the British Machine Vision Conference (BMVC)},
-  pages={631},
-  year={2020}
+@article{jiang2021layercam,
+  title={Layercam: Exploring hierarchical class activation maps for localization},
+  author={Jiang, Peng-Tao and Zhang, Chang-Bin and Hou, Qibin and Cheng, Ming-Ming and Wei, Yunchao},
+  journal={IEEE transactions on image processing},
+  volume={30},
+  pages={5875--5888},
+  year={2021},
+  publisher={IEEE}
 }
 
+% XAI Limitations
+@article{hassija2024interpreting,
+  title={Interpreting black-box models: a review on explainable artificial intelligence},
+  author={Hassija, Vikas and Chamola, Vinay and Mahapatra, Atmesh and Singal, Abhinandan and Goel, Divyansh and Huang, Kaizhu and Scardapane, Simone and Spinelli, Indro and Mahmud, Mufti and Hussain, Amir},
+  journal={Cognitive Computation},
+  volume={16},
+  number={1},
+  pages={45--74},
+  year={2024},
+  publisher={Springer}
+}
 
+@inproceedings{ribeiro2024explainable,
+  title={Explainable ai in language learning: Linking empirical evidence and theoretical concepts in proficiency and readability modeling of portuguese},
+  author={Ribeiro-Flucht, Luisa and Chen, Xiaobin and Meurers, Detmar},
+  booktitle={Proceedings of the 19th workshop on innovative use of NLP for building educational applications (BEA 2024)},
+  pages={199--209},
+  year={2024}
+}
+
+@article{doshi2017towards,
+  title={Towards a rigorous science of interpretable machine learning},
+  author={Doshi-Velez, Finale and Kim, Been},
+  journal={arXiv preprint arXiv:1702.08608},
+  year={2017}
+}
+
+@article{guidotti2024counterfactual,
+  title={Counterfactual explanations and how to find them: literature review and benchmarking: R. Guidotti},
+  author={Guidotti, Riccardo},
+  journal={Data Mining and Knowledge Discovery},
+  volume={38},
+  number={5},
+  pages={2770--2824},
+  year={2024},
+  publisher={Springer}
+}
+
+@inproceedings{van2004explainable,
+  title={An explainable artificial intelligence system for small-unit tactical behavior},
+  author={Van Lent, Michael and Fisher, William and Mancuso, Michael},
+  booktitle={Proceedings of the national conference on artificial intelligence},
+  pages={900--907},
+  year={2004},
+  organization={Menlo Park, CA; Cambridge, MA; London; AAAI Press; MIT Press; 1999}
+}
 
 %Dictionary Learning in Medical Imaging
 @article{aharon2006ksvd,

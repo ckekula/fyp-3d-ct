@@ -146,7 +146,7 @@ comparable.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/loading_volumescan.png}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/loading_volumescan.png}
     \caption{Shared loading pipeline for CT volumes and finding masks, showing the
     spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
     masks) and the preprocessing block applied only to volumes.}
@@ -314,7 +314,7 @@ output matrix.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Chapter 3/patchExtraction.png}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patchExtraction.png}
     \caption{Patch extraction workflow, showing the normal-scan sampling grid and
     the lesion bounding-box branch for annotated scans, each filtered by its own
     background/lesion-fraction threshold before patches are added to the patch
@@ -344,57 +344,6 @@ keeps memory requirements manageable while still allowing the learned dictionary
 atoms to specialise in the local structural signatures associated with each target
 pulmonary abnormality.
 
-<<<<<<< HEAD
-
-
-\section{Classification}
-
-\subsection{Sparse Coding}
-
-\subsection{Training}
-
-\subsubsection{LinearSVC}
-
-\subsubsection{Logistic Regression}
-
-
-\section{Inference}
-
-\subsection{Classification on Test Set}
-
-\subsection{Statistical Analysis}
-
-
-\section{Deep Learning Models}
-
-\subsection{nnU-Net}
-
-\subsection{Merlin}
-
-\subsection{BiomedParse}
-
-\subsection{CT-CLIP}
-
-\subsection{Med-SAM}
-
-
-\section{Evaluation Framework}
-
-\subsection{Metrics}
-
-\subsubsection{Classification Metrics}
-
-\subsubsection{Segmentation Metrics}
-
-\subsubsection{Interpretability Metrics}
-
-\subsection{Pipeline}
-
-\subsubsection{Adaptor}
-
-\subsubsection{Runner}
-
-=======
 \section{Evaluation Metrics}
 
 The evaluation of medical image analysis systems requires multiple metrics because
@@ -589,4 +538,3 @@ qualitative interpretability assessment. By examining representative atoms,
 their relationship with anatomical structures or pathological appearances can
 be analysed, providing an intuitive understanding of the features learned by
 the model.
->>>>>>> b058374df99af8ff6896c419bd5551bef9d32b98
