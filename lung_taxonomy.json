@@ -6,12 +6,12 @@
             "Pulmonary consolidation",
             "Pulmonary ground-glass opacities ",
             "Pulmonary emphysema",
-            " Pulmonary solitary nodule or mass",
-            " Pulmonary diffusely distributed multiple nodules",
+            "Pulmonary solitary nodule or mass",
+            "Pulmonary diffusely distributed multiple nodules",
             "Pulmonary parenchymal fibrosis",
-            " Pulmonary thin-walled cavitation",
-            " Pulmonary thick-walled cavities",
-            " Pulmonary cystic mass"
+            "Pulmonary thin-walled cavitation",
+            "Pulmonary thick-walled cavities",
+            "Pulmonary cystic mass"
         ],
         "Bronchi": [
             "Bronchiectasis",

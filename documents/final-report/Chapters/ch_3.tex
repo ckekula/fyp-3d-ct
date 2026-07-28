@@ -1,4 +1,24 @@
 \chapter{Methodology}
+
+Figure \ref{fig:methodology} gives an overview of the full methodology pipeline used in this study.
+First, the raw CT volumes with their corresponding ground truth segmentation masks are loaded and resampled
+to a target spacing. Then the CT volumes are preprocessed to isolate the lung region, and their metadata and
+ground truth masks are used to extract 3D patches of normal and abnormal lung tissue. These patches are then
+split into training and testing sets, and the training patches are used to learn multiple dictionary learning models
+with representative atoms for normal lung parenchyma and each abnormal class.
+Once the dictionaries are learned, they are used to generate sparse codes for each patch in the training set, which are then
+used to train a linear classifier for multi-class classification. The learned dictionaries are also used to generate
+the sparse codes for the patches in the test set, which are then classified by the trained linear classifer.
+The obtained predictions are used to locate the exact voxels in a given patch that contributed to the classification decision,
+and the generated heatmaps are compared against the ground truth.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Chapter 3/overall-methodology.png}
+    \caption{Overview of the methodology pipeline.}
+    \label{fig:methodology}
+\end{figure}
+
 \section{Data Acquisition}
 
 The quality and consistency of the input data has a direct bearing on how well the
@@ -17,8 +37,8 @@ than relying on a single source, mainly because no single dataset offered both a
 large enough pool of normal scans and fine-grained, spatially localized annotations
 for the specific abnormalities of interest.
 
-The first is \textbf{CT-RATE}\cite{hamamci2024ctrate}, a large-scale chest CT dataset hosted on Hugging
-Face (\texttt{ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
+The first is CT-RATE \cite{hamamci2024ctrate}, a large-scale chest CT dataset hosted on Hugging
+Face that provides volume-level multi-label
 annotations across 18 abnormality categories. The released label files cover
 47{,}149 training volumes and 3{,}039 validation volumes, giving 50{,}188 labelled
 scans in total. Table-level counts confirm that the dataset is reasonably
@@ -153,7 +173,7 @@ comparable.
     \label{fig:loading-diagram}
 \end{figure}
 
-\subsection{Preprocessing}
+\section{Preprocessing}
 
 Before any patches could be extracted, the raw volumes had to be reduced to just
 the lung region. A whole-volume approach was ruled out fairly early: bones, soft
@@ -163,7 +183,7 @@ pick up spurious patterns unrelated to lung pathology. Three different approache
 to isolating the lungs were tried over the course of the project, in the order
 described below, before settling on a final method.
 
-\subsubsection{Classical Image Processing-Based Lung Segmentation}
+\subsection{Classical Image Processing-Based Lung Segmentation}
 
 The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
 is normally well separated from surrounding structures in intensity. Each volume
@@ -225,7 +245,7 @@ lung parenchyma HU window in the first place. This is what motivated the move aw
 from purely intensity-based segmentation and towards a learned segmentation model,
 LungMask's \texttt{LMInferer}, described next.
 
-\subsubsection{LungMask-Based Lung Segmentation}
+\subsection{LungMask-Based Lung Segmentation}
 
 The method that was ultimately adopted is the \texttt{LungMask} library, accessed
 through its \texttt{LMInferer} interface. Unlike the classical pipeline, LungMask

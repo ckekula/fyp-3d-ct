@@ -508,7 +508,7 @@ a weighted combination of the current and previous iterates—which improves the
 per-iteration cost. This makes FISTA well-suited to large-scale sparse coding and compressed sensing problems where fast,
 reliable convergence to the $\ell1$-regularized solution is needed.
 
-\section{Dictionary Learning}
+\section{Dictionary Learning (DL)}
 
 Dictionary learning is a technique in which an image patch or a region of a medical scan is represented as a combination of a small number of basic building blocks,
 rather than by describing every pixel value directly. This idea comes from sparse coding theory and is widely used in image denoising, compression,
@@ -716,32 +716,43 @@ to new patterns.
 
 \section{Dictionary Learning in Medical Imaging}
 
-In medical imaging, dictionary learning has been used for a wide range of
-tasks. Ravishankar and Bresler used dictionary learning to reconstruct MRI
+Dictionary learning has become a powerful tool across the medical imaging pipeline, offering data-adaptive
+alternatives to fixed transforms such as DCT or wavelets by learning sparse representations directly from image patches.
+DL-based methods have been applied to medical imaging in 5 key aspects:
+
+\begin{enumerate}
+    \item Signal Denoising
+    \item Image Reconstruction
+    \item Super-Resolution
+    \item Classification and Detection
+    \item Segmentation
+\end{enumerate}
+
+\subsection{Signal Denoising}
+
+In denoising, DL-based methods learn a dictionary of atoms from the noisy image itself, then reconstruct a
+clean image by enforcing that each local patch be sparsely represented by these learnt atoms. This approach has been applied to
+remove Gaussian noise from natural images and, more recently, noise from diffusion MRI and other medical images, generally
+outperforming standard DCT/FFT-based denoising by adapting to the specific structure of the data.
+
+\subsection{Image Reconstruction}
+
+In reconstruction, DL addresses
+the inverse problem of recovering images from undersampled k-space acquisitions in compressed sensing MRI, where patch-based
+dictionaries (spatial, spatio-temporal, or 1D) provide a sparser and more flexible representation than global transforms like
+wavelets or temporal Fourier bases, enabling more accurate recovery from highly undersampled data such as cardiac cine sequences.
+
+Closely related to reconstruction is super-resolution, where coupled high-resolution and low-resolution dictionaries are co-trained
+so that corresponding patches share the same sparse code, allowing high-resolution image patches to be hallucinated from
+low-resolution inputs; this has been used to enhance cardiac MRI slabs and single-image brain MRI without requiring accurate
+subpixel alignment.
+
+Ravishankar and Bresler used dictionary learning to reconstruct MRI
 images from undersampled k-space data, allowing shorter scan times without
 losing image quality \cite{ravishankar2011mri}. Tong et al. applied
 discriminative dictionary learning to segment the hippocampus from brain
 MRI scans, showing that sparse coding can capture useful anatomical
-patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
-Ben-Cohen et al. combined a fully convolutional network with
-sparsity-based dictionary learning to detect liver lesions, showing that
-dictionary learning can also be used alongside deep learning models rather
-than as a replacement for them \cite{bencohen2017liver}. A broader survey
-by Zhao et al. reviewed the use of dictionary learning for CT image
-de-noising and histopathological image classification, and applied
-low-rank shared dictionary learning to glaucoma diagnosis on fundus images
-\cite{zhao2019survey}.
-
-
-\subsection{Image Reconstruction}
-
-Dictionary learning was
-first widely applied to image reconstruction problems such as MRI and CT
-reconstruction. Medical images often contain noise, missing information,
-or require long acquisition times. Dictionary learning helps overcome
-these problems by representing image patches as sparse combinations of
-learned dictionary atoms, allowing high-quality images to be reconstructed
-from incomplete or degraded data.
+patterns for segmentation \cite{tong2013hippocampus}.
 
 Ravishankar and Bresler applied adaptive dictionary learning for compressed
 sensing MRI reconstruction, where the dictionary was learned directly from
@@ -757,6 +768,13 @@ interpretability and limited training data are important
 
 \subsection{Classification and Segmentation}
 
+Finally, for classification and segmentation, since standard reconstructive dictionaries lack discriminative
+power, discriminative DL techniques incorporate class labels during training, either by learning separate class-specific
+dictionaries and using representation residuals for classification, or by jointly learning a shared dictionary alongside a linear
+classifier over the sparse coding coefficients, as in discriminative dictionary learning for segmentation (DDLS), which has been
+successfully applied to hippocampus labeling and multi-organ segmentation in abdominal CT.
+
+SIRGE RESEARCH EKA
 
 In addition to reconstruction, dictionary learning has been applied to
 medical image classification and segmentation tasks. In these applications,

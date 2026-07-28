@@ -38,12 +38,12 @@ Such XAI methods are highly valuable for building clinical trust in deep learnin
 often lack the fine-grained, pixel-level precision required to identify tiny lesions,
 sometimes highlighting incorrect or confounding features \cite{ennab2025advancing}.
 
-Recent advances in sparse representation models such as Sparse Autoencoders and Dictionary Learning have shown to provide
+Recent advances in sparse representation models such as Sparse Autoencoders and Dictionary Learning (DL) have shown to provide
 inherent interpretability in medical imaging. This stems from their ability to reconstruct complex, high-dimensional
 data as a linear combination of "atoms" or features. This allows the use of efficient algorithms to easily map the
 output sparse domain back to the original input feature space, providing a linear relationship between the model's
 decision and anatomical structures.
-Our work builds on these advances by applying dictionary learning to 3D Chest CT data for multi-class abnormality classification
+Our work builds on these advances by applying DL to 3D Chest CT data for multi-class abnormality classification
 and grounded localization.
 
 \section{Problem Statement}
@@ -55,7 +55,7 @@ legal and ethical compliance.
 
 \section{Objectives and Scope}
 The primary goal of this study is to address the limitations of existing AI-based approaches for abnormality
-classification and localization in chest CTs, by developing an inherently interpretable dictionary learning framework.
+classification and localization in chest CTs, by developing an inherently interpretable DL framework.
 This approach aims to enable transparent, anatomically grounded decision making, where each classification outcome
 can be traced back to specific pathological patterns. This aligns with clinical reasoning and facilitates validation and
 adoption in radiological workflows. The specific objectives are as follows:
