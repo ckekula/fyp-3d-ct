@@ -8,43 +8,12 @@ Research shows that early detection of pulmonary diseases, particularly lung can
 Two landmark studies, the National Lung Screening Trial (NLST) and the Nederlands-Leuvens Longkanker Screenings Onderzoek (NELSON)
 trial, have shown that low-dose CT (LDCT) screening reduces lung cancer mortality by 20\% to 33\% compared to CXR \cite{nlst2011, nelson2020}.
 
-\subsection{GGO and Pulmonary Nodules}
-
-A pulmonary nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
-either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A ground-glass opacity (GGO) refers
-specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
-structures passing through it, described radiologically as a lung parenchymal area with increased attenuation and preserved
-bronchial and vascular structures. GGOs are further subdivided into pure GGNs, which contain no solid component, and mixed
-(subsolid) GGNs, which contain a solid portion alongside the ground-glass component, divided into pure ground glass nodules without
-solid components and mixed ground glass nodules containing solid components.
-
-These findings are clinically important because GGNs are frequently associated with early lung cancer and its preinvasive precursors.
-Slowly growing or stable GGNs are often early lung cancers or their preinvasive lesions, such as atypical adenomatous hyperplasia
-or adenocarcinoma in situ, which grow along preexisting alveolar structures while maintaining the air space. Notably, GGNs are not
-uniformly benign or malignant risk indicators equivalent to solid nodules; ground glass nodules are, in fact, more likely to be
-malignant than solid nodules, and the malignant rate of mixed GGNs is higher than that of pure GGNs.
-
-Early detection of these abnormalities is essential because lung cancer prognosis is highly stage-dependent, and most patients are
-still diagnosed too late for optimal outcomes. Despite improvements in surgery, chemoradiotherapy, and immunotherapy, the overall
-five-year survival rate for lung cancer remains only about 10-20\% in most countries, largely because most patients are diagnosed at
-a late stage.
-
-Despite their importance, GGOs and small pulmonary nodules remain difficult to detect and characterize reliably. The detection of
-GGO pulmonary nodules have long been a focus and difficulty in imaging studies, in part because small GGO nodules are limited in
-size, making accurate early-stage biopsy or intervention difficult and necessitating repeated imaging to track their evolution.
-Their subtle, hazy appearance does not fully obscure underlying lung architecture, producing low contrast against normal
-parenchyma and background vasculature, unlike solid nodules or densely attenuating structures such as bone.
-This low-contrast appearance, combined with substantial variability in nodule size, shape, and solid-component proportion,
-makes both manual radiological interpretation and automated computer-aided detection challenging. This has led to research in
-computer-aided detection systems for ground-glass nodules to develop more slowly and with fewer results than corresponding systems for solid nodules.
-
 \subsection{Computed Tomography (CT)}
 
-X-ray computed tomography (CT) generates three-dimensional structural information by acquiring 2D radiographic projections
+CTs generate 3D structural information by acquiring 2D radiographic projections
 of an object from many angles and computationally reconstructing them into a stack of cross-sectional slices via algorithms
 such as filtered backprojection. Compared with other imaging modalities, CT's central advantage is its non-destructive,
-quantitative access to internal 3D structure: unlike optical microscopy or histology, which typically require physical sectioning
-and are limited to surface or 2D views, CT can visualize and quantify internal features (organs, lesions, cracks, pores)
+quantitative access to internal 3D structure. CT can visualize and quantify internal features
 throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
 the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
 bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
@@ -52,71 +21,69 @@ between materials of similar composition and density (e.g., different soft tissu
 advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
 
 Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
-Reconstructions are inherently affected by noise and by artifacts such as beam hardening (cupping/streaking between dense structures
-like bone or contrast-enhanced vessels), motion artifacts from breathing or cardiac movement, ring artifacts, and the partial volume effect,
+Reconstructions are inherently affected by noise and artifacts, motion from breathing or cardiac movement, ring artifacts, and the
+partial volume effect,
 where a single voxel spans more than one tissue type, producing intermediate intensities that blur boundaries between structures.
 These effects broaden and overlap the intensity histograms of different tissues, making simple threshold-based segmentation unreliable
-and often necessitating boundary-based, region-growing, or learning-based segmentation methods instead. Additionally, chest CT poses a
-specific challenge in that it contains a highly heterogeneous mix of anatomical structures with widely varying size, shape, and contrast
-(lungs, airways, vasculature, mediastinal organs, ribs), and pathological targets such as nodules or lesions
-can be small relative to voxel size, low-contrast against surrounding tissue, and irregular in shape—compounding the difficulty
-of both manual interpretation and automated analysis. These challenges motivate the shift toward automated, learning-based
+and often necessitating boundary-based, region-growing, or learning-based segmentation methods instead. 
+These challenges motivate the shift toward automated, learning-based
 segmentation approaches capable of handling such structural diversity without extensive manual tuning per dataset.
+
+\subsection{GGO and Pulmonary Nodules}
+
+Our study focuses on the detection and segmentation of two common pulmonary abnormalities: Ground-Glass Opacity (GGO) and pulmonary nodules.
+A nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
+either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A GGO refers
+specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
+structures passing through it. GGNs are further subdivided into pure GGNs, which contain no solid component, and mixed
+(subsolid) GGNs, which contain a solid portion alongside the ground-glass components.
+
+These findings are clinically important because GGNs are frequently associated with early lung cancer and its preinvasive precursors.
+Notably, GGNs are not uniformly benign or malignant risk indicators equivalent to solid nodules. GGNs are, in fact,
+more likely to be malignant than solid nodules, and the malignant rate of mixed GGNs is higher than that of pure GGNs.
+
+Early detection of these abnormalities is essential because lung cancer prognosis is highly stage-dependent, and most patients are
+still diagnosed too late for optimal outcomes. Despite improvements in treatment, the overall
+five-year survival rate for lung cancer remains only about 10-20\% in most countries, largely because most patients are diagnosed at
+a late stage.
+
+Despite their importance, GGOs and pulmonary nodules remain difficult to detect and characterize reliably.
+Nodules may be small relative to other anatomical structures in a chest CT, and GGO may be low-contrast against surrounding tissue.
+These challenges make manual interpretation difficult and motivate the shift toward automated, learning-based segmentation approaches.
 
 \section{Computer-Aided Diagnosis (CAD) Systems}
 
 CAD systems are computer based tools that help medical personnel in analysis of imaging studies
-and help in making better diagnostic decisions. CAD does not replace doctors. Instead, it acts as a second opinion
+and help in making better diagnostic decisions. CAD does not intend to replace doctors and instead, acts as a second opinion
 by identifying suspicious areas in medical images and providing useful information to support diagnosis. The final
-diagnosis is always made by the doctor\cite{DOI2007198}.
-
-Classification involves identifying the nature of a finding, such as labeling a nodule as malignant or benign.
-Detection requires scanning the entire image to locate suspicious areas, like microcalcifications or lung nodules,
-that a human might miss \cite{article}. Localization marks the precise coordinates of an abnormality,
-directing the clinician's attention to that specific region.
+diagnosis is always made by the doctor\cite{CAD2007}.
 
 \subsection{Evolution of CAD Systems}
 
-CAD funtions as a digital "second opinion" by analyzing medical imagery, such as CT scans, X rays or momograms.
-However, The system flgs anomalies that might escape a manual review\cite{DOI2007198}. It isnt a replacement for the physician.
-Insted, CAD operators as supportive tool to increase diagnostic speed and reliability.
-
-These systems changed significantly over time. During the 1960s, researchers attempted to build programs for the
-automatic diagnosis of chest diseases and bone tumors. They failed. Computers lacked power and digital images were hard to obtain.
-By the 1980s, the University of Chicago shifted the objective. Rather than replacing the radiologist,
-the computer would act as a second reader. This shift defined the modern CAD framework \cite{DOI2007198}.
-Early iterations relied on manual image processing, using edge detection, filtering, and feature extraction to
-locate nodules in chest X-rays or microcalcifications in mammograms . Chan et al. provided a pivotal study showing
+The modern CAD framework was defined in the 1980s when the University of Chicago shifted the objective from automated diganosis
+to acting as a second reader \cite{CAD2007}.
+Early iterations relied on manual image processing using edge detection, filtering, and feature extraction to
+locate nodules in chest X-rays or microcalcifications in mammograms. Chan et al. provided a pivotal study showing
 that radiologists using CAD identified more clustered microcalcifications than those working alone, despite a high
-rate of false positives. This offered the first concrete evidence that CAD increases diagnostic accuracy \cite{doi:10.2214/AJR.04.1300}.
+rate of false positives \cite{doi:10.2214/AJR.04.1300}.
 
-Over the 1990s and 2000s, CAD spread to many other areas: lung cancer detection on chest X-rays and CT scans,
+Over the 1990s and 2000s, CAD spread to areas such as lung cancer detection on chest X-rays and CT scans,
 detection of vertebral fractures linked to osteoporosis, brain aneurysm detection using MR angiography,
 and tracking interval changes in bone scans \cite{doi:10.1148/radiol.2203001282}. Prospective studies on mammography CAD,
 covering tens of thousands of patients, showed a steady rise in cancer detection rates.
-This included finding small invasive tumors earlier . Accuracy also climbed. Sensitivity for microcalcification clusters
+This included finding small invasive tumors earlier. Sensitivity for microcalcification clusters
 rose from roughly 87\% in the early 1990s to about 98\% by the mid-2000s, while false positives dropped \cite{article2004}.
 This "classical CAD" era relied on statistical pattern recognition and manually engineered features.
-
-Deep learning has since become the dominant approach in CAD, replacing most classical, hand-crafted methods.
-The shift from classical methods to deep learning  occurred for a few reasons. Firstly, deep learning models
-including convolutional neural networks (CNNs) mainly have the ability to learn specific image features from pixel data directly
-rather than having to manually design filters and rules for all types of lesions. This makes deep learning models more flexible
-and often more accurate across different diseases and imaging types. Secondly, the emerging of large labeled medical imaging datasets
-and the availability of powerful GPU computing have made it possible to train these deep networks effectively
-which was not feasible in early decades. Thirdly, deep learning networks are better in image quality,
-patient anatomy and scanner types compared to rule based systems with narrow training conditions.
-Finally, deep learning has continuously outperformed classical CAD methods in pivotal studies in aspects of tumor classification
-and lesion detection, drawing attention of companies as well as researchers to adopt it as the new standard.
+Deep learning has since become the dominant approach in CAD.
 
 The purpose of CAD has also grown. Early tools mostly focused on detection by flagging suspicious zones.
 Later versions added differential diagnosis to estimate if a nodule was malignant or benign.
 Some systems even retrieve similar past cases from hospital image archives (PACS) for comparison.
 Observer studies indicate that likelihood-of-malignancy scores improve radiologist decisions in subtle cases.
-Interestingly, doctors still rely on their own judgment for obvious cases. CAD provides the most utility in borderline situations \cite{DOI2007198}.
+Doctors still rely on their own judgment for obvious cases while CAD provides the most utility in borderline situations \cite{DOI2007198}.
 
 Future CAD development will likely move away from stand-alone tools. Instead, these will be integrated packages within PACS,
-allowing a single scan to be screened for multiple conditions simultaneously\cite{DOI2007198}. Deep learning has sped up this process.
+allowing a single scan to be screened for multiple conditions simultaneously \cite{DOI2007198}. Deep learning has sped up this process.
 A single trained model can often be adapted for various abnormalities with far less manual effort than previous systems required.
 
 In short, CAD systems evolved from early failed attempts at full automation, to assistive "second opinion"
@@ -126,11 +93,15 @@ images and ability to scale using large datasets and modern computing power.
 
 \section{Deep Learning Approaches}
 
-General idea on CNNs, ViTs, and other deep learning architectures.
-
-How well do they perform?
-Which datasets are commonly used?
-What evaluation metrics are reported?
+The shift from classical CAD methods to deep learning occurred for a few reasons. Firstly, deep learning models
+such as CNNs and ViTs have the ability to learn specific image features from pixel data directly
+rather than having to manually design features and rules for all types of lesions. This makes deep learning models more flexible
+and often more accurate across different diseases and imaging types. Secondly, the emerging of large labeled medical imaging datasets
+and the availability of powerful GPU computing have made it possible to train these deep networks effectively.
+Thirdly, deep learning networks are more robust to image quality, patient anatomy and scanner types compared to rule based systems.
+Finally, they continuously outperformed classical CAD methods in pivotal studies in aspects of tumor classification
+and lesion detection. The subsequent sections review some of the popular deep learning models used in medical imaging research,
+and also used in this study.
 
 \subsection{nnU-Net}
 The nnU-Net addresses a persistent problem in biomedical image segmentation. Even well-established architectures
@@ -242,7 +213,7 @@ from full 3D volumes and everyday hospital data, rather than small 2D datasets w
 
 \subsection{MedSAM}
 
-MedSAM adapts the Segment Anything Model (SAM), originally developed for natural images, 
+MedSAM adapts the Segment Anything Model (SAM) developed by Meta AI, originally developed for natural images, 
 into a general-purpose segmentation model for medical scans \cite{ma2024medsam}.
 Rather than training a separate network for each organ or modality, 
 a single fine-tuned model is reused across many segmentation tasks.
