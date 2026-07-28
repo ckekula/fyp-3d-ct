@@ -61,6 +61,7 @@ Thumbs.db
 *.png
 !/documents/final-report/Images
 !/documents/final-report/Images**/*.png
+!/data/patch-masks/**/*.npz
 *pth
 *.b2nd
 
