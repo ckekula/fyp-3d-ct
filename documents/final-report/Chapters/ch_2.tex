@@ -229,14 +229,11 @@ and the resulting masks do not capture how a nodule connects across neighbouring
 
 MedSAM2 addresses this limitation by building on the SAM2 architecture and its memory-attention mechanism, 
 allowing a single prompt to be propagated across an entire volume instead of being redrawn slice by slice, 
-which substantially reduces the annotation effort required \cite{ravi2025medsam2}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/Architecture_MEDSAM2.png}
-    \caption{Architecture of MedSAM2}
-    \label{fig:medsam2-architecture}
-\end{figure}
+which substantially reduces the annotation effort required \cite{ravi2025medsam2}. Specifically, that prompt is purely spatial, a box(two corner points), 
+a point(roughly inside the target), or a mask(rough/full segmentation on that one slice) on one
+key slice, with no text or class label involved; from it, MedSAM2 segments the object on that slice and
+then propagates the mask forward and backward through the remaining slices via memory attention, without
+requiring a new prompt on each one.
 
 Despite this improvement, pulmonary findings remain difficult for these models to segment accurately.
 A benchmarking study comparing MedSAM and MedSAM2 against standard segmentation networks 
@@ -244,6 +241,30 @@ found that both achieved strong performance on whole-lung segmentation but
 performed noticeably worse on individual tumours and small nodules, 
 with results sensitive to the quality and consistency of the box prompts \cite{ayllon2025benchmarking}.
 This reflects a broader limitation of prompt-driven segmentation models.
+
+This sensitivity to prompt quality points to a more basic problem: neither MedSAM nor MedSAM2 can be told
+\textit{what} to segment in words, simply because the SAM/SAM2 backbone they build on has no language
+pathway, only a geometric one. Meta's SAM 3 is aimed exactly at this gap through what it calls
+\textit{Promptable Concept Segmentation}. Specifically, that prompt is purely spatial, 
+a box(two corner points), a point(roughly inside the target), or a mask(rough/full segmentation on that one slice)t \cite{meta2025sam3}. 
+MedSAM-3 takes this a step further and fine-tunes the architecture on
+medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
+artery'' for 3D lung CT \cite{liu2025medsam3}. Even so, the authors' own ablations make clear that text
+alone does not remove the need for a geometric anchor. On the 3D Parse2022 lung CT benchmark, raw SAM 3
+given nothing but the phrase ``pulmonary artery'' managed a Dice of only 0.53, well short of nn-U-Net's
+0.83; on 2D benchmarks such as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3
+fine-tuning, jumping to 0.78 only once a bounding box was added alongside the text \cite{liu2025medsam3}.
+It is also worth noting that MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT
+evaluation went no further than the untuned SAM 3 baseline on pulmonary artery delineation; neither this
+paper nor the wider MedSAM family reports results on lung nodule or ground-glass-opacity segmentation in
+chest CT.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/ArchitectureMEDSAM3.png}
+    \caption{Architecture of MedSAM-3}
+    \label{fig:medsam3-architecture}
+\end{figure}
 
 \subsection{CT-CLIP}
 
