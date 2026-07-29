@@ -30,7 +30,7 @@ quantitative access to internal 3D structure. CT can visualize and quantify inte
 throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
 the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
 bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
-between materials of similar composition and density (e.g., different soft tissues), a limitation that phase-contrast and other
+between materials of similar composition and density, a limitation that phase-contrast and other
 advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
 
 Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
@@ -242,22 +242,20 @@ performed noticeably worse on individual tumours and small nodules,
 with results sensitive to the quality and consistency of the box prompts \cite{ayllon2025benchmarking}.
 This reflects a broader limitation of prompt-driven segmentation models.
 
-This sensitivity to prompt quality points to a more basic problem: neither MedSAM nor MedSAM2 can be told
-\textit{what} to segment in words, simply because the SAM/SAM2 backbone they build on has no language
-pathway, only a geometric one. Meta's SAM 3 is aimed exactly at this gap through what it calls
-\textit{Promptable Concept Segmentation}. Specifically, that prompt is purely spatial, 
-a box(two corner points), a point(roughly inside the target), or a mask(rough/full segmentation on that one slice)t \cite{meta2025sam3}. 
-MedSAM-3 takes this a step further and fine-tunes the architecture on
-medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
-artery'' for 3D lung CT \cite{liu2025medsam3}. Even so, the authors' own ablations make clear that text
-alone does not remove the need for a geometric anchor. On the 3D Parse2022 lung CT benchmark, raw SAM 3
-given nothing but the phrase ``pulmonary artery'' managed a Dice of only 0.53, well short of nn-U-Net's
-0.83; on 2D benchmarks such as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3
-fine-tuning, jumping to 0.78 only once a bounding box was added alongside the text \cite{liu2025medsam3}.
-It is also worth noting that MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT
-evaluation went no further than the untuned SAM 3 baseline on pulmonary artery delineation; neither this
-paper nor the wider MedSAM family reports results on lung nodule or ground-glass-opacity segmentation in
-chest CT.
+This sensitivity to prompt quality points to a more basic limitation: neither MedSAM nor MedSAM2 can be told
+what to segment in words, since the underlying backbones have no language pathway.
+Meta's SAM3 targets this gap directly through what it calls Promptable Concept Segmentation, allowing
+a target to be specified by a short noun phrase rather than only by a box, point, or mask \cite{meta2025sam3}.
+MedSAM-3 takes this a step further and fine-tunes the architecture on medical images paired with concept
+phrases, such as lung infection for chest X-ray or pulmonary artery for lung CT \cite{liu2025medsam3}.
+Even so, the authors' own ablations make clear that text alone does not remove the
+need for a geometric anchor: on the 3D Parse2022 lung CT benchmark, raw SAM 3 given nothing but the phrase
+"pulmonary artery" managed a Dice score of only 0.53, well short of nn-U-Net's 0.83, while on 2D benchmarks such
+as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3 fine-tuning, jumping to 0.78
+only once a bounding box was added alongside the text \cite{liu2025medsam3}. It is also worth noting that
+MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT evaluation went no further than
+the untuned SAM 3 baseline on pulmonary artery delineation; neither this paper nor the wider MedSAM family
+reports results on lung nodule or ground-glass-opacity segmentation in chest CT.
 
 \begin{figure}[H]
     \centering
@@ -738,80 +736,53 @@ to new patterns.
 \section{Dictionary Learning in Medical Imaging}
 
 Dictionary learning has become a powerful tool across the medical imaging pipeline, offering data-adaptive
-alternatives to fixed transforms such as DCT or wavelets by learning sparse representations directly from image patches.
-DL-based methods have been applied to medical imaging in 5 key aspects:
+alternatives to fixed transforms such as DCT or wavelets by learning sparse representations directly from image patches \cite{tong2016dictionary}.
+We have identified that DL-based methods are applied to medical imaging in 5 key aspects:
 
 \begin{enumerate}
     \item Signal Denoising
     \item Image Reconstruction
     \item Super-Resolution
-    \item Classification and Detection
+    \item Detection and Classification
     \item Segmentation
 \end{enumerate}
 
 \subsection{Signal Denoising}
-
 In denoising, DL-based methods learn a dictionary of atoms from the noisy image itself, then reconstruct a
 clean image by enforcing that each local patch be sparsely represented by these learnt atoms. This approach has been applied to
-remove Gaussian noise from natural images and, more recently, noise from diffusion MRI and other medical images, generally
-outperforming standard DCT/FFT-based denoising by adapting to the specific structure of the data.
+remove Gaussian noise from natural images \cite{elad2006image}. In medical imaging, sparse denoising in diffusion MRI
+has shown to outperform standard DCT/FFT-based denoising by adapting to the specific structure of the data \cite{bao2013structure}.
+Shi et al. proposed an artifact suppressed dictionary learning algorithm (ASDL) \cite{shi2014low}, which
+exploited scale and orientation to build discriminative dictionaries for artifact suppression in LDCT.
 
-\subsection{Image Reconstruction}
+\subsection{Image Reconstruction and Super-Resolution}
 
-In reconstruction, DL addresses
-the inverse problem of recovering images from undersampled k-space acquisitions in compressed sensing MRI, where patch-based
-dictionaries (spatial, spatio-temporal, or 1D) provide a sparser and more flexible representation than global transforms like
-wavelets or temporal Fourier bases, enabling more accurate recovery from highly undersampled data such as cardiac cine sequences.
+In reconstruction, DL has addressed the inverse problem of recovering images from undersampled k-space
+acquisitions in compressed sensing MRI \cite{ravishankar2011mri}.
+Patch-based dictionaries provide a sparser and more flexible representation than global transforms like
+wavelets or temporal Fourier bases, enabling more accurate recovery from highly undersampled data.
 
 Closely related to reconstruction is super-resolution, where coupled high-resolution and low-resolution dictionaries are co-trained
-so that corresponding patches share the same sparse code, allowing high-resolution image patches to be hallucinated from
-low-resolution inputs; this has been used to enhance cardiac MRI slabs and single-image brain MRI without requiring accurate
-subpixel alignment.
+so that corresponding patches share the same sparse code. This allows high-resolution image patches to be hallucinated from
+low-resolution inputs. This has been used to enhance cardiac MRI slabs and single-image brain MRI without requiring accurate
+subpixel alignment \cite{rueda2013single}.
 
-Ravishankar and Bresler used dictionary learning to reconstruct MRI
-images from undersampled k-space data, allowing shorter scan times without
-losing image quality \cite{ravishankar2011mri}. Tong et al. applied
-discriminative dictionary learning to segment the hippocampus from brain
-MRI scans, showing that sparse coding can capture useful anatomical
-patterns for segmentation \cite{tong2013hippocampus}.
+\subsection{Detection, Classification and Segmentation}
 
-Ravishankar and Bresler applied adaptive dictionary learning for compressed
-sensing MRI reconstruction, where the dictionary was learned directly from
-the image data instead of using fixed transform bases. Their method
-achieved improved image quality while reducing MRI acquisition time
-\cite{ravishankar2011mri}. Similar sparse representation methods have also
-been used for low-dose CT reconstruction and image denoising, where
-learned dictionaries help reduce noise while preserving important
-anatomical details \cite{zhao2021survey}. These studies show that
-dictionary learning is useful for reconstruction tasks, especially when
-interpretability and limited training data are important
-
-
-\subsection{Classification and Segmentation}
-
-Finally, for classification and segmentation, since standard reconstructive dictionaries lack discriminative
+For classification and segmentation, since standard reconstructive dictionaries lack discriminative
 power, discriminative DL techniques incorporate class labels during training, either by learning separate class-specific
-dictionaries and using representation residuals for classification, or by jointly learning a shared dictionary alongside a linear
-classifier over the sparse coding coefficients, as in discriminative dictionary learning for segmentation (DDLS), which has been
+dictionaries and using representation residuals for classification, or by jointly learning a shared dictionary alongside
+a linear classifier over the sparse coding coefficients.
+
+discriminative dictionary learning for segmentation (DDLS), which has been
 successfully applied to hippocampus labeling and multi-organ segmentation in abdominal CT.
 
 SIRGE RESEARCH EKA
 
-In addition to reconstruction, dictionary learning has been applied to
-medical image classification and segmentation tasks. In these applications,
-image patches are converted into sparse representations, and the learned
-features are used to identify diseases or important anatomical structures.
-LC-KSVD improved this process by learning both a dictionary and a
-classifier while ensuring that the sparse codes remain consistent with
-their class labels \cite{jiang2013lcksvd}.
+Tong et al. applied discriminative DL to segment the hippocampus from brain
+MRI scans \cite{tong2013hippocampus}.
 
-Several studies have shown the effectiveness of dictionary learning for
-medical image analysis. Tong et al. used discriminative dictionary
-learning for hippocampus segmentation from brain MRI images, where sparse
-features captured important anatomical patterns
-\cite{tong2013hippocampus}.
-
-In CT imaging, Ben-Cohen et al. combined
+Ben-Cohen et al. combined
 dictionary learning with a fully convolutional network for liver lesion
 detection, showing that dictionary learning can work together with deep
 learning methods \cite{bencohen2018liver}.
@@ -822,4 +793,3 @@ histopathology analysis and glaucoma diagnosis
 \cite{zhao2021survey}. These applications demonstrate that dictionary
 learning provides interpretable features and remains a valuable classical
 baseline for comparison with modern deep learning models.
-
