@@ -30,7 +30,7 @@ quantitative access to internal 3D structure. CT can visualize and quantify inte
 throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
 the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
 bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
-between materials of similar composition and density, a limitation that phase-contrast and other
+between materials of similar composition and density (e.g., different soft tissues), a limitation that phase-contrast and other
 advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
 
 Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
@@ -93,7 +93,7 @@ The purpose of CAD has also shifted from early tools focused on detection by fla
 later versions, which added differential diagnosis to estimate if a nodule was malignant or benign.
 Some systems even retrieve similar past cases from hospital Picture Archiving and Communication Systems (PACS) for comparison.
 Observer studies indicate that likelihood-of-malignancy scores improve radiologist decisions in subtle cases.
-Doctors still rely on their own judgment for obvious cases while CAD provides the most utility in borderline situations \cite{DOI2007198}.
+Doctors still rely on their own judgment for obvious cases while CAD provides the most utility in borderline situations \cite{doi:10.1148/radiol.2272020498}.
 
 Future CAD development will likely move away from stand-alone tools. Instead, these will be integrated packages within PACS,
 allowing a single scan to be screened for multiple conditions simultaneously \cite{DOI2007198}. Deep learning has sped up this process.
@@ -242,20 +242,22 @@ performed noticeably worse on individual tumours and small nodules,
 with results sensitive to the quality and consistency of the box prompts \cite{ayllon2025benchmarking}.
 This reflects a broader limitation of prompt-driven segmentation models.
 
-This sensitivity to prompt quality points to a more basic limitation: neither MedSAM nor MedSAM2 can be told
-what to segment in words, since the underlying backbones have no language pathway.
-Meta's SAM3 targets this gap directly through what it calls Promptable Concept Segmentation, allowing
-a target to be specified by a short noun phrase rather than only by a box, point, or mask \cite{meta2025sam3}.
-MedSAM-3 takes this a step further and fine-tunes the architecture on medical images paired with concept
-phrases, such as lung infection for chest X-ray or pulmonary artery for lung CT \cite{liu2025medsam3}.
-Even so, the authors' own ablations make clear that text alone does not remove the
-need for a geometric anchor: on the 3D Parse2022 lung CT benchmark, raw SAM 3 given nothing but the phrase
-"pulmonary artery" managed a Dice score of only 0.53, well short of nn-U-Net's 0.83, while on 2D benchmarks such
-as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3 fine-tuning, jumping to 0.78
-only once a bounding box was added alongside the text \cite{liu2025medsam3}. It is also worth noting that
-MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT evaluation went no further than
-the untuned SAM 3 baseline on pulmonary artery delineation; neither this paper nor the wider MedSAM family
-reports results on lung nodule or ground-glass-opacity segmentation in chest CT.
+This sensitivity to prompt quality points to a more basic problem: neither MedSAM nor MedSAM2 can be told
+\textit{what} to segment in words, simply because the SAM/SAM2 backbone they build on has no language
+pathway, only a geometric one. Meta's SAM 3 is aimed exactly at this gap through what it calls
+\textit{Promptable Concept Segmentation}. Specifically, that prompt is purely spatial, 
+a box(two corner points), a point(roughly inside the target), or a mask(rough/full segmentation on that one slice)t \cite{meta2025sam3}. 
+MedSAM-3 takes this a step further and fine-tunes the architecture on
+medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
+artery'' for 3D lung CT \cite{liu2025medsam3}. Even so, the authors' own ablations make clear that text
+alone does not remove the need for a geometric anchor. On the 3D Parse2022 lung CT benchmark, raw SAM 3
+given nothing but the phrase ``pulmonary artery'' managed a Dice of only 0.53, well short of nn-U-Net's
+0.83; on 2D benchmarks such as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3
+fine-tuning, jumping to 0.78 only once a bounding box was added alongside the text \cite{liu2025medsam3}.
+It is also worth noting that MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT
+evaluation went no further than the untuned SAM 3 baseline on pulmonary artery delineation; neither this
+paper nor the wider MedSAM family reports results on lung nodule or ground-glass-opacity segmentation in
+chest CT.
 
 \begin{figure}[H]
     \centering
@@ -527,7 +529,7 @@ a weighted combination of the current and previous iterates—which improves the
 per-iteration cost. This makes FISTA well-suited to large-scale sparse coding and compressed sensing problems where fast,
 reliable convergence to the $\ell1$-regularized solution is needed.
 
-\section{Dictionary Learning (DL)}
+\section{Dictionary Learning}
 
 Dictionary learning is a technique in which an image patch or a region of a medical scan is represented as a combination of a small number of basic building blocks,
 rather than by describing every pixel value directly. This idea comes from sparse coding theory and is widely used in image denoising, compression,
@@ -735,192 +737,71 @@ to new patterns.
 
 \section{Dictionary Learning in Medical Imaging}
 
-Dictionary learning has become a powerful tool across the medical imaging pipeline, offering data-adaptive
-alternatives to fixed transforms such as DCT or wavelets by learning sparse representations directly from image patches \cite{tong2016dictionary}.
-We have identified that DL-based methods are applied to medical imaging in 5 key aspects:
+In medical imaging, dictionary learning has been used for a wide range of
+tasks. Ravishankar and Bresler used dictionary learning to reconstruct MRI
+images from undersampled k-space data, allowing shorter scan times without
+losing image quality \cite{ravishankar2011mri}. Tong et al. applied
+discriminative dictionary learning to segment the hippocampus from brain
+MRI scans, showing that sparse coding can capture useful anatomical
+patterns for segmentation \cite{tong2013hippocampus}. In CT imaging,
+Ben-Cohen et al. combined a fully convolutional network with
+sparsity-based dictionary learning to detect liver lesions, showing that
+dictionary learning can also be used alongside deep learning models rather
+than as a replacement for them \cite{bencohen2017liver}. A broader survey
+by Zhao et al. reviewed the use of dictionary learning for CT image
+de-noising and histopathological image classification, and applied
+low-rank shared dictionary learning to glaucoma diagnosis on fundus images
+\cite{zhao2019survey}.
 
-\begin{enumerate}
-    \item Signal Denoising
-    \item Image Reconstruction
-    \item Super-Resolution
-    \item Lesion Detection and Classification
-    \item Segmentation
-\end{enumerate}
 
-\subsection{Signal Denoising}
-In denoising, DL-based methods learn a dictionary of atoms from the noisy image itself, then reconstruct a
-clean image by enforcing that each local patch be sparsely represented by these learnt atoms. This approach has been applied to
-remove Gaussian noise from natural images \cite{elad2006image}. In medical imaging, sparse denoising in diffusion MRI
-has shown to outperform standard DCT/FFT-based denoising by adapting to the specific structure of the data \cite{bao2013structure}.
-Shi et al. proposed an artifact suppressed dictionary learning algorithm (ASDL) \cite{shi2014low}, which
-exploited scale and orientation to build discriminative dictionaries for artifact suppression in LDCT.
+\subsection{Image Reconstruction}
 
-\subsection{Image Reconstruction and Super-Resolution}
+Dictionary learning was
+first widely applied to image reconstruction problems such as MRI and CT
+reconstruction. Medical images often contain noise, missing information,
+or require long acquisition times. Dictionary learning helps overcome
+these problems by representing image patches as sparse combinations of
+learned dictionary atoms, allowing high-quality images to be reconstructed
+from incomplete or degraded data.
 
-In reconstruction, DL has addressed the inverse problem of recovering images from undersampled k-space
-acquisitions in compressed sensing MRI \cite{ravishankar2011mri}.
-Patch-based dictionaries provide a sparser and more flexible representation than global transforms like
-wavelets or temporal Fourier bases, enabling more accurate recovery from highly undersampled data.
+Ravishankar and Bresler applied adaptive dictionary learning for compressed
+sensing MRI reconstruction, where the dictionary was learned directly from
+the image data instead of using fixed transform bases. Their method
+achieved improved image quality while reducing MRI acquisition time
+\cite{ravishankar2011mri}. Similar sparse representation methods have also
+been used for low-dose CT reconstruction and image denoising, where
+learned dictionaries help reduce noise while preserving important
+anatomical details \cite{zhao2021survey}. These studies show that
+dictionary learning is useful for reconstruction tasks, especially when
+interpretability and limited training data are important
 
-Closely related to reconstruction is super-resolution, where coupled high-resolution and low-resolution dictionaries are co-trained
-so that corresponding patches share the same sparse code. This allows high-resolution image patches to be hallucinated from
-low-resolution inputs. This has been used to enhance cardiac MRI slabs and single-image brain MRI without requiring accurate
-subpixel alignment \cite{rueda2013single}.
 
-\subsection{Detection, Classification and Segmentation}
+\subsection{Classification and Segmentation}
 
-Since standard reconstructive dictionaries lack discriminative power, DDL techniques can be used for detection,
-classification and segmentation. DDL incorporates class labels during training, either by learning separate class-specific
-dictionaries and using representation residuals for classification, or by jointly learning a shared dictionary alongside
-a linear classifier over the sparse coding coefficients \cite{tong2016dictionary}.
 
-% Detection and CLassification
-Class-specific dictionary learning has been directly applied to CAD for cancer detection. Liu et al. \cite{liu2011sparse}
-proposed a sparse representation-based classification framework for colorectal polyp and lung nodule detection.
-The approach learned separate overcomplete dictionaries per class via K-SVD and classifying test samples either by the class
-whose dictionary yields the most non-zero coefficients when pooled into a global dictionary, or by the class-specific dictionary
-that achieves the sparsest reconstruction.
-This generative approach naturally extended to multi-class problems and,
-when fused with a relevance vector machine baseline through a gated decision tree, achieved consistent sensitivity gains at
-clinically acceptable false-positive rates on large multi-site colon and lung datasets.
+In addition to reconstruction, dictionary learning has been applied to
+medical image classification and segmentation tasks. In these applications,
+image patches are converted into sparse representations, and the learned
+features are used to identify diseases or important anatomical structures.
+LC-KSVD improved this process by learning both a dictionary and a
+classifier while ensuring that the sparse codes remain consistent with
+their class labels \cite{jiang2013lcksvd}.
 
-Wu et al. \cite{wu2016dictionary} extended class-specific
-dictionary learning to pulmonary nodule detection in CT, addressing the practical problem that accurate nodule segmentation is
-often unreliable due to irregular shapes and low contrast. Rather than relying on precisely segmented ROIs, they learned two
-classification-oriented sub-dictionaries (nodule and non-nodule) together with a shared background dictionary, following the
-DL-COPAR formulation \cite{kong2012dictionary}. Sparse coefficients from the class-specific sub-dictionaries were pooled into feature vectors,
-refined using DX-score-based feature selection, and passed to an SVM classifier, yielding good classification performance on the
-LIDC-IDRI dataset without requiring accurate nodule segmentation, and demonstrating that discriminative dictionary learning can
-substitute for precise localization as a prerequisite for feature extraction.
+Several studies have shown the effectiveness of dictionary learning for
+medical image analysis. Tong et al. used discriminative dictionary
+learning for hippocampus segmentation from brain MRI images, where sparse
+features captured important anatomical patterns
+\cite{tong2013hippocampus}.
 
-Ben-Cohen et al. \cite{ben2018fully} extended dictionary learning-based approaches from classification into a full lesion detection pipeline,
-combining a global fully convolutional network (FCN) that generates a lesion probability map across the CT volume with a local,
-discriminative dictionary-based module for false-positive reduction. Candidate regions from the FCN were partitioned into SLIC 
-uperpixels, each represented by a 125-dimensional textural feature vector, and classified using LC-KSVD.
-A further innovation was online, per-case fine-tuning of the dictionary and linear classifier using high and low-confidence
-superpixels drawn from each test case's own FCN probability map, personalizing the discriminative dictionary without additional
-manual labels. On a clinical liver metastases dataset, this combined FCN-plus-sparsity framework achieved 94.6\% sensitivity at
-2.9 false positives per case, outperforming the FCN alone, U-Net, a superpixel-only sparse classifier, and a patch-based CNN,
-with particularly strong performance maintained on small lesions.
+In CT imaging, Ben-Cohen et al. combined
+dictionary learning with a fully convolutional network for liver lesion
+detection, showing that dictionary learning can work together with deep
+learning methods \cite{bencohen2018liver}.
 
-% Brain Tumors
-Al-Shaikhli et al. extended dictionary learning to a unified multi-class classification and multi-label segmentation framework
-for brain tumors. It is built around two distinct K-SVD dictionaries learned from a single Flair-MRI modality.
-A feature dictionary, learned from global topological features combined with gray-level co-occurrence texture features,
-is used for classification of the volume as normal or abnormal. If abnormal, it is further classified by
-finding which class-specific dictionary yields the sparsest representation of the test features.
-Separately, coupled data-label dictionaries are learned jointly from voxel-wise gray-scale patches and their corresponding
-ground-truth segmentation labels, 
-so that each atom in the image dictionary has an associated atom in the label dictionary; at test time, sparse similarity between
-test patches and the data dictionary retrieves the matching label-dictionary atoms, which supply foreground/background costs for
-multi-label graph-cut segmentation of necrosis, edema, and enhancing/non-enhancing tumor. This decoupling of global
-topological/textural features for classification from local voxel-wise coupled dictionaries for segmentation, using only a single
-MRI channel, achieved 94.26\% classification accuracy and segmentation performance competitive with or exceeding multi-channel
-BraTS-2013 methods requiring four MRI modalities.
+Also, dictionary
+learning has been applied to disease classification tasks such as
+histopathology analysis and glaucoma diagnosis
+\cite{zhao2021survey}. These applications demonstrate that dictionary
+learning provides interpretable features and remains a valuable classical
+baseline for comparison with modern deep learning models.
 
-Anitha's more recent hybrid framework similarly separates dictionary-based segmentation from a distinct classification stage, but replaces
-reconstruction-residual dictionary classification with a downstream regression-based classifier and shifts from pure MRI to fused
-3D MRI-CT input: a Sparse Mahalanobis Dictionary learns class-discriminative atoms for tumor versus non-tumor tissue using a
-Mahalanobis-distance nonlinearity rather than plain Euclidean sparse coding. These dictionary-derived features feed a
-Multimodal Markov Random Forest that labels mutually exclusive and exhaustive tissue regions to avoid the tissue loss common in
-multi-decomposition fusion pipelines. The segmented tumor regions are then classified further by extracting nested 3x3 patches,
-computing Spearman-correlation-based co-occurrence features, and passing them to a Lagrangian neural network. On
-combined CT-hemorrhage and MRI tumor datasets this pipeline reported 99.7\% accuracy, 98.9\% sensitivity, and 98.7\% specificity,
-outperforming CNN, CapsNet, ELM, and SVM-based baselines.
-
-Wang et al. extended coupled dictionary learning to a multi-modality setting for nasopharyngeal carcinoma (NPC) segmentation,
-addressing the practical constraint that clinical datasets often mix multi-modality patients (with both CT and MRI) and
-single-modality patients. Building on local coordinate coding, their method jointly learns three coupled
-dictionaries (CT, MRI, and label) by sharing sparse coefficients across CT and MRI patches for multi-modality samples while
-separately fitting single-modality patches to their respective dictionary-label pairs, allowing all available data to contribute
-to a common sparse-coding space rather than discarding incomplete cases. At test time, a voxel is labeled by jointly encoding its
-CT and MRI patches against the learned CT/MRI dictionaries and projecting the resulting sparse coefficients onto the label
-dictionary. This joint approach outperformed single-modality dictionary learning (DSC of 76.87\% vs. 65.36\% for CT-only and 74.94\%
-for MRI-only) and achieved segmentation accuracy comparable to prior specialized NPC methods.
-
-% segmentation
-
-Dong et al. proposed a simultaneous CT reconstruction and segmentation (SRS) framework that uses a discriminative dictionary
-pair, one for representing image intensity patches and one for representing the corresponding class-probability patches, learned
-jointly via an extension of K-SVD.
-The two dictionaries share the same sparse codes for each patch, so that during reconstruction the sparse coding step simultaneously
-constrains both the intensity reconstruction and the segmentation. The segmentation acts as a built-in regularizer for the
-otherwise ill-posed inverse problem. Their optimization alternates between sparse coding, an intensity reconstruction update solved
-via CGLS, and a class-probability update solved with a Frank-Wolfe algorithm, with total-variation regularization on the class
-probabilities to encourage piecewise-constant, smooth class interfaces. Tested on textured Brodatz-based phantoms and simulated
-fibrous material samples under varying numbers of projection angles, the method outperformed a non-dictionary SRS baseline and two
-weaker dictionary-based pipelines, with the gap widening as the number of projections decreased. The authors note the method's
-reliance on training data that adequately spans the class-interface geometries expected in the target images, since interfaces not
-represented in the dictionary tend to be oversmoothed or straightened in the output.
-
-A related work applies DDL to the segmentation problem, once images are already reconstructed.
-Tong et al. extended their earlier hippocampus-labeling framework into a discriminative dictionary learning
-for segmentation (DDLS) method capable of handling multiple structures simultaneously. Their approach jointly learns a reconstructive
-dictionary and a linear classifier from patches extracted out of a pool of selected atlas images, so that the sparse code of a
-target patch can be mapped, via the learned classifier, directly to a probabilistic label vector.
-This produces a subject-specific probabilistic atlas that is then refined with a graph-cuts post-processing step.
-A central contribution is a voxel-wise local atlas selection strategy (L-DDLS), which selects different subsets of atlases at different
-spatial locations based on local similarity, rather than relying on one globally selected atlas set (G-DDLS) or a fixed
-offline-trained dictionary (F-DDLS). This addresses the high inter-subject anatomical variability of abdominal organs, particularly the
-pancreas, which is poorly served by whole-image similarity measures dominated by large organs like the liver.
-A multi-resolution Gaussian-pyramid scheme was also incorporated to keep the patch-based approach computationally tractable for
-large 3D organs.
-Evaluated on 150 abdominal CT scans, L-DDLS achieved Dice overlaps of 94.9\%, 93.6\%, 71.1\%, and 92.5\% for liver, kidneys, pancreas,
-and spleen respectively, consistently outperforming majority-voting label fusion, non-local patch-based segmentation, and both
-G-DDLS and F-DDLS variants, with the largest relative gains for the anatomically variable pancreas. Notably, these results were
-obtained using only affine (not deformable) registration, underscoring how a learned discriminative dictionary can substitute for
-some of the burden typically placed on accurate non-rigid registration in multi-atlas segmentation pipelines.
-
-Farhangi's doctoral thesis develops a shape-based segmentation framework for lung nodules in thoracic CT that relies on a dictionary
-of previously delineated nodule shapes rather than intensity patches. The method, called Sparse Combination of Training
-Shapes (SCoTS), embeds nodule boundaries as zero level sets of signed distance functions (SDFs) and builds a dictionary by vectorizing
-SDFs from a training set of expert-delineated nodules. The evolving segmentation surface is then approximated at each iteration
-as a sparse linear combination of these dictionary atoms, solved via an l1-penalized least-squares formulation using
-a coordinate-wise "shooting" algorithm. The key contribution is coupling this sparse shape prior with a Chan-Vese region-based
-active contour. The relative influence of the shape prior versus the low-level image-intensity energy is adjusted dynamically at
-each iteration based on the sparsity of the reconstruction coefficients, so that as the evolving surface approaches a plausible
-nodule shape and its representation becomes sparser, the shape prior is trusted more, preventing the contour from leaking into
-adjacent tissues of similar density. Validated on 542 3D nodules from the LIDC-IDRI database against four independent radiologists,
-SCoTS achieved a mean DSC of about
-0.71-0.72 across radiologist delineations, with the primary failure mode occurring for nodules whose shapes were poorly represented
-in the training dictionary.
-
-% Alzheimer's
-
-Discriminative dictionary learning has also been extended to multi-modal neuroimaging classification of Alzheimer's disease (AD) and
-mild cognitive impairment (MCI). Li et al. built on their previously introduced supervised within-class-similarity discriminative
-dictionary learning (SCDDL) algorithm by adding a within-class-similarity term to the standard discriminative dictionary objective,
-which penalizes deviation of each sample's sparse code from its class mean, alongside the usual reconstruction and linear classification
-error terms. To handle multiple imaging modalities, they extended SCDDL into a multi-modality version (mSCDDL) that learns a separate
-dictionary and classifier per modality and fuses per-modality classifier outputs through a weighted combination, with weights optimized
-by grid search. Using ROI-averaged features from 113 AD, 110 MCI, and 117 normal-control subjects from ADNI, mSCDDL achieved 97.4\%
-accuracy for AD versus normal and 77.7\% accuracy for MCI versus normal, outperforming each single-modality SCDDL variant as well as
-other established multi-modal fusion methods, while requiring substantially less computation time, demonstrating that a compact learned
-dictionary of just 20 atoms can rival methods that use the entire training set as an implicit dictionary.
-
-The same research group subsequently pushed this framework into a kernelized setting to better exploit cross-modal complementarity.
-Li et al. introduced multi-feature kernel SCDDL (MKSCDDL), which maps each modality's features into a higher-dimensional space via
-Mercer kernels before applying the SCDDL objective, expressing the dictionary implicitly
-as a linear combination of kernel-mapped training samples. This allows the same reconstruction, classification-error, and
-within-class-similarity terms can be optimized without explicitly forming the high-dimensional mapping. Sub-kernels for each modality
-are then combined, extending the earlier weighted-combination scheme of mSCDDL into a single unified kernel objective.
-Evaluated on the same three-modality ADNI cohort, MKSCDDL
-improved classification accuracy over mSCDDL and other multi-modal baselines across all three diagnostic contrasts: 98.2\% for AD vs.
-cognitively unimpaired (CU), 78.5\% for MCI vs. CU, and 74.5\% for AD vs. MCI, while also reducing test time.
-
-% sir
-
-Most relevant to our study, Liyanage et al. tackle COVID-19 detection from
-chest CT by combining two complementary DL strategies rather than a single dictionary. The first, frozen dictionary
-learning, addresses class imbalance in the training data, where normal lung-field patches vastly outnumber abnormal patches by learning
-dictionary atoms hierarchically. The second, LC-KSVD, learns a discriminative dictionary directly from patient-level class labels
-(normal, common pneumonia, novel coronavirus pneumonia). The two dictionaries are concatenated into a single augmented
-dictionary, patches are sparse-coded against it via OMP, and simple per-scan statistics (mean, variance,
-non-zero count) of the sparse coefficients associated with each class-relevant dictionary segment are then fed to an SVM classifier.
-On the cleaned CC-CCII CT dataset, this patch-based sparse-coding pipeline
-achieved 89\% accuracy for binary NCP-vs-other classification and 82.6\% accuracy for the three-class problem, matching
-or slightly exceeding a benchmark ResNet3D-34 deep learning baseline on the same data.
-The authors emphasize that because dictionary atoms live in the same domain as the input patches, the resulting classifier offers a more
-interpretable link between learned features and diagnostic categories than an end-to-end deep network
-directly echoing the discriminative-dictionary theme seen
-in Dong et al. and Tong et al., but here applied to whole-scan disease classification rather than pixel-wise segmentation.
