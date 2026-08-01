@@ -368,7 +368,39 @@ pulmonary abnormality.
 
 \subsection{Sparse Coding}
 
-Briefly describe how sparse representations are generated from the learned dictionary.
+\textbf{Where the dictionary comes from.} The sparse codes are generated using the dictionary $D$ learned by the LC-KSVD2 model.
+Each patch has $d = 4096$ values (a $16^3$ voxel cube flattened into a vector), and the dictionary has $k = 5d$ atoms (basis vectors).
+LC-KSVD2 is trained once, using patches from all three classes (\texttt{normal}, \texttt{2c}, \texttt{2d}) together, not one class at a time.
+While learning the dictionary, the model does not just try to reconstruct the patches well — it also tries to make patches from the same
+class use similar atoms, and it learns a simple linear classifier at the same time. This is controlled by two weights in the
+training config: $\alpha = 4.0$ (label-consistency) and $\beta = 2.0$ (classifier weight). Training uses a sparsity
+target of 10 nonzero values per code, starts with 2 warm-up K-SVD iterations, and then runs 10 more iterations updating the dictionary,
+the classifier, and the codes together. The class labels are converted into a one-hot label matrix before training.
+Once trained, the dictionary and related settings are saved to a file (\texttt{unified\_lcksvd2.pkl}) so it can be reused later.
+
+\textbf{How patches are turned into sparse codes.} Once the dictionary $D$ is trained and fixed, generating a sparse code for a patch
+is a separate, simpler step. It does \emph{not} reuse the label-consistency/classifier objective from training — that part is only used 
+while the dictionary itself is being learned. Instead, for any patch $x$ (whether from training data, test data, or a brand-new scan),
+ the code $\gamma$ is found by solving:
+\[
+\hat{\gamma} = \arg\min_{\gamma} \; \|x - D\gamma\|_2^2 + \alpha \|\gamma\|_1, \qquad \alpha = 0.1
+\]
+In plain terms: find the combination of dictionary atoms that reconstructs the patch well, while keeping most of the coefficients at zero.
+Before this step, both the patches and the dictionary columns are normalised so that all values are on a comparable scale.
+\textbf{How the equation is actually solved.} This equation is solved using an algorithm called FISTA, instead of the more common
+OMP(Orthogonal Matching Pursuit) method often used with K-SVD-style dictionaries. FISTA repeatedly does two things:
+ (1) takes a gradient step to reduce the reconstruction error, and 
+ (2) applies a soft-thresholding step that pushes small coefficients to zero, keeping the code sparse.
+The step size adjusts automatically using a backtracking line search.
+The loop stops once the change between iterations becomes very small (tolerance $10^{-8}$), or after 500 iterations at most.
+
+\textbf{Why it's done in batches on the GPU.} Since each patch is encoded independently of the others, all patches don't need to be solved at once. 
+Doing so would use too much memory, since FISTA needs to store several large matrices while it runs.
+Instead, patches are processed in batches of 8192 at a time, computed on the GPU when available (and on the CPU otherwise),
+ and each batch's results are stored into the final sparse code matrix $\Gamma$.
+
+\textbf{Saving the results.} Since encoding all patches takes time, the resulting sparse codes and their labels are saved to disk as a compressed file.
+This way, if the code is run again later, it can just load the saved codes instead of recomputing them.
 
 \subsection{Training}
 
