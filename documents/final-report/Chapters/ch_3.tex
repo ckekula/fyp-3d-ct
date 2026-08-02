@@ -537,7 +537,8 @@ and testing. Therefore, patches must first be generated from the input
 volume, converted into sparse codes, and then classified to produce the
 final abnormality map.
 
-\paragraph{Preprocessing.} The input volume is first taken through
+\paragraph{Preprocessing.} 
+The input volume is first taken through
 exactly the same preprocessing used at training time: it is resampled to
 the common $1.5\,\text{mm}$ isotropic spacing, lung-segmented, HU-clipped
 and normalised to $[0,1]$, so that a fresh scan reaching the classifier
@@ -545,6 +546,7 @@ has been through the identical transformation as every training and test
 patch before it.
 
 \paragraph{Dense patch extraction.}
+
 During training and testing, abnormal patches are extracted from regions
 around known lesions using ground-truth masks. However, a new CT volume
 does not contain a lesion mask, so the model cannot directly determine
@@ -584,7 +586,8 @@ used to generate the voxel-level abnormality map by mapping each patch
 prediction back to its original location in the CT volume.
 
 
-\paragraph{Reassembling a per-voxel map.} A single patch's prediction
+\paragraph{Reassembling a per-voxel map.} 
+A single patch's prediction
 only covers the small cube of voxels it was extracted from, and because
 patches overlap under the dense grid's stride, most voxels end up covered
 by several different patches, which will not always agree. Each patch's
@@ -602,6 +605,7 @@ that an abnormal prediction cannot bleed out past the lung boundary into
 surrounding air or chest wall.
 
 \paragraph{Reassembling a per-voxel map.}
+
 Each patch prediction represents only the small region of the CT volume
 covered by that patch. Since the dense grid produces overlapping patches,
 a single voxel may receive predictions from multiple patches, and these
@@ -690,6 +694,7 @@ and allows the relationships between the remaining dictionary atoms to be
 examined more clearly.
 
 \paragraph{Atom co-occurrence and clustering.}
+
 The relationship between dictionary atoms was analysed by measuring how
 frequently pairs of atoms were activated together within the same patch.
 Only atoms that appeared at least 50 times in the training sparse codes
@@ -817,6 +822,7 @@ normal, GGO, and nodule classes.
 \end{figure}
 
 \paragraph{Dictionary coherence.}
+
 The dictionary coherence was analysed by measuring the similarity between
 every pair of normalized dictionary atoms. Instead of considering only
 the maximum coherence value, the complete distribution of pairwise
@@ -868,6 +874,7 @@ in the CT scan, producing a detailed segmentation of the target
 abnormalities.
 
 \paragraph{Preprocessing.}
+
 During inference, each input CT volume is preprocessed using the same
 settings that were automatically determined by nnU-Net during the
 training and planning stage. These settings include the target voxel
@@ -883,6 +890,7 @@ automatically applies the preprocessing settings learned during dataset
 planning.
 
 \paragraph{Inference.}
+
 During inference, the trained nnU-Net model is loaded and applied to
 previously unseen CT volumes. Each preprocessed CT scan is passed through
 the model to generate a voxel-level segmentation mask for the target
@@ -907,8 +915,6 @@ segmentation performance.
 
 \subsection{Merlin}
 
-
-
 Merlin was used as a pretrained model without any additional training or
 fine-tuning. Unlike CT-CLIP and BiomedParse, Merlin does not rely on a
 predefined set of disease prompts for prediction.
@@ -927,6 +933,7 @@ based on the relationship between the CT image features and the provided
 text descriptions.
 
 \paragraph{Preprocessing.}
+
 Each CT volume is loaded from a NIfTI file. Any missing or invalid
 (\texttt{NaN}) values are replaced with zero. If the input volume contains
 an additional channel dimension, making it a 4D volume instead of a 3D
@@ -991,6 +998,7 @@ local CT volumes. Text prompts were used to guide the model to segment
 the same target abnormalities.
 
 \paragraph{Preprocessing.}
+
 Each CT volume was loaded from a NIfTI file and rearranged into a
 depth-first $(D,H,W)$ format. A standard lung window (width 1500 and
 level $-160$) was applied, and the intensity values were converted into
@@ -1006,6 +1014,7 @@ and the axis where padding was applied were stored so that the predicted
 masks could later be converted back to the original CT volume size.
 
 \paragraph{Inference.}
+
 The official pretrained BiomedParse v2 checkpoint was loaded using the
 model configuration provided by BiomedParse. The checkpoint was loaded
 from a local path if available; otherwise, it was downloaded from the
@@ -1057,6 +1066,7 @@ The released CT-LiPro linear-probe checkpoint was applied directly to the
 available CT volumes to predict the probability of different abnormalities.
 
 \paragraph{Preprocessing.}
+
 Unlike the sparse-coding pipeline, which uses physical spacing information
 to resample CT volumes, CT-CLIP requires every input volume to have the
 same fixed size because the model was pretrained using a specific input
@@ -1070,6 +1080,7 @@ interpolation to a fixed size of $240\times480\times480$ before being
 given to the model.
 
 \paragraph{Inference.}
+
 The released \texttt{CT\_LiPro\_v2.pt} checkpoint was loaded into the
 pretrained CT-CLIP model together with its linear classification head.
 The model weights were loaded using \texttt{strict=False}, and any
