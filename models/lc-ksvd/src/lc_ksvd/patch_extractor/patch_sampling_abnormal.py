@@ -24,6 +24,7 @@ from lc_ksvd.config import (
 )
 from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
+from lc_ksvd.patch_extractor.patch_sampling_normal import is_background
 
 logger = logging.getLogger(__name__)
 
@@ -126,7 +127,7 @@ def sample_abnormal_patches(
         mask_patch = extract_patch(category_mask, x0, y0, z0)
 
         threshold = LESION_THRESHOLDS.get(category, LESION_FRACTION_THRESHOLD)
-        if mask_patch is None or not has_sufficient_lesion(mask_patch, threshold):
+        if mask_patch is None or not has_sufficient_lesion(mask_patch, threshold) or is_background(patch):
             continue
 
         writer.write(patch, (x0, y0, z0))
