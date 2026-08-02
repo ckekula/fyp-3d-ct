@@ -344,75 +344,391 @@ keeps memory requirements manageable while still allowing the learned dictionary
 atoms to specialise in the local structural signatures associated with each target
 pulmonary abnormality.
 
-<<<<<<< HEAD
 \section{Classification}
+
+Sparse coding reduces each patch to a compact numerical representation
+$\Gamma$ against the learned dictionary $D$, but $\Gamma$ on its own is
+only a representation, not a prediction -- nothing in the dictionary
+itself decides whether a given patch is normal, GGO or a nodule. A
+separate, standalone machine learning model is therefore trained on top
+of the sparse codes to assign each patch a class label. This
+classification stage is implemented independently of the
+dictionary-learning code, and is run only once a
+dictionary has already been learned and frozen: the same classification
+pipeline is applied unchanged regardless of which dictionary-learning
+variant (K-SVD, frozen dictionary learning, or LC-KSVD) produced the
+sparse codes it is given.
 
 \subsection{Sparse Coding}
 
-\textbf{Where the dictionary comes from.} The sparse codes are generated using the dictionary $D$ learned by the LC-KSVD2 model.
-Each patch has $d = 4096$ values (a $16^3$ voxel cube flattened into a vector), and the dictionary has $k = 5d$ atoms (basis vectors).
-LC-KSVD2 is trained once, using patches from all three classes (\texttt{normal}, \texttt{2c}, \texttt{2d}) together, not one class at a time.
-While learning the dictionary, the model does not just try to reconstruct the patches well — it also tries to make patches from the same
-class use similar atoms, and it learns a simple linear classifier at the same time. This is controlled by two weights in the
-training config: $\alpha = 4.0$ (label-consistency) and $\beta = 2.0$ (classifier weight). Training uses a sparsity
-target of 10 nonzero values per code, starts with 2 warm-up K-SVD iterations, and then runs 10 more iterations updating the dictionary,
-the classifier, and the codes together. The class labels are converted into a one-hot label matrix before training.
-Once trained, the dictionary and related settings are saved to a file (\texttt{unified\_lcksvd2.pkl}) so it can be reused later.
+Before the classifier can be trained, every patch in the training split is
+re-expressed in terms of the dictionary $D$. Given the patch matrix $X$
+and dictionary $D$, this means solving
 
-\textbf{How patches are turned into sparse codes.} Once the dictionary $D$ is trained and fixed, generating a sparse code for a patch
-is a separate, simpler step. It does \emph{not} reuse the label-consistency/classifier objective from training — that part is only used 
-while the dictionary itself is being learned. Instead, for any patch $x$ (whether from training data, test data, or a brand-new scan),
- the code $\gamma$ is found by solving:
-\[
-\hat{\gamma} = \arg\min_{\gamma} \; \|x - D\gamma\|_2^2 + \alpha \|\gamma\|_1, \qquad \alpha = 0.1
-\]
-In plain terms: find the combination of dictionary atoms that reconstructs the patch well, while keeping most of the coefficients at zero.
-Before this step, both the patches and the dictionary columns are normalised so that all values are on a comparable scale.
-\textbf{How the equation is actually solved.} This equation is solved using an algorithm called FISTA, instead of the more common
-OMP(Orthogonal Matching Pursuit) method often used with K-SVD-style dictionaries. FISTA repeatedly does two things:
- (1) takes a gradient step to reduce the reconstruction error, and 
- (2) applies a soft-thresholding step that pushes small coefficients to zero, keeping the code sparse.
-The step size adjusts automatically using a backtracking line search.
-The loop stops once the change between iterations becomes very small (tolerance $10^{-8}$), or after 500 iterations at most.
+\begin{equation}
+\min_{\Gamma} \; \|X - D\Gamma\|_2^2 + \lambda \|\Gamma\|_1,
+\end{equation}
 
-\textbf{Why it's done in batches on the GPU.} Since each patch is encoded independently of the others, all patches don't need to be solved at once. 
-Doing so would use too much memory, since FISTA needs to store several large matrices while it runs.
-Instead, patches are processed in batches of 8192 at a time, computed on the GPU when available (and on the CPU otherwise),
- and each batch's results are stored into the final sparse code matrix $\Gamma$.
+an $\ell_1$-regularised least-squares (LASSO-style) formulation rather than
+a hard $\ell_0$ sparsity budget, with $\lambda = 0.1$ controlling the
+trade-off between reconstruction accuracy and how sparse the resulting
+code is. Both $X$ and $D$ are first rescaled to unit-norm columns, so that
+patches or atoms of different raw magnitude contribute comparably to the
+$\ell_1$ penalty rather than the objective being dominated by whichever
+columns happen to have larger scale.
 
-\textbf{Saving the results.} Since encoding all patches takes time, the resulting sparse codes and their labels are saved to disk as a compressed file.
-This way, if the code is run again later, it can just load the saved codes instead of recomputing them.
+This objective is solved with FISTA (Fast Iterative Shrinkage-Thresholding
+Algorithm), using the project's own \texttt{reppi} solver core directly
+rather than the sparse-coding wrapper class shipped alongside it, since
+that wrapper's helper routines are torch-only and reject the plain NumPy
+patch matrices produced by the patch-extraction stage. The smooth
+reconstruction term is supplied to the solver through its gradient,
+
+\begin{equation}
+\nabla_\Gamma \, \|X - D\Gamma\|_2^2 = 2D^{\top}(D\Gamma - X),
+\end{equation}
+
+while the non-smooth $\ell_1$ term is handled through its proximal
+operator, the element-wise soft-thresholding function
+
+\begin{equation}
+\mathrm{prox}_{\lambda t}(v) = \mathrm{sign}(v)\max(|v|-\lambda t,\,0).
+\end{equation}
+
+FISTA is run with a backtracking line search to adapt its step size at
+each iteration, for up to 500 iterations or until successive updates
+change by less than $10^{-8}$. Because the reconstruction objective is
+separable across columns of $X$ -- encoding one patch does not depend on
+any other -- the training set is encoded in batches of 8192 patches at a
+time on GPU (falling back to CPU when unavailable) rather than as a single
+solve over the whole matrix: FISTA's working buffers (the current
+iterate, momentum term and gradient, each sized $n_{\text{atoms}} \times
+n_{\text{samples}}$) would otherwise need tens of gigabytes of memory for
+the dictionary and patch-set sizes used in this project. The resulting
+sparse-code matrix $\Gamma$ is cached to disk together with the
+corresponding patch labels once computed, so that re-running the training
+script does not require re-encoding the entire training split from
+scratch.
 
 \subsection{Training}
 
-The sparse codes generated from the training set are used to train the following classifiers:
+This stage takes the $(\Gamma, \text{label})$ pairs prepared for every
+training patch in the previous section as given, and is concerned only
+with fitting a machine learning classifier to that data: $\Gamma^{\top}$
+is used as the feature matrix -- one row of sparse coefficients per patch
+-- and the corresponding label vector is used as the training target, so
+the classifier learns to predict a patch's class directly from its sparse
+code.
+
+Two classifiers were set up to be trained this way on the same
+$(\Gamma, \text{label})$ pairs: first a linear classifier, a Linear
+Support Vector Classifier, which was taken through to a fully tuned and
+trained model; and second, a classifier built around a non-linear output
+mapping from the sparse code to a class probability, Logistic Regression,
+intended as a point of comparison against the purely linear decision
+boundary of the SVM. The two are described in turn below.
 
 \subsubsection{Linear Support Vector Classifier (LinearSVC)}
 
-Brief description of the LinearSVC classifier.
+The classifier actually trained on the sparse codes is scikit-learn's
+\texttt{LinearSVC}, wrapped together with a \texttt{MaxAbsScaler} in a
+single \texttt{Pipeline}. \texttt{MaxAbsScaler} rescales each sparse-code
+dimension -- i.e.\ each dictionary atom's coefficient -- by its maximum
+absolute value across the training set without subtracting a mean, so
+that the exact zeros produced by sparse coding for inactive atoms are
+preserved rather than shifted away from zero, which a mean-centring
+scaler such as \texttt{StandardScaler} would otherwise do.
+
+The regularisation strength $C$ is selected with \texttt{GridSearchCV}
+over $C \in \{0.1, 1.0, 10.0\}$, using 5-fold cross-validation and
+macro-averaged F1 as the scoring metric rather than plain accuracy, since
+the three target classes (normal, GGO, nodule) are not equally represented
+among the training patches and macro F1 weights each class's score
+equally regardless of how many patches belong to it. The
+\texttt{LinearSVC} itself is configured with \texttt{dual=False} and a
+raised iteration cap of 10{,}000 to ensure convergence, and the grid
+search is run with \texttt{n\_jobs=2} and \texttt{pre\_dispatch=1}. Once
+the search completes, the best-performing hyperparameter combination is
+refit on the full training split (\texttt{refit=True}) to produce the
+final classifier, which is then serialised to disk with \texttt{joblib}
+for reuse during inference and evaluation.
 
 \subsubsection{Logistic Regression}
 
-Brief description of the Logistic Regression classifier.
+
 
 \subsection{Inference}
 
-During inference, the trained classifier is evaluated on unseen test data.
+Once the classifier has been trained, it needs to be checked on patches it
+has never seen before. This step mirrors the training-time pipeline step
+for step but on the held-out test split, and stops at prediction and
+scoring rather than fitting anything new.
 
 \subsubsection{Classification on the Test Set}
 
-Brief description of test set prediction.
+With a sparse code and label available for every test patch -- obtained
+the same way as for the training patches -- this step is only concerned
+with applying the already-trained classifier to that unseen data. The
+previously trained and serialised \texttt{LinearSVC} pipeline is reloaded
+with \texttt{joblib} and used to predict a class label for every test
+patch directly from its sparse code, exactly as it would for any other
+unseen input -- no retraining or re-tuning takes place at this stage. The
+predicted labels are then passed, together with the true test labels, to
+the evaluation routine described next. 
 
 \subsubsection{Statistical Analysis}
 
-Brief description of the evaluation metrics and statistical analysis.
+Evaluation of the test-set predictions is handled by a single
+\texttt{evaluate} routine, shared by every classifier so that results are
+always produced the same way regardless of which model made the
+predictions. Three things are reported for a given set of predictions and
+true labels: overall accuracy, a full per-class classification report
+giving precision, recall and F1-score (and the number of supporting
+patches) for each of the three target classes individually, and the raw
+confusion matrix of predicted versus actual class counts. Reporting the
+per-class breakdown rather than only a single aggregate accuracy figure
+matters here because, as established during patch extraction, the
+training patches are not evenly split between the normal, GGO and nodule
+classes -- an aggregate accuracy figure alone could look high while
+hiding poor performance on whichever class is least represented, whereas
+the per-class report and confusion matrix make it possible to see
+directly whether, for example, nodule patches are being confused with
+normal tissue more often than with GGO patches, rather than only knowing
+that some fraction of predictions were wrong.
 
+Beyond these aggregate classifier metrics, the sparse-code representation
+that the classifier consumes was also inspected directly, using a
+dedicated exploratory analysis notebook (\texttt{eda.ipynb}), to check
+that the dictionary and its sparse codes were behaving the way the
+Interpretability of Sparse Dictionary Learning metrics defined earlier in
+this chapter (sparsity, atom utilisation, dictionary coherence) are meant
+to capture, rather than relying on the classifier's accuracy alone as a
+proxy for whether the representation itself was sound.
+
+\paragraph{Sparsity and atom utilisation.} For the frozen-dictionary
+sparse codes ($\Gamma \in \mathbb{R}^{12096 \times 118705}$, one column
+per training patch), the number of non-zero coefficients per patch was
+almost always at the sparsity budget of 10: 111{,}470 of the 118{,}705
+patches used exactly 10 atoms, against a mean of 9.39 non-zero
+coefficients per patch overall. The remaining patches were not spread
+across the lower sparsity levels, however -- 7{,}235 patches (just over
+6\%) collapsed to an all-zero code, contributing no signal to the
+classifier at all, which is a real limitation of this stage rather than a
+rounding artefact. Atom utilisation across the same codes was highly
+uneven: one atom alone was active in 14{,}209 patches (nearly 12\% of the
+dataset), an order of magnitude more than the next most-used atom
+(2.05\%), with every other atom in the top 15 also falling in the
+1--2\% range. This single dominant atom was subsequently treated as an
+outlier and excluded from the co-occurrence analysis below so that it did
+not drown out every other relationship in the data.
+
+\paragraph{Atom co-occurrence and clustering.} Restricting to atoms used
+at least 50 times (and excluding the dominant outlier atom), pairwise
+co-occurrence -- how often two atoms are both active in the same patch --
+was computed across the training codes. The strongest pairs co-occurred
+in 70--95 patches each, and a correlation-based hierarchical clustering of
+atom activation patterns (Figure~\ref{fig:atom-correlation-clusters})
+shows this structure is not just a handful of isolated pairs: atoms group
+into a small number of visibly correlated blocks rather than activating
+independently of one another. Treating atom pairs with at least 20
+shared patches as edges in a graph and running community detection over
+it gave 32 communities in total, but the sizes were highly skewed -- the
+five largest communities alone accounted for 149, 139, 128, 122 and 117
+atoms, while most of the remaining 27 communities had two to four members.
+Figure~\ref{fig:atom-cooccurrence-heatmap} shows the same co-occurrence
+matrix reordered by cluster, where the block-diagonal structure is
+visible directly, and Figure~\ref{fig:atom-cooccurrence-graph} lays the
+same graph out with a spring layout, colouring only the four largest
+communities and leaving the rest grey for readability. Read together,
+these indicate that the dictionary's atoms are not being drawn on
+independently patch by patch -- certain groups of atoms tend to switch on
+together, consistent with those atoms representing related local
+structural motifs rather than each being an isolated, unrelated feature.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/atom_correlation_clusters.png}
+    \caption{Hierarchical clustering of dictionary atoms by activation
+    correlation across training patches (correlation-to-distance
+    clustermap).}
+    \label{fig:atom-correlation-clusters}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/atom_cooccurrence_heatmap.png}
+    \caption{Atom co-occurrence matrix (log-scaled shared-patch counts),
+    reordered so that atoms in the same community are adjacent.}
+    \label{fig:atom-cooccurrence-heatmap}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/atom_cooccurrence_graph.png}
+    \caption{Atom co-occurrence graph (spring layout), with the four
+    largest detected communities coloured and all smaller communities
+    grouped as ``Other clusters''.}
+    \label{fig:atom-cooccurrence-graph}
+\end{figure}
+
+\paragraph{Aggregate atom contribution.} Summing the absolute sparse
+coefficient of every atom across a large batch of patches gives a sense
+of which atoms matter most once magnitude, not just activation frequency,
+is taken into account. Figure~\ref{fig:aggregated-sparse-representation}
+plots this aggregated contribution per atom across 117{,}386 patches:
+28{,}671 atoms were active at least once, but the total is dominated by a
+small number of atoms with disproportionately large summed coefficients,
+standing well above the broad low-level background of atoms that
+contribute only marginally in aggregate. This is consistent with the
+uneven atom-utilisation pattern already observed -- a small subset of
+atoms carries most of the representational weight, while the majority
+contribute a small, comparable amount each.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Images/Chapter 3/eda/aggregated_sparse_representation.png}
+    \caption{Aggregated sparse representation: summed absolute
+    coefficient per dictionary atom across a large batch of training
+    patches.}
+    \label{fig:aggregated-sparse-representation}
+\end{figure}
+
+\paragraph{Reconstruction and visual inspection.} As a qualitative check
+alongside the numeric reconstruction-error metric defined earlier,
+patches were reconstructed from their sparse codes as $D\gamma$ and
+re-assembled into a small local volume for visual inspection
+(Figure~\ref{fig:reconstructed-volume}); the reconstruction shows
+recognisable, textured lung tissue rather than noise, giving some
+qualitative confidence that the dictionary is capturing real anatomical
+structure rather than fitting arbitrary patterns. Direct visual
+inspection of the atoms themselves, sampled separately from the
+normal, GGO and nodule blocks of the trained dictionary
+(Figure~\ref{fig:atom-grid-classes}), tells a less clear-cut story:
+atoms from all three blocks look broadly similar by eye -- small
+textured patches with local edges, blobs and intensity gradients --
+without an obvious visual signature that marks a GGO or nodule atom out
+from a normal one. This is not entirely unexpected for a K-SVD-based
+dictionary optimised for reconstruction rather than discriminability, but
+it is itself a useful finding: it reinforces why a downstream classifier
+operating on the pattern of atom \emph{activations} for a patch, rather
+than manual inspection of the atoms in isolation, is necessary to actually
+separate the target classes, as discussed at the start of this section.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/eda/reconstructed_volume_12patches.png}
+    \caption{A small local volume reconstructed from its patches' sparse
+    codes ($D\gamma$), shown in axial, coronal and sagittal view.}
+    \label{fig:reconstructed-volume}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Images/Chapter 3/eda/atom_grid_normal_ggo_nodule.png}
+    \caption{Randomly sampled dictionary atoms (centre slice of each
+    $12\times12\times12$ atom) from the normal, GGO and nodule blocks of
+    the trained dictionary.}
+    \label{fig:atom-grid-classes}
+\end{figure}
+
+\paragraph{Dictionary coherence.} Finally, the pairwise mutual coherence
+of the dictionary -- the absolute inner product between every pair of
+normalised atoms, $\mu(D)$ as defined earlier in this chapter -- was
+examined as a full distribution rather than a single worst-case number.
+Figure~\ref{fig:dictionary-coherence-histogram} shows this distribution
+is not unimodal: a distinct peak sits close to zero, meaning a large
+number of atom pairs are close to orthogonal and therefore represent
+genuinely distinct structure, alongside a broader hump of pairs centred
+around $|d_i^{\top}d_j| \approx 0.4$ and a long tail of more strongly
+correlated pairs beyond that. This gives a more complete picture than the
+single maximum coherence value alone: most of the dictionary is
+reasonably incoherent, but it also contains a non-trivial number of
+atom pairs that are fairly redundant with one another, matching the
+existence of the correlated atom clusters identified above.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/dictionary_coherence_histogram.png}
+    \caption{Distribution of pairwise mutual coherence $|d_i^{\top}d_j|$
+    across all dictionary atom pairs.}
+    \label{fig:dictionary-coherence-histogram}
+\end{figure}
 
 \section{Deep Learning Models}
 
 \subsection{nnU-Net}
 
-Brief description of the nnU-Net model.
+nnU-Net was used to 
+produce a full voxel-wise segmentation mask directly from a CT volume. It
+was applied as a deep-learning baseline against the same two target
+abnormalities agreed on with the radiologists -- ground-glass
+opacity/consolidation and pulmonary nodules -- with a separate binary
+segmentation model trained for each, since nnU-Net's self-configuring
+pipeline is built around single-task, single-label segmentation datasets
+rather than a shared multi-class one.
+
+For each abnormality, the corresponding multi-finding mask channels in
+ReXGroundingCT were collapsed the same way as during patch extraction:
+any voxel active in any of the relevant finding channels was treated as
+foreground, giving a single binary mask per scan (background~$=0$,
+abnormality~$=1$) rather than the original per-instance channel layout.
+These binary masks, together with their source CT volumes, were then
+converted into nnU-Net's expected raw dataset layout -- each CT volume
+copied or hard-linked in as \texttt{<case\_id>\_0000.nii.gz} under
+\texttt{imagesTr} (the \texttt{\_0000} suffix marking it as the dataset's
+only input channel, ``CT''), and each binary mask written as
+\texttt{<case\_id>.nii.gz} under \texttt{labelsTr} using the source CT's
+own affine and header, so that image and label line up voxel-for-voxel
+even where the original segmentation file's own geometry metadata was
+unreliable. The project's own train/validation/test split was reused
+here, but since nnU-Net performs its own internal cross-validation split
+across whatever it is given, the train and validation cases were merged
+into \texttt{imagesTr}/\texttt{labelsTr} together, while the held-out test
+scans were kept apart in \texttt{imagesTs} and only later given
+ground-truth labels of their own, once labels were needed for evaluation
+rather than training. A \texttt{dataset.json} describing the single CT
+channel and the two-class (background/foreground) label map was then
+generated automatically for each dataset with nnU-Net's own
+\texttt{generate\_dataset\_json} utility.
+
+With the raw dataset in place, \texttt{nnUNetv2\_plan\_and\_preprocess}
+was run to extract a dataset fingerprint (intensity statistics, spacing,
+and so on) and automatically derive a patch size, batch size and
+normalisation scheme for each candidate configuration -- both
+\texttt{3d\_fullres} and \texttt{2d} were planned, in contrast to the
+fixed, hand-chosen patch size and normalisation used earlier in this
+chapter for the sparse-coding pipeline. The \texttt{3d\_fullres}
+configuration was the one taken through to training, under nnU-Net's
+standard 5-fold cross-validation scheme, with each fold launched as a
+separate \texttt{nnUNetv2\_train} run on a single GPU (selected via
+\texttt{CUDA\_VISIBLE\_DEVICES}) and the \texttt{--npz} flag set so that
+validation softmax probabilities are kept alongside each fold's
+checkpoint, which \texttt{nnUNetv2\_find\_best\_configuration} later needs
+to compare configurations and select a postprocessing step. A full,
+default 1000-epoch training run was estimated at roughly 31 hours per
+fold on the available hardware, so training was instead run with a
+reduced-epoch trainer variant, \texttt{nnUNetTrainer\_250epochs}, to keep
+the total training time practical; within the compute budget available
+for this project, only two of the five folds (fold 3 and fold 4) were
+actually carried through to a completed, validated checkpoint for the
+GGO model.
+
+Once at least one fold had a completed validation summary,
+\texttt{nnUNetv2\_find\_best\_configuration} was run to compare the
+trained configuration(s) against their validation results and write out
+a recommended inference command, together with a postprocessing rule if
+one was found to help. Predictions on the held-out test scans were then
+produced with \texttt{nnUNetv2\_predict}, ensembling across whichever
+folds had completed training, with \texttt{nnUNetv2\_apply\_postprocessing}
+applied afterward wherever a postprocessing rule had been identified.
+Predicted masks were compared against the same collapsed binary
+ground-truth masks described above on a per-case, voxel-wise basis (true
+positives, false positives, false negatives and true negatives), from
+which Dice and IoU -- as defined earlier in this chapter under
+Localisation and Segmentation -- were computed for every test case,
+alongside precision, recall and specificity, giving a segmentation-level
+counterpart to the patch-level classification metrics used to evaluate
+the sparse-coding pipeline.
 
 \subsection{Merlin}
 
@@ -432,8 +748,6 @@ Brief description of the MedSAM model.
 
 
 
-=======
->>>>>>> 1a843ee6adb3ce458ed9dba122ff1cf472401e25
 \section{Evaluation Metrics}
 
 The evaluation of medical image analysis systems requires multiple metrics because
