@@ -27,12 +27,11 @@ CHECKPOINT_RESUME = True
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
-    "1b": "Bronchiectasis",
-    "2b": "Atelectasis/Consolidation",
-    "2c": "Groundglass opacity",
+    "2c": "Ground-Glass Opacity",
+    "2d": "Nodules"
 }
 
-CLASS_ORDER = ["normal", "1b", "2b", "2c"]
+CLASS_ORDER = ["normal", "2c", "2d"]
 NORMAL_CLASS_IDX = 0  # CLASS_ORDER[0] == "normal"
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
@@ -48,8 +47,8 @@ TARGET_SHAPE = (480, 480, 240)          # (H, W, D) = (coronal, sagittal, axial)
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
-PATCH_SIZE = 12            # cubic patch: 16×16×16 voxels → 12mm³ at 1.5mm spacing
-N_FEATURES = PATCH_SIZE ** 3  # 4096 — dimensionality of each patch vector
+PATCH_SIZE = 12
+N_FEATURES = PATCH_SIZE ** 3
 
 # Training-time patch-grid strides (voxels).
 NORMAL_PATCH_STRIDE = PATCH_SIZE
@@ -59,9 +58,8 @@ ABNORMAL_PATCH_STRIDE = 4
 ZERO_FRACTION_THRESHOLD = 0.5
 LESION_FRACTION_THRESHOLD = 0.5
 LESION_THRESHOLDS = {
-    "1b": 0.50,   # 50%
-    "2b": 0.50,   # 50%
-    "2c": 0.50,   # 50%
+    "2c": 0.50,
+    "2d": 0.50
 }
 
 SHUFFLE_PATCHES = True
