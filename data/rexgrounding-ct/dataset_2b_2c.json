@@ -1,0 +1,5294 @@
+{
+    "train": [
+        {
+            "name": "train_10008_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy areas with air signs and vascular enlargement in the upper lobe of the left lung at the level of the superior lingula"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 37104
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10097_a_1.nii.gz",
+            "findings": {
+                "0": "Mild subpleural ground glass densities in both lungs, particularly in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 8708
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10125_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the posterolateral and basal parts of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7134
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10144_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities with interlobular septal thickening in the peripheral subpleural area of the upper lobe posterior segment and lower lobe basal segments of the right lung"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 19665
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10154_a_1.nii.gz",
+            "findings": {
+                "0": "Compression atelectasis in the anterobasal segment of the left lower lobe due to diaphragmatic elevation"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 34483
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10218_a_1.nii.gz",
+            "findings": {
+                "0": "Non-specific ground-glass opacities in the posterobasal segments of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 11933
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10319_a_1.nii.gz",
+            "findings": {
+                "0": "Consolidations with linear density increases in the posterior parts of the lower lobes and peripheral areas of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 74294
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10332_b_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in both peripheral and central areas",
+                "1": "Consolidations in both peripheral and central areas"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 19241,
+                "1": 19241
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_10353_a_2.nii.gz",
+            "findings": {
+                "0": "Subpleural patchy ground glass opacities in both lungs, more prominently in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 21347
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10362_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the peripheral subpleural area of the posterior left upper lobe",
+                "1": "Ground-glass opacities in the perivascular area of the lower superior segment",
+                "2": "Focal consolidation in the posterobasal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2,
+                "2": 1
+            },
+            "pixels": {
+                "0": 12538,
+                "1": 24259,
+                "2": 14097
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_10377_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacity in the posterior subsegment of the apicoposterior segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 60249
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10378_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in both lungs with a halo sign around patchy nodules, predominantly in the posterior regions"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 4921
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10381_b_2.nii.gz",
+            "findings": {
+                "0": "Scattered ground glass opacities in both lungs, more prominent in the subpleural areas"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 13465
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10393_a_1.nii.gz",
+            "findings": {
+                "0": "Subpleural, focal ground-glass opacities in both lower lobe basal segments"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5199
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10435_a_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in the posterobasal segment of the lower lobe of the right lung",
+                "1": "Ground glass opacities in the lateral part of the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 13278,
+                "1": 7161
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_10446_a_1.nii.gz",
+            "findings": {
+                "0": "Peribronchial focal ground-glass opacities in both lungs, more numerous in the left lung and predominantly in the peripheral lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 25838
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10467_b_2.nii.gz",
+            "findings": {
+                "0": "Diffuse, mostly peripheral, patchy ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 28806
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10473_b_1.nii.gz",
+            "findings": {
+                "0": "Scattered ground glass opacities in both lungs, particularly in the subpleural areas"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 10399
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10497_b_2.nii.gz",
+            "findings": {
+                "0": "Consolidation areas in the lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 30291
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10525_a_2.nii.gz",
+            "findings": {
+                "0": "Subpleural patchy ground-glass opacities in the posterior segments of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 30715
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10528_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in both lungs, predominantly in the subpleural areas of the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6661
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1054_a_1.nii.gz",
+            "findings": {
+                "0": "Subtle patchy ground glass opacity in the paramediastinal region of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 13097
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10577_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral and peribronchial patchy ground glass opacities observed on the left",
+                "1": "Peripheral and peribronchial patchy ground glass opacities in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 23066,
+                "1": 25835
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_10603_a_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the bilateral lower lobes",
+                "1": "Mild atelectatic changes more prominent in the basal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 23255,
+                "1": 16037
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_10624_b_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in all segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 8752
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10670_a_2.nii.gz",
+            "findings": {
+                "0": "Areas of atypical pneumonic infiltration in both lungs, more prominent towards the bases"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 22297
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10690_a_1.nii.gz",
+            "findings": {
+                "0": "Slight subpleural peripheral ground-glass opacity in the posterior lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 63598
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10692_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular and nodular consolidations with ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7132
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10694_a_1.nii.gz",
+            "findings": {
+                "0": "Reticulonodular infiltrates in the posterobasal segment of the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 12786
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_106_a_1.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 12211
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10717_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacities in the posterior segment of the right upper lobe",
+                "1": "Focal ground-glass opacities minimally in the superior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 7717,
+                "1": 5162
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_10748_a_1.nii.gz",
+            "findings": {
+                "0": "Area of consolidation in the posterobasal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 25758
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_10763_a_1.nii.gz",
+            "findings": {
+                "0": "Diffuse patchy ground-glass opacities in the lower lobes of both lungs",
+                "1": "Consolidation areas in the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 30459,
+                "1": 37818
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_10764_a_2.nii.gz",
+            "findings": {
+                "0": "Subpleural ground-glass opacities in both lungs, especially in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 8512
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10819_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectasis in the basal segments of both lower lobes",
+                "1": "Atelectasis in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 23260,
+                "1": 10269
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_10829_a_2.nii.gz",
+            "findings": {
+                "0": "Multiple subpleural ground-glass opacities in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 26525
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10892_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the lower lobes of both lungs",
+                "1": "Areas of consolidation in a crazy paving pattern in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 9007,
+                "1": 34829
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_10932_a_2.nii.gz",
+            "findings": {
+                "0": "Scattered and patchy ground-glass opacities in both lungs, particularly in the subpleural areas"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 41134
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_10953_b_2.nii.gz",
+            "findings": {
+                "0": "Peripheral patchy ground glass opacities in both lungs",
+                "1": "Centrally located patchy ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 6702,
+                "1": 12433
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_10992_b_1.nii.gz",
+            "findings": {
+                "0": "Consolidation in the anteromediobasal and laterobasal segments of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 27699
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_11021_a_1.nii.gz",
+            "findings": {
+                "0": "Minimally blurred ground glass densities in the mediobasal segments of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 14837
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11068_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral subpleural predominant ground-glass opacities in all lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 37225
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11074_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy, peripheral-subpleural ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6049
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1110_a_2.nii.gz",
+            "findings": {
+                "0": "Linear increase in density in the right lower lobe posterobasal segment with surrounding ground glass opacity"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 11835
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1113_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral lower lobe ground glass opacities"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6019
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11182_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectasis in the upper lobe of the right lung",
+                "1": "Atelectasis in the middle lobe of the right lung",
+                "2": "Atelectasis in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 59725,
+                "1": 65673,
+                "2": 39201
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_11199_a_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the basal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 72940
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_11205_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, multisegmental nodular ground glass consolidations with a crazy paving pattern and vascular enlargement in the basal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 39634
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_11240_c_2.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in both lungs, particularly in the subpleural areas and more prominently in the right lung"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 31297
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11262_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the posterobasal segment of the right lower lobe",
+                "1": "Ground-glass opacities in the peripheral area of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 6
+            },
+            "pixels": {
+                "0": 7010,
+                "1": 11928
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_11299_a_2.nii.gz",
+            "findings": {
+                "0": "Minimal atelectasis changes in the upper lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 8296
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_1131_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the lateral basal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10178
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_11321_a_1.nii.gz",
+            "findings": {
+                "0": "Faint ground-glass opacity in the right lung lower lobe superior segment posterobasal area"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 5186
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11373_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass densities with air bronchograms and vascular enlargement in the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 70631
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11387_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the lower lobes of both lungs",
+                "1": "Patchy ground-glass opacities in the superior segment of the left lower lobe",
+                "2": "Patchy ground-glass opacities in the posterobasal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 4,
+                "1": 1,
+                "2": 2
+            },
+            "pixels": {
+                "0": 58143,
+                "1": 23813,
+                "2": 29589
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_11491_a_1.nii.gz",
+            "findings": {
+                "0": "Area of ground-glass opacity with central consolidation in the posterior segment of the right upper lobe, subpleural in location"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 14821
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11525_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral asymmetrical nodular ground-glass opacities, predominantly subpleural, more prominent in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 4
+            },
+            "pixels": {
+                "0": 26327
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1154_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy subpleural ground-glass opacities in the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 6450
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11554_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground glass opacities in the peripheral subpleural areas of the upper and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 42504
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11573_d_2.nii.gz",
+            "findings": {
+                "0": "Peripheral and centrally located ground-glass opacities in the upper and lower lobes of both lungs",
+                "1": "Peripheral and centrally located ground-glass opacities in the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 8288,
+                "1": 5678
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_11583_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities with a halo sign in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 10289
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11585_b_2.nii.gz",
+            "findings": {
+                "0": "Widespread and patchy ground-glass opacities in both lungs",
+                "1": "Irregularly bordered linear opacities forming consolidation in both lungs",
+                "2": "More prominent opacities in the left lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 23495,
+                "1": 11716,
+                "2": 36885
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_11714_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in both lungs",
+                "1": "More prominent ground-glass opacities in basal segments of the lower lobes",
+                "2": "Halo signs surrounding ground-glass opacities"
+            },
+            "entity_counts": {
+                "0": 4,
+                "1": 4,
+                "2": 2
+            },
+            "pixels": {
+                "0": 41698,
+                "1": 41698,
+                "2": 15266
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_11813_a_2.nii.gz",
+            "findings": {
+                "0": "Multiple patchy ground glass opacities with surrounding halo sign in both lungs"
+            },
+            "entity_counts": {
+                "0": 4
+            },
+            "pixels": {
+                "0": 35296
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11827_a_1.nii.gz",
+            "findings": {
+                "0": "Peripherally distributed patchy ground-glass infiltrates in the right middle lobe medial segment"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 47035
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11926_a_1.nii.gz",
+            "findings": {
+                "0": "Faint, nonspecific, mild ground-glass opacities at the lower lobe level in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 21325
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11944_a_2.nii.gz",
+            "findings": {
+                "0": "Nonspecific ground-glass opacities in the middle lobe and lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 67137
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_11_a_2.nii.gz",
+            "findings": {
+                "0": "Widespread patchy ground glass opacities in bilateral lungs",
+                "1": "Subpleural consolidation areas"
+            },
+            "entity_counts": {
+                "0": 4,
+                "1": 5
+            },
+            "pixels": {
+                "0": 25232,
+                "1": 25129
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_12080_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral asymmetric ground glass nodules in all segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6716
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12137_a_1.nii.gz",
+            "findings": {
+                "0": "Widespread patchy ground-glass opacities in both lungs",
+                "1": "Consolidation areas in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 9794,
+                "1": 11144
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_12167_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripheral, subpleural areas of ground-glass opacity with indistinct borders in both lung parenchyma",
+                "1": "Increased density consistent with consolidation in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 4982,
+                "1": 29897
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_12202_a_2.nii.gz",
+            "findings": {
+                "0": "Consolidation in the central part of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 45995
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_12317_a_2.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacities in the peripheral subpleural area of the posterobasal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 5611
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12458_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, predominantly peripheral subpleural regions of ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 30458
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12463_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis areas in the posterobasal segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 24758
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_12470_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in both lungs, predominantly in the periphery"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 24348
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12484_a_2.nii.gz",
+            "findings": {
+                "0": "Multiple ground-glass opacities in peripheral subpleural areas of both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 14947
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12486_a_2.nii.gz",
+            "findings": {
+                "0": "Slight ground glass opacities at the posterobasal levels of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 25979
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12505_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass appearance in the peripheral regions of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 26463
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12505_b_1.nii.gz",
+            "findings": {
+                "0": "Consolidations in both lungs, more prominently in the lower lobes and peripheral regions",
+                "1": "Ground-glass opacities in both lungs, more prominently in the lower lobes and peripheral regions"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 3
+            },
+            "pixels": {
+                "0": 69124,
+                "1": 35305
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_12513_a_2.nii.gz",
+            "findings": {
+                "0": "Small area of consolidation in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10437
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_12567_a_1.nii.gz",
+            "findings": {
+                "0": "Peripherally located patchy ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 18098
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12631_a_1.nii.gz",
+            "findings": {
+                "0": "Areas of consolidation in the lateral segment of the lower lobe of the left lung",
+                "1": "Occasional nodular ground glass opacities in the lateral segment of the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 54707,
+                "1": 9320
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_12794_c_2.nii.gz",
+            "findings": {
+                "0": "Mosaic attenuation pattern in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 12250
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12821_a_1.nii.gz",
+            "findings": {
+                "0": "Subpleural ground-glass opacities in both lung parenchyma, more prominently in the lower lobes and posterior regions"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 14645
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12840_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass consolidation area in the left lung lower lobe superior segment measuring approximately 3.6x3.7 cm"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 23744
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_12869_c_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass densities present throughout the peribronchovascular spaces in both lungs, more commonly in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 14566
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_13075_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectatic changes at the basal levels of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 4
+            },
+            "pixels": {
+                "0": 54570
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_1313_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral nodular ground glass consolidations in all lobes of both lungs",
+                "1": "Subsegmental atelectatic changes in the left lung inferior lingular segment",
+                "2": "Subsegmental atelectatic changes in the right lung middle lobe medial segment"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1,
+                "2": 1
+            },
+            "pixels": {
+                "0": 11242,
+                "1": 6601,
+                "2": 10198
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_13278_b_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the laterobasal segment of the right middle and lower lobes"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 52309
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_13479_e_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities observed",
+                "1": "Newly emerged consolidation area in the mediobasal segment of the right lower lobe",
+                "2": "Increase in ground glass density in the mediobasal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 4,
+                "1": 1,
+                "2": 5
+            },
+            "pixels": {
+                "0": 56666,
+                "1": 12715,
+                "2": 14551
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_13591_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass densities in the inferior lingula of the left upper lobe",
+                "1": "Atelectatic changes in the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 4,
+                "1": 5
+            },
+            "pixels": {
+                "0": 16441,
+                "1": 20735
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_13715_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar areas of indistinct ground-glass opacities in both lungs",
+                "1": "Increased density consistent with consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 26037,
+                "1": 6184
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1371_a_1.nii.gz",
+            "findings": {
+                "0": "Areas of patchy ground-glass opacity bilaterally distributed in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 43047
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_13773_a_1.nii.gz",
+            "findings": {
+                "0": "Areas of increased ground glass density with multilobar indistinct borders in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 35299
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_13811_a_2.nii.gz",
+            "findings": {
+                "0": "Faint ground-glass opacities in the middle lobe of the right lung",
+                "1": "Faint ground-glass opacities in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 11333,
+                "1": 9774
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_13825_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral diffuse and asymmetrical patchy consolidation areas in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 11827
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_13890_a_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located crazy paving patterns forming nodular ground glass consolidations in the basal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5459
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1441_a_2.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the inferior segment of the left lung lingula"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 15837
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_1455_a_1.nii.gz",
+            "findings": {
+                "0": "Areas of atelectasis-consolidation in the lower lobe between the pleural leaves on the right",
+                "1": "Areas of atelectasis in the inferior lingular segment of the left lung"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 63552,
+                "1": 7998
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1521_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the medial segment of the right middle lobe",
+                "1": "Subsegmental atelectasis in the lingular segment of the left lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 7097,
+                "1": 16339
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1549_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, predominantly peripheral subpleural ground glass opacities in both lung parenchyma",
+                "1": "Areas of increased density consistent with consolidation in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 12135,
+                "1": 24505
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1557_a_2.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in the posterobasal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 42109
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1566_a_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in both lung parenchyma, more prominently in the upper lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 71668
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1589_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in both lungs",
+                "1": "Areas of consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 21738,
+                "1": 45052
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1599_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacities in both lungs, particularly in the subpleural regions of the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 35055
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1683_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectatic changes in the anterior segment of the right upper lobe",
+                "1": "Atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 12130,
+                "1": 7127
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_1714_a_2.nii.gz",
+            "findings": {
+                "0": "Dependent atelectasis in the posterobasal segments of both lower lobes, more prominent on the left"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 11663
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_1716_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in both lungs, more prominently in the lower lobes and peripheral regions",
+                "1": "Round-shaped ground-glass opacities"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 25913,
+                "1": 11403
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_1741_b_2.nii.gz",
+            "findings": {
+                "0": "Irregularly circumscribed nodular consolidation area adjacent to the diaphragm in the basal segment of the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 15571
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_1790_a_2.nii.gz",
+            "findings": {
+                "0": "Multilobar, mostly peripheral subpleural nodular consolidation in both lungs",
+                "1": "Ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 16976,
+                "1": 35090
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_1823_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular patchy ground-glass opacities in both lungs",
+                "1": "More prominent nodular patchy ground-glass opacities in the right lung",
+                "2": "More intense nodular patchy ground-glass opacities in the subpleural areas"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 2
+            },
+            "pixels": {
+                "0": 14553,
+                "1": 72174,
+                "2": 69093
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_1823_b_2.nii.gz",
+            "findings": {
+                "0": "Subpleural localized ground glass opacities in both lungs",
+                "1": "More prominent ground glass opacities in the right lung and lower lobes",
+                "2": "Minimal ground glass opacities observed centrally"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2,
+                "2": 3
+            },
+            "pixels": {
+                "0": 22742,
+                "1": 20950,
+                "2": 5218
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_1850_a_1.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in the lower lobes and basal segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 40872
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1853_a_2.nii.gz",
+            "findings": {
+                "0": "Slight patchy subpleural ground-glass densities in both lungs, especially in the lower lobe basal segments and more prominently in the left upper lobe lingula"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 24500
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1870_a_2.nii.gz",
+            "findings": {
+                "0": "Subcentimeter ground-glass opacity in the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 12940
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1968_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities more prominent in the subpleural areas and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 36134
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_1987_b_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in both lungs",
+                "1": "Patchy ground-glass opacities more prominently in the left lower lobe",
+                "2": "Patchy ground-glass opacities in the superior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 14397,
+                "1": 9186,
+                "2": 14033
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_2006_a_1.nii.gz",
+            "findings": {
+                "0": "Consolidation in the peripheral areas of both lower lobes",
+                "1": "Ground-glass opacities in the peripheral areas of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 21139,
+                "1": 16720
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_2028_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass infiltrates in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 39972
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2032_a_1.nii.gz",
+            "findings": {
+                "0": "Consolidation areas with ground glass density in all lobes of both lungs, more prominent on the right"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 75485
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_2126_a_1.nii.gz",
+            "findings": {
+                "0": "Subcentimeter new infiltration areas in the form of nodular ground glass opacity or consolidation in the lower lobe of the left lung",
+                "1": "Findings confined to the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 6763,
+                "1": 6763
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_2170_a_1.nii.gz",
+            "findings": {
+                "0": "Irregularly circumscribed ground-glass opacities in both lung parenchyma",
+                "1": "Consolidations in both lung parenchyma",
+                "2": "Ground-glass opacities and consolidations more prominent in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 52476,
+                "1": 48628,
+                "2": 34781
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_2212_a_2.nii.gz",
+            "findings": {
+                "0": "Fibroatelectatic changes in the inferior lingular segment of the left lung",
+                "1": "Minimally compressive atelectatic changes in the inferior lingular segment of the left lung",
+                "2": "Fibroatelectatic changes in the medial segment of the right middle lobe",
+                "3": "Minimally compressive atelectatic changes in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1,
+                "2": 1,
+                "3": 1
+            },
+            "pixels": {
+                "0": 7856,
+                "1": 7856,
+                "2": 10423,
+                "3": 10423
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b",
+                "2": "2b",
+                "3": "2b"
+            }
+        },
+        {
+            "name": "train_2256_a_2.nii.gz",
+            "findings": {
+                "0": "Diffuse ground glass opacities in both lungs",
+                "1": "Round ground glass opacities in both lungs",
+                "2": "Ground glass opacities accompanied by consolidations in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 31693,
+                "1": 59756,
+                "2": 45828
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_226_a_1.nii.gz",
+            "findings": {
+                "0": "Areas of increased parenchymal density adjacent to effusions indicative of compressive atelectasis",
+                "1": "Linear atelectasis in the inferior lingular segment of the left upper lobe and the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 16540,
+                "1": 13584
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_2371_a_1.nii.gz",
+            "findings": {
+                "0": "Diffuse peripherally located focal nodular ground glass densities in the bilateral middle and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 9776
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2376_b_2.nii.gz",
+            "findings": {
+                "0": "Mild dependent atelectatic changes in the lower lobes and posterior segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 77313
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_2382_a_2.nii.gz",
+            "findings": {
+                "0": "Focal ground glass opacities in the laterobasal and posterobasal sections of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 14602
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2385_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacities in the posterior and lateral segments of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 25130
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2392_a_2.nii.gz",
+            "findings": {
+                "0": "Focal minimal ground glass density adjacent to the epicardiac fat pad at the paracardiac level in the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 19041
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2394_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the middle lobe of the right lung",
+                "1": "Subsegmental atelectasis in the lingular segment of the left lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 15813,
+                "1": 9258
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_247_a_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 11797
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_2720_a_2.nii.gz",
+            "findings": {
+                "0": "Scarring and atelectasis in the inferior lingular segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 11190
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_2749_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in the middle lobe of the right lung",
+                "1": "Nodular ground-glass opacities in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 5
+            },
+            "pixels": {
+                "0": 40586,
+                "1": 43427
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_2766_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the peripheral subpleural areas, particularly in the middle and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5366
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2770_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in both lungs, predominantly in the right middle lobe and left inferior lingula"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 34316
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2814_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral ground-glass opacities in a patchy distribution in the apicoposterior segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 59569
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2872_a_1.nii.gz",
+            "findings": {
+                "0": "Peripherally located subpleural patchy ground-glass densities in the lower lobe of the right lung",
+                "1": "Peripherally located subpleural patchy ground-glass densities in the apical region of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 53039,
+                "1": 14729
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_28_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral pulmonary infiltrates with increased prominence and density towards the bases",
+                "1": "Ground glass opacities in the upper lobes",
+                "2": "Consolidation in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 69286,
+                "1": 44837,
+                "2": 69286
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_2900_a_2.nii.gz",
+            "findings": {
+                "0": "Diffuse and patchy subpleural ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 28192
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2919_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in the middle lobe of both lungs",
+                "1": "Nodular ground-glass opacities in the upper lobes of both lungs",
+                "2": "Nodular ground-glass opacities in the peripheral subpleural areas of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 20915,
+                "1": 27423,
+                "2": 29770
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_2940_a_2.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass densities in the mediobasal segment of the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 16049
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_2952_a_1.nii.gz",
+            "findings": {
+                "0": "Peripherally located light ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 24890
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_298_a_2.nii.gz",
+            "findings": {
+                "0": "Minimal patchy ground glass opacities in the apical region of the left upper lobe",
+                "1": "Minimal patchy ground glass opacities in the posterobasal regions of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 2
+            },
+            "pixels": {
+                "0": 13633,
+                "1": 22010
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_29_a_2.nii.gz",
+            "findings": {
+                "0": "Fissural and pleura-based consolidations in the left lung upper lobe apicoposterior segment"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 13605
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_332_a_1.nii.gz",
+            "findings": {
+                "0": "Cavitary lesion approximately 23 mm in diameter with air-fluid levels in the anterobasal segment of the lower lobe of the left lung",
+                "1": "Branching opacities in the distal portion of the left lung's anterobasal segment"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 7641,
+                "1": 26120
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_3452_a_2.nii.gz",
+            "findings": {
+                "0": "Diffuse and patchy nodular ground-glass opacities with subpleural predominance in both lungs",
+                "1": "Consolidation areas with subpleural predominance in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 15392,
+                "1": 23880
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_3695_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground glass densities in the posterobasal segments of the lower lobes in both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 7605
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_3732_b_2.nii.gz",
+            "findings": {
+                "0": "Consolidation areas with atelectatic changes at the basal levels of both lower lobes with air bronchogram sign"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 71827
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_398_a_1.nii.gz",
+            "findings": {
+                "0": "Subtle ground-glass opacities in the basal segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 15455
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_4284_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in both lungs, more prominently in the lower lobes and peripheral areas",
+                "1": "Occasional rounded consolidations in both lungs, more prominently in the lower lobes and peripheral areas"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 5633,
+                "1": 16258
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_5222_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral asymmetrical peribronchial and subpleural ground-glass opacities in both lungs",
+                "1": "Areas of consolidation in both lungs",
+                "2": "Bilateral atypical pneumonic infiltration areas in the lung parenchyma",
+                "3": "Parenchymal involvement of COVID-19 infection"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3,
+                "3": 3
+            },
+            "pixels": {
+                "0": 21431,
+                "1": 38140,
+                "2": 77822,
+                "3": 77822
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2b",
+                "3": "2b"
+            }
+        },
+        {
+            "name": "train_5239_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral and centrally located patchy consolidations in both lower lobes of the lungs and the upper lobe of the left lung",
+                "1": "Ground glass areas in both lower lobes of the lungs and the upper lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 9581,
+                "1": 9581
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5247_a_5.nii.gz",
+            "findings": {
+                "0": "Peripheral and centrally located ground-glass opacities in the upper and lower lobes of both lungs",
+                "1": "Ground-glass opacities in the middle lobe of the right lung",
+                "2": "Small consolidations occasionally accompanying ground-glass areas"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1,
+                "2": 2
+            },
+            "pixels": {
+                "0": 9336,
+                "1": 5103,
+                "2": 11848
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_5250_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral consolidations in the form of peribronchial patches in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7453
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_5279_b_2.nii.gz",
+            "findings": {
+                "0": "Focal ground glass opacity in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 6758
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5311_c_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in both lungs have largely regressed but persist at some levels"
+            },
+            "entity_counts": {
+                "0": 4
+            },
+            "pixels": {
+                "0": 50333
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5341_a_2.nii.gz",
+            "findings": {
+                "0": "Barely distinguishable ground glass opacity in the right lung lower lobe superior segment subpleural area"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 7839
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5347_a_1.nii.gz",
+            "findings": {
+                "0": "Bilaterally asymmetrical, peripherally located ground glass opacities in the upper and lower lobes of both lungs",
+                "1": "Cobblestone-pattern infiltrates in the upper and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 28093,
+                "1": 28093
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_5367_a_1.nii.gz",
+            "findings": {
+                "0": "Subpleural peripheral patchy ground glass opacity in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 24485
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5368_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy nodular ground glass densities located peripherally in the posterobasal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 39434
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5385_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass densities with a halo sign in the posterobasal segments of the lower lobes of both lungs in a subcentimeter patchwork pattern"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 15652
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5387_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral subpleural ground-glass opacities in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 43208
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5388_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the medial segment of the right middle lobe",
+                "1": "Ground-glass opacities in the laterobasal segment of the lower lobe in both lungs"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 2
+            },
+            "pixels": {
+                "0": 12461,
+                "1": 44269
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5401_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in both lungs",
+                "1": "More prominent ground-glass opacities in the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 1
+            },
+            "pixels": {
+                "0": 17487,
+                "1": 18926
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5407_b_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground glass opacities in the posterobasal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 15543
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5475_a_1.nii.gz",
+            "findings": {
+                "0": "Nonspecific ground-glass opacities in the peripheral subpleural area of the right lung lower lobe posterobasal segment"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 9936
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5585_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral and central consolidations more prominent in the lower lobes with accompanying ground-glass opacities in both lungs",
+                "1": "Inverted halo sign in the superior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1
+            },
+            "pixels": {
+                "0": 43636,
+                "1": 7420
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5709_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacities in the basal levels of the lower lobes and posterior segments in both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 23335
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5795_a_2.nii.gz",
+            "findings": {
+                "0": "Consolidation and ground glass opacities in the upper and lower lobes of the left lung",
+                "1": "Consolidation and ground glass opacities in the middle and lower lobes of the right lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 72033,
+                "1": 24149
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_5801_a_1.nii.gz",
+            "findings": {
+                "0": "Diffuse nodular ground glass opacities in the middle and lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7805
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5812_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral subpleural ground-glass opacities in the posterobasal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 38498
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5843_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacity in the peribronchovascular area of the superior segment of the left lower lobe",
+                "1": "Ground-glass opacities in the peripheral subpleural areas of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 3
+            },
+            "pixels": {
+                "0": 6458,
+                "1": 17467
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5853_a_1.nii.gz",
+            "findings": {
+                "0": "Round-shaped consolidations in both lungs",
+                "1": "Minimal ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 8490,
+                "1": 25143
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_5920_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy subpleural ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 8164
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5934_a_1.nii.gz",
+            "findings": {
+                "0": "Slight ground glass opacities at the posterobasal levels of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 8026
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_5964_b_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located subcentimeter nodular consolidations with ground-glass densities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7091
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_6138_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, multisegmental, central and peripheral nodular ground glass opacities forming a crazy paving pattern in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5316
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6145_a_1.nii.gz",
+            "findings": {
+                "0": "Minimal subpleural consolidation areas in the posterobasal segment of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7737
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_6158_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in various locations in both lungs",
+                "1": "Consolidation areas in various locations in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 35348,
+                "1": 11286
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6185_a_1.nii.gz",
+            "findings": {
+                "0": "Nodular ground glass opacities in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 11276
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6199_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 8472
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_6207_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental band atelectasis in the lateral segment of the right middle lobe",
+                "1": "Subsegmental band atelectasis in the inferior lingular segment of the left lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 17354,
+                "1": 13221
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_621_a_1.nii.gz",
+            "findings": {
+                "0": "Minimal atelectatic changes in the basal segments of the lower lobes bilaterally"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 33555
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_626_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy areas of ground glass opacities in the superior segment of the left lower lobe",
+                "1": "Patchy areas of ground glass opacities in the lateral segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 65007,
+                "1": 13319
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_6281_a_2.nii.gz",
+            "findings": {
+                "0": "Areas of nodular ground glass opacity in the superior segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 8529
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6305_a_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located subpleural nodular ground glass densities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 10666
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6306_a_1.nii.gz",
+            "findings": {
+                "0": "Focal nodular ground-glass opacities in the superior and mediobasal segments of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 12574
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6386_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar-multisegmental, peripheral-weighted crazy paving pattern in both lungs",
+                "1": "Nodular-patchy ground-glass consolidations with vascular enlargement in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 72046,
+                "1": 18555
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6440_a_1.nii.gz",
+            "findings": {
+                "0": "Widespread patchy ground-glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 19062
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6444_a_1.nii.gz",
+            "findings": {
+                "0": "Central to peripheral crazy paving pattern in both lungs",
+                "1": "Prominent patchy nodular consolidation areas in the lower lobes",
+                "2": "Consolidations accompanied by linear subsegmentary atelectatic changes"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2,
+                "2": 2
+            },
+            "pixels": {
+                "0": 27360,
+                "1": 48503,
+                "2": 12608
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_6446_a_1.nii.gz",
+            "findings": {
+                "0": "Central and subpleural minimally patchy ground-glass opacities in the left lung lower lobe superior segment"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5843
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6464_a_2.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripheral and central nodular patchy ground glass consolidations in both lungs",
+                "1": "Ground glass consolidations accompanied by signs of vascular enlargement and a crazy paving pattern"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 22817,
+                "1": 22817
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_6469_a_2.nii.gz",
+            "findings": {
+                "0": "Nonspecific dependent density increases in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 9848
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_6476_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacities with septal thickening in both upper and lower lobes of the lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 19609
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6495_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripheral, subpleural ground glass opacities in both lungs",
+                "1": "Areas of increased density compatible with consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 18957,
+                "1": 18957
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6510_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy consolidations in the basal segments of the lower lobes",
+                "1": "Patchy consolidations in the peripheral lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 27528,
+                "1": 27528
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6533_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral subpleural light ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 10990
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6547_a_2.nii.gz",
+            "findings": {
+                "0": "Low-density consolidation area extending towards the pleura in the posterobasal region of the lower lobe of the right lung",
+                "1": "Peribronchial ground-glass opacities in the posterobasal region of the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 11633,
+                "1": 11633
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_6564_a_1.nii.gz",
+            "findings": {
+                "0": "Multiple subcentimeter ground-glass opacities in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 7251
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6590_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities with peripheral vascular enlargement in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 25955
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6627_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral diffuse ground glass density in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 9949
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6699_a_2.nii.gz",
+            "findings": {
+                "0": "Scattered ground-glass opacities in both lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 10715
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6704_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass densities more prominent in the left lung and lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 10750
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6727_a_1.nii.gz",
+            "findings": {
+                "0": "Faint, diffuse ground-glass opacities in the posterior parts of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 42700
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6746_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in both lungs",
+                "1": "Widespread patchy consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 23467,
+                "1": 35755
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6768_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in all segments of both lungs, predominantly in the peripheral lung tissue and more prominent in the lower lobes",
+                "1": "Consolidations with a reverse halo sign in all segments of both lungs, predominantly in the peripheral lung tissue and more prominent in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 12539,
+                "1": 12539
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_6785_a_2.nii.gz",
+            "findings": {
+                "0": "Areas of atelectasis in the dependent parts of the basal segment"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 44672
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_6788_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacities in the peripheral subpleural area of the right lower lobe superior segment",
+                "1": "Focal ground-glass opacities in the peripheral subpleural area of the right lower lobe posterobasal segment"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 5224,
+                "1": 13172
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_6796_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the lung parenchyma window, particularly involving the lower lobes of both lungs and located subpleurally"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 5148
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_67_a_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located patchy ground glass opacities in bilateral lungs with associated vascular enlargement"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 23131
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6854_c_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the peripheral area of the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 26234
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6884_a_2.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in a band-like pattern in the anterior lower lobe of the right lung",
+                "1": "Ground-glass opacities in both lower lobes, more prominent on the left, with a tendency to merge with minimal borders"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 3
+            },
+            "pixels": {
+                "0": 6665,
+                "1": 31190
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_6890_a_1.nii.gz",
+            "findings": {
+                "0": "Crazy paving patterns in the peripheral subpleural areas of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 51242
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6905_a_1.nii.gz",
+            "findings": {
+                "0": "Atypical pneumonic infiltrates characterized by bilaterally asymmetrical, peripherally located parenchymal ground glass opacities with occasional intralobular septal thickening in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 52546
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_6937_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral asymmetric patchy ground-glass opacities in both lungs",
+                "1": "Consolidation in some areas"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 46929,
+                "1": 52431
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_7002_a_1.nii.gz",
+            "findings": {
+                "0": "Nonspecific ground-glass appearance in a small area in the anteromediobasal segment of the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 20291
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7068_a_2.nii.gz",
+            "findings": {
+                "0": "Central and peripheral multisegmental nodular consolidations forming a crazy paving pattern in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6386
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7096_a_2.nii.gz",
+            "findings": {
+                "0": "Peripheral consolidation in the anteromediobasal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 9982
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7100_a_2.nii.gz",
+            "findings": {
+                "0": "Newly emerged areas of infiltration with air bronchograms in both lungs, especially in the lower lobes, including the posterobasal and mediobasal segments, as well as the right laterobasal segment, right upper lobe, middle lobes, and left lingular segments"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 34740
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7121_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy, predominantly peripheral, crazy paving pattern ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 10687
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7127_a_2.nii.gz",
+            "findings": {
+                "0": "Peripherally located patchy ground-glass densities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 54953
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7159_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripherally weighted crazy paving pattern in both lungs",
+                "1": "Patchy nodular ground-glass consolidations with vascular enlargement in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1
+            },
+            "pixels": {
+                "0": 33658,
+                "1": 8285
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_718_a_1.nii.gz",
+            "findings": {
+                "0": "Atelectasis in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 11759
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7259_d_1.nii.gz",
+            "findings": {
+                "0": "Area of increased density consistent with atelectasis in the lung parenchyma adjacent to the effusion"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 51941
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7260_a_2.nii.gz",
+            "findings": {
+                "0": "Atypical pneumonic infiltrates in the lower lobes of both lungs",
+                "1": "Atypical pneumonic infiltrates in the right middle lobe",
+                "2": "Bilaterally asymmetrical subpleural ground-glass opacities",
+                "3": "Bilaterally asymmetrical peribronchial ground-glass opacities"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 3,
+                "2": 3,
+                "3": 3
+            },
+            "pixels": {
+                "0": 20985,
+                "1": 32092,
+                "2": 38491,
+                "3": 6649
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b",
+                "2": "2c",
+                "3": "2c"
+            }
+        },
+        {
+            "name": "train_7294_a_2.nii.gz",
+            "findings": {
+                "0": "Central-peripheral localized nodular ground glass opacities with faint borders in the basal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 11084
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7315_a_2.nii.gz",
+            "findings": {
+                "0": "Slight patchy ground glass opacities in the posterior regions of both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 5411
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7343_a_2.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripheral, subpleural, dorsal localized ground-glass nodular lesions with indistinct borders in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 7967
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7357_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities with septal thickening in both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 8291
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7401_a_2.nii.gz",
+            "findings": {
+                "0": "Diffuse nodular ground-glass opacities located centrally and peripherally, more prominently in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 14063
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_742_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral multilobar peripheral subpleural ground glass opacities",
+                "1": "Areas of consolidation"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 66579,
+                "1": 12562
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_7469_a_1.nii.gz",
+            "findings": {
+                "0": "Consolidations in the superior segment of the right lower lobe",
+                "1": "Consolidations in the left lingular segment"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 2
+            },
+            "pixels": {
+                "0": 39001,
+                "1": 7701
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_7470_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the upper lobe of the left lung",
+                "1": "Patchy ground-glass opacities in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 13359,
+                "1": 9267
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_7485_a_1.nii.gz",
+            "findings": {
+                "0": "Inverted halo sign with peripheral subpleural sparing in the right upper lobe and superior segment of the lower lobe",
+                "1": "Patchy consolidation areas in the right upper lobe and superior segment of the lower lobe",
+                "2": "Ground glass densities around a crazy paving pattern in the right upper lobe and superior segment of the lower lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 3,
+                "2": 2
+            },
+            "pixels": {
+                "0": 45236,
+                "1": 79338,
+                "2": 51672
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_7487_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, mostly peripheral subpleural ground glass opacities in both lungs",
+                "1": "Consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 19966,
+                "1": 13916
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_7501_b_2.nii.gz",
+            "findings": {
+                "0": "Areas of ground glass opacities in both lungs with indistinct borders, more prominent in the lower lobes and peripheral areas"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 13062
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7519_a_1.nii.gz",
+            "findings": {
+                "0": "Irregularly bordered area approximately 30x25 mm with peripheral ground-glass opacity and central consolidation with an air bronchogram in the right upper lobe posterior segment"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 16893
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7526_a_1.nii.gz",
+            "findings": {
+                "0": "Multilobar, peripheral subpleural areas of ground-glass opacity in both lungs",
+                "1": "Increased density consistent with consolidation in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 9966,
+                "1": 61866
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_7531_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular consolidations with irregular borders in all lobes of both lungs",
+                "1": "Ground glass opacities in all lobes of both lungs",
+                "2": "Infiltrates in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3
+            },
+            "pixels": {
+                "0": 15887,
+                "1": 15887,
+                "2": 15887
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "train_7573_a_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 38770
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_757_a_2.nii.gz",
+            "findings": {
+                "0": "Faint patchy ground glass opacities in bilateral lungs with peripheral and peribronchovascular distribution"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 19593
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7596_a_2.nii.gz",
+            "findings": {
+                "0": "Consolidation in the peripheral area of the left lower lobe laterobasal segment with surrounding ground-glass opacity"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 36005
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7618_a_2.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the inferior segment of the lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 32955
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7674_b_2.nii.gz",
+            "findings": {
+                "0": "Consolidation in the lower lobe of the right lung",
+                "1": "Ground-glass opacities in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 27664,
+                "1": 19974
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_767_b_1.nii.gz",
+            "findings": {
+                "0": "Small focal ground-glass opacities in the posterior segment of the right upper lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 7737
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7739_a_2.nii.gz",
+            "findings": {
+                "0": "Area of consolidation with air bronchograms in the anterior segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 38079
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_7790_a_1.nii.gz",
+            "findings": {
+                "0": "Atypical pneumonic infiltration areas of ground-glass density in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 28791
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_780_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities in the superior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 46582
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7951_a_1.nii.gz",
+            "findings": {
+                "0": "Diffuse increase in ground-glass opacity in both lungs, particularly in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 6499
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7960_a_1.nii.gz",
+            "findings": {
+                "0": "Widespread ground-glass opacities with interstitial septal thickening (crazy paving pattern) in the upper lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 11217
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_7965_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular opacities with ground-glass density in the subpleural area of the posterior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 15956
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8046_a_1.nii.gz",
+            "findings": {
+                "0": "Volume loss in the middle lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10316
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_8083_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground-glass opacities completely involving the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 6677
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8088_a_2.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacities observed bilaterally"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 16550
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8125_f_1.nii.gz",
+            "findings": {
+                "0": "Diffuse consolidation in the posterior parts of both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10819
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_8127_a_2.nii.gz",
+            "findings": {
+                "0": "Bilaterally asymmetrical subpleural and peribronchial scattered ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 6615
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8168_b_1.nii.gz",
+            "findings": {
+                "0": "Significant increase in ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10598
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8183_a_1.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities with surrounding vascular enlargement and a halo sign in both lungs, more prominent in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 9804
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_8184_a_1.nii.gz",
+            "findings": {
+                "0": "Thick pleuroparenchymal densities in the lower lobe segments of both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 49082
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "train_81_a_2.nii.gz",
+            "findings": {
+                "0": "Consolidation with air bronchograms in the inferior lingular segment of the left lung",
+                "1": "Ground glass opacities with centriacinar nodules in the left lung adjacent parenchyma",
+                "2": "Consolidation with air bronchograms in the right lung middle lobe's lateral and medial segments",
+                "3": "Consolidation with ground glass densities and air bronchograms extending to the pleura in the posterobasal segment of the left lung lower lobe",
+                "4": "Consolidation with ground glass densities and air bronchograms in the posterior anteromedial segment of the left lung lower lobe",
+                "5": "Consolidation with ground glass densities and air bronchograms in the anterior and posterior segments of the right lung lower lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1,
+                "2": 1,
+                "3": 1,
+                "4": 1,
+                "5": 1
+            },
+            "pixels": {
+                "0": 10534,
+                "1": 16967,
+                "2": 26219,
+                "3": 28681,
+                "4": 28681,
+                "5": 10198
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c",
+                "2": "2b",
+                "3": "2b",
+                "4": "2b",
+                "5": "2b"
+            }
+        },
+        {
+            "name": "train_844_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral ground-glass nodules in both lungs",
+                "1": "Areas of nodular consolidation, predominantly subpleural and asymmetric, in both lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 33174,
+                "1": 65484
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "train_873_c_2.nii.gz",
+            "findings": {
+                "0": "Bilateral patchy ground glass opacities in the lower lobes",
+                "1": "Ground glass opacities in the superior segment of the right lung",
+                "2": "Ground glass opacities in the posterobasal levels of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2,
+                "2": 3
+            },
+            "pixels": {
+                "0": 13764,
+                "1": 10393,
+                "2": 43163
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "train_894_a_1.nii.gz",
+            "findings": {
+                "0": "Subcentimeter nodular centriacinar ground glass opacities in the lower lobe of the left lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 26173
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "train_917_a_2.nii.gz",
+            "findings": {
+                "0": "Ground-glass opacities in the apicoposterior segment of the lower lobe and posterobasal segment of the left lung",
+                "1": "Ground-glass opacities in the paracardiac area of the apical segment of the right upper lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1
+            },
+            "pixels": {
+                "0": 8290,
+                "1": 8212
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_93_c_2.nii.gz",
+            "findings": {
+                "0": "Consolidation in the medial aspect of the superior segment of the left lower lobe",
+                "1": "Ground-glass opacification in the medial aspect of the superior segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 36178,
+                "1": 29015
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_93_d_2.nii.gz",
+            "findings": {
+                "0": "Nodular consolidation in the subpleural region of the superior segment of the left lower lobe",
+                "1": "Surrounding ground glass opacities in the superior segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 27742,
+                "1": 36772
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_982_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral subpleural consolidations",
+                "1": "Pneumonic infiltrates with ground glass opacities in all lobes"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 10691,
+                "1": 35779
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "train_994_c_1.nii.gz",
+            "findings": {
+                "0": "Decreased halo signs in the lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 6007
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_1050_a_2.nii.gz",
+            "findings": {
+                "0": "Multilobar, predominantly peripheral subpleural areas of ill-defined consolidation in bilateral lung parenchyma",
+                "1": "Ground glass opacities in bilateral lung parenchyma"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 8694,
+                "1": 40177
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_1066_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral upper and lower lobe peripheral and central consolidations",
+                "1": "Ground glass opacities in right middle lobe"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 1
+            },
+            "pixels": {
+                "0": 55824,
+                "1": 41423
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_1098_a_2.nii.gz",
+            "findings": {
+                "0": "Associated atelectasis in both lower lobes"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 34024
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_1100_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral consolidation with a ground-glass appearance in the left lower lobe superior segment"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 17632
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_1165_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacities in the basal segments of the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 53681
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_1290_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral lower lobe subpleural ground-glass opacities, subtle and peripherally located"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 48690
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_165_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral ground-glass opacities in the lungs",
+                "1": "Areas of consolidation in the lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 53451,
+                "1": 45022
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_187_a_1.nii.gz",
+            "findings": {
+                "0": "Intense ground glass opacities surrounding a focal area of consolidation with air bronchograms in the lateral segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 63457
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_216_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral lungs with peripherally located, scattered ground-glass opacities"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 44890
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_237_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral multilobar, peripheral, subpleural, predominantly dorsal ground glass opacities",
+                "1": "Areas of consolidation"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 11074,
+                "1": 12975
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_289_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral pulmonary consolidations",
+                "1": "Increased prevalence of consolidations towards lung bases"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 31500,
+                "1": 70962
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_290_a_2.nii.gz",
+            "findings": {
+                "0": "Focal areas of nodular ground-glass opacity in bilateral lower lobe posterobasal segments and the lingular segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 26919
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_298_a_2.nii.gz",
+            "findings": {
+                "0": "Multiple areas of ground glass opacity with subpleural and peribronchial distribution in both lungs"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 23129
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_302_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass densities in the left lower lobe at the basal level"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 39965
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_304_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral lungs with patchy ground glass opacities",
+                "1": "Crazy paving pattern",
+                "2": "Associated halo sign",
+                "3": "More pronounced opacities in the right lower lobe at posterobasal levels"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 3,
+                "3": 1
+            },
+            "pixels": {
+                "0": 52368,
+                "1": 52368,
+                "2": 52368,
+                "3": 33606
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2c",
+                "3": "2c"
+            }
+        },
+        {
+            "name": "valid_318_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacities in both lungs, greater prominence in the lower lobes"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 15380
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_326_a_1.nii.gz",
+            "findings": {
+                "0": "Ground glass opacities in the posterior segment of the right upper lobe",
+                "1": "Consolidation in the posterior segment of the right upper lobe",
+                "2": "Patchy ground glass opacities in both lungs"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1,
+                "2": 6
+            },
+            "pixels": {
+                "0": 19579,
+                "1": 29117,
+                "2": 7568
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b",
+                "2": "2c"
+            }
+        },
+        {
+            "name": "valid_35_a_1.nii.gz",
+            "findings": {
+                "0": "Patchy ground glass opacity in the superior segments of the upper lobe and basal segments of both lower lobes of the left lung"
+            },
+            "entity_counts": {
+                "0": 5
+            },
+            "pixels": {
+                "0": 49582
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_406_a_2.nii.gz",
+            "findings": {
+                "0": "Subpleural paracardiac consolidation in the anterior upper lobe and medial segment of the middle lobe of the right lung with irregular contours",
+                "1": "Surrounding halo sign of the consolidation in the right lung"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 28704,
+                "1": 7917
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_412_a_2.nii.gz",
+            "findings": {
+                "0": "Patchy subpleural ground glass opacities bilaterally in the lungs",
+                "1": "Slight halo signs accompanying ground glass densities"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 6320,
+                "1": 6320
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_435_a_2.nii.gz",
+            "findings": {
+                "0": "Bilateral multilobar, peripheral, subpleural, and dorsally located subcentimeter ground glass opacities",
+                "1": "Bilateral multilobar, peripheral, subpleural, and dorsally located subcentimeter consolidation"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 15767,
+                "1": 6284
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_449_b_2.nii.gz",
+            "findings": {
+                "0": "Bilateral peripheral lung focal consolidations with round morphology",
+                "1": "Mild ground-glass opacities in the bilateral peripheral lungs"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 2
+            },
+            "pixels": {
+                "0": 18424,
+                "1": 47111
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_524_a_2.nii.gz",
+            "findings": {
+                "0": "Slight patchy subpleural ground glass opacities in the right upper lobe posterior and lateral levels",
+                "1": "Slight patchy subpleural ground glass opacities in the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 2
+            },
+            "pixels": {
+                "0": 12818,
+                "1": 7810
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_527_a_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the posterior basal segments of both lower lobes",
+                "1": "Mild atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 1
+            },
+            "pixels": {
+                "0": 23786,
+                "1": 15393
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_530_a_1.nii.gz",
+            "findings": {
+                "0": "Branching opacities with bud-like projections in the apicoposterior segment of the upper lobe and lingular segments of the left lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 43994
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_537_a_1.nii.gz",
+            "findings": {
+                "0": "Multiple nodular ground glass opacities in bilateral lung fields",
+                "1": "Mild parenchymal involvement by ground glass nodules in several segments of both lobes",
+                "2": "Subsegmental atelectasis in the lower lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3,
+                "2": 1
+            },
+            "pixels": {
+                "0": 5971,
+                "1": 46264,
+                "2": 16754
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c",
+                "2": "2b"
+            }
+        },
+        {
+            "name": "valid_537_b_1.nii.gz",
+            "findings": {
+                "0": "Bilateral ground glass opacities within the lung parenchyma",
+                "1": "Decrease in the density of previously observed consolidations"
+            },
+            "entity_counts": {
+                "0": 3,
+                "1": 3
+            },
+            "pixels": {
+                "0": 64771,
+                "1": 12479
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_575_b_1.nii.gz",
+            "findings": {
+                "0": "Increased ground glass density adjacent to the fissure in the anterobasal segment of the left lower lobe",
+                "1": "Area of consolidation in the anterobasal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 2,
+                "1": 1
+            },
+            "pixels": {
+                "0": 15727,
+                "1": 15727
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_587_a_2.nii.gz",
+            "findings": {
+                "0": "Nodule with surrounding ground glass opacity in the posterobasal segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 14337
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_620_a_1.nii.gz",
+            "findings": {
+                "0": "Focal ground-glass opacity in the peripheral subpleural region of the superior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 9117
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_62_b_2.nii.gz",
+            "findings": {
+                "0": "Progressive consolidations in the lung parenchyma",
+                "1": "New consolidative pneumonic foci in a patient with known COVID-19 pneumonia"
+            },
+            "entity_counts": {
+                "0": 5,
+                "1": 5
+            },
+            "pixels": {
+                "0": 72607,
+                "1": 72607
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_633_a_2.nii.gz",
+            "findings": {
+                "0": "Nodular ground-glass opacities in the middle lobe of the right lung",
+                "1": "Nodular ground-glass opacities in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 3
+            },
+            "pixels": {
+                "0": 5100,
+                "1": 8040
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2c"
+            }
+        },
+        {
+            "name": "valid_666_a_2.nii.gz",
+            "findings": {
+                "0": "Minimal ground glass appearance in the posterior segment of the right upper lobe",
+                "1": "Associated fibroatelectatic changes in the posterior segment of the right upper lobe"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 1
+            },
+            "pixels": {
+                "0": 55755,
+                "1": 7506
+            },
+            "categories": {
+                "0": "2c",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_708_a_2.nii.gz",
+            "findings": {
+                "0": "Atelectatic changes in the inferior lingular segment of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 20939
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_770_b_1.nii.gz",
+            "findings": {
+                "0": "Nodular ground glass opacities in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 31338
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_774_a_1.nii.gz",
+            "findings": {
+                "0": "Peripheral subpleural patchy ground glass densities predominantly in the lower lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 3
+            },
+            "pixels": {
+                "0": 51569
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_814_a_2.nii.gz",
+            "findings": {
+                "0": "Focal area of ground-glass opacity in the anterobasal segment of the left lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 14965
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_839_a_1.nii.gz",
+            "findings": {
+                "0": "Bilateral basal lung parenchyma with indeterminate areas of increased density"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 21633
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_865_a_1.nii.gz",
+            "findings": {
+                "0": "Single focus of nodular ground glass opacity in the upper lobe of the right lung"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 16727
+            },
+            "categories": {
+                "0": "2c"
+            }
+        },
+        {
+            "name": "valid_931_b_2.nii.gz",
+            "findings": {
+                "0": "Mild atelectatic changes in the inferior lingula of the left upper lobe"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 18281
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_937_c_2.nii.gz",
+            "findings": {
+                "0": "Consolidation with a semisolid appearance in the anterior segment of the left upper lobe",
+                "1": "Mild regression in previously noted infiltrates within the posterobasal segments of both lower lobes"
+            },
+            "entity_counts": {
+                "0": 1,
+                "1": 2
+            },
+            "pixels": {
+                "0": 12516,
+                "1": 50900
+            },
+            "categories": {
+                "0": "2b",
+                "1": "2b"
+            }
+        },
+        {
+            "name": "valid_958_a_2.nii.gz",
+            "findings": {
+                "0": "Consolidation with air bronchograms in the subpleural region of the superior segment of the right lower lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 37321
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_959_a_2.nii.gz",
+            "findings": {
+                "0": "Mild apical atelectatic changes in the upper lobes of both lungs"
+            },
+            "entity_counts": {
+                "0": 2
+            },
+            "pixels": {
+                "0": 25419
+            },
+            "categories": {
+                "0": "2b"
+            }
+        },
+        {
+            "name": "valid_997_a_1.nii.gz",
+            "findings": {
+                "0": "Subsegmental atelectasis in the medial segment of the right middle lobe"
+            },
+            "entity_counts": {
+                "0": 1
+            },
+            "pixels": {
+                "0": 10122
+            },
+            "categories": {
+                "0": "2b"
+            }
+        }
+    ]
+}
