@@ -11,42 +11,41 @@ same (X, H, scan_ids) contract as before.
 
 import logging
 import os
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, List, Tuple
+
 import numpy as np
 
 from lc_ksvd.config import CLASS_ORDER, N_FEATURES, PATCHES_DIR
-
-from lc_ksvd.data_loader.scan_loader import (MetadataRegistry, ScanLoader)
+from lc_ksvd.data_loader.metadata_registry import LabelRegistry, MetadataRegistry
 from lc_ksvd.data_loader.nifti_io import resolve_volume_path
-from lc_ksvd.data_loader.metadata_registry import LabelRegistry
-
+from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter
-from lc_ksvd.patch_extractor.patch_sampling_normal import collect_normal_patches
 from lc_ksvd.patch_extractor.patch_sampling_abnormal import collect_abnormal_patches
+from lc_ksvd.patch_extractor.patch_sampling_normal import collect_normal_patches
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # Signature shared by collect_normal_patches / collect_abnormal_patches.
 PatchCollector = Callable[
-    [List[str], ScanLoader, _PatchStreamWriter],
-    Tuple[List[int], List[str], List[Tuple[int, int, int]]],
+    [list[str], ScanLoader, _PatchStreamWriter],
+    tuple[list[int], list[str], list[tuple[int, int, int]]],
 ]
 
 def _class_out_path(split: str, class_name: str) -> Path:
     return PATCHES_DIR / f"unified_{split}_{class_name}.npz"
 
 
-def build_normal_class_patch_matrix(
-    ids: List[str],
+def build_patch_matrix(
+    ids: list[str],
     loader: ScanLoader,
     collector: PatchCollector,
     scratch_tag: str,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Run a single collector (normal or abnormal) over `ids` and return the
-    resulting (X, H, scan_ids, coords) for that class alone.
+    resulting (X, H, scan_ids, coords).
     """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
     scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}_{scratch_tag}.bin"
@@ -72,42 +71,7 @@ def build_normal_class_patch_matrix(
     coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
     return X, H, scan_ids_arr, coords_arr
 
-def build_abnormal_patch_matrix(
-    ids: List[str],
-    loader: ScanLoader,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """
-    Run collect_abnormal_patches once over the union of all abnormal scan ids.
-    A scan positive for multiple categories contributes patches for each
-    category in a single pass (sample_abnormal_patches already labels each
-    patch by its source category mask). Returns the full (X, H, scan_ids,
-    coords) spanning all abnormal classes together; callers split by H.
-    """
-    PATCHES_DIR.mkdir(parents=True, exist_ok=True)
-    scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}_abnormal.bin"
-    writer = _PatchStreamWriter(scratch_path)
-
-    try:
-        labels, scan_ids, coords = collect_abnormal_patches(ids, loader, writer)
-        n_patches = len(labels)
-        writer.close()
-
-        X = np.empty((N_FEATURES, n_patches), dtype=np.float64)
-        if n_patches:
-            patch_mm = np.memmap(scratch_path, dtype=np.float32, mode="r",
-                                  shape=(n_patches, N_FEATURES))
-            X[:] = patch_mm.T
-            del patch_mm
-    finally:
-        writer.close()
-        scratch_path.unlink(missing_ok=True)
-
-    H = np.array(labels, dtype=np.int64)
-    scan_ids_arr = np.array(scan_ids, dtype=object)
-    coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
-    return X, H, scan_ids_arr, coords_arr
-
-def _filter_existing(ids: List[str], class_name: str = "") -> List[str]:
+def _filter_existing(ids: list[str], class_name: str = "") -> list[str]:
     valid, missing = [], []
     for vid in ids:
         try:
@@ -171,7 +135,7 @@ def extract_unified(split: str = "train") -> None:
     class_ids["normal"] = _filter_existing(raw_normals, class_name="normal")
 
     seen = set()
-    union_abnormal_ids: List[str] = []
+    union_abnormal_ids: list[str] = []
     for ab in abnormality_keys:
         raw_ids = labels.get_positive_volume_names(ab)
         logger.info(f"  category '{ab}': {len(raw_ids)} volumes")
@@ -198,7 +162,7 @@ def extract_unified(split: str = "train") -> None:
     if normal_path.exists():
         logger.info(f"Already exists: {normal_path} — skipping.")
     else:
-        X, H, scan_ids, coords = build_normal_class_patch_matrix(
+        X, H, scan_ids, coords = build_patch_matrix(
             class_ids["normal"], loader, collect_normal_patches, scratch_tag="normal"
         )
         np.savez_compressed(normal_path, X=X, H=H, scan_ids=scan_ids, coords=coords)
@@ -210,7 +174,9 @@ def extract_unified(split: str = "train") -> None:
         logger.info("All abnormal class files already exist — skipping extraction.")
         return
 
-    X, H, scan_ids, coords = build_abnormal_patch_matrix(union_abnormal_ids, loader)
+    X, H, scan_ids, coords = build_patch_matrix(
+        union_abnormal_ids, loader, collect_abnormal_patches, scratch_tag="abnormal"
+    )
 
     for class_name in abnormality_keys:
         if _class_out_path(split, class_name).exists():
@@ -221,7 +187,7 @@ def extract_unified(split: str = "train") -> None:
 
 def load_unified_patch_matrix(
     split: str = "train",
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Load each per-class .npz (in CLASS_ORDER) and concatenate them into
         X: (n_features, n_patches), H: (n_patches,), scan_ids: (n_patches,),

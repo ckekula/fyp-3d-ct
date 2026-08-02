@@ -4,8 +4,6 @@ Low-level patch extraction primitives and streaming writer shared by both the
 normal-grid and abnormal-bbox sampling phases.
 """
 
-from typing import Optional
-
 import numpy as np
 
 from lc_ksvd.config import PATCH_SIZE
@@ -38,7 +36,7 @@ def extract_patch(
     x0: int,
     y0: int,
     z0: int,
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     """
     Extract a PATCH_SIZE³ patch with its top-left-front corner at (x0, y0, z0).
     Returns None if the patch would exceed volume bounds.

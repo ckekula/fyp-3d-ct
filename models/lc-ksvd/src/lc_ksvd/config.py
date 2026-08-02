@@ -37,7 +37,6 @@ NORMAL_CLASS_IDX = 0  # CLASS_ORDER[0] == "normal"
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
 # HU window for lung parenchyma
-BACKGROUND_HU = -1000  # value to fill outside the lung mask (air)
 UPPER_HU = 1000
 LOWER_HU = -1000
 
@@ -51,7 +50,6 @@ PATCH_SIZE = 12
 N_FEATURES = PATCH_SIZE ** 3
 
 # Training-time patch-grid strides (voxels).
-NORMAL_PATCH_STRIDE = PATCH_SIZE
 ABNORMAL_PATCH_STRIDE = 4
 
 # Retain a normal patch only when the fraction of zero voxels is below this threshold.
