@@ -5,7 +5,6 @@ Edit paths and hyperparameters here; everything else reads from this file.
 """
 
 from pathlib import Path
-from sklearn.svm import LinearSVC
 
 # ─── Dataset paths ────────────────────────────────────────────────────────────
 
@@ -17,10 +16,10 @@ METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_last.json"
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
 OUTPUT_DIR = Path("outputs")
-PATCHES_DIR = OUTPUT_DIR / "patches"       # saved patch matrices (.npz)
-MODELS_DIR  = OUTPUT_DIR / "models"        # saved LC-KSVD models (.pkl)
-RESULTS_DIR = OUTPUT_DIR / "results"       # metrics, contribution maps
-INFERENCE_DIR = OUTPUT_DIR / "inference"   # per-volume segmentation masks (.nii.gz)
+PATCHES_DIR = OUTPUT_DIR / "patches"
+MODELS_DIR  = OUTPUT_DIR / "models"
+RESULTS_DIR = OUTPUT_DIR / "results"
+INFERENCE_DIR = OUTPUT_DIR / "inference"
 CHECKPOINT_DIR = OUTPUT_DIR / "checkpoints"
 SPARSE_CODE_DIR = OUTPUT_DIR / "sparse_codes"
 CHECKPOINT_RESUME = True
@@ -28,24 +27,24 @@ CHECKPOINT_RESUME = True
 # ─── Abnormality classes ──────────────────────────────────────────────────────
 
 ABNORMALITY_CATEGORIES = {
+    "1b": "Bronchiectasis",
+    "2b": "Atelectasis/Consolidation",
     "2c": "Groundglass opacity",
-    "2d": "Pulmonary nodules/masses",
 }
 
-CLASS_ORDER = ["normal", "2c", "2d"]
+CLASS_ORDER = ["normal", "1b", "2b", "2c"]
 NORMAL_CLASS_IDX = 0  # CLASS_ORDER[0] == "normal"
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 
 # HU window for lung parenchyma
-HU_MIN = -900
-HU_MAX =  -200
 BACKGROUND_HU = -1000  # value to fill outside the lung mask (air)
-UPPER_HU = 500
+UPPER_HU = 1000
 LOWER_HU = -1000
 
 # Target isotropic voxel spacing in mm after resampling
-TARGET_SPACING_MM = 1.5   # resamples all voxel spacing to 1.5×1.5×1.5
+TARGET_SPACING_MM = (0.75, 0.75, 1.5)   # (x, y, z) = (H, W, D)
+TARGET_SHAPE = (480, 480, 240)          # (H, W, D) = (coronal, sagittal, axial)
 
 # ─── Patch extraction ─────────────────────────────────────────────────────────
 
@@ -60,11 +59,11 @@ ABNORMAL_PATCH_STRIDE = 4
 ZERO_FRACTION_THRESHOLD = 0.5
 LESION_FRACTION_THRESHOLD = 0.5
 LESION_THRESHOLDS = {
+    "1b": 0.50,   # 50%
+    "2b": 0.50,   # 50%
     "2c": 0.50,   # 50%
-    "2d": 0.25,   # 10%
 }
 
-DROP_ZERO_NORM_PATCHES = False
 SHUFFLE_PATCHES = True
 
 # ─── LC-KSVD2 hyperparameters ────────────────────────────────────────────────

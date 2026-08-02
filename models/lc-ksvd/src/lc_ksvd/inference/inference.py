@@ -41,9 +41,7 @@ from lc_ksvd.config import (
     N_FEATURES, NORMAL_CLASS_IDX, PATCH_SIZE, TARGET_SPACING_MM, UPPER_HU,
     ZERO_FRACTION_THRESHOLD,
 )
-from lc_ksvd.data_loader.nifti_io import (
-    preprocess, resample_mask, resample_volume, resolve_volume_path,
-)
+from lc_ksvd.data_loader.nifti_io import preprocess, resample_volume, resolve_volume_path
 from lc_ksvd.inference.classify import encode_patches_omp, load_dictionary
 from lc_ksvd.patch_extractor.patch_io import extract_patch
 
@@ -65,7 +63,7 @@ N_NONZERO_COEFS = 10
 # same stride here by default for consistent, smoother localisation.
 INFERENCE_STRIDE = ABNORMAL_PATCH_STRIDE
 
-DEFAULT_SCAN_ID: Optional[str] = "valid_902_a_2"
+DEFAULT_SCAN_ID: Optional[str] = "valid_466_a_2"
 DEFAULT_VOLUME_PATH: Optional[Path] = None
 DEFAULT_OUTPUT_DIR = INFERENCE_DIR
 DEFAULT_SHOW = False
