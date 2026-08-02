@@ -8,21 +8,33 @@ resulting model + metadata to disk.
 import logging
 import pickle
 import time
-from typing import Dict
+
 import numpy as np
 
 from lc_ksvd.config import (
-    CLASS_ORDER, HU_MAX, HU_MIN, KSVD_CONFIG, LCKSVD_CONFIG, FDDL_CONFIG, N_FEATURES, SHUFFLE_PATCHES,
-    NORMAL_CLASS_IDX, MODELS_DIR, PATCH_SIZE, RANDOM_SEED, TARGET_SPACING_MM, DROP_ZERO_NORM_PATCHES, PATCHES_DIR
+    CLASS_ORDER,
+    FDDL_CONFIG,
+    HU_MAX,
+    HU_MIN,
+    KSVD_CONFIG,
+    LCKSVD_CONFIG,
+    MODELS_DIR,
+    N_FEATURES,
+    NORMAL_CLASS_IDX,
+    PATCH_SIZE,
+    PATCHES_DIR,
+    RANDOM_SEED,
+    SHUFFLE_PATCHES,
+    TARGET_SPACING_MM,
 )
 from lc_ksvd.metrics import log_class_distribution
-from lc_ksvd.model_fitting import _fit_frozen, _fit_lcksvd, _fit_fddl, _fit_ksvd
+from lc_ksvd.model_fitting import _fit_fddl, _fit_frozen, _fit_ksvd, _fit_lcksvd
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
 
 
-def _build_residual_n_components_by_class() -> Dict[str, int]:
+def _build_residual_n_components_by_class() -> dict[str, int]:
     """
     N_FEATURES*4 for the base (set directly on KSVD_CONFIG, not here),
     N_FEATURES*2 for the first abnormality class in CLASS_ORDER (excluding
@@ -47,27 +59,13 @@ def _build_residual_n_components_by_class() -> Dict[str, int]:
     }
 
 
-def train(algorithm: str) -> Dict:
+def train(algorithm: str) -> dict:
     logger.info(f"\n{'='*60}\nTraining unified model (algorithm={algorithm})\n{'='*60}")
 
     # -- Load patches ---------------------------------------------------------
     X, H, scan_ids, coords = load_unified_patch_matrix(split="train")
     logger.info(f"Train - X: {X.shape}, H: {H.shape}")
     log_class_distribution(H, prefix="train (raw)")
-
-    # -- Drop zero-norm patches -----------------------------------------------
-    if DROP_ZERO_NORM_PATCHES:
-        norms = np.linalg.norm(X, axis=0)
-        zero_mask = norms < 1e-10
-
-        keep = ~zero_mask
-        X = X[:, keep]
-        H = H[keep]
-        scan_ids = scan_ids[keep]
-
-        n_dropped = int(zero_mask.sum())
-        logger.info(f"Dropped {n_dropped} zero-norm patches; {keep.sum()} remaining.")
-        log_class_distribution(H, prefix="train (after zero-norm drop)")
 
     # -- Shuffle patches --------------------------------------------------------
     if SHUFFLE_PATCHES:

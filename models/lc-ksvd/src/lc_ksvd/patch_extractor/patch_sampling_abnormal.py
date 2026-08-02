@@ -10,12 +10,18 @@ Phase 2 — Abnormal scans:
 """
 
 import logging
-from typing import Dict, Generator, List, Tuple
+from collections.abc import Generator
 
 import numpy as np
 from tqdm import tqdm
 
-from lc_ksvd.config import ABNORMAL_PATCH_STRIDE, CLASS_ORDER, LESION_FRACTION_THRESHOLD, PATCH_SIZE, LESION_THRESHOLDS
+from lc_ksvd.config import (
+    ABNORMAL_PATCH_STRIDE,
+    CLASS_ORDER,
+    LESION_FRACTION_THRESHOLD,
+    LESION_THRESHOLDS,
+    PATCH_SIZE,
+)
 from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
 
@@ -30,15 +36,15 @@ def has_sufficient_lesion(mask_patch: np.ndarray, threshold: float) -> bool:
 
 def _build_category_masks(
     mask_4d: np.ndarray,
-    finding_map: Dict[int, str],
-) -> Dict[str, np.ndarray]:
+    finding_map: dict[int, str],
+) -> dict[str, np.ndarray]:
     """
     Collapse the 4D mask [F, H, W, D] into per-category binary masks by OR-ing
     all finding slices that share the same category. Categories absent from
     CLASS_ORDER are skipped. Returns only masks with at least one foreground voxel.
     """
     volume_shape = mask_4d.shape[1:]          # (H, W, D)
-    category_masks: Dict[str, np.ndarray] = {}
+    category_masks: dict[str, np.ndarray] = {}
 
     for f_idx, category in finding_map.items():
         if category not in CLASS_ORDER:
@@ -59,7 +65,7 @@ def _build_category_masks(
 
 def _foreground_bbox(
     binary_mask: np.ndarray,
-) -> Tuple[int, int, int, int, int, int]:
+) -> tuple[int, int, int, int, int, int]:
     """
     Return the tight axis-aligned bounding box of foreground voxels as
     (x_min, x_max, y_min, y_max, z_min, z_max) — all inclusive.
@@ -72,10 +78,10 @@ def _foreground_bbox(
 
 
 def _bbox_origins(
-    bbox: Tuple[int, int, int, int, int, int],
-    volume_shape: Tuple[int, int, int],
+    bbox: tuple[int, int, int, int, int, int],
+    volume_shape: tuple[int, int, int],
     stride: int,
-) -> Generator[Tuple[int, int, int], None, None]:
+) -> Generator[tuple[int, int, int], None, None]:
     """
     Yield all patch top-left-front corners whose patch window overlaps the
     bounding box and remains fully within the volume.
@@ -105,10 +111,10 @@ def sample_abnormal_patches(
     volume: np.ndarray,
     category_mask: np.ndarray,
     category: str,
-    class_to_idx: Dict[str, int],
+    class_to_idx: dict[str, int],
     writer: _PatchStreamWriter,
-) -> List[int]:
-    labels: List[int] = []
+) -> list[int]:
+    labels: list[int] = []
     label_idx = class_to_idx[category]
     bbox = _foreground_bbox(category_mask)
 
@@ -130,12 +136,12 @@ def sample_abnormal_patches(
 
 
 def collect_abnormal_patches(
-    positive_ids: List[str],
+    positive_ids: list[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
-) -> Tuple[List[int], List[str], List[Tuple[int, int, int]]]:
-    all_labels: List[int] = []
-    all_scan_ids: List[str] = []
+) -> tuple[list[int], list[str], list[tuple[int, int, int]]]:
+    all_labels: list[int] = []
+    all_scan_ids: list[str] = []
     class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
 
     logger.info(f"Phase 2 — bbox-sampling {len(positive_ids)} abnormal scans…")

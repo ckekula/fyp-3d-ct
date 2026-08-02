@@ -7,12 +7,17 @@ Phase 1 — Normal scans:
 """
 
 import logging
-from typing import Generator, List, Tuple
+from collections.abc import Generator
 
 import numpy as np
 from tqdm import tqdm
 
-from lc_ksvd.config import CLASS_ORDER, NORMAL_PATCH_STRIDE, PATCH_SIZE, ZERO_FRACTION_THRESHOLD
+from lc_ksvd.config import (
+    CLASS_ORDER,
+    NORMAL_PATCH_STRIDE,
+    PATCH_SIZE,
+    ZERO_FRACTION_THRESHOLD,
+)
 from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
 
@@ -25,9 +30,9 @@ def is_background(patch: np.ndarray) -> bool:
 
 
 def _grid_origins(
-    volume_shape: Tuple[int, int, int],
+    volume_shape: tuple[int, int, int],
     stride: int,
-) -> Generator[Tuple[int, int, int], None, None]:
+) -> Generator[tuple[int, int, int], None, None]:
     """Yield (x0, y0, z0) top-left-front corners on a regular grid."""
     H, W, D = volume_shape
     p = PATCH_SIZE
@@ -50,13 +55,13 @@ def sample_normal_patches(volume: np.ndarray, writer: _PatchStreamWriter) -> int
 
 
 def collect_normal_patches(
-    normal_ids: List[str],
+    normal_ids: list[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
-) -> Tuple[List[int], List[str], List[Tuple[int, int, int]]]:
+) -> tuple[list[int], list[str], list[tuple[int, int, int]]]:
     normal_class_idx = CLASS_ORDER.index("normal")
-    all_labels: List[int] = []
-    all_scan_ids: List[str] = []
+    all_labels: list[int] = []
+    all_scan_ids: list[str] = []
 
     logger.info(f"Phase 1 — grid-sampling {len(normal_ids)} normal scans…")
 
