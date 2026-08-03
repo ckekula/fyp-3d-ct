@@ -948,7 +948,9 @@ single-channel 3D tensor and provided as input to the model.
 This preprocessing uses a different intensity normalization strategy
 compared with the lung-segmentation-based normalization used in the
 sparse-coding pipeline described earlier in this chapter.
+
 \paragraph{Inference.}
+
 The official pretrained Merlin model is loaded once, and a forward hook is
 attached to the last block of its 3D image encoder
 (\texttt{layer4} of the Inflated-3D ResNet). This allows the model to
@@ -1083,7 +1085,7 @@ given to the model.
 
 The released \texttt{CT\_LiPro\_v2.pt} checkpoint was loaded into the
 pretrained CT-CLIP model together with its linear classification head.
-The model weights were loaded using \texttt{strict=False}, and any
+The model weights were loaded, and any
 missing or unexpected parameters were recorded to ensure that the loading
 process was correct.
 

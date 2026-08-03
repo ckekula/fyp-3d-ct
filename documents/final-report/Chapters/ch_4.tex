@@ -1,1 +1,147 @@
-\chapter{Conclusion}\label{cha:conclusion}
+\chapter{Results}
+\label{cha:results}
+
+\section{Preprocessing Validation}
+
+\subsection{Lung Segmentation Quality (TotalSegmentator vs Ground Truth)}
+% eda/totalseg_test_dice.csv (via eda/sota.ipynb) -- Dice between
+% TotalSegmentator's lung mask and ground truth over the ~163-case test
+% split. This is an input-quality check, not a target-abnormality result;
+% ties back to the lung-segmentation methodology discussion in Chapter 3
+% (classical HU-threshold vs LungMask) as a third data point.
+
+\section{Classical Image Processing Baseline}
+% image-processing/outputs/results.csv -- HU-threshold + morphology GGO
+% detector (dice/iou/sensitivity/precision), 5 real cases only. A
+% pre-deep-learning, pre-sparse-coding baseline; state the small sample
+% size explicitly rather than implying it's comparable in scale to the
+% other baselines.
+
+\section{Sparse-Coding Dictionary Learning (K-SVD Family)}
+% Four dictionary-learning variants are supported by main.py's
+% --algorithm flag: ksvd (plain, unsupervised), fddl (Fisher
+% Discrimination Dictionary Learning), frozen (IncrementalFrozenDictionary
+% -- an LC-KSVD2 base dictionary trained on normal patches only, with each
+% abnormality added incrementally as a residual dictionary), and lcksvd
+% (the original joint LC-KSVD2, trained over all classes at once). Each
+% is covered below to the extent it actually has saved results.
+
+\subsection{K-SVD (Unsupervised)}
+% No local saved evaluation output found -- state as trained/available
+% via main.py --algorithm ksvd but not yet evaluated locally, rather than
+% omitting it silently.
+
+\subsection{FDDL (Fisher Discrimination Dictionary Learning)}
+% No local saved evaluation output found -- same caveat as K-SVD above.
+
+\subsection{Frozen Dictionary Learning}
+
+\subsubsection{Sparse Dictionary Interpretability}
+
+\paragraph{Sparsity and Atom Utilisation}
+\paragraph{Atom Co-occurrence and Clustering}
+\paragraph{Dictionary Coherence}
+\paragraph{Visual Inspection of Atoms and Reconstructions}
+% (eda.ipynb-derived figures/numbers -- analysed unified_frozen.pkl /
+% train_sparse_codes_frozen.npz specifically, i.e. this variant, not
+% LC-KSVD2; same material already summarised methodologically in
+% Chapter 3's Statistical Analysis)
+
+\subsection{LC-KSVD2 (Joint, Single-Shot)}
+
+\subsubsection{Test-Set Classification Performance}
+% Real saved results: outputs/results/lcksvd2_svm_test_*/config.json
+% (3 runs) -- patch-level AND scan-level classification report +
+% confusion matrix. Note the 3 runs don't agree (one run: ~0.77 patch /
+% 0.95 scan accuracy; the other two: ~0.60 patch / 0.52 scan accuracy) --
+% report this discrepancy explicitly rather than quietly picking the
+% best-looking run.
+
+\subsubsection{Whole-Volume Localisation}
+% Qualitative results only -- overlay figures / NIfTI exports from
+% inference.py's per-voxel abnormality map (no Dice/IoU computed)
+
+\section{nnU-Net Segmentation Results}
+% Dice / IoU / precision / recall / specificity, GGO model only
+% (fold 3 + fold 4 ensemble; no nodule-model run completed --
+%  state this explicitly rather than omitting it silently)
+
+\section{CT-CLIP Results}
+
+\subsection{Linear-Probe (LiPro) Classification Performance}
+% Full-dataset run, 2,465 scans (ct_clip_lipro_classification_metrics.json)
+
+\subsection{Zero-Shot Text-Prompt Pilot}
+% Small pilot only (outputs/ctclip_rex_eval) -- flag as pilot-scale,
+% not a full comparison run
+
+\subsection{Explainability (Grad-CAM)}
+% models/ct-clip/rexground_predictions/full/gradcam_eval_metrics.csv --
+% per-case dice/iou/attribution_iou/pointing_game/energy_inside_mask
+% against ground-truth masks (~20-case pilot, not the full dataset)
+
+\section{Merlin Results}
+
+\subsection{Zero-Shot Classification Performance}
+% merlin_classification_metrics.json
+
+\subsection{Zero-Shot Localisation Performance}
+% merlin_localization_summary.csv / per_case.csv -- soft similarity maps,
+% not a trained segmentation head
+
+\subsection{Explainability (Grad-CAM)}
+% Code exists (explainability/gradcam/gradcam3d.py, run_gradcam.py) but no
+% computed metrics file was found -- state this as not yet run rather
+% than presenting numbers that don't exist
+
+\section{BiomedParse Results}
+
+\subsection{Presence Detection (Classification) Performance}
+% biomed_parse_rexgroundingct_classification_metrics.json
+
+\subsection{Segmentation/Localisation Performance}
+% biomed_parse_localization_summary.csv / per_case.csv
+
+\section{MedSAM2 Results}
+% results/train_6_a_2/{metrics.json, lesion_bboxes.json} -- single-case
+% pilot only (dice 0.0 on that case), from a box-prompted, SAM2
+% video-tracking-based lesion segmentation pipeline designed for the full
+% 163-case test subset (models/med-sam2/notebooks/
+% MedSAM2_RexGroundingCT_Inference.ipynb) but not yet run at that scale.
+% Report as a proof-of-concept that the pipeline runs end-to-end, not as
+% a comparable evaluation result; note the RECIST-style metric set
+% (Hausdorff-95, volume error \%, lesion counts) differs from the
+% Dice/IoU used elsewhere.
+
+\section{Cross-Model Comparison}
+
+\subsection{Classification Performance Comparison}
+% Shared table/plot: LC-KSVD vs CT-CLIP vs Merlin vs BiomedParse
+% (model_comparison_summary.json) -- note LC-KSVD's Atelectasis caveat
+% (reuses its Consolidation numbers) if kept in the writeup.
+% IMPORTANT: the "LC-KSVD" entry here is sourced from
+% models/lc-ksvd/lcksvd_metrics.json, which is a set of separate
+% per-abnormality binary LC-KSVD2 dictionaries (e.g. "Lung nodule_lcksvd2.pkl",
+% n_components=128) with their own train/val AUROC/F1/AP -- a different
+% training setup from the unified 3-class dictionary + shared LinearSVC
+% reported under LC-KSVD2 (Joint, Single-Shot) above. Do not conflate the
+% two when writing this up; state clearly which one is being compared here.
+
+\subsection{Localisation/Segmentation Performance Comparison}
+% nnU-Net vs Merlin vs BiomedParse (LC-KSVD excluded -- no Dice output;
+% classical image-processing baseline and MedSAM2 excluded from the main
+% table too -- too few cases each to be a fair comparison point, but
+% worth a one-line callback to their Results sections above)
+
+\subsection{Explainability Comparison}
+% Grad-CAM based: dice / iou / attribution_iou / pointing_game /
+% energy_inside_mask. Real computed numbers currently exist only for
+% CT-CLIP (~20-case pilot); Merlin's explainability code has not yet been
+% run to produce comparable numbers, and BiomedParse has no Grad-CAM
+% pipeline (it outputs masks directly rather than a classifier +
+% attribution map). Scope this subsection to what's actually comparable,
+% and state the gap explicitly rather than presenting an uneven comparison
+% as if it were complete.
+
+\section{Chapter Summary}
+% One paragraph tying the comparison back to the aims stated in Chapter 1
