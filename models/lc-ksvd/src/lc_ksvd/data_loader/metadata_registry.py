@@ -7,7 +7,6 @@ Parses the ReXGroundingCT JSON metadata to:
 
 import json
 import logging
-from typing import Dict, List, Optional
 
 from lc_ksvd.config import ABNORMALITY_CATEGORIES, METADATA_JSON
 from lc_ksvd.data_loader.nifti_io import _stem
@@ -18,12 +17,12 @@ logger = logging.getLogger(__name__)
 # ─── Metadata parsing ────────────────────────────────────────────────────────
 
 class MetadataRegistry:
-    def __init__(self, split: Optional[str] = None):
+    def __init__(self, split: str | None = None):
         self.split = split
         with open(METADATA_JSON, "r") as f:
-            self._raw: Dict = json.load(f)
-        self._volume_index: Dict[str, Dict[int, str]] = {}
-        self._volume_names: List[str] = []
+            self._raw: dict = json.load(f)
+        self._volume_index: dict[str, dict[int, str]] = {}
+        self._volume_names: list[str] = []
 
         if split is None:
             raise ValueError("Split cannot be None")
@@ -57,11 +56,11 @@ class MetadataRegistry:
             if finding_map:
                 self._volume_index[volume_name] = finding_map
 
-    def get_finding_map(self, volume_name: str) -> Dict[int, str]:
+    def get_finding_map(self, volume_name: str) -> dict[int, str]:
         volume_name = _stem(volume_name)
         return self._volume_index.get(volume_name, {})
 
-    def get_all_volume_names(self) -> List[str]:        # NEW
+    def get_all_volume_names(self) -> list[str]:        # NEW
         """Return all volume names present in the metadata (including normals)."""
         return list(self._volume_names)
 
@@ -81,8 +80,8 @@ class LabelRegistry:
     def _build_label_index(self):
         """Build a lookup table of volume names and their labels, derived from MetadataRegistry."""
         abnormalities = list(ABNORMALITY_CATEGORIES.keys())
-        self._volume_names: List[str] = self.metadata.get_all_volume_names()
-        self._volume_labels: Dict[str, Dict[str, int]] = {}
+        self._volume_names: list[str] = self.metadata.get_all_volume_names()
+        self._volume_labels: dict[str, dict[str, int]] = {}
 
         for volume_name in self._volume_names:
             finding_map = self.metadata.get_finding_map(volume_name)
@@ -107,22 +106,22 @@ class LabelRegistry:
         logger.debug(f"Sample positives per category (up to 5): {sample_pos}")
         logger.debug(f"Sample volumes with no categories (normals, up to 5): {sample_normals}")
 
-    def get_labels(self, scan_id: str) -> Dict[str, int]:
+    def get_labels(self, scan_id: str) -> dict[str, int]:
         """Return binary labels {category: 0 or 1} for a volume."""
         scan_id = _stem(scan_id)
         abnormalities = list(ABNORMALITY_CATEGORIES.keys())
         return self._volume_labels.get(scan_id, {ab: 0 for ab in abnormalities})
 
-    def get_all_volume_names(self) -> List[str]:
+    def get_all_volume_names(self) -> list[str]:
         """Return all volume names in the metadata."""
         return list(self._volume_names)
 
-    def get_positive_volume_names(self, category: str) -> List[str]:
+    def get_positive_volume_names(self, category: str) -> list[str]:
         """Return volume names where the given category is present."""
         return [vol for vol in self._volume_names
                 if self._volume_labels.get(vol, {}).get(category, 0) == 1]
 
-    def get_normal_volume_names(self) -> List[str]:
+    def get_normal_volume_names(self) -> list[str]:
         """Return volume names with no findings in any category."""
         abnormalities = list(ABNORMALITY_CATEGORIES.keys())
         return [vol for vol in self._volume_names

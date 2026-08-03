@@ -18,10 +18,8 @@ from lungmask import LMInferer
 from scipy import ndimage
 
 from lc_ksvd.config import (
-    BACKGROUND_HU,
     LOWER_HU,
     MASKS_DIR,
-    TARGET_SHAPE,
     TARGET_SPACING_MM,
     UPPER_HU,
     VOLUMES_DIR,
@@ -187,6 +185,7 @@ def preprocess(vol: np.ndarray) -> np.ndarray:
 
     # SimpleITK expects (z,y,x)
     vol_sitk = sitk.GetImageFromArray(np.transpose(vol, (2, 0, 1)))
+    vol_sitk.SetSpacing(tuple(float(s) for s in TARGET_SPACING_MM))
     segmentation = lung_inferer.apply(vol_sitk)
 
     # lungmask returns:
@@ -202,10 +201,10 @@ def preprocess(vol: np.ndarray) -> np.ndarray:
     )
 
     vol = vol.copy()
-    vol[~lung_mask] = BACKGROUND_HU
+    vol[~lung_mask] = LOWER_HU
     # clipping
     vol = np.clip(vol, LOWER_HU, UPPER_HU)
     # rescale to -1, 1
-    vol = (vol - LOWER_HU) / (UPPER_HU - LOWER_HU) * 2 - 1
+    vol = vol / UPPER_HU
 
     return vol.astype(np.float32)

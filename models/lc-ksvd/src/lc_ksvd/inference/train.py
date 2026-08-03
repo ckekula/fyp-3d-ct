@@ -129,7 +129,7 @@ def train_svm(gamma: np.ndarray, labels: np.ndarray):
     ])
 
     param_grid = {
-        "svm__C": [0.1, 1.0, 10.0]
+        "svm__C": [10.0, 100.0]
     }
 
     grid = GridSearchCV(

@@ -14,8 +14,8 @@ import numpy as np
 from lc_ksvd.config import (
     CLASS_ORDER,
     FDDL_CONFIG,
-    HU_MAX,
-    HU_MIN,
+    UPPER_HU,
+    LOWER_HU,
     KSVD_CONFIG,
     LCKSVD_CONFIG,
     MODELS_DIR,
@@ -134,7 +134,7 @@ def train(algorithm: str) -> dict:
         "config":          cfg,
         "patch_size":      PATCH_SIZE,
         "target_spacing":  TARGET_SPACING_MM,
-        "hu_window":       (HU_MIN, HU_MAX),
+        "hu_window":       (LOWER_HU, UPPER_HU),
         "training_time_s": elapsed,
     }
 

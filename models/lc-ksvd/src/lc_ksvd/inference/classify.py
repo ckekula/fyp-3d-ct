@@ -36,6 +36,47 @@ def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
     logger.info(f"Loaded dictionary D of shape {D.shape} from {path}")
     return D
 
+
+def load_dictionary_and_boundaries(path=DICT_MODEL_PATH):
+    """
+    Load D together with its per-class atom-index ranges, for reconstructing
+    a signal from only one class's block of the dictionary.
+
+    Both LCKSVD and IncrementalFrozenDictionary partition D_'s columns into
+    contiguous per-class blocks and expose that partition as
+    ``model.class_boundaries_`` : {class_idx: (start, end)} (end exclusive),
+    with class_idx matching CLASS_ORDER's integer indices (see
+    lc_ksvd.model_fitting._fit_lcksvd / _fit_frozen, which build/label each
+    stage from CLASS_ORDER directly). Gamma returned by encode_patches_omp()
+    against this same D has one row per D column in the same order, so
+    D[:, s:e] @ Gamma[s:e, :] reconstructs using only that class's atoms.
+
+    Returns
+    -------
+    D : np.ndarray, shape (n_features, n_components)
+    class_boundaries : dict[int, tuple[int, int]]
+    class_order : list[str] or None
+    """
+    with open(path, "rb") as f:
+        payload = pickle.load(f)
+    model = payload["model"]
+    D = model.D_
+    if D is None:
+        raise ValueError(f"Loaded model at {path} has no fitted dictionary (D_ is None).")
+    class_boundaries = getattr(model, "class_boundaries_", None)
+    if not class_boundaries:
+        raise ValueError(
+            f"Loaded model at {path} ({type(model).__name__}) has no "
+            "class_boundaries_ — per-class dictionary reconstruction needs "
+            "a model trained with LCKSVD or IncrementalFrozenDictionary."
+        )
+    class_order = payload.get("class_order")
+    logger.info(
+        f"Loaded dictionary D of shape {D.shape} from {path} "
+        f"with class_boundaries_={class_boundaries}"
+    )
+    return D, class_boundaries, class_order
+
 def encode_patches_omp(X: np.ndarray, D: np.ndarray, n_nonzero_coefs: int = N_NONZERO_COEFS) -> np.ndarray:
     """Sparse-code X against D using Batch-OMP."""
     X_norm, _, _ = normalise_columns(X)
