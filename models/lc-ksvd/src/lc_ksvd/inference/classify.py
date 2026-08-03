@@ -10,6 +10,7 @@ from lc_ksvd.config import MODELS_DIR, SPARSE_CODE_DIR
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix, extract_unified
 from lc_ksvd.metrics import normalise_columns
 from lc_ksvd.inference.evaluate import evaluate, save_classification_results
+from lc_ksvd.inference.train import load_W
 
 from reppi import OMP
 # from reppi import fista_core
@@ -19,6 +20,9 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 DICT_MODEL_PATH = MODELS_DIR / "unified_lcksvd2.pkl"
 SVM_MODEL_PATH = MODELS_DIR / "lcksvd2_svm_model.pkl"
+GBM_MODEL_PATH = MODELS_DIR / "lcksvd2_gbm_model.pkl"
+XGB_MODEL_PATH = MODELS_DIR / "lcksvd2_xgb_model.pkl"
+LOGREG_MODEL_PATH = MODELS_DIR / "lcksvd2_logreg_model.pkl"
 ALPHA = 0.1
 N_NONZERO_COEFS = 10
 SPLIT = "test"
@@ -172,16 +176,16 @@ def main() -> None:
     D = load_dictionary(DICT_MODEL_PATH)
 
     # -- Sparse-code patches against the dictionary -------------------------------
-    if (SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}").exists():
-        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz_{MODEL}'}")
-        data = np.load(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}")
+    if (SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes_{MODEL}.npz").exists():
+        logger.info(f"Loading existing sparse codes from {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes_{MODEL}.npz'}")
+        data = np.load(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes_{MODEL}.npz")
         Gamma = data["Gamma"]
     else:
         Gamma = encode_patches_omp(X, D)
 
         # -- Save sparse codes (dense) alongside labels for reuse ---------------------
-        np.savez_compressed(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes.npz_{MODEL}", Gamma=Gamma, labels=labels)
-        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes.npz_{MODEL}'}")
+        np.savez_compressed(SPARSE_CODE_DIR / f"{SPLIT}_sparse_codes_{MODEL}.npz", Gamma=Gamma, labels=labels)
+        logger.info(f"Saved sparse codes -> {SPARSE_CODE_DIR / f'{SPLIT}_sparse_codes_{MODEL}.npz'}")
 
 
     # -- Inference and evaluate using SVM ------------------------------------------------------------------
@@ -209,10 +213,97 @@ def main() -> None:
 
 
     # -- Inference and evaluate using Logistic Regression ---------------------------------------------------
-    # logger.info("Inferencing from LogisticRegression...")
-    # log_reg_clf = joblib.load(LOG_REG_MODEL_PATH)
-    # y_pred_log_reg = log_reg_clf.predict(Gamma.T)
-    # evaluate(y_pred_log_reg, labels)
+    logreg_clf = joblib.load(LOGREG_MODEL_PATH)
+    logger.info(f"Inferencing from LogisticRegression: {LOGREG_MODEL_PATH}")
+    y_pred_logreg = logreg_clf.predict(Gamma.T)
+    print("\n=== Separately-trained LogisticRegression ===")
+    evaluate(y_pred_logreg, labels)
+
+    logreg_config = {
+        "dict_model_path": str(DICT_MODEL_PATH),
+        "logreg_model_path": str(LOGREG_MODEL_PATH),
+        "n_nonzero_coefs": N_NONZERO_COEFS,
+        "alpha": ALPHA,
+        "logreg_params": logreg_clf.get_params(),
+    }
+    save_classification_results(
+        predictions=y_pred_logreg,
+        labels=labels,
+        scan_ids=scan_ids,
+        model_name=f"{MODEL}_logreg",
+        model_config=logreg_config,
+        split=SPLIT,
+    )
+
+    # -- Inference and evaluate using LC-KSVD2's jointly-learned classifier (W_) ---------------------------
+    W = load_W(DICT_MODEL_PATH)
+    if W is not None:
+        logger.info("Inferencing from native LC-KSVD2 classifier (W_)...")
+        y_pred_w = np.argmax(W @ Gamma, axis=0)
+        print("\n=== Native LC-KSVD2 classifier (W_) ===")
+        evaluate(y_pred_w, labels)
+
+        w_config = {
+            "dict_model_path": str(DICT_MODEL_PATH),
+            "n_nonzero_coefs": N_NONZERO_COEFS,
+            "alpha": ALPHA,
+        }
+        save_classification_results(
+            predictions=y_pred_w,
+            labels=labels,
+            scan_ids=scan_ids,
+            model_name=f"{MODEL}_native_w",
+            model_config=w_config,
+            split=SPLIT,
+        )
+    else:
+        logger.info("Loaded model has no W_ (not lcksvd2) -- skipping native-classifier evaluation.")
+
+    # -- Inference and evaluate using the non-linear diagnostic classifier (GBM) -----------------------------
+    gbm_clf = joblib.load(GBM_MODEL_PATH)
+    logger.info(f"Inferencing from HistGradientBoostingClassifier: {GBM_MODEL_PATH}")
+    y_pred_gbm = gbm_clf.predict(Gamma.T)
+    print("\n=== HistGradientBoostingClassifier (non-linear diagnostic) ===")
+    evaluate(y_pred_gbm, labels)
+
+    gbm_config = {
+        "dict_model_path": str(DICT_MODEL_PATH),
+        "gbm_model_path": str(GBM_MODEL_PATH),
+        "n_nonzero_coefs": N_NONZERO_COEFS,
+        "alpha": ALPHA,
+        "gbm_params": gbm_clf.get_params(),
+    }
+    save_classification_results(
+        predictions=y_pred_gbm,
+        labels=labels,
+        scan_ids=scan_ids,
+        model_name=f"{MODEL}_gbm",
+        model_config=gbm_config,
+        split=SPLIT,
+    )
+
+    # -- Inference and evaluate using the non-linear diagnostic classifier (XGBoost) --------------------------
+    xgb_clf = joblib.load(XGB_MODEL_PATH)
+    logger.info(f"Inferencing from XGBoost: {XGB_MODEL_PATH}")
+    y_pred_xgb = xgb_clf.predict(Gamma.T)
+    print("\n=== XGBoost (non-linear diagnostic) ===")
+    evaluate(y_pred_xgb, labels)
+
+    xgb_config = {
+        "dict_model_path": str(DICT_MODEL_PATH),
+        "xgb_model_path": str(XGB_MODEL_PATH),
+        "n_nonzero_coefs": N_NONZERO_COEFS,
+        "alpha": ALPHA,
+        "xgb_params": xgb_clf.get_params(),
+    }
+    save_classification_results(
+        predictions=y_pred_xgb,
+        labels=labels,
+        scan_ids=scan_ids,
+        model_name=f"{MODEL}_xgb",
+        model_config=xgb_config,
+        split=SPLIT,
+    )
 
 
 if __name__ == "__main__":
