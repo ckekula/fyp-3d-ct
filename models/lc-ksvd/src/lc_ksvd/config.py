@@ -11,7 +11,7 @@ from pathlib import Path
 DATASET_ROOT = Path("/home/chest_ct/code/data")
 VOLUMES_DIR = DATASET_ROOT / "data_volumes" / "dataset" / "train_fixed"
 MASKS_DIR = DATASET_ROOT / "segmentations" / "segmentations"
-METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_last.json"
+METADATA_JSON = DATASET_ROOT / "rexgrounding-ct" / "dataset_2_ultimate.json"
 
 # ─── Output paths ─────────────────────────────────────────────────────────────
 
@@ -66,7 +66,7 @@ SHUFFLE_PATCHES = True
 RANDOM_SEED = 42
 
 LCKSVD_CONFIG = {
-    "n_components":    N_FEATURES*5,   # number of dictionary atoms K
+    "n_components":    N_FEATURES*6,   # number of dictionary atoms K
     "n_nonzero_coefs": 10,    # sparsity T
     "alpha":           4.0,   # label-consistency weight (√α in the paper)
     "beta":            2.0,   # classifier weight (√β); LC-KSVD2 only

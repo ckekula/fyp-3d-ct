@@ -12,7 +12,8 @@ on the original volume for visualisation.
 Pipeline (mirrors patch_extractor/* and inference/classify.py exactly):
   1. Load NIfTI volume (raw HU) + voxel spacing
   2. Resample to TARGET_SPACING_MM isotropic
-  3. Lung segmentation + HU windowing -> [0, 1] volume (nifti_io.preprocess)
+  3. Lung segmentation + HU windowing -> [-1, 1] volume (nifti_io.preprocess),
+     background/outside-lung voxels at -1.0
   4. Dense grid patch extraction (PATCH_SIZE^3 patches, configurable stride)
   5. Column-normalise patches, sparse-code against dictionary D via Batch-OMP
   6. Classify each patch's sparse code with the trained LinearSVC
@@ -44,6 +45,7 @@ from lc_ksvd.config import (
 from lc_ksvd.data_loader.nifti_io import preprocess, resample_volume, resolve_volume_path
 from lc_ksvd.inference.classify import encode_patches_omp, load_dictionary
 from lc_ksvd.patch_extractor.patch_io import extract_patch
+from lc_ksvd.patch_extractor.patch_sampling_normal import is_background
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -63,7 +65,7 @@ N_NONZERO_COEFS = 10
 # same stride here by default for consistent, smoother localisation.
 INFERENCE_STRIDE = ABNORMAL_PATCH_STRIDE
 
-DEFAULT_SCAN_ID: Optional[str] = "valid_466_a_2"
+DEFAULT_SCAN_ID: Optional[str] = "valid_102_a_2"
 DEFAULT_VOLUME_PATH: Optional[Path] = None
 DEFAULT_OUTPUT_DIR = INFERENCE_DIR
 DEFAULT_SHOW = False
@@ -145,14 +147,14 @@ def load_and_preprocess_volume(
     logger.info(f"  Resampled to {vol_rs.shape} @ {TARGET_SPACING_MM}mm isotropic")
 
     logger.info("[3/8] Running lung segmentation + HU windowing...")
-    vol = preprocess(vol_rs)  # lung segmentation + HU windowing -> [0, 1]
+    vol = preprocess(vol_rs)  # lung segmentation + HU windowing -> [-1, 1], background at -1.0
     logger.info(f"  Preprocessed volume ready: shape={vol.shape}, "
-                f"lung-tissue voxels={(int((vol > 0).sum()))}")
+                f"lung-tissue voxels={int((~np.isclose(vol, -1.0, atol=1e-6)).sum())}")
 
     return {
         "name": scan_id or path.name.replace(".nii.gz", "").replace(".nii", ""),
         "volume_hu_resampled": vol_rs,  # kept for reference / alt. visualisation
-        "volume": vol,                  # preprocessed [0,1] volume fed to patching
+        "volume": vol,                  # preprocessed [-1,1] volume fed to patching, background=-1.0
         "orig_affine": orig_affine,     # source orientation, carried to every export
     }
 
@@ -171,9 +173,17 @@ def extract_dense_patches(
       X      : (N_FEATURES, n_patches) float64 patch matrix
       coords : (n_patches, 3) int64 array of (x0, y0, z0) patch origins
 
-    Patches that are >50% zero (pure air/background, same rule as training's
-    normal-patch filter) are skipped by default — they never reach the
-    dictionary/classifier and are implicitly "normal" in the output map.
+    Patches that are >50% background are skipped by default — they never
+    reach the dictionary/classifier and are implicitly "normal" in the
+    output map. Background here uses the exact same test as training's
+    normal-patch filter (patch_sampling_normal.is_background): voxels
+    isclose to -1.0, not < 1e-6. nifti_io.preprocess() maps
+    [LOWER_HU, UPPER_HU] = [-1000, 1000] HU to [-1, 1] (dividing by
+    UPPER_HU, not the HU range), and sets everything outside the lung mask
+    to LOWER_HU -> -1.0 -- it does NOT produce a [0, 1] volume. Real lung
+    parenchyma sits well below 0 in this scale (aerated lung ~ -0.7 to
+    -0.95), so a "< 1e-6" background test would misclassify almost every
+    genuine lung patch as background and silently discard it.
     """
     logger.info(f"[4/8] Extracting dense patches (stride={stride}, patch_size={PATCH_SIZE})...")
     H, W, D = volume.shape
@@ -187,7 +197,7 @@ def extract_dense_patches(
                 patch = extract_patch(volume, x0, y0, z0)
                 if patch is None:
                     continue
-                if skip_background and (patch < 1e-6).mean() > ZERO_FRACTION_THRESHOLD:
+                if skip_background and is_background(patch):
                     n_skipped_background += 1
                     continue
                 patches.append(patch.ravel())
@@ -256,8 +266,9 @@ def build_abnormality_volume(
     ZERO_FRACTION_THRESHOLD of its voxels are background (same tolerance
     training used for normal patches) — boundary patches straddling the lung
     edge are common. Painting that whole cube would bleed the label past the
-    lung boundary into background, so voxels with volume <= 0 (background,
-    per nifti_io.preprocess) are excluded from the output regardless of what
+    lung boundary into background, so voxels isclose to -1.0 (background,
+    per nifti_io.preprocess -- see extract_dense_patches's docstring for why
+    it's -1.0 and not 0) are excluded from the output regardless of what
     their covering patch(es) predicted.
 
     Returns:
@@ -280,7 +291,7 @@ def build_abnormality_volume(
             region = heat[x0:x0 + p, y0:y0 + p, z0:z0 + p]
             np.maximum(region, score, out=region)
 
-    tissue = volume > 0
+    tissue = ~np.isclose(volume, -1.0, atol=1e-6)
     covered = (votes.sum(axis=0) > 0) & tissue
     label_volume = np.full(volume_shape, NORMAL_CLASS_IDX, dtype=np.int64)
     label_volume[covered] = np.argmax(votes, axis=0)[covered]
@@ -500,8 +511,8 @@ def save_ct_with_colored_overlay(
     original CT anatomy with abnormal regions tinted in their class colour.
 
     The greyscale base is the resampled *raw HU* volume (not the lung-masked
-    [0,1] volume fed to the classifier, which zeroes out everything outside
-    the lungs) so that chest wall, mediastinum, etc. remain visible instead
+    [-1,1] volume fed to the classifier, which sets everything outside the
+    lungs to -1.0) so that chest wall, mediastinum, etc. remain visible instead
     of being blacked out -- this is what makes it "the original CT" rather
     than the classifier's masked working volume. `label_volume` is already in
     the same resampled voxel grid, so the colour mask still lines up exactly.
