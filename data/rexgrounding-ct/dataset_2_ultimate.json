@@ -3234,536 +3234,244 @@
       "protocol": ""
     },
     {
-        "name": "train_12972_a_2.nii.gz",
-        "findings": {
-            "0": "Nonspecific nodules, 2-3 mm, in the middle lobe of the right lung within the fissure",
-            "1": "3 mm nodule in the anterobasal segment of the right lower lobe",
-            "2": "4 mm subpleural nodule in the superior segment of the right lower lobe",
-            "3": "3 mm nodule in the inferior lingular segment of the left lung",
-            "4": "3.5 mm nodule in the posterobasal segment of the left lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d",
-            "2": "2d",
-            "3": "2d",
-            "4": "2d"
-        }
+      "name": "valid_1016_f_1.nii.gz",
+      "findings": {
+        "0": "Irregularly bordered mass in the medial aspect of the left upper lobe",
+        "1": "Enlargement of nodular lesions with irregular borders and a ground-glass halo"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 3
+      },
+      "pixels": {
+        "0": 759213,
+        "1": 32234
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      }
     },
     {
-        "name": "train_12974_a_2.nii.gz",
-        "findings": {
-            "0": "2-3 mm nodule in the middle lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_1103_a_2.nii.gz",
+      "findings": {
+        "0": "Irregularly circumscribed solid nodule in the middle lobe of the right lung, measuring approximately 25x20 mm"
+      },
+      "entity_counts": {
+        "0": 1
+      },
+      "pixels": {
+        "0": 11933
+      },
+      "categories": {
+        "0": "2d"
+      }
     },
     {
-        "name": "train_12977_a_2.nii.gz",
-        "findings": {
-            "0": "Nonspecific ground-glass opacities in the right upper lobe posterior segment",
-            "1": "Nonspecific 3 mm parenchymal nodule in the right middle lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
+      "name": "valid_276_a_2.nii.gz",
+      "findings": {
+        "0": "Patchy ground-glass opacities in the left lung upper lobe",
+        "1": "Crazy paving pattern in the left lung",
+        "2": "Multiple mass lesions on the right anterior chest wall",
+        "3": "Largest chest wall mass lesion measuring up to 5.5 cm"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 4,
+        "2": 5,
+        "3": 1
+      },
+      "pixels": {
+        "0": 72205,
+        "1": 33722,
+        "2": 47706,
+        "3": 27699
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2c",
+        "2": "2d",
+        "3": "2d"
+      }
     },
     {
-        "name": "train_12980_b_2.nii.gz",
-        "findings": {
-            "0": "Nonspecific nodular densities in the apical segment of the left upper lobe",
-            "1": "Nonspecific nodular densities in the superior segment of the left lower lobe",
-            "2": "Nonspecific subcentimeter nodules in both lungs, more prominent on the left"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d",
-            "2": "2d"
-        }
+      "name": "valid_382_c_2.nii.gz",
+      "findings": {
+        "0": "Decreased size of nodular infiltrates in the posterior aspect of the right upper lobe",
+        "1": "Largest lesion in the right upper lobe regressed from 25 mm to 19 mm"
+      },
+      "entity_counts": {
+        "0": 4,
+        "1": 1
+      },
+      "pixels": {
+        "0": 10729,
+        "1": 4763
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      }
     },
     {
-        "name": "train_13000_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nodules in the right lung, some measuring 2 mm",
-            "1": "Calcified subcentimeter nodules in the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d"
-        }
+      "name": "valid_389_b_2.nii.gz",
+      "findings": {
+        "0": "Ground-glass opacities in the upper, middle, and lower lobes of the right lung, most prominently in the lower lobe",
+        "1": "Surrounding ground-glass opacity around the consolidation in the left upper lobe",
+        "2": "Nodules up to 10 mm in size, predominantly in the lower lobe of the left lung, many with irregular borders",
+        "3": "Ground-glass opacities surrounding nodules in the left lung"
+      },
+      "entity_counts": {
+        "0": 3,
+        "1": 1,
+        "2": 5,
+        "3": 5
+      },
+      "pixels": {
+        "0": 660480,
+        "1": 47626,
+        "2": 3645,
+        "3": 7794
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2c",
+        "2": "2d",
+        "3": "2c"
+      }
     },
     {
-        "name": "train_13011_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_466_a_2.nii.gz",
+      "findings": {
+        "0": "Peripheral and central nodules in the upper and lower lobes of the left lung",
+        "1": "Ground glass opacities with a halo sign in the upper and lower lobes of the left lung",
+        "2": "Peripheral nodules in the medial aspect of the anterior segment of the right upper lobe"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 1
+      },
+      "pixels": {
+        "0": 1288,
+        "1": 30426,
+        "2": 4009
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2c",
+        "2": "2d"
+      }
     },
     {
-        "name": "train_13014_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter non-specific nodule in the upper lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_534_b_1.nii.gz",
+      "findings": {
+        "0": "Bilateral lower lobes subcentimeter nodules",
+        "1": "Ground-glass opacities in the superior segments of bilateral lower lobes"
+      },
+      "entity_counts": {
+        "0": 3,
+        "1": 1
+      },
+      "pixels": {
+        "0": 3708,
+        "1": 22320
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2c"
+      }
     },
     {
-        "name": "train_13025_a_2.nii.gz",
-        "findings": {
-            "0": "Multiple metastatic nodules with irregular borders in the subpleural regions of both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_573_a_1.nii.gz",
+      "findings": {
+        "0": "Bilateral ground-glass opacities",
+        "1": "Round-shaped opacities"
+      },
+      "entity_counts": {
+        "0": 3,
+        "1": 3
+      },
+      "pixels": {
+        "0": 10961,
+        "1": 7018
+      },
+      "categories": {
+        "0": "2c",
+        "1": "2d"
+      }
     },
     {
-        "name": "train_13043_a_1.nii.gz",
-        "findings": {
-            "0": "Calcified nodule in the laterobasal segment of the right lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_651_b_2.nii.gz",
+      "findings": {
+        "0": "Subcentimeter calcified nodule in the upper lobe of the right lung",
+        "1": "Multiple submillimeter nodules in the right lung"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 3
+      },
+      "pixels": {
+        "0": 1883,
+        "1": 3872
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d"
+      }
     },
     {
-        "name": "train_13052_a_1.nii.gz",
-        "findings": {
-            "0": "Patchy areas of ground-glass consolidation in all segments of both lungs",
-            "1": "Nonspecific nodule smaller than 5 mm in ground-glass density in the superior segment of the right lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
+      "name": "valid_660_a_2.nii.gz",
+      "findings": {
+        "0": "37 mm mass adjacent to the hilar region in the upper lobe of the left lung"
+      },
+      "entity_counts": {
+        "0": 1
+      },
+      "pixels": {
+        "0": 91010
+      },
+      "categories": {
+        "0": "2d"
+      }
     },
     {
-        "name": "train_13097_b_2.nii.gz",
-        "findings": {
-            "0": "Stable subpleural nodule measuring 2 mm in diameter in the laterobasal segment of the right lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_83_a_2.nii.gz",
+      "findings": {
+        "0": "Nodular lesion in the medial segment of the right middle lobe, 16x9 mm",
+        "1": "Multiple pulmonary nodules bilaterally, more prominent on the right",
+        "2": "Largest pulmonary nodule measuring 10 mm in the posterior segment of the right upper lobe"
+      },
+      "entity_counts": {
+        "0": 1,
+        "1": 5,
+        "2": 1
+      },
+      "pixels": {
+        "0": 7175,
+        "1": 2636,
+        "2": 1297
+      },
+      "categories": {
+        "0": "2d",
+        "1": "2d",
+        "2": "2d"
+      }
     },
     {
-        "name": "train_13121_a_2.nii.gz",
-        "findings": {
-            "0": "One or two subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13125_a_2.nii.gz",
-        "findings": {
-            "0": "A few subcentimeter subpleural nonspecific nodules in the middle lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13156_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nodules in both lungs",
-            "1": "Largest nodule measuring 7x4 mm in the anterior right upper lobe",
-            "2": "Nodule measuring 6.5x5.5 mm in the posterobasal segment of the lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d",
-            "2": "2d"
-        }
-    },
-    {
-        "name": "train_13218_a_2.nii.gz",
-        "findings": {
-            "0": "Largest nodule measuring 3 mm in the anterior segment of the left lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13218_b_2.nii.gz",
-        "findings": {
-            "0": "Nonspecific parenchymal nodules measuring 3 mm in the anterobasal segment of the left lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13223_a_1.nii.gz",
-        "findings": {
-            "0": "Subcentimeter calcified nodules in the lung parenchyma"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13233_a_1.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13240_b_2.nii.gz",
-        "findings": {
-            "0": "Diffuse ground glass opacities in both lungs have significantly regressed",
-            "1": "Subcentimeter nonspecific stable nodules in both lung parenchyma"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13247_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13278_a_2.nii.gz",
-        "findings": {
-            "0": "Well-circumscribed, nonspecific parenchymal nodule measuring 4.7 mm in the anterior segment of the upper lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13278_c_1.nii.gz",
-        "findings": {
-            "0": "Subcentimeter non-specific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13285_a_2.nii.gz",
-        "findings": {
-            "0": "Air cyst in the basal segment of the right lower lobe",
-            "1": "Air cyst in the inferior segment of the left upper lobe lingula",
-            "2": "6 mm ground-glass density nodular area in the superior segment of the left upper lobe lingula"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d",
-            "2": "2c"
-        }
-    },
-    {
-        "name": "train_13285_b_2.nii.gz",
-        "findings": {
-            "0": "Stable focal ground glass density in the superior lingular segment of the left lung",
-            "1": "Stable subcentimeter nonspecific nodules in the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13334_a_5.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nonspecific nodular lesion in the basal segment of the lower lobe of the right lung, adjacent to the diaphragm"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13345_b_1.nii.gz",
-        "findings": {
-            "0": "A few subcentimeter nonspecific parenchymal nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13359_a_1.nii.gz",
-        "findings": {
-            "0": "Nonspecific 3.5 mm parenchymal nodule in the mediobasal segment of the right lower lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13365_a_2.nii.gz",
-        "findings": {
-            "0": "Several subcentimeter nonspecific subpleural nodules in the lower lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13371_a_1.nii.gz",
-        "findings": {
-            "0": "Minimal focal nonspecific ground glass density increase in the anterobasal segment of the right lower lobe",
-            "1": "Nonspecific parenchymal nodules in the lower lobes of both lungs, measuring 4.4 mm in the left lung and 3.5 mm in the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13374_a_1.nii.gz",
-        "findings": {
-            "0": "A few nonspecific subcentimeter nodules"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13376_a_2.nii.gz",
-        "findings": {
-            "0": "Several nodules in the medial segment of the middle lobe of the right lung",
-            "1": "Nodule in the anterior segment of the upper lobe of the left lung",
-            "2": "Largest nodule measuring 2.5 mm in diameter on the right"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d",
-            "2": "2d"
-        }
-    },
-    {
-        "name": "train_13380_a_1.nii.gz",
-        "findings": {
-            "0": "Subcentimeter calcific nodules in the lower and middle lobes of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13407_a_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13423_a_2.nii.gz",
-        "findings": {
-            "0": "Nonspecific nodules measuring 2-3 mm in diameter in the middle lobe of the right lung",
-            "1": "Nonspecific nodules measuring 2-3 mm in diameter in the posterobasal segment of the lower lobe of the left lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13448_a_1.nii.gz",
-        "findings": {
-            "0": "Ground-glass appearance in the central and peripheral areas of the upper lobe of the right lung",
-            "1": "Subcentimeter nonspecific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2c",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13459_a_2.nii.gz",
-        "findings": {
-            "0": "Calcified subcentimeter nonspecific parenchymal nodules in the upper lobe of the left lung and in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13484_a_2.nii.gz",
-        "findings": {
-            "0": "Several subcentimeter nonspecific nodules in the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13490_a_1.nii.gz",
-        "findings": {
-            "0": "Subcentimeter non-specific nodules in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13521_a_1.nii.gz",
-        "findings": {
-            "0": "Two nonspecific parenchymal nodules, each measuring 5 mm in diameter, in the upper lobe of the right lung",
-            "1": "3.5 mm parenchymal nodule in the upper lobe of the left lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2d"
-        }
-    },
-    {
-        "name": "train_13586_a_1.nii.gz",
-        "findings": {
-            "0": "Nonspecific 3 mm parenchymal nodule in the apical part of the right lung",
-            "1": "Nonspecific minimal ground-glass density increase in the posterior segment of the upper lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2c"
-        }
-    },
-    {
-        "name": "train_13592_a_2.nii.gz",
-        "findings": {
-            "0": "Several subcentimeter nonspecific nodules in both lungs",
-            "1": "Minimal ground-glass opacities in a few areas in the lower lobe of the left lung",
-            "2": "Non-specific ground-glass opacities"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d",
-            "1": "2c",
-            "2": "2c"
-        }
-    },
-    {
-        "name": "train_13593_b_2.nii.gz",
-        "findings": {
-            "0": "Subcentimeter nodules present in both lungs"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13604_a_1.nii.gz",
-        "findings": {
-            "0": "Two subcentimeter nonspecific subpleural nodules in the lateral segment of the right middle lobe"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
-    },
-    {
-        "name": "train_13605_a_1.nii.gz",
-        "findings": {
-            "0": "Small nonspecific nodule measuring 5.3 mm in the posterolateral junction of the lower lobe of the right lung"
-        },
-        "entity_counts": {},
-        "pixels": {},
-        "categories": {
-            "0": "2d"
-        }
+      "name": "valid_90_c_2.nii.gz",
+      "findings": {
+        "0": "Stable parenchymal nodular lesions near the consolidation area"
+      },
+      "entity_counts": {
+        "0": 1
+      },
+      "pixels": {
+        "0": 32107
+      },
+      "categories": {
+        "0": "2d"
+      }
     }
   ]
 }
