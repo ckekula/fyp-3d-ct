@@ -263,6 +263,60 @@ Based on the number of findings, it was clear that GGO, Pulmonary Nodules/masses
 well-represented categories in the dataset, with 1,527, 1,778 and 1,384 findings respectively. Since we decided to remove
 the grouped Atelectasis/Consolidation category, we were left with GGO and Pulmonary Nodules/masses as the two main target abnormalities.
 
+\subsubsection{Lesion Size Distribution}
+
+Beyond how many findings each category contributed, it was also important to understand how large a typical
+finding actually is, since this has a direct bearing on how patches would later need to be sampled around each
+lesion. For every GGO and nodule/mass annotation in the dataset, the number of foreground voxels enclosed by its
+ground-truth mask was measured, giving one voxel count per annotation. Table \ref{tab:lesion_voxel_stats}
+summarises the resulting distributions.
+
+\begin{table}[htbp]
+\centering
+\caption{Voxel-count statistics of GGO (2c) and Nodule/mass (2d) annotations.}
+\label{tab:lesion_voxel_stats}
+\begin{tabularx}{\textwidth}{lXXXXXXX}
+\hline
+\textbf{Category} & \textbf{\# Ann.} & \textbf{\# Scans} & \textbf{Mean} & \textbf{Median} & \textbf{P25} & \textbf{P75} & \textbf{P95} \\
+\hline
+GGO (2c) & 1,543 & 1,161 & 113,871 & 19,682 & 4,818 & 83,380 & 560,393 \\
+Nodule/mass (2d) & 1,801 & 1,349 & 10,196 & 417 & 194 & 1,167 & 17,171 \\
+\hline
+\end{tabularx}
+\end{table}
+
+The two categories turned out to have very different, heavily right-skewed size profiles. The median GGO
+annotation covers 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just
+417 voxels, and this gap holds fairly consistently across the rest of the distribution -- the 25th and 75th
+percentiles for GGO (4,818 and 83,380 voxels) sit well above the corresponding nodule/mass values (194 and
+1,167 voxels). Both distributions also have a long tail of much larger outliers, with the largest single GGO
+annotation reaching 3,442,007 voxels and the largest nodule/mass annotation reaching 1,872,872 voxels, which is
+why the histograms in Figures \ref{fig:ggo-voxel-dist} and \ref{fig:ggo-nodule-voxel-dist} are plotted on a
+log$_{10}$(voxel count) axis rather than a linear one.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/ggo_log_voxel_distribution.png}
+    \caption{Log-scale voxel-count distribution of GGO (category 2c) annotations.}
+    \label{fig:ggo-voxel-dist}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/nodule_log_voxel_distribution.png}
+    \caption{Log-scale voxel-count distribution of Nodule/mass (category 2d) annotations.}
+    \label{fig:ggo-nodule-voxel-dist}
+\end{figure}
+
+This size disparity between the two target abnormalities turned out to be one of the more practically important
+findings of the EDA stage, since a fixed patch-level extraction rule that works for one category does not
+necessarily transfer to the other. A GGO region is typically large enough that a $16\times16\times16$ patch
+sampled from anywhere near its centre is likely to be mostly lesion tissue, whereas a nodule is frequently small
+enough that a patch covering its bounding box will contain mostly surrounding normal parenchyma. This is the
+underlying reason for the category-specific lesion-voxel-fraction thresholds used later during patch
+extraction (Section \ref{subsec:patch-extraction}) -- a uniform 50\% threshold, while reasonable for GGO, would have discarded
+the majority of genuine nodule patches, so a lower 10\% threshold was used for the nodule/mass category instead.
+
 \subsection{CT Volume and Mask Loading}
 
 Each CT scan is stored as a 3D NIfTI volume of dimensions $ 512 \times 512 \times N_z$ with voxel spacing
@@ -476,6 +530,7 @@ extraction stage has a consistent voxel grid regardless of its original
 acquisition parameters.
 
 \subsection{Patch Extraction}
+\label{subsec:patch-extraction}
 
 With a clean, normalised lung volume in hand, the final data acquisition step was
 to break each volume down into smaller 3D patches. Feeding entire volumes directly
