@@ -43,6 +43,7 @@ These challenges motivate the shift toward automated, learning-based
 segmentation approaches capable of handling such structural diversity without extensive manual tuning per dataset.
 
 \subsection{Pulmonary Abnormalities}
+\label{subsec:abnormalities}
 
 Our study focuses on the detection and segmentation of two common pulmonary abnormalities: Ground-Glass Opacity (GGO) and pulmonary nodules.
 A nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
@@ -518,9 +519,9 @@ particularly when the full path of solutions across sparsity levels is of intere
 
 FISTA solves $\ell1$-regularized sparse coding problems, where the goal is to minimize:
 
-\[
+\begin{equation}
 \sqrt{\|x - D\alpha\|}^2 + \lambda\|\alpha\|_1
-\]
+\end{equation}
 
 It builds on the Iterative Shrinkage-Thresholding Algorithm (ISTA), which alternates between a gradient descent step on the
 data-fidelity term and a soft-thresholding (shrinkage) step that enforces sparsity by shrinking small coefficients toward zero.
@@ -539,32 +540,32 @@ and interpretable machine learning, including medical image analysis~\cite{95773
 A dictionary is a matrix, written as $D \in \mathbb{R}^{n \times k},$ where each column $d_i$ is called an atom. Each atom is a small, fixed pattern,
 for example a short edge, a texture, or a simple shape, that acts like a basic building block for describing images~\cite{9577340}.
 
-\[
+\begin{equation}
 D = [\,d_1, d_2, \dots, d_k\,], \qquad \|d_i\|_2 = 1 \ \forall i
-\]
+\end{equation}
 
 Each atom is normalized to unit length so that none of them dominate because of scale. A good dictionary has atoms that are simple and reusable.
 
 
 Once a dictionary is available, any image $x \in \mathbb{R}^n$ is approximated as a weighted sum of a small number of atoms:
 
-\[
+\begin{equation}
 x \approx D\alpha = \sum_{i=1}^{k} \alpha_i d_i
-\]
+\end{equation}
 
 Here, $\alpha \in \mathbb{R}^k$ is the sparse code; most of its values are zero, and only a few atoms are actually used to rebuild the image.
 Finding this code is called sparse coding, and it can be solved by minimizing the reconstruction error together with a sparsity penalty~\cite{LI2016298} \cite{NIPS2006_2d71b2ae}:
 
-\[
+\begin{equation}
 \min_{\alpha} \ \frac{1}{2}\|x - D\alpha\|_2^2 + \lambda \|\alpha\|_1
-\]
+\end{equation}
 
 This is the Lasso formulation, where $\lambda$ controls how sparse the solution is~\cite{1710377}.
 When the dictionary itself is learned from training data $X = [x_1, \dots, x_m]$, both $D$ and the codes $A = [\alpha_1, \dots, \alpha_m]$ are optimized together
 
-\[
+\begin{equation}
 \min_{D, A} \ \|X - DA\|_F^2 + \lambda \|A\|_1 \quad \text{subject to} \quad \|d_i\|_2 = 1
-\]
+\end{equation}
 
 
 Learned atoms are not random they turn out to look like meaningful patterns. Scince each image patch is reconstructed using only a small number of atoms.
@@ -575,9 +576,9 @@ atoms can end up representing specific tissue textures or lesion patterns that a
 
 Learning a dictionary is usually done by fixing the dictionary and solving for sparse codes, then fixing the codes and updating the dictionary.
 The sparse coding step is commonly solved with Orthogonal Matching Pursuit (OMP), a greedy method that adds one atom at a time \cite{342465}
-\[
+\begin{equation}
 i^* = \arg\max_i \ |d_i^T r|, \qquad r = x - D\alpha
-\]
+\end{equation}
 or with Lasso/LARS, using the $\ell_1$-penalized objective shown above \cite{1710377}. The dictionary update step is where the main algorithms differ, covered below.
 
 
@@ -586,9 +587,9 @@ or with Lasso/LARS, using the $\ell_1$-penalized objective shown above \cite{171
 
 K-SVD is one of the most widely used algorithms for learning a dictionary, and it solves the following optimization problem\cite{1710377}
 
-\[
+\begin{equation}
 \min_{D, X} \left\{ \|Y - DX\|_F^2 \right\} \quad \text{subject to} \quad \forall i, \ \|x_i\|_0 \leq T_0
-\]
+\end{equation}
 
 Here, $Y$ is the matrix of training data, for example CT image patches, $D$ is the dictionary being learned, and $X$ is the matrix of sparse codes,
 where each column $x_i$ is the code for one training sample. The constraint $\|x_i\|_0 \leq T_0$ means that each code is allowed to use at most $T_0$ atoms,
@@ -604,9 +605,9 @@ converge faster and produce sharper, more specific atoms \cite{1710377}.
 Method of Optimized Directions is an earlier and simpler approach than K-SVD. Instead of updating atoms one at a time, MOD updates the entire dictionary at once,
 using a direct least-squares solution \cite{[760624]}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
 
-\[
+\begin{equation}
 D = X A^T (A A^T)^{-1}
-\]
+\end{equation}
 
 This comes directly from setting the derivative of the reconstruction error $\|X - DA\|_F^2$ to zero and solving for $D$. MOD is fast and easy to implement,
 but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{[760624]}.
@@ -618,13 +619,13 @@ Online Dictionary Learning solves this by processing the data in small batches, 
 instead of waiting to see the whole dataset \cite{[10.1145/1553374.1553463]}. At each step $t$, a new sample $x_t$ is drawn,
 its sparse code $\alpha_t$ is computed using the current dictionary, and then the dictionary is updated using accumulated statistics from all samples seen so far:
 
-\[
+\begin{equation}
 A_t = A_{t-1} + \alpha_t \alpha_t^T, \qquad B_t = B_{t-1} + x_t \alpha_t^T
-\]
+\end{equation}
 
-\[
+\begin{equation}
 D_t = \arg\min_{D} \ \frac{1}{t}\sum_{i=1}^{t} \left( \frac{1}{2}\|x_i - D\alpha_i\|_2^2 \right)
-\]
+\end{equation}
 
 which can be solved efficiently using $A_t$ and $B_t$ instead of storing all past samples. This makes ODL well suited for large-scale problems,
 including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{[10.1145/1553374.1553463]}.
