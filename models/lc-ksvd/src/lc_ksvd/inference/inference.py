@@ -38,8 +38,8 @@ import numpy as np
 from scipy import ndimage
 
 from lc_ksvd.config import (
-    ABNORMAL_PATCH_STRIDE, CLASS_ORDER, INFERENCE_DIR, LOWER_HU, MODELS_DIR,
-    N_FEATURES, NORMAL_CLASS_IDX, PATCH_SIZE, TARGET_SPACING_MM, UPPER_HU,
+    ABNORMAL_PATCH_STRIDE, CLASS_ORDER, INFERENCE_DIR, MODELS_DIR,
+    N_FEATURES, NORMAL_CLASS_IDX, PATCH_SIZE, TARGET_SPACING_MM,
     ZERO_FRACTION_THRESHOLD,
 )
 from lc_ksvd.data_loader.nifti_io import preprocess, resample_volume, resolve_volume_path
@@ -65,7 +65,7 @@ N_NONZERO_COEFS = 10
 # same stride here by default for consistent, smoother localisation.
 INFERENCE_STRIDE = ABNORMAL_PATCH_STRIDE
 
-DEFAULT_SCAN_ID: Optional[str] = "valid_102_a_2"
+DEFAULT_SCAN_ID: Optional[str] = "valid_902_a_2"
 DEFAULT_VOLUME_PATH: Optional[Path] = None
 DEFAULT_OUTPUT_DIR = INFERENCE_DIR
 DEFAULT_SHOW = False
@@ -76,7 +76,7 @@ DEFAULT_SHOW = False
 # stand-in file supplies the same array by hand). Auto-used only when running
 # with the default scan (see _parse_args) — irrelevant to any other volume.
 DEFAULT_GT_MASK_PATH: Optional[Path] = (
-        Path(__file__).resolve().parent / "valid_342_a_2mask.nii.gz"
+        Path(__file__).resolve().parent / "valid_342_a_2_finding3_upper.nii.gz"
 )
 
 
@@ -511,8 +511,8 @@ def save_ct_with_colored_overlay(
     original CT anatomy with abnormal regions tinted in their class colour.
 
     The greyscale base is the resampled *raw HU* volume (not the lung-masked
-    [-1,1] volume fed to the classifier, which sets everything outside the
-    lungs to -1.0) so that chest wall, mediastinum, etc. remain visible instead
+    [0,1] volume fed to the classifier, which zeroes out everything outside
+    the lungs) so that chest wall, mediastinum, etc. remain visible instead
     of being blacked out -- this is what makes it "the original CT" rather
     than the classifier's masked working volume. `label_volume` is already in
     the same resampled voxel grid, so the colour mask still lines up exactly.
@@ -662,26 +662,15 @@ def save_boundary_label_map(
     boundaries: Optional[Dict[int, np.ndarray]] = None,
 ) -> Path:
     """
-    Save class boundaries as a plain **scalar uint8 NIfTI label map** (no RGB
-    struct, no colour blending) instead of a colour-blended volume. Voxel
+    Save class boundaries as a plain **scalar uint8 NIfTI label map**. Voxel
     value = class index (1, 2, ...) on the outline voxels, 0 elsewhere.
 
-    Why this instead of the RGB boundary volume:
-    RGB24 volumes only display correctly through Slicer's/ITK-SNAP's colour
-    compositing in 2D slice views. Volume Rendering's 3D panel renders by
-    applying a scalar-opacity transfer function calibrated for HU-range CT
-    data; against an RGB24/vector volume that function has nothing sensible
-    to map, so the 3D view comes back an empty black box (opacity ~0
-    everywhere) even though the data itself is fine.
-
-    A single-channel label map sidesteps the transfer-function problem
-    entirely: Slicer's Segmentations module imports it natively (Segmentations
-    -> Import), and segmentations expose a "Show 3D" button that runs marching
-    cubes to build a closed surface mesh straight from the label voxels --
-    correct for outline/boundary data, which is thin, sparse geometry rather
-    than a dense volumetric signal that benefits from ray-cast rendering.
-    Per-segment colours can be set in the Segmentations module after import,
-    matching _CLASS_COLOURS_RGB if desired.
+    A single-channel label map lets Slicer's Segmentations module import it
+    natively (Segmentations -> Import), where a "Show 3D" button runs
+    marching cubes to build a closed surface mesh straight from the label
+    voxels -- correct for outline/boundary data, which is thin, sparse
+    geometry rather than a dense volumetric signal. Per-segment colours can
+    be set in the Segmentations module after import.
 
     `thickness` / `boundaries` behave exactly as in compute_class_boundaries();
     pass an already-computed `boundaries` dict (e.g. from run_inference) to
@@ -841,21 +830,9 @@ def run_inference(
         boundaries=boundaries,
     )
 
-    # ─── Step 9: colour NIfTI exports (filled overlay + mask + boundary outline) ──
-    ct_overlay_path = save_ct_with_colored_overlay(
-        volume_hu_resampled, maps["label_volume"], scan_name,
-        output_dir=output_dir, affine=export_affine,
-    )
-    mask_path = save_colored_segmentation_mask(
-        maps["label_volume"], scan_name, output_dir=output_dir, affine=export_affine,
-    )
-    boundary_nifti_path = save_ct_with_boundary_overlay(
-        volume_hu_resampled, maps["label_volume"], scan_name,
-        output_dir=output_dir, affine=export_affine, boundaries=boundaries,
-    )
-    # Scalar label-map version of the same boundaries -- imports as a Slicer
-    # Segmentation with native "Show 3D" surface rendering (no RGB24 /
-    # transfer-function issues in Volume Rendering).
+    # ─── Step 9: NIfTI exports (boundary label map + resampled CT) ───────────
+    # Scalar label-map version of the predicted boundaries -- imports as a
+    # Slicer Segmentation with native "Show 3D" surface rendering.
     boundary_labelmap_path = save_boundary_label_map(
         maps["label_volume"], scan_name,
         output_dir=output_dir, affine=export_affine, boundaries=boundaries,
@@ -864,25 +841,29 @@ def run_inference(
         volume_hu_resampled, scan_name, output_dir=output_dir, affine=export_affine,
     )
 
-    # Ground-truth mask export (optional) -- resampled onto the same grid as
-    # every other export above so it lines up voxel-for-voxel in a viewer.
+    # Ground-truth mask export -- DISABLED. Kept commented out rather than
+    # deleted since build_ground_truth_label_volume/save_ground_truth_mask
+    # still work correctly given a real [F,H,W,D] mask file; there just isn't
+    # one available for the current default scan (DEFAULT_GT_MASK_PATH points
+    # at the raw CT volume, not an actual finding mask, which crashes
+    # resample_mask on a shape mismatch). Re-enable once a real mask is wired
+    # up, or when gt_mask_path is guaranteed to point at a proper mask file.
     gt_mask_nifti_path = None
-    if gt_mask_path is not None:
-        gt_mask_path = Path(gt_mask_path)
-        if gt_mask_path.exists():
-            logger.info(f"Loading ground-truth mask for export: {gt_mask_path}")
-            gt_mask_raw = np.asarray(nib.load(str(gt_mask_path)).dataobj, dtype=np.uint8)
-            label_volume_gt = build_ground_truth_label_volume(gt_mask_raw, target_shape=volume.shape)
-            gt_mask_nifti_path = save_ground_truth_mask(
-                label_volume_gt, scan_name, output_dir=output_dir, affine=export_affine,
-            )
-        else:
-            logger.warning(f"  gt_mask_path does not exist, skipping: {gt_mask_path}")
+    # if gt_mask_path is not None:
+    #     gt_mask_path = Path(gt_mask_path)
+    #     if gt_mask_path.exists():
+    #         logger.info(f"Loading ground-truth mask for export: {gt_mask_path}")
+    #         gt_mask_raw = np.asarray(nib.load(str(gt_mask_path)).dataobj, dtype=np.uint8)
+    #         label_volume_gt = build_ground_truth_label_volume(gt_mask_raw, target_shape=volume.shape)
+    #         gt_mask_nifti_path = save_ground_truth_mask(
+    #             label_volume_gt, scan_name, output_dir=output_dir, affine=export_affine,
+    #         )
+    #     else:
+    #         logger.warning(f"  gt_mask_path does not exist, skipping: {gt_mask_path}")
 
     elapsed = time.time() - t0
     logger.info(f"Inference complete for {scan_name} in {elapsed:.1f}s -> "
-                f"{overlay_path}, {boundary_png_path}, {ct_overlay_path}, "
-                f"{mask_path}, {boundary_nifti_path}, {boundary_labelmap_path}, "
+                f"{overlay_path}, {boundary_png_path}, {boundary_labelmap_path}, "
                 f"{ct_resampled_path}"
                 + (f", {gt_mask_nifti_path}" if gt_mask_nifti_path else ""))
 
@@ -895,9 +876,6 @@ def run_inference(
         "heat_volume":             maps["heat_volume"],
         "overlay_png":             overlay_path,
         "boundary_png":            boundary_png_path,
-        "ct_overlay_nifti":        ct_overlay_path,
-        "segmentation_mask_nifti": mask_path,
-        "ct_boundary_nifti":       boundary_nifti_path,
         "boundary_labelmap_nifti": boundary_labelmap_path,
         "ct_resampled_nifti":      ct_resampled_path,
         "ground_truth_mask_nifti": gt_mask_nifti_path,
