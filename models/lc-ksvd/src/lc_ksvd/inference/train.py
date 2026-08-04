@@ -3,11 +3,15 @@ import pickle
 
 import joblib
 import numpy as np
+from sklearn.linear_model import LogisticRegression
 import torch
+from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MaxAbsScaler
 from sklearn.svm import LinearSVC
+from sklearn.utils.class_weight import compute_sample_weight
+from xgboost import XGBClassifier
 
 from lc_ksvd.config import MODELS_DIR, SPARSE_CODE_DIR
 from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
@@ -20,11 +24,15 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 DICT_MODEL_PATH = MODELS_DIR / "unified_lcksvd2.pkl"
 SVM_MODEL_PATH = MODELS_DIR / "lcksvd2_svm_model.pkl"
+GBM_MODEL_PATH = MODELS_DIR / "lcksvd2_gbm_model.pkl"
+XGB_MODEL_PATH = MODELS_DIR / "lcksvd2_xgb_model.pkl"
+LOGREG_MODEL_PATH = MODELS_DIR / "lcksvd2_logreg_model.pkl"
 
 N_NONZERO_COEFS = 10
 ALPHA = 0.1
 SPLIT = "train"
 MODEL = "lcksvd2"
+RANDOM_SEED = 42
 
 def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
     """Load the trained IncrementalFrozenDictionary payload and return D."""
@@ -36,6 +44,14 @@ def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
         raise ValueError(f"Loaded model at {path} has no fitted dictionary (D_ is None).")
     logger.info(f"Loaded dictionary D of shape {D.shape} from {path}")
     return D
+
+
+def load_W(path=DICT_MODEL_PATH):
+    """Load the trained payload and return the jointly-learned classifier W_."""
+    with open(path, "rb") as f:
+        payload = pickle.load(f)
+    model = payload["model"]
+    return getattr(model, "W_", None)
 
 def encode_patches_omp(X: np.ndarray, D: np.ndarray, n_nonzero_coefs: int = N_NONZERO_COEFS) -> np.ndarray:
     """Sparse-code X against D using Batch-OMP."""
@@ -119,6 +135,69 @@ def encode_patches_omp(X: np.ndarray, D: np.ndarray, n_nonzero_coefs: int = N_NO
 #     logger.info(f"Encoded {X.shape[1]} patches -> Gamma shape {Gamma.shape} ({total_iters} total iters)")
 #     return Gamma
 
+def train_logreg(gamma: np.ndarray, labels: np.ndarray):
+    X = gamma.T
+    pipeline = Pipeline([
+        ("scaler", MaxAbsScaler()),
+        ("logreg", LogisticRegression(max_iter=5000, class_weight="balanced")),
+    ])
+    param_grid = {"logreg__C": [0.1, 1.0, 10.0, 100.0]}
+    grid = GridSearchCV(pipeline, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid.fit(X, labels)
+    print("\nBest parameters:", grid.best_params_)
+    print("Best CV score:", grid.best_score_)
+    return grid.best_estimator_
+
+
+def train_gbm(gamma: np.ndarray, labels: np.ndarray):
+    """Non-linear diagnostic classifier (HistGradientBoostingClassifier).
+
+    Not expected to beat the linear/native classifiers above if LC-KSVD2's
+    codes are already close to linearly separable (per ScSPM/LLC and the
+    LC-KSVD literature) -- its main value is as a check: a large gap over
+    LinearSVC/W_ signals the dictionary isn't discriminative enough yet,
+    not that this should become the production classifier.
+    """
+    X = gamma.T
+    clf = HistGradientBoostingClassifier(class_weight="balanced", random_state=RANDOM_SEED)
+    param_grid = {"max_depth": [3, 5, None], "learning_rate": [0.05, 0.1]}
+    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid.fit(X, labels)
+    print("\nBest parameters:", grid.best_params_)
+    print("Best CV score:", grid.best_score_)
+    return grid.best_estimator_
+
+
+def train_xgb(gamma: np.ndarray, labels: np.ndarray):
+    """Non-linear diagnostic classifier (XGBoost).
+
+    Same diagnostic role as train_gbm (see its docstring) -- included
+    alongside it rather than instead of it because XGBoost's level-wise
+    tree growth is more conservative than LightGBM-style leaf-wise growth
+    under class imbalance, and its explicit L1/L2 terms (reg_alpha/
+    reg_lambda) give more regularisation control than
+    HistGradientBoostingClassifier when a class (e.g. 2c/2d) has
+    relatively few samples relative to normal.
+    """
+    X = gamma.T
+    sample_weight = compute_sample_weight("balanced", labels)
+    clf = XGBClassifier(
+        objective="multi:softprob",
+        eval_metric="mlogloss",
+        tree_method="hist",
+        random_state=RANDOM_SEED,
+    )
+    param_grid = {
+        "max_depth": [3, 5, 7],
+        "learning_rate": [0.05, 0.1],
+        "reg_lambda": [1.0, 5.0],
+    }
+    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid.fit(X, labels, sample_weight=sample_weight)
+    print("\nBest parameters:", grid.best_params_)
+    print("Best CV score:", grid.best_score_)
+    return grid.best_estimator_
+
 
 def train_svm(gamma: np.ndarray, labels: np.ndarray):
     X = gamma.T  # (n_samples, n_features)
@@ -180,6 +259,42 @@ def main() -> None:
         svm_clf = train_svm(Gamma, labels)
         joblib.dump(svm_clf, SVM_MODEL_PATH)
         logger.info(f"Saved SVM model -> {SVM_MODEL_PATH}")
+
+    # -- Sanity-check LC-KSVD2's own jointly-learned classifier (W_) -----------------
+    W = load_W(DICT_MODEL_PATH)
+    if W is not None:
+        y_pred_w = np.argmax(W @ Gamma, axis=0)
+        train_acc_w = float(np.mean(y_pred_w == labels))
+        logger.info(f"Native LC-KSVD2 classifier (W_) train accuracy: {train_acc_w:.4f}")
+    else:
+        logger.info("Loaded model has no W_ (not lcksvd2) -- skipping native-classifier check.")
+
+    # -- Train non-linear diagnostic classifier (HistGradientBoostingClassifier) ----
+    logger.info("Training HistGradientBoostingClassifier...")
+    if(GBM_MODEL_PATH.exists()):
+        logger.info(f"GBM model exists at: {GBM_MODEL_PATH}")
+    else:
+        gbm_clf = train_gbm(Gamma, labels)
+        joblib.dump(gbm_clf, GBM_MODEL_PATH)
+        logger.info(f"Saved GBM model -> {GBM_MODEL_PATH}")
+
+    # -- Train non-linear diagnostic classifier (XGBoost) ----------------------------
+    logger.info("Training XGBoost...")
+    if(XGB_MODEL_PATH.exists()):
+        logger.info(f"XGB model exists at: {XGB_MODEL_PATH}")
+    else:
+        xgb_clf = train_xgb(Gamma, labels)
+        joblib.dump(xgb_clf, XGB_MODEL_PATH)
+        logger.info(f"Saved XGB model -> {XGB_MODEL_PATH}")
+
+    # -- Train Logistic Regression ----------------------------------------------------
+    logger.info("Training LogisticRegression...")
+    if(LOGREG_MODEL_PATH.exists()):
+        logger.info(f"LogReg model exists at: {LOGREG_MODEL_PATH}")
+    else:
+        logreg_clf = train_logreg(Gamma, labels)
+        joblib.dump(logreg_clf, LOGREG_MODEL_PATH)
+        logger.info(f"Saved LogReg model -> {LOGREG_MODEL_PATH}")
 
 if __name__ == "__main__":
     main()

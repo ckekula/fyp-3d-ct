@@ -1,130 +1,361 @@
 \chapter{Methodology}
+
+Figure \ref{fig:methodology} gives a visual overview of the full framework presented in this study.
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/methodology.png}
+    \caption{Overall Methodology Diagram.}
+    \label{fig:methodology}
+\end{figure}
+
 \section{Data Acquisition}
 
-The quality and consistency of the input data has a direct bearing on how well the
-dictionary learning stage can later separate abnormalities from normal lung, 
-so a fair amount of the early project time went into getting this part
-right before any model code was written. This section walks through the datasets
-that were chosen, how the raw CT volumes were loaded and explored, the different
-lung segmentation strategies that were tried (and in one case abandoned), and how
-the final lung volumes were cut down into the 3D patches that feed the K-SVD and
-LC-KSVD pipelines.
+The quality and consistency of the input data has a direct impact on how well the
+dictionary learning stage can later separate abnormalities from normal lung,
+so a fair amount of the early project time went into data acquisition and preparation
+before any model code was written. This section walks through the datasets
+explored and chosen, how the raw CT volumes were loaded and experimented on, the different
+lung segmentation strategies that were tried, and how 
+the selected lung volumes were sampled into 3D patches that feed the Dictionary Learning models.
 
-\subsection{Datasets}
+\subsection{Dataset Selection}
 
-Two publicly available chest CT collections were combined for this project rather
-than relying on a single source, mainly because no single dataset offered both a
-large enough pool of normal scans and fine-grained, spatially localized annotations
-for the specific abnormalities of interest.
+Multi-abnormality classification and segmentation for 3D chest CT images required a dataset that included multiple CT abnormalities
+and their corresponding voxel-level annotations.
+Only three datasets fulfilled the former requirement:
 
-The first is \textbf{CT-RATE}\cite{hamamci2024ctrate}, a large-scale chest CT dataset hosted on Hugging
-Face (\texttt{ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
-annotations across 18 abnormality categories. The released label files cover
-47{,}149 training volumes and 3{,}039 validation volumes, giving 50{,}188 labelled
-scans in total. Table-level counts confirm that the dataset is reasonably
-well populated for the abnormalities most relevant to this study -- lung nodules
-appear as a positive finding in 21{,}382 scans and consolidation in 8{,}319 -- while
-also containing 5{,}226 scans with no positive label at all, which is what made it
-a practical source of ``normal'' lung examples. Because of the dataset's size,
-only a subset of roughly 2{,}465 volumes was actually downloaded locally through a
-small helper script that queries the CT-RATE repository tree via the Hugging Face
-Hub API and pulls specific volume files on demand.
+\begin{enumerate}
+    \item CT-RATE\cite{hamamci2024ctrate}
+    \item RadGenome-Chest CT\cite{your2024radgenome}
+    \item Rad-ChestCT\cite{your2024radchestct}
+\end{enumerate}
 
-The second dataset, \textbf{ReXGroundingCT}\cite{rajpurkar2024rexgroundingct}, was brought in specifically because it
-supplies per-finding segmentation masks rather than just volume-level tags. It is
-organised as 2{,}992 training, 50 validation and 100 test studies (3{,}142 in
-total), each annotated with one or more of 14 finding categories. For this
-project, attention was narrowed to three categories that best matched the target
-abnormalities agreed on with the radiologists: atelectasis/consolidation
-(category \texttt{2b}), ground-glass opacity (\texttt{2c}) and pulmonary
-nodules/masses (\texttt{2d}). After filtering the metadata down to studies
-containing at least one of these categories, 1{,}418 studies remained (1{,}354
-train, 23 validation, 41 test), split roughly as 659 atelectasis/consolidation,
-871 GGO and 908 nodule/mass cases -- the two abnormality categories occur together
-less often than one might expect (correlation of about $-0.32$), which turned out
-to be convenient for keeping the classes reasonably separable. A further 347 scans
-in ReXGroundingCT had no annotated findings at all and were folded in alongside
-the CT-RATE normals to build a combined pool of negative examples. Each finding
-mask is stored as a 4D NIfTI volume of shape $[F, H, W, D]$, with one binary
-channel per annotated finding, which later made it straightforward to collapse
-multiple findings of the same category into a single lesion mask per scan.
+Of these, only CT-RATE and RadGenome-Chest CT were publicly available, while Rad-ChestCT only had an initial release of 3,630 chest
+CT scans (approximately 10\% of the dataset) and the files were restricted to the public.
+Rad-ChestCT was also used as the external validation set for training the CT-CLIP model, which was trained on the CT-RATE dataset.
+RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-level masks and 665K grounded text reports for
+vision-language AI models. However, neither of these provides the necessary spatially localized annotations to train a 3D lung
+segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct} was released very close to the start of this
+project, and it provides per-finding voxel-level segmentation masks for a subset of the CT-RATE dataset.
 
-An exploratory data analysis (EDA) was carried out before any model work began, and
-it shaped a number of decisions described later in this chapter. Beyond simple
-label counts, the EDA looked at volume dimensions, voxel spacing, and the
-Hounsfield Unit (HU) intensity distribution inside the lungs for each target
-category. Raw volumes were consistently $512 \times 512$ in-plane, but the number
-of slices varied widely from scan to scan (values such as 220, 238, 251, 466 and
-538 slices were all observed), and voxel spacing was not isotropic either --
-a typical example measured roughly $0.74\,\text{mm} \times 0.74\,\text{mm}$
-in-plane against $1.5\,\text{mm}$ between slices. This kind of inconsistency across
-scanners and acquisition protocols meant that resampling to a common spacing was
-unavoidable before patches from different scans could be treated as comparable
-inputs, which is discussed further in Section~3.3. Per-category HU histograms
-computed over lung voxels also showed that nodules, consolidation and GGO occupy
-overlapping but distinguishable intensity ranges, which gave some early confidence
-that a patch-based, intensity-driven representation was a reasonable direction to
-pursue.
+\subsubsection{CT-RATE Dataset}
+
+CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI format, hosted on Hugging
+Face (\href{https://huggingface.co/datasets/ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
+annotations and corresponding textual radiology reports across 18 distinct abnormality categories.
+The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to 50,188 total
+volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and a validation
+cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        Medical material & Lung nodule \\
+        Arterial wall calcification & Lung opacity \\
+        Cardiomegaly & Pulmonary fibrotic sequela \\
+        Pericardial effusion & Pleural effusion \\
+        Coronary artery wall calcification & Mosaic attenuation pattern \\
+        Hiatal hernia & Peribronchial thickening \\
+        Lymphadenopathy & Consolidation \\
+        Emphysema & Bronchiectasis \\
+        Atelectasis & Interlobular septal thickening \\
+        \hline
+    \end{tabular}
+    \caption{List of abnormalities in the CT-RATE dataset.}
+    \label{tab:ctrate_abnormalities}
+\end{table}
+
+CT-RATE captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
+from four primary scanner manufacturers:
+
+\begin{enumerate}
+    \item Siemens Healthineers
+    \item SIEMENS
+    \item Philips Healthcare
+    \item Philips-Neusoft Medical Systems
+\end{enumerate}
+
+\subsubsection{ReXGrounding-CT Dataset}
+
+ReXGroundingCT \cite{rajpurkar2024rexgroundingct}, is the first publicly available dataset linking voxel-level
+3D segmentation masks to free-text findings in chest CT scans in NifTI fromat, hosted on Hugging Face (\href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}).
+It includes 3,142 non-contrast chest CT studies derived from the CT-RATE dataset organised as a train set of 2,992 scans, a valid set of 50 scans and a held-out
+private test set of 100 studies. This test set is hosted on RexRank \cite{zhang2024rexrankpublicleaderboardaipowered}, a public leaderboard and challenge for
+assessing AI-powered radiology report generation. ReXGroundingCT enables grounding for 14 abnormality categories with 79\% of the annotated findings represent
+focal abnormalities such as nodules or localized consolidations, while 21\% represent diffuse or infiltrative patterns. Table \ref{tab:rex-abnormalities}
+shows the list of abnormalities in the ReXGroundingCT dataset, divided into typically focal and typically non-focal categories.
+
+\begin{table}
+\centering
+\caption{List of Abnormalities in the ReXGroundingCT Dataset}
+\label{tab:rex-abnormalities}
+\begin{tabular}{|p{0.47\linewidth}|p{0.47\linewidth}|}
+\hline
+\textbf{Typically Focal} & \textbf{Typically Non-Focal} \\
+\hline
+\begin{tabular}[t]{@{}l@{}}
+Pulmonary nodules and masses\\
+Consolidation / atelectasis\\
+Ground-glass opacities\\
+Pleural effusion / thickening\\
+Linear opacities (including subsegmental\\
+atelectasis, scarring, fibrosis)\\
+Honeycombing\\
+Pneumothorax\\
+Other focal findings
+\end{tabular}
+&
+\begin{tabular}[t]{@{}l@{}}
+Emphysema (including Centrilobular,\\
+Paraseptal, Bullous)\\
+Bronchiectasis\\
+Bronchial wall thickening\\
+Septal thickening (including Interlobular,\\
+Reticulation)\\
+Micronodules (including Centrilobular,\\
+Tree-in-bud, Perilymphatic)\\
+Other non-focal findings
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\end{table}
+
+A segmentation mask is 4-Dimensional ($F \times H \times W \times D$) where F is the number of findings. Scans feature HxW resolutions primarily at 512x512
+pixels with slice counts spanning 104 to 1,005 slices. Background Pixels are represented by a value of 0. For any given channel along
+the F dimension, each unique non-zero integer represents a distinct entity instance belonging to that finding.
 
 \subsection{Target Abnormality Selection}
 
-Rather than picking abnormality classes purely on the basis of which labels
-happened to have the most examples, the target classes were decided together with
-practising radiologists over a series of consultation sessions. The datasets on
-their own contain dozens of possible findings, many of which are either too rare
-to model reliably or of limited diagnostic priority compared to others, therefore
-clinical input was needed to narrow this down to something both meaningful and
-tractable.
-
-The radiologists were shown the available label distributions from CT-RATE and
-the finding categories in ReXGroundingCT and asked which abnormalities would be
-most valuable to detect automatically, and which were common enough in practice to
-justify the modelling effort. Two considerations came up repeatedly in these
-discussions: first, that pulmonary nodules and ground-glass/consolidation patterns
-are among the most frequently missed or delayed findings on routine chest CT, and
-second, that both have a well-established radiological basis for early
-intervention, making them good candidates for a proof-of-concept detection system.
-Based on this feedback, and cross-checked against how well each candidate class
-was actually represented in the annotated data, the following were fixed as the
-target classes for this study:
-
+The target abnormality classes were selected based on several factors:
 \begin{itemize}
-    \item 2C : Ground-glass opacity (GGO) / consolidation
-    \item 2d : Lung nodule
+    \item Expert Radiologist Recommendation
+    \item Sufficient Representation in the Dataset
+    \item Clinical Significance
 \end{itemize}
 
-This clinical grounding mattered in a second, more practical way as well: it
-directly influenced the segmentation and patch-extraction requirements described
-in the rest of this section, since both target abnormalities tend to sit close to
-the lung boundary or alter the surrounding tissue in ways that are easy for naive
-segmentation methods to mishandle.
+To obtain an expert recommendation from a radiologist, a consultation session was held with a Consultant Radiologist at the Teaching
+Hospital, Karapitiya to discuss the available findings in the ReXGroundingCT datasets. Figure \ref{fig:radiologist} shows a group
+photo taken after the consultation session.
 
-\subsection{CT Volume Loading}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/Chapter 3/radiologist.png}
+    \caption{First consultation session with the Consultant Radiologist}
+    \label{fig:radiologist}
+\end{figure}
 
-All CT scans in this study were distributed in NIfTI format, which keeps both the
-3D voxel array and the spatial metadata (orientation, spacing, origin) bundled
-together in one file. Volumes were read using \texttt{nibabel} and converted into
-float32 HU arrays, with each scan represented as
+The radiologist was shown the available finding categories in ReXGroundingCT and asked which abnormalities would be
+most valuable to detect automatically, and which were common enough in practice to justify the modelling effort.
+The radiologist highlighted the following findings as having a well-established radiological basis for early
+intervention, making them good candidates for a proof-of-concept CAD system:
 
-\begin{equation}
+\begin{itemize}
+    \item Ground-glass opacity
+    \item Pulmonary nodule
+    \item Consolidation
+    \item Mosaic attenuation
+    \item Bronchiectasis
+    \item Emphysema
+\end{itemize}
+
+The radiologist provided valuable insights into the clinical significance of each abnormality,
+their typical appearance in CT scans, and the challenges associated with their detection.
+For the initial phase of our study, we decided to narrow down the target abnormalities further, as the radiologist's recommendations
+were quite broad.
+
+However, we also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
+various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
+This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
+Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding.
+
+This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
+Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
+frequently present with visible air bronchograms within the affected area.
+This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as "consolidation or atelectasis".
+
+The categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
+radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
+However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical
+taxonomy, with 404 representative abnormal findings across all body regions. Table \ref{tab:omniabnorm-tax} shows the abnormalities
+listed under the "Lung" category.
+
+\begin{table}[ht]
+    \centering
+    \caption{Pulmonary abnormality taxonomy in OmniAbnorm-CT.}
+    \label{tab:omniabnorm-tax}
+    \begin{tabular}{p{0.28\linewidth} p{0.68\linewidth}}
+        \toprule
+        \textbf{Category} & \textbf{Abnormalities} \\
+        \midrule
+        Pulmonary parenchyma &
+        Atelectasis; Incomplete lung expansion; Pulmonary consolidation; Pulmonary ground-glass opacities; Pulmonary emphysema; Pulmonary solitary nodule or mass; Pulmonary diffusely distributed multiple nodules; Pulmonary parenchymal fibrosis; Pulmonary thin-walled cavitation; Pulmonary thick-walled cavities; Pulmonary cystic mass. \\
+        \addlinespace
+        Bronchi &
+        Bronchiectasis; Bronchial wall thickening, stenosis, or occlusion; Bronchial foreign body. \\
+        \addlinespace
+        Lung interstitial &
+        Lung interstitial fibrosis and thickening; Honeycomb lung. \\
+        \addlinespace
+        Pleura &
+        Pleural thickening; Pleural effusion; Pneumothorax; Pleural calcification; Pleural soft tissue mass. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+This study separates Atelectasis and Consolidation into two distinct categories, which is a more granular approach than ReXGrounding-CT.
+Through consultation with the radiologist, it was decided that Atelectasis and Consolidation should be distinct categories as they
+represent different pathological processes as noted in \ref{subsec:abnormalities}.
+Because there are practical constraints in dividing the already-grouped Atelectasis/Consolidation category in ReXGrounding-CT,
+we decided to remove them from the initial phase of the study.
+To further reduce the target abnormalities, we considered the representation of each class in our dataset which is discussed in
+section \ref{subsec:eda}. We finally decided on 2 target abnormalities for the initial phase of the study:
+
+\begin{enumerate}
+    \item GGO
+    \item Nodules/masses
+\end{enumerate}
+
+% IMPORTANT
+% In addition to target abnormality selection, the radiologist also provided guidance on the standard radiology workflow.
+% The radiologist explained that CT scans are typically reviewed in a systematic manner, which starts by first checking
+% patient history, which is something that we did not have access to in our dataset.
+% starting with a quick overview of the entire scan.
+% Visualize using 3 axes instead of 3D.
+
+\subsection{Exploratory Data Analysis}
+\label{subsec:eda}
+
+Based on the radiologists feedback, we performed an exploratory data analysis (EDA) and cross-checked against how well each
+candidate class was actually represented in the annotated data. Table \ref{tab:rex_category_distribution} shows the distribution
+of the 14 finding categories in ReXGroundingCT.
+
+\begin{table}[htbp]
+\centering
+\caption{Distribution of Findings and Scans Across ReX Categories}
+\label{tab:rex_category_distribution}
+\begin{tabularx}{\textwidth}{clXX}
+\hline
+\textbf{Category} & \textbf{\# Scans} & \textbf{\# Findings} & \textbf{Description} \\
+\hline
+1a & 213 & 237 & Bronchial wall thickening \\
+1b & 249 & 285 & Bronchiectasis \\
+1c & 421 & 449 & Emphysema (including centrilobular, paraseptal, bullous) \\
+1d & 188 & 198 & Septal thickening (including interlobular septal thickening, reticulation) \\
+1e & 246 & 321 & Micronodules (including centrilobular, tree-in-bud, perilymphatic) \\
+1f & 145 & 153 & Other non-focal abnormalities \\
+2a & 815 & 1135 & Linear (including subsegmental atelectasis, scarring, fibrosis) \\
+2b & 924 & 1384 & Atelectasis, consolidation \\
+2c & 1144 & 1527 & Groundglass opacity \\
+2d & 1333 & 1778 & Pulmonary nodules/masses \\
+2e & 186 & 241 & Pleural effusion or thickening \\
+2f & 15 & 16 & Honeycombing \\
+2g & 15 & 18 & Pneumothorax \\
+2h & 58 & 60 & Other focal abnormalities \\
+\hline
+\end{tabularx}
+\end{table}
+
+Based on the number of findings, it was clear that GGO, Pulmonary Nodules/masses and Atelectasis/Consolidation were the most
+well-represented categories in the dataset, with 1,527, 1,778 and 1,384 findings respectively. Since we decided to remove
+the grouped Atelectasis/Consolidation category, we were left with GGO and Pulmonary Nodules/masses as the two main target abnormalities.
+
+\subsection{CT Volume and Mask Loading}
+
+Each CT scan is stored as a 3D NIfTI volume of dimensions $ 512 \times 512 \times N_z$ with voxel spacing
+$\Delta_x, \Delta_y, \Delta_z$ mm and 16-bit signed integer intensities representing Hounsfield Units (HU).
+The corresponding segmentation mask is stored as an 8-bit unsigned integer 4D NIfTI volume with matching spatial
+dimensions plus an additional singleton channel dimension containing integer label values.
+
+Each NifTI file contains a header with metadata describing the volume's attributes. Table \ref{tab:nifti-header} lists the
+relevant header fields used in this study.
+
+\begin{table}[ht]
+\centering
+\caption{NIfTI header attributes for the CT volumes and corresponding segmentation masks.}
+\label{tab:nifti-header}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Header Attribute} & \textbf{CT Volume} & \textbf{Segmentation Mask} \\ \hline
+Dimensions &
+$[3,\,512,\,512,\,N_z,\,1,\,1,\,1,\,1]$ &
+$[4,\,1,\,512,\,512,\,N_z,\,1,\,1,\,1]$ \\ \hline
+
+Data type &
+\texttt{int16} &
+\texttt{uint8} \\ \hline
+
+Bits per voxel &
+16 &
+8 \\ \hline
+
+Voxel spacing &
+$[1,\Delta_x,\Delta_y,\Delta_z,0,0,0,0]$ &
+$[1,1,1,1,0,1,1,1]$ \\ \hline
+
+Spatial units &
+Millimetres &
+Millimetres \\ \hline
+
+Intensity scaling &
+$(s,i)$ &
+$(s,i)$ \\ \hline
+
+Affine transformation &
+Scanner-space affine &
+Identity affine \\ \hline
+
+Image origin &
+$(t_x,t_y,t_z)$ &
+$(0,0,0)$ \\ \hline
+\end{tabular}
+\end{table}
+
+The CT volumes preserve the scanner-space affine transformation, which maps voxel indices to physical coordinates in millimetres.
+In general, the affine matrix can be represented as:
+
+\[
+\mathbf{A} =
+\begin{bmatrix}
+-\Delta_x & 0 & 0 & t_x \\
+0 & -\Delta_y & 0 & t_y \\
+0 & 0 & \Delta_z & t_z \\
+0 & 0 & 0 & 1
+\end{bmatrix},
+\]
+
+\noindent where $\Delta_x$, $\Delta_y$, and $\Delta_z$ denote the voxel spacing along the $x$-, $y$-, and $z$-axes, respectively,
+and $(t_x,t_y,t_z)$ denotes the translation of the image origin in scanner coordinates. The negative scaling factors along the
+$x$- and $y$-axes indicate that these axes are stored in the opposite direction relative to the scanner coordinate system, while
+the $z$-axis retains its positive orientation.
+
+Although each segmentation mask corresponds exactly with its associated CT scan, the mask NIfTI headers do not preserve the
+original spatial metadata. Specifically, the masks are stored with unit voxel spacing ($1 \times 1 \times 1$ mm), and an identity
+affine transformation, whereas the CT volumes retain their scanner-space affine and true voxel spacing. During preprocessing,
+the mask metadata is updated to match the corresponding CT volume's metadata.
+
+Volumes were loaded using the nibabel Python library and converted into float32 HU arrays, with each scan represented as:
+
+\[
 I(x,y,z) \in \mathbb{R}^{H \times W \times D}
-\end{equation}
+\]
 
-where $H$, $W$ and $D$ denote the height, width and depth of the volume. Alongside
-the intensity array, the voxel spacing recorded in the NIfTI header was retained
-for every scan, since, as noted above, spacing was not consistent across the
-dataset and this information is needed later to resample volumes onto a common
-grid.
+\noindent where $H$, $W$ and $D$ denote the height, width and depth of the volume.
 
-Where ground-truth finding masks were available (ReXGroundingCT), the
-corresponding 4D mask volume was loaded through the same pathway and kept aligned
-with its source CT volume via a shared volume identifier, therefore that a mask could
-always be traced back to the exact scan and finding it belongs to.
+\section{Data Preprocessing}
 
-Loading a scan or a mask, however, was never just a matter of reading the NIfTI
-file and handing back an array -- both paths funnel through a shared loading
-routine that also decides whether resampling and lung preprocessing are required
-before the data is considered ready to use. Figure~\ref{fig:loading-diagram}
+Before any patches could be extracted, the raw volumes had to be reduced to just
+the lung region. A whole-volume approach was ruled out fairly early: bones, soft
+tissue and background air all add computational overhead without contributing
+anything useful to dictionary learning, and worse, they risk letting the model
+pick up spurious patterns unrelated to lung pathology. Three different approaches
+to isolating the lungs were tried over the course of the project, in the order
+described below, before settling on a final method.
+
+Figure~\ref{fig:loading-diagram}
 summarises this routine. After a volume or mask is read with NiBabel, its voxel
 spacing is compared against the target spacing of $1.5\,\text{mm}$ isotropic; if
 the two already match, the array is passed through unchanged, but if not, it is
@@ -153,15 +384,7 @@ comparable.
     \label{fig:loading-diagram}
 \end{figure}
 
-\subsection{Preprocessing}
-
-Before any patches could be extracted, the raw volumes had to be reduced to just
-the lung region. A whole-volume approach was ruled out fairly early: bones, soft
-tissue and background air all add computational overhead without contributing
-anything useful to dictionary learning, and worse, they risk letting the model
-pick up spurious patterns unrelated to lung pathology. Three different approaches
-to isolating the lungs were tried over the course of the project, in the order
-described below, before settling on a final method.
+\subsection{Lung Segmentation}
 
 \subsubsection{Classical Image Processing-Based Lung Segmentation}
 
@@ -1138,6 +1361,14 @@ analysis, classification metrics describe the ability of the model to identify
 abnormal findings, segmentation metrics measure spatial agreement with reference
 annotations, and interpretability metrics evaluate whether the learned
 representations provide meaningful explanations.
+
+\subsection{ReXRank}
+
+The ReXrank Leaderboard is a standardized public benchmarking platform for evaluating AI-driven chest X-ray report generation and visual question answering (VQA).
+It uses 8 distinct clinical and text metrics, relying on the composite score 1/RadCliQ-v1 as its primary ranking mechanism to measure real-world clinical alignment. 
+Evaluation Framework and DataReXGradient Dataset: The core private test set comprises 10,000 multi-site studies across 67 institutions to test zero-shot
+generalization.Public Datasets: Incorporates standard benchmarks including MIMIC-CXR, IU-Xray, and CheXpert Plus.Task Splits: Separates models into findings-only
+and the more difficult findings + impression generation configurations.
 
 \subsection{Classification}
 
