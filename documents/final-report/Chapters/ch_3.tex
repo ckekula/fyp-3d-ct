@@ -359,6 +359,17 @@ pipeline is applied unchanged regardless of which dictionary-learning
 variant (K-SVD, frozen dictionary learning, or LC-KSVD) produced the
 sparse codes it is given.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/classification_pipeline.png}
+    \caption{Overview of the classification pipeline: each patch is first
+    converted into a sparse code $\Gamma$ against the frozen dictionary $D$
+    (Section~3.2.1), and the resulting codes are then used to train and
+    query a classifier that predicts the patch-level class label
+    (Section~3.2.2).}
+    \label{fig:classification-pipeline}
+\end{figure}
+
 \subsection{Sparse Coding}
 
 Before training the classifier, every patch in the training dataset is
@@ -382,8 +393,8 @@ dictionary $D$ are normalized to unit-norm columns. This prevents features
 with larger magnitudes from dominating the optimization process and
 ensures that all dictionary atoms contribute equally.
 
-The optimization problem is solved using **FISTA (Fast Iterative
-Shrinkage-Thresholding Algorithm)**. The project's own \texttt{reppi}
+The optimization problem is solved using FISTA (Fast Iterative
+Shrinkage-Thresholding Algorithm). The project's own reppi
 solver core is used directly instead of the available sparse-coding
 wrapper because the wrapper only supports PyTorch tensors, while the patch
 extraction stage produces NumPy-based patch matrices.
@@ -436,9 +447,9 @@ as the target. Using these features and labels, the classifier learns to predict
 the class of each image patch from its sparse representation.
 
 Two classifiers are trained using the same $(\Gamma, \text{label})$ dataset.
-The first is a \textbf{Linear Support Vector Classifier (Linear SVC)}, 
+The first is a Linear Support Vector Classifier, 
 which learns a linear decision boundary and is fully trained and tuned as the main
-classification model. The second is \textbf{Logistic Regression}, which predicts
+classification model. The second is Logistic Regression, which predicts
 the probability of each class using the sparse code. Logistic Regression is included
 to compare its performance with the Linear SVC. The implementation and training of both 
 classifiers are described in the following sections.
@@ -446,19 +457,19 @@ classifiers are described in the following sections.
 \subsubsection{Linear Support Vector Classifier (LinearSVC)}
 
 The classifier used for classifying the sparse codes is
-\texttt{scikit-learn}'s \texttt{LinearSVC}, combined with a
-\texttt{MaxAbsScaler} inside a single \texttt{Pipeline}.
+scikit-learn's LinearSVC, combined with a
+MaxAbsScaler inside a single Pipeline.
 
-The \texttt{MaxAbsScaler} scales each feature (i.e., each dictionary
+The MaxAbsScaler scales each feature (i.e., each dictionary
 atom coefficient) by its maximum absolute value in the training data.
 It does not subtract the mean, which allows the zero values generated
 during sparse coding to remain unchanged. This is important because zero
 coefficients represent inactive dictionary atoms. In contrast, a
-mean-centering scaler such as \texttt{StandardScaler} would shift these
+mean-centering scaler such as StandardScaler would shift these
 zero values away from zero and reduce the sparsity information.
 
-The regularisation parameter $C$ of the \texttt{LinearSVC} classifier is
-selected using \texttt{GridSearchCV}, where the candidate values are
+The regularisation parameter $C$ of the LinearSVC classifier is
+selected using GridSearchCV, where the candidate values are
 $C \in \{0.1, 1.0, 10.0\}$. The selection process uses 5-fold
 cross-validation with macro-averaged F1-score as the evaluation metric
 instead of accuracy. This is because the three target classes
@@ -467,16 +478,16 @@ The macro F1-score gives equal importance to each class by averaging the
 F1-score of all classes, preventing the classifier from being biased
 towards the majority class.
 
-The \texttt{LinearSVC} model is configured with
-\texttt{dual=False} and a maximum iteration limit of $10{,}000$ to
+The LinearSVC model is configured with
+dual=False and a maximum iteration limit of $10{,}000$ to
 ensure reliable convergence during training. The grid search is executed
-with \texttt{n\_jobs=2} and \texttt{pre\_dispatch=1} to control the
+with n\_jobs=2 and pre\_dispatch=1 to control the
 computational resources used during hyperparameter tuning.
 
 After the grid search identifies the optimal hyperparameter combination,
 the classifier is retrained on the complete training dataset using
-\texttt{refit=True}. The final trained model is then saved using
-\texttt{joblib}, allowing it to be reused during inference and evaluation
+refit=True. The final trained model is then saved using
+joblib, allowing it to be reused during inference and evaluation
 without repeating the training process.
 
 \subsubsection{Logistic Regression}
@@ -534,7 +545,7 @@ and testing. Therefore, patches must first be generated from the input
 volume, converted into sparse codes, and then classified to produce the
 final abnormality map.
 
-\paragraph{Preprocessing.} 
+\paragraph{Preprocessing} 
 The input volume is first taken through
 exactly the same preprocessing used at training time: it is resampled to
 the common $1.5\,\text{mm}$ isotropic spacing, lung-segmented, HU-clipped
@@ -542,7 +553,7 @@ and normalised to $[0,1]$, so that a fresh scan reaching the classifier
 has been through the identical transformation as every training and test
 patch before it.
 
-\paragraph{Dense patch extraction.}
+\paragraph{Dense patch extraction}
 
 During training and testing, abnormal patches are extracted from regions
 around known lesions using ground-truth masks. However, a new CT volume
@@ -562,7 +573,7 @@ are stored together with the patch data. These coordinates are later used
 to map the predicted patch labels back to their original positions in the
 CT volume, allowing the generation of a voxel-level abnormality map.
 
-\paragraph{Sparse coding and classification.}
+\paragraph{Sparse coding and classification}
 
 Each remaining patch is converted into a sparse code using the same
 dictionary $D$ that was learned during the training stage. The same
@@ -583,7 +594,7 @@ used to generate the voxel-level abnormality map by mapping each patch
 prediction back to its original location in the CT volume.
 
 
-\paragraph{Reassembling a per-voxel map.} 
+\paragraph{Reassembling a per-voxel map} 
 A single patch's prediction
 only covers the small cube of voxels it was extracted from, and because
 patches overlap under the dense grid's stride, most voxels end up covered
@@ -601,7 +612,7 @@ normal label regardless of what the patches covering it predicted, so
 that an abnormal prediction cannot bleed out past the lung boundary into
 surrounding air or chest wall.
 
-\paragraph{Reassembling a per-voxel map.}
+\paragraph{Reassembling a per-voxel map}
 
 Each patch prediction represents only the small region of the CT volume
 covered by that patch. Since the dense grid produces overlapping patches,
@@ -625,7 +636,7 @@ such as surrounding air or the chest wall.
 \subsubsection{Statistical Analysis}
 
 The performance of the classifiers on the test dataset is evaluated using
-a common \texttt{evaluating} method. The same evaluation procedure is
+a common evaluating method. The same evaluation procedure is
 applied to all classifiers to ensure that the results are measured
 consistently regardless of the model used.
 
@@ -658,7 +669,7 @@ performance and the quality of the learned sparse representation, rather
 than relying only on classifier accuracy as an indication of model
 effectiveness.
 
-\paragraph{Sparsity and atom utilisation.}
+\paragraph{Sparsity and atom utilisation}
 
 The sparse codes generated using the fixed dictionary were analysed to
 evaluate the sparsity level and how effectively the dictionary atoms were
@@ -690,7 +701,7 @@ analysis. This prevents the dominant atom from overwhelming the analysis
 and allows the relationships between the remaining dictionary atoms to be
 examined more clearly.
 
-\paragraph{Atom co-occurrence and clustering.}
+\paragraph{Atom co-occurrence and clustering}
 
 The relationship between dictionary atoms was analysed by measuring how
 frequently pairs of atoms were activated together within the same patch.
@@ -751,7 +762,7 @@ unrelated features.
     \label{fig:atom-cooccurrence-graph}
 \end{figure}
 
-\paragraph{Aggregate atom contribution.} Summing the absolute sparse
+\paragraph{Aggregate atom contribution} Summing the absolute sparse
 coefficient of every atom across a large batch of patches gives a sense
 of which atoms matter most once magnitude, not just activation frequency,
 is taken into account. Figure~\ref{fig:aggregated-sparse-representation}
@@ -773,7 +784,7 @@ contribute a small, comparable amount each.
     \label{fig:aggregated-sparse-representation}
 \end{figure}
 
-\paragraph{Reconstruction and visual inspection.}
+\paragraph{Reconstruction and visual inspection - }
 As an additional qualitative evaluation, the quality of the sparse
 representation was visually analysed together with the numerical
 reconstruction error. The original patches were reconstructed from their
@@ -870,7 +881,7 @@ patches, nnU-Net directly predicts the abnormal regions for every voxel
 in the CT scan, producing a detailed segmentation of the target
 abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 During inference, each input CT volume is preprocessed using the same
 settings that were automatically determined by nnU-Net during the
@@ -886,7 +897,7 @@ patch size and normalization method are manually defined, nnU-Net
 automatically applies the preprocessing settings learned during dataset
 planning.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 During inference, the trained nnU-Net model is loaded and applied to
 previously unseen CT volumes. Each preprocessed CT scan is passed through
@@ -929,7 +940,7 @@ segmentation decoder. Instead, the model identifies relevant regions
 based on the relationship between the CT image features and the provided
 text descriptions.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Each CT volume is loaded from a NIfTI file. Any missing or invalid
 (\texttt{NaN}) values are replaced with zero. If the input volume contains
@@ -946,7 +957,7 @@ This preprocessing uses a different intensity normalization strategy
 compared with the lung-segmentation-based normalization used in the
 sparse-coding pipeline described earlier in this chapter.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The official pretrained Merlin model is loaded once, and a forward hook is
 attached to the last block of its 3D image encoder
@@ -996,7 +1007,7 @@ training. The official released v2 checkpoint was applied directly to
 local CT volumes. Text prompts were used to guide the model to segment
 the same target abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Each CT volume was loaded from a NIfTI file and rearranged into a
 depth-first $(D,H,W)$ format. A standard lung window (width 1500 and
@@ -1012,7 +1023,7 @@ axial slice to a fixed size of $512\times512$. The padding information
 and the axis where padding was applied were stored so that the predicted
 masks could later be converted back to the original CT volume size.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The official pretrained BiomedParse v2 checkpoint was loaded using the
 model configuration provided by BiomedParse. The checkpoint was loaded
@@ -1064,7 +1075,7 @@ CT-CLIP was used as a pretrained model without any additional training.
 The released CT-LiPro linear-probe checkpoint was applied directly to the
 available CT volumes to predict the probability of different abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Unlike the sparse-coding pipeline, which uses physical spacing information
 to resample CT volumes, CT-CLIP requires every input volume to have the
@@ -1078,7 +1089,7 @@ to $(Z,X,Y)$ order. Finally, each volume was resized using trilinear
 interpolation to a fixed size of $240\times480\times480$ before being
 given to the model.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The released \texttt{CT\_LiPro\_v2.pt} checkpoint was loaded into the
 pretrained CT-CLIP model together with its linear classification head.
@@ -1110,7 +1121,7 @@ scans.
 A second inference method was also tested using CT-CLIP's original
 zero-shot capability without the trained linear classification head. In
 this approach, each abnormality was represented using two text prompts:
-``\emph{abnormality} is present'' and ``\emph{abnormality} is not
+``abnormality is present'' and ``abnormality is not
 present''. The model compared the similarity between the CT volume and
 both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
