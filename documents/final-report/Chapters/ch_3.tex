@@ -347,46 +347,62 @@ I(x,y,z) \in \mathbb{R}^{H \times W \times D}
 
 \section{Data Preprocessing}
 
-Before any patches could be extracted, the raw volumes had to be reduced to just
-the lung region. A whole-volume approach was ruled out fairly early: bones, soft
-tissue and background air all add computational overhead without contributing
-anything useful to dictionary learning, and worse, they risk letting the model
-pick up spurious patterns unrelated to lung pathology. Three different approaches
-to isolating the lungs were tried over the course of the project, in the order
-described below, before settling on a final method.
-
-Figure~\ref{fig:loading-diagram}
-summarises this routine. After a volume or mask is read with NiBabel, its voxel
-spacing is compared against the target spacing of $1.5\,\text{mm}$ isotropic; if
-the two already match, the array is passed through unchanged, but if not, it is
-resampled using trilinear interpolation for CT intensities or nearest-neighbour
-interpolation for masks, mirroring the distinction made earlier for
-\texttt{resample\_volume} and \texttt{resample\_mask} -- nearest-neighbour is used
-specifically to avoid inventing intermediate label values between the discrete
-finding categories in a mask. Only volumes, and never masks, are then routed
-through the preprocessing block, where lung segmentation, HU clipping to
-$[-1000, 500]$ and min-max normalisation are applied in sequence before the final
-volume is returned; masks skip this block entirely and are returned as soon as
-resampling is done, since a binary or categorical finding mask has no HU values to
-clip or normalise and does not need to be run through the lung segmentation model.
-Keeping this branching logic in one place meant that every scan and every mask
-used later in the pipeline, regardless of which dataset it came from, had been
-through exactly the same spacing correction and (where relevant) the same
-preprocessing steps, so patches extracted from different scans remained directly
-comparable.
+Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipeline used in this study.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/loading_volumescan.png}
-    \caption{Shared loading pipeline for CT volumes and finding masks, showing the
-    spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
-    masks) and the preprocessing block applied only to volumes.}
+    \caption{Shared loading pipeline for CT volumes and finding masks}
     \label{fig:loading-diagram}
 \end{figure}
 
+\subsection{Resampling}
+
+Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common isotropic voxel
+spacing to correct for variable scanner resolutions. We picked the same resampling target spacing as the CT-CLIP model, since 
+was trained on the volumes from the CT-RATE dataset. The target spacing was set to $0.75 \times 0.75 \times 0.75$ mm, in the
+$x$, $y$ and $z$ directions respectively.
+
+An in-plane (X-Y) resolution of 0.75 mm is small enough to capture subtle pulmonary
+nodules without losing data to excessive downsampling. Furthermore, chest CTs naturally have much higher in-plane resolution
+than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while compressing file sizes by 50\%
+compared to isotropic 0.75 mm 3D grids.
+
+The resampling was performed using the \texttt{scipy.ndimage.zoom} function with linear interpolation for the CT volumes and
+nearest-neighbour interpolation for the segmentation masks. The zoom factors were calculated as:
+
+\begin{equation}
+\text{zoom}_x = \frac{\Delta_x}{0.75}, \quad
+\text{zoom}_y = \frac{\Delta_y}{0.75}, \quad
+\text{zoom}_z = \frac{\Delta_z}{1.5}
+\end{equation}
+
+This was further confirmed by analysing the distribution of voxel spacings
+across the dataset. Figure \ref{fig:spacing-distribution} shows this distribution along each axis.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/spacing_distribution.png}
+    \caption{Distribution of voxel spacings across the dataset}
+    \label{fig:spacing-distribution}
+\end{figure}
+
+After resampling, all volumes and masks were resized to a fixed matrix size of $ 480 \times 480 \times 240 $ voxels across the
+coronal, sagittal and axial axes respectively, using center-cropping for oversized volumes or padding for undersized volumes.
+This yields a field of view of $360 \times 360 \times 360$ mm, which spans the physical volume of a human thorax, ensuring
+critical boundaries are not cut off during cropping. The dictionary learning model also relies on non-overlapping
+$12 \times 12 \times 12$ voxel patches, so A matrix of $480 \times 480 \times 240$ voxels is divisible by 12 along each axis,
+which yields an exact patch grid of $40 \times 40 \times 20$ (384,000) patches per volume.
+
 \subsection{Lung Segmentation}
 
-\subsubsection{Classical Image Processing-Based Lung Segmentation}
+Passing the whole volume to the model would include information on bones, soft tissue and background air which adds
+computational overhead without contributing anything useful to the models learning process, or worse, risks letting the model
+pick up spurious patterns unrelated to lung pathology.
+Therefore, before any patches could be extracted, the raw volumes had to be reduced to just the lung region.
+We explored three different approaches to isolating the lungs were tried over the course of the project.
+
+\subsubsection{Classical Image Processing}
 
 The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
 is normally well separated from surrounding structures in intensity. Each volume
@@ -402,7 +418,7 @@ sequence of morphological steps applied slice-by-slice and volume-wise using
 \texttt{scipy.ndimage} and \texttt{skimage.segmentation}. Border-connected regions
 were removed on each axial slice with \texttt{clear\_border} (mainly to drop the
 surrounding air and imaging-table artefacts that also fall inside the HU window),
-after which only the two largest connected components were kept -- under the
+after which only the two largest connected components were kept under the
 assumption that these correspond to the left and right lung:
 
 A 3D binary closing (a $3\times3\times3$ connectivity structure, 2 iterations) was
@@ -411,62 +427,26 @@ then used to smooth the boundary and reconnect thin gaps, followed by
 these two steps are exactly what a lung mask needs, since vessels, bronchi and
 small nodules would otherwise show up as holes in an otherwise solid lung region.
 
-On visibly normal scans, this five-stage pipeline (threshold $\rightarrow$ clear
-border $\rightarrow$ largest components $\rightarrow$ closing $\rightarrow$ hole
-filling) produced reasonable-looking lung masks when checked slice-by-slice. The
-problem showed up once pathology entered the picture. Consolidation and areas of
-lung opacity raise the local tissue density towards that of soft tissue, so the
-affected voxels are not registered as lung parenchyma at all under the initial
-$-900$ to $-200$ HU window -- they get cut out of the mask at the very first
-thresholding step, before any of the later stages ever see them.
+On visibly normal scans, this five-stage pipeline produced reasonable lung masks when checked manually. However,
+Consolidation and areas of lung opacity raise the local tissue density towards that of soft tissue, so the
+affected voxels are not registered as lung parenchyma under the initial
+$-900$ to $-200$ HU window.
+Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
+from purely intensity-based segmentation and towards a learned segmentation model.
 
-What happens next depends on where the abnormality sits and how large it is. When
-the affected region is small and fully surrounded by normal, correctly thresholded
-lung tissue, it behaves like just another gap in the mask, and the binary closing
-and hole-filling steps are usually enough to patch it back in -- the same
-mechanism that is meant to fill in small vessels and airways ends up rescuing
-these interior lesions almost by accident. But when the abnormality is larger, or
-sits close to the lung boundary rather than fully enclosed within it, closing and
-hole-filling can no longer bridge the gap: the affected region gets left connected
-to the outside of the lung rather than treated as an enclosed hole, so it is
-excluded from the final mask along with everything else outside the lung
-boundary. This is exactly the pattern that shows up when the intermediate masks
-are stepped through and overlaid on the source slice -- a large opacity running
-along the pleural surface is visibly missing from the final lung segmentation and
-from the CT after the mask is applied, while the ground-truth annotation for that
-same region sits entirely outside the segmented lung. The five-stage pipeline was
-checked this way across several scans, and the failure was consistent whenever the
-abnormal region was either large or adjacent to the lung border, rather than an
-isolated case.
+\subsubsection{U-Net Model}
 
-For a project whose entire purpose is to detect exactly these kinds of
-abnormalities, a segmentation step that only reliably preserves lesions small
-enough to be treated as incidental holes is not something that could be fixed with
-more morphological post-processing -- the information is already lost at the
-thresholding step, since abnormal tissue often does not fall inside the normal
-lung parenchyma HU window in the first place. This is what motivated the move away
-from purely intensity-based segmentation and towards a learned segmentation model,
-LungMask's \texttt{LMInferer}, described next.
-
-\subsubsection{LungMask-Based Lung Segmentation}
-
-The method that was ultimately adopted is the \texttt{LungMask} library, accessed
-through its \texttt{LMInferer} interface. Unlike the classical pipeline, LungMask
+The method that was ultimately adopted is the LungMask library, which uses the  U-net (R231) model which is pretrained on diverse
+CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
-it proved noticeably more stable when abnormal tissue was present -- consolidation
-and GGO regions inside the lung boundary were retained rather than excluded, which
-directly addressed the main failure observed with classical image processing approach.
+it proved noticeably more stable when abnormal tissue was present. Consolidation
+and GGO regions inside the lung boundary appeared to retain on manual inspection.
 
 Given a CT volume, LungMask returns a label map with three values: 0 for
 background, 1 for the left lung and 2 for the right lung. This was converted into a
-binary mask and applied to the original volume:
+binary mask and applied to the original volume.
 
-\begin{equation}
-I_{lung}=I \times M_{lung}
-\end{equation}
-
-where $I$ is the original CT volume and $M_{lung}$ is the binary lung mask
-produced by LungMask. Voxels falling outside the mask were reset to a fixed
+Voxels falling outside the mask were reset to a fixed
 background value of $-1000$ HU (approximating air), after which the volume was
 clipped to the range $[-1000, 500]$ HU and linearly rescaled to $[0,1]$. This
 combination of segmentation, HU clipping and normalisation was wrapped into a
@@ -1340,7 +1320,6 @@ of the abnormality being present.
 
 This zero-shot approach was tested successfully on a small pilot dataset,
 but it was not used for the final full-dataset evaluation.
-
 
 \section{Evaluation Metrics}
 
