@@ -502,10 +502,62 @@ single preprocessing routine that also resamples each volume to an isotropic
 $1.5\,\text{mm}$ spacing beforehand, therefore that every scan reaching the patch
 extraction stage has a consistent voxel grid regardless of its original acquisition parameters.
 
-%TODO: Add SimpleITK loading
+Before a volume could be handed to the LungMask inferer, it first had to be converted into the image
+representation the underlying library expects. LungMask is built on top of SimpleITK, which stores
+volumes in $(z,y,x)$ order rather than the $(x,y,z)$ layout used throughout the rest of the pipeline, so
+each resampled numpy array was transposed accordingly before being wrapped with
+\texttt{SimpleITK.GetImageFromArray}. The resulting image object was then stamped with the same
+isotropic $1.5\,\text{mm}$ spacing used during resampling, since SimpleITK carries its own spacing
+metadata independently of the array values and the U-net model relies on this metadata to reason about
+physical voxel size rather than array indices. Only once the volume was expressed as a properly
+spaced SimpleITK image was it passed to the LungMask inferer described above, with the resulting
+label map transposed back to the original $(x,y,z)$ ordering before the mask was applied.
+With the lung mask in hand and the background voxels reset to $-1000$ HU, the remaining question was
+how best to rescale the retained intensities before they were fed into the dictionary learning stage.
 
 \subsection{Normalization}
-%TODO
+
+Two normalisation strategies were considered for this rescaling step.
+The first was the fixed Min-Max rescaling described above, following the
+same approach CT-CLIP \cite{hamamci2024ctclip} uses when preparing CT-RATE
+volumes. The second was the approach used in the original K-SVD image
+denoising paper by Elad and Aharon \cite{elad2006image}, where each patch
+has its local mean subtracted before dictionary learning, and the
+mean-subtracted patch is then divided by its own $L_2$ norm before being
+passed to OMP. In their setting, the mean is removed so that the SVD step
+used to update dictionary atoms is not dominated by a constant background
+offset, and the $L_2$ norm is removed so that every patch contributes to
+the dictionary update on a comparable scale, no matter how much contrast it
+originally had.
+
+The CT-CLIP style Min-Max rescaling was chosen over this K-SVD style
+mean-subtraction and $L_2$-norm approach, primarily on account of what the HU
+value represents physically in a CT scan. Unlike a conventional image
+intensity, the Hounsfield Unit is a direct physical measure of tissue
+density: air sits near $-1000$ HU, fat near $-100$ HU, soft tissue lies
+between roughly $20$ and $70$ HU, and calcified or bony structures exceed
+$+400$ HU. The two target abnormalities in this project are, in part,
+distinguished by this density value, with GGO presenting as a hazy,
+low-density opacity while a solid or calcified nodule occupies a
+substantially higher HU range. The raw intensity therefore carries
+diagnostic information on which the dictionary learning and classification
+stages later depend.
+
+Subtracting the per-patch mean removes the local baseline offset, while the
+subsequent division by the $L_2$ norm removes the remaining contrast. Taken
+together, these two steps mean that a given HU value could be mapped to a
+different normalised value depending on the surrounding content of that
+particular patch. Findings that are structurally similar but differ in
+density, for instance a faint GGO adjacent to a denser nodule, could
+consequently be mapped close together in the normalised space, even though
+this density difference is often the distinguishing factor between the two
+classes. Min-Max rescaling avoids this shortcoming, as it applies a single,
+fixed formula, $\left(I - I_{min}\right)/\left(I_{max} - I_{min}\right)$,
+derived from the clipping window established earlier rather than from any
+quantity computed per patch. A given HU value therefore always maps to the
+same normalised value, irrespective of the voxel, patch or scan from which
+it originated, thereby preserving the density information for the later
+stages of the pipeline.
 
 \subsection{Patch Extraction}
 \label{subsec:patch-extraction}
