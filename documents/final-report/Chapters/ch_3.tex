@@ -263,10 +263,8 @@ Based on the number of findings, it was clear that GGO, Pulmonary Nodules/masses
 well-represented categories in the dataset, with 1,527, 1,778 and 1,384 findings respectively. Since we decided to remove
 the grouped Atelectasis/Consolidation category, we were left with GGO and Pulmonary Nodules/masses as the two main target abnormalities.
 
-\subsubsection{Lesion Size Distribution}
-
 Beyond how many findings each category contributed, it was also important to understand how large a typical
-finding actually is, since this has a direct bearing on how patches would later need to be sampled around each
+finding actually is, since this has a direct impact on how patches would later need to be sampled around each
 lesion. For every GGO and nodule/mass annotation in the dataset, the number of foreground voxels enclosed by its
 ground-truth mask was measured, giving one voxel count per annotation. Table \ref{tab:lesion_voxel_stats}
 summarises the resulting distributions.
@@ -277,33 +275,31 @@ summarises the resulting distributions.
 \label{tab:lesion_voxel_stats}
 \begin{tabularx}{\textwidth}{lXXXXXXX}
 \hline
-\textbf{Category} & \textbf{\# Ann.} & \textbf{\# Scans} & \textbf{Mean} & \textbf{Median} & \textbf{P25} & \textbf{P75} & \textbf{P95} \\
+\textbf{Category} & \textbf{\# Ann.} & \textbf{\# Scans} & \textbf{Mean} & \textbf{Median} & \textbf{P25} & \textbf{P75} \\
 \hline
-GGO (2c) & 1,543 & 1,161 & 113,871 & 19,682 & 4,818 & 83,380 & 560,393 \\
-Nodule/mass (2d) & 1,801 & 1,349 & 10,196 & 417 & 194 & 1,167 & 17,171 \\
+GGO (2c) & 1,543 & 1,161 & 113,871 & 19,682 & 4,818 & 83,380 \\
+Nodule/mass (2d) & 1,801 & 1,349 & 10,196 & 417 & 194 & 1,167 \\
 \hline
 \end{tabularx}
 \end{table}
 
 The two categories turned out to have very different, heavily right-skewed size profiles. The median GGO
 annotation covers 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just
-417 voxels, and this gap holds fairly consistently across the rest of the distribution -- the 25th and 75th
-percentiles for GGO (4,818 and 83,380 voxels) sit well above the corresponding nodule/mass values (194 and
-1,167 voxels). Both distributions also have a long tail of much larger outliers, with the largest single GGO
+417 voxels. Both distributions also have a long tail of much larger outliers, with the largest single GGO
 annotation reaching 3,442,007 voxels and the largest nodule/mass annotation reaching 1,872,872 voxels, which is
 why the histograms in Figures \ref{fig:ggo-voxel-dist} and \ref{fig:ggo-nodule-voxel-dist} are plotted on a
 log$_{10}$(voxel count) axis rather than a linear one.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/ggo_log_voxel_distribution.png}
+    % \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/ggo_log_voxel_distribution.png}
     \caption{Log-scale voxel-count distribution of GGO (category 2c) annotations.}
     \label{fig:ggo-voxel-dist}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/nodule_log_voxel_distribution.png}
+    % \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/nodule_log_voxel_distribution.png}
     \caption{Log-scale voxel-count distribution of Nodule/mass (category 2d) annotations.}
     \label{fig:ggo-nodule-voxel-dist}
 \end{figure}
@@ -414,8 +410,8 @@ Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipe
 
 Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common isotropic voxel
 spacing to correct for variable scanner resolutions. We picked the same resampling target spacing as the CT-CLIP model, since 
-was trained on the volumes from the CT-RATE dataset. The target spacing was set to $0.75 \times 0.75 \times 0.75$ mm, in the
-$x$, $y$ and $z$ directions respectively.
+it was trained on the volumes from the CT-RATE dataset \cite{hamamci2024ctrate}. The target spacing was set to
+$0.75 \times 0.75 \times 0.75$ mm, in the $x$, $y$ and $z$ directions respectively.
 
 An in-plane (X-Y) resolution of 0.75 mm is small enough to capture subtle pulmonary
 nodules without losing data to excessive downsampling. Furthermore, chest CTs naturally have much higher in-plane resolution
@@ -483,8 +479,7 @@ small nodules would otherwise show up as holes in an otherwise solid lung region
 
 On visibly normal scans, this five-stage pipeline produced reasonable lung masks when checked manually. However,
 Consolidation and areas of lung opacity raise the local tissue density towards that of soft tissue, so the
-affected voxels are not registered as lung parenchyma under the initial
-$-900$ to $-200$ HU window.
+affected voxels are not registered as lung parenchyma under the initial $-900$ to $-200$ HU window.
 Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
 from purely intensity-based segmentation and towards a learned segmentation model.
 
@@ -500,14 +495,17 @@ Given a CT volume, LungMask returns a label map with three values: 0 for
 background, 1 for the left lung and 2 for the right lung. This was converted into a
 binary mask and applied to the original volume.
 
-Voxels falling outside the mask were reset to a fixed
-background value of $-1000$ HU (approximating air), after which the volume was
-clipped to the range $[-1000, 500]$ HU and linearly rescaled to $[0,1]$. This
+Voxels falling outside the mask were reset to a fixed background value of $-1000$ HU (approximating air), after which the volume
+was clipped to the range $[-1000, 500]$ HU and linearly rescaled to $[0,1]$. This
 combination of segmentation, HU clipping and normalisation was wrapped into a
 single preprocessing routine that also resamples each volume to an isotropic
 $1.5\,\text{mm}$ spacing beforehand, therefore that every scan reaching the patch
-extraction stage has a consistent voxel grid regardless of its original
-acquisition parameters.
+extraction stage has a consistent voxel grid regardless of its original acquisition parameters.
+
+%TODO: Add SimpleITK loading
+
+\subsection{Normalization}
+%TODO
 
 \subsection{Patch Extraction}
 \label{subsec:patch-extraction}
@@ -521,7 +519,41 @@ to break each volume down into smaller 3D patches. Patch-based sampling provides
     \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
 \end{itemize}
 
-To determine the 
+To determine the dimensions of the patches, we considered the size distribution of the target abnormalities. The median GGO annotation covers
+19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just 417 voxels.
+Since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
+A similar approach was used for healthy tissue, a maximum of 50\% of the voxels in a patch were allowed to be background since
+HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{} shows a visualization of a patch-sampled lung in 3D.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patch_sampling.png}
+    \caption{3D visualization of patch sampling from a lung volume.}
+    \label{fig:patch-sampling-visualization}
+\end{figure}
+
+At 50\% of the median nodule size, we considered multiple patch sizes that would include a sufficient number of 
+patches from the nodule/mass category. Table \ref{tab:patch-size-comparison} shows the comparison of two patch sizes that were considered.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Patch Size} & \textbf{\# voxels} & \textbf{50\% of Voxels} \\
+        \hline
+        $32 \times 32 \times 32$ & 32,768 & 16,384 \\
+        $16 \times 16 \times 16$ & 4,096 & 2,048 \\
+        $12 \times 12 \times 12$ & 1,728 & 864 \\
+        $8 \times 8 \times 8$ & 512 & 256 \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of candidate patch sizes.}
+    \label{tab:patch-size-comparison}
+\end{table}
+
+Based on the distribution in figure \ref{}, selecting the $16 \times 16 \times 16$ patch size covers more than 25\% of the patches
+in the nodule/mass category, while the $12 \times 12 \times 12$ patch size covers less than 10\% of the patches in the
+nodule/mass category.
 
 Each patch is a fixed $16 \times 16 \times 16$ voxel cube, which at the resampled
 $1.5\,\text{mm}$ spacing corresponds to roughly a $24\,\text{mm}^3$ region of lung

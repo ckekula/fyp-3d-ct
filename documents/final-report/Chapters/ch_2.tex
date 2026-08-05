@@ -45,7 +45,17 @@ segmentation approaches capable of handling such structural diversity without ex
 \subsection{Pulmonary Abnormalities}
 \label{subsec:abnormalities}
 
-Our study focuses on the detection and segmentation of two common pulmonary abnormalities: Ground-Glass Opacity (GGO) and pulmonary nodules.
+Our study focuses on the detection and segmentation of five common pulmonary abnormalities:
+\begin{enumerate}
+    \item Ground-Glass Opacity (GGO)
+    \item Pulmonary nodules
+    \item Atelectasis
+    \item Consolidation
+    \item Bronchiectasis
+\end{enumerate}
+
+\noindent of which the first two were taken as the primary targets for the initial phase of this study.
+
 A nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
 either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A GGO refers
 specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
@@ -64,6 +74,13 @@ a late stage.
 Despite their importance, GGOs and pulmonary nodules remain difficult to detect and characterize reliably.
 Nodules may be small relative to other anatomical structures in a chest CT, and GGO may be low-contrast against surrounding tissue.
 These challenges make manual interpretation difficult and motivate the shift toward automated, learning-based segmentation approaches.
+
+% IMPORTANT
+% cite https://d1wqtxts1xzle7.cloudfront.net/37531539/Fleishner_Glossary_Hansell_Radiol_08-libre.pdf?1430828476=&response-content-disposition=inline%3B+filename%3DGlossary_of_Terms_for_Thoracic_Imaging.pdf
+% Nodules vs Masses - size, risk of malignancy
+% Atelectasis
+% Consolidation
+% Bronchiectasis
 
 \section{Computer-Aided Diagnosis (CAD) Systems}
 
