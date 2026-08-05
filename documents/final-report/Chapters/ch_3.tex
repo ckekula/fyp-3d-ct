@@ -9,7 +9,7 @@ Figure \ref{fig:methodology} gives a visual overview of the full framework prese
     \label{fig:methodology}
 \end{figure}
 
-\section{Data Acquisition and Preprocessing}
+\section{Data Acquisition}
 
 The quality and consistency of the input data has a direct impact on how well the
 dictionary learning stage can later separate abnormalities from normal lung,
@@ -32,7 +32,8 @@ Only three datasets fulfilled the former requirement:
 \end{enumerate}
 
 Of these, only CT-RATE and RadGenome-Chest CT were publicly available, while Rad-ChestCT only had an initial release of 3,630 chest
-CT scans (approximately 10\% of the dataset) and the files were restricted.
+CT scans (approximately 10\% of the dataset) and the files were restricted to the public.
+Rad-ChestCT was also used as the external validation set for training the CT-CLIP model, which was trained on the CT-RATE dataset.
 RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-level masks and 665K grounded text reports for
 vision-language AI models. However, neither of these provides the necessary spatially localized annotations to train a 3D lung
 segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct} was released very close to the start of this
@@ -40,18 +41,46 @@ project, and it provides per-finding voxel-level segmentation masks for a subset
 
 \subsubsection{CT-RATE Dataset}
 
-CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset hosted on Hugging
+CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI format, hosted on Hugging
 Face (\href{https://huggingface.co/datasets/ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
 annotations and corresponding textual radiology reports across 18 distinct abnormality categories.
-The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique patients expanded to 50,188 total volumes via
-different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and a validation cohort of
-3,039 volumes from 1,304 patients. CT-RATE captures substantial heterogeneity in CT scanners, acquisition protocols, and
-reconstruction techniques.
+The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to 50,188 total
+volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and a validation
+cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        Medical material & Lung nodule \\
+        Arterial wall calcification & Lung opacity \\
+        Cardiomegaly & Pulmonary fibrotic sequela \\
+        Pericardial effusion & Pleural effusion \\
+        Coronary artery wall calcification & Mosaic attenuation pattern \\
+        Hiatal hernia & Peribronchial thickening \\
+        Lymphadenopathy & Consolidation \\
+        Emphysema & Bronchiectasis \\
+        Atelectasis & Interlobular septal thickening \\
+        \hline
+    \end{tabular}
+    \caption{List of abnormalities in the CT-RATE dataset.}
+    \label{tab:ctrate_abnormalities}
+\end{table}
+
+CT-RATE captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
+from four primary scanner manufacturers:
+
+\begin{enumerate}
+    \item Siemens Healthineers
+    \item SIEMENS
+    \item Philips Healthcare
+    \item Philips-Neusoft Medical Systems
+\end{enumerate}
 
 \subsubsection{ReXGrounding-CT Dataset}
 
 ReXGroundingCT \cite{rajpurkar2024rexgroundingct}, is the first publicly available dataset linking voxel-level
-3D segmentation masks to free-text findings in chest CT scans, hosted on Hugging Face (\href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}).
+3D segmentation masks to free-text findings in chest CT scans in NifTI fromat, hosted on Hugging Face (\href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}).
 It includes 3,142 non-contrast chest CT studies derived from the CT-RATE dataset organised as a train set of 2,992 scans, a valid set of 50 scans and a held-out
 private test set of 100 studies. This test set is hosted on RexRank \cite{zhang2024rexrankpublicleaderboardaipowered}, a public leaderboard and challenge for
 assessing AI-powered radiology report generation. ReXGroundingCT enables grounding for 14 abnormality categories with 79\% of the annotated findings represent
@@ -62,7 +91,6 @@ shows the list of abnormalities in the ReXGroundingCT dataset, divided into typi
 \centering
 \caption{List of Abnormalities in the ReXGroundingCT Dataset}
 \label{tab:rex-abnormalities}
-
 \begin{tabular}{|p{0.47\linewidth}|p{0.47\linewidth}|}
 \hline
 \textbf{Typically Focal} & \textbf{Typically Non-Focal} \\
@@ -95,7 +123,7 @@ Other non-focal findings
 \end{tabular}
 \end{table}
 
-A segmentation mask is 4-Dimensional ($FxHxWxD$) where F is the number of findings. Scans feature HxW resolutions primarily at 512x512
+A segmentation mask is 4-Dimensional ($F \times H \times W \times D$) where F is the number of findings. Scans feature HxW resolutions primarily at 512x512
 pixels with slice counts spanning 104 to 1,005 slices. Background Pixels are represented by a value of 0. For any given channel along
 the F dimension, each unique non-zero integer represents a distinct entity instance belonging to that finding.
 
@@ -121,7 +149,7 @@ photo taken after the consultation session.
 
 The radiologist was shown the available finding categories in ReXGroundingCT and asked which abnormalities would be
 most valuable to detect automatically, and which were common enough in practice to justify the modelling effort.
-THe radiologist highlighted the following findings as having a well-established radiological basis for early
+The radiologist highlighted the following findings as having a well-established radiological basis for early
 intervention, making them good candidates for a proof-of-concept CAD system:
 
 \begin{itemize}
@@ -130,128 +158,305 @@ intervention, making them good candidates for a proof-of-concept CAD system:
     \item Consolidation
     \item Mosaic attenuation
     \item Bronchiectasis
-    \item Calcification
     \item Emphysema
-    \item Interlobular septal thickening
 \end{itemize}
 
 The radiologist provided valuable insights into the clinical significance of each abnormality,
 their typical appearance in CT scans, and the challenges associated with their detection.
+For the initial phase of our study, we decided to narrow down the target abnormalities further, as the radiologist's recommendations
+were quite broad.
 
-In addition to target abnormality selection, the radiologist also provided guidance on the standard radiology workflow.
-The radiologist explained that CT scans are typically reviewed in a systematic manner, which starts by first checking
-patient history, which is something that we did not have access to in our dataset. 
+However, we also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
+various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
+This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
+Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding.
 
-starting with a quick overview of the entire scan,
+This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
+Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
+frequently present with visible air bronchograms within the affected area.
+This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as "consolidation or atelectasis".
 
+The categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
+radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
+However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical
+taxonomy, with 404 representative abnormal findings across all body regions. Table \ref{tab:omniabnorm-tax} shows the abnormalities
+listed under the "Lung" category.
 
-Visualize using 3 axes instead of 3D
+\begin{table}[ht]
+    \centering
+    \caption{Pulmonary abnormality taxonomy in OmniAbnorm-CT.}
+    \label{tab:omniabnorm-tax}
+    \begin{tabular}{p{0.28\linewidth} p{0.68\linewidth}}
+        \toprule
+        \textbf{Category} & \textbf{Abnormalities} \\
+        \midrule
+        Pulmonary parenchyma &
+        Atelectasis; Incomplete lung expansion; Pulmonary consolidation; Pulmonary ground-glass opacities; Pulmonary emphysema; Pulmonary solitary nodule or mass; Pulmonary diffusely distributed multiple nodules; Pulmonary parenchymal fibrosis; Pulmonary thin-walled cavitation; Pulmonary thick-walled cavities; Pulmonary cystic mass. \\
+        \addlinespace
+        Bronchi &
+        Bronchiectasis; Bronchial wall thickening, stenosis, or occlusion; Bronchial foreign body. \\
+        \addlinespace
+        Lung interstitial &
+        Lung interstitial fibrosis and thickening; Honeycomb lung. \\
+        \addlinespace
+        Pleura &
+        Pleural thickening; Pleural effusion; Pneumothorax; Pleural calcification; Pleural soft tissue mass. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+This study separates Atelectasis and Consolidation into two distinct categories, which is a more granular approach than ReXGrounding-CT.
+Through consultation with the radiologist, it was decided that Atelectasis and Consolidation should be distinct categories as they
+represent different pathological processes as noted in \ref{subsec:abnormalities}.
+Because there are practical constraints in dividing the already-grouped Atelectasis/Consolidation category in ReXGrounding-CT,
+we decided to remove them from the initial phase of the study.
+To further reduce the target abnormalities, we considered the representation of each class in our dataset which is discussed in
+section \ref{subsec:eda}. We finally decided on 2 target abnormalities for the initial phase of the study:
+
+\begin{enumerate}
+    \item GGO
+    \item Nodules/masses
+\end{enumerate}
+
+% IMPORTANT
+% In addition to target abnormality selection, the radiologist also provided guidance on the standard radiology workflow.
+% The radiologist explained that CT scans are typically reviewed in a systematic manner, which starts by first checking
+% patient history, which is something that we did not have access to in our dataset.
+% starting with a quick overview of the entire scan.
+% Visualize using 3 axes instead of 3D.
 
 \subsection{Exploratory Data Analysis}
+\label{subsec:eda}
 
-Based on the radiologists feedback, we performed an exploratory data analysis (EDA) and cross-checked against how well each candidate class
-was actually represented in the annotated data.
+Based on the radiologists feedback, we performed an exploratory data analysis (EDA) and cross-checked against how well each
+candidate class was actually represented in the annotated data. Table \ref{tab:rex_category_distribution} shows the distribution
+of the 14 finding categories in ReXGroundingCT.
 
+\begin{table}[htbp]
+\centering
+\caption{Distribution of Findings and Scans Across ReX Categories}
+\label{tab:rex_category_distribution}
+\begin{tabularx}{\textwidth}{clXX}
+\hline
+\textbf{Category} & \textbf{\# Scans} & \textbf{\# Findings} & \textbf{Description} \\
+\hline
+1a & 213 & 237 & Bronchial wall thickening \\
+1b & 249 & 285 & Bronchiectasis \\
+1c & 421 & 449 & Emphysema (including centrilobular, paraseptal, bullous) \\
+1d & 188 & 198 & Septal thickening (including interlobular septal thickening, reticulation) \\
+1e & 246 & 321 & Micronodules (including centrilobular, tree-in-bud, perilymphatic) \\
+1f & 145 & 153 & Other non-focal abnormalities \\
+2a & 815 & 1135 & Linear (including subsegmental atelectasis, scarring, fibrosis) \\
+2b & 924 & 1384 & Atelectasis, consolidation \\
+2c & 1144 & 1527 & Groundglass opacity \\
+2d & 1333 & 1778 & Pulmonary nodules/masses \\
+2e & 186 & 241 & Pleural effusion or thickening \\
+2f & 15 & 16 & Honeycombing \\
+2g & 15 & 18 & Pneumothorax \\
+2h & 58 & 60 & Other focal abnormalities \\
+\hline
+\end{tabularx}
+\end{table}
 
+Based on the number of findings, it was clear that GGO, Pulmonary Nodules/masses and Atelectasis/Consolidation were the most
+well-represented categories in the dataset, with 1,527, 1,778 and 1,384 findings respectively. Since we decided to remove
+the grouped Atelectasis/Consolidation category, we were left with GGO and Pulmonary Nodules/masses as the two main target abnormalities.
 
-each annotated with one or more of 14 finding categories. For this
-project, attention was narrowed to three categories that best matched the target
-abnormalities agreed on with the radiologists: atelectasis/consolidation
-(category 2b), ground-glass opacity (2c) and pulmonary
-nodules/masses (2d). After filtering the metadata down to studies
-containing at least one of these categories, 1,418 studies remained (1,354
-train, 23 validation, 41 test), split roughly as 659 atelectasis/consolidation,
-871 GGO and 908 nodule/mass cases -- the two abnormality categories occur together
-less often than one might expect (correlation of about $-0.32$), which turned out
-to be convenient for keeping the classes reasonably separable. A further 347 scans
-in ReXGroundingCT had no annotated findings at all and were folded in alongside
-the CT-RATE normals to build a combined pool of negative examples. Each finding
-mask is stored as a 4D NIfTI volume of shape $[F, H, W, D]$, with one binary
-channel per annotated finding, which later made it straightforward to collapse
-multiple findings of the same category into a single lesion mask per scan.
+\subsubsection{Lesion Size Distribution}
 
-An exploratory data analysis (EDA) was carried out before any model work began, and
-it shaped a number of decisions described later in this chapter. Beyond simple
-label counts, the EDA looked at volume dimensions, voxel spacing, and the
-Hounsfield Unit (HU) intensity distribution inside the lungs for each target
-category. Raw volumes were consistently $512 \times 512$ in-plane, but the number
-of slices varied widely from scan to scan (values such as 220, 238, 251, 466 and
-538 slices were all observed), and voxel spacing was not isotropic either --
-a typical example measured roughly $0.74\,\text{mm} \times 0.74\,\text{mm}$
-in-plane against $1.5\,\text{mm}$ between slices. This kind of inconsistency across
-scanners and acquisition protocols meant that resampling to a common spacing was
-unavoidable before patches from different scans could be treated as comparable
-inputs, which is discussed further in Section~3.3. Per-category HU histograms
-computed over lung voxels also showed that nodules, consolidation and GGO occupy
-overlapping but distinguishable intensity ranges, which gave some early confidence
-that a patch-based, intensity-driven representation was a reasonable direction to
-pursue.
+Beyond how many findings each category contributed, it was also important to understand how large a typical
+finding actually is, since this has a direct bearing on how patches would later need to be sampled around each
+lesion. For every GGO and nodule/mass annotation in the dataset, the number of foreground voxels enclosed by its
+ground-truth mask was measured, giving one voxel count per annotation. Table \ref{tab:lesion_voxel_stats}
+summarises the resulting distributions.
 
-\subsection{CT Volume Loading}
+\begin{table}[htbp]
+\centering
+\caption{Voxel-count statistics of GGO (2c) and Nodule/mass (2d) annotations.}
+\label{tab:lesion_voxel_stats}
+\begin{tabularx}{\textwidth}{lXXXXXXX}
+\hline
+\textbf{Category} & \textbf{\# Ann.} & \textbf{\# Scans} & \textbf{Mean} & \textbf{Median} & \textbf{P25} & \textbf{P75} & \textbf{P95} \\
+\hline
+GGO (2c) & 1,543 & 1,161 & 113,871 & 19,682 & 4,818 & 83,380 & 560,393 \\
+Nodule/mass (2d) & 1,801 & 1,349 & 10,196 & 417 & 194 & 1,167 & 17,171 \\
+\hline
+\end{tabularx}
+\end{table}
 
-All CT scans in this study were distributed in NIfTI format, which keeps both the
-3D voxel array and the spatial metadata (orientation, spacing, origin) bundled
-together in one file. Volumes were read using \texttt{nibabel} and converted into
-float32 HU arrays, with each scan represented as
+The two categories turned out to have very different, heavily right-skewed size profiles. The median GGO
+annotation covers 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just
+417 voxels, and this gap holds fairly consistently across the rest of the distribution -- the 25th and 75th
+percentiles for GGO (4,818 and 83,380 voxels) sit well above the corresponding nodule/mass values (194 and
+1,167 voxels). Both distributions also have a long tail of much larger outliers, with the largest single GGO
+annotation reaching 3,442,007 voxels and the largest nodule/mass annotation reaching 1,872,872 voxels, which is
+why the histograms in Figures \ref{fig:ggo-voxel-dist} and \ref{fig:ggo-nodule-voxel-dist} are plotted on a
+log$_{10}$(voxel count) axis rather than a linear one.
 
-\begin{equation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/ggo_log_voxel_distribution.png}
+    \caption{Log-scale voxel-count distribution of GGO (category 2c) annotations.}
+    \label{fig:ggo-voxel-dist}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/nodule_log_voxel_distribution.png}
+    \caption{Log-scale voxel-count distribution of Nodule/mass (category 2d) annotations.}
+    \label{fig:ggo-nodule-voxel-dist}
+\end{figure}
+
+This size disparity between the two target abnormalities turned out to be one of the more practically important
+findings of the EDA stage, since a fixed patch-level extraction rule that works for one category does not
+necessarily transfer to the other. A GGO region is typically large enough that a $16\times16\times16$ patch
+sampled from anywhere near its centre is likely to be mostly lesion tissue, whereas a nodule is frequently small
+enough that a patch covering its bounding box will contain mostly surrounding normal parenchyma. This is the
+underlying reason for the category-specific lesion-voxel-fraction thresholds used later during patch
+extraction (Section \ref{subsec:patch-extraction}) -- a uniform 50\% threshold, while reasonable for GGO, would have discarded
+the majority of genuine nodule patches, so a lower 10\% threshold was used for the nodule/mass category instead.
+
+\subsection{CT Volume and Mask Loading}
+
+Each CT scan is stored as a 3D NIfTI volume of dimensions $ 512 \times 512 \times N_z$ with voxel spacing
+$\Delta_x, \Delta_y, \Delta_z$ mm and 16-bit signed integer intensities representing Hounsfield Units (HU).
+The corresponding segmentation mask is stored as an 8-bit unsigned integer 4D NIfTI volume with matching spatial
+dimensions plus an additional singleton channel dimension containing integer label values.
+
+Each NifTI file contains a header with metadata describing the volume's attributes. Table \ref{tab:nifti-header} lists the
+relevant header fields used in this study.
+
+\begin{table}[ht]
+\centering
+\caption{NIfTI header attributes for the CT volumes and corresponding segmentation masks.}
+\label{tab:nifti-header}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Header Attribute} & \textbf{CT Volume} & \textbf{Segmentation Mask} \\ \hline
+Dimensions &
+$[3,\,512,\,512,\,N_z,\,1,\,1,\,1,\,1]$ &
+$[4,\,1,\,512,\,512,\,N_z,\,1,\,1,\,1]$ \\ \hline
+
+Data type &
+\texttt{int16} &
+\texttt{uint8} \\ \hline
+
+Bits per voxel &
+16 &
+8 \\ \hline
+
+Voxel spacing &
+$[1,\Delta_x,\Delta_y,\Delta_z,0,0,0,0]$ &
+$[1,1,1,1,0,1,1,1]$ \\ \hline
+
+Spatial units &
+Millimetres &
+Millimetres \\ \hline
+
+Intensity scaling &
+$(s,i)$ &
+$(s,i)$ \\ \hline
+
+Affine transformation &
+Scanner-space affine &
+Identity affine \\ \hline
+
+Image origin &
+$(t_x,t_y,t_z)$ &
+$(0,0,0)$ \\ \hline
+\end{tabular}
+\end{table}
+
+The CT volumes preserve the scanner-space affine transformation, which maps voxel indices to physical coordinates in millimetres.
+In general, the affine matrix can be represented as:
+
+\[
+\mathbf{A} =
+\begin{bmatrix}
+-\Delta_x & 0 & 0 & t_x \\
+0 & -\Delta_y & 0 & t_y \\
+0 & 0 & \Delta_z & t_z \\
+0 & 0 & 0 & 1
+\end{bmatrix},
+\]
+
+\noindent where $\Delta_x$, $\Delta_y$, and $\Delta_z$ denote the voxel spacing along the $x$-, $y$-, and $z$-axes, respectively,
+and $(t_x,t_y,t_z)$ denotes the translation of the image origin in scanner coordinates. The negative scaling factors along the
+$x$- and $y$-axes indicate that these axes are stored in the opposite direction relative to the scanner coordinate system, while
+the $z$-axis retains its positive orientation.
+
+Although each segmentation mask corresponds exactly with its associated CT scan, the mask NIfTI headers do not preserve the
+original spatial metadata. Specifically, the masks are stored with unit voxel spacing ($1 \times 1 \times 1$ mm), and an identity
+affine transformation, whereas the CT volumes retain their scanner-space affine and true voxel spacing. During preprocessing,
+the mask metadata is updated to match the corresponding CT volume's metadata.
+
+Volumes were loaded using the nibabel Python library and converted into float32 HU arrays, with each scan represented as:
+
+\[
 I(x,y,z) \in \mathbb{R}^{H \times W \times D}
-\end{equation}
+\]
 
-where $H$, $W$ and $D$ denote the height, width and depth of the volume. Alongside
-the intensity array, the voxel spacing recorded in the NIfTI header was retained
-for every scan, since, as noted above, spacing was not consistent across the
-dataset and this information is needed later to resample volumes onto a common
-grid.
+\noindent where $H$, $W$ and $D$ denote the height, width and depth of the volume.
 
-Where ground-truth finding masks were available (ReXGroundingCT), the
-corresponding 4D mask volume was loaded through the same pathway and kept aligned
-with its source CT volume via a shared volume identifier, therefore that a mask could
-always be traced back to the exact scan and finding it belongs to.
+\section{Data Preprocessing}
 
-Loading a scan or a mask, however, was never just a matter of reading the NIfTI
-file and handing back an array -- both paths funnel through a shared loading
-routine that also decides whether resampling and lung preprocessing are required
-before the data is considered ready to use. Figure~\ref{fig:loading-diagram}
-summarises this routine. After a volume or mask is read with NiBabel, its voxel
-spacing is compared against the target spacing of $1.5\,\text{mm}$ isotropic; if
-the two already match, the array is passed through unchanged, but if not, it is
-resampled using trilinear interpolation for CT intensities or nearest-neighbour
-interpolation for masks, mirroring the distinction made earlier for
-\texttt{resample\_volume} and \texttt{resample\_mask} -- nearest-neighbour is used
-specifically to avoid inventing intermediate label values between the discrete
-finding categories in a mask. Only volumes, and never masks, are then routed
-through the preprocessing block, where lung segmentation, HU clipping to
-$[-1000, 500]$ and min-max normalisation are applied in sequence before the final
-volume is returned; masks skip this block entirely and are returned as soon as
-resampling is done, since a binary or categorical finding mask has no HU values to
-clip or normalise and does not need to be run through the lung segmentation model.
-Keeping this branching logic in one place meant that every scan and every mask
-used later in the pipeline, regardless of which dataset it came from, had been
-through exactly the same spacing correction and (where relevant) the same
-preprocessing steps, so patches extracted from different scans remained directly
-comparable.
+Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipeline used in this study.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/loading_volumescan.png}
-    \caption{Shared loading pipeline for CT volumes and finding masks, showing the
-    spacing check, resampling branch (trilinear for volumes, nearest-neighbour for
-    masks) and the preprocessing block applied only to volumes.}
+    \caption{Shared loading pipeline for CT volumes and finding masks}
     \label{fig:loading-diagram}
 \end{figure}
 
-\subsection{Preprocessing}
+\subsection{Resampling}
 
-Before any patches could be extracted, the raw volumes had to be reduced to just
-the lung region. A whole-volume approach was ruled out fairly early: bones, soft
-tissue and background air all add computational overhead without contributing
-anything useful to dictionary learning, and worse, they risk letting the model
-pick up spurious patterns unrelated to lung pathology. Three different approaches
-to isolating the lungs were tried over the course of the project, in the order
-described below, before settling on a final method.
+Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common isotropic voxel
+spacing to correct for variable scanner resolutions. We picked the same resampling target spacing as the CT-CLIP model, since 
+was trained on the volumes from the CT-RATE dataset. The target spacing was set to $0.75 \times 0.75 \times 0.75$ mm, in the
+$x$, $y$ and $z$ directions respectively.
 
-\subsubsection{Classical Image Processing-Based Lung Segmentation}
+An in-plane (X-Y) resolution of 0.75 mm is small enough to capture subtle pulmonary
+nodules without losing data to excessive downsampling. Furthermore, chest CTs naturally have much higher in-plane resolution
+than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while compressing file sizes by 50\%
+compared to isotropic 0.75 mm 3D grids.
+
+The resampling was performed using the \texttt{scipy.ndimage.zoom} function with linear interpolation for the CT volumes and
+nearest-neighbour interpolation for the segmentation masks. The zoom factors were calculated as:
+
+\begin{equation}
+\text{zoom}_x = \frac{\Delta_x}{0.75}, \quad
+\text{zoom}_y = \frac{\Delta_y}{0.75}, \quad
+\text{zoom}_z = \frac{\Delta_z}{1.5}
+\end{equation}
+
+This was further confirmed by analysing the distribution of voxel spacings
+across the dataset. Figure \ref{fig:spacing-distribution} shows this distribution along each axis.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/spacing_distribution.png}
+    \caption{Distribution of voxel spacings across the dataset}
+    \label{fig:spacing-distribution}
+\end{figure}
+
+After resampling, all volumes and masks were resized to a fixed matrix size of $ 480 \times 480 \times 240 $ voxels across the
+coronal, sagittal and axial axes respectively, using center-cropping for oversized volumes or padding for undersized volumes.
+This yields a field of view of $360 \times 360 \times 360$ mm, which spans the physical volume of a human thorax, ensuring
+critical boundaries are not cut off during cropping. The dictionary learning model also relies on non-overlapping
+$12 \times 12 \times 12$ voxel patches, so A matrix of $480 \times 480 \times 240$ voxels is divisible by 12 along each axis,
+which yields an exact patch grid of $40 \times 40 \times 20$ (384,000) patches per volume.
+
+\subsection{Lung Segmentation}
+
+Passing the whole volume to the model would include information on bones, soft tissue and background air which adds
+computational overhead without contributing anything useful to the models learning process, or worse, risks letting the model
+pick up spurious patterns unrelated to lung pathology.
+Therefore, before any patches could be extracted, the raw volumes had to be reduced to just the lung region.
+We explored three different approaches to isolating the lungs were tried over the course of the project.
+
+\subsubsection{Classical Image Processing}
 
 The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
 is normally well separated from surrounding structures in intensity. Each volume
@@ -267,7 +472,7 @@ sequence of morphological steps applied slice-by-slice and volume-wise using
 \texttt{scipy.ndimage} and \texttt{skimage.segmentation}. Border-connected regions
 were removed on each axial slice with \texttt{clear\_border} (mainly to drop the
 surrounding air and imaging-table artefacts that also fall inside the HU window),
-after which only the two largest connected components were kept -- under the
+after which only the two largest connected components were kept under the
 assumption that these correspond to the left and right lung:
 
 A 3D binary closing (a $3\times3\times3$ connectivity structure, 2 iterations) was
@@ -276,62 +481,26 @@ then used to smooth the boundary and reconnect thin gaps, followed by
 these two steps are exactly what a lung mask needs, since vessels, bronchi and
 small nodules would otherwise show up as holes in an otherwise solid lung region.
 
-On visibly normal scans, this five-stage pipeline (threshold $\rightarrow$ clear
-border $\rightarrow$ largest components $\rightarrow$ closing $\rightarrow$ hole
-filling) produced reasonable-looking lung masks when checked slice-by-slice. The
-problem showed up once pathology entered the picture. Consolidation and areas of
-lung opacity raise the local tissue density towards that of soft tissue, so the
-affected voxels are not registered as lung parenchyma at all under the initial
-$-900$ to $-200$ HU window -- they get cut out of the mask at the very first
-thresholding step, before any of the later stages ever see them.
+On visibly normal scans, this five-stage pipeline produced reasonable lung masks when checked manually. However,
+Consolidation and areas of lung opacity raise the local tissue density towards that of soft tissue, so the
+affected voxels are not registered as lung parenchyma under the initial
+$-900$ to $-200$ HU window.
+Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
+from purely intensity-based segmentation and towards a learned segmentation model.
 
-What happens next depends on where the abnormality sits and how large it is. When
-the affected region is small and fully surrounded by normal, correctly thresholded
-lung tissue, it behaves like just another gap in the mask, and the binary closing
-and hole-filling steps are usually enough to patch it back in -- the same
-mechanism that is meant to fill in small vessels and airways ends up rescuing
-these interior lesions almost by accident. But when the abnormality is larger, or
-sits close to the lung boundary rather than fully enclosed within it, closing and
-hole-filling can no longer bridge the gap: the affected region gets left connected
-to the outside of the lung rather than treated as an enclosed hole, so it is
-excluded from the final mask along with everything else outside the lung
-boundary. This is exactly the pattern that shows up when the intermediate masks
-are stepped through and overlaid on the source slice -- a large opacity running
-along the pleural surface is visibly missing from the final lung segmentation and
-from the CT after the mask is applied, while the ground-truth annotation for that
-same region sits entirely outside the segmented lung. The five-stage pipeline was
-checked this way across several scans, and the failure was consistent whenever the
-abnormal region was either large or adjacent to the lung border, rather than an
-isolated case.
+\subsubsection{U-Net Model}
 
-For a project whose entire purpose is to detect exactly these kinds of
-abnormalities, a segmentation step that only reliably preserves lesions small
-enough to be treated as incidental holes is not something that could be fixed with
-more morphological post-processing -- the information is already lost at the
-thresholding step, since abnormal tissue often does not fall inside the normal
-lung parenchyma HU window in the first place. This is what motivated the move away
-from purely intensity-based segmentation and towards a learned segmentation model,
-LungMask's \texttt{LMInferer}, described next.
-
-\subsubsection{LungMask-Based Lung Segmentation}
-
-The method that was ultimately adopted is the \texttt{LungMask} library, accessed
-through its \texttt{LMInferer} interface. Unlike the classical pipeline, LungMask
+The method that was ultimately adopted is the LungMask library, which uses the  U-net (R231) model which is pretrained on diverse
+CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
-it proved noticeably more stable when abnormal tissue was present -- consolidation
-and GGO regions inside the lung boundary were retained rather than excluded, which
-directly addressed the main failure observed with classical image processing approach.
+it proved noticeably more stable when abnormal tissue was present. Consolidation
+and GGO regions inside the lung boundary appeared to retain on manual inspection.
 
 Given a CT volume, LungMask returns a label map with three values: 0 for
 background, 1 for the left lung and 2 for the right lung. This was converted into a
-binary mask and applied to the original volume:
+binary mask and applied to the original volume.
 
-\begin{equation}
-I_{lung}=I \times M_{lung}
-\end{equation}
-
-where $I$ is the original CT volume and $M_{lung}$ is the binary lung mask
-produced by LungMask. Voxels falling outside the mask were reset to a fixed
+Voxels falling outside the mask were reset to a fixed
 background value of $-1000$ HU (approximating air), after which the volume was
 clipped to the range $[-1000, 500]$ HU and linearly rescaled to $[0,1]$. This
 combination of segmentation, HU clipping and normalisation was wrapped into a
@@ -341,7 +510,7 @@ extraction stage has a consistent voxel grid regardless of its original
 acquisition parameters.
 
 \subsection{Patch Extraction}
-\label{sec:patch-extraction}
+\label{subsec:patch-extraction}
 
 With a clean, normalised lung volume in hand, the final data acquisition step was
 to break each volume down into smaller 3D patches. Feeding entire volumes directly
@@ -782,6 +951,17 @@ pipeline is applied unchanged regardless of which dictionary-learning
 variant (K-SVD, frozen dictionary learning, or LC-KSVD) produced the
 sparse codes it is given.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/classification_pipeline.png}
+    \caption{Overview of the classification pipeline: each patch is first
+    converted into a sparse code $\Gamma$ against the frozen dictionary $D$
+    (Section~3.2.1), and the resulting codes are then used to train and
+    query a classifier that predicts the patch-level class label
+    (Section~3.2.2).}
+    \label{fig:classification-pipeline}
+\end{figure}
+
 \subsection{Sparse Coding}
 \label{sec:sparse-coding-classification}
 
@@ -806,8 +986,8 @@ dictionary $D$ are normalized to unit-norm columns. This prevents features
 with larger magnitudes from dominating the optimization process and
 ensures that all dictionary atoms contribute equally.
 
-The optimization problem is solved using **FISTA (Fast Iterative
-Shrinkage-Thresholding Algorithm)**. The project's own \texttt{reppi}
+The optimization problem is solved using FISTA (Fast Iterative
+Shrinkage-Thresholding Algorithm). The project's own reppi
 solver core is used directly instead of the available sparse-coding
 wrapper because the wrapper only supports PyTorch tensors, while the patch
 extraction stage produces NumPy-based patch matrices.
@@ -860,9 +1040,9 @@ as the target. Using these features and labels, the classifier learns to predict
 the class of each image patch from its sparse representation.
 
 Two classifiers are trained using the same $(\Gamma, \text{label})$ dataset.
-The first is a \textbf{Linear Support Vector Classifier (Linear SVC)}, 
+The first is a Linear Support Vector Classifier, 
 which learns a linear decision boundary and is fully trained and tuned as the main
-classification model. The second is \textbf{Logistic Regression}, which predicts
+classification model. The second is Logistic Regression, which predicts
 the probability of each class using the sparse code. Logistic Regression is included
 to compare its performance with the Linear SVC. The implementation and training of both 
 classifiers are described in the following sections.
@@ -870,19 +1050,19 @@ classifiers are described in the following sections.
 \subsubsection{Linear Support Vector Classifier (LinearSVC)}
 
 The classifier used for classifying the sparse codes is
-\texttt{scikit-learn}'s \texttt{LinearSVC}, combined with a
-\texttt{MaxAbsScaler} inside a single \texttt{Pipeline}.
+scikit-learn's LinearSVC, combined with a
+MaxAbsScaler inside a single Pipeline.
 
-The \texttt{MaxAbsScaler} scales each feature (i.e., each dictionary
+The MaxAbsScaler scales each feature (i.e., each dictionary
 atom coefficient) by its maximum absolute value in the training data.
 It does not subtract the mean, which allows the zero values generated
 during sparse coding to remain unchanged. This is important because zero
 coefficients represent inactive dictionary atoms. In contrast, a
-mean-centering scaler such as \texttt{StandardScaler} would shift these
+mean-centering scaler such as StandardScaler would shift these
 zero values away from zero and reduce the sparsity information.
 
-The regularisation parameter $C$ of the \texttt{LinearSVC} classifier is
-selected using \texttt{GridSearchCV}, where the candidate values are
+The regularisation parameter $C$ of the LinearSVC classifier is
+selected using GridSearchCV, where the candidate values are
 $C \in \{0.1, 1.0, 10.0\}$. The selection process uses 5-fold
 cross-validation with macro-averaged F1-score as the evaluation metric
 instead of accuracy. This is because the three target classes
@@ -891,16 +1071,16 @@ The macro F1-score gives equal importance to each class by averaging the
 F1-score of all classes, preventing the classifier from being biased
 towards the majority class.
 
-The \texttt{LinearSVC} model is configured with
-\texttt{dual=False} and a maximum iteration limit of $10{,}000$ to
+The LinearSVC model is configured with
+dual=False and a maximum iteration limit of $10{,}000$ to
 ensure reliable convergence during training. The grid search is executed
-with \texttt{n\_jobs=2} and \texttt{pre\_dispatch=1} to control the
+with n\_jobs=2 and pre\_dispatch=1 to control the
 computational resources used during hyperparameter tuning.
 
 After the grid search identifies the optimal hyperparameter combination,
 the classifier is retrained on the complete training dataset using
-\texttt{refit=True}. The final trained model is then saved using
-\texttt{joblib}, allowing it to be reused during inference and evaluation
+refit=True. The final trained model is then saved using
+joblib, allowing it to be reused during inference and evaluation
 without repeating the training process.
 
 \subsubsection{Logistic Regression}
@@ -958,7 +1138,7 @@ and testing. Therefore, patches must first be generated from the input
 volume, converted into sparse codes, and then classified to produce the
 final abnormality map.
 
-\paragraph{Preprocessing.} 
+\paragraph{Preprocessing} 
 The input volume is first taken through
 exactly the same preprocessing used at training time: it is resampled to
 the common $1.5\,\text{mm}$ isotropic spacing, lung-segmented, HU-clipped
@@ -966,7 +1146,7 @@ and normalised to $[0,1]$, so that a fresh scan reaching the classifier
 has been through the identical transformation as every training and test
 patch before it.
 
-\paragraph{Dense patch extraction.}
+\paragraph{Dense patch extraction}
 
 During training and testing, abnormal patches are extracted from regions
 around known lesions using ground-truth masks. However, a new CT volume
@@ -986,7 +1166,7 @@ are stored together with the patch data. These coordinates are later used
 to map the predicted patch labels back to their original positions in the
 CT volume, allowing the generation of a voxel-level abnormality map.
 
-\paragraph{Sparse coding and classification.}
+\paragraph{Sparse coding and classification}
 
 Each remaining patch is converted into a sparse code using the same
 dictionary $D$ that was learned during the training stage. The same
@@ -1007,7 +1187,7 @@ used to generate the voxel-level abnormality map by mapping each patch
 prediction back to its original location in the CT volume.
 
 
-\paragraph{Reassembling a per-voxel map.} 
+\paragraph{Reassembling a per-voxel map} 
 A single patch's prediction
 only covers the small cube of voxels it was extracted from, and because
 patches overlap under the dense grid's stride, most voxels end up covered
@@ -1025,7 +1205,7 @@ normal label regardless of what the patches covering it predicted, so
 that an abnormal prediction cannot bleed out past the lung boundary into
 surrounding air or chest wall.
 
-\paragraph{Reassembling a per-voxel map.}
+\paragraph{Reassembling a per-voxel map}
 
 Each patch prediction represents only the small region of the CT volume
 covered by that patch. Since the dense grid produces overlapping patches,
@@ -1050,7 +1230,7 @@ such as surrounding air or the chest wall.
 \label{sec:statistical-analysis}
 
 The performance of the classifiers on the test dataset is evaluated using
-a common \texttt{evaluating} method. The same evaluation procedure is
+a common evaluating method. The same evaluation procedure is
 applied to all classifiers to ensure that the results are measured
 consistently regardless of the model used.
 
@@ -1083,7 +1263,7 @@ performance and the quality of the learned sparse representation, rather
 than relying only on classifier accuracy as an indication of model
 effectiveness.
 
-\paragraph{Sparsity and atom utilisation.}
+\paragraph{Sparsity and atom utilisation}
 
 The sparse codes generated using the fixed dictionary were analysed to
 evaluate the sparsity level and how effectively the dictionary atoms were
@@ -1115,7 +1295,7 @@ analysis. This prevents the dominant atom from overwhelming the analysis
 and allows the relationships between the remaining dictionary atoms to be
 examined more clearly.
 
-\paragraph{Atom co-occurrence and clustering.}
+\paragraph{Atom co-occurrence and clustering}
 
 The relationship between dictionary atoms was analysed by measuring how
 frequently pairs of atoms were activated together within the same patch.
@@ -1176,7 +1356,7 @@ unrelated features.
     \label{fig:atom-cooccurrence-graph}
 \end{figure}
 
-\paragraph{Aggregate atom contribution.} Summing the absolute sparse
+\paragraph{Aggregate atom contribution} Summing the absolute sparse
 coefficient of every atom across a large batch of patches gives a sense
 of which atoms matter most once magnitude, not just activation frequency,
 is taken into account. Figure~\ref{fig:aggregated-sparse-representation}
@@ -1198,7 +1378,7 @@ contribute a small, comparable amount each.
     \label{fig:aggregated-sparse-representation}
 \end{figure}
 
-\paragraph{Reconstruction and visual inspection.}
+\paragraph{Reconstruction and visual inspection - }
 As an additional qualitative evaluation, the quality of the sparse
 representation was visually analysed together with the numerical
 reconstruction error. The original patches were reconstructed from their
@@ -1295,7 +1475,7 @@ patches, nnU-Net directly predicts the abnormal regions for every voxel
 in the CT scan, producing a detailed segmentation of the target
 abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 During inference, each input CT volume is preprocessed using the same
 settings that were automatically determined by nnU-Net during the
@@ -1311,7 +1491,7 @@ patch size and normalization method are manually defined, nnU-Net
 automatically applies the preprocessing settings learned during dataset
 planning.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 During inference, the trained nnU-Net model is loaded and applied to
 previously unseen CT volumes. Each preprocessed CT scan is passed through
@@ -1354,7 +1534,7 @@ segmentation decoder. Instead, the model identifies relevant regions
 based on the relationship between the CT image features and the provided
 text descriptions.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Each CT volume is loaded from a NIfTI file. Any missing or invalid
 (\texttt{NaN}) values are replaced with zero. If the input volume contains
@@ -1371,7 +1551,7 @@ This preprocessing uses a different intensity normalization strategy
 compared with the lung-segmentation-based normalization used in the
 sparse-coding pipeline described earlier in this chapter.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The official pretrained Merlin model is loaded once, and a forward hook is
 attached to the last block of its 3D image encoder
@@ -1421,7 +1601,7 @@ training. The official released v2 checkpoint was applied directly to
 local CT volumes. Text prompts were used to guide the model to segment
 the same target abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Each CT volume was loaded from a NIfTI file and rearranged into a
 depth-first $(D,H,W)$ format. A standard lung window (width 1500 and
@@ -1437,7 +1617,7 @@ axial slice to a fixed size of $512\times512$. The padding information
 and the axis where padding was applied were stored so that the predicted
 masks could later be converted back to the original CT volume size.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The official pretrained BiomedParse v2 checkpoint was loaded using the
 model configuration provided by BiomedParse. The checkpoint was loaded
@@ -1489,7 +1669,7 @@ CT-CLIP was used as a pretrained model without any additional training.
 The released CT-LiPro linear-probe checkpoint was applied directly to the
 available CT volumes to predict the probability of different abnormalities.
 
-\paragraph{Preprocessing.}
+\paragraph{Preprocessing}
 
 Unlike the sparse-coding pipeline, which uses physical spacing information
 to resample CT volumes, CT-CLIP requires every input volume to have the
@@ -1503,7 +1683,7 @@ to $(Z,X,Y)$ order. Finally, each volume was resized using trilinear
 interpolation to a fixed size of $240\times480\times480$ before being
 given to the model.
 
-\paragraph{Inference.}
+\paragraph{Inference}
 
 The released \texttt{CT\_LiPro\_v2.pt} checkpoint was loaded into the
 pretrained CT-CLIP model together with its linear classification head.
@@ -1535,14 +1715,13 @@ scans.
 A second inference method was also tested using CT-CLIP's original
 zero-shot capability without the trained linear classification head. In
 this approach, each abnormality was represented using two text prompts:
-``\emph{abnormality} is present'' and ``\emph{abnormality} is not
+``abnormality is present'' and ``abnormality is not
 present''. The model compared the similarity between the CT volume and
 both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
 
 This zero-shot approach was tested successfully on a small pilot dataset,
 but it was not used for the final full-dataset evaluation.
-
 
 \section{Evaluation Metrics}
 
