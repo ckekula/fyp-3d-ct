@@ -330,7 +330,7 @@ In general, the affine matrix can be represented as:
 \noindent where $\Delta_x$, $\Delta_y$, and $\Delta_z$ denote the voxel spacing along the $x$-, $y$-, and $z$-axes, respectively,
 and $(t_x,t_y,t_z)$ denotes the translation of the image origin in scanner coordinates. The negative scaling factors along the
 $x$- and $y$-axes indicate that these axes are stored in the opposite direction relative to the scanner coordinate system, while
-the $z$-axis retains its positive orientation.
+the $z$-axis retains its positive orientation, which is common for DICOM-derived CT scans.
 
 Although each segmentation mask corresponds exactly with its associated CT scan, the mask NIfTI headers do not preserve the
 original spatial metadata. Specifically, the masks are stored with unit voxel spacing ($1 \times 1 \times 1$ mm), and an identity
@@ -455,15 +455,18 @@ $1.5\,\text{mm}$ spacing beforehand, therefore that every scan reaching the patc
 extraction stage has a consistent voxel grid regardless of its original
 acquisition parameters.
 
-\subsection{Patch Extraction}
+\section{Patch Extraction}
 
-With a clean, normalised lung volume in hand, the final data acquisition step was
-to break each volume down into smaller 3D patches. Feeding entire volumes directly
-into the dictionary learning stage was never really practical -- a single scan can
-contain tens of millions of voxels -- and patch-based sampling has the added
-benefit of letting the model focus on local structural patterns rather than
-whole-organ context, which fits naturally with how K-SVD and LC-KSVD represent
-signals as sparse combinations of small dictionary atoms.
+Feeding entire volumes directly into the dictionary learning stage is not practical as a single scan can
+contain tens of millions of voxels. Therefore, the final step was
+to break each volume down into smaller 3D patches. Patch-based sampling provides the following benefits:
+\begin{itemize}
+    \item Allows the model to focus on local structural patterns rather than whole-organ context.
+    \item Reduces memory requirements by limiting the number of voxels processed at once.
+    \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
+\end{itemize}
+
+To determine the 
 
 Each patch is a fixed $16 \times 16 \times 16$ voxel cube, which at the resampled
 $1.5\,\text{mm}$ spacing corresponds to roughly a $24\,\text{mm}^3$ region of lung
