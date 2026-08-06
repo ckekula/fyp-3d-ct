@@ -622,292 +622,137 @@ later concatenated across classes to build the full training matrix used for the
 
 Once class-wise patches had been extracted and flattened into vectors, the next stage was to learn a dictionary that could
 represent these patches as a sparse combination of a small number of
-atoms. This section describes the dictionary learning algorithms that
-were implemented, the training pipeline used to run them, and the
-hyperparameters that control the process. All of the dictionary
-learning code lives in a separate open-source PyPI package built specifically for this project \url{https://pypi.org/project/reppi/}.
-The code can be found at: \url{https://github.com/ckekula/reppi}.
+atoms. Four dictionary learning algorithms were implemented and
+compared for this purpose: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary
+Learning. All of the dictionary learning code lives in a separate
+open-source PyPI package built specifically for this project
+\url{https://pypi.org/project/reppi/}. The code can be found at:
+\url{https://github.com/ckekula/reppi}.
 
-Four dictionary learning algorithms were implemented in \texttt{reppi}
-and are selectable from the training entry point via an \texttt{--algorithm} flag: \texttt{ksvd}, \texttt{lcksvd},
-\texttt{fddl}, and \texttt{frozen}. All four take the same flattened
-patch matrix $X \in \mathbb{R}^{n \times N}$ (where $n=1728$ is the
-flattened patch length and $N$ is the number of patches) and produce a
-dictionary $D$ that patches can later be sparse-coded against.
+All four algorithms take the same flattened patch matrix
+$X \in \mathbb{R}^{n \times N}$ (where $n=1728$ is the flattened patch
+length and $N$ is the number of patches) and produce a dictionary $D$
+that patches can later be sparse-coded against. Each algorithm is
+described below along with the hyperparameters used to train it.
 
-\subsection{KSVD}
-{K-SVD} is the standard dictionary learning algorithm
-of Aharon et al.\ \cite{aharon2006ksvd}. It alternates between
-sparse-coding all patches against the current dictionary and
-updating each atom one at a time to better fit the patches that use
-it. It is unsupervised, meaning it is not told which class a patch
-belongs to. It is trained on all patches (normal, GGO and nodule)
-together and forms the base building block that the other three
-algorithms are built on top of.
+\subsection{K-SVD}
+\label{sec:ksvd}
 
-Before an atom can be updated, K-SVD first needs to know which atoms
-are being used to reconstruct each patch. This step, sparse coding, is
-performed the same way inside every K-SVD-based algorithm in this
-project (K-SVD itself, LC-KSVD, and Frozen Dictionary Learning), using
-\textbf{Batch Orthogonal Matching Pursuit (Batch-OMP)}, following Elad
-et al.\ \cite{elad2008batchomp}.
+K-SVD (Section~\ref{sec:lit-ksvd}) is used here for two purposes: as a
+standalone baseline dictionary trained jointly over all three classes,
+and as the underlying atom-update engine that both LC-KSVD and Frozen
+Dictionary Learning are built on. Sparse coding during training uses
+Batch-OMP (Section~\ref{sec:lit-ksvd}), capped at sparsity $T=10$ for
+every algorithm in this project.
 
-OMP is a greedy algorithm. Given a patch $x$ and a dictionary $D$ whose
-columns (atoms) have unit norm, it picks the atom most correlated with
-the current residual, adds it to the active set, solves a least
-squares problem over the active atoms, and repeats until either a
-fixed number of atoms have been chosen or the residual is small enough.
-In this project, the number of atoms is capped at a fixed sparsity
-level $T = 10$ for every algorithm, meaning a patch is represented
-using at most 10 dictionary atoms out of several thousand.
-
-Batch-OMP is a reformulation of this same idea that avoids repeating
-expensive matrix work when many patches are encoded against the same
-dictionary at once, which is the normal case here since every K-SVD
-iteration re-encodes the whole training set. Instead of working with
-$D$ and each patch directly, it precomputes the Gram matrix
-$G = D^{\top}D$ and the correlation matrix $D^{\top}X$ once for the
-whole batch of patches, and reuses these to solve for every patch's
-sparse code. This is different from the FISTA-based, L1-regularised
-sparse coding described later in Section~\ref{sec:sparse-coding-classification},
-which is used to generate sparse codes for the downstream classifier
-once a dictionary has already been learned and frozen. Batch-OMP, by
-contrast, is used
-only during dictionary training itself, where a fixed maximum number of
-active atoms per patch (rather than an L1 penalty) is what the K-SVD
-algorithm expects.
+As a standalone baseline, K-SVD is trained on all three classes
+(normal, GGO, nodule) at once, with no notion of class boundaries,
+using a dictionary of $7 \times 1{,}728 = 12{,}096$ atoms, sparsity
+$T=10$, a mutual coherence threshold of 0.99 for atom replacement, and
+10 alternating iterations. K-SVD also supports a set of frozen atoms,
+held fixed while new atoms are learned around them; this is the
+mechanism Frozen Dictionary Learning (Section~\ref{sec:frozen-dict-learning})
+is built on directly.
 
 \subsection{LC-KSVD}
-\textbf{LC-KSVD (Label Consistent K-SVD)}, following Jiang et
-    al.\ \cite{jiang2013lcksvd}, extends K-SVD so that the dictionary
-    also becomes discriminative. It adds a label-consistency term that
-    pushes atoms associated with one class to produce similar sparse
-    codes for patches of that class, and, in the LC-KSVD2 variant used
-    here, jointly learns a linear classifier alongside the dictionary.
-    Unlike K-SVD, LC-KSVD is supervised: it needs the class label of
-    every patch during training.
 
-\subsection{Frozen Dictionary Learning}
-\textbf{Frozen Dictionary Learning}, implemented as
-\texttt{IncrementalFrozenDictionary} and following Carroll et
-al.\ \cite{carroll2017frozen}, is the default algorithm used by
-\texttt{main.py} and is the primary method used in this project. It
-learns a dictionary in stages rather than all at once: a base
-dictionary is learned first on normal patches only, and its atoms
-are then frozen (held fixed) while a residual dictionary is learned
-for each abnormality class in turn. Section~\ref{sec:frozen-dict-learning}
-describes this in more detail, since it is the method actually used
-to produce the dictionaries evaluated in this project.
-
-K-SVD is the shared core of every algorithm used in this project.
-Given the patch matrix $X$, a dictionary $D$ of $K$ atoms and a
-sparsity target $T$, K-SVD repeats the following steps for a fixed
-number of iterations (set to 10 in this project):
-
-\begin{enumerate}
-    \item \textbf{Sparse coding.} Every patch in $X$ is encoded against
-    the current dictionary $D$ using Batch-OMP, giving a sparse code
-    matrix $\Gamma$ such that $X \approx D\Gamma$.
-
-    \item \textbf{Atom update.} Each atom $d_j$ (column $j$ of $D$) is
-    updated one at a time. For atom $j$, the patches that currently use
-    it are found, and the part of their reconstruction error that is
-    not explained by any other atom is collected into a residual
-    matrix. A rank-1 approximation of this residual matrix (computed
-    with a truncated SVD in this project's configuration, rather than a
-    full SVD, for speed) gives an updated atom $d_j$ together with
-    updated sparse coefficients for the patches that use it. Because
-    each atom is updated using the latest version of every other atom,
-    this tends to converge faster than updating all atoms at once.
-
-    \item \textbf{Dead atom handling.} If an atom is not being used by
-    any patch, or if it has become too similar to another atom (a
-    mutual coherence above a threshold of 0.99), it is replaced with the
-    patch that is currently worst reconstructed by the dictionary. This
-    keeps every atom useful and stops the dictionary from wasting atoms
-    on near-duplicate patterns.
-\end{enumerate}
-
-K-SVD in this project also supports a set of \textbf{frozen atoms}: a
-block of atoms that can be included in the dictionary during sparse
-coding and error computation, but that are never touched by the atom
-update or dead-atom replacement steps. This is what makes Frozen
-Dictionary Learning possible, since it lets a new set of atoms be
-trained on top of an already-trained, unchanging set of atoms from an
-earlier stage.
+The LC-KSVD2 variant (Section~\ref{sec:lit-lcksvd}) is used, so that a
+linear classifier is learned jointly with the dictionary rather than
+fitted afterwards. It is trained with a dictionary of
+$6 \times 1{,}728 = 10{,}368$ atoms, sparsity $T=10$, label-consistency
+weight $\alpha = 4.0$ and classifier weight $\beta = 2.0$ (matching the
+settings Jiang et al.\ report for their face recognition experiments),
+over 10 outer iterations with a short 2-iteration K-SVD warm start used
+to initialise the dictionary before the main training loop begins.
 
 \subsection{FDDL}
-\textbf{FDDL (Fisher Discrimination Dictionary Learning)},
-    following Yang et al.\ \cite{yang2011fddl}, builds a dictionary made
-    of one sub-dictionary per class, so that each sub-dictionary
-    reconstructs its own class well while poorly reconstructing the
-    other classes. It further pushes the sparse codes of a class to be
-    similar to each other and different from the codes of other
-    classes, borrowing the idea of within-class and between-class
-    scatter from Fisher discriminant analysis.
 
-\subsection{Frozen Dictionary Learning (Primary Method)}
+FDDL's coefficient update (Section~\ref{sec:lit-fddl}) combines a
+class-fidelity term with a Fisher-style scatter penalty, which
+Batch-OMP cannot solve since it is built only for plain reconstruction
+error. This project instead solves it with FISTA (Fast Iterative
+Shrinkage-Thresholding Algorithm), following Beck and Teboulle
+\cite{beck2009fista}: for each class in turn, with the dictionary and
+every other class's codes held fixed, FISTA minimises the smooth
+fidelity and scatter terms together with the $\ell_1$ sparsity penalty,
+using a backtracking line search. The dictionary itself is then updated
+class by class as a least-squares fit against each class's own coded
+patches.
+
+FDDL is trained with a dictionary of $7 \times 1{,}728 = 12{,}096$
+atoms split across the three class sub-dictionaries, sparsity weight
+$\lambda_1 = 0.005$, scatter weight $\lambda_2 = 0.005$, elastic term
+$\eta = 1.0$, over 10 outer iterations, with up to 100 FISTA iterations
+allowed for each class's coefficient update within an outer iteration.
+
+\subsection{Frozen Dictionary Learning}
 \label{sec:frozen-dict-learning}
 
-Frozen Dictionary Learning is the algorithm used by default in this
-project (\texttt{main.py} with no \texttt{--algorithm} flag, or
-\texttt{--algorithm frozen}), and is the method used to produce the
-dictionaries analysed later in this chapter. The motivation for this
-approach is that normal lung tissue makes up the large majority of
-voxels in any CT scan, while GGO and nodule patches are comparatively
-rare. Training a single K-SVD dictionary jointly on all three classes
-risks having the dictionary's atoms dominated by normal-tissue patterns,
-since a plain K-SVD run has no notion of class balance. Frozen
-Dictionary Learning avoids this by learning the normal-tissue
-representation first, then explicitly reserving new atoms for each
-abnormality on top of it, so the abnormality classes are guaranteed a
-dedicated part of the dictionary rather than having to compete for
-space with normal patches.
+Frozen Dictionary Learning (Section~\ref{sec:lit-frozen}) is the
+primary method used in this project to produce the dictionaries
+evaluated later in this chapter. Normal lung tissue makes up the large
+majority of voxels in any CT scan, while GGO and nodule patches are
+comparatively rare, so training a single K-SVD dictionary jointly over
+all three classes risks having the dictionary's atoms dominated by
+normal-tissue patterns. Frozen Dictionary Learning avoids this by
+learning the normal-tissue representation first, then explicitly
+reserving new atoms for each abnormality on top of it, so every class
+is guaranteed a dedicated part of the dictionary rather than having to
+compete for space with normal patches.
 
-The training pipeline for this algorithm has two stages:
+Training proceeds in two stages, sized specifically for this project's
+class distribution:
 
 \begin{enumerate}
     \item \textbf{Base stage.} A K-SVD dictionary is trained using only
-    the normal patches in $X$ (found by masking $X$ against the label
-    vector $H$ for the normal class). This produces the base dictionary
-    $D_{\text{base}}$, sized to $N\_FEATURES \times 4 = 6912$ atoms in
-    this project's configuration.
+    the normal patches, producing a base dictionary $D_{\text{base}}$ of
+    $4 \times 1{,}728 = 6{,}912$ atoms. These atoms are then frozen for
+    every stage that follows.
 
-    \item \textbf{Residual stages.} For each abnormality class, in the
-    fixed order \texttt{["2c", "2d"]} (GGO, then nodule), a new K-SVD
-    instance is trained on that class's patches only, with the entire
-    dictionary learned so far (the base dictionary, plus any earlier
-    abnormality's residual dictionary) passed in as frozen atoms. K-SVD
-    then jointly sparse-codes every patch of this stage's class over
-    the combined \texttt{[frozen atoms | new atoms]} dictionary at every
-    iteration, but only ever updates the new atoms. Once this stage
-    finishes, its new atoms are appended to the dictionary and frozen in
-    turn for the next class. GGO is given $N\_FEATURES \times 2 = 3456$
-    new atoms and nodule is given $N\_FEATURES = 1728$ new atoms,
-    reflecting how much less training data is available for nodules
-    than for GGO.
+    \item \textbf{Residual stages.} For each abnormality class in turn
+    (GGO, then nodule), a new K-SVD dictionary is trained on that
+    class's patches only, with every atom learned so far passed in as
+    frozen. Every patch is still sparse-coded jointly over the combined
+    frozen-plus-new dictionary at each iteration, but only the new atoms
+    are ever updated. Once a class's stage finishes, its new atoms are
+    appended to the dictionary and frozen in turn for the next class.
+    GGO is given a residual of $2 \times 1{,}728 = 3{,}456$ new atoms
+    and nodule a residual of $1{,}728$ new atoms, reflecting how much
+    less training data is available for nodules than for GGO.
 \end{enumerate}
 
-The result is a single combined dictionary
-$D = [D_{\text{base}} \mid D_{\text{2c}} \mid D_{\text{2d}}]$ in which
-every atom's class of origin is known and recorded (as an atom index
-range per class), even though no atom was ever told this label during
-its own training. This bookkeeping is later used when inspecting which
-atoms are used for which class, as described in
-Section~\ref{sec:statistical-analysis}'s discussion of atom activation.
+Every stage uses the same sparsity level ($T=10$), mutual coherence
+threshold (0.99) and iteration count (10) as plain K-SVD, so the only
+difference from the standalone K-SVD baseline is this staged,
+frozen-atom training procedure. The result is a single combined
+dictionary $D = [D_{\text{base}} \mid D_{\text{GGO}} \mid D_{\text{nodule}}]$
+in which every atom's class of origin is known and recorded, even
+though no atom was ever told this label during its own training. This
+bookkeeping is later used when inspecting which atoms are used for
+which class, as described in Section~\ref{sec:statistical-analysis}'s
+discussion of atom activation.
 
-\subsection{Training Pipeline Walkthrough}
+\subsection{Training Pipeline}
 
-The training entry point, \texttt{main.py}, and the pipeline it calls,
-\texttt{train.py}, run the following steps in order:
+For every algorithm above, training follows the same overall procedure.
+The per-class patch archives (normal, GGO, nodule) are loaded and
+concatenated into a single patch matrix $X$ together with the matching
+label vector, and the combined set of patches is then randomly shuffled
+with a fixed seed so that results are reproducible. The chosen
+algorithm is then fitted on this shuffled patch matrix, with training
+progress (reconstruction RMSE per iteration) tracked throughout, and
+checkpoints saved periodically so that an interrupted run can resume
+rather than restart from scratch. Once training finishes, the learned
+dictionary is saved together with its configuration and the metadata
+needed to reproduce the preprocessing applied to every patch, ready to
+be loaded again for the classification stage.
 
-\begin{enumerate}
-    \item \textbf{Patch extraction (optional).} Unless
-    \texttt{--skip-extraction} is passed, patch extraction (described in
-    Section~\ref{sec:patch-extraction}) is run first to generate the
-    per-class patch archives.
-
-    \item \textbf{Loading the unified patch matrix.} The per-class
-    patch archives (normal, GGO, nodule) are loaded and concatenated
-    along the patch axis into a single matrix $X$, together with the
-    matching label vector $H$, scan identifiers, and patch coordinates.
-
-    \item \textbf{Shuffling.} If shuffling is enabled (the default), the
-    patches in $X$, $H$, the scan identifiers and the coordinates are
-    all permuted together using the same random permutation, seeded
-    with a fixed random seed (42) for reproducibility. The shuffled
-    matrix is also saved to disk so later runs can reuse the exact same
-    patch order.
-
-    \item \textbf{Selecting and configuring the algorithm.} Based on the
-    \texttt{--algorithm} argument, one of the four fitting functions
-    (\texttt{\_fit\_frozen}, \texttt{\_fit\_lcksvd}, \texttt{\_fit\_fddl},
-    \texttt{\_fit\_ksvd}) is called with its corresponding hyperparameter
-    configuration from \texttt{config.py}.
-
-    \item \textbf{Fitting.} The chosen algorithm is trained on $X$ (and
-    $H$, for the supervised algorithms). For the default frozen
-    algorithm, this runs the base-then-residual pipeline described in
-    Section~\ref{sec:frozen-dict-learning}. Training progress (RMSE per
-    iteration) is logged, and
-    a checkpoint is written to disk after every iteration so that a
-    training run can be resumed if interrupted, rather than restarted
-    from scratch.
-
-    \item \textbf{Saving.} Once training finishes, the fitted model
-    object, the algorithm name, the class order, the hyperparameter
-    configuration used, and metadata such as patch size and the HU
-    window are packaged together and saved to disk as a single pickle
-    file (for example, \texttt{unified\_frozen.pkl}). This saved file is
-    what the classification stage in Section~\ref{sec:classification}
-    loads and encodes new patches against.
-\end{enumerate}
-
-\subsection{Hyperparameters}
-
-Table~\ref{tab:dict-hyperparams} summarises the main hyperparameters
-used for dictionary training in this project, taken directly from
-\texttt{config.py}. The patch size of $12 \times 12 \times 12$ voxels
-gives a flattened patch length of $N\_FEATURES = 12^3 = 1728$, which is
-used throughout to size the dictionaries (for example, the frozen
-algorithm's base dictionary is $N\_FEATURES \times 4$ atoms).
-
-\begin{table}[h]
-\centering
-\caption{Dictionary learning hyperparameters (from \texttt{config.py})}
-\label{tab:dict-hyperparams}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Hyperparameter} & \textbf{Value} & \textbf{Applies to} \\
-\hline
-Sparsity level $T$ (\texttt{n\_nonzero\_coefs}) & 10 & All algorithms \\
-\hline
-K-SVD/base iterations (\texttt{n\_iter}) & 10 & All algorithms \\
-\hline
-Mutual coherence threshold (\texttt{mu\_thresh}) & 0.99 & K-SVD, Frozen \\
-\hline
-Base dictionary size & $N\_FEATURES \times 4 = 6912$ & Frozen \\
-\hline
-GGO residual dictionary size & $N\_FEATURES \times 2 = 3456$ & Frozen \\
-\hline
-Nodule residual dictionary size & $N\_FEATURES = 1728$ & Frozen \\
-\hline
-Plain K-SVD dictionary size & $N\_FEATURES \times 7 = 12096$ & K-SVD \\
-\hline
-LC-KSVD dictionary size & $N\_FEATURES \times 6 = 10368$ & LC-KSVD \\
-\hline
-Label-consistency weight $\alpha$ & 4.0 & LC-KSVD \\
-\hline
-Classifier weight $\beta$ (LC-KSVD2 only) & 2.0 & LC-KSVD \\
-\hline
-LC-KSVD outer iterations & 10 & LC-KSVD \\
-\hline
-LC-KSVD initialisation iterations & 2 & LC-KSVD \\
-\hline
-FDDL dictionary size & $N\_FEATURES \times 7 = 12096$ & FDDL \\
-\hline
-Random seed & 42 & All algorithms \\
-\hline
-\end{tabular}
-\end{table}
-
-All four algorithms share the same sparsity level ($T=10$) and number
-of iterations (10) so that comparisons between them are not skewed by
-one algorithm simply being given more training time or a more generous
-sparsity budget. Dictionary sizes differ between algorithms because
-each algorithm distributes its atoms differently: the frozen algorithm
-splits its atoms explicitly across the base and residual stages, while
-K-SVD, LC-KSVD and FDDL each learn a single dictionary sized as a
-multiple of \texttt{N\_FEATURES}.
-
-The dictionary produced by whichever algorithm is trained, whether the frozen dictionary's combined
-$D = [D_{\text{base}} \mid D_{\text{2c}} \mid D_{\text{2d}}]$ or the
-single jointly trained dictionary from LC-KSVD, FDDL or plain K-SVD, is
-saved to disk once training finishes and is not modified again. The
-next stage of the pipeline treats this dictionary as fixed: every
-patch, whether from the training set, the test set, or a brand new CT
-volume, is re-encoded against this same frozen dictionary using the FISTA-based sparse coding described in
-Section~\ref{sec:classification}, and it is these sparse
+Whichever algorithm produced it, the resulting dictionary is treated as
+fixed from this point on and is not modified again. The next stage of
+the pipeline re-encodes every patch, whether from the training set, the
+test set, or a brand new CT volume, against this same frozen dictionary
+using the FISTA-based sparse coding described in
+Section~\ref{sec:sparse-coding-classification}, and it is these sparse
 codes, not the raw patches, that the classifiers described in
 Section~\ref{sec:classification} are trained and evaluated on.
 
@@ -919,6 +764,7 @@ on its sparse code. For this, the training set is again passed through the spars
 for each patch against the learnt dictionary $D$.
 
 \subsection{Sparse Representation}
+\label{sec:sparse-coding-classification}
 
 The resulting $(\Gamma, \text{label})$ pairs from the sparse coding step are used to train a machine
 learning classifier that predicts the class of each patch from its sparse representation.
