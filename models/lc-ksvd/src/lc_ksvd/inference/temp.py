@@ -12,9 +12,9 @@ split = "train"
 # stride=PATCH_SIZE -> non-overlapping grid, so any real grid/tissue misalignment is
 # visible directly instead of being hidden under overlapping boxes at the default
 # ABNORMAL_PATCH_STRIDE=4 (3x overlap per axis).
-result = run_inference(scan_id=target_scan, stride=PATCH_SIZE, show=False)
+result = run_inference(scan_id=target_scan, stride=PATCH_SIZE)
 
-volume = result["volume"]              # preprocessed [0,1] volume, [H,W,D]
+volume = result["volume"]              # preprocessed [-1,1] volume, [H,W,D]
 coords = result["coords"]              # (n_patches, 3) dense-grid patch origins
 pred_labels = result["pred_labels"]    # (n_patches,) predicted class idx per patch
 label_volume = result["label_volume"]  # (H,W,D) per-voxel predicted class idx
@@ -34,11 +34,12 @@ per_slice = abnormal_mask.sum(axis=(0, 1))
 cz = int(np.argmax(per_slice)) if per_slice.sum() > 0 else volume.shape[2] // 2
 
 fig, ax = plt.subplots(1, 1, figsize=(9, 9))
-# volume is already normalised to [0,1] over the whole scan, but per-slice values
-# rarely exceed ~0.3-0.5 (aerated lung ~0.1-0.2) -- fixing vmin/vmax to the full
-# [0,1] range (instead of letting imshow auto-scale to this slice's own min/max)
-# stops the darker-but-real tissue from being crushed toward black.
-ax.imshow(volume[:, :, cz].T, cmap="gray", origin="lower", vmin=0.0, vmax=0.5)
+# volume is already normalised to [-1,1] over the whole scan (background/
+# outside-lung == -1.0 exactly), but per-slice tissue values rarely exceed
+# ~-0.7..-0.5 (aerated lung) -- fixing vmin/vmax (instead of letting imshow
+# auto-scale to this slice's own min/max) stops real tissue from being
+# crushed toward black.
+ax.imshow(volume[:, :, cz].T, cmap="gray", origin="lower", vmin=-1.0, vmax=-0.5)
 
 # Predicted abnormality overlay (per class, semi-transparent)
 class_colors = plt.get_cmap("tab10", len(CLASS_ORDER))

@@ -621,20 +621,20 @@ converge faster and produce sharper, more specific atoms \cite{1710377}.
 \subsection{Method of Optimized Directions (MOD)}
 
 Method of Optimized Directions is an earlier and simpler approach than K-SVD. Instead of updating atoms one at a time, MOD updates the entire dictionary at once,
-using a direct least-squares solution \cite{[760624]}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
+using a direct least-squares solution \cite{760624}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
 
 \begin{equation}
 D = X A^T (A A^T)^{-1}
 \end{equation}
 
 This comes directly from setting the derivative of the reconstruction error $\|X - DA\|_F^2$ to zero and solving for $D$. MOD is fast and easy to implement,
-but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{[760624]}.
+but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{760624}.
 
 \subsection{Online Dictionary Learning (ODL)}
 
 Both K-SVD and MOD assume the entire training dataset fits in memory and is processed all at once, which becomes impractical for very large image datasets.
 Online Dictionary Learning solves this by processing the data in small batches, updating the dictionary incrementally as new samples arrive,
-instead of waiting to see the whole dataset \cite{[10.1145/1553374.1553463]}. At each step $t$, a new sample $x_t$ is drawn,
+instead of waiting to see the whole dataset \cite{10.1145/1553374.1553463}. At each step $t$, a new sample $x_t$ is drawn,
 its sparse code $\alpha_t$ is computed using the current dictionary, and then the dictionary is updated using accumulated statistics from all samples seen so far:
 
 \begin{equation}
@@ -646,7 +646,7 @@ D_t = \arg\min_{D} \ \frac{1}{t}\sum_{i=1}^{t} \left( \frac{1}{2}\|x_i - D\alpha
 \end{equation}
 
 which can be solved efficiently using $A_t$ and $B_t$ instead of storing all past samples. This makes ODL well suited for large-scale problems,
-including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{[10.1145/1553374.1553463]}.
+including learning dictionaries from thousands of medical image patches, since memory use stays constant regardless of dataset size \cite{10.1145/1553374.1553463}.
 
 \section{Discriminative Dictionary Learning}
 
