@@ -271,7 +271,7 @@ summarises the resulting distributions.
 
 \begin{table}[htbp]
 \centering
-\caption{Voxel-count statistics of GGO (2c) and Nodule/mass (2d) annotations.}
+\caption{Pixel-count statistics of GGO (2c) and Nodule/mass (2d) annotations.}
 \label{tab:lesion_voxel_stats}
 \begin{tabularx}{\textwidth}{lXXXXXXX}
 \hline
@@ -298,12 +298,13 @@ Figure \ref{fig:voxel-dist} shows a box plot of voxel distributions on a log$_{1
 
 This size disparity between the two target abnormalities turned out to be one of the more practically important
 findings of the EDA stage, since a fixed patch-level extraction rule that works for one category does not
-necessarily transfer to the other. A GGO region is typically large enough that a $16\times16\times16$ patch
-sampled from anywhere near its centre is likely to be mostly lesion tissue, whereas a nodule is frequently small
-enough that a patch covering its bounding box will contain mostly surrounding normal parenchyma. This is the
-underlying reason for the category-specific lesion-voxel-fraction thresholds used later during patch
-extraction (Section \ref{subsec:patch-extraction}) -- a uniform 50\% threshold, while reasonable for GGO, would have discarded
-the majority of genuine nodule patches, so a lower 10\% threshold was used for the nodule/mass category instead.
+necessarily transfer to the other. A typical GGO region is large enough that a $16\times16\times16$ patch
+sampled from anywhere near its centre is likely to be mostly lesion tissue, whereas the median nodule is
+frequently small enough that a patch covering its bounding box will contain a substantial amount of surrounding
+normal parenchyma. This is the underlying reason for the category-specific lesion-voxel-fraction thresholds used
+later during patch extraction (Section \ref{subsec:patch-extraction}) -- a uniform 50\% threshold, while
+reasonable for GGO, would have discarded a large share of genuine nodule patches, so a lower 10\% threshold was
+used for the nodule/mass category instead.
 
 \subsection{CT Volume and Mask Loading}
 

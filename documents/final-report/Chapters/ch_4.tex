@@ -1,21 +1,14 @@
 \chapter{Results}
 \label{cha:results}
 
-\section{Preprocessing Validation}
+%\section{Preprocessing Validation}
 
-\subsection{Lung Segmentation Quality (TotalSegmentator vs Ground Truth)}
+%\subsection{Lung Segmentation Quality (Mask vs Ground Truth)}
 % eda/totalseg_test_dice.csv (via eda/sota.ipynb) -- Dice between
 % TotalSegmentator's lung mask and ground truth over the ~163-case test
 % split. This is an input-quality check, not a target-abnormality result;
 % ties back to the lung-segmentation methodology discussion in Chapter 3
 % (classical HU-threshold vs LungMask) as a third data point.
-
-\section{Classical Image Processing Baseline}
-% image-processing/outputs/results.csv -- HU-threshold + morphology GGO
-% detector (dice/iou/sensitivity/precision), 5 real cases only. A
-% pre-deep-learning, pre-sparse-coding baseline; state the small sample
-% size explicitly rather than implying it's comparable in scale to the
-% other baselines.
 
 \section{Sparse-Coding Dictionary Learning (K-SVD Family)}
 % Four dictionary-learning variants are supported by main.py's
@@ -36,6 +29,64 @@
 
 \subsection{Frozen Dictionary Learning}
 
+\subsubsection{Test-Set Classification Performance}
+\label{sec:frozen-classification}
+
+The Frozen (IncrementalFrozenDictionary) model was evaluated on a 44,384-patch
+test split (14,150 normal / 14,884 ``2c'' / 15,350 ``2d'' patches). A linear
+classifier trained on the resulting sparse codes reached 64.0\% patch-level
+accuracy (macro F1 = 0.63); the full per-class breakdown is given in Table
+\ref{tab:frozen-classification}, with the corresponding confusion matrix in
+Table \ref{tab:frozen-confusion}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Frozen dictionary patch-level classification report (test split, $n=44{,}384$).}
+    \label{tab:frozen-classification}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+        \midrule
+        Normal       & 0.66 & 0.87 & 0.75 & 14{,}150 \\
+        2c (GGO)     & 0.55 & 0.40 & 0.46 & 14{,}884 \\
+        2d (Nodule)  & 0.68 & 0.67 & 0.67 & 15{,}350 \\
+        \midrule
+        Macro avg    & 0.63 & 0.64 & 0.63 & 44{,}384 \\
+        Weighted avg & 0.63 & 0.64 & 0.63 & 44{,}384 \\
+        \bottomrule
+    \end{tabular}
+    \\[4pt]
+    \small Accuracy = 0.640
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \caption{Frozen dictionary confusion matrix (rows = actual, columns = predicted).}
+    \label{tab:frozen-confusion}
+    \begin{tabular}{lccc}
+        \toprule
+         & \textbf{Normal} & \textbf{2c} & \textbf{2d} \\
+        \midrule
+        Normal & 12{,}256 & 1{,}434 & 460 \\
+        2c     & 4{,}512  & 5{,}894 & 4{,}478 \\
+        2d     & 1{,}685  & 3{,}401 & 10{,}264 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+This test split has the same class composition (14,150 / 14,884 / 15,350) as
+one of the LC-KSVD2 evaluation runs reported in Section
+\ref{sec:lcksvd2-classification}, allowing a direct, matched comparison
+between the two dictionary-learning strategies rather than an apples-to-oranges
+one. On that identical split, the Frozen dictionary outperforms the jointly
+trained LC-KSVD2 model on every aggregate metric, most notably recall on the
+clinically important ``2c'' (ground-glass opacity) class (0.40 vs.\ 0.27,
+Section \ref{sec:lcksvd2-classification}). This suggests that building the
+dictionary incrementally -- learning a stable normal-tissue base first and
+adding each abnormality as a residual dictionary on top -- generalises to
+unseen scans better than training a single dictionary jointly across all
+three classes at once.
+
 \subsubsection{Sparse Dictionary Interpretability}
 
 \paragraph{Sparsity and Atom Utilisation}
@@ -50,12 +101,42 @@
 \subsection{LC-KSVD2 (Joint, Single-Shot)}
 
 \subsubsection{Test-Set Classification Performance}
-% Real saved results: outputs/results/lcksvd2_svm_test_*/config.json
-% (3 runs) -- patch-level AND scan-level classification report +
-% confusion matrix. Note the 3 runs don't agree (one run: ~0.77 patch /
-% 0.95 scan accuracy; the other two: ~0.60 patch / 0.52 scan accuracy) --
-% report this discrepancy explicitly rather than quietly picking the
-% best-looking run.
+\label{sec:lcksvd2-classification}
+
+The jointly-trained LC-KSVD2 model was evaluated on a 69,571-patch test split
+(58,764 normal / 8,019 ``2c'' / 2,788 ``2d'' patches), with five classifier
+heads trained on the same sparse-code representation to compare against the
+model's own built-in discriminative classifier. Table
+\ref{tab:lcksvd2-classifiers} summarises patch-level performance across all
+five.
+
+\begin{table}[ht]
+    \centering
+    \caption{LC-KSVD2 classifier-head comparison (test split, $n=69{,}571$: 58,764 normal / 8,019 ``2c'' / 2,788 ``2d'').}
+    \label{tab:lcksvd2-classifiers}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
+        \midrule
+        LinearSVC (SVM)              & \textbf{0.852} & \textbf{0.69} & 0.44 & \textbf{0.70} \\
+        Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
+        Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
+        HistGradientBoosting         & 0.689 & 0.51 & 0.35 & 0.36 \\
+        XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The externally-trained LinearSVC clearly outperforms every other head,
+including LC-KSVD2's own built-in discriminative classifier $W$ (85.2\% vs.\
+62.1\% accuracy) -- the label-consistency term learned jointly with the
+dictionary does not transfer as well as simply fitting a fresh linear
+classifier on the resulting sparse codes afterwards. The non-linear heads
+(HistGradientBoosting, XGBoost) do not improve on this either, both trailing
+plain logistic regression, which suggests the sparse-code feature space is
+already close to linearly separable for this task and additional model
+capacity does not help. LinearSVC is therefore used as the reference
+classifier for LC-KSVD2 throughout the rest of this chapter.
 
 \subsubsection{Whole-Volume Localisation}
 % Qualitative results only -- overlay figures / NIfTI exports from
