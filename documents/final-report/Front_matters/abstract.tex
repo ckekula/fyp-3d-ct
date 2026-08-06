@@ -1,16 +1,15 @@
-
 \chapter*{Abstract}
-Automated abnormality detection from 3D chest Computed Tomography requires clinically interpretable methods to support radiological
-decision-making.
-Current State-of-the-Art (SotA) deep learning models often rely on post-hoc explainability techniques that provide approximate localizations
-and lack direct traceability to the models decisions.
-Furthermore, SotA models rarely support simultaneous multi-class classification and grounded localization, leading to a fragmented
-approach to diagnosis. This also hinders the ability to benchmark models across multiple dimensions of performance,
-including classification accuracy, segmentation quality, and explainability.
-This study aims to address these challenges through two contributions:
-First, we introduce an inherently interpretable dictionary learning approach in which detected abnormalities can be
-back-projected to the original voxel space, allowing diagnostic decisions to be traced back to relevant anatomical structures.
-Second, we develop a unified evaluation framework to benchmark SotA models across three axes: (i) classification accuracy,
-(ii) segmentation quality, and (iii) explainability, using standardized metrics and a publically available 3D chest CT dataset.
-Our method is benchmarked against SotA models using this framework, demonstrating competitive
-classification and segmentation performance while providing improved interpretability compared to deep learning baselines.
+Computer Aided Diagnosis (CAD) from volumetric chest Computed Tomography (CT) requires clinically interpretable methods to support
+radiological decision-making. Current State-of-the-Art (SotA) deep learning models often rely on post-hoc explainability methods
+such as Grad-CAM, that provide approximate localizations and lack direct traceability to the model's decisions.
+Furthermore, SotA models rarely support simultaneous multi-class classification and segmentation, leading to a fragmented approach
+to diagnosis. This also hinders the ability to benchmark CAD approaches across multiple dimensions of performance. This study aims
+to address these challenges through two contributions: (i) We implement a unified CAD framework that uses inherently interpretable
+dictionary learning methods, where detected abnormalities can be represented as a linear combination of “atoms”, allowing
+predictions to be projected back to relevant anatomical structures in the CT volume. (ii) We develop an open-source
+evaluation framework to benchmark SotA models across three axes: classification, segmentation and explainability. We used a subset
+of the ReXGroundingCT dataset which provides voxel-level 3D segmentation masks corresponding to volumetric scans in the CT-RATE
+dataset. Based on expert radiologist recommendation and dataset availability, pre-processed volumes are patch-sampled to extract
+normal lung parenchyma and two selected pulmonary abnormalities. Using the proposed benchmarking framework, we evaluate four
+dictionary learning approaches against five SotA models, where our approach achieved 82\% classification F1 score and 37\% global
+hit-rate for segmentation, while providing clinically interpretable voxel-level localizations without the need for post-hoc explanations.
