@@ -542,7 +542,7 @@ To determine the dimensions of the patches, we considered the size distribution 
 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just 417 voxels.
 Since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
 A similar approach was used for healthy tissue, a maximum of 50\% of the voxels in a patch were allowed to be background since
-HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{} shows a visualization of a patch-sampled lung in 3D.
+HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{fig:patch-sampling-visualization} shows a visualization of a patch-sampled lung in 3D.
 
 \begin{figure}
     \centering
@@ -758,8 +758,10 @@ codes, not the raw patches, that the classifiers described in
 Section~\ref{sec:classification} are trained and evaluated on.
 
 \section{Linear Classification}
+\label{sec:classification}
 
 \subsection{Feature Construction}
+\label{sec:sparse-coding-classification}
 
 Let $\mathbf{x} \in \mathbb{R}^{d}$ denote a vectorised patch after windowing to
 $[\text{HU}_{\min}, \text{HU}_{\max}]$ and linear rescaling to $[-1,1]$.
@@ -849,6 +851,7 @@ that co-occurring findings do not contaminate the representation; this restricti
 applies to prototype construction only, not to classifier training.
 
 \subsection{Discriminative aggregation}
+\label{sec:statistical-analysis}
 
 A naive mean over $\{\boldsymbol{\alpha}^{(i)}\}$ is unsuitable for signed codes:
 opposing signs cancel across samples, and coefficient mass is distributed
