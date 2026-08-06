@@ -82,9 +82,17 @@ def load_dictionary_and_boundaries(path=DICT_MODEL_PATH):
     return D, class_boundaries, class_order
 
 def encode_patches_omp(X: np.ndarray, D: np.ndarray, n_nonzero_coefs: int = N_NONZERO_COEFS) -> np.ndarray:
-    """Sparse-code X against D using Batch-OMP."""
+    """Sparse-code X against D using Batch-OMP.
+
+    check_dict=False: reppi's OMP.encode() converts D to a numpy array
+    before calling its own check_dict_normalized() helper, which is
+    torch-only (`D.sum(dim=0)`) -- so check_dict=True raises a TypeError
+    unconditionally, regardless of whether D is actually normalized. K-SVD
+    training already guarantees unit-norm dictionary columns, so the check
+    is redundant here; skip it to avoid the crash.
+    """
     X_norm, _, _ = normalise_columns(X)
-    omp = OMP(n_nonzero_coefs=n_nonzero_coefs, mode="batch", check_dict=True)
+    omp = OMP(n_nonzero_coefs=n_nonzero_coefs, mode="batch", check_dict=False)
     Gamma = omp.encode(X_norm, D)
     logger.info(f"Encoded {X.shape[1]} patches -> Gamma shape {Gamma.shape}")
     return Gamma
