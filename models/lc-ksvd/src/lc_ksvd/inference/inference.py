@@ -182,13 +182,13 @@ def extract_dense_patches(
     """
     logger.info(f"[4/8] Extracting dense patches (stride={stride}, patch_size={PATCH_SIZE})...")
     H, W, D = volume.shape
-    p = PATCH_SIZE
+    px, py, pz = PATCH_SIZE
     patches, coords = [], []
     n_skipped_background = 0
 
-    for x0 in range(0, H - p + 1, stride):
-        for y0 in range(0, W - p + 1, stride):
-            for z0 in range(0, D - p + 1, stride):
+    for x0 in range(0, H - px + 1, stride):
+        for y0 in range(0, W - py + 1, stride):
+            for z0 in range(0, D - pz + 1, stride):
                 patch = extract_patch(volume, x0, y0, z0)
                 if patch is None:
                     continue
@@ -274,17 +274,17 @@ def build_abnormality_volume(
       abnormal_voxel_counts : {class_name: voxel_count}, classes != normal
     """
     logger.info("[7/8] Reconstructing per-voxel abnormality map from patch predictions...")
-    p = PATCH_SIZE
+    px, py, pz = PATCH_SIZE
     n_classes = len(CLASS_ORDER)
     volume_shape = volume.shape
     votes = np.zeros((n_classes,) + volume_shape, dtype=np.int32)
     heat = np.zeros(volume_shape, dtype=np.float32)
 
     for (x0, y0, z0), label, scores in zip(coords, pred_labels, decision_scores):
-        votes[label, x0:x0 + p, y0:y0 + p, z0:z0 + p] += 1
+        votes[label, x0:x0 + px, y0:y0 + py, z0:z0 + pz] += 1
         if label != NORMAL_CLASS_IDX:
             score = float(scores[label])
-            region = heat[x0:x0 + p, y0:y0 + p, z0:z0 + p]
+            region = heat[x0:x0 + px, y0:y0 + py, z0:z0 + pz]
             np.maximum(region, score, out=region)
 
     tissue = ~np.isclose(volume, -1.0, atol=1e-6)

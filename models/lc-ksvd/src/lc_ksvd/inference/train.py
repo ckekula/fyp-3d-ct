@@ -22,16 +22,16 @@ from reppi.sparse.fista.utils import soft_threshold
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-DICT_MODEL_PATH = MODELS_DIR / "unified_lcksvd2.pkl"
-SVM_MODEL_PATH = MODELS_DIR / "lcksvd2_svm_model.pkl"
-GBM_MODEL_PATH = MODELS_DIR / "lcksvd2_gbm_model.pkl"
-XGB_MODEL_PATH = MODELS_DIR / "lcksvd2_xgb_model.pkl"
-LOGREG_MODEL_PATH = MODELS_DIR / "lcksvd2_logreg_model.pkl"
+DICT_MODEL_PATH = MODELS_DIR / "unified_frozen.pkl"
+SVM_MODEL_PATH = MODELS_DIR / "frozen_svm_model.pkl"
+GBM_MODEL_PATH = MODELS_DIR / "frozen_gbm_model.pkl"
+XGB_MODEL_PATH = MODELS_DIR / "frozen_xgb_model.pkl"
+LOGREG_MODEL_PATH = MODELS_DIR / "frozen_logreg_model.pkl"
 
 N_NONZERO_COEFS = 10
 ALPHA = 0.1
 SPLIT = "train"
-MODEL = "lcksvd2"
+MODEL = "frozen"
 RANDOM_SEED = 42
 
 def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
@@ -142,7 +142,7 @@ def train_logreg(gamma: np.ndarray, labels: np.ndarray):
         ("logreg", LogisticRegression(max_iter=5000, class_weight="balanced")),
     ])
     param_grid = {"logreg__C": [0.1, 1.0, 10.0, 100.0]}
-    grid = GridSearchCV(pipeline, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid = GridSearchCV(pipeline, param_grid, cv=5, scoring="f1_macro", n_jobs=1, verbose=2)
     grid.fit(X, labels)
     print("\nBest parameters:", grid.best_params_)
     print("Best CV score:", grid.best_score_)
@@ -161,7 +161,7 @@ def train_gbm(gamma: np.ndarray, labels: np.ndarray):
     X = gamma.T
     clf = HistGradientBoostingClassifier(class_weight="balanced", random_state=RANDOM_SEED)
     param_grid = {"max_depth": [3, 5, None], "learning_rate": [0.05, 0.1]}
-    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=1, verbose=2)
     grid.fit(X, labels)
     print("\nBest parameters:", grid.best_params_)
     print("Best CV score:", grid.best_score_)
@@ -185,6 +185,7 @@ def train_xgb(gamma: np.ndarray, labels: np.ndarray):
         objective="multi:softprob",
         eval_metric="mlogloss",
         tree_method="hist",
+        device="cuda",
         random_state=RANDOM_SEED,
     )
     param_grid = {
@@ -192,7 +193,7 @@ def train_xgb(gamma: np.ndarray, labels: np.ndarray):
         "learning_rate": [0.05, 0.1],
         "reg_lambda": [1.0, 5.0],
     }
-    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=2, verbose=2)
+    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_macro", n_jobs=1, verbose=2)
     grid.fit(X, labels, sample_weight=sample_weight)
     print("\nBest parameters:", grid.best_params_)
     print("Best CV score:", grid.best_score_)
@@ -216,7 +217,7 @@ def train_svm(gamma: np.ndarray, labels: np.ndarray):
         param_grid=param_grid,
         cv=5,
         scoring="f1_macro",
-        n_jobs=2,
+        n_jobs=1,
         verbose=2,
         pre_dispatch=1,
         refit=True

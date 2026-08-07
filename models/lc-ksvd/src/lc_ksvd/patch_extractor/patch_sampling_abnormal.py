@@ -88,19 +88,19 @@ def _bbox_origins(
     bounding box and remains fully within the volume.
 
     To cover the entire bbox, the starting x0 ranges from
-    max(0, x_min - PATCH_SIZE + 1) to min(H - PATCH_SIZE, x_max), and
-    analogously for y and z, stepped by `stride`.
+    max(0, x_min - PATCH_SIZE[0] + 1) to min(H - PATCH_SIZE[0], x_max), and
+    analogously for y and z (using PATCH_SIZE[1], PATCH_SIZE[2]), stepped by `stride`.
     """
-    p = PATCH_SIZE
+    px, py, pz = PATCH_SIZE
     H, W, D = volume_shape
     x_min, x_max, y_min, y_max, z_min, z_max = bbox
 
-    x_start = max(0,        x_min - p + 1)
-    x_stop  = min(H - p,    x_max)
-    y_start = max(0,        y_min - p + 1)
-    y_stop  = min(W - p,    y_max)
-    z_start = max(0,        z_min - p + 1)
-    z_stop  = min(D - p,    z_max)
+    x_start = max(0,        x_min - px + 1)
+    x_stop  = min(H - px,   x_max)
+    y_start = max(0,        y_min - py + 1)
+    y_stop  = min(W - py,   y_max)
+    z_start = max(0,        z_min - pz + 1)
+    z_stop  = min(D - pz,   z_max)
 
     for x0 in range(x_start, x_stop + 1, stride):
         for y0 in range(y_start, y_stop + 1, stride):
