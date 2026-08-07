@@ -759,34 +759,52 @@ which is independent of K. For d=864, this gives $s_{\max}\approx14$.
 From this we decided that the sparsity level of s=10 is well within the uniqueness region.
 
 The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
-\citep{aharon2006ksvd}. Unlike online dictionary learning (section \ref{subsec:odl}), KSVD lacks stochastic regularization
-from mini-batches. Consequently, the practical dictionary size was restricted to $K=1{,}728-2{,}592$, corresponding to $N/K\approx39-58$,
-together with atom-usage monitoring and replacement safeguards.
+\citep{aharon2006ksvd}. This gives a range of values for the dictionary size $K$:
 
+\[
+K \lesssim \frac{100,000}{100 \text{ to } 300} \approx 333 \text{ to } 1,000
+\]
 
+This is considerably smaller than the typical 2-4x overcomplete dictionaries used in image processing. Even at $K=1,000$,
+$K/d \approx 1.2$, which is barely overcomplete. To achieve desirable overcompleteness, we would have to tradeoff the
+number of training samples per atom $N/K$, which could lead to unstable atom recovery. However, many published dictionary-learning
+results train with 20-50 samples/atom successfully, especially with mini-batch/online updates like Mairal et al.'s ODL \cite{mairal2010online},
+which distributes this effect over many updates, better than batch K-SVD. Table \ref{tab:dictionary_tradeoff} shows the $N/K$
+values for different levels of overcompleteness.
+
+\begin{table}[ht]
+\centering
+\caption{Trade-off between dictionary overcompleteness and training samples per atom for $N=100{,}000$ and $d=864$.}
+\label{tab:dictionary_tradeoff}
+\begin{tabular}{ccc}
+\hline
+\textbf{Dictionary Size ($K$)} & \textbf{Overcompleteness ($K/d$)} & \textbf{Samples per Atom ($N/K$)} \\
+\hline
+1,728 & $2.0\times$ & 58 \\
+2,592 & $3.0\times$ & 39 \\
+3,456 & $4.0\times$ & 29 \\
+\hline
+\end{tabular}
+\end{table}
+
+At $K=3d$, the dictionary has enough overcompleteness for s=10 sparse coding to be meaningful, while keeping $N/K$ in a range (20-50).
+Therefore, we decided to use $K=3d=2{,}592$ as the target dictionary size for all algorithms in this project.
 
 \subsection{K-SVD}
 \label{sec:ksvd}
 
-K-SVD (Section~\ref{sec:lit-ksvd}) is used here for two purposes: as a
-standalone baseline dictionary trained jointly over all three classes,
-and as the underlying atom-update engine that both LC-KSVD and Frozen
-Dictionary Learning are built on. Sparse coding during training uses
-Batch-OMP (Section~\ref{sec:lit-ksvd}), capped at sparsity $T=10$ for
-every algorithm in this project.
+K-SVD is used here for two purposes: as a standalone baseline dictionary trained separately over all three classes,
+and as the underlying atom-update algorithm that both LC-KSVD and Frozen Dictionary Learning are built on.
+Sparse coding during training uses the Batch-OMP algorithm.
 
-As a standalone baseline, K-SVD is trained on all three classes
-(normal, GGO, nodule) at once, with no notion of class boundaries,
-using a dictionary of $7 \times 1{,}728 = 12{,}096$ atoms, sparsity
-$T=10$, a mutual coherence threshold of 0.99 for atom replacement, and
-10 alternating iterations.
+As a standalone baseline, K-SVD is trained on all classes separately and joined together into a single dictionary. 
+We set a mutual coherence threshold of 0.99 for atom replacement, and train for 10 iteratins.
 
 \subsection{LC-KSVD}
 
 The LC-KSVD2 variant (Section~\ref{sec:lit-lcksvd}) is used, so that a
-linear classifier is learned jointly with the dictionary rather than
-fitted afterwards. It is trained with a dictionary of
-$6 \times 1{,}728 = 10{,}368$ atoms, sparsity $T=10$, label-consistency
+linear classifier is learned jointly with the dictionary. However, this 
+
 weight $\alpha = 4.0$ and classifier weight $\beta = 2.0$ (matching the
 settings Jiang et al.\ report for their face recognition experiments),
 over 10 outer iterations with a short 2-iteration K-SVD warm start used
