@@ -514,27 +514,95 @@ distribution of HU values across the dataset inside the abnormality masks.
     \label{fig:hu-histogram}
 \end{figure}
 
-Two normalisation strategies were considered for the final rescaling step. The first was the fixed Min-Max rescaling described above,
-following the same approach CT-CLIP \cite{hamamci2024ctclip} uses when preparing CT-RATE volumes. The second was the approach
+Two normalisation strategies were considered for the final rescaling step. The first was fixed Min-Max scaling to $[-1,1]$
+following the same approach used in the CT-CLIP study \cite{hamamci2024ctclip}. The second was the approach
 used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image}, where each patch
 has its local mean subtracted before dictionary learning, and the mean-subtracted patch is then divided by its own $L_2$ norm
 before being passed to OMP. This is so that the SVD step used to update dictionary atoms is not dominated by a constant background
 offset, and the $L_2$ norm is removed so that every patch contributes to the dictionary update on a comparable scale, no matter
 how much contrast it originally had.
 
-However, the latter approach was dismissed primarily because of what the HU value represents physically in a CT scan. Unlike a
-conventional image intensity, the HU is a direct physical measure of tissue density. The raw intensity therefore carries
-diagnostic information on which the dictionary learning and classification stages later depend.
-With the $L_2$ norm applied, a given HU value could be mapped to a different normalised value depending on the surrounding content
-of that particular patch. Findings that are structurally similar but differ in
-density could consequently be mapped close together in the normalised space, even though
-this density difference is often the distinguishing factor between the two classes.
+However, the latter approach isn't applicable, atleast directly, because of what the HU value represents physically in a CT scan.
+Unlike a conventional image intensity, the HU is a direct physical measure of tissue density. The raw intensity therefore carries
+diagnostic information on which the classification stages later depend on.
+With the $L_2$ norm applied, findings that are structurally similar but differ in density could consequently be mapped close
+together in the normalised space, even though this density difference is often the distinguishing factor between the two classes.
 
-Min-Max rescaling avoids this shortcoming, as it applies a single, fixed formula,
-$\left(I - I_{min}\right)/\left(I_{max} - I_{min}\right)$, derived from the clipping window established earlier rather than from
-any quantity computed per patch. A given HU value therefore always maps to the
-same normalised value, irrespective of the voxel, patch or scan from which
-it originated, thereby preserving the density information for the later stages of the pipeline.
+However, the fixed Min-Max scaling approach has its own drawbacks. Consider a patch where
+$N=12\times12\times12=1728$. The signal energy is proportional to the squared $\ell_2$ norm:
+
+\[
+E = \|\mathbf{x}\|_2^2 = \sum_{i=1}^{N} x_i^2.
+\]
+
+For a typical normal lung patch, the normalized voxel values are approximately constant at $-0.85$. Thus,
+
+\[
+\|\mathbf{x}_{\mathrm{DC}}\|_2
+= \sqrt{N(0.85)^2}
+= 0.85\sqrt{1728}
+\approx 35,
+\]
+
+\noindent giving an energy of
+
+\[
+E_{\mathrm{DC}} \approx 35^2 = 1225.
+\]
+
+Let's assume that the remaining texture variations have a normalized magnitude of approximately $0.05$--$0.1$, giving
+
+\[
+\|\mathbf{x}_{\mathrm{tex}}\|_2
+\approx (0.05\text{--}0.1)\sqrt{1728}
+\approx 4,
+\]
+
+\noindent and
+
+\[
+E_{\mathrm{tex}} \approx 4^2 = 16.
+\]
+
+Therefore, the Direct Current (DC) component accounts for approximately
+
+\[
+\frac{E_{\mathrm{DC}}}{E_{\mathrm{DC}} + E_{\mathrm{tex}}}
+=
+\frac{1225}{1225+16}
+\approx 98.7\%
+\]
+
+\noindent of the total signal energy, meaning the average HU intensity dominates the sparse coding process.
+
+An alternative approach combines the benefits of both methods by explicitly separating intensity and texture information before
+sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each patch $\mathbf{x}$ is
+represented as
+
+\[
+\mathbf{x} \rightarrow \left(\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right),
+\]
+
+\noindent where $\mu$ is the mean attenuation, $\|\mathbf{x}-\mu\|_2$ represents the texture magnitude, and
+$\boldsymbol{\alpha}_{\mathrm{tex}}$ is the sparse code of the normalized zero-mean texture,
+
+\[
+\tilde{\mathbf{x}}=\frac{\mathbf{x}-\mu}{\|\mathbf{x}-\mu\|_2}.
+\]
+
+\noindent The classifier is then trained using the combined feature vector
+
+\[
+\left[\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right].
+\]
+
+This preserves the highly interpretable mean attenuation as an explicit scalar feature while allowing the dictionary to learn only
+texture, preventing the sparse coding process from being dominated by the DC component.
+
+We tested this approach by sending the
+mean HU and standard deviation to a logistic regression classifier. The results showed that the mean HU alone was a strong
+predictor of abnormality, with an AUC of 0.85 for GGO and 0.80 for nodules/masses. This confirms that most of the model's
+predictive power is coming from basic intensity statistics rather than learned texture representations.
 
 \subsection{Patch Extraction}
 \label{subsec:patch-extraction}
@@ -549,17 +617,17 @@ to break each volume down into smaller 3D patches. Patch-based sampling provides
     \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
 \end{itemize}
 
-\noindent There are 3 competing forces for the patch size selection:
+\noindent There are 3 competing forces influencing the patch size selection:
 \begin{enumerate}
-    \item Size of Nodules
-    \item Dictionary Atom Size
-    \item Loss of context
+    \item Size of Nodules -- Patch size must be lowered to capture smaller nodules.
+    \item Size of Dictionary -- Patch size must be lowered to keep the dictionary size manageable.
+    \item Loss of context -- Patch size must be increased to capture more context around the abnormality.
 \end{enumerate}
 
-As discussed in section \ref{subsec:eda}, the median nodule size is 417 voxels, which is smaller than the smallest candidate patch size of $8 \times 8 \times 8$ (512 voxels).
-Since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
-A similar approach was used for healthy tissue, a maximum of 50\% of the voxels in a patch were allowed to be background since
-HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{fig:patch-sampling-visualization} shows a visualization of a patch-sampled lung in 3D.
+Furthermore, since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
+A similar approach was used for healthy tissue, where a maximum of 50\% of the voxels in a patch were allowed to be background
+to avoid patches sampled completely from outside the lung parenchyma. Figure \ref{fig:patch-sampling-visualization} shows a
+visualization of a patch-sampled lung in 3D.
 
 \begin{figure}
     \centering
@@ -569,7 +637,10 @@ HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{fig:patch
 \end{figure}
 
 At 50\% of the median nodule size, we considered multiple patch sizes that would include a sufficient number of 
-patches from the nodule/mass category. Table \ref{tab:patch-size-comparison} shows the comparison of two patch sizes that were considered.
+patches from the nodule/mass category. This distribution is shown in table \ref{tab:patch-size-comparison}.
+The influence of the size of the dictionary is discussed in section \ref{sec:dictionary-learning}.
+The loss of context stems from the fact that smaller patch sizes are unable to capture the surrounding tissue context of the
+abnormality, which is important for classification.
 
 \begin{table}
     \centering
@@ -586,10 +657,6 @@ patches from the nodule/mass category. Table \ref{tab:patch-size-comparison} sho
     \caption{Comparison of candidate patch sizes.}
     \label{tab:patch-size-comparison}
 \end{table}
-
-Based on the distribution in figure \ref{fig:patch-sampling-visualization}, selecting the $16 \times 16 \times 16$ patch size covers more than 25\% of the patches
-in the nodule/mass category, while the $12 \times 12 \times 12$ patch size covers less than 10\% of the patches in the
-nodule/mass category.
 
 Each patch is a fixed $12 \times 12 \times 12$ voxel cube, which at the resampled
 spacing corresponds to roughly a $36\,\text{mm}^3$ region of lung tissue large enough to capture a typical nodule
@@ -643,15 +710,60 @@ represent these patches as a sparse combination of a small number of
 atoms. Four dictionary learning algorithms were implemented and
 compared for this purpose: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary
 Learning. All of the dictionary learning code lives in a separate
-open-source PyPI package built specifically for this project
-\url{https://pypi.org/project/reppi/}. The code can be found at:
-\url{https://github.com/ckekula/reppi}.
+open-source \url{https://pypi.org/project/reppi/}{PyPI} package built specifically for this project.
+The code can be found on \url{https://github.com/ckekula/reppi}{Github}.
 
-All four algorithms take the same flattened patch matrix
-$X \in \mathbb{R}^{n \times N}$ (where $n=1728$ is the flattened patch
-length and $N$ is the number of patches) and produce a dictionary $D$
-that patches can later be sparse-coded against. Each algorithm is
-described below along with the hyperparameters used to train it.
+All four algorithms take the same flattened patch matrix $X \in \mathbb{R}^{n \times N}$ (where n is the flattened patch
+length and $N$ is the number of patches) and produce a dictionary $D$ that patches can later be sparse-coded against.
+
+\subsection{Deriving Practical Baselines for s, N, and K}
+
+Before training any of the dictionary learning algorithms, it is important to understand the theoretical limits on the
+sparsity level $s$, the number of training samples $N$, and the dictionary size $K$. These limits are derived from the properties
+of the dictionary and the underlying sparse coding problem. The uniqueness of sparse representations is governed by the
+dictionary's \textit{spark} and \textit{mutual coherence}.
+In sparse representation, the spark of a dictionary is the smallest number of atoms that are linearly dependent, while the mutual
+coherence is the maximum absolute inner product between any pair of normalized columns. A representation with sparsity
+
+\[
+s < \frac{\mathrm{spark}(D)}{2}
+\]
+
+\noindent is the unique sparsest solution \citep{elad2010sparse}. Since $\mathrm{spark}(D) \le d + 1$,
+the theoretical upper limit is:
+
+\[
+s < \frac{d+1}{2}.
+\]
+
+However, this is a theoretical limit. A more practical condition is based on mutual coherence:
+
+\[
+s < \frac{1}{2}\left(1+\frac{1}{\mu(D)}\right),
+\]
+
+\noindent where:
+
+\[
+\mu(D) \ge \sqrt{\frac{K-d}{d(K-1)}}.
+\]
+
+This is known as the Welch Bound \citep{welch1974lower}. As K increases, the bound approaches $(\mu(D)\approx1/\sqrt{d})$,
+yielding the asymptotic sparsity ceiling:
+
+\[
+s \lesssim \frac{\sqrt{d}}{2},
+\]
+
+which is independent of K. For d=864, this gives $s_{\max}\approx14$.
+From this we decided that the sparsity level of s=10 is well within the uniqueness region.
+
+The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
+\citep{aharon2006ksvd}. Unlike online dictionary learning (section \ref{subsec:odl}), KSVD lacks stochastic regularization
+from mini-batches. Consequently, the practical dictionary size was restricted to $K=1{,}728-2{,}592$, corresponding to $N/K\approx39-58$,
+together with atom-usage monitoring and replacement safeguards.
+
+
 
 \subsection{K-SVD}
 \label{sec:ksvd}
@@ -667,10 +779,7 @@ As a standalone baseline, K-SVD is trained on all three classes
 (normal, GGO, nodule) at once, with no notion of class boundaries,
 using a dictionary of $7 \times 1{,}728 = 12{,}096$ atoms, sparsity
 $T=10$, a mutual coherence threshold of 0.99 for atom replacement, and
-10 alternating iterations. K-SVD also supports a set of frozen atoms,
-held fixed while new atoms are learned around them; this is the
-mechanism Frozen Dictionary Learning (Section~\ref{sec:frozen-dict-learning})
-is built on directly.
+10 alternating iterations.
 
 \subsection{LC-KSVD}
 

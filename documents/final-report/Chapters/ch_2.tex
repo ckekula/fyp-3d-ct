@@ -631,6 +631,7 @@ This comes directly from setting the derivative of the reconstruction error $\|X
 but because it updates all atoms together, it tends to need more iterations to converge compared to K-SVD, and can get stuck producing less sharp atoms \cite{760624}.
 
 \subsection{Online Dictionary Learning (ODL)}
+\label{subsec:odl}
 
 Both K-SVD and MOD assume the entire training dataset fits in memory and is processed all at once, which becomes impractical for very large image datasets.
 Online Dictionary Learning solves this by processing the data in small batches, updating the dictionary incrementally as new samples arrive,
