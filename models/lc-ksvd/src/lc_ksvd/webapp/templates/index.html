@@ -30,6 +30,14 @@
         </div>
 
         <div class="row">
+          <button class="btn btn-ghost" id="gt-btn" type="button" disabled>
+            📎 Attach ground-truth mask (optional)
+          </button>
+          <input type="file" id="gt-file-input" accept=".nii,.nii.gz,.gz,application/gzip" hidden>
+          <span class="inline-status" id="gt-status"></span>
+        </div>
+
+        <div class="row">
           <button class="btn btn-primary" id="run-btn" disabled>▶ Run Model</button>
           <span class="inline-status" id="upload-status"></span>
         </div>
@@ -53,6 +61,19 @@
           <div class="result-row"><span class="result-label">Scan</span><span id="result-scan-name">—</span></div>
           <div class="result-row"><span class="result-label">CT volume</span><span id="result-ct-path" class="mono">—</span></div>
           <div class="result-row"><span class="result-label">Boundary label map</span><span id="result-labelmap-path" class="mono">—</span></div>
+          <div class="result-row" id="result-gt-row" hidden>
+            <span class="result-label">Ground-truth mask</span><span id="result-gt-path" class="mono">—</span>
+          </div>
+        </div>
+
+        <div class="findings-panel" id="abnormality-panel" hidden>
+          <h3>Detected Abnormalities</h3>
+          <ul id="abnormality-list"></ul>
+        </div>
+
+        <div class="findings-panel" id="findings-panel" hidden>
+          <h3>Reported Findings</h3>
+          <ul id="findings-list"></ul>
         </div>
 
         <div class="row">

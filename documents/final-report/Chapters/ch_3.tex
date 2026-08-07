@@ -4,7 +4,7 @@ Figure \ref{fig:methodology} gives a visual overview of the full framework prese
 
 \begin{figure}[h]
     \centering
-    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/methodology.png}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/OverallMethodologyDiagram.jpeg}
     \caption{Overall Methodology Diagram.}
     \label{fig:methodology}
 \end{figure}
@@ -27,8 +27,8 @@ Only three datasets fulfilled the former requirement:
 
 \begin{enumerate}
     \item CT-RATE\cite{hamamci2024ctrate}
-    \item RadGenome-Chest CT\cite{your2024radgenome}
-    \item Rad-ChestCT\cite{your2024radchestct}
+    \item RadGenome-Chest CT\cite{zhang2025development}
+    \item Rad-ChestCT\cite{draelos2021machine}
 \end{enumerate}
 
 Of these, only CT-RATE and RadGenome-Chest CT were publicly available, while Rad-ChestCT only had an initial release of 3,630 chest
@@ -38,15 +38,22 @@ RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-leve
 vision-language AI models. However, neither of these provides the necessary spatially localized annotations to train a 3D lung
 segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct} was released very close to the start of this
 project, and it provides per-finding voxel-level segmentation masks for a subset of the CT-RATE dataset.
+Figure \ref{fig:rexgroundingct_example} shows an example CT scan with ReXGroundingCT mask overlaid over a scan from CT-RATE.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/Chapter 3/ct-mask.jpeg}
+    \caption{Example CT scan with ReXGroundingCT mask overlaid over a scan from CT-RATE.}
+    \label{fig:rexgroundingct_example}
+\end{figure}
 
 \subsubsection{CT-RATE Dataset}
 
-CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI format, hosted on Hugging
-Face (\href{https://huggingface.co/datasets/ibrahimhamamci/CT-RATE}) that provides volume-level multi-label
-annotations and corresponding textual radiology reports across 18 distinct abnormality categories.
-The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to 50,188 total
-volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and a validation
-cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
+CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI format, hosted on \href{https://huggingface.co/datasets/ibrahimhamamci/CT-RATE}{Hugging Face}
+that provides volume-level multi-label annotations and corresponding textual radiology reports across 18 distinct abnormality
+categories. The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to
+50,188 total volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and
+a validation cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
 
 \begin{table}[ht]
     \centering
@@ -80,14 +87,14 @@ from four primary scanner manufacturers:
 \subsubsection{ReXGrounding-CT Dataset}
 
 ReXGroundingCT \cite{rajpurkar2024rexgroundingct}, is the first publicly available dataset linking voxel-level
-3D segmentation masks to free-text findings in chest CT scans in NifTI fromat, hosted on Hugging Face (\href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}).
+3D segmentation masks to free-text findings in chest CT scans in NifTI fromat, hosted on \href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}{Hugging Face}.
 It includes 3,142 non-contrast chest CT studies derived from the CT-RATE dataset organised as a train set of 2,992 scans, a valid set of 50 scans and a held-out
 private test set of 100 studies. This test set is hosted on RexRank \cite{zhang2024rexrankpublicleaderboardaipowered}, a public leaderboard and challenge for
 assessing AI-powered radiology report generation. ReXGroundingCT enables grounding for 14 abnormality categories with 79\% of the annotated findings represent
 focal abnormalities such as nodules or localized consolidations, while 21\% represent diffuse or infiltrative patterns. Table \ref{tab:rex-abnormalities}
 shows the list of abnormalities in the ReXGroundingCT dataset, divided into typically focal and typically non-focal categories.
 
-\begin{table}
+\begin{table}[H]
 \centering
 \caption{List of Abnormalities in the ReXGroundingCT Dataset}
 \label{tab:rex-abnormalities}
@@ -156,7 +163,6 @@ intervention, making them good candidates for a proof-of-concept CAD system:
     \item Ground-glass opacity
     \item Pulmonary nodule
     \item Consolidation
-    \item Mosaic attenuation
     \item Bronchiectasis
     \item Emphysema
 \end{itemize}
@@ -170,18 +176,17 @@ However, we also observed discrepancies between the abnormality classes in the C
 Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
-Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding.
 
+Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding.
 This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
 Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
 frequently present with visible air bronchograms within the affected area.
 This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as "consolidation or atelectasis".
 
-The categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
+Their categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
 radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
-However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical
-taxonomy, with 404 representative abnormal findings across all body regions. Table \ref{tab:omniabnorm-tax} shows the abnormalities
-listed under the "Lung" category.
+However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical taxonomy, with 404 representative abnormal
+findings across all body regions. Table \ref{tab:omniabnorm-tax} shows their abnormalities listed under the "Lung" category.
 
 \begin{table}[ht]
     \centering
@@ -192,10 +197,10 @@ listed under the "Lung" category.
         \textbf{Category} & \textbf{Abnormalities} \\
         \midrule
         Pulmonary parenchyma &
-        Atelectasis; Incomplete lung expansion; Pulmonary consolidation; Pulmonary ground-glass opacities; Pulmonary emphysema; Pulmonary solitary nodule or mass; Pulmonary diffusely distributed multiple nodules; Pulmonary parenchymal fibrosis; Pulmonary thin-walled cavitation; Pulmonary thick-walled cavities; Pulmonary cystic mass. \\
+        Atelectasis, Incomplete lung expansion, Consolidation, Ground-glass opacities, Emphysema, Solitary nodule or mass, Diffusely distributed multiple nodules, Parenchymal fibrosis, Thin-walled cavitation; Thick-walled cavities; Cystic mass. \\
         \addlinespace
         Bronchi &
-        Bronchiectasis; Bronchial wall thickening, stenosis, or occlusion; Bronchial foreign body. \\
+        Bronchiectasis, Bronchial wall thickening, stenosis, or occlusion, Bronchial foreign body. \\
         \addlinespace
         Lung interstitial &
         Lung interstitial fibrosis and thickening; Honeycomb lung. \\
@@ -206,9 +211,10 @@ listed under the "Lung" category.
     \end{tabular}
 \end{table}
 
-This study separates Atelectasis and Consolidation into two distinct categories, which is a more granular approach than ReXGrounding-CT.
-Through consultation with the radiologist, it was decided that Atelectasis and Consolidation should be distinct categories as they
-represent different pathological processes as noted in \ref{subsec:abnormalities}.
+Unlike ReXGrounding-CT, this study separates Atelectasis and Consolidation into two distinct categories even though their taxonomy
+was also developed by 7 senior radiologists with at least 10-year experience \cite{zhao2026rethinking}.
+Through consultation with our own radiologist, it was decided that Atelectasis and Consolidation should be distinct categories as
+they represent different pathological processes as noted in \ref{subsec:abnormalities}.
 Because there are practical constraints in dividing the already-grouped Atelectasis/Consolidation category in ReXGrounding-CT,
 we decided to remove them from the initial phase of the study.
 To further reduce the target abnormalities, we considered the representation of each class in our dataset which is discussed in
@@ -235,7 +241,9 @@ of the 14 finding categories in ReXGroundingCT.
 
 \begin{table}[htbp]
 \centering
-\caption{Distribution of Findings and Scans Across ReX Categories}
+\caption[Distribution of Findings and Scans Across ReXGroundingCT Categories]
+{Distribution of Findings and Scans Across ReXGroundingCT Categories. Categories starting with 1 are typically non-focal,
+while those starting with 2 are typically focal.}
 \label{tab:rex_category_distribution}
 \begin{tabularx}{\textwidth}{clXX}
 \hline
@@ -265,9 +273,8 @@ the grouped Atelectasis/Consolidation category, we were left with GGO and Pulmon
 
 Beyond how many findings each category contributed, it was also important to understand how large a typical
 finding actually is, since this has a direct impact on how patches would later need to be sampled around each
-lesion. For every GGO and nodule/mass annotation in the dataset, the number of foreground voxels enclosed by its
-ground-truth mask was measured, giving one voxel count per annotation. Table \ref{tab:lesion_voxel_stats}
-summarises the resulting distributions.
+lesion. For each abnormality annotation in the dataset, the number of foreground voxels was obtained from the metadata.
+Table \ref{tab:lesion_voxel_stats} summarises the resulting distributions.
 
 \begin{table}[htbp]
 \centering
@@ -275,36 +282,36 @@ summarises the resulting distributions.
 \label{tab:lesion_voxel_stats}
 \begin{tabularx}{\textwidth}{lXXXXXXX}
 \hline
-\textbf{Category} & \textbf{\# Ann.} & \textbf{\# Scans} & \textbf{Mean} & \textbf{Median} & \textbf{P25} & \textbf{P75} \\
+\textbf{Category} & \textbf{Count} & \textbf{Mean} & \textbf{Median} & \textbf{Q1} & \textbf{Q3} \\
 \hline
-GGO (2c) & 1,543 & 1,161 & 113,871 & 19,682 & 4,818 & 83,380 \\
-Nodule/mass (2d) & 1,801 & 1,349 & 10,196 & 417 & 194 & 1,167 \\
+1b & 285 & 118,120 & 26,843 & 4,162 & 159,705 \\
+1c & 449 & 338,505 & 19,594 & 3,633 & 151,685 \\
+2b & 1384 & 114,153 & 22,820 & 6,418 & 84,033 \\
+2c & 1,543 & 113,871 & 19,682 & 4,818 & 83,380 \\
+2d & 1,801 & 10,196 & 417 & 194 & 1,167 \\
 \hline
 \end{tabularx}
 \end{table}
 
 The two categories turned out to have very different, heavily right-skewed size profiles. The median GGO
 annotation covers 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just
-417 voxels. Both distributions also have a long tail of much larger outliers, with the largest single GGO
-annotation reaching 3,442,007 voxels and the largest nodule/mass annotation reaching 1,872,872 voxels.
-Figure \ref{fig:voxel-dist} shows a box plot of voxel distributions on a log$_{10}$(voxel count) axis rather.
+417 voxels. Both distributions also have a long tail of much larger outliers.
+Figure \ref{fig:voxel-dist} shows a box plot of voxel distributions for both classes.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/pixel-distribution.png}
-    \caption{Log-scale voxel-count distribution of GGO (category 2c) annotations.}
+    \caption{Log-scale voxel-count distribution of target abnormalities.}
     \label{fig:voxel-dist}
 \end{figure}
 
-This size disparity between the two target abnormalities turned out to be one of the more practically important
-findings of the EDA stage, since a fixed patch-level extraction rule that works for one category does not
-necessarily transfer to the other. A typical GGO region is large enough that a $16\times16\times16$ patch
-sampled from anywhere near its centre is likely to be mostly lesion tissue, whereas the median nodule is
-frequently small enough that a patch covering its bounding box will contain a substantial amount of surrounding
-normal parenchyma. This is the underlying reason for the category-specific lesion-voxel-fraction thresholds used
-later during patch extraction (Section \ref{subsec:patch-extraction}) -- a uniform 50\% threshold, while
-reasonable for GGO, would have discarded a large share of genuine nodule patches, so a lower 10\% threshold was
-used for the nodule/mass category instead.
+The 2d (nodule/mass) category with a median size of 417 voxels, shows a clear size disparity with the rest of the abnormalities
+which all have around 20,000 voxels. This becomes a concern when deciding on a fixed patch size for the extraction phasae.
+Even a patch size of $16\times16\times16$ (4,096 voxels) is likely to be mostly lesion tissue for abnormalities like GGO,
+whereas a nodule is frequently small enough that a patch covering its bounding box will contain a substantial amount of
+surrounding normal parenchyma. This is somewhat offset by the use of a 50\% lesion-voxel-fraction threshold during patch extraction
+(Section \ref{subsec:patch-extraction}), but still results in more than 75\% of nodule patches being discarded, even when using
+a patch size is reduced to $12\times12\times12$ (1,728 voxels). This is a limitation of our study and may discard small nodules and only include larger masses.
 
 \subsection{CT Volume and Mask Loading}
 
@@ -328,8 +335,8 @@ $[3,\,512,\,512,\,N_z,\,1,\,1,\,1,\,1]$ &
 $[4,\,1,\,512,\,512,\,N_z,\,1,\,1,\,1]$ \\ \hline
 
 Data type &
-\texttt{int16} &
-\texttt{uint8} \\ \hline
+int16 &
+uint8 \\ \hline
 
 Bits per voxel &
 16 &
@@ -400,18 +407,19 @@ Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipe
 \end{figure}
 
 \subsection{Resampling}
+\label{subsec:resampling}
 
 Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common isotropic voxel
 spacing to correct for variable scanner resolutions. We picked the same resampling target spacing as the CT-CLIP model, since 
-it was trained on the volumes from the CT-RATE dataset \cite{hamamci2024ctrate}. The target spacing was set to
-$0.75 \times 0.75 \times 0.75$ mm, in the $x$, $y$ and $z$ directions respectively.
+it was trained on the volumes from the same dataset as ours \cite{hamamci2024ctclip}. The target spacing was set to
+$0.75 \times 0.75 \times 1.5$ mm, in the $x$, $y$ and $z$ directions respectively.
 
 An in-plane (X-Y) resolution of 0.75 mm is small enough to capture subtle pulmonary
 nodules without losing data to excessive downsampling. Furthermore, chest CTs naturally have much higher in-plane resolution
 than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while compressing file sizes by 50\%
 compared to isotropic 0.75 mm 3D grids.
 
-The resampling was performed using the \texttt{scipy.ndimage.zoom} function with linear interpolation for the CT volumes and
+The resampling was performed using trilinear interpolation for the CT volumes and
 nearest-neighbour interpolation for the segmentation masks. The zoom factors were calculated as:
 
 \begin{equation}
@@ -433,9 +441,7 @@ across the dataset. Figure \ref{fig:spacing-distribution} shows this distributio
 After resampling, all volumes and masks were resized to a fixed matrix size of $ 480 \times 480 \times 240 $ voxels across the
 coronal, sagittal and axial axes respectively, using center-cropping for oversized volumes or padding for undersized volumes.
 This yields a field of view of $360 \times 360 \times 360$ mm, which spans the physical volume of a human thorax, ensuring
-critical boundaries are not cut off during cropping. The dictionary learning model also relies on non-overlapping
-$12 \times 12 \times 12$ voxel patches, so A matrix of $480 \times 480 \times 240$ voxels is divisible by 12 along each axis,
-which yields an exact patch grid of $40 \times 40 \times 20$ (384,000) patches per volume.
+critical boundaries are not cut off during cropping.
 
 \subsection{Lung Segmentation}
 
@@ -457,8 +463,7 @@ M_{thresh}(x,y,z) = \begin{cases} 1, & -900 \leq I(x,y,z) \leq -200 \\ 0, & \tex
 \end{equation}
 
 This crude threshold mask is noisy on its own, so it was cleaned up with a short
-sequence of morphological steps applied slice-by-slice and volume-wise using
-\texttt{scipy.ndimage} and \texttt{skimage.segmentation}. Border-connected regions
+sequence of morphological steps applied slice-by-slice and volume-wise. Border-connected regions
 were removed on each axial slice with \texttt{clear\_border} (mainly to drop the
 surrounding air and imaging-table artefacts that also fall inside the HU window),
 after which only the two largest connected components were kept under the
@@ -466,7 +471,7 @@ assumption that these correspond to the left and right lung:
 
 A 3D binary closing (a $3\times3\times3$ connectivity structure, 2 iterations) was
 then used to smooth the boundary and reconnect thin gaps, followed by
-\texttt{binary\_fill\_holes} to plug any internal cavities left inside the mask --
+binary hole-filling to plug any internal cavities left inside the mask --
 these two steps are exactly what a lung mask needs, since vessels, bronchi and
 small nodules would otherwise show up as holes in an otherwise solid lung region.
 
@@ -476,7 +481,7 @@ affected voxels are not registered as lung parenchyma under the initial $-900$ t
 Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
 from purely intensity-based segmentation and towards a learned segmentation model.
 
-\subsubsection{Deep Learning}
+\subsubsection{Deep Learning-based Segmentation}
 
 The method that was ultimately adopted is the LungMask library, which uses the  U-net (R231) model which is pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
@@ -489,62 +494,115 @@ background, 1 for the left lung and 2 for the right lung. This was converted int
 binary mask and applied to the original volume.
 Voxels falling outside the mask were reset to a fixed background value of $-1000$ HU (approximating air).
 
-Before a volume could be handed to the LungMask inferer, it first had to be converted into the image
-representation the underlying library expects. LungMask is built on top of SimpleITK, which stores
-volumes in $(z,y,x)$ order rather than the $(x,y,z)$ layout used throughout the rest of the pipeline, so
-each resampled numpy array was transposed accordingly before being wrapped with
-\texttt{SimpleITK.GetImageFromArray}. The resulting image object was then stamped with the same
-isotropic $1.5\,\text{mm}$ spacing used during resampling, since SimpleITK carries its own spacing
-metadata independently of the array values and the U-net model relies on this metadata to reason about
-physical voxel size rather than array indices. Only once the volume was expressed as a properly
-spaced SimpleITK image was it passed to the LungMask inferer described above, with the resulting
+LungMask is built on top of SimpleITK, which stores
+volumes in $(z,y,x)$ order rather than the standard $(x,y,z)$ layout. So,
+each resampled numpy array was transposed accordingly before being ingesting the image.
+The resulting image object was then resampled with the same spacing used in section \ref{subsec:resampling},
+Then it was passed to the LungMask inferer described above, with the resulting
 label map transposed back to the original $(x,y,z)$ ordering before the mask was applied.
-With the lung mask in hand and the background voxels reset to $-1000$ HU, the remaining question was
-how best to rescale the retained intensities before they were fed into the dictionary learning stage.
 
 \subsection{Normalization}
 
-Two normalisation strategies were considered for this rescaling step.
-The first was the fixed Min-Max rescaling described above, following the
-same approach CT-CLIP \cite{hamamci2024ctclip} uses when preparing CT-RATE
-volumes. The second was the approach used in the original K-SVD image
-denoising paper by Elad and Aharon \cite{elad2006image}, where each patch
-has its local mean subtracted before dictionary learning, and the
-mean-subtracted patch is then divided by its own $L_2$ norm before being
-passed to OMP. In their setting, the mean is removed so that the SVD step
-used to update dictionary atoms is not dominated by a constant background
-offset, and the $L_2$ norm is removed so that every patch contributes to
-the dictionary update on a comparable scale, no matter how much contrast it
-originally had.
+After lung segmentation, the voxel intensities were clipped to a fixed window of $[-1000, 400]$ HU. $-1,000$ HU corresponds to air,
+while the 400 HU upper limit was decided using histogram analysis of the dataset. Figure \ref{fig:hu-histogram} shows the
+distribution of HU values across the dataset inside the abnormality masks.
 
-The CT-CLIP style Min-Max rescaling was chosen over this K-SVD style
-mean-subtraction and $L_2$-norm approach, primarily on account of what the HU
-value represents physically in a CT scan. Unlike a conventional image
-intensity, the Hounsfield Unit is a direct physical measure of tissue
-density: air sits near $-1000$ HU, fat near $-100$ HU, soft tissue lies
-between roughly $20$ and $70$ HU, and calcified or bony structures exceed
-$+400$ HU. The two target abnormalities in this project are, in part,
-distinguished by this density value, with GGO presenting as a hazy,
-low-density opacity while a solid or calcified nodule occupies a
-substantially higher HU range. The raw intensity therefore carries
-diagnostic information on which the dictionary learning and classification
-stages later depend.
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/hu_histogram.png}
+    \caption{Distribution of HU values across the dataset inside the abnormality masks.}
+    \label{fig:hu-histogram}
+\end{figure}
 
-Subtracting the per-patch mean removes the local baseline offset, while the
-subsequent division by the $L_2$ norm removes the remaining contrast. Taken
-together, these two steps mean that a given HU value could be mapped to a
-different normalised value depending on the surrounding content of that
-particular patch. Findings that are structurally similar but differ in
-density, for instance a faint GGO adjacent to a denser nodule, could
-consequently be mapped close together in the normalised space, even though
-this density difference is often the distinguishing factor between the two
-classes. Min-Max rescaling avoids this shortcoming, as it applies a single,
-fixed formula, $\left(I - I_{min}\right)/\left(I_{max} - I_{min}\right)$,
-derived from the clipping window established earlier rather than from any
-quantity computed per patch. A given HU value therefore always maps to the
-same normalised value, irrespective of the voxel, patch or scan from which
-it originated, thereby preserving the density information for the later
-stages of the pipeline.
+Two normalisation strategies were considered for the final rescaling step. The first was fixed Min-Max scaling to $[-1,1]$
+following the same approach used in the CT-CLIP study \cite{hamamci2024ctclip}. The second was the approach
+used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image}, where each patch
+has its local mean subtracted before dictionary learning, and the mean-subtracted patch is then divided by its own $L_2$ norm
+before being passed to OMP. This is so that the SVD step used to update dictionary atoms is not dominated by a constant background
+offset, and the $L_2$ norm is removed so that every patch contributes to the dictionary update on a comparable scale, no matter
+how much contrast it originally had.
+
+However, the latter approach isn't applicable, atleast directly, because of what the HU value represents physically in a CT scan.
+Unlike a conventional image intensity, the HU is a direct physical measure of tissue density. The raw intensity therefore carries
+diagnostic information on which the classification stages later depend on.
+With the $L_2$ norm applied, findings that are structurally similar but differ in density could consequently be mapped close
+together in the normalised space, even though this density difference is often the distinguishing factor between the two classes.
+
+However, the fixed Min-Max scaling approach has its own drawbacks. Consider a patch where
+$N=12\times12\times12=1728$. The signal energy is proportional to the squared $\ell_2$ norm:
+
+\[
+E = \|\mathbf{x}\|_2^2 = \sum_{i=1}^{N} x_i^2.
+\]
+
+For a typical normal lung patch, the normalized voxel values are approximately constant at $-0.85$. Thus,
+
+\[
+\|\mathbf{x}_{\mathrm{DC}}\|_2
+= \sqrt{N(0.85)^2}
+= 0.85\sqrt{1728}
+\approx 35,
+\]
+
+\noindent giving an energy of
+
+\[
+E_{\mathrm{DC}} \approx 35^2 = 1225.
+\]
+
+Let's assume that the remaining texture variations have a normalized magnitude of approximately $0.05$--$0.1$, giving
+
+\[
+\|\mathbf{x}_{\mathrm{tex}}\|_2
+\approx (0.05\text{--}0.1)\sqrt{1728}
+\approx 4,
+\]
+
+\noindent and
+
+\[
+E_{\mathrm{tex}} \approx 4^2 = 16.
+\]
+
+Therefore, the Direct Current (DC) component accounts for approximately
+
+\[
+\frac{E_{\mathrm{DC}}}{E_{\mathrm{DC}} + E_{\mathrm{tex}}}
+=
+\frac{1225}{1225+16}
+\approx 98.7\%
+\]
+
+\noindent of the total signal energy, meaning the average HU intensity dominates the sparse coding process.
+
+An alternative approach combines the benefits of both methods by explicitly separating intensity and texture information before
+sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each patch $\mathbf{x}$ is
+represented as
+
+\[
+\mathbf{x} \rightarrow \left(\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right),
+\]
+
+\noindent where $\mu$ is the mean attenuation, $\|\mathbf{x}-\mu\|_2$ represents the texture magnitude, and
+$\boldsymbol{\alpha}_{\mathrm{tex}}$ is the sparse code of the normalized zero-mean texture,
+
+\[
+\tilde{\mathbf{x}}=\frac{\mathbf{x}-\mu}{\|\mathbf{x}-\mu\|_2}.
+\]
+
+\noindent The classifier is then trained using the combined feature vector
+
+\[
+\left[\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right].
+\]
+
+This preserves the highly interpretable mean attenuation as an explicit scalar feature while allowing the dictionary to learn only
+texture, preventing the sparse coding process from being dominated by the DC component.
+
+We tested this approach by sending the
+mean HU and standard deviation to a logistic regression classifier. The results showed that the mean HU alone was a strong
+predictor of abnormality, with an AUC of 0.85 for GGO and 0.80 for nodules/masses. This confirms that most of the model's
+predictive power is coming from basic intensity statistics rather than learned texture representations.
 
 \subsection{Patch Extraction}
 \label{subsec:patch-extraction}
@@ -552,17 +610,24 @@ stages of the pipeline.
 Feeding entire volumes directly into the dictionary learning stage is not practical as a single scan can
 contain tens of millions of voxels. Therefore, the final step was
 to break each volume down into smaller 3D patches. Patch-based sampling provides the following benefits:
+
 \begin{itemize}
     \item Allows the model to focus on local structural patterns rather than whole-organ context.
     \item Reduces memory requirements by limiting the number of voxels processed at once.
     \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
 \end{itemize}
 
-To determine the dimensions of the patches, we considered the size distribution of the target abnormalities. The median GGO annotation covers
-19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just 417 voxels.
-Since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
-A similar approach was used for healthy tissue, a maximum of 50\% of the voxels in a patch were allowed to be background since
-HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{} shows a visualization of a patch-sampled lung in 3D.
+\noindent There are 3 competing forces influencing the patch size selection:
+\begin{enumerate}
+    \item Size of Nodules -- Patch size must be lowered to capture smaller nodules.
+    \item Size of Dictionary -- Patch size must be lowered to keep the dictionary size manageable.
+    \item Loss of context -- Patch size must be increased to capture more context around the abnormality.
+\end{enumerate}
+
+Furthermore, since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
+A similar approach was used for healthy tissue, where a maximum of 50\% of the voxels in a patch were allowed to be background
+to avoid patches sampled completely from outside the lung parenchyma. Figure \ref{fig:patch-sampling-visualization} shows a
+visualization of a patch-sampled lung in 3D.
 
 \begin{figure}
     \centering
@@ -572,7 +637,10 @@ HU values were set to $-1000$ outside the lung parenchyma. Figure \ref{} shows a
 \end{figure}
 
 At 50\% of the median nodule size, we considered multiple patch sizes that would include a sufficient number of 
-patches from the nodule/mass category. Table \ref{tab:patch-size-comparison} shows the comparison of two patch sizes that were considered.
+patches from the nodule/mass category. This distribution is shown in table \ref{tab:patch-size-comparison}.
+The influence of the size of the dictionary is discussed in section \ref{sec:dictionary-learning}.
+The loss of context stems from the fact that smaller patch sizes are unable to capture the surrounding tissue context of the
+abnormality, which is important for classification.
 
 \begin{table}
     \centering
@@ -589,10 +657,6 @@ patches from the nodule/mass category. Table \ref{tab:patch-size-comparison} sho
     \caption{Comparison of candidate patch sizes.}
     \label{tab:patch-size-comparison}
 \end{table}
-
-Based on the distribution in figure \ref{fig:patch-sampling-visualization}, selecting the $16 \times 16 \times 16$ patch size covers more than 25\% of the patches
-in the nodule/mass category, while the $12 \times 12 \times 12$ patch size covers less than 10\% of the patches in the
-nodule/mass category.
 
 Each patch is a fixed $12 \times 12 \times 12$ voxel cube, which at the resampled
 spacing corresponds to roughly a $36\,\text{mm}^3$ region of lung tissue large enough to capture a typical nodule
@@ -623,10 +687,7 @@ Figure~\ref{fig:patch-extraction-diagram} lays this out visually.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patchExtraction.png}
-    \caption{Patch extraction workflow, showing the normal-scan sampling grid and
-    the lesion bounding-box branch for annotated scans, each filtered by its own
-    background/lesion-fraction threshold before patches are added to the patch
-    matrix.}
+    \caption{Patch extraction workflow.}
     \label{fig:patch-extraction-diagram}
 \end{figure}
 
@@ -649,15 +710,60 @@ represent these patches as a sparse combination of a small number of
 atoms. Four dictionary learning algorithms were implemented and
 compared for this purpose: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary
 Learning. All of the dictionary learning code lives in a separate
-open-source PyPI package built specifically for this project
-\url{https://pypi.org/project/reppi/}. The code can be found at:
-\url{https://github.com/ckekula/reppi}.
+open-source \url{https://pypi.org/project/reppi/}{PyPI} package built specifically for this project.
+The code can be found on \url{https://github.com/ckekula/reppi}{Github}.
 
-All four algorithms take the same flattened patch matrix
-$X \in \mathbb{R}^{n \times N}$ (where $n=1728$ is the flattened patch
-length and $N$ is the number of patches) and produce a dictionary $D$
-that patches can later be sparse-coded against. Each algorithm is
-described below along with the hyperparameters used to train it.
+All four algorithms take the same flattened patch matrix $X \in \mathbb{R}^{n \times N}$ (where n is the flattened patch
+length and $N$ is the number of patches) and produce a dictionary $D$ that patches can later be sparse-coded against.
+
+\subsection{Deriving Practical Baselines for s, N, and K}
+
+Before training any of the dictionary learning algorithms, it is important to understand the theoretical limits on the
+sparsity level $s$, the number of training samples $N$, and the dictionary size $K$. These limits are derived from the properties
+of the dictionary and the underlying sparse coding problem. The uniqueness of sparse representations is governed by the
+dictionary's \textit{spark} and \textit{mutual coherence}.
+In sparse representation, the spark of a dictionary is the smallest number of atoms that are linearly dependent, while the mutual
+coherence is the maximum absolute inner product between any pair of normalized columns. A representation with sparsity
+
+\[
+s < \frac{\mathrm{spark}(D)}{2}
+\]
+
+\noindent is the unique sparsest solution \citep{elad2010sparse}. Since $\mathrm{spark}(D) \le d + 1$,
+the theoretical upper limit is:
+
+\[
+s < \frac{d+1}{2}.
+\]
+
+However, this is a theoretical limit. A more practical condition is based on mutual coherence:
+
+\[
+s < \frac{1}{2}\left(1+\frac{1}{\mu(D)}\right),
+\]
+
+\noindent where:
+
+\[
+\mu(D) \ge \sqrt{\frac{K-d}{d(K-1)}}.
+\]
+
+This is known as the Welch Bound \citep{welch1974lower}. As K increases, the bound approaches $(\mu(D)\approx1/\sqrt{d})$,
+yielding the asymptotic sparsity ceiling:
+
+\[
+s \lesssim \frac{\sqrt{d}}{2},
+\]
+
+which is independent of K. For d=864, this gives $s_{\max}\approx14$.
+From this we decided that the sparsity level of s=10 is well within the uniqueness region.
+
+The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
+\citep{aharon2006ksvd}. Unlike online dictionary learning (section \ref{subsec:odl}), KSVD lacks stochastic regularization
+from mini-batches. Consequently, the practical dictionary size was restricted to $K=1{,}728-2{,}592$, corresponding to $N/K\approx39-58$,
+together with atom-usage monitoring and replacement safeguards.
+
+
 
 \subsection{K-SVD}
 \label{sec:ksvd}
@@ -673,10 +779,7 @@ As a standalone baseline, K-SVD is trained on all three classes
 (normal, GGO, nodule) at once, with no notion of class boundaries,
 using a dictionary of $7 \times 1{,}728 = 12{,}096$ atoms, sparsity
 $T=10$, a mutual coherence threshold of 0.99 for atom replacement, and
-10 alternating iterations. K-SVD also supports a set of frozen atoms,
-held fixed while new atoms are learned around them; this is the
-mechanism Frozen Dictionary Learning (Section~\ref{sec:frozen-dict-learning})
-is built on directly.
+10 alternating iterations.
 
 \subsection{LC-KSVD}
 
@@ -780,469 +883,234 @@ Section~\ref{sec:sparse-coding-classification}, and it is these sparse
 codes, not the raw patches, that the classifiers described in
 Section~\ref{sec:classification} are trained and evaluated on.
 
-\section{Classification}
+\section{Linear Classification}
 \label{sec:classification}
 
-After the dictionary has been learned, the next stage is to train a classifier that can assign each patch a class label based
-on its sparse code. For this, the training set is again passed through the sparse coding to generate a sparse code $\Gamma$
-for each patch against the learnt dictionary $D$.
-
-\subsection{Sparse Representation}
+\subsection{Feature Construction}
 \label{sec:sparse-coding-classification}
 
-The resulting $(\Gamma, \text{label})$ pairs from the sparse coding step are used to train a machine
-learning classifier that predicts the class of each patch from its sparse representation.
-We experimented with different methods to send the sparse codes to the classifier.
+Let $\mathbf{x} \in \mathbb{R}^{d}$ denote a vectorised patch after windowing to
+$[\text{HU}_{\min}, \text{HU}_{\max}]$ and linear rescaling to $[-1,1]$.
+Rather than sparse-coding $\mathbf{x}$ directly, we decompose it into an
+intensity component and a texture component,
+\begin{equation}
+\mu = \tfrac{1}{d}\mathbf{1}^{\top}\mathbf{x}, \qquad
+\sigma = \lVert \mathbf{x} - \mu\mathbf{1} \rVert_{2}, \qquad
+\tilde{\mathbf{x}} = \frac{\mathbf{x} - \mu\mathbf{1}}{\sigma},
+\end{equation}
+so that $\mathbf{x} = \mu\mathbf{1} + \sigma\tilde{\mathbf{x}}$ is recovered exactly.
+The dictionary $\mathbf{D} \in \mathbb{R}^{d \times K}$ is trained and applied only on
+$\tilde{\mathbf{x}}$, yielding the sparse code
+\begin{equation}
+\boldsymbol{\alpha} = \arg\min_{\boldsymbol{\alpha}}
+\lVert \tilde{\mathbf{x}} - \mathbf{D}\boldsymbol{\alpha} \rVert_{2}^{2}
+\quad \text{s.t.} \quad \lVert \boldsymbol{\alpha} \rVert_{0} \leq T_{0}.
+\end{equation}
 
-Sparse coding reduces each patch to a compact numerical representation
-$\Gamma$ against the learned dictionary $D$, but $\Gamma$ on its own is
-only a representation, not a prediction -- nothing in the dictionary
-itself decides whether a given patch is normal, GGO or a nodule. A
-separate, standalone machine learning model is therefore trained on top
-of the sparse codes to assign each patch a class label. This
-classification stage is implemented independently of the
-dictionary-learning code, and is run only once a
-dictionary has already been learned and frozen: the same classification
-pipeline is applied unchanged regardless of which dictionary-learning
-variant (K-SVD, frozen dictionary learning, or LC-KSVD) produced the
-sparse codes it is given.
+This separation is motivated by the energy distribution of thoracic CT patches.
+For normal parenchyma ($\approx -850$~HU), the mean component carries in excess of
+$99\%$ of the squared patch energy, whereas parenchymal texture contributes
+$\mathcal{O}(1\%)$. Coding $\mathbf{x}$ directly therefore causes greedy and
+proximal solvers alike to expend their sparsity budget on a single DC-like atom,
+satisfying any practical residual tolerance before texture is represented at all.
+The resulting dictionary encodes mean attenuation rather than structure, and the
+downstream classifier degenerates towards an implicit Hounsfield threshold.
+Decomposing the patch removes this failure mode while discarding no information:
+mean attenuation, which is strongly discriminative between normal parenchyma,
+ground-glass opacity and consolidation, is retained as an explicit scalar feature
+and is more directly interpretable in that form than as a coefficient on a
+DC-shaped atom.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/classification_pipeline.png}
-    \caption{Overview of the classification pipeline: each patch is first
-    converted into a sparse code $\Gamma$ against the frozen dictionary $D$
-    (Section~3.2.1), and the resulting codes are then used to train and
-    query a classifier that predicts the patch-level class label
-    (Section~3.2.2).}
-    \label{fig:classification-pipeline}
-\end{figure}
+The final patch descriptor is the concatenation
+\begin{equation}
+\mathbf{z} = [\,\mu,\ \sigma,\ \boldsymbol{\alpha}^{\top}\,]^{\top} \in \mathbb{R}^{K+2}.
+\end{equation}
+
+\subsection{Atom polarity canonicalisation}
+
+Since $(\mathbf{d}_{j}, \alpha_{j})$ and $(-\mathbf{d}_{j}, -\alpha_{j})$ parameterise
+the same model, atom sign is arbitrary and roughly half of all learned atoms render
+as intensity-inverted structures. After dictionary training we therefore fix, for
+every atom $j$ with $\mathrm{median}_{\mathrm{train}}(\alpha_{j}) < 0$,
+\begin{equation}
+\mathbf{d}_{j} \leftarrow -\mathbf{d}_{j}, \qquad
+\alpha_{j}^{(i)} \leftarrow -\alpha_{j}^{(i)} \ \forall i, \qquad
+w_{cj} \leftarrow -w_{cj} \ \forall c .
+\end{equation}
+The model is mathematically unchanged, but atom visualisations become
+interpretable and the sign statistics used for prototype construction
+(Section~\ref{sec:prototype}) become meaningful.
 
 \subsection{Training}
 
-This stage uses the $(\Gamma, \text{label})$ pairs created by sparse coding the training set again with the final dictionary
-to train a machine learning classifier. The transposed sparse coefficient
-matrix, $\Gamma^{\top}$, is used as the feature matrix, where each row contains
-the sparse coefficient of one training patch. The corresponding label vector is used 
-as the target, and the classifier learns to predict the class of each image patch from its sparse representation.
+Abnormality labels in CT-RATE are non-exclusive, and a single patch may exhibit
+co-occurring findings. We therefore train one-versus-rest $\ell_{2}$-regularised
+logistic regression, obtaining for each class $c$ a weight vector
+$\mathbf{w}_{c} \in \mathbb{R}^{K+2}$ and bias $b_{c}$, with score
+\begin{equation}
+s_{c}(\mathbf{x}) = \mathbf{w}_{c}^{\top}\mathbf{z} + b_{c}.
+\label{eq:score}
+\end{equation}
 
-Two classifiers are trained using the same $(\Gamma, \text{label})$ dataset.
-The first is a Linear Support Vector Classifier, 
-which learns a linear decision boundary and is fully trained and tuned as the main
-classification model. The second is Logistic Regression, which predicts
-the probability of each class using the sparse code. Logistic Regression is included
-to compare its performance with the Linear SVC. The implementation and training of both 
-classifiers are described in the following sections.
+Regularisation strength is selected by cross-validation with folds partitioned at
+the \emph{patient} level, since CT-RATE contains multiple studies per patient and
+scan-level splitting leaks patient-specific texture between folds. All subsequent
+calibration and evaluation use the same patient-disjoint partitioning. Atoms whose
+training usage falls below a minimum activation count are excluded from
+$\mathbf{z}$ prior to fitting, as weights estimated from a handful of activations
+are dominated by noise yet attain large magnitudes, which would corrupt the
+contribution ranking used for prototype construction.
 
-\subsubsection{Support Vector Machine}
+\section{Class Prototype Construction}
+\label{sec:prototype}
 
-The classifier used for classifying the sparse codes is
-scikit-learn's LinearSVC, combined with a
-MaxAbsScaler inside a single Pipeline.
+\subsection{Modal decomposition}
 
-The MaxAbsScaler scales each feature (i.e., each dictionary
-atom coefficient) by its maximum absolute value in the training data.
-It does not subtract the mean, which allows the zero values generated
-during sparse coding to remain unchanged. This is important because zero
-coefficients represent inactive dictionary atoms. In contrast, a
-mean-centering scaler such as StandardScaler would shift these
-zero values away from zero and reduce the sparsity information.
+Several target classes are visually heterogeneous; nodules, for instance,
+encompass solid, part-solid, ground-glass and calcified appearances whose codes
+occupy distinct regions of $\mathbb{R}^{K}$. A single centroid over such a class
+averages these modes into a representation resembling none of them. We therefore
+partition each class into $M$ modes by $k$-medoids clustering on the texture codes
+$\{\boldsymbol{\alpha}^{(i)}\}_{i \in c}$ and construct one prototype per mode.
+Prototypes are built exclusively from patches carrying a single positive label, so
+that co-occurring findings do not contaminate the representation; this restriction
+applies to prototype construction only, not to classifier training.
 
-The regularisation parameter $C$ of the LinearSVC classifier is
-selected using GridSearchCV, where the candidate values are
-$C \in \{0.1, 1.0, 10.0\}$. The selection process uses 5-fold
-cross-validation with macro-averaged F1-score as the evaluation metric
-instead of accuracy. This is because the three target classes
-(normal, GGO, and nodule) have an unequal number of training samples.
-The macro F1-score gives equal importance to each class by averaging the
-F1-score of all classes, preventing the classifier from being biased
-towards the majority class.
-
-The LinearSVC model is configured with
-dual=False and a maximum iteration limit of $10{,}000$ to
-ensure reliable convergence during training. The grid search is executed
-with n\_jobs=2 and pre\_dispatch=1 to control the
-computational resources used during hyperparameter tuning.
-
-After the grid search identifies the optimal hyperparameter combination,
-the classifier is retrained on the complete training dataset using
-refit=True. The final trained model is then saved using
-joblib, allowing it to be reused during inference and evaluation
-without repeating the training process.
-
-\subsubsection{Logistic Regression}
-\subsubsection{Logistic Regression}
-
-
-\subsection{Inference}
-
-After training the classifier, its performance is evaluated using new
-patches that were not included during training. The testing process follows
-the same steps as the training pipeline, but it uses the separate test dataset.
-No additional training or parameter updates are performed during this stage.
-The classifier only predicts the class labels of the unseen patches, and the
-results are compared with the true labels to measure its performance. The same trained
-classifier can also be given a single new CT volume directly, with no patches
-or labels prepared for it in advance, in which case the pipeline extracts and
-classifies patches from that volume itself to produce a full per-voxel
-abnormality map.
-
-\subsubsection{Classification on the Test Set}
-
-Each test patch already has a sparse code and its corresponding label,
-generated using the same procedure as the training patches. At this stage,
-the trained machine learning models are only applied to the unseen test
-data for prediction.
-
-The previously trained classifiers are loaded from storage and used to
-predict the class label of each test patch based on its sparse code. The
-same preprocessing steps used during training are applied before making
-predictions. No additional training, parameter tuning, or model updates
-are performed during this testing stage.
-
-The predicted labels from each machine learning model are then compared
-with the true test labels using the evaluation procedure described in the
-next section. This allows the performance of different classifiers to be
-measured and compared on unseen data.
-
-\subsubsection{Whole-Volume Inference}
-
-Instead of using pre-extracted patches, the inference stage takes a single
-CT volume that the model has never seen before. The input volume is
-provided either as a path to a NIfTI file or through a scan identifier.
-No pre-generated patch archive or ground-truth mask is required for this
-process.
-
-The objective of this stage is to generate a complete voxel-level
-abnormality map that can be visualised directly on the original CT scan.
-The inference pipeline reuses the main components introduced earlier,
-including preprocessing, patch extraction, sparse coding, and the
-trained classifier.
-
-However, the process is slightly different because a new CT volume does
-not contain the pre-computed patch information available during training
-and testing. Therefore, patches must first be generated from the input
-volume, converted into sparse codes, and then classified to produce the
-final abnormality map.
-
-\paragraph{Preprocessing} 
-The input volume is first taken through
-exactly the same preprocessing used at training time: it is resampled to
-the common $1.5\,\text{mm}$ isotropic spacing, lung-segmented, HU-clipped
-and normalised to $[0,1]$, so that a fresh scan reaching the classifier
-has been through the identical transformation as every training and test
-patch before it.
-
-\paragraph{Dense patch extraction}
-
-During training and testing, abnormal patches are extracted from regions
-around known lesions using ground-truth masks. However, a new CT volume
-does not contain a lesion mask, so the model cannot directly determine
-where abnormal patches should be extracted.
-
-Instead, the entire preprocessed CT volume is scanned using a dense
-regular grid of $12\times12\times12$ voxel patches. A stride of 4 voxels
-is used, producing overlapping patches with three-fold overlap along each
-axis. This overlap improves the probability of detecting lesions even
-when they are located between two non-overlapping patch regions.
-
-Similar to the normal patch filtering step used during training, patches
-containing more than half background or air voxels are removed before
-classification. The spatial origin coordinates of every remaining patch
-are stored together with the patch data. These coordinates are later used
-to map the predicted patch labels back to their original positions in the
-CT volume, allowing the generation of a voxel-level abnormality map.
-
-\paragraph{Sparse coding and classification}
-
-Each remaining patch is converted into a sparse code using the same
-dictionary $D$ that was learned during the training stage. The same
-sparsity constraint is applied, allowing a maximum of 10 non-zero
-coefficients per patch. This ensures that all patches, whether they are
-from the training set, test set, or a new unseen CT volume, are converted
-into the same feature representation before classification.
-
-The generated sparse codes are then provided to the trained machine
-learning classifiers. Each classifier uses these sparse features to
-predict the class label of every patch. The different classification
-models are applied independently, allowing their prediction results to be
-compared during evaluation.
-
-The predicted labels and corresponding confidence scores (where supported
-by the classifier) are stored for each patch. These predictions are later
-used to generate the voxel-level abnormality map by mapping each patch
-prediction back to its original location in the CT volume.
-
-
-\paragraph{Reassembling a per-voxel map} 
-A single patch's prediction
-only covers the small cube of voxels it was extracted from, and because
-patches overlap under the dense grid's stride, most voxels end up covered
-by several different patches, which will not always agree. Each patch's
-predicted label is therefore accumulated into a per-class vote count for
-every voxel it covers, and the final label at each voxel is decided by
-majority vote across all patches that covered it, with the same
-per-class decision score used to build a separate confidence ``heat''
-volume wherever the winning label is an abnormal class. Since a
-classified patch is still accepted as a whole cube even when a
-substantial fraction of its own voxels are background (the same
-tolerance used for normal patches at training time), any voxel that is
-itself background in the preprocessed volume is forced back to the
-normal label regardless of what the patches covering it predicted, so
-that an abnormal prediction cannot bleed out past the lung boundary into
-surrounding air or chest wall.
-
-\paragraph{Reassembling a per-voxel map}
-
-Each patch prediction represents only the small region of the CT volume
-covered by that patch. Since the dense grid produces overlapping patches,
-a single voxel may receive predictions from multiple patches, and these
-predictions may not always be the same.
-
-To generate the final voxel-level abnormality map, the predictions from
-all patches covering each voxel are combined. For every voxel, the number
-of votes for each class is calculated, and the final class label is
-selected using a majority voting strategy. A separate confidence heatmap
-is also generated using the classifier decision scores, particularly for
-voxels predicted as abnormal.
-
-Since each classified patch is considered as a complete cube, some
-patches may still include background voxels. To reduce false abnormal
-predictions outside the lung region, voxels that are identified as
-background in the preprocessed CT volume are forced to the normal class.
-This prevents abnormal predictions from spreading into non-lung regions
-such as surrounding air or the chest wall.
-
-\subsubsection{Statistical Analysis}
+\subsection{Discriminative aggregation}
 \label{sec:statistical-analysis}
 
-The performance of the classifiers on the test dataset is evaluated using
-a common evaluating method. The same evaluation procedure is
-applied to all classifiers to ensure that the results are measured
-consistently regardless of the model used.
+A naive mean over $\{\boldsymbol{\alpha}^{(i)}\}$ is unsuitable for signed codes:
+opposing signs cancel across samples, and coefficient mass is distributed
+arbitrarily among mutually coherent atoms by the sparse solver, so the mean is
+both denser than any individual code and unstable. We instead exploit the exact
+additivity of the linear score. For mode $m$ of class $c$, each atom's
+contribution to the class logit is
+\begin{equation}
+\gamma_{j}^{(c,m)} = w_{cj}\left(
+\mathbb{E}_{i \in m}[\alpha_{j}^{(i)}] - \mathbb{E}_{i \notin c}[\alpha_{j}^{(i)}]
+\right),
+\label{eq:contrib}
+\end{equation}
+which measures the extent to which atom $j$ raises the score of class $c$
+\emph{relative to} all other classes, rather than merely being frequent within it.
 
-For each set of predictions and corresponding true labels, three main
-evaluation results are generated. The first is the overall accuracy,
-which represents the percentage of correctly classified test patches.
-The second is the classification report, which provides detailed
-performance metrics for each class individually. This report includes
-precision, recall, F1-score, and the number of samples belonging to each
-class (support). The third output is the confusion matrix, which shows
-the number of predicted samples compared with their actual class labels.
+Atoms are retained only if their sign is consistent across the mode,
+\begin{equation}
+\rho_{j}^{(m)} = \max\!\left(
+\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} > 0],\ 
+\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} < 0]
+\right) \geq \rho_{\min},
+\end{equation}
+which removes atoms whose activation the solver splits arbitrarily among coherent
+dictionary entries. The prototype code retains the top-$k$ surviving atoms ranked
+by $\gamma_{j}^{(c,m)}$, with $k$ set to the median $\ell_{0}$ of the class, and
+assigns each the within-mode median coefficient:
+\begin{equation}
+\alpha_{c,m,j} =
+\begin{cases}
+\mathrm{median}_{i \in m}(\alpha_{j}^{(i)}) & j \in \mathcal{S}_{c,m} \\
+0 & \text{otherwise},
+\end{cases}
+\end{equation}
+the median being preferred to the mean for robustness to the heavy-tailed
+coefficient distributions induced by sparse coding. The prototype is thus itself a
+valid sparse code of comparable cardinality to the patches it summarises.
 
-The per-class evaluation is important because the dataset does not
-contain an equal number of samples for all three target classes
-(normal, GGO, and nodule). A single accuracy value may appear high while
-hiding poor performance on classes with fewer samples. The classification
-report and confusion matrix provide a clearer understanding of the model
-performance by showing whether specific classes are incorrectly classified.
-For example, they can indicate whether nodule patches are more frequently
-misclassified as normal tissue or as GGO regions.
+Associated intensity statistics are aggregated identically,
+$\mu_{c,m} = \mathrm{median}_{i \in m}(\mu^{(i)})$ and
+$\sigma_{c,m} = \mathrm{median}_{i \in m}(\sigma^{(i)})$, giving the rendered
+prototype patch
+\begin{equation}
+\hat{\mathbf{x}}_{c,m} = \mu_{c,m}\mathbf{1} + \sigma_{c,m}\,\mathbf{D}\boldsymbol{\alpha}_{c,m}.
+\end{equation}
 
-In addition to classifier performance evaluation, the quality of the
-sparse-code representation is also analysed. This analysis checks
-whether the learned dictionary and generated sparse codes behave as
-expected using measures such as sparsity, atom utilisation, and
-dictionary coherence.
+\subsection{Faithfulness}
 
-Therefore, the evaluation process considers both the classification
-performance and the quality of the learned sparse representation, rather
-than relying only on classifier accuracy as an indication of model
-effectiveness.
+Because the prototype is a truncated summary of a class, we quantify how much of
+the model's decision it accounts for. We report the retained logit fraction
+\begin{equation}
+\phi_{c,m} = \frac{\sum_{j \in \mathcal{S}_{c,m}} \gamma_{j}^{(c,m)}}
+{\sum_{j} \gamma_{j}^{(c,m)}},
+\end{equation}
+and, at the system level, the difference in per-class performance between the full
+linear score~\eqref{eq:score} and the prototype-based rule of
+Section~\ref{sec:decision}. A large gap indicates that the prototype does not
+faithfully summarise the classifier, which would invalidate its use as an
+explanatory artefact irrespective of its standalone accuracy.
 
-\paragraph{Sparsity and atom utilisation}
+\section{Inference}
 
-The sparse codes generated using the fixed dictionary were analysed to
-evaluate the sparsity level and how effectively the dictionary atoms were
-being used. The sparse-code matrix
-$\Gamma \in \mathbb{R}^{12096 \times 118705}$ contains one column for
-each training patch.
+\subsection{Decision Rule}
+\label{sec:decision}
 
-The results showed that most patches used the maximum allowed number of
-10 non-zero coefficients. Out of the 118,705 training patches, 111,470
-patches used exactly 10 dictionary atoms, resulting in an average of
-9.39 active coefficients per patch.
+Class membership is assessed by weighted cosine similarity between a test code and
+the class prototypes, in code space:
+\begin{equation}
+r_{c}(\mathbf{x}) = \max_{m \in \{1,\dots,M\}}
+\cos\!\left(
+\boldsymbol{\alpha}(\mathbf{x}) \odot |\mathbf{w}_{c}|,\ 
+\boldsymbol{\alpha}_{c,m} \odot |\mathbf{w}_{c}|
+\right),
+\label{eq:sim}
+\end{equation}
+where $\odot$ is the elementwise product and the maximum over modes assigns a
+patch to a class if it matches \emph{any} of its appearances. Weighting by
+$|\mathbf{w}_{c}|$ ensures that the similarity is evaluated in the subspace the
+classifier actually uses, so that discriminative information injected during
+aggregation is not subsequently discarded.
 
-However, some patches produced completely zero sparse codes. A total of
-7,235 patches (slightly more than 6\% of the dataset) resulted in
-all-zero representations, meaning that these patches contributed no
-useful information to the classifier. This represents a limitation of the
-sparse coding stage rather than a numerical or rounding error.
+We deliberately do not compare prototypes to test patches in voxel space, for
+instance by 3D SSIM or normalised cross-correlation. The classes of interest are
+textural rather than geometric at the patch scale employed here, and two
+independent realisations of the same texture share second-order statistics but not
+spatial phase. Correlation-based measures respond to phase alignment and would
+therefore assign low similarity to genuinely co-class patches, while any residual
+agreement would be driven almost entirely by shared mean attenuation, which is
+already captured explicitly by $\mu$. Matched filtering against a texture prototype
+is thus not merely empirically weaker but inappropriate in principle; the sparse
+code is the natural domain in which textural identity is expressed.
 
-The utilisation of dictionary atoms was also highly unbalanced. One
-dictionary atom was activated in 14,209 patches, representing almost 12\%
-of the dataset. This was significantly higher than the second most-used
-atom, which appeared in only 2.05\% of patches. The remaining frequently
-used atoms among the top 15 were activated in approximately 1--2\% of the
-dataset.
+\subsection{Threshold calibration}
 
-Due to the excessive usage of this single dominant atom, it was treated
-as an outlier and excluded from the subsequent atom co-occurrence
-analysis. This prevents the dominant atom from overwhelming the analysis
-and allows the relationships between the remaining dictionary atoms to be
-examined more clearly.
+A threshold $\tau_{c}$ is selected independently per class from the
+precision--recall curve on a patient-disjoint validation partition, targeting a
+prescribed operating sensitivity; precision--recall is preferred to ROC given the
+severe class imbalance at the patch level. Confidence intervals are obtained by
+patient-level bootstrap resampling. Calibration is performed against normal
+patches \emph{and} against patches of every other abnormality class, and we report
+the full inter-class similarity matrix, since cross-abnormality confusion rather
+than abnormal-versus-normal separation is the dominant failure mode.
 
-\paragraph{Atom co-occurrence and clustering}
+\subsection{Volume-Level Inference}
 
-The relationship between dictionary atoms was analysed by measuring how
-frequently pairs of atoms were activated together within the same patch.
-Only atoms that appeared at least 50 times in the training sparse codes
-were considered, and the most frequently used dominant outlier atom was
-excluded to prevent it from affecting the analysis.
+Inference on an unseen study proceeds as follows.
 
-The results showed that some atom pairs were activated together many
-times, with the strongest pairs having co-occurrence counts between
-70 and 95 patches. Hierarchical clustering of atom activation patterns
-(Figure~\ref{fig:atom-correlation-clusters}) showed that these
-relationships were not limited to a small number of individual pairs.
-Instead, atoms formed groups with similar activation behaviour, indicating
-that some atoms tend to be used together rather than independently.
+\paragraph{Preprocessing.} The volume is resampled to the training spacing,
+windowed and rescaled identically to training, and cropped or padded to the fixed
+matrix size.
 
-A graph-based analysis was also performed by connecting atom pairs that
-were active together in at least 20 patches. Community detection on this
-graph identified a total of 32 atom groups. However, the group sizes were
-highly unbalanced. The five largest communities contained 149, 139, 128,
-122, and 117 atoms, respectively, while most of the remaining communities
-contained only two to four atoms.
+\paragraph{Candidate restriction.} A lung segmentation mask is applied and patches
+are extracted at stride $s$ within it. Patches whose intensity variance falls below
+a fixed floor, or which are predominantly air, are rejected prior to coding. This
+restriction is essential rather than merely economical: an unrestricted volume
+yields $\mathcal{O}(10^{5})$ patches, and eliminating extrapulmonary and trivially
+uninformative regions removes the majority of candidates together with the most
+easily avoided false positives.
 
-The co-occurrence heatmap (Figure~\ref{fig:atom-cooccurrence-heatmap})
-showed clear block patterns when atoms were arranged according to their
-clusters. The graph representation
-(Figure~\ref{fig:atom-cooccurrence-graph}) also confirmed the presence of
-these groups by showing strongly connected regions of atoms.
+\paragraph{Scoring.} Each surviving patch is decomposed as in
+Section~2, sparse-coded against $\mathbf{D}$, and scored by
+\eqref{eq:sim}, producing one similarity volume $R_{c}$ per class on the patch
+grid.
 
-Overall, the analysis demonstrates that dictionary atoms are not activated
-completely independently for each patch. Instead, groups of atoms tend to
-activate together, suggesting that these atoms capture related local
-image structures or patterns rather than representing isolated and
-unrelated features.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.75\textwidth]{Images/Chapter 3/eda/atom_correlation_clusters.png}
-    \caption{Hierarchical clustering of dictionary atoms by activation
-    correlation across training patches (correlation-to-distance
-    clustermap).}
-    \label{fig:atom-correlation-clusters}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/atom_cooccurrence_heatmap.png}
-    \caption{Atom co-occurrence matrix (log-scaled shared-patch counts),
-    reordered so that atoms in the same community are adjacent.}
-    \label{fig:atom-cooccurrence-heatmap}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/atom_cooccurrence_graph.png}
-    \caption{Atom co-occurrence graph (spring layout), with the four
-    largest detected communities coloured and all smaller communities
-    grouped as ``Other clusters''.}
-    \label{fig:atom-cooccurrence-graph}
-\end{figure}
-
-\paragraph{Aggregate atom contribution} Summing the absolute sparse
-coefficient of every atom across a large batch of patches gives a sense
-of which atoms matter most once magnitude, not just activation frequency,
-is taken into account. Figure~\ref{fig:aggregated-sparse-representation}
-plots this aggregated contribution per atom across 117{,}386 patches:
-28{,}671 atoms were active at least once, but the total is dominated by a
-small number of atoms with disproportionately large summed coefficients,
-standing well above the broad low-level background of atoms that
-contribute only marginally in aggregate. This is consistent with the
-uneven atom-utilisation pattern already observed -- a small subset of
-atoms carries most of the representational weight, while the majority
-contribute a small, comparable amount each.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{Images/Chapter 3/eda/aggregated_sparse_representation.png}
-    \caption{Aggregated sparse representation: summed absolute
-    coefficient per dictionary atom across a large batch of training
-    patches.}
-    \label{fig:aggregated-sparse-representation}
-\end{figure}
-
-\paragraph{Reconstruction and visual inspection - }
-As an additional qualitative evaluation, the quality of the sparse
-representation was visually analysed together with the numerical
-reconstruction error. The original patches were reconstructed from their
-sparse codes using $D\gamma$ and combined into a small volume for visual
-inspection (Figure~\ref{fig:reconstructed-volume}).
-
-The reconstructed volume showed recognizable lung structures and texture
-patterns rather than random noise. This indicates that the learned
-dictionary captures meaningful anatomical information from the CT images
-instead of learning arbitrary patterns.
-
-The dictionary atoms were also visually inspected by selecting atoms from
-the normal, GGO, and nodule groups of the trained dictionary
-(Figure~\ref{fig:atom-grid-classes}). However, the atoms from all three
-groups appeared visually similar, containing common image features such as
-local edges, intensity variations, small blobs, and texture patterns.
-No clear visual feature was observed that could distinguish a GGO or
-nodule atom from a normal tissue atom.
-
-This behaviour is expected because the K-SVD dictionary learning process
-is primarily optimized for image reconstruction rather than class
-separation. Therefore, classification cannot rely on individual atom
-appearance alone. Instead, the downstream classifier uses the pattern of
-atom activations within the sparse code of each patch, as these activation
-patterns provide more useful information for distinguishing between the
-normal, GGO, and nodule classes.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/eda/reconstructed_volume_12patches.png}
-    \caption{A small local volume reconstructed from its patches' sparse
-    codes ($D\gamma$), shown in axial, coronal and sagittal view.}
-    \label{fig:reconstructed-volume}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{Images/Chapter 3/eda/atom_grid_normal_ggo_nodule.png}
-    \caption{Randomly sampled dictionary atoms (centre slice of each
-    $12\times12\times12$ atom) from the normal, GGO and nodule blocks of
-    the trained dictionary.}
-    \label{fig:atom-grid-classes}
-\end{figure}
-
-\paragraph{Dictionary coherence.}
-
-The dictionary coherence was analysed by measuring the similarity between
-every pair of normalized dictionary atoms. Instead of considering only
-the maximum coherence value, the complete distribution of pairwise
-similarities was examined.
-
-The results showed that the dictionary does not contain a single pattern
-of similarity among its atoms. A large number of atom pairs had coherence
-values close to zero, indicating that these atoms are nearly independent
-and represent different image structures. This suggests that a
-significant portion of the dictionary contains unique and diverse
-information.
-
-However, the coherence distribution also contained a group of atom pairs
-with moderate similarity, with coherence values around
-$|d_i^{\top}d_j| \approx 0.4$, along with a smaller number of highly
-correlated atom pairs. These strongly related atoms represent similar or
-redundant patterns within the dictionary.
-
-Overall, the analysis indicates that most dictionary atoms are
-sufficiently distinct, allowing the dictionary to capture diverse image
-features. However, some groups of atoms contain similar information,
-which is consistent with the correlated atom clusters identified in the
-previous analysis.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Images/Chapter 3/eda/dictionary_coherence_histogram.png}
-    \caption{Distribution of pairwise mutual coherence $|d_i^{\top}d_j|$
-    across all dictionary atom pairs.}
-    \label{fig:dictionary-coherence-histogram}
-\end{figure}
+\paragraph{Spatial consolidation.} Each $R_{c}$ is thresholded at $\tau_{c}$ and
+subjected to 3D connected-component analysis; components below a minimum physical
+volume are discarded. This step is required by the arithmetic of dense patch
+classification: with $\mathcal{O}(10^{4})$ intrapulmonary patches per study, even a
+per-patch false-positive rate of $0.5\%$ produces tens of spurious detections,
+whereas genuine findings are spatially contiguous and isolated single-patch
+responses are overwhelmingly noise. Surviving components constitute the detections,
+each with a confidence given by the aggregate similarity over its constituent
+patches.
 
 \section{Deep Learning Model Training}
 
@@ -1672,203 +1540,203 @@ model from different perspectives.
 
 \section{Evaluation}
 
-The evaluation of medical image analysis systems requires multiple metrics because
-different measures capture different aspects of model behaviour. In chest CT
-analysis, classification metrics describe the ability of the model to identify
-abnormal findings, segmentation metrics measure spatial agreement with reference
-annotations, and interpretability metrics evaluate whether the learned
-representations provide meaningful explanations.
+% The evaluation of medical image analysis systems requires multiple metrics because
+% different measures capture different aspects of model behaviour. In chest CT
+% analysis, classification metrics describe the ability of the model to identify
+% abnormal findings, segmentation metrics measure spatial agreement with reference
+% annotations, and interpretability metrics evaluate whether the learned
+% representations provide meaningful explanations.
 
-\subsection{ReXRank}
+% \subsection{ReXRank}
 
-The ReXrank Leaderboard is a standardized public benchmarking platform for evaluating AI-driven chest X-ray report generation and visual question answering (VQA).
-It uses 8 distinct clinical and text metrics, relying on the composite score 1/RadCliQ-v1 as its primary ranking mechanism to measure real-world clinical alignment. 
-Evaluation Framework and DataReXGradient Dataset: The core private test set comprises 10,000 multi-site studies across 67 institutions to test zero-shot
-generalization.Public Datasets: Incorporates standard benchmarks including MIMIC-CXR, IU-Xray, and CheXpert Plus.Task Splits: Separates models into findings-only
-and the more difficult findings + impression generation configurations.
+% The ReXrank Leaderboard is a standardized public benchmarking platform for evaluating AI-driven chest X-ray report generation and visual question answering (VQA).
+% It uses 8 distinct clinical and text metrics, relying on the composite score 1/RadCliQ-v1 as its primary ranking mechanism to measure real-world clinical alignment. 
+% Evaluation Framework and DataReXGradient Dataset: The core private test set comprises 10,000 multi-site studies across 67 institutions to test zero-shot
+% generalization.Public Datasets: Incorporates standard benchmarks including MIMIC-CXR, IU-Xray, and CheXpert Plus.Task Splits: Separates models into findings-only
+% and the more difficult findings + impression generation configurations.
 
-\subsection{Classification}
+% \subsection{Classification}
 
-For a binary classification problem, let $TP$, $TN$, $FP$, and $FN$ represent
-true positives, true negatives, false positives, and false negatives,
-respectively. Accuracy measures the overall proportion of correctly classified
-samples:
+% For a binary classification problem, let $TP$, $TN$, $FP$, and $FN$ represent
+% true positives, true negatives, false positives, and false negatives,
+% respectively. Accuracy measures the overall proportion of correctly classified
+% samples:
 
-\begin{equation}
-\mathrm{Accuracy} =
-\frac{TP+TN}{TP+TN+FP+FN}.
-\end{equation}
+% \begin{equation}
+% \mathrm{Accuracy} =
+% \frac{TP+TN}{TP+TN+FP+FN}.
+% \end{equation}
 
-Although accuracy provides an overall performance estimate, it can become
-misleading when the dataset contains class imbalance. Therefore, additional
-metrics based on positive class prediction are considered.
+% Although accuracy provides an overall performance estimate, it can become
+% misleading when the dataset contains class imbalance. Therefore, additional
+% metrics based on positive class prediction are considered.
 
-Precision indicates the reliability of positive predictions by measuring the
-fraction of detected abnormalities that are correct:
+% Precision indicates the reliability of positive predictions by measuring the
+% fraction of detected abnormalities that are correct:
 
-\begin{equation}
-\mathrm{Precision} =
-\frac{TP}{TP+FP}.
-\end{equation}
+% \begin{equation}
+% \mathrm{Precision} =
+% \frac{TP}{TP+FP}.
+% \end{equation}
 
-Recall, also referred to as sensitivity, measures the ability of the model to
-recover existing abnormal cases:
+% Recall, also referred to as sensitivity, measures the ability of the model to
+% recover existing abnormal cases:
 
-\begin{equation}
-\mathrm{Recall} =
-\frac{TP}{TP+FN}.
-\end{equation}
+% \begin{equation}
+% \mathrm{Recall} =
+% \frac{TP}{TP+FN}.
+% \end{equation}
 
-The F1-score combines precision and recall into a single measure and provides a
-balanced evaluation when both false positive and false negative errors are
-important:
+% The F1-score combines precision and recall into a single measure and provides a
+% balanced evaluation when both false positive and false negative errors are
+% important:
 
-\begin{equation}
-\mathrm{F1} =
-\frac{2 \times \mathrm{Precision} \times \mathrm{Recall}}
-{\mathrm{Precision}+\mathrm{Recall}}.
-\end{equation}
+% \begin{equation}
+% \mathrm{F1} =
+% \frac{2 \times \mathrm{Precision} \times \mathrm{Recall}}
+% {\mathrm{Precision}+\mathrm{Recall}}.
+% \end{equation}
 
-The Area Under the Receiver Operating Characteristic Curve (AUROC) evaluates
-the ability of a classifier to separate positive and negative samples over all
-possible decision thresholds. It is calculated from the relationship between
-the true positive rate (TPR) and false positive rate (FPR):
+% The Area Under the Receiver Operating Characteristic Curve (AUROC) evaluates
+% the ability of a classifier to separate positive and negative samples over all
+% possible decision thresholds. It is calculated from the relationship between
+% the true positive rate (TPR) and false positive rate (FPR):
 
-\begin{equation}
-\mathrm{AUROC}
-=
-\int_{0}^{1} \mathrm{TPR}(\mathrm{FPR})\,d\mathrm{FPR}.
-\end{equation}
+% \begin{equation}
+% \mathrm{AUROC}
+% =
+% \int_{0}^{1} \mathrm{TPR}(\mathrm{FPR})\,d\mathrm{FPR}.
+% \end{equation}
 
-A higher AUROC indicates that the model can better distinguish between
-abnormal and normal cases without depending on a particular classification
-threshold.
+% A higher AUROC indicates that the model can better distinguish between
+% abnormal and normal cases without depending on a particular classification
+% threshold.
 
-Average Precision (AP) summarizes the precision-recall relationship and is
-particularly useful for medical datasets where abnormal cases may represent a
-smaller proportion of the data:
+% Average Precision (AP) summarizes the precision-recall relationship and is
+% particularly useful for medical datasets where abnormal cases may represent a
+% smaller proportion of the data:
 
-\begin{equation}
-\mathrm{AP}
-=
-\sum_n(R_n-R_{n-1})P_n,
-\end{equation}
+% \begin{equation}
+% \mathrm{AP}
+% =
+% \sum_n(R_n-R_{n-1})P_n,
+% \end{equation}
 
-where $P_n$ and $R_n$ represent precision and recall values at different
-classification thresholds. Higher average precision indicates better detection
-of positive cases under class imbalance.
+% where $P_n$ and $R_n$ represent precision and recall values at different
+% classification thresholds. Higher average precision indicates better detection
+% of positive cases under class imbalance.
 
-The reliability of predicted probabilities is measured using Expected
-Calibration Error (ECE). The metric compares predicted confidence with the
-actual accuracy within confidence intervals:
+% The reliability of predicted probabilities is measured using Expected
+% Calibration Error (ECE). The metric compares predicted confidence with the
+% actual accuracy within confidence intervals:
 
-\begin{equation}
-\mathrm{ECE}
-=
-\sum_{m=1}^{M}
-\frac{|B_m|}{N}
-|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|.
-\end{equation}
+% \begin{equation}
+% \mathrm{ECE}
+% =
+% \sum_{m=1}^{M}
+% \frac{|B_m|}{N}
+% |\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|.
+% \end{equation}
 
-Lower ECE values indicate that the predicted confidence scores better reflect
-the actual likelihood of correctness.
+% Lower ECE values indicate that the predicted confidence scores better reflect
+% the actual likelihood of correctness.
 
-\subsection{Localization and Segmentation}
+% \subsection{Localization and Segmentation}
 
-For segmentation evaluation, let $P$ represent the predicted region and $G$
-represent the ground-truth annotation. The Dice coefficient measures the overlap
-between the two regions:
+% For segmentation evaluation, let $P$ represent the predicted region and $G$
+% represent the ground-truth annotation. The Dice coefficient measures the overlap
+% between the two regions:
 
-\begin{equation}
-\mathrm{Dice}(P,G)
-=
-\frac{2|P\cap G|}
-{|P|+|G|}.
-\end{equation}
+% \begin{equation}
+% \mathrm{Dice}(P,G)
+% =
+% \frac{2|P\cap G|}
+% {|P|+|G|}.
+% \end{equation}
 
-Intersection over Union (IoU), also known as the Jaccard index, measures the
-ratio between the intersection and union of the predicted and reference regions:
+% Intersection over Union (IoU), also known as the Jaccard index, measures the
+% ratio between the intersection and union of the predicted and reference regions:
 
-\begin{equation}
-\mathrm{IoU}(P,G)
-=
-\frac{|P\cap G|}
-{|P\cup G|}.
-\end{equation}
+% \begin{equation}
+% \mathrm{IoU}(P,G)
+% =
+% \frac{|P\cap G|}
+% {|P\cup G|}.
+% \end{equation}
 
-Dice and IoU provide complementary information about segmentation quality,
-where higher values indicate better spatial agreement between predicted and
-reference regions.
+% Dice and IoU provide complementary information about segmentation quality,
+% where higher values indicate better spatial agreement between predicted and
+% reference regions.
 
 
-\subsection{Interpretability of Sparse Dictionary Learning}
+% \subsection{Interpretability of Sparse Dictionary Learning}
 
-In sparse dictionary learning, interpretability is obtained from the learned
-dictionary atoms and their corresponding sparse representations. Therefore,
-evaluation focuses on whether the dictionary provides compact, meaningful, and
-discriminative representations of CT image patterns.
+% In sparse dictionary learning, interpretability is obtained from the learned
+% dictionary atoms and their corresponding sparse representations. Therefore,
+% evaluation focuses on whether the dictionary provides compact, meaningful, and
+% discriminative representations of CT image patterns.
 
-The reconstruction error measures how effectively the learned dictionary
-represents the input data. Given an input patch $x$, dictionary $D$, and sparse
-coefficient vector $\alpha$, the reconstruction error is defined as:
+% The reconstruction error measures how effectively the learned dictionary
+% represents the input data. Given an input patch $x$, dictionary $D$, and sparse
+% coefficient vector $\alpha$, the reconstruction error is defined as:
 
-\begin{equation}
-\mathrm{Reconstruction\ Error}
-=
-\|x-D\alpha\|_2^2.
-\end{equation}
+% \begin{equation}
+% \mathrm{Reconstruction\ Error}
+% =
+% \|x-D\alpha\|_2^2.
+% \end{equation}
 
-A lower reconstruction error indicates that the dictionary captures important
-structures present in the image data.
+% A lower reconstruction error indicates that the dictionary captures important
+% structures present in the image data.
 
-The sparsity of the representation describes how many atoms contribute to the
-reconstruction. It is measured using the number of non-zero coefficients:
+% The sparsity of the representation describes how many atoms contribute to the
+% reconstruction. It is measured using the number of non-zero coefficients:
 
-\begin{equation}
-\mathrm{Sparsity}
-=
-\|\alpha\|_0 .
-\end{equation}
+% \begin{equation}
+% \mathrm{Sparsity}
+% =
+% \|\alpha\|_0 .
+% \end{equation}
 
-Lower values indicate that only a small number of atoms are required to explain
-a sample, making the representation easier to interpret.
+% Lower values indicate that only a small number of atoms are required to explain
+% a sample, making the representation easier to interpret.
 
-Dictionary coherence evaluates the similarity between different atoms in the
-learned dictionary. The mutual coherence is defined as:
+% Dictionary coherence evaluates the similarity between different atoms in the
+% learned dictionary. The mutual coherence is defined as:
 
-\begin{equation}
-\mu(D)
-=
-\max_{i\neq j}
-\frac{|d_i^Td_j|}
-{\|d_i\|_2\|d_j\|_2}.
-\end{equation}
+% \begin{equation}
+% \mu(D)
+% =
+% \max_{i\neq j}
+% \frac{|d_i^Td_j|}
+% {\|d_i\|_2\|d_j\|_2}.
+% \end{equation}
 
-A lower coherence value indicates that the dictionary contains less redundant
-atoms and that individual atoms capture more distinct image characteristics.
+% A lower coherence value indicates that the dictionary contains less redundant
+% atoms and that individual atoms capture more distinct image characteristics.
 
-Atom utilization measures how frequently each dictionary atom contributes to
-the representation of the dataset:
+% Atom utilization measures how frequently each dictionary atom contributes to
+% the representation of the dataset:
 
-\begin{equation}
-U_k
-=
-\sum_{i=1}^{N}
-\mathbb{1}(\alpha_{k,i}\neq0),
-\end{equation}
+% \begin{equation}
+% U_k
+% =
+% \sum_{i=1}^{N}
+% \mathbb{1}(\alpha_{k,i}\neq0),
+% \end{equation}
 
-where $U_k$ represents the activation frequency of atom $k$. This metric helps
-identify whether the learned dictionary is effectively utilized or dominated by
-a limited number of atoms.
+% where $U_k$ represents the activation frequency of atom $k$. This metric helps
+% identify whether the learned dictionary is effectively utilized or dominated by
+% a limited number of atoms.
 
-For supervised dictionary learning approaches such as LC-KSVD, class-specific
-atom activation provides additional interpretability. Disease-related atoms are
-expected to activate more frequently for samples belonging to their associated
-class compared with unrelated classes. This indicates that the learned atoms
-capture discriminative patterns rather than only general image structures.
+% For supervised dictionary learning approaches such as LC-KSVD, class-specific
+% atom activation provides additional interpretability. Disease-related atoms are
+% expected to activate more frequently for samples belonging to their associated
+% class compared with unrelated classes. This indicates that the learned atoms
+% capture discriminative patterns rather than only general image structures.
 
-Finally, visual inspection of reconstructed dictionary atoms is used as a
-qualitative interpretability assessment. By examining representative atoms,
-their relationship with anatomical structures or pathological appearances can
-be analysed, providing an intuitive understanding of the features learned by
-the model.
+% Finally, visual inspection of reconstructed dictionary atoms is used as a
+% qualitative interpretability assessment. By examining representative atoms,
+% their relationship with anatomical structures or pathological appearances can
+% be analysed, providing an intuitive understanding of the features learned by
+% the model.
