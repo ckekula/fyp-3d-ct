@@ -1643,6 +1643,20 @@ alongside these overlap metrics: a ``pointing game'' test of whether the single 
 the highest heatmap value fell inside the ground-truth lesion mask at all, rather than only
 measuring how much the two regions overlapped.
 
+\paragraph{Case selection for quantitative evaluation}
+
+Because Grad-CAM's backward pass and the threshold-sweep evaluation above are considerably
+more expensive per case than a single forward pass, it was not practical to compute and score
+a heatmap for every case in a large eligible pool of ground-truth-annotated scans. Where such
+a pool was available, the encoder's own predicted score for the target abnormality was first
+computed for every case in it using a single forward pass, and this ranking was used to
+select the cases on which the full Grad-CAM heatmap and quantitative evaluation were actually
+run -- specifically, the cases the model itself was most confident about for that abnormality.
+This selects the most favourable conditions available within the pool for Grad-CAM to
+succeed, rather than a uniformly random subset of it, so any localisation weaknesses observed
+under this selection procedure are unlikely to be an artefact of an unusually difficult
+evaluation sample.
+
 \paragraph{Relation to atom-based interpretability}
 
 Grad-CAM gives an explanation after the model has already made a prediction. It shows 
