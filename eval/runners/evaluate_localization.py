@@ -129,12 +129,21 @@ def compute_threshold_sweep(
     thresholds: List[float],
     normalize_masks: bool,
 ) -> Dict[str, dict]:
+    # Samples with an already-binarized pred_mask (is_soft_mask=False, e.g.
+    # MedSAM2/Merlin/LC-KSVD) give an identical result at every threshold --
+    # sweeping them would misleadingly present "no sensitivity" as if it were
+    # a measured property of the model, when it's really just thresholding a
+    # 0/1 array. Exclude them from the sweep; only genuinely soft-scored
+    # samples (e.g. BiomedParse) are meaningfully swept.
+    soft_samples = [s for s in samples if getattr(s, "is_soft_mask", True)]
+    n_excluded = len(samples) - len(soft_samples)
+
     sweep_results = {}
 
     for threshold in thresholds:
         thresholded_samples = []
 
-        for sample in samples:
+        for sample in soft_samples:
             pred = np.asarray(sample.pred_mask)
 
             if normalize_masks:
@@ -147,6 +156,14 @@ def compute_threshold_sweep(
             )
 
         sweep_results[str(threshold)] = compute_localization_metrics(thresholded_samples)
+
+    if n_excluded:
+        sweep_results["_note"] = (
+            f"{n_excluded} sample(s) excluded from the threshold sweep because "
+            "their pred_mask is already a hard 0/1 decision (is_soft_mask=False) "
+            "-- thresholding it at different values would always give the same "
+            "result, which is not real threshold sensitivity."
+        )
 
     return sweep_results
 
