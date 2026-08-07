@@ -509,7 +509,7 @@ distribution of HU values across the dataset inside the abnormality masks.
 
 \begin{figure}
     \centering
-    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/hu_histogram.png}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/HU distribution of the train patches that feed to the ml classifiers.jpeg}
     \caption{Distribution of HU values across the dataset inside the abnormality masks.}
     \label{fig:hu-histogram}
 \end{figure}
@@ -1173,6 +1173,7 @@ target abnormalities and provide a quantitative assessment of the
 segmentation performance.
 
 \subsection{Merlin}
+\label{sec:merlin-method}
 
 Merlin was used as a pretrained model without any additional training or
 fine-tuning. Unlike CT-CLIP and BiomedParse, Merlin does not rely on a
@@ -1380,7 +1381,164 @@ of the abnormality being present.
 This zero-shot approach was tested successfully on a small pilot dataset,
 but it was not used for the final full-dataset evaluation.
 
-% \section{Evaluation}
+\subsection{Explainability}
+\label{sec:explainability-methods}
+
+Alongside the detection and classification methods described above, this project also
+explored gradient-based explainability techniques as a complementary way of understanding
+what a trained deep learning model was relying on when making a prediction, and as a point
+of comparison against the atom-based interpretability of the dictionary learning models
+described in Section~\ref{sec:statistical-analysis}. Grad-CAM (Gradient-weighted Class
+Activation Mapping) \cite{selvaraju2017grad} was implemented and tested for this purpose on
+two of the pretrained image encoders used in this study: one built around a 3D convolutional
+backbone, and one built around a spatio-temporal transformer backbone.
+
+Because the two encoders expose different kinds of intermediate representations, Grad-CAM
+had to be adapted separately for each, as described below, before both were evaluated using
+the same procedure.
+
+\paragraph{Convolutional encoder: target layer and target score}
+
+For the encoder built around a 3D convolutional backbone, Grad-CAM was applied directly to
+its final convolutional feature block, using the original convolutional formulation with the
+spatial dimensions extended from two dimensions to three. Specifically, the target layer was
+the final convolutional feature block of the encoder's inflated 3D ResNet backbone. A
+forward hook and a full backward hook were
+registered on this block: the forward hook stores the block's activation maps during the
+forward pass, while the backward hook stores the gradient of the target score with respect to
+those same activations during backpropagation.
+
+Two target scores were tested for backpropagation through this encoder. The first is
+text-agnostic: the $L_2$ norm of the global image embedding, which highlights whichever
+regions most strongly drove the overall image representation, independent of any specific
+finding. The second reuses the same text-image cosine similarity already described in
+Section~\ref{sec:merlin-method} for zero-shot localisationthe target score is the cosine
+similarity between the projected image embedding and the text embedding of a chosen finding
+description,
+
+\begin{equation}
+y = \frac{z_i^{\top} z_t}{\lVert z_i \rVert \lVert z_t \rVert},
+\end{equation}
+
+\noindent where $z_i$ represents the image representation produced by the model, and
+$z_t$ represents the representation of the corresponding text description. By providing
+a specific text description of an abnormality, Grad-CAM can generate a heatmap showing
+the regions related to that abnormality instead of only highlighting generally important
+areas. This text-based target was used for the quantitative evaluation.
+
+\paragraph{Convolutional encoder: computing the activation map}
+
+For a chosen target score, the preprocessed CT volume was passed through the encoder with
+gradient tracking enabled, and the resulting scalar score was backpropagated to the hooked
+layer. Following the original Grad-CAM formulation, the captured gradients were
+global-average-pooled over the spatial dimensions of the activation map to obtain a single
+importance weight per feature channel, and these weights were then used to compute a weighted
+sum of the corresponding activation maps:
+
+\begin{equation}
+L = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A^{k}\right), \qquad
+\alpha_{k} = \frac{1}{Z}\sum_{d,h,w} \frac{\partial y}{\partial A_{d,h,w}^{k}}
+\end{equation}
+
+\noindent where $A^{k}$ is the activation map of channel $k$ taken from the target layer's
+activation tensor $A \in \mathbb{R}^{K \times D \times H \times W}$, $y$ is the target score
+being explained, $Z = D \times H \times W$ is the number of spatial locations in the
+activation map, and the final ReLU discards activations with a negative influence on the
+target score, leaving only the regions that positively contributed to it. The resulting
+low-resolution map was upsampled to the input volume's resolution using trilinear
+interpolation and min-max normalised to $[0,1]$, producing a 3D heatmap co-registered with
+the CT volume.
+
+Two implementation details were found to matter for producing a valid heatmap with this
+encoder. First, the input tensor had to have gradient tracking explicitly enabled before the
+forward pass: the encoder's convolutional blocks use gradient checkpointing internally, which
+otherwise prevents the backward hook from capturing valid gradients and results in a
+degenerate, near-flat heatmap rather than an explicit error. Second, the encoder's contrastive
+projection head had to be explicitly enabled so that the forward pass produced the same
+projected embedding used for the text-similarity target, rather than the raw pooled
+convolutional features it returns by default. The CT volume itself was preprocessed
+identically to how it is prepared at normal inference time (Section~\ref{sec:merlin-method}),
+including the same intensity windowing and spatial downsampling, so that Grad-CAM explained
+the same input the model actually saw rather than a separately prepared version of it.
+
+\paragraph{Transformer encoder: target layer and target score}
+
+For the encoder built around a spatio-temporal transformer backbone, an intermediate
+transformer block was hooked in place of a convolutional layer, since this architecture has
+no equivalent final convolutional feature map. The same forward/backward hook mechanism was
+used, but the forward hook now stores one activation vector per input token rather than one
+activation map per spatial location, giving an activation tensor
+$A \in \mathbb{R}^{N \times K}$ for $N$ tokens and $K$ feature channels. The target score
+backpropagated through this encoder was the predicted logit for a chosen abnormality class
+from a linear classification head already fitted on top of this encoder's image embeddings
+for its own abnormality-prediction task, rather than a text-similarity score, reflecting the
+fact that this second encoder is queried through a fixed class vocabulary rather than
+free-text prompts.
+
+\paragraph{Transformer encoder: computing the token importance map}
+
+Channel-wise importance weights were obtained in the same way as for the convolutional
+encoder, but averaged over the token dimension instead of over spatial coordinates:
+
+\begin{equation}
+\alpha_{k} = \frac{1}{N}\sum_{i=1}^{N} \frac{\partial y}{\partial A_{i}^{k}}, \qquad
+T_{i} = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A_{i}^{k}\right)
+\end{equation}
+
+\noindent giving one importance score $T_i$ per token rather than a spatial activation map.
+Because each token corresponds to a fixed patch of the input volume, the resulting per-token
+importance scores were reshaped back into their known three-dimensional token grid and then
+upsampled to the resolution of the input CT volume, using the same trilinear interpolation
+and min-max normalisation as the convolutional encoder, producing a directly comparable 3D
+heatmap despite the two encoders' different internal representations.
+
+\paragraph{Quantitative evaluation against ground truth}
+
+Rather than relying only on qualitative visual inspection of the heatmap overlaid on the CT
+slices, the generated maps  from both the convolutional and the transformer-based variant
+described above were also evaluated quantitatively against the ground-truth lesion
+masks. Because Grad-CAM produces a continuous heatmap rather than a binary mask, a
+percentile-based threshold ($70^\text{th}$--$95^\text{th}$ percentile of the heatmap's own
+values) was swept at the heatmap's native resolution against a correspondingly downsampled
+ground-truth mask, and the threshold that maximised the Dice overlap between the two was
+selected on a per-scan basis. This threshold is used purely to evaluate how well the
+explanation map's spatial pattern agrees with the annotated lesion, and is entirely separate
+from any decision threshold used for generating a clinical prediction elsewhere in this
+study. The selected threshold was then applied after upsampling the heatmap to the full CT
+resolution, and Dice, IoU, precision and recall were recomputed at full resolution against
+the original ground-truth mask. A stricter, threshold-independent check was also run
+alongside these overlap metrics: a ``pointing game'' test of whether the single voxel with
+the highest heatmap value fell inside the ground-truth lesion mask at all, rather than only
+measuring how much the two regions overlapped.
+
+\paragraph{Case selection for quantitative evaluation}
+
+Because Grad-CAM's backward pass and the threshold-sweep evaluation above are considerably
+more expensive per case than a single forward pass, it was not practical to compute and score
+a heatmap for every case in a large eligible pool of ground-truth-annotated scans. Where such
+a pool was available, the encoder's own predicted score for the target abnormality was first
+computed for every case in it using a single forward pass, and this ranking was used to
+select the cases on which the full Grad-CAM heatmap and quantitative evaluation were actually
+run -- specifically, the cases the model itself was most confident about for that abnormality.
+This selects the most favourable conditions available within the pool for Grad-CAM to
+succeed, rather than a uniformly random subset of it, so any localisation weaknesses observed
+under this selection procedure are unlikely to be an artefact of an unusually difficult
+evaluation sample.
+
+\paragraph{Relation to atom-based interpretability}
+
+Grad-CAM gives an explanation after the model has already made a prediction. It shows 
+which parts of the CT image had the biggest influence on the model's decision by looking 
+at the internal features used by the model. Unlike dictionary learning, the model was not 
+specifically trained to create these explanations.
+
+Therefore, the two methods provide different but useful types of explanations.
+Dictionary learning shows which learned patterns (atoms) were activated during the decision,
+while Grad-CAM shows which areas of the input image were most important for the model's
+prediction. They are not replacements for each other, but they help us understand the
+model from different perspectives.
+
+\section{Evaluation}
 
 % The evaluation of medical image analysis systems requires multiple metrics because
 % different measures capture different aspects of model behaviour. In chest CT
