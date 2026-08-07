@@ -20,7 +20,7 @@ import numpy as np
 
 # Setup
 SCRIPT_DIR = Path(__file__).resolve().parent
-REPO_ROOT = SCRIPT_DIR.parents[1]
+REPO_ROOT = SCRIPT_DIR.parent
 METRICS_FILE = REPO_ROOT / 'eval' / 'outputs' / 'localization' / 'biomed_parse_localization_metrics_progress.json'
 PERCASE_FILE = REPO_ROOT / 'eval' / 'outputs' / 'localization' / 'biomed_parse_localization_per_case_progress.csv'
 FIGURES_DIR = REPO_ROOT / 'documents' / 'Progress Report' / 'Images'
@@ -92,7 +92,7 @@ for idx, class_name in enumerate(classes):
 
 plt.tight_layout()
 plt.savefig(FIGURES_DIR / 'Fig1_Dice_Distributions.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'Fig1_Dice_Distributions.png'}")
+print(f"[OK] Saved: {FIGURES_DIR / 'Fig1_Dice_Distributions.png'}")
 plt.close()
 
 # ============================================================================
@@ -109,7 +109,7 @@ by_class = metrics['by_class']
 class_names_clean = []
 dice_scores = []
 iou_scores = []
-hit_at_5 = []
+dice_gt_005 = []
 
 for class_key in sorted(by_class.keys()):
     if class_key != 'all':
@@ -118,7 +118,7 @@ for class_key in sorted(by_class.keys()):
         class_names_clean.append(class_key.replace('_', ' ').title())
         dice_scores.append(summary.get('mean_dice', 0))
         iou_scores.append(summary.get('mean_iou', 0))
-        hit_at_5.append(summary.get('hit_at_5', 0))
+        dice_gt_005.append(summary.get('frac_dice_gt_0.05', 0))
 
 x = np.arange(len(class_names_clean))
 width = 0.25
@@ -155,17 +155,17 @@ for bar in bars2:
     ax.text(bar.get_x() + bar.get_width()/2., height,
             f'{height:.4f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
 
-# Hit@5
+# Fraction of findings with Dice > 0.05
 ax = axes[2]
-bars3 = ax.bar(x - width, hit_at_5, width, label='Hit@5',
+bars3 = ax.bar(x - width, dice_gt_005, width, label='Dice > 0.05',
                color=[COLORS[cls.lower().replace(' ', '_')] for cls in class_names_clean],
                alpha=0.8, edgecolor='black')
-ax.set_ylabel('Hit@5 (Proportion)', fontweight='bold', fontsize=12)
-ax.set_title('Localization Hit Rate (Top-5)', fontweight='bold', fontsize=12)
+ax.set_ylabel('Fraction of Findings', fontweight='bold', fontsize=12)
+ax.set_title('Findings with Dice > 0.05', fontweight='bold', fontsize=12)
 ax.set_xticks(x)
 ax.set_xticklabels(class_names_clean, rotation=45, ha='right')
 ax.grid(alpha=0.3, axis='y')
-ax.set_ylim(0, max(hit_at_5) * 1.2)
+ax.set_ylim(0, max(dice_gt_005) * 1.2)
 for bar in bars3:
     height = bar.get_height()
     ax.text(bar.get_x() + bar.get_width()/2., height,
@@ -173,7 +173,7 @@ for bar in bars3:
 
 plt.tight_layout()
 plt.savefig(FIGURES_DIR / 'Fig2_Metrics_Comparison.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'Fig2_Metrics_Comparison.png'}")
+print(f"[OK] Saved: {FIGURES_DIR / 'Fig2_Metrics_Comparison.png'}")
 plt.close()
 
 # ============================================================================
@@ -188,18 +188,18 @@ by_morph = metrics['by_morphology']
 focal_data = by_morph['focal']['summary']
 nonfocal_data = by_morph['non_focal']['summary']
 
-metrics_names = ['Dice', 'IoU', 'Hit@5', 'Hit@10']
+metrics_names = ['Dice', 'IoU', 'Dice>0.05', 'Global Hit Rate (Dice>=0.10)']
 focal_values = [
     focal_data.get('mean_dice', 0),
     focal_data.get('mean_iou', 0),
-    focal_data.get('hit_at_5', 0),
-    focal_data.get('hit_at_10', 0)
+    focal_data.get('frac_dice_gt_0.05', 0),
+    focal_data.get('global_hit_rate', 0)
 ]
 nonfocal_values = [
     nonfocal_data.get('mean_dice', 0),
     nonfocal_data.get('mean_iou', 0),
-    nonfocal_data.get('hit_at_5', 0),
-    nonfocal_data.get('hit_at_10', 0)
+    nonfocal_data.get('frac_dice_gt_0.05', 0),
+    nonfocal_data.get('global_hit_rate', 0)
 ]
 
 # Side-by-side bars
@@ -243,7 +243,7 @@ for bar in bars:
 
 plt.tight_layout()
 plt.savefig(FIGURES_DIR / 'Fig3_Focal_vs_NonFocal.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'Fig3_Focal_vs_NonFocal.png'}")
+print(f"[OK] Saved: {FIGURES_DIR / 'Fig3_Focal_vs_NonFocal.png'}")
 plt.close()
 
 # ============================================================================
@@ -274,7 +274,7 @@ ax.legend(fontsize=11, loc='lower right')
 
 plt.tight_layout()
 plt.savefig(FIGURES_DIR / 'Fig4_CDF_Dice.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'Fig4_CDF_Dice.png'}")
+print(f"[OK] Saved: {FIGURES_DIR / 'Fig4_CDF_Dice.png'}")
 plt.close()
 
 # ============================================================================
@@ -335,141 +335,188 @@ ax.legend(handles=handles, fontsize=12, loc='upper left', bbox_to_anchor=(1.01, 
 
 plt.tight_layout(rect=[0, 0, 0.88, 1])
 plt.savefig(FIGURES_DIR / 'Fig5_Confusion_Patterns.png', dpi=300, bbox_inches='tight')
-print(f"✓ Saved: {FIGURES_DIR / 'Fig5_Confusion_Patterns.png'}")
+print(f"[OK] Saved: {FIGURES_DIR / 'Fig5_Confusion_Patterns.png'}")
 plt.close()
 
 # ============================================================================
 # Generate LaTeX code for easy inclusion
 # ============================================================================
+# Numbers below are pulled live from `metrics` (loaded from METRICS_FILE at
+# the top of this script) rather than hardcoded, so this section can't go
+# stale relative to the actual evaluation run the way a hand-typed table can.
 print("\nGenerating LaTeX inclusion code...")
-latex_code = r"""
+
+overall_summary = metrics['overall']['summary']
+n_total_cases = overall_summary['num_cases']
+
+def _class_row(cls_key, summary):
+    return r"{} & {:.4f} & {:.4f} & {:.4f} & {:.4f} & {} \\".format(
+        cls_key.replace('_', ' ').title(),
+        summary['mean_dice'],
+        summary['mean_iou'],
+        summary['frac_dice_gt_0.05'],
+        summary['global_hit_rate'],
+        summary['num_cases'],
+    )
+
+class_rows_latex = "\n".join(
+    _class_row(cls, metrics['by_class'][cls]['summary'])
+    for cls in sorted(metrics['by_class'].keys())
+    if cls != 'all'
+)
+
+morphology_rows_latex = "\n".join(
+    _class_row(morph, metrics['by_morphology'][morph]['summary'])
+    for morph in sorted(metrics['by_morphology'].keys())
+    if morph != 'unknown'
+)
+
+# Per-class zero-Dice fraction / max / median, computed from the same
+# per-case Dice values used elsewhere in this script (class_dice), not
+# hand-typed -- so these narrative numbers can't drift from the actual data.
+class_stats = {}
+for cls, values in class_dice.items():
+    arr = np.asarray(values, dtype=float)
+    class_stats[cls] = {
+        "zero_frac": float(np.mean(arr < 0.001)) if len(arr) else float("nan"),
+        "max": float(np.max(arr)) if len(arr) else float("nan"),
+        "median": float(np.median(arr)) if len(arr) else float("nan"),
+    }
+
+focal_dice = metrics['by_morphology'].get('focal', {}).get('summary', {}).get('mean_dice', float('nan'))
+nonfocal_dice = metrics['by_morphology'].get('non_focal', {}).get('summary', {}).get('mean_dice', float('nan'))
+focal_multiplier = focal_dice / nonfocal_dice if nonfocal_dice else float('nan')
+
+nodule_stats = class_stats.get('lung_nodule', {})
+opacity_stats = class_stats.get('lung_opacity', {})
+consolidation_stats = class_stats.get('consolidation', {})
+atelectasis_stats = class_stats.get('atelectasis', {})
+nodule_hit_rate = metrics['by_class'].get('lung_nodule', {}).get('summary', {}).get('frac_dice_gt_0.05', float('nan'))
+
+latex_code = rf"""
 % ============================================================================
 % EVALUATION RESULTS SECTION - Add to Chapter 4
 % ============================================================================
 
-\section{Grounded Localization Evaluation Results}
+\section{{Grounded Localization Evaluation Results}}
 
-The BiomedParse model was evaluated on volumetric CT localization using four lesion classes from 
-the RexGrounding-CT dataset. The following subsections present the complete quantitative analysis 
-across 1,264 test cases spanning four anatomical classes (316 cases each).
+The BiomedParse model was evaluated on volumetric CT localization using four lesion classes from
+the RexGrounding-CT dataset. The following subsections present the quantitative analysis
+across {n_total_cases} test cases.
 
-\subsection{Overall Performance Summary}
+\subsection{{Overall Performance Summary}}
 
 The model achieves limited localization accuracy across the dataset:
-\begin{itemize}
-    \item Mean Dice Score: 0.0190 (1.9\% overlap)
-    \item Mean IoU: 0.0110
-    \item Hit@5: 0.0949 (9.5\% of cases rank correct region in top-5)
-    \item Hit@10: 0.0562 (5.6\% of cases)
-\end{itemize}
+\begin{{itemize}}
+    \item Mean Dice Score: {overall_summary['mean_dice']:.4f}
+    \item Mean IoU: {overall_summary['mean_iou']:.4f}
+    \item Dice > 0.05: {overall_summary['frac_dice_gt_0.05']:.4f} ({overall_summary['frac_dice_gt_0.05']*100:.1f}\% of findings exceed a Dice of 0.05)
+    \item Global Hit Rate (Dice $\geq$ 0.10, ReXGroundingCT's official definition): {overall_summary['global_hit_rate']:.4f} ({overall_summary['global_hit_rate']*100:.1f}\% of findings)
+\end{{itemize}}
 
-\subsection{Per-Class Performance}
+\subsection{{Per-Class Performance}}
 
-\begin{table}[h]
+\begin{{table}}[h]
 \centering
-\caption{Localization Performance by Lesion Class}
-\begin{tabular}{lccccr}
+\caption{{Localization Performance by Lesion Class}}
+\begin{{tabular}}{{lccccr}}
 \hline
-\textbf{Class} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
+\textbf{{Class}} & \textbf{{Dice}} & \textbf{{IoU}} & \textbf{{Dice>0.05}} & \textbf{{Hit Rate}} & \textbf{{Samples}} \\
 \hline
-Lung Nodule & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
-Lung Opacity & 0.0064 & 0.0034 & 0.0285 & 0.0158 & 316 \\
-Consolidation & 0.0008 & 0.0004 & 0.0095 & 0.0000 & 316 \\
-Atelectasis & 0.0036 & 0.0020 & 0.0158 & 0.0127 & 316 \\
+{class_rows_latex}
 \hline
-\end{tabular}
-\label{tab:perclass-localization}
-\end{table}
+\end{{tabular}}
+\label{{tab:perclass-localization}}
+\end{{table}}
 
-\begin{figure}[h]
+\begin{{figure}}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig2_Metrics_Comparison.png}
-\caption{Per-class localization performance across three key metrics. 
-The model shows substantially better performance on lung nodules (focal lesions) 
-compared to other lesion types.}
-\label{fig:metrics-comparison}
-\end{figure}
+\includegraphics[width=0.95\linewidth]{{Images/Fig2_Metrics_Comparison.png}}
+\caption{{Per-class localization performance across three key metrics.
+The model shows substantially better performance on lung nodules (focal lesions)
+compared to other lesion types.}}
+\label{{fig:metrics-comparison}}
+\end{{figure}}
 
-\subsection{Distribution Analysis}
+\subsection{{Distribution Analysis}}
 
 The Dice score distributions reveal a stark pattern: while lung nodules show some successful detections
-(max: 0.79, median: 0.02), non-focal lesions remain largely undetected.
+(max: {nodule_stats.get('max', float('nan')):.2f}, median: {nodule_stats.get('median', float('nan')):.2f}), non-focal lesions remain largely undetected.
 
-\begin{figure}[h]
+\begin{{figure}}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig1_Dice_Distributions.png}
-\caption{Histogram of Dice scores for each lesion class. Red and blue dashed lines indicate 
-mean and median respectively. Zero-Dice percentages shown in subtitle. Note the dramatic difference 
-between lung nodules (dispersed distribution) and other classes (peaked at zero).}
-\label{fig:dice-distributions}
-\end{figure}
+\includegraphics[width=0.95\linewidth]{{Images/Fig1_Dice_Distributions.png}}
+\caption{{Histogram of Dice scores for each lesion class. Red and blue dashed lines indicate
+mean and median respectively. Zero-Dice percentages shown in subtitle. Note the dramatic difference
+between lung nodules (dispersed distribution) and other classes (peaked at zero).}}
+\label{{fig:dice-distributions}}
+\end{{figure}}
 
-\subsection{Critical Finding: Focal vs. Non-Focal Lesion Bias}
+\subsection{{Critical Finding: Focal vs. Non-Focal Lesion Bias}}
 
-The evaluation reveals a fundamental model bias: focal lesions (nodules) are detected at dramatically 
+The evaluation reveals a fundamental model bias: focal lesions (nodules) are detected at dramatically
 higher rates than non-focal lesions (diffuse patterns).
 
-\begin{table}[h]
+\begin{{table}}[h]
 \centering
-\caption{Morphology-Based Performance Analysis}
-\begin{tabular}{lccccr}
+\caption{{Morphology-Based Performance Analysis}}
+\begin{{tabular}}{{lccccr}}
 \hline
-\textbf{Morphology} & \textbf{Dice} & \textbf{IoU} & \textbf{Hit@5} & \textbf{Hit@10} & \textbf{Samples} \\
+\textbf{{Morphology}} & \textbf{{Dice}} & \textbf{{IoU}} & \textbf{{Dice>0.05}} & \textbf{{Hit Rate}} & \textbf{{Samples}} \\
 \hline
-Focal (Nodules) & 0.0652 & 0.0383 & 0.3259 & 0.1962 & 316 \\
-Non-Focal (Diffuse) & 0.0036 & 0.0020 & 0.0179 & 0.0095 & 948 \\
+{morphology_rows_latex}
 \hline
-\end{tabular}
-\label{tab:morphology-localization}
-\end{table}
+\end{{tabular}}
+\label{{tab:morphology-localization}}
+\end{{table}}
 
-\begin{figure}[h]
+\begin{{figure}}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig3_Focal_vs_NonFocal.png}
-\caption{Critical performance gap between focal (lung nodules) and non-focal (diffuse) lesions. 
-Left panel shows direct metric comparison. Right panel visualizes the performance multiplier gap: 
-the model achieves 18.1× higher Dice on nodules versus non-focal lesions.}
-\label{fig:focal-nonfocal-gap}
-\end{figure}
+\includegraphics[width=0.95\linewidth]{{Images/Fig3_Focal_vs_NonFocal.png}}
+\caption{{Critical performance gap between focal (lung nodules) and non-focal (diffuse) lesions.
+Left panel shows direct metric comparison. Right panel visualizes the performance multiplier gap:
+the model achieves {focal_multiplier:.1f}\texttimes{{}} higher Dice on nodules versus non-focal lesions.}}
+\label{{fig:focal-nonfocal-gap}}
+\end{{figure}}
 
-\subsection{Score Distribution and Failure Modes}
+\subsection{{Score Distribution and Failure Modes}}
 
 A cumulative distribution analysis shows how performance varies across cases.
 
-\begin{figure}[h]
+\begin{{figure}}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig4_CDF_Dice.png}
-\caption{Cumulative Distribution Function of Dice scores. Shows the proportion of cases 
-achieving each Dice threshold. Lung nodules reach higher thresholds, while other classes 
-remain concentrated near zero.}
-\label{fig:cdf-dice}
-\end{figure}
+\includegraphics[width=0.95\linewidth]{{Images/Fig4_CDF_Dice.png}}
+\caption{{Cumulative Distribution Function of Dice scores. Shows the proportion of cases
+achieving each Dice threshold. Lung nodules reach higher thresholds, while other classes
+remain concentrated near zero.}}
+\label{{fig:cdf-dice}}
+\end{{figure}}
 
 The failure-mode distribution reveals the severity of non-focal lesion detection:
 
-\begin{figure}[h]
+\begin{{figure}}[h]
 \centering
-\includegraphics[width=0.95\linewidth]{Images/Fig5_Confusion_Patterns.png}
-\caption{Stacked bar chart showing the fraction of cases in each performance category. 
-Consolidation and atelectasis show $>98\%$ zero-Dice cases (complete failure to localize). 
-Lung opacity shows $74\%$ zero-Dice. Only lung nodules show meaningful detection diversity.}
-\label{fig:confusion-patterns}
-\end{figure}
+\includegraphics[width=0.95\linewidth]{{Images/Fig5_Confusion_Patterns.png}}
+\caption{{Stacked bar chart showing the fraction of cases in each performance category.
+Consolidation and atelectasis show ${{>}}{max(consolidation_stats.get('zero_frac', 0), atelectasis_stats.get('zero_frac', 0))*100:.0f}\%$ zero-Dice cases (complete failure to localize).
+Lung opacity shows ${opacity_stats.get('zero_frac', float('nan'))*100:.0f}\%$ zero-Dice. Only lung nodules show meaningful detection diversity.}}
+\label{{fig:confusion-patterns}}
+\end{{figure}}
 
-\subsection{Conclusions from Localization Evaluation}
+\subsection{{Conclusions from Localization Evaluation}}
 
 The evaluation demonstrates that BiomedParse:
-\begin{enumerate}
-    \item Effectively localizes focal lesions (lung nodules) with moderate success (32.6\% Hit@5)
+\begin{{enumerate}}
+    \item Effectively localizes focal lesions (lung nodules) with moderate success ({nodule_hit_rate*100:.1f}\% of findings exceed Dice 0.05)
     \item Fails dramatically on non-focal (diffuse) lesions:
-    \begin{itemize}
-        \item Atelectasis: 96\% zero-Dice (essentially not detected)
-        \item Consolidation: 98\% zero-Dice (essentially not detected)
-        \item Lung Opacity: 74\% zero-Dice (mostly not detected)
-    \end{itemize}
+    \begin{{itemize}}
+        \item Atelectasis: {atelectasis_stats.get('zero_frac', float('nan'))*100:.0f}\% zero-Dice (essentially not detected)
+        \item Consolidation: {consolidation_stats.get('zero_frac', float('nan'))*100:.0f}\% zero-Dice (essentially not detected)
+        \item Lung Opacity: {opacity_stats.get('zero_frac', float('nan'))*100:.0f}\% zero-Dice (mostly not detected)
+    \end{{itemize}}
     \item Shows architectural bias toward focal patterns, suggesting the model's feature representations
     may not generalize to diffuse pathology
-\end{enumerate}
+\end{{enumerate}}
 
 This focal-bias is a critical finding for understanding model limitations in clinical deployment,
 where many important lesions manifest as diffuse patterns rather than discrete nodules.
@@ -478,7 +525,7 @@ where many important lesions manifest as diffuse patterns rather than discrete n
 with open(FIGURES_DIR / 'LaTeX_Evaluation_Section.txt', 'w') as f:
     f.write(latex_code)
 
-print(f"✓ Saved LaTeX template: {FIGURES_DIR / 'LaTeX_Evaluation_Section.txt'}")
+print(f"[OK] Saved LaTeX template: {FIGURES_DIR / 'LaTeX_Evaluation_Section.txt'}")
 
 # ============================================================================
 # Summary Table
