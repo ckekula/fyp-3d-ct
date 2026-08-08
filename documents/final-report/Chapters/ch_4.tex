@@ -165,8 +165,8 @@ and/or ground-glass-opacity/opacity finding: the classifier was applied to every
 pool to obtain its predicted nodule and opacity logits. Because Grad-CAM's backward pass and
 the subsequent per-case threshold sweep are considerably more expensive than a plain forward
 pass, exhaustively computing and quantitatively evaluating a heatmap for all 2{,}315 cases was
-not practical, so the resulting logits were used to rank cases and select the 20 for which
-Grad-CAM was actually computed and scored against the ground-truth mask: the 10 cases with a
+not practical, so the resulting logits were used to rank cases and select a 20-case test set,
+for which Grad-CAM was actually computed and scored against the ground-truth mask: the 10 cases with a
 ground-truth nodule finding on which the classifier's own nodule logit was highest, and the 10
 cases with a ground-truth ground-glass-opacity/opacity finding on which its opacity logit was
 highest. Selecting the cases the full-dataset classification pass was most confident about
@@ -181,8 +181,8 @@ reports the resulting overlap and localisation metrics, averaged across these 20
 
 \begin{table}[ht]
     \centering
-    \caption{CT-CLIP Grad-CAM localisation metrics, evaluated on the 20 highest-confidence
-    cases identified from the full-dataset classification pass (mean $\pm$ std).}
+    \caption{CT-CLIP Grad-CAM localisation metrics, evaluated on the 20-case test set
+    selected from the full-dataset classification pass (mean $\pm$ std).}
     \label{tab:ctclip-gradcam-metrics}
     \begin{tabular}{lc}
         \toprule

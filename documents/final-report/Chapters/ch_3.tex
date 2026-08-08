@@ -1384,8 +1384,8 @@ but it was not used for the final full-dataset evaluation.
 \subsection{Explainability}
 \label{sec:explainability-methods}
 
-In addition to the detection and classification methods, this project also
-used Grad-CAM (Gradient-weighted Class Activation Mapping) to understand
+In addition to the segmentation and classification methods, this project also
+experimented with Grad-CAM (Gradient-weighted Class Activation Mapping) to understand
 why a deep learning model makes a prediction. Grad-CAM creates a heatmap
 that highlights the parts of a CT scan that had the greatest influence on
 the model's decision. This method was also compared with the atom-based
@@ -1510,11 +1510,6 @@ be directly compared with the convolutional encoder heatmap, even though the
 two encoders use different internal feature representations.
 
 \paragraph{Quantitative evaluation against ground truth}
-
-Generating Grad-CAM heatmaps and performing threshold-based evaluation require
-more computation than a normal model prediction. Therefore, the evaluation was
-performed only on the selected test set rather than all available annotated CT
-scans.
 
 For each case in the test set, Grad-CAM heatmaps were generated for both the
 convolutional and transformer-based models to visualize the regions that
