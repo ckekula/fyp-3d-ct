@@ -142,6 +142,57 @@ classifier for LC-KSVD2 throughout the rest of this chapter.
 % Qualitative results only -- overlay figures / NIfTI exports from
 % inference.py's per-voxel abnormality map (no Dice/IoU computed)
 
+\subsection{Raw-Patch Machine Learning Baseline}
+\label{sec:raw-patch-baseline}
+
+The raw-patch baselines described in Section~\ref{sec:ml-baseline-methods} were evaluated on the
+same test split used for LC-KSVD2 Table~\ref{tab:raw-patch-classifiers}
+summarises per-class performance for the three classifiers trained on the
+full 864-dimension raw patch.
+
+\begin{table}[ht]
+    \centering
+    \caption{Raw-patch classifier comparison, per class for the test split}
+    \label{tab:raw-patch-classifiers}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Normal F1} & \textbf{2c F1} & \textbf{2d F1} \\
+        \midrule
+        Logistic Regression         & 0.780 & 0.90 & 0.49 & 0.13 \\
+        LinearSVC (MaxAbsScaler)    & \textbf{0.854} & \textbf{0.93} & 0.53 & 0.12 \\
+        XGBoost                     & 0.832 & 0.92 & \textbf{0.54} & 0.31 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Overall accuracy for the best raw-patch model, LinearSVC at 85.4\%, is close
+to LC-KSVD2's sparse-code LinearSVC at 85.2\% (Table
+\ref{tab:lcksvd2-classifiers}) .However, accuracy on this test split is dominated by the
+majority normal class, so this comparison is misleading. 
+Computing the same macro F1 used to evaluate LC-KSVD2 gives a
+starkly different picture: the raw-patch LinearSVC reaches a macro F1 of
+only 0.53 (normal 0.93, 2c 0.53, 2d 0.12), well below LC-KSVD2's sparse-code
+LinearSVC at 0.69. The gap is most severe on the nodule class specifically:
+the raw-patch LinearSVC's 2d F1 of 0.12 (precision 0.17, recall 0.10) means
+it fails to reliably detect nodules from raw intensities alone, compared to
+an F1 of 0.70 for the same classifier trained on sparse codes. The
+non-linear tree baselines (XGBoost) do somewhat better
+on the nodule class than the raw-patch linear models (2d F1 of 0.33 and 0.31
+respectively), but still fall well short of the sparse-code LinearSVC.
+
+The two-feature (mean HU, std HU) ablation reached 80.8\% accuracy and a 2d
+F1 of 0.21 with Logistic Regression, and 86.5\% accuracy with a 2d F1 of
+0.23 with LinearSVC . Capturing a substantial fraction of the full
+raw-patch models' accuracy from coarse intensity statistics alone, but with
+nodule-class performance no better than the full-patch raw baselines. Taken
+together, these results indicate that classifying raw patch intensities,
+whether the full 864-dimension patch or just its two summary statistics,
+recovers most of the normal-vs-abnormal signal but is a substantially worse
+representation than the learned sparse code for distinguishing the two
+abnormality classes from each other, particularly the smaller and rarer
+nodule class consistent with the dictionary learning and sparse coding
+stages contributing meaningfully beyond what raw intensity alone provides.
+
 \section{nnU-Net Segmentation Results}
 % Dice / IoU / precision / recall / specificity, GGO model only
 % (fold 3 + fold 4 ensemble; no nodule-model run completed --
@@ -258,10 +309,6 @@ lung tissue.
 % merlin_localization_summary.csv / per_case.csv -- soft similarity maps,
 % not a trained segmentation head
 
-\subsection{Explainability (Grad-CAM)}
-% Code exists (explainability/gradcam/gradcam3d.py, run_gradcam.py) but no
-% computed metrics file was found -- state this as not yet run rather
-% than presenting numbers that don't exist
 
 \section{BiomedParse Results}
 

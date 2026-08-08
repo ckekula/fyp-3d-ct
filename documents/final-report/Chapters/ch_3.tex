@@ -512,7 +512,19 @@ from purely intensity-based segmentation and towards a learned segmentation mode
 
 \subsubsection{Deep Learning-based Segmentation}
 
-TOTALSEGMENTOR
+First, TotalSegmentator
+\cite{wasserthal2023totalsegmentator} was considered for lung segmentation.
+Although it can segment the lungs, lung segmentation is only one part of its
+broader whole-body segmentation task. In the ``total'' task, the lungs are
+represented as five separate lobe classes: left upper lobe, left lower lobe,
+right upper lobe, right middle lobe, and right lower lobe. These five masks
+therefore need to be combined to obtain a single whole-lung mask.
+
+This additional merging step makes the preprocessing pipeline more complex
+and may introduce unwanted boundaries between adjacent lobes. Since the
+proposed pipeline requires a single lung mask for the subsequent processing
+steps, this representation was less suitable for the project. Therefore,
+TotalSegmentator was not selected for the final pipeline.
 
 The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
@@ -712,7 +724,7 @@ At $K=3d$, the dictionary has enough overcompleteness for s=10 sparse coding to 
 Therefore, we decided to use $K=3d=2{,}592$ as the target dictionary size for all algorithms in this project.
 
 \subsection{Patch Normalization}
-
+\label{sec:patch-normalization}
 
 A major consideration in our methodology was whether we should normalize the patches before passing them to the dictionary learning algorithms.
 This was motivated by the approach used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image},
@@ -774,9 +786,9 @@ Therefore, the Direct Current (DC) component accounts for approximately
 
 \noindent of the total signal energy, meaning that the HU intensity dominates the sparse coding process as a feature.
 
-An alternative approach combines the benefits of both methods by explicitly separating intensity and texture information before
-sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each patch $\mathbf{x}$ is
-represented as
+We also tested an alternative approach that combines the benefits of both methods by explicitly separating intensity and texture
+information before sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each
+patch $\mathbf{x}$ is represented as
 
 \[
 \mathbf{x} \rightarrow \left(\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right),
@@ -805,53 +817,8 @@ We tested these 2 approaches using a linear SVM, trained by sending patches in 3
     \item Mean-subtracted L2 normalized patch
 \end{enumerate}
 
-Table \ref{tab:patch-classification} shows the results. Two scalars (patch mean and standard deviation),
-match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
-432-fold reduction in dimensionality. Since a linear classifier cannot extract more
-linearly-separable signal from a superset of features than from the features
-themselves, this indicates that intensity statistics account for essentially all of the
-raw patch's discriminative content, and that the remaining 862 dimensions contribute
-noise rather than signal at the sample sizes available for classes 1 and 2.
-
-\begin{table}
-\centering
-\caption{Linear SVM classification performance under three input representations.}
-\label{tab:patch-classification}
-\begin{tabular}{llccc}
-\toprule
-\textbf{Input} & \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
-\midrule
-\multirow{3}{*}{Raw patch}
- & 0       & 0.95 & 0.92 & 0.93 \\
- & 1                & 0.46 & 0.63 & 0.53 \\
- & 2                & 0.17 & 0.10 & 0.12 \\
-\midrule
-\multirow{3}{*}{Mean + Std of HU}
- & 0       & 0.95 & 0.93 & 0.94 \\
- & 1                & 0.50 & 0.60 & 0.55 \\
- & 2                & 0.27 & 0.20 & 0.23 \\
-\midrule
-\multirow{3}{*}{Mean-subtracted, $\ell_2$-normalized patch}
- & 0       & 0.86 & 0.87 & 0.87 \\
- & 1                & 0.19 & 0.20 & 0.19 \\
- & 2                & 0.11 & 0.06 & 0.08 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
-discards both absolute attenuation and contrast, leaving a generic linear classifier
-with only raw, high-dimensional pixel values and no basis abstraction. Performance
-can be observed to degrade further under this representation, consistent with the raw patch's
-discriminative power being concentrated almost entirely in its intensity component
-rather than in pixel-level texture.
-
-This result can be interpreted as not indicating that texture is uninformative; but rather, motivating texture represention
-through dictionary learning instead of through raw pixel values, However, intensity must be retained as an explicit classifier
-feature rather than removed during preprocessing by separating each patch into intensity
-statistics $(\mu, \sigma)$ and a normalized texture component prior to sparse coding
-(Section~2). We trained our dictionaries using both approaches, and the comparison is reported in Section~\ref{sec:ablation-sparse}.
-
+The results of this experiment are discussed in Section~\ref{sec:ml-baseline-methods}, and showed that the second approach
+(using the mean and standard deviation) performs best.
 
 \subsection{K-SVD}
 \label{sec:ksvd}
@@ -940,225 +907,193 @@ bookkeeping is later used when inspecting which atoms are used for
 which class, as described in Section~\ref{sec:statistical-analysis}'s
 discussion of atom activation.
 
-\section{Linear Classification}
+\section{Sparse Code Classification}
 \label{sec:classification}
 
 After training the dictionaries, the patches in the training set are re-encoded against each dictionary to produce a sparse code
-$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. The 
+$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. Then, we send each code along with its associated label to a classifier,
+to determine the class of the patch based on its sparse representation. The classifier is trained to map the sparse codes to their
+corresponding class labels, allowing it to learn the relationship between the learned dictionary atoms and the target abnormalities.
+We trained three classifiers for each dictionary learning algorithm:
+\begin{enumerate}
+    \item Logistic Regression
+    \item Linear SVM
+    \item XGBoost
+\end{enumerate}
 
-\subsection{Training}
+The performance of each classifier was evaluated on the same dataset, and the best-performing classifier was selected for each algorithm.
 
-Abnormality labels in CT-RATE are non-exclusive, and a single patch may exhibit
-co-occurring findings. We therefore train one-versus-rest $\ell_{2}$-regularised
-logistic regression, obtaining for each class $c$ a weight vector
-$\mathbf{w}_{c} \in \mathbb{R}^{K+2}$ and bias $b_{c}$, with score
+\section{Projecting back to voxel space}
+
+This is the most important part of our study as it allows us to find the specific voxels in a patch that belong to a particular
+class. To reconstruct the specific voxels in a patch that belong to a particular class,
+the feature importance of each atom must be found. There are 3 main methods we used for this:
+
+\begin{enumerate}
+    \item Using the learned weights of a linear classifier.
+    \item Using class-specific sub-dictionaries.
+    \item Analyzing the sparse codes to find atoms that are class-exclusive.
+\end{enumerate}
+
+In the case of LC-KSVD, the dictionary does not divide into class-specific sub-dictionaries. Instead, a linear classifier is
+learned over the sparse codes, with the classifier weights indicating the importance of each atom for each class.
+For a sparse code $\alpha \in \mathbb{R}^{K}$, the class scores can be expressed as
+
 \begin{equation}
-s_{c}(\mathbf{x}) = \mathbf{w}_{c}^{\top}\mathbf{z} + b_{c}.
-\label{eq:score}
+\mathbf{s} = \mathbf{W}\alpha,
 \end{equation}
 
-Regularisation strength is selected by cross-validation with folds partitioned at
-the \emph{patient} level, since CT-RATE contains multiple studies per patient and
-scan-level splitting leaks patient-specific texture between folds. All subsequent
-calibration and evaluation use the same patient-disjoint partitioning. Atoms whose
-training usage falls below a minimum activation count are excluded from
-$\mathbf{z}$ prior to fitting, as weights estimated from a handful of activations
-are dominated by noise yet attain large magnitudes, which would corrupt the
-contribution ranking used for prototype construction.
+\noindent where $\mathbf{W} \in \mathbb{R}^{C \times K}$ is the learned classifier weight matrix, $C$ is the number of classes,
+and $K$ is the number of dictionary atoms. Thus, the magnitude of $W_{c,j}$ indicates the contribution of atom $j$ to the
+prediction of class $c$.
 
-\section{Class Prototype Construction}
-\label{sec:prototype}
+In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is divided into class-specific sub-dictionaries,
 
-\subsection{Modal decomposition}
-
-Several target classes are visually heterogeneous; nodules, for instance,
-encompass solid, part-solid, ground-glass and calcified appearances whose codes
-occupy distinct regions of $\mathbb{R}^{K}$. A single centroid over such a class
-averages these modes into a representation resembling none of them. We therefore
-partition each class into $M$ modes by $k$-medoids clustering on the texture codes
-$\{\boldsymbol{\alpha}^{(i)}\}_{i \in c}$ and construct one prototype per mode.
-Prototypes are built exclusively from patches carrying a single positive label, so
-that co-occurring findings do not contaminate the representation; this restriction
-applies to prototype construction only, not to classifier training.
-
-\subsection{Discriminative aggregation}
-\label{sec:statistical-analysis}
-
-A naive mean over $\{\boldsymbol{\alpha}^{(i)}\}$ is unsuitable for signed codes:
-opposing signs cancel across samples, and coefficient mass is distributed
-arbitrarily among mutually coherent atoms by the sparse solver, so the mean is
-both denser than any individual code and unstable. We instead exploit the exact
-additivity of the linear score. For mode $m$ of class $c$, each atom's
-contribution to the class logit is
 \begin{equation}
-\gamma_{j}^{(c,m)} = w_{cj}\left(
-\mathbb{E}_{i \in m}[\alpha_{j}^{(i)}] - \mathbb{E}_{i \notin c}[\alpha_{j}^{(i)}]
-\right),
-\label{eq:contrib}
-\end{equation}
-which measures the extent to which atom $j$ raises the score of class $c$
-\emph{relative to} all other classes, rather than merely being frequent within it.
-
-Atoms are retained only if their sign is consistent across the mode,
-\begin{equation}
-\rho_{j}^{(m)} = \max\!\left(
-\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} > 0],\ 
-\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} < 0]
-\right) \geq \rho_{\min},
-\end{equation}
-which removes atoms whose activation the solver splits arbitrarily among coherent
-dictionary entries. The prototype code retains the top-$k$ surviving atoms ranked
-by $\gamma_{j}^{(c,m)}$, with $k$ set to the median $\ell_{0}$ of the class, and
-assigns each the within-mode median coefficient:
-\begin{equation}
-\alpha_{c,m,j} =
-\begin{cases}
-\mathrm{median}_{i \in m}(\alpha_{j}^{(i)}) & j \in \mathcal{S}_{c,m} \\
-0 & \text{otherwise},
-\end{cases}
-\end{equation}
-the median being preferred to the mean for robustness to the heavy-tailed
-coefficient distributions induced by sparse coding. The prototype is thus itself a
-valid sparse code of comparable cardinality to the patches it summarises.
-
-Associated intensity statistics are aggregated identically,
-$\mu_{c,m} = \mathrm{median}_{i \in m}(\mu^{(i)})$ and
-$\sigma_{c,m} = \mathrm{median}_{i \in m}(\sigma^{(i)})$, giving the rendered
-prototype patch
-\begin{equation}
-\hat{\mathbf{x}}_{c,m} = \mu_{c,m}\mathbf{1} + \sigma_{c,m}\,\mathbf{D}\boldsymbol{\alpha}_{c,m}.
+\mathbf{D}
+=
+\left[
+\mathbf{D}_{0}\mid
+\mathbf{D}_{1}\mid
+\mathbf{D}_{2}\mid
+\cdots\mid
+\mathbf{D}_{C-1}
+\right],
 \end{equation}
 
-\subsection{Faithfulness}
+\noindent where $\mathbf{D}_{c}$ contains the atoms associated with class $c$.
+The sparse code can consequently be partitioned in the same manner,
 
-Because the prototype is a truncated summary of a class, we quantify how much of
-the model's decision it accounts for. We report the retained logit fraction
 \begin{equation}
-\phi_{c,m} = \frac{\sum_{j \in \mathcal{S}_{c,m}} \gamma_{j}^{(c,m)}}
-{\sum_{j} \gamma_{j}^{(c,m)}},
+\alpha
+=
+\left[
+\alpha_{0}^{\top},
+\alpha_{1}^{\top},
+\ldots,
+\alpha_{C-1}^{\top}
+\right]^{\top}.
 \end{equation}
-and, at the system level, the difference in per-class performance between the full
-linear score~\eqref{eq:score} and the prototype-based rule of
-Section~\ref{sec:decision}. A large gap indicates that the prototype does not
-faithfully summarise the classifier, which would invalidate its use as an
-explanatory artefact irrespective of its standalone accuracy.
 
-\section{Inference}
+Therefore, the class-specific sub-dictionaries themselves provide an interpretable representation of the features associated
+with each class, while a non-linear classifier can be used to classify the resulting sparse codes.
 
-\subsection{Decision Rule}
-\label{sec:decision}
+In addition, we can analyze the sparse codes to find atoms that are class-exclusive. For each atom $j$ and class $c$,
+the mean absolute sparse coefficient is first calculated as
 
-Class membership is assessed by weighted cosine similarity between a test code and
-the class prototypes, in code space:
 \begin{equation}
-r_{c}(\mathbf{x}) = \max_{m \in \{1,\dots,M\}}
-\cos\!\left(
-\boldsymbol{\alpha}(\mathbf{x}) \odot |\mathbf{w}_{c}|,\ 
-\boldsymbol{\alpha}_{c,m} \odot |\mathbf{w}_{c}|
-\right),
-\label{eq:sim}
+\mu_{j,c}
+=
+\frac{1}{N_c}
+\sum_{i:y_i=c}
+\left|\alpha_{j,i}\right|,
 \end{equation}
-where $\odot$ is the elementwise product and the maximum over modes assigns a
-patch to a class if it matches \emph{any} of its appearances. Weighting by
-$|\mathbf{w}_{c}|$ ensures that the similarity is evaluated in the subspace the
-classifier actually uses, so that discriminative information injected during
-aggregation is not subsequently discarded.
 
-We deliberately do not compare prototypes to test patches in voxel space, for
-instance by 3D SSIM or normalised cross-correlation. The classes of interest are
-textural rather than geometric at the patch scale employed here, and two
-independent realisations of the same texture share second-order statistics but not
-spatial phase. Correlation-based measures respond to phase alignment and would
-therefore assign low similarity to genuinely co-class patches, while any residual
-agreement would be driven almost entirely by shared mean attenuation, which is
-already captured explicitly by $\mu$. Matched filtering against a texture prototype
-is thus not merely empirically weaker but inappropriate in principle; the sparse
-code is the natural domain in which textural identity is expressed.
+\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for
+sample $i$, $y_i$ is the class label of sample $i$, and $N_c$ is
+the number of samples in class $c$. The class selectivity of atom
+$j$ for class $c$ is then measured by
 
-\subsection{Threshold calibration}
+\begin{equation}
+S_{j,c}
+=
+\frac{\mu_{j,c}}
+{\mu_{j,\neg c}+\epsilon},
+\qquad
+\mu_{j,\neg c}
+=
+\frac{1}{N-N_c}
+\sum_{i:y_i\neq c}
+\left|\alpha_{j,i}\right|,
+\end{equation}
 
-A threshold $\tau_{c}$ is selected independently per class from the
-precision--recall curve on a patient-disjoint validation partition, targeting a
-prescribed operating sensitivity; precision--recall is preferred to ROC given the
-severe class imbalance at the patch level. Confidence intervals are obtained by
-patient-level bootstrap resampling. Calibration is performed against normal
-patches \emph{and} against patches of every other abnormality class, and we report
-the full inter-class similarity matrix, since cross-abnormality confusion rather
-than abnormal-versus-normal separation is the dominant failure mode.
+\noindent where $N$ is the total number of samples, $\mu_{j,\neg c}$ is the mean activation of atom $j$ across all other classes,
+and $\epsilon$ is a small constant to prevent division by zero. A high $S_{j,c}$ indicates that atom $j$ is strongly selective to
+class $c$ relative to the other classes.
 
-\subsection{Volume-Level Inference}
+\section{Machine Learning Models}
+\label{sec:ml-baseline-methods}
 
-Inference on an unseen study proceeds as follows.
+We trained a set of classical machine learning baselines on the raw 12x12x6 raw voxel patches, instead of on their sparse codes.
+The same three classifiers used for the sparse code classification (Section \ref{sec:classification}) were used here.
+All three classifiers used a balanced class weighting to account for class imbalance, and
+hyperparameters were tuned with a grid search evaluated
+under five-fold group cross-validation.
 
-\paragraph{Preprocessing.} The volume is resampled to the training spacing,
-windowed and rescaled identically to training, and cropped or padded to the fixed
-matrix size.
+During hyperparameter tuning, the input patches were grouped by scan so that patches from
+the same scan could not appear in both the training and validation folds of
+a given split. Macro-averaged F1 was used as the grid search's selection
+metric, so that model selection was not dominated by the majority normal class.
 
-\paragraph{Candidate restriction.} A lung segmentation mask is applied and patches
-are extracted at stride $s$ within it. Patches whose intensity variance falls below
-a fixed floor, or which are predominantly air, are rejected prior to coding. This
-restriction is essential rather than merely economical: an unrestricted volume
-yields $\mathcal{O}(10^{5})$ patches, and eliminating extrapulmonary and trivially
-uninformative regions removes the majority of candidates together with the most
-easily avoided false positives.
+In order to test the hypothesis described in Section~\ref{sec:patch-normalization} we also trained a linear SVM on two additional
+representations of the patches: the mean and standard deviation of the voxel intensities, and the mean-subtracted,
+$\ell_2$-normalized patch. The results of these experiments are shown in Table \ref{tab:patch-classification}.
 
-\paragraph{Scoring.} Each surviving patch is decomposed as in
-Section~2, sparse-coded against $\mathbf{D}$, and scored by
-\eqref{eq:sim}, producing one similarity volume $R_{c}$ per class on the patch
-grid.
+\begin{table}
+\centering
+\caption{Linear SVM classification performance under three input representations.}
+\label{tab:patch-classification}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Input} & \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+\multirow{3}{*}{Raw patch}
+ & 0       & 0.95 & 0.92 & 0.93 \\
+ & 1                & 0.46 & 0.63 & 0.53 \\
+ & 2                & 0.17 & 0.10 & 0.12 \\
+\midrule
+\multirow{3}{*}{Mean + Std of HU}
+ & 0       & 0.95 & 0.93 & 0.94 \\
+ & 1                & 0.50 & 0.60 & 0.55 \\
+ & 2                & 0.27 & 0.20 & 0.23 \\
+\midrule
+\multirow{3}{*}{Mean-subtracted, $\ell_2$-normalized patch}
+ & 0       & 0.86 & 0.87 & 0.87 \\
+ & 1                & 0.19 & 0.20 & 0.19 \\
+ & 2                & 0.11 & 0.06 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\paragraph{Spatial consolidation.} Each $R_{c}$ is thresholded at $\tau_{c}$ and
-subjected to 3D connected-component analysis; components below a minimum physical
-volume are discarded. This step is required by the arithmetic of dense patch
-classification: with $\mathcal{O}(10^{4})$ intrapulmonary patches per study, even a
-per-patch false-positive rate of $0.5\%$ produces tens of spurious detections,
-whereas genuine findings are spatially contiguous and isolated single-patch
-responses are overwhelmingly noise. Surviving components constitute the detections,
-each with a confidence given by the aggregate similarity over its constituent
-patches.
+The two scalars (patch mean and standard deviation),
+match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
+432-fold reduction in dimensionality. Since a linear classifier cannot extract more
+linearly-separable signal from a superset of features than from the features
+themselves, this indicates that intensity statistics account for essentially all of the
+raw patch's discriminative content, and that the remaining 862 dimensions contribute
+noise rather than signal at the sample sizes available for classes 1 and 2.
 
-\section{Deep Learning Model Training}
+Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
+discards both absolute attenuation and contrast, leaving a generic linear classifier
+with only raw, high-dimensional pixel values and no basis abstraction. Performance
+can be observed to degrade further under this representation, consistent with the raw patch's
+discriminative power being concentrated almost entirely in its intensity component
+rather than in pixel-level texture. This result shows that texture is uninformative and the patch's intensity information is
+the primary driver of discriminative power.
 
-\subsection{Machine Learning Models}
+\section{Deep Learning Approaches}
 
-\subsection{Deep Learning Models}
+We also tested our test set on SotA deep learning models, including nnU-Net, BiomedParse, Merlin and CT-CLIP.
+The training and inference procedures for these models are described below.
 
-\subsubsection{nnU-Net}
+\subsection{nnU-Net}
 
-nnU-Net was used as a deep learning segmentation model to detect the two
-target abnormalities identified with the radiologists: ground-glass
-opacity (GGO)/consolidation and pulmonary nodules. A separate pretrained
-binary segmentation model was used for each abnormality.
+nnU-Net was the only deep learning model we explicitly trained on our dataset.
+This is because, nnU-Net is a self-configuring framework that automatically adapts its entire deep learning pipeline.
+Pre-processing, network architecture, training schemes, and post-processing
+are all automatically adjusted without requiring manual tuning on our part.
+Training was performed by sending the pre-processed CT scans and their corresponding ground-truth masks instead of the extracted patches.
+During inference, the trained nnU-Net model generates a complete voxel-level segmentation mask.
+Figure~\ref{fig:nnunet-results} shows the segmentation results of nnU-Net on a sample CT scans from the test set.
 
-During inference, the trained nnU-Net models take a previously unseen CT
-volume as input and generate a complete voxel-level segmentation mask.
-Unlike the sparse-coding pipeline, which classifies individual image
-patches, nnU-Net directly predicts the abnormal regions for every voxel
-in the CT scan, producing a detailed segmentation of the target
-abnormalities.
-
-\paragraph{Preprocessing}
-
-During inference, each input CT volume is preprocessed using the same
-settings that were automatically determined by nnU-Net during the
-training and planning stage. These settings include the target voxel
-spacing, intensity normalization method, and patch size used for the
-\texttt{3d\_fullres} configuration.
-
-Using the same preprocessing ensures that every new CT scan is prepared
-in the same way as the training data. This allows the trained nnU-Net
-model to make accurate predictions without manually selecting
-preprocessing parameters. Unlike the sparse-coding pipeline, where the
-patch size and normalization method are manually defined, nnU-Net
-automatically applies the preprocessing settings learned during dataset
-planning.
-
-\paragraph{Inference}
-
-During inference, the trained nnU-Net model is loaded and applied to
-previously unseen CT volumes. Each preprocessed CT scan is passed through
-the model to generate a voxel-level segmentation mask for the target
-abnormality.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/nnu-net.jpg}
+    \caption[Segmentation results of nnU-Net on sample CT scans from the test set]
+    {Segmentation results of nnU-Net on sample CT scans from the test set. Left column: Original scans,
+    Middle Column: Ground Truths, Right Column: Predicted Masks.}
+    \label{fig:nnunet-results}
+\end{figure}
 
 The held-out test CT scans are then segmented.Predictions are generated by 
 combining the available trained models through model ensembling.
@@ -1166,61 +1101,27 @@ If multiple trained models are available, their predictions can be
 combined to improve the segmentation results. The predicted segmentation
 masks are then compared with the corresponding binary ground-truth masks
 used during training.
-
 For each CT scan, the predicted and ground-truth masks are compared on a
-voxel-by-voxel basis by calculating the numbers of true positives, false
-positives, false negatives, and true negatives.
-
+voxel-by-voxel basis.
 From these values, several evaluation metrics are computed, including the
 Dice coefficient, Intersection over Union (IoU), precision, recall, and
-specificity. These metrics measure how accurately the model segments the
-target abnormalities and provide a quantitative assessment of the
-segmentation performance.
+specificity.
 
 \subsection{Merlin}
 \label{sec:merlin-method}
 
-Merlin was used as a pretrained model without any additional training or
-fine-tuning. Unlike CT-CLIP and BiomedParse, Merlin does not rely on a
-predefined set of disease prompts for prediction.
+Merlin was used as a pretrained model without any additional fine-tuning. Unlike CT-CLIP and BiomedParse, Merlin does not rely on a
+predefined set of disease prompts for prediction. Merlin uses a zero-shot text-image matching approach to locate
+abnormalities. Instead, the text descriptions provided with each ReXGroundingCT scan are used directly as input.
+These descriptions are converted into text embeddings, while the CT volume is processed to extract image features.
+The similarity between the text and image features is then calculated to identify the regions in the CT scan that correspond
+to the described finding.
 
-Instead, the text descriptions provided with each ReXGroundingCT scan are
-used directly as input. These descriptions are converted into text
-embeddings, while the CT volume is processed to extract image features.
-The similarity between the text and image features is then calculated to
-identify the regions in the CT scan that correspond to the described
-finding.
-
-Therefore, Merlin uses a zero-shot text-image matching approach to locate
-abnormalities. It does not use a separate classification head or
-segmentation decoder. Instead, the model identifies relevant regions
-based on the relationship between the CT image features and the provided
-text descriptions.
-
-\paragraph{Preprocessing}
-
-Each CT volume is loaded from a NIfTI file. Any missing or invalid
-(\texttt{NaN}) values are replaced with zero. If the input volume contains
-an additional channel dimension, making it a 4D volume instead of a 3D
-volume, the extra dimension is removed by averaging across the channel
-dimension.
-
-The Hounsfield Unit (HU) values are then clipped to the range
-$[-1000,400]$ and normalized to approximately the range $[0,1]$ by adding
-1000 and dividing by 1400. The resulting volume is converted into a
-single-channel 3D tensor and provided as input to the model.
-
-This preprocessing uses a different intensity normalization strategy
-compared with the lung-segmentation-based normalization used in the
-sparse-coding pipeline described earlier in this chapter.
-
-\paragraph{Inference}
-
-The official pretrained Merlin model is loaded once, and a forward hook is
-attached to the last block of its 3D image encoder
-(\texttt{layer4} of the Inflated-3D ResNet). This allows the model to
-capture both the normal output and the detailed spatial features from the
-last encoder layer for each CT volume.
+Once the pretrained weights are loaded, a forward hook is attached to the last block of its 3D image encoder.
+A forward hook is a mechanism that allows the output of an intermediate
+neural network layer to be captured during the model's normal forward pass without modifying the layer itself.
+In this case, the hook is used to obtain the spatial feature maps produced by layer 4 of the inflated-3D ResNet,
+which retain information about the spatial location of features within the CT volume.
 
 For each volume, the image encoder is executed once to obtain two outputs:
 a global image embedding representing the entire scan and a dense feature
@@ -1236,7 +1137,7 @@ in the dense image feature grid. This produces one similarity map for
 each finding at the encoder's original downsampled resolution.
 
 The similarity maps are resized back to the original CT volume resolution
-using trilinear interpolation and normalised to the range $[0,1]$. These
+using trilinear interpolation and normalised to the range $[-1,1]$. These
 maps represent soft localisation regions showing how strongly each area
 matches the given finding text. They are not segmentation masks because
 the Merlin model was trained for image-text similarity rather than
@@ -1259,139 +1160,57 @@ remaining processing.
 
 \subsection{BiomedParse}
 
-BiomedParse was used as a pretrained model without any additional
-training. The official released v2 checkpoint was applied directly to
-local CT volumes. Text prompts were used to guide the model to segment
+The official released v2 checkpoint os the BiomedParse model was used. Text prompts were used to guide the model to segment
 the same target abnormalities.
 
-\paragraph{Preprocessing}
-
-Each CT volume was loaded from a NIfTI file and rearranged into a
-depth-first $(D,H,W)$ format. A standard lung window (width 1500 and
-level $-160$) was applied, and the intensity values were converted into
-an 8-bit image range of $[0,255]$. This preprocessing method is different
-from the lung-based windowing used earlier in the sparse-coding pipeline.
-The preprocessing was performed once for each case because only the text
-prompt changes when detecting different abnormalities in the same volume.
-
-The processed volume was then passed through BiomedParse's
-\texttt{process\_input} function. This function pads and resizes each
+The pre-processed volume was then passed through BiomedParse which pads and resizes each
 axial slice to a fixed size of $512\times512$. The padding information
 and the axis where padding was applied were stored so that the predicted
 masks could later be converted back to the original CT volume size.
 
-\paragraph{Inference}
-
-The official pretrained BiomedParse v2 checkpoint was loaded using the
-model configuration provided by BiomedParse. The checkpoint was loaded
-from a local path if available; otherwise, it was downloaded from the
-model repository.
-
-For each of the four target abnormalities (Lung nodule, Lung opacity,
-Consolidation, and Atelectasis), a text prompt was created by combining
-several disease-related descriptions using BiomedParse's
-\texttt{[SEP]} separator. For example, a lung nodule can be described as
+For each of the target abnormalities, a text prompt was created by combining
+several disease-related descriptions. For example, a lung nodule can be described as
 ``lung nodule'', ``pulmonary nodule'', or ``nodular lesion''. Combining
 these descriptions allows the model to consider different ways of
 describing the same abnormality in a single inference step.
 
-The preprocessed CT volume and the generated text prompt were given to
-the model in evaluation mode. The model produced a predicted mask for
-each text description along with an object existence score indicating
+The model produced a predicted mask for each text description along with an object existence score indicating
 the confidence that the abnormality exists.
-
 The predicted masks were resized back to $512\times512$ resolution and
 processed using BiomedParse's own post-processing method with a fixed
 probability threshold. The masks from all related text descriptions were
 then combined into one final mask for each abnormality category. The
 merged mask was converted into a binary foreground mask and transformed
-back to the original CT volume coordinates using the stored padding
-information.
+back to the original CT volume coordinates using the stored padding information.
 
-Both a binary segmentation mask and a continuous probability map were
-saved. The probability map was stored separately so that different
-threshold values could be tested later without running the model again.
-
-An abnormality was considered present only when both conditions were
-satisfied: the object existence score was above a predefined threshold
+An abnormality was considered present only when two conditions were met: the object existence score was above a predefined threshold
 and the predicted mask contained more than a minimum number of foreground
 voxels. This prevents incorrect detections caused by using only the
 confidence score or only the predicted mask size.
 
-For each CT case, the generated binary masks, probability maps, visual
-overlays, and a JSON report were saved. The report contains the object
-existence score, mask size, final presence decision, and the thresholds
-used during inference. The report is first written to a temporary file
-and then safely replaced to prevent corruption if the process is
-interrupted. Cases that already have saved results are automatically
-skipped, allowing the complete pipeline to continue from where it stopped.
-
 \subsection{CT-CLIP}
 
-CT-CLIP was used as a pretrained model without any additional training.
-The released CT-LiPro linear-probe checkpoint was applied directly to the
-available CT volumes to predict the probability of different abnormalities.
-
-\paragraph{Preprocessing}
-
-Unlike the sparse-coding pipeline, which uses physical spacing information
-to resample CT volumes, CT-CLIP requires every input volume to have the
-same fixed size because the model was pretrained using a specific input
-resolution.
-
-For each CT volume, the Hounsfield Unit (HU) values were clipped to the
-range $[-1000,1000]$ and divided by 1000 to scale the values approximately
-between $[-1,1]$. The volume axes were then changed from $(X,Y,Z)$ order
-to $(Z,X,Y)$ order. Finally, each volume was resized using trilinear
-interpolation to a fixed size of $240\times480\times480$ before being
-given to the model.
-
-\paragraph{Inference}
-
-The released \texttt{CT\_LiPro\_v2.pt} checkpoint was loaded into the
-pretrained CT-CLIP model together with its linear classification head.
-The model weights were loaded, and any
-missing or unexpected parameters were recorded to ensure that the loading
-process was correct.
-
+The released CT-LiPro linear-probe checkpoint was used here. CT-CLIP requires every input volume to have the
+same fixed size because the model was pretrained using a specific input resolution.
 For each CT volume, an empty text prompt was tokenised and passed to the
-model together with the preprocessed CT image using
-\texttt{return\_latents=True}. In this process, only the image features
+model together with the preprocessed CT image using. In this process, only the image features
 generated by the CT encoder were used. These image features were passed
 through the linear classification head followed by a sigmoid function to
-produce independent probability values for all 18 CT-RATE abnormalities
-at the same time.
-
-The inference was performed on all available CT volumes from the local
-CT-RATE subset used in this project. Each volume was processed separately
-with gradients disabled to reduce memory usage. The predicted
-probabilities for all 18 abnormalities were saved in a CSV file.
-
-The four abnormalities that match this project's target classes
-(Atelectasis, Lung nodule, Lung opacity, and Consolidation) were also
-saved separately together with their ground-truth labels. These results
-were stored in the same scan order as the accession list, allowing CT-CLIP
-to be evaluated using the same classification metrics as other deep
-learning models. The evaluation was performed on all 2,465 available CT
-scans.
+produce independent probability values for all 18 CT-RATE abnormalities at the same time.
 
 A second inference method was also tested using CT-CLIP's original
 zero-shot capability without the trained linear classification head. In
 this approach, each abnormality was represented using two text prompts:
-``abnormality is present'' and ``abnormality is not
+''abnormality is present'' and ``abnormality is not
 present''. The model compared the similarity between the CT volume and
 both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
 
-This zero-shot approach was tested successfully on a small pilot dataset,
-but it was not used for the final full-dataset evaluation.
-
 \subsection{Explainability}
 \label{sec:explainability-methods}
 
-In addition to the segmentation and classification methods, this project also
-experimented with Grad-CAM (Gradient-weighted Class Activation Mapping) to understand
-why a deep learning model makes a prediction. Grad-CAM creates a heatmap
+In addition to the segmentation and classification methods, we also experimented with Grad-CAM to understand
+what features affect the above deep learning models to make a prediction. Grad-CAM creates a heatmap
 that highlights the parts of a CT scan that had the greatest influence on
 the model's decision. This method was also compared with the atom-based
 interpretability of the dictionary learning models. Grad-CAM was implemented for two
