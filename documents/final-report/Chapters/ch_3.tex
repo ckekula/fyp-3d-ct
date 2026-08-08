@@ -774,9 +774,9 @@ Therefore, the Direct Current (DC) component accounts for approximately
 
 \noindent of the total signal energy, meaning that the HU intensity dominates the sparse coding process as a feature.
 
-An alternative approach combines the benefits of both methods by explicitly separating intensity and texture information before
-sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each patch $\mathbf{x}$ is
-represented as
+We also tested an alternative approach that combines the benefits of both methods by explicitly separating intensity and texture
+information before sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each
+patch $\mathbf{x}$ is represented as
 
 \[
 \mathbf{x} \rightarrow \left(\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right),
@@ -805,7 +805,7 @@ We tested these 2 approaches using a linear SVM, trained by sending patches in 3
     \item Mean-subtracted L2 normalized patch
 \end{enumerate}
 
-Table \ref{tab:patch-classification} shows the results. Two scalars (patch mean and standard deviation),
+Table \ref{tab:patch-classification} shows the results of the experimentation. The two scalars (patch mean and standard deviation),
 match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
 432-fold reduction in dimensionality. Since a linear classifier cannot extract more
 linearly-separable signal from a superset of features than from the features
@@ -844,13 +844,8 @@ discards both absolute attenuation and contrast, leaving a generic linear classi
 with only raw, high-dimensional pixel values and no basis abstraction. Performance
 can be observed to degrade further under this representation, consistent with the raw patch's
 discriminative power being concentrated almost entirely in its intensity component
-rather than in pixel-level texture.
-
-This result can be interpreted as not indicating that texture is uninformative; but rather, motivating texture represention
-through dictionary learning instead of through raw pixel values, However, intensity must be retained as an explicit classifier
-feature rather than removed during preprocessing by separating each patch into intensity
-statistics $(\mu, \sigma)$ and a normalized texture component prior to sparse coding
-(Section~2). We trained our dictionaries using both approaches, and the comparison is reported in Section~\ref{sec:ablation-sparse}.
+rather than in pixel-level texture. This result shows that texture is uninformative and the patch's intensity information is
+the primary driver of discriminative power.
 
 
 \subsection{K-SVD}
@@ -940,166 +935,109 @@ bookkeeping is later used when inspecting which atoms are used for
 which class, as described in Section~\ref{sec:statistical-analysis}'s
 discussion of atom activation.
 
-\section{Linear Classification}
+\section{Sparse Code Classification}
 \label{sec:classification}
 
 After training the dictionaries, the patches in the training set are re-encoded against each dictionary to produce a sparse code
-$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. We send each code along with its associated label to a linear classifier, which
-learns a weight vector $\mathbf{w}_c$ for each class $c$.
+$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. Then, we send each code along with its associated label to a classifier,
+to determine the class of the patch based on its sparse representation. The classifier is trained to map the sparse codes to their
+corresponding class labels, allowing it to learn the relationship between the learned dictionary atoms and the target abnormalities.
+We trained three classifiers for each dictionary learning algorithm:
+\begin{enumerate}
+    \item Logistic Regression
+    \item Linear SVM
+    \item XGBoost
+\end{enumerate}
 
-\subsection{Training}
+The performance of each classifier was evaluated on the same dataset, and the best-performing classifier was selected for each algorithm.
 
+\section{Projecting back to voxel space}
 
-\section{Class Prototype Construction}
-\label{sec:prototype}
+This is the most important part of our study as it allows us to find the specific voxels in a patch that belong to a particular
+class. To reconstruct the specific voxels in a patch that belong to a particular class,
+the feature importance of each atom must be found. There are 3 main methods we used for this:
 
-\subsection{Modal decomposition}
+\begin{enumerate}
+    \item Using the learned weights of a linear classifier.
+    \item Using class-specific sub-dictionaries.
+    \item Analyzing the sparse codes to find atoms that are class-exclusive.
+\end{enumerate}
 
-Several target classes are visually heterogeneous; nodules, for instance,
-encompass solid, part-solid, ground-glass and calcified appearances whose codes
-occupy distinct regions of $\mathbb{R}^{K}$. A single centroid over such a class
-averages these modes into a representation resembling none of them. We therefore
-partition each class into $M$ modes by $k$-medoids clustering on the texture codes
-$\{\boldsymbol{\alpha}^{(i)}\}_{i \in c}$ and construct one prototype per mode.
-Prototypes are built exclusively from patches carrying a single positive label, so
-that co-occurring findings do not contaminate the representation; this restriction
-applies to prototype construction only, not to classifier training.
+In the case of LC-KSVD, the dictionary does not divide into class-specific sub-dictionaries. Instead, a linear classifier is
+learned over the sparse codes, with the classifier weights indicating the importance of each atom for each class.
+For a sparse code $\alpha \in \mathbb{R}^{K}$, the class scores can be expressed as
 
-\subsection{Discriminative aggregation}
-\label{sec:statistical-analysis}
-
-A naive mean over $\{\boldsymbol{\alpha}^{(i)}\}$ is unsuitable for signed codes:
-opposing signs cancel across samples, and coefficient mass is distributed
-arbitrarily among mutually coherent atoms by the sparse solver, so the mean is
-both denser than any individual code and unstable. We instead exploit the exact
-additivity of the linear score. For mode $m$ of class $c$, each atom's
-contribution to the class logit is
 \begin{equation}
-\gamma_{j}^{(c,m)} = w_{cj}\left(
-\mathbb{E}_{i \in m}[\alpha_{j}^{(i)}] - \mathbb{E}_{i \notin c}[\alpha_{j}^{(i)}]
-\right),
-\label{eq:contrib}
-\end{equation}
-which measures the extent to which atom $j$ raises the score of class $c$
-\emph{relative to} all other classes, rather than merely being frequent within it.
-
-Atoms are retained only if their sign is consistent across the mode,
-\begin{equation}
-\rho_{j}^{(m)} = \max\!\left(
-\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} > 0],\ 
-\mathbb{P}_{i \in m}[\alpha_{j}^{(i)} < 0]
-\right) \geq \rho_{\min},
-\end{equation}
-which removes atoms whose activation the solver splits arbitrarily among coherent
-dictionary entries. The prototype code retains the top-$k$ surviving atoms ranked
-by $\gamma_{j}^{(c,m)}$, with $k$ set to the median $\ell_{0}$ of the class, and
-assigns each the within-mode median coefficient:
-\begin{equation}
-\alpha_{c,m,j} =
-\begin{cases}
-\mathrm{median}_{i \in m}(\alpha_{j}^{(i)}) & j \in \mathcal{S}_{c,m} \\
-0 & \text{otherwise},
-\end{cases}
-\end{equation}
-the median being preferred to the mean for robustness to the heavy-tailed
-coefficient distributions induced by sparse coding. The prototype is thus itself a
-valid sparse code of comparable cardinality to the patches it summarises.
-
-Associated intensity statistics are aggregated identically,
-$\mu_{c,m} = \mathrm{median}_{i \in m}(\mu^{(i)})$ and
-$\sigma_{c,m} = \mathrm{median}_{i \in m}(\sigma^{(i)})$, giving the rendered
-prototype patch
-\begin{equation}
-\hat{\mathbf{x}}_{c,m} = \mu_{c,m}\mathbf{1} + \sigma_{c,m}\,\mathbf{D}\boldsymbol{\alpha}_{c,m}.
+\mathbf{s} = \mathbf{W}\alpha,
 \end{equation}
 
-\subsection{Faithfulness}
+\noindent where $\mathbf{W} \in \mathbb{R}^{C \times K}$ is the learned classifier weight matrix, $C$ is the number of classes,
+and $K$ is the number of dictionary atoms. Thus, the magnitude of $W_{c,j}$ indicates the contribution of atom $j$ to the
+prediction of class $c$.
 
-Because the prototype is a truncated summary of a class, we quantify how much of
-the model's decision it accounts for. We report the retained logit fraction
+In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is divided into class-specific sub-dictionaries,
+
 \begin{equation}
-\phi_{c,m} = \frac{\sum_{j \in \mathcal{S}_{c,m}} \gamma_{j}^{(c,m)}}
-{\sum_{j} \gamma_{j}^{(c,m)}},
+\mathbf{D}
+=
+\left[
+\mathbf{D}_{0}\mid
+\mathbf{D}_{1}\mid
+\mathbf{D}_{2}\mid
+\cdots\mid
+\mathbf{D}_{C-1}
+\right],
 \end{equation}
-and, at the system level, the difference in per-class performance between the full
-linear score~\eqref{eq:score} and the prototype-based rule of
-Section~\ref{sec:decision}. A large gap indicates that the prototype does not
-faithfully summarise the classifier, which would invalidate its use as an
-explanatory artefact irrespective of its standalone accuracy.
 
-\section{Inference}
+\noindent where $\mathbf{D}_{c}$ contains the atoms associated with class $c$.
+The sparse code can consequently be partitioned in the same manner,
 
-\subsection{Decision Rule}
-\label{sec:decision}
-
-Class membership is assessed by weighted cosine similarity between a test code and
-the class prototypes, in code space:
 \begin{equation}
-r_{c}(\mathbf{x}) = \max_{m \in \{1,\dots,M\}}
-\cos\!\left(
-\boldsymbol{\alpha}(\mathbf{x}) \odot |\mathbf{w}_{c}|,\ 
-\boldsymbol{\alpha}_{c,m} \odot |\mathbf{w}_{c}|
-\right),
-\label{eq:sim}
+\alpha
+=
+\left[
+\alpha_{0}^{\top},
+\alpha_{1}^{\top},
+\ldots,
+\alpha_{C-1}^{\top}
+\right]^{\top}.
 \end{equation}
-where $\odot$ is the elementwise product and the maximum over modes assigns a
-patch to a class if it matches \emph{any} of its appearances. Weighting by
-$|\mathbf{w}_{c}|$ ensures that the similarity is evaluated in the subspace the
-classifier actually uses, so that discriminative information injected during
-aggregation is not subsequently discarded.
 
-We deliberately do not compare prototypes to test patches in voxel space, for
-instance by 3D SSIM or normalised cross-correlation. The classes of interest are
-textural rather than geometric at the patch scale employed here, and two
-independent realisations of the same texture share second-order statistics but not
-spatial phase. Correlation-based measures respond to phase alignment and would
-therefore assign low similarity to genuinely co-class patches, while any residual
-agreement would be driven almost entirely by shared mean attenuation, which is
-already captured explicitly by $\mu$. Matched filtering against a texture prototype
-is thus not merely empirically weaker but inappropriate in principle; the sparse
-code is the natural domain in which textural identity is expressed.
+Therefore, the class-specific sub-dictionaries themselves provide an interpretable representation of the features associated
+with each class, while a non-linear classifier can be used to classify the resulting sparse codes.
 
-\subsection{Threshold calibration}
+In addition, we can analyze the sparse codes to find atoms that are class-exclusive. For each atom $j$ and class $c$,
+the mean absolute sparse coefficient is first calculated as
 
-A threshold $\tau_{c}$ is selected independently per class from the
-precision--recall curve on a patient-disjoint validation partition, targeting a
-prescribed operating sensitivity; precision--recall is preferred to ROC given the
-severe class imbalance at the patch level. Confidence intervals are obtained by
-patient-level bootstrap resampling. Calibration is performed against normal
-patches \emph{and} against patches of every other abnormality class, and we report
-the full inter-class similarity matrix, since cross-abnormality confusion rather
-than abnormal-versus-normal separation is the dominant failure mode.
+\begin{equation}
+\mu_{j,c}
+=
+\frac{1}{N_c}
+\sum_{i:y_i=c}
+\left|\alpha_{j,i}\right|,
+\end{equation}
 
-\subsection{Volume-Level Inference}
+\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for
+sample $i$, $y_i$ is the class label of sample $i$, and $N_c$ is
+the number of samples in class $c$. The class selectivity of atom
+$j$ for class $c$ is then measured by
 
-Inference on an unseen study proceeds as follows.
+\begin{equation}
+S_{j,c}
+=
+\frac{\mu_{j,c}}
+{\mu_{j,\neg c}+\epsilon},
+\qquad
+\mu_{j,\neg c}
+=
+\frac{1}{N-N_c}
+\sum_{i:y_i\neq c}
+\left|\alpha_{j,i}\right|,
+\end{equation}
 
-\paragraph{Preprocessing.} The volume is resampled to the training spacing,
-windowed and rescaled identically to training, and cropped or padded to the fixed
-matrix size.
-
-\paragraph{Candidate restriction.} A lung segmentation mask is applied and patches
-are extracted at stride $s$ within it. Patches whose intensity variance falls below
-a fixed floor, or which are predominantly air, are rejected prior to coding. This
-restriction is essential rather than merely economical: an unrestricted volume
-yields $\mathcal{O}(10^{5})$ patches, and eliminating extrapulmonary and trivially
-uninformative regions removes the majority of candidates together with the most
-easily avoided false positives.
-
-\paragraph{Scoring.} Each surviving patch is decomposed as in
-Section~2, sparse-coded against $\mathbf{D}$, and scored by
-\eqref{eq:sim}, producing one similarity volume $R_{c}$ per class on the patch
-grid.
-
-\paragraph{Spatial consolidation.} Each $R_{c}$ is thresholded at $\tau_{c}$ and
-subjected to 3D connected-component analysis; components below a minimum physical
-volume are discarded. This step is required by the arithmetic of dense patch
-classification: with $\mathcal{O}(10^{4})$ intrapulmonary patches per study, even a
-per-patch false-positive rate of $0.5\%$ produces tens of spurious detections,
-whereas genuine findings are spatially contiguous and isolated single-patch
-responses are overwhelmingly noise. Surviving components constitute the detections,
-each with a confidence given by the aggregate similarity over its constituent
-patches.
+\noindent where $N$ is the total number of samples, $\mu_{j,\neg c}$ is the mean activation of atom $j$ across all other classes,
+and $\epsilon$ is a small constant to prevent division by zero. A high $S_{j,c}$ indicates that atom $j$ is strongly selective to
+class $c$ relative to the other classes.
 
 \section{Deep Learning Model Training}
 
