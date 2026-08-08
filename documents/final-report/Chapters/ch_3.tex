@@ -939,27 +939,11 @@ discussion of atom activation.
 \label{sec:classification}
 
 After training the dictionaries, the patches in the training set are re-encoded against each dictionary to produce a sparse code
-$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. The 
+$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. We send each code along with its associated label to a linear classifier, which
+learns a weight vector $\mathbf{w}_c$ for each class $c$.
 
 \subsection{Training}
 
-Abnormality labels in CT-RATE are non-exclusive, and a single patch may exhibit
-co-occurring findings. We therefore train one-versus-rest $\ell_{2}$-regularised
-logistic regression, obtaining for each class $c$ a weight vector
-$\mathbf{w}_{c} \in \mathbb{R}^{K+2}$ and bias $b_{c}$, with score
-\begin{equation}
-s_{c}(\mathbf{x}) = \mathbf{w}_{c}^{\top}\mathbf{z} + b_{c}.
-\label{eq:score}
-\end{equation}
-
-Regularisation strength is selected by cross-validation with folds partitioned at
-the \emph{patient} level, since CT-RATE contains multiple studies per patient and
-scan-level splitting leaks patient-specific texture between folds. All subsequent
-calibration and evaluation use the same patient-disjoint partitioning. Atoms whose
-training usage falls below a minimum activation count are excluded from
-$\mathbf{z}$ prior to fitting, as weights estimated from a handful of activations
-are dominated by noise yet attain large magnitudes, which would corrupt the
-contribution ranking used for prototype construction.
 
 \section{Class Prototype Construction}
 \label{sec:prototype}
