@@ -286,11 +286,16 @@ class BiomedParseLocalizationAdapter:
 
     def _load_metadata_index(self) -> Dict[str, Dict]:
         if not self.metadata_json or not self.metadata_json.exists():
+            print(
+                f"[WARN] BiomedParse metadata_json not found at {self.metadata_json}: "
+                "case metadata/GT lookups will come up empty for every case."
+            )
             return {}
 
         try:
             raw = json.loads(self.metadata_json.read_text(encoding="utf-8"))
-        except Exception:
+        except Exception as exc:
+            print(f"[WARN] Failed to parse BiomedParse metadata_json {self.metadata_json}: {exc}")
             return {}
 
         records: list[Dict] = []
@@ -577,11 +582,16 @@ class BiomedParseClassificationAdapter:
 
     def _load_metadata_index(self) -> Dict[str, Dict]:
         if not self.metadata_json.exists():
+            print(
+                f"[WARN] BiomedParse metadata_json not found at {self.metadata_json}: "
+                "case metadata/GT lookups will come up empty for every case."
+            )
             return {}
 
         try:
             raw = json.loads(self.metadata_json.read_text(encoding="utf-8"))
-        except Exception:
+        except Exception as exc:
+            print(f"[WARN] Failed to parse BiomedParse metadata_json {self.metadata_json}: {exc}")
             return {}
 
         records: List[Dict] = []

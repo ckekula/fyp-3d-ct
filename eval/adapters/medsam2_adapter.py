@@ -9,6 +9,7 @@ from typing import Dict, List, Optional
 import nibabel as nib
 import numpy as np
 
+from eval.adapters._axis_utils import xyz_to_zyx
 from eval.core.schemas import LocalizationSample
 
 CATEGORY_TO_CLASS = {
@@ -88,18 +89,27 @@ class MedSAM2LocalizationAdapter:
                 item = report.get("predictions", {}).get(class_name, {})
                 existence_score = item.get("existence_score") if isinstance(item, dict) else None
 
+                # pred_mask/gt_mask are (X, Y, Z) here (see class docstring);
+                # convert to the (Z, Y, X) + zyx-spacing convention every
+                # other localization adapter uses, so mask axis order and
+                # spacing axis order agree (required for any physically-aware
+                # metric, e.g. ASSD/centroid distance in mm).
+                pred_mask_zyx, spacing_zyx = xyz_to_zyx(pred_mask, self._get_spacing(report))
+                gt_mask_zyx, _ = xyz_to_zyx(gt_mask, self._get_spacing(report))
+
                 samples.append(
                     LocalizationSample(
                         case_id=case_id,
                         model_name=self.model_name,
                         class_name=class_name,
-                        pred_mask=pred_mask,
-                        gt_mask=gt_mask,
-                        spacing=self._get_spacing(report),
-                        pred_score_map=pred_mask.astype(np.float32),
+                        pred_mask=pred_mask_zyx,
+                        gt_mask=gt_mask_zyx,
+                        spacing=spacing_zyx,
+                        pred_score_map=pred_mask_zyx.astype(np.float32),
                         existence_score=existence_score,
                         morphology="focal" if class_name in FOCAL_CLASSES else "non_focal",
                         dataset="rexgroundingct",
+                        is_soft_mask=False,
                     )
                 )
 

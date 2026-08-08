@@ -1,5 +1,5 @@
 import numpy as np
-from ..metrics.localization_metrics import iou_score, dice_score
+from .localization_metrics import iou_score, dice_score
 
 
 def attribution_mask_iou(attribution_map, gt_mask, threshold=0.5):
