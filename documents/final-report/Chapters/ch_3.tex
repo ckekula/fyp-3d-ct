@@ -599,10 +599,63 @@ $\boldsymbol{\alpha}_{\mathrm{tex}}$ is the sparse code of the normalized zero-m
 This preserves the highly interpretable mean attenuation as an explicit scalar feature while allowing the dictionary to learn only
 texture, preventing the sparse coding process from being dominated by the DC component.
 
-We tested this approach by sending the
-mean HU and standard deviation to a logistic regression classifier. The results showed that the mean HU alone was a strong
-predictor of abnormality, with an AUC of 0.85 for GGO and 0.80 for nodules/masses. This confirms that most of the model's
-predictive power is coming from basic intensity statistics rather than learned texture representations.
+We tested this approach using a linear SVM. We trained the model by sending the patches in 3 different ways:
+\begin{enumerate}
+    \item Raw patch
+    \item Mean and Standard Deviation of the patch intensities
+    \item Mean-subtracted L2 normalized patch
+\end{enumerate}
+
+The results are given in table \ref{tab:patch-classification}.
+
+\begin{table}[h]
+\centering
+\caption{Linear SVM classification performance under three input representations.}
+\label{tab:patch-classification}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Input} & \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+\multirow{3}{*}{Raw patch}
+ & 0       & 0.95 & 0.92 & 0.93 \\
+ & 1                & 0.46 & 0.63 & 0.53 \\
+ & 2                & 0.17 & 0.10 & 0.12 \\
+\midrule
+\multirow{3}{*}{Mean + Std of HU}
+ & 0       & 0.95 & 0.93 & 0.94 \\
+ & 1                & 0.50 & 0.60 & 0.55 \\
+ & 2                & 0.27 & 0.20 & 0.23 \\
+\midrule
+\multirow{3}{*}{Mean-subtracted, $\ell_2$-normalized patch}
+ & 0       & 0.86 & 0.87 & 0.87 \\
+ & 1                & 0.19 & 0.20 & 0.19 \\
+ & 2                & 0.11 & 0.06 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two scalars, the patch mean and standard deviation, match or exceed the 864-dimensional
+raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
+432-fold reduction in dimensionality. Since a linear classifier cannot extract more
+linearly-separable signal from a superset of features than from the features
+themselves, this indicates that intensity statistics account for essentially all of the
+raw patch's discriminative content, and that the remaining 862 dimensions contribute
+noise rather than signal at the sample sizes available for classes 1 and 2.
+
+Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
+discards both absolute attenuation and contrast, leaving a generic linear classifier
+with only raw, high-dimensional pixel values and no basis abstraction. Performance
+degrades further under this representation, consistent with the raw patch's
+discriminative power being concentrated almost entirely in its intensity component
+rather than in pixel-level texture. This result does not indicate that texture is
+uninformative; rather, it motivates representing texture through dictionary learning
+and sparse coding rather than through raw pixel values, and confirms that intensity
+must be retained as an explicit classifier feature rather than removed during
+preprocessing. Accordingly, our pipeline separates each patch into intensity
+statistics $(\mu, \sigma)$ and a normalized texture component prior to sparse coding
+(Section~2), rather than discarding intensity or coding raw patches directly. The
+comparison that determines whether sparse-coded texture contributes information beyond
+$(\mu, \sigma)$ alone is reported in Section~\ref{sec:ablation-sparse}.
 
 \subsection{Patch Extraction}
 \label{subsec:patch-extraction}
