@@ -92,6 +92,26 @@ LOCALIZATION_RUNS = [
         "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
         "model_name": "lc_ksvd",
     },
+    {
+        # nnU-Net trains one binary segmenter per finding class -- this run
+        # is the GGO/opacity checkpoint (postprocessed predictions).
+        "model": "nnunet",
+        "predictions_dir": "models/nnu-net/storage/nnUNet_results/Dataset100_GGO/predictions_pp",
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
+        "class_name": "lung_opacity",
+        "model_name": "nnunet_ggo",
+    },
+    {
+        # nnU-Net Nodules checkpoint -- no postprocessed variant exists for
+        # this dataset, so this uses the raw predictions.
+        "model": "nnunet",
+        "predictions_dir": "models/nnu-net/storage/nnUNet_results/Dataset104_Nodules/predictions",
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
+        "class_name": "lung_nodule",
+        "model_name": "nnunet_nodules",
+    },
 ]
 
 
@@ -145,6 +165,8 @@ def run_localization(cfg: dict) -> bool | None:
     ]
     if cfg.get("metadata_json"):
         cmd += ["--metadata-json", cfg["metadata_json"]]
+    if cfg.get("class_name"):
+        cmd += ["--class-name", cfg["class_name"]]
     return _run(cmd, f"Localization Evaluation ({cfg['model_name']})")
 
 

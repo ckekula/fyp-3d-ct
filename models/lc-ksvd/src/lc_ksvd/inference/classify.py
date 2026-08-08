@@ -18,15 +18,15 @@ from reppi.sparse.fista.utils import soft_threshold
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-DICT_MODEL_PATH = MODELS_DIR / "unified_frozen.pkl"
-SVM_MODEL_PATH = MODELS_DIR / "frozen_svm_model.pkl"
-GBM_MODEL_PATH = MODELS_DIR / "frozen_gbm_model.pkl"
-XGB_MODEL_PATH = MODELS_DIR / "frozen_xgb_model.pkl"
-LOGREG_MODEL_PATH = MODELS_DIR / "frozen_logreg_model.pkl"
+MODEL = "lcksvd2"
+DICT_MODEL_PATH = MODELS_DIR / f"unified_{MODEL}.pkl"
+SVM_MODEL_PATH = MODELS_DIR / f"{MODEL}_svm_model.pkl"
+GBM_MODEL_PATH = MODELS_DIR / f"{MODEL}_gbm_model.pkl"
+XGB_MODEL_PATH = MODELS_DIR / f"{MODEL}_xgb_model.pkl"
+LOGREG_MODEL_PATH = MODELS_DIR / f"{MODEL}_logreg_model.pkl"
 ALPHA = 0.1
 N_NONZERO_COEFS = 10
 SPLIT = "test"
-MODEL = "frozen"
 
 
 def load_dictionary(path=DICT_MODEL_PATH) -> np.ndarray:
