@@ -1558,6 +1558,236 @@ Dictionary learning shows which learned patterns (atoms) were activated during
 the decision, while Grad-CAM shows which regions of the CT image were important
 for the prediction.
 
+\section{Evaluation Framework}
+\label{sec:eval-framework}
+
+The ten models compared in this study were never designed to be compared. They span sparse
+dictionary learning, dense voxel-wise segmentation, and promptable foundation models, and
+what they emit at the end of a forward pass ranges from a calibrated probability to a bare
+class label to a folder of binary volumes. Before a single metric can be computed, all of
+that has to be pushed through one common representation.
+
+The obvious alternative, a scoring script per model, was rejected early. Ten scripts drift.
+Small differences in how an empty mask is handled or where a threshold is applied
+accumulate quietly and end up flattering whichever model the script was written for. What
+is used instead is one shared framework built from three pieces: a common schema that every
+case is converted into, one set of metric definitions applied identically everywhere, and a
+thin per-model conversion step that absorbs the difference in output format. Adding an
+eleventh model later costs one conversion step and nothing else.
+
+\subsection{Architecture}
+\label{sec:eval-architecture}
+
+Those three jobs map onto three components, called throughout this section the adapter, the
+core, and the runner.
+
+An adapter is the per-model conversion step. Its only responsibility is to read whatever a
+given model actually writes to disk, whether that is a spreadsheet of scores, a directory of
+mask volumes, or an array of sparse codes, and restate it as a case matching the common
+schema. An adapter computes nothing and judges nothing. It is a translation layer, and it is
+correct exactly when the case it emits is a faithful restatement of what the model
+predicted, no more and no less.
+
+The core sits on the far side of that boundary. It is a single model-agnostic library of
+metric definitions spanning classification, localization, and explainability, and it
+operates only on cases already in the common schema. It does not know what an adapter is,
+which architecture produced a case, or what a native prediction file looks like. Because it
+is written once and reused, every number reported in this chapter comes from the same
+arithmetic, so a gap between two models reflects what they predicted rather than how each
+happened to be scored.
+
+The runner is what joins the two. Given a model and an evaluation axis, it selects the
+matching adapter, feeds the resulting cases into the corresponding core computation, and
+writes out summary statistics together with per-case results. Runners are the only place
+where the pairing of a particular model with a particular metric computation is recorded.
+That was a deliberate choice: keeping the pairing outside both the adapter and the core is
+what allows a new model to be onboarded by writing one adapter and pointing one runner at
+it, instead of reopening metric code that every other result already depends on.
+
+\subsection{Classification Metrics}
+\label{sec:eval-classification}
+
+Classification is scored for CT-CLIP, Merlin, K-SVD, LC-KSVD, and Frozen Dictionary
+Learning, alongside three classical baselines, linear SVM, logistic regression, and
+XGBoost, trained directly on raw un-encoded patch vectors rather than on dictionary-learned
+sparse codes. Those baselines are there to ask a blunt question of the sparse-coding step:
+if a plain classifier on raw patches matches or beats the dictionary-learning pipeline, then
+the coding stage is not earning its place. The three baselines and Frozen Dictionary
+Learning (Section~\ref{sec:frozen-dict-learning}) are scored on a local patch-level test
+split rather than through an adapter against ReXGroundingCT, so their numbers sit
+\emph{alongside} the ReXGroundingCT-scored models rather than directly against them.
+
+For each target category, accuracy, precision, recall, and F1 are computed at a fixed
+decision threshold ($\tau = 0.5$). Where a model's score is a genuine probability, three
+threshold-independent metrics are added: AUROC, average precision (AP), and Expected
+Calibration Error (ECE). AUROC is reported as not-a-number for any class with only one
+label present in the evaluated set, since the metric is simply undefined there. ECE divides
+the unit interval into ten equal-width confidence bins and compares each bin's mean
+predicted confidence against its observed accuracy,
+\begin{equation}
+\mathrm{ECE} = \sum_{m=1}^{10} \frac{|B_m|}{N}\,\bigl|\mathrm{acc}(B_m) - \mathrm{conf}(B_m)\bigr|,
+\label{eq:ece}
+\end{equation}
+with the tenth bin closed at both ends so that a perfect confidence of $1$ is not silently
+discarded.
+
+Not every model produces a probability. LC-KSVD's SVM head returns a hard decision with no
+confidence attached, and the linear SVM baseline behaves identically for the same reason;
+logistic regression and XGBoost do expose a genuine class probability and are scored with
+the full metric set. Merlin's zero-shot text-image matching
+(Section~\ref{sec:merlin-method}) is used here only to sort a free-text finding into one of
+the target classes, which likewise returns a category label and nothing more. Manufacturing
+a score by casting those decisions to $\{0,1\}$ would be dishonest, since a rank-based
+metric computed over a two-point score does not mean what it means over a continuous one.
+Every case therefore carries its score type, and AUROC, AP, and ECE are reported as
+not-applicable wherever the underlying output is a hard decision. The same reasoning covers
+a category with no positive ground-truth examples in a split: precision and recall would
+collapse to zero in a way indistinguishable from genuine failure, so such categories are
+marked not-evaluated and dropped from the macro average.
+
+Ground truth also differs by model. CT-CLIP is scored against CT-RATE's own per-scan
+annotations (Table~\ref{tab:ctrate_abnormalities}) over a local subset, while the
+dictionary-learning models and Merlin are scored against ReXGroundingCT's per-finding
+category codes, principally ground-glass opacity (2c) and nodule (2d). The two label sets
+are closely related but not identical, so cross-model classification numbers should be read
+as indicative of relative behaviour rather than as a fully controlled head-to-head test.
+
+\subsection{Localization Metrics}
+\label{sec:eval-localization}
+
+Localization is scored for BiomedParse and nnU-Net on the deep-learning side and for K-SVD,
+LC-KSVD, and Frozen Dictionary Learning on the dictionary-learning side. Voxel-level
+agreement between a predicted mask $P$ and a ground-truth mask $G$ is measured by the Dice
+coefficient and Intersection-over-Union,
+\begin{equation}
+\mathrm{Dice}(P,G) = \frac{2|P \cap G|}{|P| + |G|}, \qquad
+\mathrm{IoU}(P,G) = \frac{|P \cap G|}{|P \cup G|},
+\label{eq:dice-iou}
+\end{equation}
+each returned as not-a-number when both masks are empty rather than smoothed with a small
+additive constant, so that \emph{found nothing} is never confused with \emph{found something
+with negligible overlap}.
+
+A single volume-wide Dice score is a poor summary once a case contains several separate
+findings of the same class. It cannot separate a model that localizes one finding cleanly
+and misses two others from a model that diffusely over-segments the same total area. Each
+per-class mask is therefore decomposed into its 3D connected components and predicted
+instances are matched against ground-truth instances directly, following the instance-level
+protocol of the ReXGroundingCT benchmark
+\cite{rajpurkar2024rexgroundingct,zhang2024rexrankpublicleaderboardaipowered}, documented at
+\url{https://rexrank.ai/ReXGroundingCT/}. A predicted instance counts as a true positive
+when its Dice against some ground-truth instance reaches at least $0.2$, matched greedily
+and one-to-one:
+\begin{equation}
+\mathrm{TP} = \bigl|\{(p,g) : \mathrm{Dice}(p,g) \ge 0.2,\ p \leftrightarrow g \text{ under greedy matching}\}\bigr|.
+\label{eq:instance-tp}
+\end{equation}
+Instance precision and recall are corpus-level quantities, $\mathrm{TP}/(\mathrm{TP+FP})$
+and $\mathrm{TP}/(\mathrm{TP+FN})$, accumulated across the whole evaluated set before
+dividing rather than averaged case by case, so that a handful of cases holding very few
+ground-truth instances cannot dominate the result.
+
+At whole-set level the Global Hit Rate defined by ReXGroundingCT is also reported, that is,
+the fraction of the $F$ evaluated findings whose Dice clears $0.10$,
+\begin{equation}
+\mathrm{HitRate} = \frac{1}{F}\sum_{i=1}^{F} \mathbb{1}\!\left[\mathrm{Dice}_i \ge 0.10\right],
+\label{eq:hit-rate}
+\end{equation}
+together with informal sensitivity checks at Dice thresholds of $0.05$ and $0.25$, which
+form no part of the official benchmark and are reported only as context.
+
+nnU-Net and the dictionary-learning models all emit an already-binarised mask, so a
+threshold sensitivity sweep, which is meaningful for BiomedParse's continuous output, would
+merely reproduce the same figure at every threshold. Any case arriving with a binary mask is
+therefore excluded from the sweep, with the count and the reason for exclusion recorded
+explicitly rather than left implicit in a smaller denominator.
+
+\subsection{Explainability Metrics}
+\label{sec:eval-explainability}
+
+The quantitative Grad-CAM procedure of Section~\ref{sec:explainability-methods} picks, per
+case, whichever percentile threshold maximises Dice against the ground-truth mask. That
+measures how good an explanation \emph{could} look under the most favourable possible
+binarisation, which is a useful upper bound but not a deployable one, since a system at
+inference time has no ground truth to search over. The metric layer described here fixes a
+threshold in advance instead, with no oracle involved. This fixed-threshold treatment is
+currently applied to CT-CLIP; the dictionary-learning models are covered on the
+explainability axis through the oracle-threshold and atom-based procedures of
+Section~\ref{sec:explainability-methods}, and their numbers are therefore not interchangeable
+with CT-CLIP's.
+
+The attribution map is min-max normalised to $[0,1]$, binarised at a fixed threshold
+(default $0.5$), and its IoU against the ground-truth mask computed exactly as in
+Section~\ref{sec:eval-localization}. The pointing game is stricter and asks only whether the
+single highest-attribution voxel lands inside the ground-truth region,
+\begin{equation}
+\mathrm{PointingGame} = \mathbb{1}\!\left[\arg\max_{v} A(v) \in G\right],
+\label{eq:pointing-game}
+\end{equation}
+which has the advantage of being threshold-free and the disadvantage of ignoring everything
+about the map except its peak. Energy inside mask uses the whole map instead: attribution
+values are clipped to non-negative and the share of total positive energy falling inside the
+ground-truth region is reported,
+\begin{equation}
+\mathrm{EnergyInsideMask} = \frac{\sum_{v \in G} \max(A(v),0)}{\sum_{v} \max(A(v),0)}.
+\label{eq:energy-inside-mask}
+\end{equation}
+Grounded accuracy ties localization back to classification: restricted to correctly
+classified cases, it reports the fraction whose attribution map also reaches a Dice of at
+least $0.10$, so that a model cannot post a strong score by being confidently right for the
+wrong reason. Misclassified cases are excluded, because a poorly localized explanation is
+not the interesting failure when the prediction was already wrong.
+
+\subsection{Model Coverage}
+
+Table~\ref{tab:eval-coverage} records which axes and how many of the target categories each
+model is evaluated on. The coverage is uneven by design, not by omission. BiomedParse
+carries no classification-style output to score, being a promptable segmentation model, and
+so appears on localization only. Merlin sits at the opposite corner: it is a
+vision-language embedding model with no segmentation capability at all, and its published
+classification modes, phenotype classification and five-year disease prediction, are not the
+ones exercised here either, since this project uses its raw image-text similarity for
+zero-shot matching. It is therefore scored on classification alone, derived from that
+similarity. nnU-Net's checkpoints are single binary foreground segmenters carrying no
+per-case class label, so each checkpoint has to be paired with one explicit class;
+checkpoints exist for ground-glass opacity and nodule, matching the abnormalities this
+project's own dictionary-learning models target
+(Section~\ref{sec:dictionary-learning}), and it is the only fully supervised segmentation
+baseline in the comparison. The three dictionary-learning models are the only ones present on
+all three axes, and CT-CLIP is the only model carrying fixed-threshold explainability
+numbers.
+
+\begin{table}[h]
+\centering
+\caption{Model and evaluation-axis coverage. Categories are normal, ground-glass opacity, and nodule.}
+\label{tab:eval-coverage}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Model} & \textbf{Classification} & \textbf{Localization} & \textbf{Explainability} & \textbf{Classes} \\
+\hline
+Linear SVM                              & \checkmark & --         & --                    & 3 \\
+Logistic Regression                     & \checkmark & --         & --                    & 3 \\
+XGBoost                                 & \checkmark & --         & --                    & 3 \\
+CT-CLIP                                 & \checkmark & --         & \checkmark            & 3 \\
+Merlin                                  & \checkmark & --         & --                    & 3 \\
+BiomedParse                             & --         & \checkmark & --                    & 3 \\
+nnU-Net                                 & --         & \checkmark & --                    & 3 \\
+K-SVD                                   & \checkmark & \checkmark & \checkmark      & 3 \\
+LC-KSVD                                 & \checkmark & \checkmark & \checkmark      & 3 \\
+Frozen Dictionary Learning  & \checkmark & \checkmark & \checkmark      & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Explainability for the dictionary-learning models is assessed qualitatively
+and through the oracle-threshold procedure of Section~\ref{sec:explainability-methods},
+rather than through the fixed-threshold metrics of Section~\ref{sec:eval-explainability}.
+Extending them to the fixed-threshold definitions is left as further work.
+
+Frozen Dictionary Learning is scored by its own patch-level classifier
+on a local 44,384-patch test split rather than by an adapter against ReXGroundingCT, so its
+classification result is not directly comparable with the ReXGroundingCT-scored rows above.
+
 \section{Evaluation}
 
 % The evaluation of medical image analysis systems requires multiple metrics because
