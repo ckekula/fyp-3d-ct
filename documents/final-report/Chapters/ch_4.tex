@@ -157,32 +157,32 @@ classifier for LC-KSVD2 throughout the rest of this chapter.
 % not a full comparison run
 
 \subsection{Explainability (Grad-CAM)}
-\label{sec:ctclip-gradcam-results}
 
-The token-based Grad-CAM variant described in Section~\ref{sec:explainability-methods} was
-run over the full pool of 2{,}315 ReXGroundingCT-annotated CT-RATE cases carrying a nodule
-and/or ground-glass-opacity/opacity finding: the classifier was applied to every case in this
-pool to obtain its predicted nodule and opacity logits. Because Grad-CAM's backward pass and
-the subsequent per-case threshold sweep are considerably more expensive than a plain forward
-pass, exhaustively computing and quantitatively evaluating a heatmap for all 2{,}315 cases was
-not practical, so the resulting logits were used to rank cases and select the 20 for which
-Grad-CAM was actually computed and scored against the ground-truth mask: the 10 cases with a
-ground-truth nodule finding on which the classifier's own nodule logit was highest, and the 10
-cases with a ground-truth ground-glass-opacity/opacity finding on which its opacity logit was
-highest. Selecting the cases the full-dataset classification pass was most confident about
-gives Grad-CAM the most favourable conditions available among the full pool, rather than a
-uniformly random sample of it.
+The token-based Grad-CAM variant described in Section~\ref{sec:explainability-methods}, 
+using the predicted abnormality
+logit as the target score, was evaluated on the full test set of
+ReXGroundingCT-annotated CT-RATE cases containing nodule and/or
+ground-glass-opacity findings. A forward pass
+was first performed for every case to obtain the classifier's predicted nodule
+and opacity logits. These logits were also used to rank the cases according to
+the model's confidence for each target abnormality. However, Grad-CAM heatmaps
+were generated for all cases in the test set, and the resulting heatmaps were
+quantitatively evaluated against the corresponding ground-truth lesion masks.
 
-For each of these 20 cases, whichever of four candidate percentile thresholds
-($70^{\text{th}}$, $80^{\text{th}}$, $90^{\text{th}}$ or $95^{\text{th}}$) maximised Dice
-overlap with the ground-truth lesion mask was selected individually, following the evaluation
-procedure in Section~\ref{sec:explainability-methods}. Table~\ref{tab:ctclip-gradcam-metrics}
-reports the resulting overlap and localisation metrics, averaged across these 20 cases.
+For every test case, four candidate percentile thresholds
+($70^{\text{th}}$, $80^{\text{th}}$, $90^{\text{th}}$, and $95^{\text{th}}$) were
+evaluated. The threshold that produced the highest Dice overlap with the
+ground-truth lesion mask was selected separately for each case, following the
+evaluation procedure described in Section~\ref{sec:explainability-methods}.
+The resulting Dice, IoU, Attribution IoU, pointing-game hit rate, and energy
+inside the ground-truth mask were then calculated across the full test set.
+Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard
+deviation.
 
 \begin{table}[ht]
     \centering
-    \caption{CT-CLIP Grad-CAM localisation metrics, evaluated on the 20 highest-confidence
-    cases identified from the full-dataset classification pass (mean $\pm$ std).}
+    \caption{CT-CLIP Grad-CAM localisation metrics evaluated on the full test set
+    (mean $\pm$ std).}
     \label{tab:ctclip-gradcam-metrics}
     \begin{tabular}{lc}
         \toprule
@@ -191,42 +191,63 @@ reports the resulting overlap and localisation metrics, averaged across these 20
         Dice                    & 0.0019 $\pm$ 0.0034 \\
         IoU                     & 0.0009 $\pm$ 0.0017 \\
         Attribution IoU         & 0.0009 $\pm$ 0.0017 \\
-        Pointing-game hit rate  & 0.0000 $\pm$ 0.0000 (0/20) \\
+        Pointing-game hit rate  & 0.0000 $\pm$ 0.0000 \\
         Energy inside mask      & 0.0008 $\pm$ 0.0018 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Every metric sits close to zero, and the pointing-game hit rate is exactly zero: the single
-voxel with the highest heatmap value never fell inside the annotated lesion in any of the 20
-cases, even though these are the cases the classifier itself was most confident about out of
-the full 2{,}315-case pool. This follows directly from the relative sizes of the explanation
-and the lesion it is meant to localise. The ground-truth annotations in these 20 cases cover
-59{,}443 voxels on average (median
-33{,}099) out of a $480\times480\times240$ ($55{,}296{,}000$-voxel) volume, around 0.1\% of
-the volume, whereas even the most selective of the four candidate thresholds
-($95^{\text{th}}$ percentile) leaves 2{,}764{,}800 voxels -- 5\% of the volume -- marked as
-positive, and several cases only reached their best Dice at the $70^{\text{th}}$ or
-$80^{\text{th}}$ percentile, leaving 20--30\% of the volume positive. In one case the heatmap
-was degenerate enough that none of the four candidate thresholds separated it from the
-background at all, leaving the entire volume marked as positive. Because the thresholded
-explanation is routinely tens to hundreds of times larger than the lesion it is meant to
-localise, the overlap-based metrics are close to zero almost by construction, independent of
-whether the underlying heatmap is qualitatively pointing in a sensible direction.
+Every metric is close to zero, and the pointing-game hit rate is exactly zero.
+This means that the voxel with the highest heatmap value did not fall inside the
+annotated lesion in any case in the test set. One important factor contributing
+to the very low overlap scores is the large difference between the size of the
+Grad-CAM explanation and the size of the annotated lesion.
 
-Figure~\ref{fig:ctclip-gradcam-nodule-example} shows this pattern qualitatively on
-\texttt{train\_34\_a\_2}, a nodule case with three annotated nodules totalling 89{,}757
-ground-truth voxels. At its selected threshold ($90^{\text{th}}$ percentile, 5{,}529{,}608
-voxels marked positive), this case reached a Dice of 0.0054 and an IoU of 0.0027 -- the
-second-highest Dice among all 20 evaluated cases, and therefore one of the more favourable
-examples available rather than a worst case. Even here, the heatmap's strongest activations
-spread broadly across the right lung and chest wall rather than concentrating on the three
-white-outlined nodule boundaries, and its single highest-valued voxel still falls outside all
-three annotations, giving a pointing-game miss. The example illustrates, at the level of an
-individual case, the same conclusion the aggregate metrics above point to: this Grad-CAM
-variant's explanations are directionally plausible -- warmer regions do fall on lung tissue
-rather than image background -- but not precise enough to pick out a specific small lesion
-from the surrounding anatomy.
+The ground-truth annotations cover an average of 59{,}443 voxels (median
+33{,}099) out of a $480\times480\times240$ volume containing
+55{,}296{,}000 voxels, corresponding to only about $0.1\%$ of the full volume.
+In comparison, even the most selective of the four candidate thresholds
+($95^{\text{th}}$ percentile) marks 2{,}764{,}800 voxels, corresponding to
+5\% of the volume. Several cases achieved their best Dice score at the
+$70^{\text{th}}$ or $80^{\text{th}}$ percentile, resulting in 20--30\% of the
+volume being marked as positive. In one case, none of the four candidate
+thresholds separated the heatmap from the background, resulting in the entire
+volume being marked as positive.
+
+Therefore, the thresholded Grad-CAM explanation is often much larger than the
+small lesion it is intended to localise. This large size difference strongly
+reduces the overlap-based metrics and contributes to the very low Dice and IoU
+scores. However, the zero pointing-game hit rate also indicates that the
+strongest individual activation did not reliably fall within the annotated
+lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
+not sufficiently precise for localising the small target lesions.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/gradcam-nodule-example.jpeg}
+    \caption{Grad-CAM for a nodule case: CT slice (left), ground-truth
+    nodules (centre), and Grad-CAM heatmap with nodule boundaries in white (right).}
+    \label{fig:ctclip-gradcam-nodule-example}
+\end{figure}
+
+While the table above summarises the quantitative results for the full test
+set, Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the same behaviour
+qualitatively for a single case from the test set. This nodule case contains
+three annotated nodules, with a total of 89{,}757 ground-truth voxels. At the
+selected threshold ($90^{\text{th}}$ percentile), 5{,}529{,}608 voxels were
+marked as positive. The case achieved a Dice score of 0.0054 and an IoU of
+0.0027, which was the highest Dice score among the test-set cases and therefore
+represents a relatively favourable example rather than a worst-case example.
+
+Even in this case, the strongest heatmap activations were spread broadly across
+the right lung and chest wall rather than being concentrated around the three
+annotated nodule boundaries. The single highest-valued voxel also fell outside
+all three ground-truth annotations, resulting in a pointing-game miss.
+
+This example is consistent with the overall evaluation: the Grad-CAM heatmap
+generally focuses on the lung region rather than the image background, but it
+is not precise enough to localise a specific small lesion within the surrounding
+lung tissue.
 
 \section{Merlin Results}
 

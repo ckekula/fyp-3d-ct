@@ -1384,8 +1384,8 @@ but it was not used for the final full-dataset evaluation.
 \subsection{Explainability}
 \label{sec:explainability-methods}
 
-In addition to the detection and classification methods, this project also
-used Grad-CAM (Gradient-weighted Class Activation Mapping) to understand
+In addition to the segmentation and classification methods, this project also
+experimented with Grad-CAM (Gradient-weighted Class Activation Mapping) to understand
 why a deep learning model makes a prediction. Grad-CAM creates a heatmap
 that highlights the parts of a CT scan that had the greatest influence on
 the model's decision. This method was also compared with the atom-based
@@ -1511,34 +1511,35 @@ two encoders use different internal feature representations.
 
 \paragraph{Quantitative evaluation against ground truth}
 
-Generating Grad-CAM heatmaps and performing threshold-based evaluation require
-more computation than a normal model prediction. Therefore, the evaluation was
-performed only on the selected test set rather than all available annotated CT
-scans.
+The quantitative evaluation focused on the transformer-based Grad-CAM,
+for which the predicted abnormality logit was used as the target score.
+Grad-CAM heatmaps were generated for every case in the full test set and
+quantitatively compared with the corresponding ground-truth lesion masks.
+A forward pass was first performed for every test case to obtain the
+classifier's predicted nodule and opacity logits. These logits were used to
+rank the cases according to the model's confidence for each target abnormality
+for descriptive analysis.
 
-For each case in the test set, Grad-CAM heatmaps were generated for both the
-convolutional and transformer-based models to visualize the regions that
-influenced the model prediction. These heatmaps were then quantitatively
-compared with the ground-truth lesion masks to measure the spatial agreement
-between the explanation maps and the annotated lesions.
+Since Grad-CAM produces a continuous heatmap rather than a binary lesion mask,
+four percentile thresholds ($70^{\text{th}}$, $80^{\text{th}}$,
+$90^{\text{th}}$, and $95^{\text{th}}$) were evaluated at the native heatmap
+resolution. The ground-truth mask was resized to the same resolution, and the
+threshold that achieved the highest Dice score was selected separately for
+each case. This per-case threshold selection was used as an oracle evaluation
+to assess the maximum spatial agreement achievable by the continuous Grad-CAM
+heatmap, rather than as a fixed threshold for deployment.
 
-Since Grad-CAM produces a continuous heatmap rather than a binary lesion mask, a
-range of threshold values from the $70^\text{th}$ to $95^\text{th}$ percentile of
-the heatmap values was evaluated. These thresholds were applied at the original
-heatmap resolution and compared with a resized ground-truth mask. The threshold
-that achieved the highest Dice score was selected separately for each CT scan.
+The selected threshold was then applied to the heatmap, and the resulting
+binary explanation map was upsampled to the original CT resolution. The final
+explanation map was evaluated against the original ground-truth mask using
+Dice score, Intersection over Union (IoU), Attribution IoU, and energy inside
+the ground-truth mask. A threshold-independent pointing-game evaluation was
+also performed by checking whether the voxel with the maximum Grad-CAM value
+over the entire volume was located inside the ground-truth lesion.
 
-This threshold was used only to evaluate how well the explanation map matched the
-lesion location and was not related to any prediction threshold used for clinical
-classification. After selecting the optimal threshold, the heatmap was converted
-into a binary mask, resized to the original CT resolution, and evaluated against
-the ground-truth mask using Dice score, Intersection over Union (IoU), precision,
-and recall.
-
-Additionally, a threshold-independent pointing-game evaluation was performed.
-This test checks whether the voxel with the highest Grad-CAM value is located
-inside the ground-truth lesion region, indicating whether the model focuses on
-the correct anatomical area.
+The threshold used for this evaluation was only used to measure the spatial
+agreement between the explanation and the annotated lesion. It was separate
+from any prediction threshold used by the classification model.
 
 \paragraph{Relation to atom-based interpretability}
 
