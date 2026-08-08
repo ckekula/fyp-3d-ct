@@ -1206,18 +1206,19 @@ present''. The model compared the similarity between the CT volume and
 both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
 
-\subsection{Explainability}
-\label{sec:explainability-methods}
+\section{Grad-CAM for Explainability}
 
 In addition to the segmentation and classification methods, we also experimented with Grad-CAM to understand
 what features affect the above deep learning models to make a prediction. Grad-CAM creates a heatmap
-that highlights the parts of a CT scan that had the greatest influence on
-the model's decision. This method was also compared with the atom-based
-interpretability of the dictionary learning models. Grad-CAM was implemented for two
-pretrained image encoders: one with a 3D convolutional backbone and another
-with a transformer backbone.
+that highlights the parts of a CT scan that had the greatest influence on the model's decision.
+Since the original Grad-CAM implementation is meant for 2D CNNs, a couple of implementations were developed
+for the model to be be applied for the Merlin and CT-CLIP models:
+\begin{enumerate}
+    \item For a 3D convolutional encoder
+    \item For a transformer encoder
+\end{enumerate}
 
-\paragraph{Convolutional encoder: target layer and target score}
+\subsection{3D Convolutional encoder}
 
 For the convolutional encoder, Grad-CAM was applied to the last
 convolutional layer of the 3D ResNet backbone. A forward hook was used to
@@ -1228,14 +1229,11 @@ later combined to generate the Grad-CAM heatmap.
 Two target scores were tested. The first was the $L_2$ norm of the global
 image embedding. This is a text-independent target that highlights the
 regions that contribute the most to the overall image representation,
-without focusing on any particular abnormality.
-
-The second target score was the cosine similarity between the projected
+without focusing on any particular abnormality. The second target score was the cosine similarity between the projected
 image embedding and the text embedding of a selected abnormality
 description. This is the same text-image similarity used for zero-shot
-localisation in Section~\ref{sec:merlin-method}. It allows Grad-CAM to
-produce a heatmap for a specific abnormality instead of only highlighting
-generally important regions.
+localisation in Merlin (see Section~\ref{sec:merlin-method}. It allows Grad-CAM to
+produce a heatmap for a specific abnormality instead of only highlighting generally important regions.
 
 \begin{equation}
 y = \frac{z_i^{\top} z_t}{\lVert z_i \rVert \lVert z_t \rVert},
@@ -1247,16 +1245,12 @@ description of a specific abnormality, Grad-CAM can highlight the regions
 related to that abnormality. This text-based target was used for the
 quantitative evaluation.
 
-\paragraph{Convolutional encoder: computing the activation map}
-
 For a selected target score, the preprocessed CT volume was passed through
-the encoder with gradient tracking enabled. The resulting scalar score was
-then backpropagated to the hooked layer.
-
-Following the Grad-CAM method, the gradients captured from the target layer
+the encoder. The resulting scalar score was
+then backpropagated to the hooked layer. The gradients captured from the target layer
 were averaged over all spatial locations to obtain one importance weight for
 each feature channel. These weights were then used to calculate a weighted
-sum of the corresponding activation maps.
+sum of the corresponding activation maps:
 
 \begin{equation}
 L = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A^{k}\right), \qquad
@@ -1264,25 +1258,25 @@ L = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A^{k}\right), \qquad
 \end{equation}
 
 \noindent where $A^{k}$ is the activation map of feature channel $k$, $y$
-is the target score being explained, and
-$Z = D \times H \times W$ is the total number of spatial locations in the
-activation map. The final ReLU operation removes negative values, so the
-heatmap keeps only the regions that positively contribute to the target
-score.
+is the target score being explained, and $Z = D \times H \times W$ is the total number of spatial locations in the
+activation map.
 
+The final ReLU operation removes negative values, so the
+heatmap keeps only the regions that positively contribute to the target score.
 The resulting low-resolution activation map was resized to the original CT
 volume resolution using trilinear interpolation. It was then normalized to
 the range $[0,1]$, producing a 3D heatmap aligned with the CT scan.
 
-Two implementation details were important for generating a valid heatmap.
-First, gradient tracking had to be explicitly enabled for the input tensor
-before the forward pass. Without this, the model's internal gradient
-checkpointing prevented the backward hook from receiving correct gradients,
-which produced an almost flat heatmap instead of a useful explanation.
+Two implementation details were important for generating a valid heatmap:
+\begin{enumerate}
+    \item gradient tracking had to be explicitly enabled for the input tensor before the forward pass.
+    \item The encoder's contrastive projection head had to be enabled.
+\end{enumerate}
 
-Second, the encoder's contrastive projection head had to be enabled so that
-the forward pass produced the same projected image embedding used for the
-text-similarity target. Otherwise, the model would return only the raw
+Without gradient tracking, the model's internal gradient checkpointing prevented the backward hook from receiving correct
+gradients, which produced an almost flat heatmap instead of a useful explanation.
+The forward pass produced the same projected image embedding used for the
+text-similarity target. Without the contrastive projection head enabled, the model would return only the raw
 pooled convolutional features.
 
 The CT volume was preprocessed in exactly the same way as during normal
@@ -1291,7 +1285,7 @@ windowing and spatial downsampling. This ensured that Grad-CAM explained the
 same input that the model actually used for prediction.
 
 
-\paragraph{Transformer encoder: target layer and target score}
+\subsection{Transformer encoder}
 
 For the transformer encoder, Grad-CAM was applied to an intermediate
 transformer block because the model does not have a final convolutional
@@ -1309,8 +1303,6 @@ head trained on the image embeddings. This is because the transformer
 encoder predicts from a fixed set of abnormality classes rather than using
 free-text descriptions.
 
-\paragraph{Transformer encoder: computing the token importance map}
-
 The transformer encoder calculates token importance in a similar way to the
 convolutional encoder. However, instead of averaging the gradients over spatial
 locations, the gradients are averaged across all tokens:
@@ -1321,7 +1313,6 @@ locations, the gradients are averaged across all tokens:
 T_{i} = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A_{i}^{k}\right)
 \end{equation}
 
-\noindent
 This produces one importance score $T_i$ for each token instead of a spatial
 activation map. Since each token represents a fixed 3D patch of the input CT
 volume, these token importance scores are arranged back into their original
@@ -1333,7 +1324,7 @@ method used for the convolutional encoder. This creates a 3D heatmap that can
 be directly compared with the convolutional encoder heatmap, even though the
 two encoders use different internal feature representations.
 
-\paragraph{Quantitative evaluation against ground truth}
+\subsection{Quantitative evaluation}
 
 The quantitative evaluation focused on the transformer-based Grad-CAM,
 for which the predicted abnormality logit was used as the target score.
@@ -1364,18 +1355,6 @@ over the entire volume was located inside the ground-truth lesion.
 The threshold used for this evaluation was only used to measure the spatial
 agreement between the explanation and the annotated lesion. It was separate
 from any prediction threshold used by the classification model.
-
-\paragraph{Relation to atom-based interpretability}
-
-Grad-CAM explains the model decision after the prediction is made. It shows
-which areas of the CT image had the most influence on the prediction by
-examining the internal features of the model. However, the model was not
-trained specifically to create these explanations.
-
-Dictionary learning and Grad-CAM provide two different types of explanations.
-Dictionary learning shows which learned patterns (atoms) were activated during
-the decision, while Grad-CAM shows which regions of the CT image were important
-for the prediction.
 
 \section{Evaluation}
 
