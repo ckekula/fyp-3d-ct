@@ -512,7 +512,19 @@ from purely intensity-based segmentation and towards a learned segmentation mode
 
 \subsubsection{Deep Learning-based Segmentation}
 
-TOTALSEGMENTOR
+First, TotalSegmentator
+\cite{wasserthal2023totalsegmentator} was considered for lung segmentation.
+Although it can segment the lungs, lung segmentation is only one part of its
+broader whole-body segmentation task. In the ``total'' task, the lungs are
+represented as five separate lobe classes: left upper lobe, left lower lobe,
+right upper lobe, right middle lobe, and right lower lobe. These five masks
+therefore need to be combined to obtain a single whole-lung mask.
+
+This additional merging step makes the preprocessing pipeline more complex
+and may introduce unwanted boundaries between adjacent lobes. Since the
+proposed pipeline requires a single lung mask for the subsequent processing
+steps, this representation was less suitable for the project. Therefore,
+TotalSegmentator was not selected for the final pipeline.
 
 The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
