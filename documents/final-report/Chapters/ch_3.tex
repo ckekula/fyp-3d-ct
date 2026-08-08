@@ -724,7 +724,7 @@ At $K=3d$, the dictionary has enough overcompleteness for s=10 sparse coding to 
 Therefore, we decided to use $K=3d=2{,}592$ as the target dictionary size for all algorithms in this project.
 
 \subsection{Patch Normalization}
-
+\label{sec:patch-normalization}
 
 A major consideration in our methodology was whether we should normalize the patches before passing them to the dictionary learning algorithms.
 This was motivated by the approach used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image},
@@ -817,48 +817,8 @@ We tested these 2 approaches using a linear SVM, trained by sending patches in 3
     \item Mean-subtracted L2 normalized patch
 \end{enumerate}
 
-Table \ref{tab:patch-classification} shows the results of the experimentation. The two scalars (patch mean and standard deviation),
-match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
-432-fold reduction in dimensionality. Since a linear classifier cannot extract more
-linearly-separable signal from a superset of features than from the features
-themselves, this indicates that intensity statistics account for essentially all of the
-raw patch's discriminative content, and that the remaining 862 dimensions contribute
-noise rather than signal at the sample sizes available for classes 1 and 2.
-
-\begin{table}
-\centering
-\caption{Linear SVM classification performance under three input representations.}
-\label{tab:patch-classification}
-\begin{tabular}{llccc}
-\toprule
-\textbf{Input} & \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
-\midrule
-\multirow{3}{*}{Raw patch}
- & 0       & 0.95 & 0.92 & 0.93 \\
- & 1                & 0.46 & 0.63 & 0.53 \\
- & 2                & 0.17 & 0.10 & 0.12 \\
-\midrule
-\multirow{3}{*}{Mean + Std of HU}
- & 0       & 0.95 & 0.93 & 0.94 \\
- & 1                & 0.50 & 0.60 & 0.55 \\
- & 2                & 0.27 & 0.20 & 0.23 \\
-\midrule
-\multirow{3}{*}{Mean-subtracted, $\ell_2$-normalized patch}
- & 0       & 0.86 & 0.87 & 0.87 \\
- & 1                & 0.19 & 0.20 & 0.19 \\
- & 2                & 0.11 & 0.06 & 0.08 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
-discards both absolute attenuation and contrast, leaving a generic linear classifier
-with only raw, high-dimensional pixel values and no basis abstraction. Performance
-can be observed to degrade further under this representation, consistent with the raw patch's
-discriminative power being concentrated almost entirely in its intensity component
-rather than in pixel-level texture. This result shows that texture is uninformative and the patch's intensity information is
-the primary driver of discriminative power.
-
+The results of this experiment are discussed in Section~\ref{sec:ml-baseline-methods}, and showed that the second approach
+(using the mean and standard deviation) performs best.
 
 \subsection{K-SVD}
 \label{sec:ksvd}
@@ -1054,47 +1014,73 @@ class $c$ relative to the other classes.
 \subsection{Machine Learning Models}
 \label{sec:ml-baseline-methods}
 
-To measure how much the dictionary learning and sparse coding stages
-(Section~\ref{sec:dictionary-learning}) actually contribute over classifying
-CT patches directly, a set of classical machine learning baselines was
-trained on the same 12x12x6 raw voxel patches, flattened to a 864-dimension
-feature vector, instead of on their sparse codes. These baselines used the
-same three-class label set (normal, GGO, nodule) and the same underlying
-patch archives as the dictionary learning pipeline, so their results are
-directly comparable to the sparse-code classifiers described in
-Section~\ref{sec:classification}.
+We trained a set of classical machine learning baselines on the raw 12x12x6 raw voxel patches, instead of on their sparse codes.
+The same three classifiers used for the sparse code classification (Section \ref{sec:classification}) were used here.
+All three classifiers used a balanced class weighting to account for class imbalance, and
+hyperparameters were tuned with a grid search evaluated
+under five-fold group cross-validation.
 
-Three classifiers were trained on the full 864-dimension raw patch: Logistic
-Regression and a Linear Support Vector Machine (LinearSVC) as linear
-baselines, and XGBoost as a non-linear tree-based
-baseline. The linear models were trained inside a pipeline with a
-MaxAbsScaler step, matching the scaling used for the sparse-code classifiers,
-so that any difference in performance reflects the input representation
-rather than the scaling method. All three classifiers used a balanced class weighting to account for
-the same class imbalance addressed elsewhere in this study, and
-hyperparameters (the regularisation strength $C$ for the linear models; tree
-depth, learning rate and the $L_2$ regularisation weight $\lambda$ for
-XGBoost) were tuned with a grid search evaluated
-under five-fold group cross-validation, grouped by scan so that patches from
+During hyperparameter tuning, the input patches were grouped by scan so that patches from
 the same scan could not appear in both the training and validation folds of
 a given split. Macro-averaged F1 was used as the grid search's selection
-metric, consistent with the classification metric used throughout this
-study, so that model selection was not dominated by the majority normal
-class.
+metric, so that model selection was not dominated by the majority normal class.
 
-As a final, more extreme ablation, every patch was also reduced to just two
-summary statistics, its mean and standard deviation HU value, discarding all
-spatial structure. Logistic Regression and a LinearSVC were fitted on this
-two-feature representation to establish how much of the raw-patch
-classifiers' performance could be explained by coarse per-patch intensity
-alone, as opposed to the spatial arrangement of intensities within a patch.
+In order to test the hypothesis described in Section~\ref{sec:patch-normalization} we also trained a linear SVM on two additional
+representations of the patches: the mean and standard deviation of the voxel intensities, and the mean-subtracted,
+$\ell_2$-normalized patch. The results of these experiments are shown in Table \ref{tab:patch-classification}.
+
+\begin{table}
+\centering
+\caption{Linear SVM classification performance under three input representations.}
+\label{tab:patch-classification}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Input} & \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+\multirow{3}{*}{Raw patch}
+ & 0       & 0.95 & 0.92 & 0.93 \\
+ & 1                & 0.46 & 0.63 & 0.53 \\
+ & 2                & 0.17 & 0.10 & 0.12 \\
+\midrule
+\multirow{3}{*}{Mean + Std of HU}
+ & 0       & 0.95 & 0.93 & 0.94 \\
+ & 1                & 0.50 & 0.60 & 0.55 \\
+ & 2                & 0.27 & 0.20 & 0.23 \\
+\midrule
+\multirow{3}{*}{Mean-subtracted, $\ell_2$-normalized patch}
+ & 0       & 0.86 & 0.87 & 0.87 \\
+ & 1                & 0.19 & 0.20 & 0.19 \\
+ & 2                & 0.11 & 0.06 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two scalars (patch mean and standard deviation),
+match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
+432-fold reduction in dimensionality. Since a linear classifier cannot extract more
+linearly-separable signal from a superset of features than from the features
+themselves, this indicates that intensity statistics account for essentially all of the
+raw patch's discriminative content, and that the remaining 862 dimensions contribute
+noise rather than signal at the sample sizes available for classes 1 and 2.
+
+Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
+discards both absolute attenuation and contrast, leaving a generic linear classifier
+with only raw, high-dimensional pixel values and no basis abstraction. Performance
+can be observed to degrade further under this representation, consistent with the raw patch's
+discriminative power being concentrated almost entirely in its intensity component
+rather than in pixel-level texture. This result shows that texture is uninformative and the patch's intensity information is
+the primary driver of discriminative power.
 
 \section{Deep Learning Model Training}
 
+We also tested our test set on SotA deep learning models, including nnU-Net and Merlin.
+The training and inference procedures for these models are described below.
+
 \subsubsection{nnU-Net}
 
-nnU-Net was used as a deep learning segmentation model to detect the two
-target abnormalities identified with the radiologists: ground-glass
+nnU-Net was the only deep learning model trained from scratch on the ReXGroundingCT dataset.
+Separate nnU-Net models were trained for each of the three target abnormalities:
+ground-glass
 opacity (GGO)/consolidation and pulmonary nodules. A separate pretrained
 binary segmentation model was used for each abnormality.
 
