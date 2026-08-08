@@ -1113,11 +1113,45 @@ responses are overwhelmingly noise. Surviving components constitute the detectio
 each with a confidence given by the aggregate similarity over its constituent
 patches.
 
-\section{Deep Learning Model Training}
-
 \subsection{Machine Learning Models}
+\label{sec:ml-baseline-methods}
 
-\subsection{Deep Learning Models}
+To measure how much the dictionary learning and sparse coding stages
+(Section~\ref{sec:dictionary-learning}) actually contribute over classifying
+CT patches directly, a set of classical machine learning baselines was
+trained on the same 12x12x6 raw voxel patches, flattened to a 864-dimension
+feature vector, instead of on their sparse codes. These baselines used the
+same three-class label set (normal, GGO, nodule) and the same underlying
+patch archives as the dictionary learning pipeline, so their results are
+directly comparable to the sparse-code classifiers described in
+Section~\ref{sec:classification}.
+
+Three classifiers were trained on the full 864-dimension raw patch: Logistic
+Regression and a Linear Support Vector Machine (LinearSVC) as linear
+baselines, and XGBoost as a non-linear tree-based
+baseline. The linear models were trained inside a pipeline with a
+MaxAbsScaler step, matching the scaling used for the sparse-code classifiers,
+so that any difference in performance reflects the input representation
+rather than the scaling method. All three classifiers used a balanced class weighting to account for
+the same class imbalance addressed elsewhere in this study, and
+hyperparameters (the regularisation strength $C$ for the linear models; tree
+depth, learning rate and the $L_2$ regularisation weight $\lambda$ for
+XGBoost) were tuned with a grid search evaluated
+under five-fold group cross-validation, grouped by scan so that patches from
+the same scan could not appear in both the training and validation folds of
+a given split. Macro-averaged F1 was used as the grid search's selection
+metric, consistent with the classification metric used throughout this
+study, so that model selection was not dominated by the majority normal
+class.
+
+As a final, more extreme ablation, every patch was also reduced to just two
+summary statistics, its mean and standard deviation HU value, discarding all
+spatial structure. Logistic Regression and a LinearSVC were fitted on this
+two-feature representation to establish how much of the raw-patch
+classifiers' performance could be explained by coarse per-patch intensity
+alone, as opposed to the spatial arrangement of intensities within a patch.
+
+\section{Deep Learning Model Training}
 
 \subsubsection{nnU-Net}
 
