@@ -1,0 +1,6 @@
+accuracy,auroc,average_precision,class_name,dataset,ece,f1,model_name,not_evaluated,precision,recall,score_type,support
+nan,nan,nan,lung_nodule,rexgroundingct,nan,nan,biomed_parse,True,nan,nan,,0
+nan,nan,nan,lung_opacity,rexgroundingct,nan,nan,biomed_parse,True,nan,nan,,0
+nan,nan,nan,consolidation,rexgroundingct,nan,nan,biomed_parse,True,nan,nan,,0
+nan,nan,nan,atelectasis,rexgroundingct,nan,nan,biomed_parse,True,nan,nan,,0
+,nan,nan,macro,rexgroundingct,nan,nan,biomed_parse,,nan,nan,probabilistic,

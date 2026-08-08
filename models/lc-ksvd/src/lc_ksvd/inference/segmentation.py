@@ -150,7 +150,7 @@ def build_class_reconstruction_volumes(
     }
     Only abnormal classes (`class_idx != normal_class_idx`) are included.
     """
-    p = PATCH_SIZE
+    px, py, pz = PATCH_SIZE
     out: Dict[int, Dict[str, np.ndarray]] = {}
 
     for class_idx, cls_name in enumerate(class_order):
@@ -167,9 +167,9 @@ def build_class_reconstruction_volumes(
             X_hat = reconstruct_from_class_dictionary(D, Gamma, class_boundaries, class_idx, patch_mask)
             class_coords = coords[patch_mask]
             for i, (x0, y0, z0) in enumerate(class_coords):
-                cube = X_hat[:, i].reshape(p, p, p)
-                recon_sum[x0:x0 + p, y0:y0 + p, z0:z0 + p] += cube
-                count[x0:x0 + p, y0:y0 + p, z0:z0 + p] += 1
+                cube = X_hat[:, i].reshape(px, py, pz)
+                recon_sum[x0:x0 + px, y0:y0 + py, z0:z0 + pz] += cube
+                count[x0:x0 + px, y0:y0 + py, z0:z0 + pz] += 1
 
         covered = count > 0
         mean_recon = np.zeros(volume_shape, dtype=np.float32)

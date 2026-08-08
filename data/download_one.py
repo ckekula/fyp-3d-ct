@@ -9,7 +9,7 @@ from huggingface_hub import hf_hub_download
 # Paths
 # -------------------------------------------------------
 
-json_path = "/home/chest_ct/code/data/rexgrounding-ct/dataset_2_final.json"
+json_path = "/home/chest_ct/code/data/rexgrounding-ct/dataset_anthima.json"
 
 existing_ct_dir = Path(
     "/home/chest_ct/code/data/data_volumes/dataset/train_fixed"

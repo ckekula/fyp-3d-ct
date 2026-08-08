@@ -1,0 +1,8 @@
+dataset,distance_f1,distance_fn,distance_fp,distance_precision,distance_recall,distance_tp,frac_dice_gt_0.05,frac_dice_gt_0.25,global_hit_rate,group_name,group_type,instance_dice_threshold,instance_f1,instance_fn,instance_fp,instance_precision,instance_recall,instance_tp,mean_dice,mean_iou,model_name,num_cases
+rexgroundingct,nan,93,153,0.0,0.0,0,0.0,0.0,0.0,all,overall,0.2,nan,93,153,0.0,0.0,0,0.0002812035413705596,0.0001415805857212064,merlin,57
+rexgroundingct,nan,19,21,0.0,0.0,0,0.0,0.0,0.0,consolidation,class,0.2,nan,19,21,0.0,0.0,0,0.002124803393632872,0.0010703573715750278,merlin,7
+rexgroundingct,nan,35,47,0.0,0.0,0,0.0,0.0,0.0,lung_opacity,class,0.2,nan,35,47,0.0,0.0,0,4.4539510993007e-05,2.2275251024275516e-05,merlin,13
+rexgroundingct,nan,31,70,0.0,0.0,0,0.0,0.0,0.0,lung_nodule,class,0.2,nan,31,70,0.0,0.0,0,8.998728689270647e-06,4.499816297542785e-06,merlin,29
+rexgroundingct,nan,8,15,0.0,0.0,0,0.0,0.0,0.0,atelectasis,class,0.2,nan,8,15,0.0,0.0,0,3.937516597423148e-05,1.9689856142406102e-05,merlin,8
+rexgroundingct,nan,62,83,0.0,0.0,0,0.0,0.0,0.0,non_focal,morphology,0.2,nan,62,83,0.0,0.0,0,0.0005631299545047517,0.00028355709691000084,merlin,28
+rexgroundingct,nan,31,70,0.0,0.0,0,0.0,0.0,0.0,focal,morphology,0.2,nan,31,70,0.0,0.0,0,8.998728689270647e-06,4.499816297542785e-06,merlin,29

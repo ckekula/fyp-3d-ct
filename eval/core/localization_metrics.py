@@ -160,6 +160,16 @@ def centroid_distance(mask_a, mask_b, spacing):
     return float(np.linalg.norm(com_a - com_b))
 
 
+def _bbox_distance(bbox_a, bbox_b, spacing):
+    """Physical-mm lower bound on the distance between any point in bbox_a
+    and any point in bbox_b (0 if the boxes overlap on that axis)."""
+    dist_sq = 0.0
+    for sl_a, sl_b, sp in zip(bbox_a, bbox_b, spacing):
+        gap = max(sl_a.start - sl_b.stop, sl_b.start - sl_a.stop, 0)
+        dist_sq += (gap * sp) ** 2
+    return dist_sq ** 0.5
+
+
 def match_instances_by_distance(pred_mask, gt_mask, spacing, morphology="non_focal"):
     """
     Distance-based instance matching per ReXGroundingCT's official protocol:
@@ -187,11 +197,38 @@ def match_instances_by_distance(pred_mask, gt_mask, spacing, morphology="non_foc
     threshold = 2.0 * max(spacing)
     use_centroid = morphology == "focal"
 
+    # A noisy soft mask can binarize into hundreds of tiny connected
+    # components; naively running assd()'s full-volume distance_transform_edt
+    # for every (pred, gt) component pair is O(n_pred * n_gt) full-volume
+    # EDTs, which is prohibitively slow. Bounding-box distance is a cheap
+    # lower bound on both centroid distance and ASSD (every point of a
+    # component lies within its bbox, and mean distance >= min distance), so
+    # pairs whose bboxes are already farther apart than threshold can be
+    # skipped without ever computing the expensive per-voxel distance.
+    pred_objects = ndimage.find_objects(pred_labeled)
+    gt_objects = ndimage.find_objects(gt_labeled)
+
     candidates = []
+    pred_component_cache: dict[int, np.ndarray] = {}
+    gt_component_cache: dict[int, np.ndarray] = {}
+
     for p in range(1, n_pred + 1):
-        pm = pred_labeled == p
+        bbox_p = pred_objects[p - 1]
+
         for g in range(1, n_gt + 1):
-            gm = gt_labeled == g
+            bbox_g = gt_objects[g - 1]
+
+            if _bbox_distance(bbox_p, bbox_g, spacing) > threshold:
+                continue
+
+            if p not in pred_component_cache:
+                pred_component_cache[p] = pred_labeled == p
+            if g not in gt_component_cache:
+                gt_component_cache[g] = gt_labeled == g
+
+            pm = pred_component_cache[p]
+            gm = gt_component_cache[g]
+
             d = centroid_distance(pm, gm, spacing) if use_centroid else assd(pm, gm, spacing)
             if not np.isnan(d) and d <= threshold:
                 candidates.append((d, p, g))

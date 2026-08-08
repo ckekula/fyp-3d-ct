@@ -205,6 +205,6 @@ def preprocess(vol: np.ndarray) -> np.ndarray:
     # clipping
     vol = np.clip(vol, LOWER_HU, UPPER_HU)
     # rescale to -1, 1
-    vol = vol / UPPER_HU
+    vol = (vol - LOWER_HU) / (UPPER_HU - LOWER_HU) * 2 - 1  
 
     return vol.astype(np.float32)

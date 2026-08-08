@@ -38,12 +38,12 @@ def extract_patch(
     z0: int,
 ) -> np.ndarray | None:
     """
-    Extract a PATCH_SIZE³ patch with its top-left-front corner at (x0, y0, z0).
+    Extract a PATCH_SIZE (x, y, z) patch with its top-left-front corner at (x0, y0, z0).
     Returns None if the patch would exceed volume bounds.
     """
-    p = PATCH_SIZE
+    px, py, pz = PATCH_SIZE
     H, W, D = volume.shape
-    x1, y1, z1 = x0 + p, y0 + p, z0 + p
+    x1, y1, z1 = x0 + px, y0 + py, z0 + pz
 
     if x1 > H or y1 > W or z1 > D:
         return None

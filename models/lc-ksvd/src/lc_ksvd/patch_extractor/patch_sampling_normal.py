@@ -30,14 +30,15 @@ def is_background(patch: np.ndarray) -> bool:
 
 def _grid_origins(
     volume_shape: tuple[int, int, int],
-    stride: int,
+    stride: tuple[int, int, int],
 ) -> Generator[tuple[int, int, int], None, None]:
     """Yield (x0, y0, z0) top-left-front corners on a regular grid."""
     H, W, D = volume_shape
-    p = PATCH_SIZE
-    for x0 in range(0, H - p + 1, stride):
-        for y0 in range(0, W - p + 1, stride):
-            for z0 in range(0, D - p + 1, stride):
+    px, py, pz = PATCH_SIZE
+    sx, sy, sz = stride
+    for x0 in range(0, H - px + 1, sx):
+        for y0 in range(0, W - py + 1, sy):
+            for z0 in range(0, D - pz + 1, sz):
                 yield x0, y0, z0
 
 

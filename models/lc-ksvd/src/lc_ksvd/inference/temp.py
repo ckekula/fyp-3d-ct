@@ -58,13 +58,14 @@ if gt is not None:
     if gt_slice.any():
         ax.contour(gt_slice, colors="red", linewidths=1.5, levels=[0.5])
 
-# Patch grid boxes at this slice (green) — with stride=PATCH_SIZE, z0 == cz - (cz % PATCH_SIZE)
+# Patch grid boxes at this slice (green) — with stride=PATCH_SIZE, z0 == cz - (cz % PATCH_SIZE[2])
 # is the only offset that can contain cz, so this is now a single non-overlapping mesh.
-slice_boxes = [(x0, y0) for (x0, y0, z0) in coords if z0 <= cz < z0 + PATCH_SIZE]
+_px, _py, _pz = PATCH_SIZE
+slice_boxes = [(x0, y0) for (x0, y0, z0) in coords if z0 <= cz < z0 + _pz]
 print(f"n boxes drawn at z={cz}: {len(slice_boxes)}")
 
 for (x0, y0) in slice_boxes:
-    rect = plt.Rectangle((y0, x0), PATCH_SIZE, PATCH_SIZE,
+    rect = plt.Rectangle((y0, x0), _py, _px,
                           linewidth=0.8, edgecolor="lime", facecolor="none", alpha=0.9)
     ax.add_patch(rect)
 
