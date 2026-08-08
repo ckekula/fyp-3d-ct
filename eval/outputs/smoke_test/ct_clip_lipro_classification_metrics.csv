@@ -1,0 +1,6 @@
+accuracy,auroc,average_precision,class_name,dataset,ece,f1,model_name,not_evaluated,precision,recall,score_type,support
+0.5,nan,nan,lung_nodule,rexgroundingct,0.4926117807626724,0.6666666666666666,ct_clip_lipro,,1.0,0.5,,2
+nan,nan,nan,lung_opacity,rexgroundingct,nan,nan,ct_clip_lipro,True,nan,nan,,0
+nan,nan,nan,consolidation,rexgroundingct,nan,nan,ct_clip_lipro,True,nan,nan,,0
+nan,nan,nan,atelectasis,rexgroundingct,nan,nan,ct_clip_lipro,True,nan,nan,,0
+,nan,nan,macro,rexgroundingct,0.4926117807626724,0.6666666666666666,ct_clip_lipro,,1.0,0.5,probabilistic,

@@ -32,7 +32,7 @@ with open(json_path, "r", encoding="utf-8") as f:
 
 scan_names = [
     item["name"]
-    for item in dataset["test"]
+    for item in dataset["train"]
 ]
 
 print(f"Total scans required: {len(scan_names)}")

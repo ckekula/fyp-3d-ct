@@ -1,0 +1,69 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "biomed_parse",
+  "dataset": "rexgroundingct",
+  "num_samples": 1,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "lung_opacity": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "consolidation": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "atelectasis": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "macro": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "ece": NaN,
+      "score_type": "probabilistic"
+    }
+  }
+}

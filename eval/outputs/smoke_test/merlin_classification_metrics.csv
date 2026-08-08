@@ -1,0 +1,6 @@
+accuracy,auroc,average_precision,class_name,dataset,ece,f1,model_name,not_evaluated,note,precision,recall,score_type,support
+nan,nan,nan,lung_nodule,rexgroundingct,nan,nan,merlin,True,,nan,nan,,0
+nan,nan,nan,lung_opacity,rexgroundingct,nan,nan,merlin,True,,nan,nan,,0
+nan,nan,nan,consolidation,rexgroundingct,nan,nan,merlin,True,,nan,nan,,0
+nan,nan,nan,atelectasis,rexgroundingct,nan,nan,merlin,True,,nan,nan,,0
+,,,macro,rexgroundingct,,nan,merlin,,"auroc/average_precision/ece are N/A: model produces hard 0/1 decisions, not calibrated probabilities, so rank-based metrics are not computable and are excluded from the macro average.",nan,nan,hard_label,

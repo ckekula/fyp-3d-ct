@@ -60,15 +60,15 @@ LOCALIZATION_RUNS = [
     {
         "model": "biomed_parse",
         "predictions_dir": "outputs/biomedparse_rexgroundingct_fixed_cuda",
-        "gt_mask_root": "data/segmentations",
-        "metadata_json": "data/rexgrounding-ct/dataset_2_ultimate.json",
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
         "model_name": "biomed_parse",
     },
     {
         "model": "merlin",
         "predictions_dir": "models/merlin/results_full",
-        "gt_mask_root": "data/segmentations",
-        "metadata_json": "data/rexgrounding-ct/dataset_2_ultimate.json",
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
         "model_name": "merlin",
     },
     {
@@ -77,8 +77,8 @@ LOCALIZATION_RUNS = [
         # Path is a placeholder; this run is skipped until that exists.
         "model": "medsam2",
         "predictions_dir": "outputs/medsam2_rexgroundingct",
-        "gt_mask_root": "data/segmentations",
-        "metadata_json": "data/rexgrounding-ct/dataset_2_ultimate.json",
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
         "model_name": "medsam2",
     },
     {
@@ -88,8 +88,8 @@ LOCALIZATION_RUNS = [
         # (see LCKSVDLocalizationAdapter's docstring). Path is a placeholder.
         "model": "lc_ksvd",
         "predictions_dir": "models/lc-ksvd/src/lc_ksvd/outputs/results/segmentation_test",
-        "gt_mask_root": "data/segmentations",
-        "metadata_json": None,
+        "gt_mask_root": "data/segmentations/segmentations",
+        "metadata_json": "data/rexgrounding-ct/dataset_anthima.json",
         "model_name": "lc_ksvd",
     },
 ]
