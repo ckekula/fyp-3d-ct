@@ -2,12 +2,20 @@
 
 Figure \ref{fig:methodology} gives a visual overview of the full framework presented in this study.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/OverallMethodologyDiagram.jpeg}
     \caption{Overall Methodology Diagram.}
     \label{fig:methodology}
 \end{figure}
+
+\small
+The scan, its mask and JSON metadata are loaded and resampled to a common voxel spacing, followed by lung
+segmentation and normalizing, before patch extraction splits the result into train and test sets. Frozen K-SVD,
+LC-KSVD and FDDL then train a dictionary from the train set, which is used to sparse-code both the train and test
+patches. A linear classifier turns the train sparse codes into predictions, which combine with the dictionary to
+form a class-specific sparse code used for pixel-level reconstruction.
+\normalsize
 
 \section{Data Acquisition}
 
@@ -41,7 +49,7 @@ segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct
 project, and it provides per-finding voxel-level segmentation masks for a subset of the CT-RATE dataset.
 Figure \ref{fig:rexgroundingct_example} shows an example CT scan with ReXGroundingCT mask overlaid over a scan from CT-RATE.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{Images/Chapter 3/ct-mask.jpeg}
     \caption{Example CT scan with ReXGroundingCT mask overlaid over a scan from CT-RATE.}
@@ -58,17 +66,17 @@ a validation cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{ll}
+    \begin{tabular}{lll l}
         \hline
-        Medical material & Lung nodule \\
-        Arterial wall calcification & Lung opacity \\
-        Cardiomegaly & Pulmonary fibrotic sequela \\
-        Pericardial effusion & Pleural effusion \\
-        Coronary artery wall calcification & Mosaic attenuation pattern \\
-        Hiatal hernia & Peribronchial thickening \\
-        Lymphadenopathy & Consolidation \\
-        Emphysema & Bronchiectasis \\
-        Atelectasis & Interlobular septal thickening \\
+        1 & Medical material & 10 & Lung nodule \\
+        2 & Arterial wall calcification & 11 & Lung opacity \\
+        3 & Cardiomegaly & 12 & Pulmonary fibrotic sequela \\
+        4 & Pericardial effusion & 13 & Pleural effusion \\
+        5 & Coronary artery wall calcification & 14 & Mosaic attenuation pattern \\
+        6 & Hiatal hernia & 15 & Peribronchial thickening \\
+        7 & Lymphadenopathy & 16 & Consolidation \\
+        8 & Emphysema & 17 & Bronchiectasis \\
+        9 & Atelectasis & 18 & Interlobular septal thickening \\
         \hline
     \end{tabular}
     \caption{List of abnormalities in the CT-RATE dataset.}
@@ -174,7 +182,7 @@ For the initial phase of our study, we decided to narrow down the target abnorma
 were quite broad.
 
 We also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
-Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ``Opacities", which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
 
@@ -182,7 +190,7 @@ Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding (s
 This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
 Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
 frequently present with visible air bronchograms within the affected area.
-This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as "consolidation or atelectasis".
+This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as ``consolidation or atelectasis".
 
 Their categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
 radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
@@ -402,12 +410,20 @@ Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipe
 It consists of a shared loading pipeline for both CT volumes and their corresponding segmentation masks, followed by
 resampling to a common voxel spacing, lung segmentation, and intensity normalization.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/loading_volumescan.png}
     \caption{Shared loading pipeline for CT volumes and finding masks}
     \label{fig:loading-diagram}
 \end{figure}
+
+
+The volume and its corresponding mask are loaded via NiBabel, with voxel spacing extracted from the NIfTI
+header. If the spacing does not already match the target, the data is resampled using trilinear
+interpolation for the continuous-intensity volume and nearest-neighbour interpolation for the mask, to preserve
+its discrete labels. The volume then undergoes preprocessing: lung segmentation, HU clipping to $[-1000,500]$,
+and min-max normalization, while the mask skips this step and is returned directly.
+
 
 \subsection{Resampling}
 \label{subsec:resampling}
@@ -458,7 +474,7 @@ nearest-neighbour interpolation for the segmentation masks. The zoom factors wer
 This was further confirmed by analysing the distribution of voxel spacings
 across the dataset. Figure \ref{fig:spacing-distribution} shows this distribution along each axis.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/spacing_distribution.png}
     \caption{Distribution of voxel spacings across the dataset}
@@ -533,7 +549,7 @@ it proved noticeably more stable when abnormal tissue was present. Consolidation
 and GGO regions inside the lung boundary appeared to retain on manual inspection.
 Figure \ref{fig:lungmask-segmentation} shows a LungMask segmentation result on a scan with GGO and consolidation.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask-segmentation.png}
     \caption{LungMask segmentation result on a scan with GGO and consolidation.}
@@ -559,7 +575,7 @@ while the 200 HU upper limit was decided using a histogram analysis of the datas
 distribution of HU values across the dataset inside the abnormality masks. For Normalization, we considered fixed Min-Max scaling
 to $[-1,1]$ following the same approach used in the CT-CLIP study \cite{hamamci2024ctclip}.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/HU distribution of the train patches that feed to the ml classifiers.jpeg}
     \caption{Distribution of HU values across the dataset inside the abnormality masks.}
@@ -639,13 +655,22 @@ normal tissue or a target abnormality. Figure~\ref{fig:patch-extraction-diagram}
     within its corresponding mask region reached a threshold of 50\%.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patchExtraction.png}
     \caption{Patch extraction workflow.}
     \label{fig:patch-extraction-diagram}
 \end{figure}
 
+
+The scan and its ground-truth mask are loaded, and the case is checked for whether a finding mask is present.
+Normal lung volumes are covered with a regular sampling grid, while abnormal scans instead have a bounding box
+generated around the lesion mask.Patches are then extracted by sliding a window over the relevant region, with
+each candidate filtered against background and lesion thresholds patches that fail are discarded, while
+those that pass are added to the patch matrix.
+
+
+\medskip
 Each extracted patch is subsequently flattened into a vector representation before being handed to
 the dictionary learning algorithms.
 Patches extracted this way were saved per scan and per class as compressed archives containing the flattened feature matrix,
