@@ -361,3 +361,19 @@ lung tissue.
 
 \section{Chapter Summary}
 % One paragraph tying the comparison back to the aims stated in Chapter 1
+
+\section{Qualitative Analysis}
+
+The detailed radiologist review, questionnaire and verbatim responses are presented in this section. 
+The radiologist completed the following questionnaire during the review session. Where the reviewer provided a clear response,
+the selected answer is shown below; verbatim free-text comments are reproduced in the following subsection.
+
+
+\subsection{Radiologist Conclusion and Implications}
+
+The consulting radiologist emphasised two practical points: (1) the dataset's ground-truth masks are sometimes annotated conservatively as
+broader regions that include adjacent tissue, and (2) the model's predicted masks were, in many inspected cases, more tightly localised to the
+visually apparent abnormality. Taken together, these observations suggest that simple overlap metrics (Dice/IoU against the provided masks)
+may under-estimate clinically relevant localisation performance when the reference annotations are intentionally broad. We therefore report the
+qualitative reviewer finding as an important complement to the quantitative metrics and recommend future work include either more precise
+annotations or a radiologist-driven refinement loop to produce a higher-fidelity reference set.
