@@ -58,17 +58,17 @@ a validation cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{ll}
+    \begin{tabular}{lll l}
         \hline
-        Medical material & Lung nodule \\
-        Arterial wall calcification & Lung opacity \\
-        Cardiomegaly & Pulmonary fibrotic sequela \\
-        Pericardial effusion & Pleural effusion \\
-        Coronary artery wall calcification & Mosaic attenuation pattern \\
-        Hiatal hernia & Peribronchial thickening \\
-        Lymphadenopathy & Consolidation \\
-        Emphysema & Bronchiectasis \\
-        Atelectasis & Interlobular septal thickening \\
+        1 & Medical material & 10 & Lung nodule \\
+        2 & Arterial wall calcification & 11 & Lung opacity \\
+        3 & Cardiomegaly & 12 & Pulmonary fibrotic sequela \\
+        4 & Pericardial effusion & 13 & Pleural effusion \\
+        5 & Coronary artery wall calcification & 14 & Mosaic attenuation pattern \\
+        6 & Hiatal hernia & 15 & Peribronchial thickening \\
+        7 & Lymphadenopathy & 16 & Consolidation \\
+        8 & Emphysema & 17 & Bronchiectasis \\
+        9 & Atelectasis & 18 & Interlobular septal thickening \\
         \hline
     \end{tabular}
     \caption{List of abnormalities in the CT-RATE dataset.}
@@ -174,7 +174,7 @@ For the initial phase of our study, we decided to narrow down the target abnorma
 were quite broad.
 
 We also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
-Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ``Opacities", which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
 
@@ -182,7 +182,7 @@ Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding (s
 This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
 Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
 frequently present with visible air bronchograms within the affected area.
-This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as "consolidation or atelectasis".
+This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as ``consolidation or atelectasis".
 
 Their categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
 radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
