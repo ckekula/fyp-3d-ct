@@ -66,7 +66,7 @@ def get_ct_rate_path(scan_name):
     # remove series suffix for patient folder
     patient_folder = series_folder.rsplit("_", 1)[0]
 
-    split = "train" if stem.startswith("train") else "valid"
+    split = "train_fixed" if stem.startswith("train") else "valid_fixed"
 
     return (
         f"dataset/{split}/"
@@ -112,8 +112,7 @@ for scan_name in scan_names:
             repo_id=repo_id,
             repo_type="dataset",
             filename=hf_path,
-            local_dir="ct_rate_cache",
-            resume_download=True
+            local_dir="ct_rate_cache"
         )
 
 
