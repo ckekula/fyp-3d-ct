@@ -376,18 +376,29 @@ class BiomedParseLocalizationAdapter:
         ]
 
         if not matching_indices:
-            return np.zeros(mask.shape[1:], dtype=np.float32)
-
-        if mask.shape[0] >= len(finding_texts) and mask.shape[0] > 1:
-            class_mask = np.any(mask[matching_indices] > 0, axis=0)
-            return class_mask.astype(np.float32)
-
-        if mask.shape[-1] >= len(finding_texts) and mask.shape[-1] > 1:
+            class_mask_xyz = np.zeros(mask.shape[1:], dtype=np.float32)
+        elif mask.shape[0] >= len(finding_texts) and mask.shape[0] > 1:
+            class_mask_xyz = np.any(mask[matching_indices] > 0, axis=0)
+        elif mask.shape[-1] >= len(finding_texts) and mask.shape[-1] > 1:
             moved = np.moveaxis(mask, -1, 0)
-            class_mask = np.any(moved[matching_indices] > 0, axis=0)
-            return class_mask.astype(np.float32)
+            class_mask_xyz = np.any(moved[matching_indices] > 0, axis=0)
+        else:
+            class_mask_xyz = (mask > 0).any(axis=0)
 
-        return (mask > 0).any(axis=0).astype(np.float32)
+        class_mask_xyz = np.asarray(class_mask_xyz, dtype=np.float32)
+
+        # Every branch above drops the channel axis but otherwise leaves the
+        # file's native XYZ axis order untouched. The ndim==3 path in
+        # _load_mask_file() (used whenever there's no channel axis to
+        # extract) transposes to ZYX before returning, and every pred_mask
+        # this gets diffed against is in ZYX -- without the same transpose
+        # here, a 4D-derived GT mask silently compares against the wrong
+        # axes (either a shape mismatch that gets skipped, or worse, a
+        # coincidental shape match with scrambled voxel correspondence).
+        if class_mask_xyz.ndim == 3:
+            return np.transpose(class_mask_xyz, (2, 0, 1))
+
+        return class_mask_xyz
 
     def _load_mask_file(self, path: Path) -> np.ndarray:
         suffixes = "".join(path.suffixes)

@@ -41,6 +41,7 @@ def load_localization_samples(
     gt_mask_root: Path,
     metadata_json: Path | None,
     model_name: str,
+    class_name: str | None = None,
 ):
     model = normalize_class_name(model)
 
@@ -89,11 +90,19 @@ def load_localization_samples(
         return adapter.load()
 
     if model == "nnunet":
-        from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter  # type: ignore
+        from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter
+
+        if not class_name:
+            raise ValueError(
+                "--class-name is required for model=nnunet: each nnU-Net "
+                "checkpoint is a single-class binary segmenter, so the "
+                "predictions directory doesn't carry a class label."
+            )
 
         adapter = NNUNetLocalizationAdapter(
             output_dir=predictions_dir,
             gt_mask_root=gt_mask_root,
+            class_name=class_name,
             metadata_json=metadata_json,
             model_name=model_name,
         )
@@ -246,6 +255,14 @@ def parse_args() -> argparse.Namespace:
         help="Normalize soft masks to [0, 1] before thresholding.",
     )
 
+    parser.add_argument(
+        "--class-name",
+        type=str,
+        default=None,
+        help="Finding class this run evaluates (required for model=nnunet, "
+        "since one nnU-Net checkpoint is a single-class binary segmenter).",
+    )
+
     return parser.parse_args()
 
 
@@ -262,6 +279,7 @@ def main() -> None:
         gt_mask_root=args.gt_mask_root,
         metadata_json=args.metadata_json,
         model_name=model_name,
+        class_name=args.class_name,
     )
 
     if not samples:
