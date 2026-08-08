@@ -21,7 +21,7 @@ the selected lung volumes were sampled into 3D patches that feed the Dictionary 
 
 \subsection{Dataset Selection}
 
-Multi-abnormality classification and segmentation for 3D chest CT images required a dataset that included multiple CT abnormalities
+Multi-abnormality classification and segmentation for 3D chest CT images requires a dataset that includes multiple CT abnormalities
 and their corresponding voxel-level annotations.
 Only three datasets fulfilled the former requirement:
 
@@ -33,8 +33,9 @@ Only three datasets fulfilled the former requirement:
 
 Of these, only CT-RATE and RadGenome-Chest CT were publicly available, while Rad-ChestCT only had an initial release of 3,630 chest
 CT scans (approximately 10\% of the dataset) and the files were restricted to the public.
-Rad-ChestCT was also used as the external validation set for training the CT-CLIP model, which was trained on the CT-RATE dataset.
-RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-level masks and 665K grounded text reports for
+Rad-ChestCT was also used as the external validation set for training the CT-CLIP model, the flagship contrastive model was
+trained on the CT-RATE dataset \cite{hamamci2024ctclip}.
+RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-level masks and 665,000 grounded text reports for
 vision-language AI models. However, neither of these provides the necessary spatially localized annotations to train a 3D lung
 segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct} was released very close to the start of this
 project, and it provides per-finding voxel-level segmentation masks for a subset of the CT-RATE dataset.
@@ -86,11 +87,11 @@ from four primary scanner manufacturers:
 
 \subsubsection{ReXGrounding-CT Dataset}
 
-ReXGroundingCT \cite{rajpurkar2024rexgroundingct}, is the first publicly available dataset linking voxel-level
-3D segmentation masks to free-text findings in chest CT scans in NifTI fromat, hosted on \href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}{Hugging Face}.
+ReXGroundingCT, is the first publicly available dataset linking voxel-level 3D segmentation masks to free-text findings in chest
+CT scans in NifTI fromat \cite{rajpurkar2024rexgroundingct}, hosted on \href{https://huggingface.co/datasets/ibrahimhamamci/ReXGroundingCT}{Hugging Face}.
 It includes 3,142 non-contrast chest CT studies derived from the CT-RATE dataset organised as a train set of 2,992 scans, a valid set of 50 scans and a held-out
 private test set of 100 studies. This test set is hosted on RexRank \cite{zhang2024rexrankpublicleaderboardaipowered}, a public leaderboard and challenge for
-assessing AI-powered radiology report generation. ReXGroundingCT enables grounding for 14 abnormality categories with 79\% of the annotated findings represent
+assessing AI-powered radiology report generation. ReXGroundingCT enables grounding for 14 abnormality categories where 79\% of the annotated findings represent
 focal abnormalities such as nodules or localized consolidations, while 21\% represent diffuse or infiltrative patterns. Table \ref{tab:rex-abnormalities}
 shows the list of abnormalities in the ReXGroundingCT dataset, divided into typically focal and typically non-focal categories.
 
@@ -130,7 +131,7 @@ Other non-focal findings
 \end{tabular}
 \end{table}
 
-A segmentation mask is 4-Dimensional ($F \times H \times W \times D$) where F is the number of findings. Scans feature HxW resolutions primarily at 512x512
+A segmentation mask is 4-Dimensional ($F \times H \times W \times D$) where F is the number of findings. Scans feature HxW resolutions primarily at $512\times512$
 pixels with slice counts spanning 104 to 1,005 slices. Background Pixels are represented by a value of 0. For any given channel along
 the F dimension, each unique non-zero integer represents a distinct entity instance belonging to that finding.
 
@@ -161,7 +162,7 @@ intervention, making them good candidates for a proof-of-concept CAD system:
 
 \begin{itemize}
     \item Ground-glass opacity
-    \item Pulmonary nodule
+    \item Pulmonary nodules/masses
     \item Consolidation
     \item Bronchiectasis
     \item Emphysema
@@ -172,12 +173,12 @@ their typical appearance in CT scans, and the challenges associated with their d
 For the initial phase of our study, we decided to narrow down the target abnormalities further, as the radiologist's recommendations
 were quite broad.
 
-However, we also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
+We also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
 Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called "Opacities", which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
 
-Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding.
+Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding (see Table \ref{tab:rex-abnormalities}).
 This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
 Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
 frequently present with visible air bronchograms within the affected area.
@@ -185,10 +186,11 @@ This is further confirmed by the ReXGrounding-CT free-text reports, which descri
 
 Their categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
 radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
-However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical taxonomy, with 404 representative abnormal
-findings across all body regions. Table \ref{tab:omniabnorm-tax} shows their abnormalities listed under the "Lung" category.
+However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical taxonomy of CT abnormalities, with 404
+representative abnormal findings across all body regions. This study separates Atelectases and Consolidation as distinct categories.
+Table \ref{tab:omniabnorm-tax} shows the taxonomy of the "Lung" category.
 
-\begin{table}[ht]
+\begin{table}
     \centering
     \caption{Pulmonary abnormality taxonomy in OmniAbnorm-CT.}
     \label{tab:omniabnorm-tax}
@@ -211,14 +213,13 @@ findings across all body regions. Table \ref{tab:omniabnorm-tax} shows their abn
     \end{tabular}
 \end{table}
 
-Unlike ReXGrounding-CT, this study separates Atelectasis and Consolidation into two distinct categories even though their taxonomy
-was also developed by 7 senior radiologists with at least 10-year experience \cite{zhao2026rethinking}.
-Through consultation with our own radiologist, it was decided that Atelectasis and Consolidation should be distinct categories as
-they represent different pathological processes as noted in \ref{subsec:abnormalities}.
+This taxonomy was developed by 7 senior radiologists with at least 10-year experience \cite{zhao2026rethinking}.
+Through consultation with our own radiologist, it was confirmed that Atelectasis and Consolidation should be distinct categories
+as they represent different pathological processes as noted in Section~\ref{subsec:abnormalities}.
 Because there are practical constraints in dividing the already-grouped Atelectasis/Consolidation category in ReXGrounding-CT,
-we decided to remove them from the initial phase of the study.
+we decided consider it as a limitation and remove them from the initial phase of the study.
 To further reduce the target abnormalities, we considered the representation of each class in our dataset which is discussed in
-section \ref{subsec:eda}. We finally decided on 2 target abnormalities for the initial phase of the study:
+Section \ref{subsec:eda}. We finally decided on 2 target abnormalities for the initial phase of the study:
 
 \begin{enumerate}
     \item GGO
@@ -242,7 +243,7 @@ of the 14 finding categories in ReXGroundingCT.
 \begin{table}[htbp]
 \centering
 \caption[Distribution of Findings and Scans Across ReXGroundingCT Categories]
-{Distribution of Findings and Scans Across ReXGroundingCT Categories. Categories starting with 1 are typically non-focal,
+{Distribution of findings and scans across ReXGroundingCT Categories. Categories starting with 1 are typically non-focal,
 while those starting with 2 are typically focal.}
 \label{tab:rex_category_distribution}
 \begin{tabularx}{\textwidth}{clXX}
@@ -276,9 +277,9 @@ finding actually is, since this has a direct impact on how patches would later n
 lesion. For each abnormality annotation in the dataset, the number of foreground voxels was obtained from the metadata.
 Table \ref{tab:lesion_voxel_stats} summarises the resulting distributions.
 
-\begin{table}[htbp]
+\begin{table}
 \centering
-\caption{Pixel-count statistics of GGO (2c) and Nodule/mass (2d) annotations.}
+\caption{Voxel-count statistics of target abnormality annotations.}
 \label{tab:lesion_voxel_stats}
 \begin{tabularx}{\textwidth}{lXXXXXXX}
 \hline
@@ -293,9 +294,10 @@ Table \ref{tab:lesion_voxel_stats} summarises the resulting distributions.
 \end{tabularx}
 \end{table}
 
-The two categories turned out to have very different, heavily right-skewed size profiles. The median GGO
-annotation covers 19,682 voxels, roughly 47 times larger than the median nodule/mass annotation at just
-417 voxels. Both distributions also have a long tail of much larger outliers.
+While the first four categories have similar size distributions, the 2d category (nodule/mass) is significantly smaller.
+The 2d (nodule/mass) category shows a clear size disparity with the rest of the abnormalities
+which all have around 20,000 voxels, roughly 47 times larger than the median nodule/mass annotation at just
+417 voxels. All categories have heavily right-skewed size profiles with long tails of much larger outliers.
 Figure \ref{fig:voxel-dist} shows a box plot of voxel distributions for both classes.
 
 \begin{figure}[H]
@@ -305,25 +307,22 @@ Figure \ref{fig:voxel-dist} shows a box plot of voxel distributions for both cla
     \label{fig:voxel-dist}
 \end{figure}
 
-The 2d (nodule/mass) category with a median size of 417 voxels, shows a clear size disparity with the rest of the abnormalities
-which all have around 20,000 voxels. This becomes a concern when deciding on a fixed patch size for the extraction phasae.
+The size disparity of the 2d category becomes a concern when deciding on a fixed patch size for the extraction phase.
 Even a patch size of $16\times16\times16$ (4,096 voxels) is likely to be mostly lesion tissue for abnormalities like GGO,
 whereas a nodule is frequently small enough that a patch covering its bounding box will contain a substantial amount of
 surrounding normal parenchyma. This is somewhat offset by the use of a 50\% lesion-voxel-fraction threshold during patch extraction
-(Section \ref{subsec:patch-extraction}), but still results in more than 75\% of nodule patches being discarded, even when using
-a patch size is reduced to $12\times12\times12$ (1,728 voxels). This is a limitation of our study and may discard small nodules and only include larger masses.
+(see Section \ref{subsec:patch-extraction}), but still results in more than 75\% of nodule patches being discarded, even when using
+a patch size is reduced to $12\times12\times12$ (1,728 voxels). This is another limitation of our study and may discard small
+nodules and only include larger masses which are typically larger than 30mm.
 
 \subsection{CT Volume and Mask Loading}
 
 Each CT scan is stored as a 3D NIfTI volume of dimensions $ 512 \times 512 \times N_z$ with voxel spacing
 $\Delta_x, \Delta_y, \Delta_z$ mm and 16-bit signed integer intensities representing Hounsfield Units (HU).
-The corresponding segmentation mask is stored as an 8-bit unsigned integer 4D NIfTI volume with matching spatial
+The corresponding segmentation mask is stored as an 8-bit unsigned integer 4D NIfTI volume with matching 3D spatial
 dimensions plus an additional singleton channel dimension containing integer label values.
 
-Each NifTI file contains a header with metadata describing the volume's attributes. Table \ref{tab:nifti-header} lists the
-relevant header fields used in this study.
-
-\begin{table}[ht]
+\begin{table}
 \centering
 \caption{NIfTI header attributes for the CT volumes and corresponding segmentation masks.}
 \label{tab:nifti-header}
@@ -364,6 +363,8 @@ $(0,0,0)$ \\ \hline
 \end{tabular}
 \end{table}
 
+Each NifTI file contains a header with metadata describing the volume's attributes. Table \ref{tab:nifti-header} lists the
+relevant header fields used in this study.
 The CT volumes preserve the scanner-space affine transformation, which maps voxel indices to physical coordinates in millimetres.
 In general, the affine matrix can be represented as:
 
@@ -398,8 +399,10 @@ I(x,y,z) \in \mathbb{R}^{H \times W \times D}
 \section{Data Preprocessing}
 
 Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipeline used in this study.
+It consists of a shared loading pipeline for both CT volumes and their corresponding segmentation masks, followed by
+resampling to a common voxel spacing, lung segmentation, and intensity normalization.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 3/loading_volumescan.png}
     \caption{Shared loading pipeline for CT volumes and finding masks}
@@ -409,15 +412,39 @@ Figure~\ref{fig:loading-diagram} summarises the overall data pre-processing pipe
 \subsection{Resampling}
 \label{subsec:resampling}
 
-Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common isotropic voxel
-spacing to correct for variable scanner resolutions. We picked the same resampling target spacing as the CT-CLIP model, since 
-it was trained on the volumes from the same dataset as ours \cite{hamamci2024ctclip}. The target spacing was set to
+Due to the variation in voxel spacing across the CT-RATE dataset, all volumes had to be resampled to a common voxel
+spacing to correct for variable scanner resolutions. We chose the same anisotropic target spacing used by the pre-processing
+pipeline of the CT-CLIP model, since it was trained on the volumes from the same dataset as ours. The target spacing was set to
 $0.75 \times 0.75 \times 1.5$ mm, in the $x$, $y$ and $z$ directions respectively.
 
-An in-plane (X-Y) resolution of 0.75 mm is small enough to capture subtle pulmonary
-nodules without losing data to excessive downsampling. Furthermore, chest CTs naturally have much higher in-plane resolution
-than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while compressing file sizes by 50\%
-compared to isotropic 0.75 mm 3D grids.
+An in-plane (X-Y) resolution of 0.75 mm preserves relatively fine spatial detail and limits the loss of small structures such as certain pulmonary
+nodules due to excessive downsampling. Furthermore, chest CTs naturally often have higher in-plane resolution
+than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while reduces the number of voxels by approximately 50\%
+compared to isotropic 0.75 mm 3D grids:
+
+\[
+V_{\text{voxel, iso}}
+= 0.75 \times 0.75 \times 0.75
+= 0.421875\ \text{mm}^3,
+\]
+
+\[
+V_{\text{voxel, anisotropic}}
+= 0.75 \times 0.75 \times 1.5
+= 0.84375\ \text{mm}^3.
+\]
+
+\[
+\frac{N_{\text{anisotropic}}}{N_{\text{iso}}}
+=
+\frac{V_{\text{voxel, iso}}}
+     {V_{\text{voxel, anisotropic}}}
+=
+\frac{0.421875}{0.84375}
+=
+0.5.
+\]
+
 
 The resampling was performed using trilinear interpolation for the CT volumes and
 nearest-neighbour interpolation for the segmentation masks. The zoom factors were calculated as:
@@ -440,8 +467,8 @@ across the dataset. Figure \ref{fig:spacing-distribution} shows this distributio
 
 After resampling, all volumes and masks were resized to a fixed matrix size of $ 480 \times 480 \times 240 $ voxels across the
 coronal, sagittal and axial axes respectively, using center-cropping for oversized volumes or padding for undersized volumes.
-This yields a field of view of $360 \times 360 \times 360$ mm, which spans the physical volume of a human thorax, ensuring
-critical boundaries are not cut off during cropping.
+This follows the same approach as the CT-CLIP model, yielding a field of view of $360 \times 360 \times 360$ mm, which spans
+the physical volume of a human thorax, ensuring that critical boundaries are not cut off during cropping.
 
 \subsection{Lung Segmentation}
 
@@ -449,7 +476,7 @@ Passing the whole volume to the model would include information on bones, soft t
 computational overhead without contributing anything useful to the models learning process, or worse, risks letting the model
 pick up spurious patterns unrelated to lung pathology.
 Therefore, before any patches could be extracted, the raw volumes had to be reduced to just the lung region.
-We explored three different approaches to isolating the lungs were tried over the course of the project.
+We explored three different approaches to isolate the lungs.
 
 \subsubsection{Classical Image Processing}
 
@@ -464,16 +491,13 @@ M_{thresh}(x,y,z) = \begin{cases} 1, & -900 \leq I(x,y,z) \leq -200 \\ 0, & \tex
 
 This crude threshold mask is noisy on its own, so it was cleaned up with a short
 sequence of morphological steps applied slice-by-slice and volume-wise. Border-connected regions
-were removed on each axial slice with \texttt{clear\_border} (mainly to drop the
-surrounding air and imaging-table artefacts that also fall inside the HU window),
-after which only the two largest connected components were kept under the
-assumption that these correspond to the left and right lung:
-
-A 3D binary closing (a $3\times3\times3$ connectivity structure, 2 iterations) was
+were removed on each axial slice, mainly to drop the
+surrounding air and imaging-table artefacts that also fall inside the HU window.
+Afterwards, only the two largest connected components were kept under the
+assumption that these correspond to the left and right lung.
+A 3D binary closing (a $3\times3\times3$ connectivity structure with 2 iterations) was
 then used to smooth the boundary and reconnect thin gaps, followed by
-binary hole-filling to plug any internal cavities left inside the mask --
-these two steps are exactly what a lung mask needs, since vessels, bronchi and
-small nodules would otherwise show up as holes in an otherwise solid lung region.
+binary hole-filling to plug any internal cavities left inside the mask.
 
 On visibly normal scans, this five-stage pipeline produced reasonable lung masks when checked manually. However,
 Consolidation and areas of lung opacity raise the local tissue density towards that of soft tissue, so the
@@ -483,11 +507,21 @@ from purely intensity-based segmentation and towards a learned segmentation mode
 
 \subsubsection{Deep Learning-based Segmentation}
 
-The method that was ultimately adopted is the LungMask library, which uses the  U-net (R231) model which is pretrained on diverse
+TOTALSEGMENTOR
+
+The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
 it proved noticeably more stable when abnormal tissue was present. Consolidation
 and GGO regions inside the lung boundary appeared to retain on manual inspection.
+Figure \ref{fig:lungmask-segmentation} shows a LungMask segmentation result on a scan with GGO and consolidation.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask_segmentation.png}
+    \caption{LungMask segmentation result on a scan with GGO and consolidation.}
+    \label{fig:lungmask-segmentation}
+\end{figure}
 
 Given a CT volume, LungMask returns a label map with three values: 0 for
 background, 1 for the left lung and 2 for the right lung. This was converted into a

@@ -7,9 +7,9 @@ to diagnosis. This also hinders the ability to benchmark CAD approaches across m
 to address these challenges through two contributions: (i) We implement a unified CAD framework that uses inherently interpretable
 dictionary learning methods, where detected abnormalities can be represented as a linear combination of “atoms”, allowing
 predictions to be projected back to relevant anatomical structures in the CT volume. (ii) We develop an open-source
-evaluation framework to benchmark SotA models across three axes: classification, segmentation and explainability. We used a subset
+evaluation framework to benchmark SotA models across three axes: classification, segmentation and explainability. We use a subset
 of the ReXGroundingCT dataset which provides voxel-level 3D segmentation masks corresponding to volumetric scans in the CT-RATE
-dataset. Based on expert radiologist recommendation and dataset availability, pre-processed volumes are patch-sampled to extract
+dataset. Based on expert radiologist recommendation and dataset availability, pre-processed volumes are patch-sampled for
 normal lung parenchyma and two selected pulmonary abnormalities. Using the proposed benchmarking framework, we evaluate four
-dictionary learning approaches against five SotA models, where our approach achieved 82\% classification F1 score and 37\% global
+dictionary learning approaches against five SotA models, where our approach achieved 85\% classification F1 score and 37\% global
 hit-rate for segmentation, while providing clinically interpretable voxel-level localizations without the need for post-hoc explanations.
