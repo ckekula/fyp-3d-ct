@@ -532,14 +532,15 @@ LungMask is built on top of SimpleITK, which stores
 volumes in $(z,y,x)$ order rather than the standard $(x,y,z)$ layout. So,
 each resampled numpy array was transposed accordingly before being ingesting the image.
 The resulting image object was then resampled with the same spacing used in section \ref{subsec:resampling},
-Then it was passed to the LungMask inferer described above, with the resulting
+Then, it was passed to the LungMask inferer described above, with the resulting
 label map transposed back to the original $(x,y,z)$ ordering before the mask was applied.
 
 \subsection{Normalization}
 
-After lung segmentation, the voxel intensities were clipped to a fixed window of $[-1000, 400]$ HU. $-1,000$ HU corresponds to air,
-while the 400 HU upper limit was decided using histogram analysis of the dataset. Figure \ref{fig:hu-histogram} shows the
-distribution of HU values across the dataset inside the abnormality masks.
+After lung segmentation, the voxel intensities were clipped to a fixed window of $[-1000, 200]$ HU. $-1,000$ HU corresponds to air,
+while the 200 HU upper limit was decided using a histogram analysis of the dataset. Figure \ref{fig:hu-histogram} shows the
+distribution of HU values across the dataset inside the abnormality masks. For Normalization, we considered fixed Min-Max scaling
+to $[-1,1]$ following the same approach used in the CT-CLIP study \cite{hamamci2024ctclip}.
 
 \begin{figure}
     \centering
@@ -548,22 +549,181 @@ distribution of HU values across the dataset inside the abnormality masks.
     \label{fig:hu-histogram}
 \end{figure}
 
-Two normalisation strategies were considered for the final rescaling step. The first was fixed Min-Max scaling to $[-1,1]$
-following the same approach used in the CT-CLIP study \cite{hamamci2024ctclip}. The second was the approach
-used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image}, where each patch
-has its local mean subtracted before dictionary learning, and the mean-subtracted patch is then divided by its own $L_2$ norm
-before being passed to OMP. This is so that the SVD step used to update dictionary atoms is not dominated by a constant background
-offset, and the $L_2$ norm is removed so that every patch contributes to the dictionary update on a comparable scale, no matter
-how much contrast it originally had.
+\subsection{Patch Extraction}
+\label{subsec:patch-extraction}
 
-However, the latter approach isn't applicable, atleast directly, because of what the HU value represents physically in a CT scan.
+Feeding entire volumes directly into the dictionary learning stage is not practical as a single scan can
+contain tens of millions of voxels. Therefore, the final step was
+to break each volume down into smaller 3D patches. This patch-based sampling provides the following benefits:
+
+\begin{itemize}
+    \item Allows the model to focus on local structural patterns rather than whole-organ context.
+    \item Reduces memory requirements by limiting the number of voxels processed at once.
+    \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
+\end{itemize}
+
+\noindent There are 3 competing forces influencing the patch size selection:
+\begin{enumerate}
+    \item Size of Nodules -- Patch size must be lowered to capture smaller nodules.
+    \item Size of Dictionary -- Patch size must be lowered to keep the dictionary size manageable.
+    \item Loss of context -- Patch size must be increased to capture more context around the abnormality.
+    \item Dataset variability -- Smaller patch sizes allow for more patches to be sampled from the same volume.
+\end{enumerate}
+
+Furthermore, since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
+A similar approach was used for healthy tissue, where a maximum of 50\% of the voxels in a patch were allowed to be background
+to avoid patches sampled completely from outside the lung parenchyma.
+
+At 50\% of the median nodule size, we considered multiple patch sizes that would include a sufficient number of 
+patches from the nodule/mass category. This distribution is shown in table \ref{tab:patch-size-comparison}.
+Since th Z-axis spacing is double that of the X and Y axes, the patch size along the Z-axis was halved to maintain a cubic patch
+volume. The influence of the size of the dictionary is discussed in Section~\ref{sec:dictionary-learning}.
+The loss of context stems from the fact that smaller patch sizes may be unable to capture the surrounding tissue context of the
+abnormality, which is important for classification. This is something that is not easily quantifiable, and is a limitation of our study.
+The final tradeoff is dataset variability, where smaller patch sizes allow for more patches to be sampled from the same volume.
+This reduces the ability of the model to generalize to unseen data, and is also a limitation of our study.
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Patch Size} & \textbf{\# voxels} & \textbf{50\% of Voxels} \\
+        \hline
+        $32 \times 32 \times 16$ & 16,384 & 8,192 \\
+        $16 \times 16 \times 8$ & 2,048 & 1,024 \\
+        $12 \times 12 \times 6$ & 864 & 432 \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of candidate patch sizes.}
+    \label{tab:patch-size-comparison}
+\end{table}
+
+Based on the above tradeoffs, a patch size of $12 \times 12 \times 6$ was chosen for this study. At the resampled
+spacing, this corresponds to roughly a $9\times9\times9\text{mm}^3$ region of lung tissue, which is large enough to capture a
+typical nodule or a local patch of opacity. Patches were sampled differently depending on whether they were meant to represent
+normal tissue or a target abnormality. Figure~\ref{fig:patch-extraction-diagram} lays this out visually.
+
+\begin{itemize}
+    \item \textbf{Normal patches} were drawn on a non-overlapping grid across the
+    entire lung volume, with a stride equal to the patch size. A patch was
+    discarded if more than half of its voxels were near-zero after masking, since
+    that generally indicates the patch sits mostly outside the lung region rather
+    than within actual tissue.
+    \item \textbf{Abnormal patches} were sampled only from scans carrying a
+    ground-truth finding mask. Since a single scan can have several individual
+    findings that belong to the same target category, the relevant finding
+    channels of the 4D mask were first OR-combined into one binary lesion mask
+    per category present in that scan. A tight axis-aligned bounding box was then
+    computed around the foreground of that lesion mask, and the patch window was
+    slid across the box with a stride of 4 voxels in each direction, making it
+    markedly denser than the normal-patch grid, since the region of interest here is
+    already small and every overlapping view of it is potentially useful. Each
+    candidate patch was only kept if the fraction of lesion-labelled voxels
+    within its corresponding mask region reached a threshold of 50\%.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patchExtraction.png}
+    \caption{Patch extraction workflow.}
+    \label{fig:patch-extraction-diagram}
+\end{figure}
+
+Each extracted patch is subsequently flattened into a vector representation before being handed to
+the dictionary learning algorithms.
+Patches extracted this way were saved per scan and per class as compressed archives containing the flattened feature matrix,
+class labels, the originating scan identifiers and the voxel coordinates of each patch, and were
+later concatenated across classes to build the full training matrix used for the dictionary learning algorithms.
+
+\section{Dictionary Learning}
+\label{sec:dictionary-learning}
+
+Once class-wise patches had been extracted and flattened into vectors, the next stage was to learn a dictionary that could
+represent these patches as a sparse combination of a small number of atoms. Four dictionary learning algorithms were implemented
+and compared for this purpose: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary
+Learning. All of the dictionary learning code lives in a separate
+open-source \href{https://pypi.org/project/reppi/}{PyPI} package built specifically for this project. The code can be found on
+\href{https://github.com/ckekula/reppi}{Github}. All four algorithms take the same flattened patch matrix and produce a dictionary
+$D$ that patches can later be sparse-coded against.
+
+\subsection{Deriving Practical Baselines for s, N, and K}
+
+Before training any of the dictionary learning algorithms, it is important to understand the theoretical limits on the
+sparsity level $s$, the number of training samples $N$, and the dictionary size $K$. These limits are derived from the properties
+of the dictionary and the underlying sparse coding problem. The uniqueness of sparse representations is governed by the
+dictionary's \textit{mutual coherence}, which is the maximum absolute inner product between any pair of normalized columns.
+This provides a practical condition for the sparsity level:
+
+\[
+s < \frac{1}{2}\left(1+\frac{1}{\mu(D)}\right),
+\]
+
+\noindent where:
+
+\[
+\mu(D) \ge \sqrt{\frac{K-d}{d(K-1)}}.
+\]
+
+This is known as the Welch Bound \citep{welch1974lower}. As K increases, the bound approaches $(\mu(D)\approx1/\sqrt{d})$,
+yielding the asymptotic sparsity ceiling:
+
+\[
+s \lesssim \frac{\sqrt{d}}{2},
+\]
+
+\noindent which is independent of K. For d=864, this gives $s_{\max}\approx14$.
+From this, we decided that the sparsity level of s=10 is well within the uniqueness region.
+
+The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
+\citep{aharon2006ksvd}. This gives a range of values for the dictionary size $K$:
+
+\[
+K \lesssim \frac{100,000}{100 \text{ to } 300} \approx 333 \text{ to } 1,000
+\]
+
+This is considerably smaller than the typical 2-4x overcomplete dictionaries used in image processing. Even at $K=1,000$,
+$K/d \approx 1.2$, which is barely overcomplete. To achieve desirable overcompleteness, we would have to tradeoff the
+number of training samples per atom $N/K$, which could lead to unstable atom recovery. However, many published dictionary-learning
+results train with 20-50 samples/atom successfully, especially with mini-batch/online updates like Mairal et al.'s ODL \cite{mairal2010online},
+which distributes this effect over many updates, better than batch K-SVD. Table \ref{tab:dictionary_tradeoff} shows the $N/K$
+values for different levels of overcompleteness.
+
+\begin{table}[ht]
+\centering
+\caption{Trade-off between dictionary overcompleteness and training samples per atom for $N=100{,}000$ and $d=864$.}
+\label{tab:dictionary_tradeoff}
+\begin{tabular}{ccc}
+\hline
+\textbf{Dictionary Size ($K$)} & \textbf{Overcompleteness ($K/d$)} & \textbf{Samples per Atom ($N/K$)} \\
+\hline
+1,728 & $2.0\times$ & 58 \\
+2,592 & $3.0\times$ & 39 \\
+3,456 & $4.0\times$ & 29 \\
+\hline
+\end{tabular}
+\end{table}
+
+At $K=3d$, the dictionary has enough overcompleteness for s=10 sparse coding to be meaningful, while keeping $N/K$ in a range (20-50).
+Therefore, we decided to use $K=3d=2{,}592$ as the target dictionary size for all algorithms in this project.
+
+\subsection{Patch Normalization}
+
+
+A major consideration in our methodology was whether we should normalize the patches before passing them to the dictionary learning algorithms.
+This was motivated by the approach used in the original K-SVD image denoising paper by Elad and Aharon \cite{elad2006image},
+where each patch has its local mean subtracted before dictionary learning, and the mean-subtracted patch is then divided by
+its own $L_2$ norm before being passed to OMP. This is so that the SVD step used to update dictionary atoms is not dominated by a
+constant background offset, and the $L_2$ norm is removed so that every patch contributes to the dictionary update on a comparable
+scale, no matter how much contrast it originally had.
+
+However, this approach isn't applicable, atleast directly, because of what the HU value represents physically in a CT scan.
 Unlike a conventional image intensity, the HU is a direct physical measure of tissue density. The raw intensity therefore carries
 diagnostic information on which the classification stages later depend on.
 With the $L_2$ norm applied, findings that are structurally similar but differ in density could consequently be mapped close
 together in the normalised space, even though this density difference is often the distinguishing factor between the two classes.
 
-However, the fixed Min-Max scaling approach has its own drawbacks. Consider a patch where
-$N=12\times12\times12=1728$. The signal energy is proportional to the squared $\ell_2$ norm:
+However, sending the raw patches has its own drawbacks. Consider a patch where
+$N=12\times12\times12=1728$. The energy of a signal is proportional to the squared $\ell_2$ norm:
 
 \[
 E = \|\mathbf{x}\|_2^2 = \sum_{i=1}^{N} x_i^2.
@@ -607,7 +767,7 @@ Therefore, the Direct Current (DC) component accounts for approximately
 \approx 98.7\%
 \]
 
-\noindent of the total signal energy, meaning the average HU intensity dominates the sparse coding process.
+\noindent of the total signal energy, meaning that the HU intensity dominates the sparse coding process as a feature.
 
 An alternative approach combines the benefits of both methods by explicitly separating intensity and texture information before
 sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each patch $\mathbf{x}$ is
@@ -633,16 +793,22 @@ $\boldsymbol{\alpha}_{\mathrm{tex}}$ is the sparse code of the normalized zero-m
 This preserves the highly interpretable mean attenuation as an explicit scalar feature while allowing the dictionary to learn only
 texture, preventing the sparse coding process from being dominated by the DC component.
 
-We tested this approach using a linear SVM. We trained the model by sending the patches in 3 different ways:
+We tested these 2 approaches using a linear SVM, trained by sending patches in 3 different ways:
 \begin{enumerate}
     \item Raw patch
     \item Mean and Standard Deviation of the patch intensities
     \item Mean-subtracted L2 normalized patch
 \end{enumerate}
 
-The results are given in table \ref{tab:patch-classification}.
+Table \ref{tab:patch-classification} shows the results. Two scalars (patch mean and standard deviation),
+match or exceed the 864-dimensional raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
+432-fold reduction in dimensionality. Since a linear classifier cannot extract more
+linearly-separable signal from a superset of features than from the features
+themselves, this indicates that intensity statistics account for essentially all of the
+raw patch's discriminative content, and that the remaining 862 dimensions contribute
+noise rather than signal at the sample sizes available for classes 1 and 2.
 
-\begin{table}[h]
+\begin{table}
 \centering
 \caption{Linear SVM classification performance under three input representations.}
 \label{tab:patch-classification}
@@ -668,219 +834,24 @@ The results are given in table \ref{tab:patch-classification}.
 \end{tabular}
 \end{table}
 
-Two scalars, the patch mean and standard deviation, match or exceed the 864-dimensional
-raw patch on every class, with class 2 nearly doubling in F1 (0.12 to 0.23) despite a
-432-fold reduction in dimensionality. Since a linear classifier cannot extract more
-linearly-separable signal from a superset of features than from the features
-themselves, this indicates that intensity statistics account for essentially all of the
-raw patch's discriminative content, and that the remaining 862 dimensions contribute
-noise rather than signal at the sample sizes available for classes 1 and 2.
-
 Removing the mean and normalizing by the $\ell_2$ norm isolates texture but also
 discards both absolute attenuation and contrast, leaving a generic linear classifier
 with only raw, high-dimensional pixel values and no basis abstraction. Performance
-degrades further under this representation, consistent with the raw patch's
+can be observed to degrade further under this representation, consistent with the raw patch's
 discriminative power being concentrated almost entirely in its intensity component
-rather than in pixel-level texture. This result does not indicate that texture is
-uninformative; rather, it motivates representing texture through dictionary learning
-and sparse coding rather than through raw pixel values, and confirms that intensity
-must be retained as an explicit classifier feature rather than removed during
-preprocessing. Accordingly, our pipeline separates each patch into intensity
+rather than in pixel-level texture.
+
+This result can be interpreted as not indicating that texture is uninformative; but rather, motivating texture represention
+through dictionary learning instead of through raw pixel values, However, intensity must be retained as an explicit classifier
+feature rather than removed during preprocessing by separating each patch into intensity
 statistics $(\mu, \sigma)$ and a normalized texture component prior to sparse coding
-(Section~2), rather than discarding intensity or coding raw patches directly. The
-comparison that determines whether sparse-coded texture contributes information beyond
-$(\mu, \sigma)$ alone is reported in Section~\ref{sec:ablation-sparse}.
+(Section~2). We trained our dictionaries using both approaches, and the comparison is reported in Section~\ref{sec:ablation-sparse}.
 
-\subsection{Patch Extraction}
-\label{subsec:patch-extraction}
-
-Feeding entire volumes directly into the dictionary learning stage is not practical as a single scan can
-contain tens of millions of voxels. Therefore, the final step was
-to break each volume down into smaller 3D patches. Patch-based sampling provides the following benefits:
-
-\begin{itemize}
-    \item Allows the model to focus on local structural patterns rather than whole-organ context.
-    \item Reduces memory requirements by limiting the number of voxels processed at once.
-    \item Since the proposed dictionary learning models are linear, the abnormal patches can be mapped back to the original volume.
-\end{itemize}
-
-\noindent There are 3 competing forces influencing the patch size selection:
-\begin{enumerate}
-    \item Size of Nodules -- Patch size must be lowered to capture smaller nodules.
-    \item Size of Dictionary -- Patch size must be lowered to keep the dictionary size manageable.
-    \item Loss of context -- Patch size must be increased to capture more context around the abnormality.
-\end{enumerate}
-
-Furthermore, since abnormalities are irregularly shaped, a maximum of 50\% of the voxels in a patch were allowed to be non-lesion.
-A similar approach was used for healthy tissue, where a maximum of 50\% of the voxels in a patch were allowed to be background
-to avoid patches sampled completely from outside the lung parenchyma. Figure \ref{fig:patch-sampling-visualization} shows a
-visualization of a patch-sampled lung in 3D.
-
-\begin{figure}
-    \centering
-    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patch_sampling.png}
-    \caption{3D visualization of patch sampling from a lung volume.}
-    \label{fig:patch-sampling-visualization}
-\end{figure}
-
-At 50\% of the median nodule size, we considered multiple patch sizes that would include a sufficient number of 
-patches from the nodule/mass category. This distribution is shown in table \ref{tab:patch-size-comparison}.
-The influence of the size of the dictionary is discussed in section \ref{sec:dictionary-learning}.
-The loss of context stems from the fact that smaller patch sizes are unable to capture the surrounding tissue context of the
-abnormality, which is important for classification.
-
-\begin{table}
-    \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Patch Size} & \textbf{\# voxels} & \textbf{50\% of Voxels} \\
-        \hline
-        $32 \times 32 \times 32$ & 32,768 & 16,384 \\
-        $16 \times 16 \times 16$ & 4,096 & 2,048 \\
-        $12 \times 12 \times 12$ & 1,728 & 864 \\
-        $8 \times 8 \times 8$ & 512 & 256 \\
-        \hline
-    \end{tabular}
-    \caption{Comparison of candidate patch sizes.}
-    \label{tab:patch-size-comparison}
-\end{table}
-
-Each patch is a fixed $12 \times 12 \times 12$ voxel cube, which at the resampled
-spacing corresponds to roughly a $36\,\text{mm}^3$ region of lung tissue large enough to capture a typical nodule
-or a local patch of opacity, without dragging in unrelated anatomy. Patches were sampled differently
-depending on whether they were meant to represent normal tissue or a target abnormality:
-
-\begin{itemize}
-    \item \textbf{Normal patches} were drawn on a non-overlapping grid across the
-    entire lung volume, with a stride equal to the patch size. A patch was
-    discarded if more than half of its voxels were near-zero after masking, since
-    that generally indicates the patch sits mostly outside the lung region rather
-    than within actual tissue.
-    \item \textbf{Abnormal patches} were sampled only from scans carrying a
-    ground-truth finding mask. Since a single scan can have several individual
-    findings that belong to the same target category, the relevant finding
-    channels of the 4D mask were first OR-combined into one binary lesion mask
-    per category present in that scan. A tight axis-aligned bounding box was then
-    computed around the foreground of that lesion mask, and the patch window was
-    slid across the box with a stride of 4 voxels in each direction, making it
-    markedly denser than the normal-patch grid, since the region of interest here is
-    already small and every overlapping view of it is potentially useful. Each
-    candidate patch was only kept if the fraction of lesion-labelled voxels
-    within its corresponding mask region reached a threshold of 50\%.
-\end{itemize}
-
-Figure~\ref{fig:patch-extraction-diagram} lays this out visually.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/patchExtraction.png}
-    \caption{Patch extraction workflow.}
-    \label{fig:patch-extraction-diagram}
-\end{figure}
-
-Each extracted patch is subsequently flattened into a vector representation before being handed to
-the dictionary learning algorithms:
-
-\begin{equation}
-x_i \in \mathbb{R}^{n}, \quad n = p^3 = 12^3 = 1,728
-\end{equation}
-
-Patches extracted this way were saved per scan and per class as compressed archives containing the flattened feature matrix,
-class labels, the originating scan identifiers and the voxel coordinates of each patch, and were
-later concatenated across classes to build the full training matrix used for the dictionary learning algorithms.
-
-\section{Dictionary Learning}
-\label{sec:dictionary-learning}
-
-Once class-wise patches had been extracted and flattened into vectors, the next stage was to learn a dictionary that could
-represent these patches as a sparse combination of a small number of
-atoms. Four dictionary learning algorithms were implemented and
-compared for this purpose: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary
-Learning. All of the dictionary learning code lives in a separate
-open-source \url{https://pypi.org/project/reppi/}{PyPI} package built specifically for this project.
-The code can be found on \url{https://github.com/ckekula/reppi}{Github}.
-
-All four algorithms take the same flattened patch matrix $X \in \mathbb{R}^{n \times N}$ (where n is the flattened patch
-length and $N$ is the number of patches) and produce a dictionary $D$ that patches can later be sparse-coded against.
-
-\subsection{Deriving Practical Baselines for s, N, and K}
-
-Before training any of the dictionary learning algorithms, it is important to understand the theoretical limits on the
-sparsity level $s$, the number of training samples $N$, and the dictionary size $K$. These limits are derived from the properties
-of the dictionary and the underlying sparse coding problem. The uniqueness of sparse representations is governed by the
-dictionary's \textit{spark} and \textit{mutual coherence}.
-In sparse representation, the spark of a dictionary is the smallest number of atoms that are linearly dependent, while the mutual
-coherence is the maximum absolute inner product between any pair of normalized columns. A representation with sparsity
-
-\[
-s < \frac{\mathrm{spark}(D)}{2}
-\]
-
-\noindent is the unique sparsest solution \citep{elad2010sparse}. Since $\mathrm{spark}(D) \le d + 1$,
-the theoretical upper limit is:
-
-\[
-s < \frac{d+1}{2}.
-\]
-
-However, this is a theoretical limit. A more practical condition is based on mutual coherence:
-
-\[
-s < \frac{1}{2}\left(1+\frac{1}{\mu(D)}\right),
-\]
-
-\noindent where:
-
-\[
-\mu(D) \ge \sqrt{\frac{K-d}{d(K-1)}}.
-\]
-
-This is known as the Welch Bound \citep{welch1974lower}. As K increases, the bound approaches $(\mu(D)\approx1/\sqrt{d})$,
-yielding the asymptotic sparsity ceiling:
-
-\[
-s \lesssim \frac{\sqrt{d}}{2},
-\]
-
-which is independent of K. For d=864, this gives $s_{\max}\approx14$.
-From this we decided that the sparsity level of s=10 is well within the uniqueness region.
-
-The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
-\citep{aharon2006ksvd}. This gives a range of values for the dictionary size $K$:
-
-\[
-K \lesssim \frac{100,000}{100 \text{ to } 300} \approx 333 \text{ to } 1,000
-\]
-
-This is considerably smaller than the typical 2-4x overcomplete dictionaries used in image processing. Even at $K=1,000$,
-$K/d \approx 1.2$, which is barely overcomplete. To achieve desirable overcompleteness, we would have to tradeoff the
-number of training samples per atom $N/K$, which could lead to unstable atom recovery. However, many published dictionary-learning
-results train with 20-50 samples/atom successfully, especially with mini-batch/online updates like Mairal et al.'s ODL \cite{mairal2010online},
-which distributes this effect over many updates, better than batch K-SVD. Table \ref{tab:dictionary_tradeoff} shows the $N/K$
-values for different levels of overcompleteness.
-
-\begin{table}[ht]
-\centering
-\caption{Trade-off between dictionary overcompleteness and training samples per atom for $N=100{,}000$ and $d=864$.}
-\label{tab:dictionary_tradeoff}
-\begin{tabular}{ccc}
-\hline
-\textbf{Dictionary Size ($K$)} & \textbf{Overcompleteness ($K/d$)} & \textbf{Samples per Atom ($N/K$)} \\
-\hline
-1,728 & $2.0\times$ & 58 \\
-2,592 & $3.0\times$ & 39 \\
-3,456 & $4.0\times$ & 29 \\
-\hline
-\end{tabular}
-\end{table}
-
-At $K=3d$, the dictionary has enough overcompleteness for s=10 sparse coding to be meaningful, while keeping $N/K$ in a range (20-50).
-Therefore, we decided to use $K=3d=2{,}592$ as the target dictionary size for all algorithms in this project.
 
 \subsection{K-SVD}
 \label{sec:ksvd}
 
-K-SVD is used here for two purposes: as a standalone baseline dictionary trained separately over all three classes,
+K-SVD is used in our pipeline for two purposes: as a standalone baseline dictionary trained separately over all three classes,
 and as the underlying atom-update algorithm that both LC-KSVD and Frozen Dictionary Learning are built on.
 Sparse coding during training uses the Batch-OMP algorithm.
 
@@ -964,87 +935,11 @@ bookkeeping is later used when inspecting which atoms are used for
 which class, as described in Section~\ref{sec:statistical-analysis}'s
 discussion of atom activation.
 
-\subsection{Training Pipeline}
-
-For every algorithm above, training follows the same overall procedure.
-The per-class patch archives (normal, GGO, nodule) are loaded and
-concatenated into a single patch matrix $X$ together with the matching
-label vector, and the combined set of patches is then randomly shuffled
-with a fixed seed so that results are reproducible. The chosen
-algorithm is then fitted on this shuffled patch matrix, with training
-progress (reconstruction RMSE per iteration) tracked throughout, and
-checkpoints saved periodically so that an interrupted run can resume
-rather than restart from scratch. Once training finishes, the learned
-dictionary is saved together with its configuration and the metadata
-needed to reproduce the preprocessing applied to every patch, ready to
-be loaded again for the classification stage.
-
-Whichever algorithm produced it, the resulting dictionary is treated as
-fixed from this point on and is not modified again. The next stage of
-the pipeline re-encodes every patch, whether from the training set, the
-test set, or a brand new CT volume, against this same frozen dictionary
-using the FISTA-based sparse coding described in
-Section~\ref{sec:sparse-coding-classification}, and it is these sparse
-codes, not the raw patches, that the classifiers described in
-Section~\ref{sec:classification} are trained and evaluated on.
-
 \section{Linear Classification}
 \label{sec:classification}
 
-\subsection{Feature Construction}
-\label{sec:sparse-coding-classification}
-
-Let $\mathbf{x} \in \mathbb{R}^{d}$ denote a vectorised patch after windowing to
-$[\text{HU}_{\min}, \text{HU}_{\max}]$ and linear rescaling to $[-1,1]$.
-Rather than sparse-coding $\mathbf{x}$ directly, we decompose it into an
-intensity component and a texture component,
-\begin{equation}
-\mu = \tfrac{1}{d}\mathbf{1}^{\top}\mathbf{x}, \qquad
-\sigma = \lVert \mathbf{x} - \mu\mathbf{1} \rVert_{2}, \qquad
-\tilde{\mathbf{x}} = \frac{\mathbf{x} - \mu\mathbf{1}}{\sigma},
-\end{equation}
-so that $\mathbf{x} = \mu\mathbf{1} + \sigma\tilde{\mathbf{x}}$ is recovered exactly.
-The dictionary $\mathbf{D} \in \mathbb{R}^{d \times K}$ is trained and applied only on
-$\tilde{\mathbf{x}}$, yielding the sparse code
-\begin{equation}
-\boldsymbol{\alpha} = \arg\min_{\boldsymbol{\alpha}}
-\lVert \tilde{\mathbf{x}} - \mathbf{D}\boldsymbol{\alpha} \rVert_{2}^{2}
-\quad \text{s.t.} \quad \lVert \boldsymbol{\alpha} \rVert_{0} \leq T_{0}.
-\end{equation}
-
-This separation is motivated by the energy distribution of thoracic CT patches.
-For normal parenchyma ($\approx -850$~HU), the mean component carries in excess of
-$99\%$ of the squared patch energy, whereas parenchymal texture contributes
-$\mathcal{O}(1\%)$. Coding $\mathbf{x}$ directly therefore causes greedy and
-proximal solvers alike to expend their sparsity budget on a single DC-like atom,
-satisfying any practical residual tolerance before texture is represented at all.
-The resulting dictionary encodes mean attenuation rather than structure, and the
-downstream classifier degenerates towards an implicit Hounsfield threshold.
-Decomposing the patch removes this failure mode while discarding no information:
-mean attenuation, which is strongly discriminative between normal parenchyma,
-ground-glass opacity and consolidation, is retained as an explicit scalar feature
-and is more directly interpretable in that form than as a coefficient on a
-DC-shaped atom.
-
-The final patch descriptor is the concatenation
-\begin{equation}
-\mathbf{z} = [\,\mu,\ \sigma,\ \boldsymbol{\alpha}^{\top}\,]^{\top} \in \mathbb{R}^{K+2}.
-\end{equation}
-
-\subsection{Atom polarity canonicalisation}
-
-Since $(\mathbf{d}_{j}, \alpha_{j})$ and $(-\mathbf{d}_{j}, -\alpha_{j})$ parameterise
-the same model, atom sign is arbitrary and roughly half of all learned atoms render
-as intensity-inverted structures. After dictionary training we therefore fix, for
-every atom $j$ with $\mathrm{median}_{\mathrm{train}}(\alpha_{j}) < 0$,
-\begin{equation}
-\mathbf{d}_{j} \leftarrow -\mathbf{d}_{j}, \qquad
-\alpha_{j}^{(i)} \leftarrow -\alpha_{j}^{(i)} \ \forall i, \qquad
-w_{cj} \leftarrow -w_{cj} \ \forall c .
-\end{equation}
-The model is mathematically unchanged, but atom visualisations become
-interpretable and the sign statistics used for prototype construction
-(Section~\ref{sec:prototype}) become meaningful.
+After training the dictionaries, the patches in the training set are re-encoded against each dictionary to produce a sparse code
+$\boldsymbol{\alpha}^{(i)}$ for each patch $i$. The 
 
 \subsection{Training}
 
