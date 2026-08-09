@@ -501,6 +501,13 @@ We explored three different approaches to isolate the lungs.
 
 \subsubsection{Classical Image Processing}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/Chapter 3/Lung segmenter using image processing.png}
+    \caption{Classical image-processing pipeline for lung segmentation.}
+    \label{fig:classical-lung-segmentation}
+\end{figure}
+
 The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
 is normally well separated from surrounding structures in intensity. Each volume
 was first thresholded to keep only voxels between $-900$ and $-200$ HU, the range
