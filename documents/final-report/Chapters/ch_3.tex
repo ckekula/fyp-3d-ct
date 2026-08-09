@@ -1533,10 +1533,12 @@ protocol of the ReXGroundingCT benchmark
 \url{https://rexrank.ai/ReXGroundingCT/}. A predicted instance counts as a true positive
 when its Dice against some ground-truth instance reaches at least $0.2$, matched greedily
 and one-to-one:
+
 \begin{equation}[Instance-Level True Positives]
 \mathrm{TP} = \bigl|\{(p,g) : \mathrm{Dice}(p,g) \ge 0.2,\ p \leftrightarrow g \text{ under greedy matching}\}\bigr|.
 \label{eq:instance-tp}
 \end{equation}
+
 Instance precision and recall are corpus-level quantities, $\mathrm{TP}/(\mathrm{TP+FP})$
 and $\mathrm{TP}/(\mathrm{TP+FN})$, accumulated across the whole evaluated set before
 dividing rather than averaged case by case, so that a handful of cases holding very few
@@ -1544,11 +1546,13 @@ ground-truth instances cannot dominate the result.
 
 At whole-set level the Global Hit Rate defined by ReXGroundingCT is also reported, that is,
 the fraction of the $F$ evaluated findings whose Dice clears $0.10$,
+
 \begin{equation}[Global Hit Rate]
 \mathrm{HitRate} = \frac{1}{F}\sum_{i=1}^{F} \mathbb{1}\!\left[\mathrm{Dice}_i \ge 0.10\right],
 \label{eq:hit-rate}
 \end{equation}
-together with informal sensitivity checks at Dice thresholds of $0.05$ and $0.25$, which
+
+\noindent together with informal sensitivity checks at Dice thresholds of $0.05$ and $0.25$, which
 form no part of the official benchmark and are reported only as context.
 
 nnU-Net and the dictionary-learning models all emit an already-binarised mask, so a
@@ -1560,9 +1564,8 @@ explicitly rather than left implicit in a smaller denominator.
 \subsection{Explainability Metrics}
 \label{sec:eval-explainability}
 
-The quantitative Grad-CAM procedure of Section~\ref{sec:explainability-methods} picks, per
-case, whichever percentile threshold maximises Dice against the ground-truth mask. That
-measures how good an explanation \emph{could} look under the most favourable possible
+The quantitative Grad-CAM procedure picks, whichever percentile threshold maximises Dice against the ground-truth mask per case.
+That measures how good an explanation \emph{could} look under the most favourable possible
 binarisation, which is a useful upper bound but not a deployable one, since a system at
 inference time has no ground truth to search over. The metric layer described here fixes a
 threshold in advance instead, with no oracle involved. This fixed-threshold treatment is
@@ -1575,18 +1578,22 @@ The attribution map is min-max normalised to $[0,1]$, binarised at a fixed thres
 (default $0.5$), and its IoU against the ground-truth mask computed exactly as in
 Section~\ref{sec:eval-localization}. The pointing game is stricter and asks only whether the
 single highest-attribution voxel lands inside the ground-truth region,
+
 \begin{equation}[Pointing Game]
 \mathrm{PointingGame} = \mathbb{1}\!\left[\arg\max_{v} A(v) \in G\right],
 \label{eq:pointing-game}
 \end{equation}
+
 which has the advantage of being threshold-free and the disadvantage of ignoring everything
 about the map except its peak. Energy inside mask uses the whole map instead: attribution
 values are clipped to non-negative and the share of total positive energy falling inside the
 ground-truth region is reported,
+
 \begin{equation}[Energy Inside Mask]
 \mathrm{EnergyInsideMask} = \frac{\sum_{v \in G} \max(A(v),0)}{\sum_{v} \max(A(v),0)}.
 \label{eq:energy-inside-mask}
 \end{equation}
+
 Grounded accuracy ties localization back to classification: restricted to correctly
 classified cases, it reports the fraction whose attribution map also reaches a Dice of at
 least $0.10$, so that a model cannot post a strong score by being confidently right for the
