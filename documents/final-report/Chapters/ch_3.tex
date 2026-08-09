@@ -182,7 +182,7 @@ However, another study \cite{zhao2026rethinking} provides a comprehensive hierar
 representative abnormal findings across all body regions. This study separates Atelectases and Consolidation as distinct categories.
 Table \ref{tab:omniabnorm-tax} shows the taxonomy of the ``Lung'' category.
 
-\begin{table}
+\begin{table}[H]
     \centering
     \caption{Pulmonary abnormality taxonomy in OmniAbnorm-CT.}
     \label{tab:omniabnorm-tax}
@@ -307,7 +307,7 @@ $\Delta_x, \Delta_y, \Delta_z$ mm and 16-bit signed integer intensities represen
 The corresponding segmentation mask is stored as an 8-bit unsigned integer 4D NIfTI volume with matching 3D spatial
 dimensions plus an additional singleton channel dimension containing integer label values.
 
-\begin{table}
+\begin{table}[H]
 \centering
 \caption{NIfTI header attributes for the CT volumes and corresponding segmentation masks.}
 \label{tab:nifti-header}
@@ -477,7 +477,7 @@ We explored three different approaches to isolate the lungs.
 
 \subsubsection{Classical Image Processing}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Images/Chapter 3/Lung segmenter using image processing.png}
     \caption{Classical image-processing pipeline for lung segmentation.}
@@ -609,7 +609,7 @@ abnormality, which is important for classification. This is something that is no
 The final tradeoff is dataset variability, where smaller patch sizes allow for more patches to be sampled from the same volume.
 This reduces the ability of the model to generalize to unseen data, and is also a limitation of our study.
 
-\begin{table}
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -947,7 +947,7 @@ with every atom's class of origin known exactly, since it is fixed by
 which stage produced it, rather than inferred after the fact from a
 classifier weight or activation statistic.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Images/Chapter 3/FrozenAtomVisualization.jpeg}
     \caption{Frozen dictionary atom visualization per class.}
@@ -992,7 +992,7 @@ responsible for distinguishing it.
 However, the clustering was unable to clearly separate any meaningful sub-groups and consistently showed one cluster as dominant.
 Figure~\ref{fig:clustering} shows example results of clustering sparse codes for classes GGO and nodule.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Images/Chapter 3/clustering.png}
     \caption[Results of clustering per-class sparse codes]
@@ -1156,7 +1156,7 @@ In order to test the hypothesis described in Section~\ref{sec:patch-normalizatio
 representations of the patches: the mean and standard deviation of the voxel intensities, and the mean-subtracted,
 $\ell_2$-normalized patch. The results of these experiments are shown in Table \ref{tab:patch-classification}.
 
-\begin{table}
+\begin{table}[H]
 \centering
 \caption{Linear SVM classification performance under three input representations.}
 \label{tab:patch-classification}
