@@ -18,7 +18,7 @@ single CT slice.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/CT.png}
-    \caption[Backprojection process in CT imaging]{Backprojection reconstruction method for a single slice.
+    \caption[Backprojection process in CT imaging]{Backprojection reconstruction method for a single slice \cite{withers2021x}.
     (a - Original object slice. b - Set of projections collected
     at different angles. c - Sinogram resulting from many projections. d - Process of backprojecting the sinogram. e - Final
     backprojected imaqe. f - Equivalent filtered backprojection image).}
@@ -30,10 +30,11 @@ quantitative access to internal 3D structure. CT can visualize and quantify inte
 throughout an intact volume, enabling longitudinal or repeated imaging of the same specimen over time. Attenuation-contrast CT,
 the dominant mode in clinical practice, works well for high-atomic-number, strongly attenuating structures such as
 bone or calcified tissue and, with contrast agents, vascular or soft-tissue structures. However, it provides relatively poor contrast
-between materials of similar composition and density (e.g., different soft tissues), a limitation that phase-contrast and other
+between materials of similar composition and density (e.g., different soft tissues) \cite{withers2021x},
+a limitation that phase-contrast and other
 advanced modalities partially address, though these are less widely deployed clinically due to hardware and dose constraints.
 
-Interpreting 3D chest CT specifically is complicated by several factors described in the imaging literature.
+Interpreting 3D chest CT specifically is complicated by several factors \cite{withers2021x}.
 Reconstructions are inherently affected by noise and artifacts, motion from breathing or cardiac movement, ring artifacts, and the
 partial volume effect,
 where a single voxel spans more than one tissue type, producing intermediate intensities that blur boundaries between structures.
@@ -45,31 +46,28 @@ segmentation approaches capable of handling such structural diversity without ex
 \subsection{Pulmonary Abnormalities}
 \label{subsec:abnormalities}
 
-Our study focuses on the detection and segmentation of five common pulmonary abnormalities:
+Our study focuses on the detection and segmentation of six common pulmonary abnormalities:
 \begin{enumerate}
     \item Ground-Glass Opacity (GGO)
-    \item Pulmonary nodules
+    \item Pulmonary nodules/masses
     \item Atelectasis
     \item Consolidation
     \item Bronchiectasis
+    \item Emphysema
 \end{enumerate}
 
-\noindent of which the first two were taken as the primary targets for the initial phase of this study.
+\noindent of which the first four were taken as the primary targets for the initial phase of this study.
 
 A nodule is a discrete, roughly rounded area of increased opacity within the lung parenchyma, generally classified as
 either a solid nodule or a ground-glass nodule (GGN) based on its internal composition. A GGO refers
 specifically to a hazy area of increased lung attenuation on CT that does not obscure the underlying bronchial or vascular
-structures passing through it. GGNs are further subdivided into pure GGNs, which contain no solid component, and mixed
-(subsolid) GGNs, which contain a solid portion alongside the ground-glass components.
+structures passing through it. Furthermore, nodules above 30 mm in diameter are classified as masses,
+which carry a higher risk of malignancy than smaller nodules \cite{hansell2008fleischner}.
 
 These findings are clinically important because GGNs are frequently associated with early lung cancer and its preinvasive precursors.
-Notably, GGNs are not uniformly benign or malignant risk indicators equivalent to solid nodules. GGNs are, in fact,
-more likely to be malignant than solid nodules, and the malignant rate of mixed GGNs is higher than that of pure GGNs.
-
 Early detection of these abnormalities is essential because lung cancer prognosis is highly stage-dependent, and most patients are
-still diagnosed too late for optimal outcomes. Despite improvements in treatment, the overall
-five-year survival rate for lung cancer remains only about 10-20\% in most countries, largely because most patients are diagnosed at
-a late stage.
+still diagnosed too late for optimal outcomes. Despite improvements in treatment, the overall five-year survival rate for lung
+cancer remains only about 10-20\% in most countries \cite{allemani2018global}, largely because most patients are diagnosed at a late stage.
 
 Despite their importance, GGOs and pulmonary nodules remain difficult to detect and characterize reliably.
 Nodules may be small relative to other anatomical structures in a chest CT, and GGO may be low-contrast against surrounding tissue.
