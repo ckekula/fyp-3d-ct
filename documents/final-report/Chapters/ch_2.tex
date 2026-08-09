@@ -168,7 +168,7 @@ and it is frequently cited in the literature as the standard benchmark against w
 
 \subsection{BioMedParse}
 
-BiomedParse is a "Foundation Model for Joint Segmentation, Detection, and Recognition of Biomedical Objects Across Nine Modalities" \cite{zhao2025foundation}.
+BiomedParse is a Foundation Model for Joint Segmentation, Detection, and Recognition of Biomedical Objects Across Nine Modalities" \cite{zhao2025foundation}.
 Rather than relying on a fixed label set during inference, the model accepts a natural language prompt describing the target anatomy
 or pathology and produces a pixel level mask for the queried concept.
 This makes BiomedParse especially useful in settings where the structures of interest are heterogeneous, difficult to enumerate in
@@ -332,8 +332,8 @@ approximate f well globally. Formally, LIME finds an explanation by minimizing a
 
 where $L$ measures how unfaithful $g$ is to $f$ within a local neighborhood weighted by a proximity function $\pi_x$, and
 $\Omega(g)$ penalizes the complexity of the explanation to keep it human-interpretable. To ensure explanations are understandable
-regardless of the model's actual features, LIME operates over an interpretable representation such as a set of super-pixels for
-images—rather than the model's raw internal features (pixel tensors).
+regardless of the model's actual features, LIME operates over an interpretable representation such as a set of super pixels for
+images rather than the model's raw internal features (pixel tensors).
 
 Through simulated experiments and studies, the authors demonstrate that LIME explanations are faithful to the underlying model,
 recovering >90\% of known important features \cite{ribeiro2016should}. It helps users select the
