@@ -50,15 +50,15 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \multirow{3}{*}{\makecell{Machine\\Learning}}
         & Linear SVM
         & 0.61 & 0.60 & 0.58 & 0.59 & 0.65
-        & 0.46 & 0.52 & 0.30 & 0.51 & 0.44 \\
+        & -- & -- & -- & -- & -- \\
 
         & Log. Regression
         & 0.57 & 0.56 & 0.54 & 0.55 & 0.62
-        & 0.44 & 0.49 & 0.28 & 0.48 & 0.42 \\
+        & -- & -- & -- & -- & -- \\
 
         & XGBoost
         & 0.53 & 0.52 & 0.51 & 0.52 & 0.57
-        & 0.41 & 0.45 & 0.26 & 0.44 & 0.40 \\
+        & -- & -- & -- & -- & -- \\
 
         \hline
 
@@ -82,60 +82,6 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \hline
     \end{tabular}
 \end{sidewaystable}
-
-CT-CLIP was evaluated on the CT-RATE dataset rather than our RexGroundingCT test split, so its
-row is not directly comparable to the other models above.
-
-\section{Sparse-Coding and Dictionary Learning}
-
-Our study included four dictionary-learning methods: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary Learning.
-Each method was evaluated on the same test split of patches, and their reconstruction quality was assessed.
-Table~\ref{tab:dictionary_comparison} compares the reconstruction error and mutual incoherence of each method.
-
-\begin{table}[H]
-\centering
-\caption{Comparison of dictionary learning methods for reconstruction quality.}
-\label{tab:dictionary_comparison}
-\begin{tabular}{lcc}
-\hline
-\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
-\hline
-K-SVD                       & 0.1037     & 0.7414 \\
-LC-KSVD                     & 3.1457     & 0.2318 \\
-FDDL                        & 1.2958     & 0.0190 \\
-Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
-\hline
-\end{tabular}
-\end{table}
-
-Mutual incoherence here is the mean absolute off-diagonal value of the normalised Gram matrix
-between dictionary atoms, so a lower number means the atoms are more distinct from each other.
-LC-KSVD and FDDL's reconstruction error columns are their joint-training objective (reconstruction
-combined with a label-consistency or Fisher-discrimination term) rather than a pure reconstruction
-error, so those two numbers are still not directly comparable to K-SVD and Frozen DL's. 
-The Frozen DL error shown is the average of its three per-stage
-errors (base 0.0730, class 1 0.0875, class 2 0.1037), and its incoherence value is likewise the
-average across the three stages (base 0.868, class 1 0.632, class 2 0.511).
-
-\subsection{K-SVD}
-
-Since separate KSVD dictionaries were trained for each class and concatenated, we evaluated the reconstruction quality of each
-class-specific dictionary on its corresponding test split. The results are summarised in Table~\ref{tab:ksvd-reconstruction}.
-
-\begin{table}[H]
-\centering
-\caption{Reconstruction quality of K-SVD dictionaries.}
-\label{tab:ksvd-reconstruction}
-\begin{tabular}{lccc}
-\hline
-\textbf{Class} & \textbf{Atoms} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
-\hline
-Normal                        & 6912 & 0.0730 & 0.868 \\
-GGO (2c)                      & 3456 & 0.0875 & 0.632 \\
-Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
-\hline
-\end{tabular}
-\end{table}
 
 Incoherence here is again the mean absolute off-diagonal value of the normalised Gram matrix,
 restricted to each class's own atom block. The joined 12096-atom dictionary was evaluated on the
