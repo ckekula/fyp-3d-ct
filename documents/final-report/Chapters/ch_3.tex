@@ -167,7 +167,7 @@ Section~\ref{subsec:eda}. We finally decided on three target abnormalities for t
 \end{enumerate}
 
 However, we observed that there are discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
-Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ''Opacities'', which contains
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ``Opacities'', which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
 
@@ -175,13 +175,13 @@ Secondly, ReXGrounding-CT groups Atelectasis and Consolidation as one finding (s
 This could be because they share nearly identical visual appearances and overlapping imaging features on chest CT scans \cite{yang2009detection}.
 Both conditions cause increased density and whitening of the lung parenchyma that obscures underlying blood vessels, and
 frequently present with visible air bronchograms within the affected area.
-This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as ``consolidation or atelectasis".
+This is further confirmed by the ReXGrounding-CT free-text reports, which describe many findings as ``consolidation or atelectasis''.
 
 Their categorization pipeline and schema were constructed via LLM extraction and verified by board-certified
 radiologists \cite{rajpurkar2024rexgroundingct}, which suggests that the grouping was a deliberate decision made by the authors.
 However, another study \cite{zhao2026rethinking} provides a comprehensive hierarchical taxonomy of CT abnormalities, with 404
 representative abnormal findings across all body regions. This study separates Atelectases and Consolidation as distinct categories.
-Table \ref{tab:omniabnorm-tax} shows the taxonomy of the "Lung" category.
+Table \ref{tab:omniabnorm-tax} shows the taxonomy of the ``Lung'' category.
 
 \begin{table}
     \centering
@@ -496,7 +496,7 @@ M_{thresh}(x,y,z) = \begin{cases} 1, & -900 \leq I(x,y,z) \leq -200 \\ 0, & \tex
 \end{equation}
 
 This crude threshold mask is noisy on its own, so it was cleaned up with a short
-sequence of morphological steps applied slice-by-slice and volume-wise. Border-connected regions
+sequence of morphological steps applied slice-by-slice and volume-wise, as shown in Figure~\ref{fig:classical-lung-segmentation}. Border-connected regions
 were removed on each axial slice, mainly to drop the
 surrounding air and imaging-table artefacts that also fall inside the HU window.
 Afterwards, only the two largest connected components were kept under the
@@ -509,7 +509,7 @@ On visibly normal scans, this five-stage pipeline produced reasonable lung masks
 Consolidation and areas of lung opacity raise the local tissue density towards that of soft tissue, so the
 affected voxels are not registered as lung parenchyma under the initial $-900$ to $-200$ HU window.
 Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
-from purely intensity-based segmentation and towards a learned segmentation model.
+from purely intensity-based segmentation and towards a learned segmentation model, as illustrated by the failure case in Figure~\ref{fig:classical-lung-segmentation-failure}.
 
 \begin{figure}[h]
     \centering
@@ -537,7 +537,7 @@ TotalSegmentator was not selected for the final pipeline.
 
 \subsubsection{LungMask Library}
 
-The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
+The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model \citep{hofmanninger2020lungmask} pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
 it proved noticeably more stable when abnormal tissue was present. Consolidation
@@ -1241,7 +1241,7 @@ produce independent probability values for all 18 CT-RATE abnormalities at the s
 A second inference method was also tested using CT-CLIP's original
 zero-shot capability without the trained linear classification head. In
 this approach, each abnormality was represented using two text prompts:
-''abnormality is present'' and ``abnormality is not
+``abnormality is present'' and ``abnormality is not
 present''. The model compared the similarity between the CT volume and
 both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
