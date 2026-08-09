@@ -1029,6 +1029,7 @@ prediction of class $c$.
 In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is divided into class-specific sub-dictionaries,
 
 \begin{equation}[Class-Specific Sub-Dictionaries]
+\label{eq:class-specific-sub-dictionaries}
 \mathbf{D}
 =
 \left[
@@ -1044,6 +1045,7 @@ In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is 
 The sparse code can consequently be partitioned in the same manner,
 
 \begin{equation}[Partitioned Sparse Code]
+\label{eq:partitioned-sparse-code}
 \alpha
 =
 \left[
@@ -1099,6 +1101,43 @@ S_{j,c}
 \noindent where $N$ is the total number of samples, $\mu_{j,\neg c}$ is the mean activation of atom $j$ across all other classes,
 and $\epsilon$ is a small constant to prevent division by zero. A high $S_{j,c}$ indicates that atom $j$ is strongly selective to
 class $c$ relative to the other classes.
+
+\subsection{Class-Specific Reconstruction and Whole-Volume Localisation}
+\label{sec:class-Specific-reconstruction}
+
+Classification alone only labels a patch as belonging to a class; it does not say which voxels inside that patch actually drove
+the prediction. The class-specific sub-dictionary partitioning above (Equations~\ref{eq:class-specific-sub-dictionaries}
+and~\ref{eq:partitioned-sparse-code}) is what makes it possible to answer that, and Frozen Dictionary Learning
+(Section~\ref{sec:frozen-dict-learning}) is the clearest case of it in practice: its dictionary
+$D = [D_{\text{base}} \mid D_{\text{GGO}} \mid D_{\text{nodule}}]$ is already split into contiguous, known atom ranges by
+construction, one per class, rather than the split having to be discovered after training. When a patch is OMP-encoded against
+this combined dictionary, its resulting sparse code $\alpha$ falls into the same three contiguous ranges, so it splits into
+$\alpha_{\text{base}}$, $\alpha_{\text{GGO}}$, and $\alpha_{\text{nodule}}$ purely as a consequence of which atom each non-zero
+coefficient happens to land on no separate step is needed to work out which part of $\alpha$ belongs to which class.
+
+Once a patch has been classified as abnormal class $c$ (GGO or nodule), it is reconstructed using only that class's block,
+
+\begin{equation}[Class-Specific Patch Reconstruction]
+\hat{\mathbf{x}}_{c} = \mathbf{D}_{c}\,\alpha_{c},
+\end{equation}
+
+\noindent i.e.\ the abnormal patch is reconstructed by multiplying only its own class's dictionary block by the matching block
+of its own sparse code, discarding the base and other-class blocks entirely. A subtlety worth stating explicitly: $\alpha_c$
+must be the slice of the patch's \emph{own} sparse code lying in class $c$'s atom range, not a fresh code obtained by
+re-encoding the patch against $D_c$ alone OMP already chose which atoms to activate when it encoded the patch against the
+full dictionary, and $\alpha_c$ simply reads off the coefficients it happened to place in class $c$'s range. Every voxel of
+$\hat{\mathbf{x}}_c$ is therefore built purely from the atoms Frozen Dictionary Learning allocated to class $c$, which is what
+lets the reconstruction be read as "the part of this patch that looks like class $c$".
+
+This reconstruction is applied to every abnormal patch over a dense, overlapping grid of patch positions covering a whole scan.
+Each reconstructed patch is pasted back into a full-volume canvas at its own coordinates, and where overlapping patches cover the
+same voxel their reconstructed intensities are mean-pooled, following the standard convention for assembling overlapping
+patch-based reconstructions. A voxel is then included in class $c$'s predicted segmentation mask if at least one patch
+classified as $c$ covers it. This mask is built independently per class, rather than resolving all classes with a single
+per-voxel argmax, so that it matches how the ground-truth mask for each abnormality category is itself built: by combining
+whichever finding channels share that category, with no exclusivity enforced between categories. Comparing an independently-built
+predicted mask against an independently-built ground-truth mask, class by class, is what is scored with the Dice, IoU,
+precision and recall metrics used to report whole-volume localisation performance in Chapter~\ref{cha:results}.
 
 \section{Machine Learning Models}
 \label{sec:ml-baseline-methods}
@@ -1412,6 +1451,8 @@ trilinear interpolation and normalized using the same min-max normalization
 method used for the convolutional encoder. This creates a 3D heatmap that can
 be directly compared with the convolutional encoder heatmap, even though the
 two encoders use different internal feature representations.
+
+\section{}
 
 \subsection{Quantitative evaluation}
 \label{subsec:gradcam-eval}
