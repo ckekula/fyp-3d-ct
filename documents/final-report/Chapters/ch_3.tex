@@ -537,18 +537,20 @@ proposed pipeline requires a single lung mask for the subsequent processing
 steps, this representation was less suitable for the project. Therefore,
 TotalSegmentator was not selected for the final pipeline.
 
+\subsubsection{LungMask Library - LMInferer  }
+
 The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
 it proved noticeably more stable when abnormal tissue was present. Consolidation
 and GGO regions inside the lung boundary appeared to retain on manual inspection.
-Figure \ref{fig:lungmask-segmentation} shows a LungMask segmentation result on a scan with GGO and consolidation.
+Figure \ref{fig:lungmask-nodule-example} shows a LungMask segmentation result on a scan with lung nodules.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask-segmentation.png}
-    \caption{LungMask segmentation result on a scan with GGO and consolidation.}
-    \label{fig:lungmask-segmentation}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/LungMask segmentation result on a scan with lung nodules.png}
+    \caption{LungMask segmentation result on a scan with lung nodules.}
+    \label{fig:lungmask-nodule-example}
 \end{figure}
 
 Given a CT volume, LungMask returns a label map with three values: 0 for
@@ -636,7 +638,17 @@ normal tissue or a target abnormality. Figure~\ref{fig:patch-extraction-diagram}
     entire lung volume, with a stride equal to the patch size. A patch was
     discarded if more than half of its voxels were near-zero after masking, since
     that generally indicates the patch sits mostly outside the lung region rather
-    than within actual tissue.
+    than within actual tissue. Figure~\ref{fig:normal-patch-reconstruction} shows
+    an example of normal patches extracted this way and reassembled back into the
+    lung volume.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask-segmentation.png}
+    \caption{Normal patches extracted on a non-overlapping grid and reconstructed into the lung volume.}
+    \label{fig:normal-patch-reconstruction}
+    \end{figure}
+
     \item \textbf{Abnormal patches} were sampled only from scans carrying a
     ground-truth finding mask. Since a single scan can have several individual
     findings that belong to the same target category, the relevant finding
@@ -664,8 +676,8 @@ generated around the lesion mask.Patches are then extracted by sliding a window 
 each candidate filtered against background and lesion thresholds patches that fail are discarded, while
 those that pass are added to the patch matrix.
 
-
 \medskip
+
 Each extracted patch is subsequently flattened into a vector representation before being handed to
 the dictionary learning algorithms.
 Patches extracted this way were saved per scan and per class as compressed archives containing the flattened feature matrix,
