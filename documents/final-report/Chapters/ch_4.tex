@@ -367,10 +367,27 @@ is not precise enough to localise a specific small lesion within the surrounding
 \section{Qualitative Analysis}
 
 The detailed review, questionnaire and verbatim responses by the radiologist during our second consultation are presented in this
-section. Figures~\ref{fig:qualitative-review-1}, \ref{fig:qualitative-review-2}, and \ref{fig:qualitative-review-3} show the
+section. Figures~\ref{fig:qualitative-review-1} and \ref{fig:qualitative-review-2}, show the
 responses by the radiologist for the three sections of the questionnaire.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-1.png}
+    \caption{Radiologist's responses to the first section of the questionnaire.}
+    \label{fig:qualitative-review-1}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-2.png}
+    \caption{Radiologist's responses to the second section of the questionnaire.}
+    \label{fig:qualitative-review-2}
+\end{figure}
+
+As our model was trained on a limited number of abnormality classes, the radiologist noticed instances where the model predicted
+different abnormalities than what she could infer from the images. Due to this limitation, the radiologist suggested that the model
+should be trained on a larger number of abnormality classes to improve its clinical utility and provide more accurate predictions.
+This is resulted in her free-text comments, which are discussed in the following section.
 
 \subsection{Recommendations and Verbal feedback}
 
@@ -381,3 +398,10 @@ visually apparent abnormality. Taken together, these observations suggest that s
 may under-estimate clinically relevant localisation performance when the reference annotations are intentionally broad. We therefore report the
 qualitative reviewer finding as an important complement to the quantitative metrics and recommend future work include either more precise
 annotations or a radiologist-driven refinement loop to produce a higher-fidelity reference set.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-3.png}
+    \caption{Radiologist's responses to the third section of the questionnaire.}
+    \label{fig:qualitative-feedback}
+\end{figure}

@@ -62,28 +62,9 @@ CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI f
 that provides volume-level multi-label annotations and corresponding textual radiology reports across 18 distinct abnormality
 categories. The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to
 50,188 total volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and
-a validation cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{lll l}
-        \hline
-        1 & Medical material & 10 & Lung nodule \\
-        2 & Arterial wall calcification & 11 & Lung opacity \\
-        3 & Cardiomegaly & 12 & Pulmonary fibrotic sequela \\
-        4 & Pericardial effusion & 13 & Pleural effusion \\
-        5 & Coronary artery wall calcification & 14 & Mosaic attenuation pattern \\
-        6 & Hiatal hernia & 15 & Peribronchial thickening \\
-        7 & Lymphadenopathy & 16 & Consolidation \\
-        8 & Emphysema & 17 & Bronchiectasis \\
-        9 & Atelectasis & 18 & Interlobular septal thickening \\
-        \hline
-    \end{tabular}
-    \caption{List of abnormalities in the CT-RATE dataset.}
-    \label{tab:ctrate_abnormalities}
-\end{table}
-
-CT-RATE captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
+a validation cohort of 3,039 volumes from 1,304 patients. The full list of the 18 abnormality categories in CT-RATE is shown in
+Appendix \ref{app:ct-rate}.
+CT-RATE also captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
 from four primary scanner manufacturers:
 
 \begin{enumerate}
