@@ -1,13 +1,78 @@
-\chapter{Graphical Interpretation of Data}\label{app:insset}
-The graphical interpretation given below shows the relationship between x and y is acceptable to the purpose of the project
+\chapter{RexRank Leaderboard}\label{app:rexrank}
 
-\section{Data Analysis}
+The ReXrank Leaderboard is a standardized public benchmarking platform for evaluating AI-driven chest X-ray report generation and
+visual question answering (VQA). It also consists of a separated leaderboard for the ReXGroundingCT dataset where the task is to
+output precise 3D segmentation masks from narrative finding sentences. This leaderboard contains the private test set of the
+ReXGroundingCT dataset, consisting of 100 scans.
 
-\subsection{Statistical Analysis}
-\subsection{Empirical  Analysis}
+\section{Performance Metrics}
+The RexRank Leaderboard uses the following metrics to evaluate the performance of models on the ReXGroundingCT dataset:
+\begin{itemize}
+    \item Global Dice: Average Dice per finding per case
+    \item Global HIT Rate: Proportion of findings that have Dice $\ge 0.1$
+    \item Instance Precision: TP / (TP + FP), where True Positives are instances that have a Dice $\ge 0.2$
+    \item Instance Recall: TP / (TP + FN)
+\end{itemize}
 
-\section{The X vs Y vs Z}
+\section{Model Performance}
 
+Currently, four SotA models have submitted their results to the ReXrank Leaderboard. The performance of these models
+is summarized in Table~\ref{tab:rexrank-leaderboard}.
+
+\begin{sidewaystable}[ht]
+\centering
+\caption{Comparison of model performance across global and instance-level metrics.}
+\label{tab:rexrank-leaderboard}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} &
+\textbf{Global Dice} &
+\textbf{Global HIT Rate} &
+\textbf{Instance Precision} &
+\textbf{Instance Recall} &
+\textbf{Instance F1} \\
+\midrule
+DVSM          & 0.322 & 0.642 & 0.215 & 0.359 & 0.269 \\
+MedCompose-CT & 0.297 & 0.601 & 0.127 & 0.304 & 0.179 \\
+VoxTell       & 0.285 & 0.615 & 0.185 & 0.294 & 0.227 \\
+DAGG          & 0.253 & 0.517 & 0.211 & 0.299 & 0.247 \\
+SAT-FT        & 0.205 & 0.473 & 0.062 & 0.383 & 0.107 \\
+VoxTell-FT    & 0.162 & 0.371 & 0.031 & 0.277 & 0.056 \\
+BiomedParseV2 & 0.025 & 0.066 & 0.006 & 0.071 & 0.012 \\
+\bottomrule
+\end{tabular}
+\end{sidewaystable}
+
+\section{Per-Category Results for Best Model}
+
+The best-performing model on the ReXGroundingCT dataset is DVSM, which achieved the highest scores across all metrics.
+Table~\ref{tab:category-performance} presents the per-category results for DVSM.
+
+\begin{table}[ht]
+\centering
+\caption{DVSM Model performance across abnormality categories.}
+\label{tab:category-performance}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Category} & \textbf{$n$} & \textbf{Dice} & \textbf{Hit Rate} \\
+\midrule
+1a & 1  & 0.038 & 0.000 \\
+1b & 4  & 0.047 & 0.000 \\
+1c & 17 & 0.084 & 0.235 \\
+1d & 6  & 0.142 & 0.333 \\
+1e & 7  & 0.224 & 0.428 \\
+1f & 3  & 0.200 & 0.333 \\
+2a & 49 & 0.284 & 0.714 \\
+2b & 36 & 0.341 & 0.694 \\
+2c & 36 & 0.304 & 0.694 \\
+2d & 58 & 0.357 & 0.758 \\
+2e & 7  & 0.326 & 0.571 \\
+2f & 0  & 0.000 & 0.000 \\
+2g & 1  & 0.638 & 1.000 \\
+2h & 1  & 0.609 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

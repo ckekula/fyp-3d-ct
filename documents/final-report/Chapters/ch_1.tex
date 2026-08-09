@@ -1,17 +1,18 @@
 \chapter{Introduction}
-Developing a unified pipeline for multi-class abnormality classification and grounded localization
-addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
-Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
-provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is accountable and its
-claims are supported by clinical evidence.
-
-\section{Background}
 Lung disease remains a leading cause of global morbidity and mortality \cite{murray2022global}. Research shows that early
 detection of pulmonary diseases significantly improves patient outcomes. For this, radiological imaging tools
 such as Chest X-Ray (CXR) and Computed Tomography (CT), plays an important role. However, the increasing volume of
 such imaging data increases radiologists' workload, leading to delays and potential errors in diagnosis.
 This has motivated the development of automated Computer-Aided Diagnosis (CAD) systems, which use computational algorithms
 and Artificial Intelligence (AI) to assist in tasks such as abnormality detection, classification, and segmentation \cite{doi2007computer}.
+
+\section{Background}
+
+Developing a unified pipeline for multi-class abnormality classification and grounded localization
+addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
+Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
+provide voxel-level visual evidence for its diagnostic claims. This ensures that the model is accountable and its
+claims are supported by clinical evidence.
 
 Our research mainly focuses on the development of a CAD system using 3 Dimensional (3D) CT data. While CXR is commonly
 used as the first imaging test due to its low cost and low radiation exposure, studies show that their sensitivity
@@ -28,9 +29,9 @@ clinically insignificant abnormalities, while visual fatigue can lead to missed 
 To address these challenges, recent research and clinical deployments of AI-based
 CAD systems are fundamentally changing how radiologists approach CT analysis. AI models such as 3D
 Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) have shown to reduce interpretation time, and improve
-lesion detection sensitivity compared to traditional manual methods.
+lesion detection sensitivity compared to traditional manual methods \cite{LITJENS201760}.
 Many of these high performing models are Deep Learning based, which are criticized for their black box nature,
-where their internal reasoning is difficult to interpret. This lack of interpretability is a significant barrier for
+where their internal reasoning is difficult to interpret \cite{tjoa2021survey}. This lack of interpretability is a significant barrier for
 clinical adoption, as radiologists require evidence to support a model's diagnostic claims.
 
 This has motivated the development of explainable AI (XAI) methods such as Gradient-weighted Class Activation Mapping (Grad-CAM)
@@ -39,7 +40,8 @@ Such XAI methods are highly valuable for building clinical trust in deep learnin
 often lack the fine-grained, pixel-level precision required to identify tiny lesions,
 sometimes highlighting incorrect or confounding features \cite{ennab2025advancing}.
 
-Recent advances in sparse representation models such as Sparse Autoencoders and Dictionary Learning have shown to provide
+Recent advances in sparse representation models \cite{liyanage2022covid, wesp2026sparse} such as Sparse Autoencoders
+and Dictionary Learning have shown to provide
 inherent interpretability in medical imaging. This stems from their ability to reconstruct complex, high-dimensional
 data as a linear combination of "atoms" or features. This allows the use of efficient algorithms to easily map the
 output sparse domain back to the original input feature space, providing a linear relationship between the model's
@@ -52,22 +54,22 @@ The clinical utility of Deep Learning based approaches is hindered by a lack of 
 provide post-hoc explanations to model decisions, these are often insufficient for medical professionals who require a granular
 understanding of the model's decision making process. In high stakes environments, a model that produces a diagnosis without
 transparency in its reasoning is difficult to integrate into clinical workflows, as it lacks the accountability necessary for
-legal and ethical compliance.
+legal and ethical compliance. \cite{tjoa2021survey}
 
 \section{Objectives and Scope}
-The primary goal of this study is to address the limitations of existing AI-based approaches for abnormality
+The primary goal of this study is to address the above mentioned limitations of existing AI-based approaches for abnormality
 classification and localization in chest CTs, by developing an inherently interpretable dictionary learning framework.
 This approach aims to enable transparent, anatomically grounded decision making, where each classification outcome
 can be traced back to specific pathological patterns. This aligns with clinical reasoning and facilitates validation and
 adoption in radiological workflows. The specific objectives are as follows:
 
 \subsection{Objectives}
-\begin{itemize}
+\begin{enumerate}
 	\item Implement a Dictionary Learning based CAD system using a publicly available annotated 3D chest CT dataset.
 	\item Map dictionary atoms back to anatomical features and visualize their spatial contribution maps.
 	\item Develop a unified evaluation framework for assessing the performance and interpretability of the proposed approach.
 	\item Benchmark model performance against SotA classification and segmentation models on the same dataset.
-\end{itemize}
+\end{enumerate}
 
 \subsection{Scope}
 The scope of this study focuses on the development and evaluation of a dictionary learning based approach for classification

@@ -67,16 +67,16 @@
 \addcontentsline{toc}{chapter}{List of Tables} % add line to the table of contents
 
 \input{Front_matters/acronyms}
-\addcontentsline{toc}{chapter}{Acronyms: SOTA -- State of the Art} % add line to the table of contents
+\addcontentsline{toc}{chapter}{Acronyms} % add line to the table of contents
 
 
 %%%%%%%%%%%%%%%%%%%%%%% The main matters %%%%%%%%%%%%%%%%%%%%%%%%
 
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
 \input{Chapters/ch_1}
-
-\renewcommand{\thepage}{\arabic{page}} % Start page numbering in arabic 
-\setcounter{page}{1} % start page numbering from 1
-
 \input{Chapters/ch_2}
 \input{Chapters/ch_3}
 \input{Chapters/ch_4}
@@ -85,13 +85,6 @@
 
 %%%%%%%%%%%%%%%%%%%%% The End matters %%%%%%%%%%%%%%%%%%%%%
 
-\begin{appendix}
-\include{End_matters/appendix_01}
-\include{End_matters/appendix_02}
-\end{appendix}
-
-\addcontentsline{toc}{chapter}{APPENDIX}
-
 %%%%%%%%%%%%%%%%%%%%% Bibiliography %%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \bibliographystyle{ieeetr}
@@ -99,5 +92,12 @@
 \addcontentsline {toc}{chapter}{\bibname}
 % _____Add Bibiliography using BibTex file_____
 \bibliography{bibliography} 
+
+\addcontentsline{toc}{chapter}{APPENDIX}
+
+\begin{appendix}
+    \include{End_matters/appendix_01}
+    \include{End_matters/appendix_02}
+\end{appendix}
 
 \end{document}

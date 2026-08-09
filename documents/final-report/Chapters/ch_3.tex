@@ -62,28 +62,9 @@ CT-RATE \cite{hamamci2024ctrate} is a large-scale 3D chest CT dataset in NifTI f
 that provides volume-level multi-label annotations and corresponding textual radiology reports across 18 distinct abnormality
 categories. The dataset comprises 25,692 non-contrast 3D chest CT scans from 21,304 unique male and female patients expanded to
 50,188 total volumes via different reconstructions. It is split into a training cohort of 47,149 volumes from 20,000 patients and
-a validation cohort of 3,039 volumes from 1,304 patients. Table \ref{tab:ctrate_abnormalities} shows the 18 abnormality categories in CT-RATE.
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{lll l}
-        \hline
-        1 & Medical material & 10 & Lung nodule \\
-        2 & Arterial wall calcification & 11 & Lung opacity \\
-        3 & Cardiomegaly & 12 & Pulmonary fibrotic sequela \\
-        4 & Pericardial effusion & 13 & Pleural effusion \\
-        5 & Coronary artery wall calcification & 14 & Mosaic attenuation pattern \\
-        6 & Hiatal hernia & 15 & Peribronchial thickening \\
-        7 & Lymphadenopathy & 16 & Consolidation \\
-        8 & Emphysema & 17 & Bronchiectasis \\
-        9 & Atelectasis & 18 & Interlobular septal thickening \\
-        \hline
-    \end{tabular}
-    \caption{List of abnormalities in the CT-RATE dataset.}
-    \label{tab:ctrate_abnormalities}
-\end{table}
-
-CT-RATE captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
+a validation cohort of 3,039 volumes from 1,304 patients. The full list of the 18 abnormality categories in CT-RATE is shown in
+Appendix \ref{app:ct-rate}.
+CT-RATE also captures substantial heterogeneity in CT scanners, acquisition protocols, and reconstruction techniques. It comprises scans
 from four primary scanner manufacturers:
 
 \begin{enumerate}
@@ -501,6 +482,13 @@ We explored three different approaches to isolate the lungs.
 
 \subsubsection{Classical Image Processing}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/Chapter 3/Lung segmenter using image processing.png}
+    \caption{Classical image-processing pipeline for lung segmentation.}
+    \label{fig:classical-lung-segmentation}
+\end{figure}
+
 The first attempt used a fairly standard HU-threshold pipeline, since lung tissue
 is normally well separated from surrounding structures in intensity. Each volume
 was first thresholded to keep only voxels between $-900$ and $-200$ HU, the range
@@ -526,6 +514,13 @@ affected voxels are not registered as lung parenchyma under the initial $-900$ t
 Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
 from purely intensity-based segmentation and towards a learned segmentation model.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 3/lung-segmentation-failure-consolidation.png}
+    \caption{Failure case of the HU-threshold pipeline on a scan with lung consolidation. The elevated tissue density in the affected region causes it to fall outside the HU threshold window (step 1), so it is excluded from all subsequent stages and is missing from the final mask (step 7) relative to the ground truth.}
+    \label{fig:classical-lung-segmentation-failure}
+\end{figure}
+
 \subsubsection{Deep Learning-based Segmentation}
 
 First, TotalSegmentator
@@ -542,18 +537,20 @@ proposed pipeline requires a single lung mask for the subsequent processing
 steps, this representation was less suitable for the project. Therefore,
 TotalSegmentator was not selected for the final pipeline.
 
+\subsubsection{LungMask Library - LMInferer  }
+
 The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
 is a trained segmentation network built specifically for whole-lung extraction, and
 it proved noticeably more stable when abnormal tissue was present. Consolidation
 and GGO regions inside the lung boundary appeared to retain on manual inspection.
-Figure \ref{fig:lungmask-segmentation} shows a LungMask segmentation result on a scan with GGO and consolidation.
+Figure \ref{fig:lungmask-nodule-example} shows a LungMask segmentation result on a scan with lung nodules.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask-segmentation.png}
-    \caption{LungMask segmentation result on a scan with GGO and consolidation.}
-    \label{fig:lungmask-segmentation}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/LungMask segmentation result on a scan with lung nodules.png}
+    \caption{LungMask segmentation result on a scan with lung nodules.}
+    \label{fig:lungmask-nodule-example}
 \end{figure}
 
 Given a CT volume, LungMask returns a label map with three values: 0 for
@@ -641,7 +638,17 @@ normal tissue or a target abnormality. Figure~\ref{fig:patch-extraction-diagram}
     entire lung volume, with a stride equal to the patch size. A patch was
     discarded if more than half of its voxels were near-zero after masking, since
     that generally indicates the patch sits mostly outside the lung region rather
-    than within actual tissue.
+    than within actual tissue. Figure~\ref{fig:normal-patch-reconstruction} shows
+    an example of normal patches extracted this way and reassembled back into the
+    lung volume.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 3/lungmask-segmentation.png}
+    \caption{Normal patches extracted on a non-overlapping grid and reconstructed into the lung volume.}
+    \label{fig:normal-patch-reconstruction}
+    \end{figure}
+
     \item \textbf{Abnormal patches} were sampled only from scans carrying a
     ground-truth finding mask. Since a single scan can have several individual
     findings that belong to the same target category, the relevant finding
@@ -669,8 +676,8 @@ generated around the lesion mask.Patches are then extracted by sliding a window 
 each candidate filtered against background and lesion thresholds patches that fail are discarded, while
 those that pass are added to the patch matrix.
 
-
 \medskip
+
 Each extracted patch is subsequently flattened into a vector representation before being handed to
 the dictionary learning algorithms.
 Patches extracted this way were saved per scan and per class as compressed archives containing the flattened feature matrix,
@@ -1014,10 +1021,20 @@ the mean absolute sparse coefficient is first calculated as
 \left|\alpha_{j,i}\right|,
 \end{equation}
 
-\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for
-sample $i$, $y_i$ is the class label of sample $i$, and $N_c$ is
-the number of samples in class $c$. The class selectivity of atom
-$j$ for class $c$ is then measured by
+\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for sample $i$, $y_i$ is the class label of sample $i$,
+and $N_c$ is the number of samples in class $c$. Figure~\ref{fig:atom-activation} shows the mean absolute sparse coefficients
+for each atom across all classes for the LC-KSVD dictionary.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/Chapter 3/lcksvd-sparse-codes.png}
+    \caption{Mean absolute sparse coefficients for each atom across all classes in the LC-KSVD dictionary.}
+    \label{fig:atom-activation}
+\end{figure}
+
+We can see that some atoms are activated for all classes, while others are activated for only one or two classes.
+This indicates that some atoms are class-exclusive, while others are shared across classes. The class selectivity of an atom $j$
+can be quantified by comparing its mean activation for a given class $c$ to its mean activation across all other classes:
 
 \begin{equation}
 S_{j,c}
@@ -1232,6 +1249,7 @@ both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
 
 \section{Grad-CAM for Explainability}
+\label{sec:grad-cam}
 
 In addition to the segmentation and classification methods, we also experimented with Grad-CAM to understand
 what features affect the above deep learning models to make a prediction. Grad-CAM creates a heatmap
@@ -1309,7 +1327,6 @@ inference (Section~\ref{sec:merlin-method}), including the same intensity
 windowing and spatial downsampling. This ensured that Grad-CAM explained the
 same input that the model actually used for prediction.
 
-
 \subsection{Transformer encoder}
 
 For the transformer encoder, Grad-CAM was applied to an intermediate
@@ -1350,6 +1367,7 @@ be directly compared with the convolutional encoder heatmap, even though the
 two encoders use different internal feature representations.
 
 \subsection{Quantitative evaluation}
+\label{subsec:gradcam-eval}
 
 The quantitative evaluation focused on the transformer-based Grad-CAM,
 for which the predicted abnormality logit was used as the target score.
@@ -1384,11 +1402,21 @@ from any prediction threshold used by the classification model.
 \section{Evaluation Framework}
 \label{sec:eval-framework}
 
-The ten models compared in this study cover a range of approaches spannning sparse
+The ten models compared in this study cover a range of approaches spanning sparse
 dictionary learning, dense voxel-wise segmentation, and promptable foundation models.
-Their outputs at the end of a forward pass ranges from a calibrated probability, to a bare
+Their outputs at the end of a forward pass range from a calibrated probability, to a bare
 class label, to a folder of binary volumes. To design an evaluation framework, all of
-these outputs has to be pushed through one common representation.
+these outputs have to be pushed through one common representation.
+
+Figure~\ref{fig:eval-axes-overview} summarizes the three evaluation axes used throughout
+this framework and the metrics computed for each.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/Chapter 3/Evaluation Framework Architecture.png}
+    \caption{Overview of the three evaluation axes (classification, localization, interpretability), their comparison targets, and associated metrics.}
+    \label{fig:eval-axes-overview}
+\end{figure}
 
 \subsection{Architecture}
 \label{sec:eval-architecture}
@@ -1402,13 +1430,13 @@ The shared framework is built using three components:
 
 An adapter handles the single responsibility of reading whatever a
 given model actually writes to disk, whether that is a spreadsheet of scores, a directory of
-mask volumes, or an array of sparse codes, and restate it as a case matching the common
+mask volumes, or an array of sparse codes, and restates it as a case matching the common
 schema. An adapter computes nothing and acts solely as a translation layer.
-Therefore, adding a eleventh model later costs only this conversion step.
+Therefore, adding an eleventh model later costs only this conversion step.
 
 The core is a single model-agnostic library of metric definitions spanning classification, localization, and explainability.
 It sits on the far side of an adapter and it operates only on cases already in the common schema.
-It is unaware of the adapter, which architecture produced a case, or what a native prediction file looks like.
+It is unaware of the adapter, which model produced a case, or what a native prediction file looks like.
 Because it is fixed, every result reported in the subsequent chapter comes from the same
 calculations, keeping results consistent.
 
