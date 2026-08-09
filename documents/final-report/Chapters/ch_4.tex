@@ -301,7 +301,12 @@ stages contributing meaningfully beyond what raw intensity alone provides.
 % Small pilot only (outputs/ctclip_rex_eval) -- flag as pilot-scale,
 % not a full comparison run
 
-\subsection{Grad-CAM}
+
+\subsection{Merlin}
+
+\subsection{BiomedParse}
+
+\section{Grad-CAM}
 
 The token-based Grad-CAM variant described in Section~\ref{sec:grad-cam}, using the predicted abnormality
 logit as the target score, was evaluated on the full test set using the metrics:
@@ -359,20 +364,17 @@ all three ground-truth annotations, resulting in a pointing-game miss.
 These examples are consistent with the overall evaluation that, the Grad-CAM heatmap
 is not precise enough to localise a specific small lesion within the surrounding lung tissue.
 
-\subsection{Merlin}
-
-\subsection{BiomedParse}
-
-
 \section{Qualitative Analysis}
 
-The detailed radiologist review, questionnaire and verbatim responses are presented in this section. 
-The radiologist completed the following questionnaire during the review session. Where the reviewer provided a clear response,
-the selected answer is shown below; verbatim free-text comments are reproduced in the following subsection.
+The detailed review, questionnaire and verbatim responses by the radiologist during our second consultation are presented in this
+section. Figures~\ref{fig:qualitative-review-1}, \ref{fig:qualitative-review-2}, and \ref{fig:qualitative-review-3} show the
+responses by the radiologist for the three sections of the questionnaire.
 
 
-\subsection{Radiologist Conclusion and Implications}
 
+\subsection{Recommendations and Verbal feedback}
+
+In addition to standard questions, the radiologist provided verbatim free-text comments which are shown in Figure~\ref{fig:qualitative-feedback}.
 The consulting radiologist emphasised two practical points: (1) the dataset's ground-truth masks are sometimes annotated conservatively as
 broader regions that include adjacent tissue, and (2) the model's predicted masks were, in many inspected cases, more tightly localised to the
 visually apparent abnormality. Taken together, these observations suggest that simple overlap metrics (Dice/IoU against the provided masks)
