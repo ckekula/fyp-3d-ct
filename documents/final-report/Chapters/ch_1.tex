@@ -1,4 +1,9 @@
 \chapter{Introduction}
+Lung disease remains a leading cause of global morbidity and mortality \cite{murray2022global}. Research
+shows that early detection of pulmonary diseases significantly improves patient outcomes. For this, radiological imaging tools
+such as Chest X-Ray (CXR) and Computed Tomography (CT), plays an important role. However, the increasing volume
+of such imaging data increases radiologists' workload, leading to delays and potential errors in diagnosis.
+
 Developing a unified pipeline for multi-class abnormality classification and grounded localization
 addresses two of the most critical imperatives in clinical AI adoption: diagnostic accuracy and explainability.
 Specifically, utilizing dense pixel-level segmentation as the mechanism for localization forces the architecture to
@@ -27,10 +32,10 @@ clinically insignificant abnormalities, while visual fatigue can lead to missed 
 
 To address these challenges, recent research and clinical deployments of AI-based
 CAD systems are fundamentally changing how radiologists approach CT analysis. AI models such as 3D
-Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) have shown to reduce interpretation time, and improve
+Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) have shown to reduce interpretation time \cite{LITJENS201760}, and improve
 lesion detection sensitivity compared to traditional manual methods.
 Many of these high performing models are Deep Learning based, which are criticized for their black box nature,
-where their internal reasoning is difficult to interpret. This lack of interpretability is a significant barrier for
+where their internal reasoning is difficult to interpret \cite{tjoa2021survey}. This lack of interpretability is a significant barrier for
 clinical adoption, as radiologists require evidence to support a model's diagnostic claims.
 
 This has motivated the development of explainable AI (XAI) methods such as Gradient-weighted Class Activation Mapping (Grad-CAM)
@@ -52,7 +57,7 @@ The clinical utility of Deep Learning based approaches is hindered by a lack of 
 provide post-hoc explanations to model decisions, these are often insufficient for medical professionals who require a granular
 understanding of the model's decision making process. In high stakes environments, a model that produces a diagnosis without
 transparency in its reasoning is difficult to integrate into clinical workflows, as it lacks the accountability necessary for
-legal and ethical compliance.
+legal and ethical compliance. \cite{tjoa2021survey}
 
 \section{Objectives and Scope}
 The primary goal of this study is to address the limitations of existing AI-based approaches for abnormality

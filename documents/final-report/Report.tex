@@ -72,11 +72,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%% The main matters %%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{Chapters/ch_1}
-
-\renewcommand{\thepage}{\arabic{page}} % Start page numbering in arabic 
+\renewcommand{\thepage}{\arabic{page}} % Start page numbering in arabic
 \setcounter{page}{1} % start page numbering from 1
 
+\input{Chapters/ch_1}
 \input{Chapters/ch_2}
 \input{Chapters/ch_3}
 \input{Chapters/ch_4}
@@ -85,13 +84,6 @@
 
 %%%%%%%%%%%%%%%%%%%%% The End matters %%%%%%%%%%%%%%%%%%%%%
 
-\begin{appendix}
-\include{End_matters/appendix_01}
-\include{End_matters/appendix_02}
-\end{appendix}
-
-\addcontentsline{toc}{chapter}{APPENDIX}
-
 %%%%%%%%%%%%%%%%%%%%% Bibiliography %%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage
 \bibliographystyle{ieeetr}
@@ -99,5 +91,11 @@
 \addcontentsline {toc}{chapter}{\bibname}
 % _____Add Bibiliography using BibTex file_____
 \bibliography{bibliography} 
+
+\begin{appendix}
+\include{End_matters/appendix_02}
+\end{appendix}
+
+\addcontentsline{toc}{chapter}{APPENDIX}
 
 \end{document}
