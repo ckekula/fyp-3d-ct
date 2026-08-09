@@ -21,6 +21,7 @@
 \usepackage{graphics}
 \usepackage{rotating}
 \usepackage{makecell}
+\usepackage{tocloft}
 % \usepackage{array}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,6 +34,20 @@
 \usepackage{chapterbib}
 \usepackage[breaklinks]{hyperref}
 \hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue}
+
+\newlistof[chapter]{equations}{loe}{List of Equations}
+\setlength{\cftequationsnumwidth}{3.5em}
+\setlength{\cftequationsindent}{0em}
+\let\oldequation\equation
+\let\endoldequation\endequation
+\renewenvironment{equation}[1][]
+  {\phantomsection\oldequation\def\eq@name{#1}%
+   \ifx\eq@name\@empty
+     \addcontentsline{loe}{equations}{\protect\numberline{\theequation}Equation~\theequation}%
+   \else
+     \addcontentsline{loe}{equations}{\protect\numberline{\theequation}#1}%
+   \fi}
+  {\endoldequation}
 
 %% ____Nicely format and linebreak URLs in the bibliography (and elsewhere)____%%
 \usepackage{url} 
@@ -65,6 +80,9 @@
 
 \listoftables
 \addcontentsline{toc}{chapter}{List of Tables} % add line to the table of contents
+
+\listofequations
+\addcontentsline{toc}{chapter}{List of Equations} % add line to the table of contents
 
 \input{Front_matters/acronyms}
 \addcontentsline{toc}{chapter}{Acronyms} % add line to the table of contents

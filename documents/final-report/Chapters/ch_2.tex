@@ -259,9 +259,9 @@ with results sensitive to the quality and consistency of the box prompts \cite{a
 This reflects a broader limitation of prompt-driven segmentation models.
 
 This sensitivity to prompt quality points to a more basic problem: neither MedSAM nor MedSAM2 can be told
-\textit{what} to segment in words, simply because the SAM/SAM2 backbone they build on has no language
+what to segment in words, simply because the SAM/SAM2 backbone they build on has no language
 pathway, only a geometric one. Meta's SAM 3 is aimed exactly at this gap through what it calls
-\textit{Promptable Concept Segmentation}. Specifically, that prompt is purely spatial, 
+Promptable Concept Segmentation. Specifically, that prompt is purely spatial, 
 a box(two corner points), a point(roughly inside the target), or a mask(rough/full segmentation on that one slice)t \cite{meta2025sam3}. 
 MedSAM-3 takes this a step further and fine-tunes the architecture on
 medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
@@ -312,7 +312,7 @@ and zero-shot learning tasks, outperforming fully supervised models across key m
 \section{Explainable AI (XAI) in Medical Imaging}
 
 Many deep learning models achieve high accuracy, but their decision-making process is often difficult to interpret and are
-referred to as "black-box" models \cite{tjoa2021survey}. In healthcare, this lack of transparency can reduce clinicians'
+referred to as ``black-box" models \cite{tjoa2021survey}. In healthcare, this lack of transparency can reduce clinicians'
 confidence in AI-assisted diagnosis, as medical decisions directly affect patient
 outcomes. XAI methods aim to solve this issue.
 
@@ -324,9 +324,9 @@ surrogate model. The core idea is to treat the original model f as a black box a
 simple explanation model g (typically a sparse linear model) that is faithful to f in the vicinity of x, even if g cannot
 approximate f well globally. Formally, LIME finds an explanation by minimizing an objective:
 
-\[
+\begin{equation}[LIME Explanation Objective]
 \xi(x) = \operatorname*{arg\,min}_g L(f, g, \pi_x) + \omega(g)
-\]
+\end{equation}
 
 where $L$ measures how unfaithful $g$ is to $f$ within a local neighborhood weighted by a proximity function $\pi_x$, and
 $\Omega(g)$ penalizes the complexity of the explanation to keep it human-interpretable. To ensure explanations are understandable
@@ -334,7 +334,7 @@ regardless of the model's actual features, LIME operates over an interpretable r
 images rather than the model's raw internal features (pixel tensors).
 
 Through simulated experiments and studies, the authors demonstrate that LIME explanations are faithful to the underlying model,
-recovering >90\% of known important features \cite{ribeiro2016should}. It helps users select the
+recovering $>90\%$ of known important features \cite{ribeiro2016should}. It helps users select the
 better-generalizing classifier between two competing models even when held-out accuracy is misleading, enables non-experts to
 perform effective feature engineering to improve an untrustworthy classifier, and allow users to detect models that rely on
 spurious correlations.
@@ -343,14 +343,14 @@ spurious correlations.
 
 SHapley Additive exPlanations (SHAP) is a unified framework for interpreting the predictions of complex machine learning models,
 proposed by Lundberg and Lee \cite{lundberg2017unified}. It builds on the observation that many existing interpretability
-methods—including Local Interpretable Model-agnostic Explanations (LIME), Deep Learning Important FeaTures (DeepLIFT),
+methods including Local Interpretable Model-agnostic Explanations (LIME), Deep Learning Important FeaTures (DeepLIFT),
 layer-wise relevance propagation, and classical Shapley value approaches—can all be framed as instances of a
 single class called additive feature attribution methods, in which an explanation model $g$ approximates the original model $f$
 as a linear function of binary "presence/absence" indicator variables:
 
-\[
+\begin{equation}[SHAP Additive Feature Attribution]
 g(z') = \phi_0 + \sum \phi_i z'_i
-\]
+\end{equation}
 
 Within this class, the authors show that only one explanation satisfies three desirable properties simultaneously:
 \begin{enumerate}
@@ -469,9 +469,9 @@ Sparse coding is a signal representation framework in which a signal is expresse
 of elements ("atoms") drawn from a dictionary, rather than as a dense combination over an orthogonal basis. Formally, given a
 signal x and a dictionary D whose columns are atoms, sparse coding seeks a coefficient vector $\alpha$ such that:
 
-\[
+\begin{equation}[Sparse Coding Approximation]
 x \approx D\alpha,
-\]
+\end{equation}
 
 with $\alpha$ containing mostly zero entries. A key aspect of this framework is the use of overcomplete representations,
 where the dictionary D has more atoms than the dimensionality of the signal itself (i.e., more columns than rows). This redundancy
@@ -534,7 +534,7 @@ particularly when the full path of solutions across sparsity levels is of intere
 
 FISTA solves $\ell1$-regularized sparse coding problems, where the goal is to minimize:
 
-\begin{equation}
+\begin{equation}[FISTA Objective]
 \sqrt{\|x - D\alpha\|}^2 + \lambda\|\alpha\|_1
 \end{equation}
 
@@ -555,7 +555,7 @@ and interpretable machine learning, including medical image analysis~\cite{95773
 A dictionary is a matrix, written as $D \in \mathbb{R}^{n \times k},$ where each column $d_i$ is called an atom. Each atom is a small, fixed pattern,
 for example a short edge, a texture, or a simple shape, that acts like a basic building block for describing images~\cite{9577340}.
 
-\begin{equation}
+\begin{equation}[Dictionary Definition]
 D = [\,d_1, d_2, \dots, d_k\,], \qquad \|d_i\|_2 = 1 \ \forall i
 \end{equation}
 
@@ -564,21 +564,21 @@ Each atom is normalized to unit length so that none of them dominate because of 
 
 Once a dictionary is available, any image $x \in \mathbb{R}^n$ is approximated as a weighted sum of a small number of atoms:
 
-\begin{equation}
+\begin{equation}[Sparse Image Reconstruction]
 x \approx D\alpha = \sum_{i=1}^{k} \alpha_i d_i
 \end{equation}
 
 Here, $\alpha \in \mathbb{R}^k$ is the sparse code; most of its values are zero, and only a few atoms are actually used to rebuild the image.
 Finding this code is called sparse coding, and it can be solved by minimizing the reconstruction error together with a sparsity penalty~\cite{LI2016298} \cite{NIPS2006_2d71b2ae}:
 
-\begin{equation}
+\begin{equation}[Lasso Sparse Coding Objective]
 \min_{\alpha} \ \frac{1}{2}\|x - D\alpha\|_2^2 + \lambda \|\alpha\|_1
 \end{equation}
 
 This is the Lasso formulation, where $\lambda$ controls how sparse the solution is~\cite{1710377}.
 When the dictionary itself is learned from training data $X = [x_1, \dots, x_m]$, both $D$ and the codes $A = [\alpha_1, \dots, \alpha_m]$ are optimized together
 
-\begin{equation}
+\begin{equation}[Joint Dictionary and Code Learning]
 \min_{D, A} \ \|X - DA\|_F^2 + \lambda \|A\|_1 \quad \text{subject to} \quad \|d_i\|_2 = 1
 \end{equation}
 
@@ -591,7 +591,7 @@ atoms can end up representing specific tissue textures or lesion patterns that a
 
 Learning a dictionary is usually done by fixing the dictionary and solving for sparse codes, then fixing the codes and updating the dictionary.
 The sparse coding step is commonly solved with Orthogonal Matching Pursuit (OMP), a greedy method that adds one atom at a time \cite{342465}
-\begin{equation}
+\begin{equation}[OMP Atom Selection]
 i^* = \arg\max_i \ |d_i^T r|, \qquad r = x - D\alpha
 \end{equation}
 or with Lasso/LARS, using the $\ell_1$-penalized objective shown above \cite{1710377}. The dictionary update step is where the main algorithms differ, covered below.
@@ -603,7 +603,7 @@ or with Lasso/LARS, using the $\ell_1$-penalized objective shown above \cite{171
 
 K-SVD is one of the most widely used algorithms for learning a dictionary, and it solves the following optimization problem\cite{1710377}
 
-\begin{equation}
+\begin{equation}[K-SVD Optimization Problem]
 \min_{D, X} \left\{ \|Y - DX\|_F^2 \right\} \quad \text{subject to} \quad \forall i, \ \|x_i\|_0 \leq T_0
 \end{equation}
 
@@ -621,7 +621,7 @@ converge faster and produce sharper, more specific atoms \cite{1710377}.
 Method of Optimized Directions is an earlier and simpler approach than K-SVD. Instead of updating atoms one at a time, MOD updates the entire dictionary at once,
 using a direct least-squares solution \cite{760624}. Given the training data $X$ and current sparse codes $A$, the optimal dictionary is:
 
-\begin{equation}
+\begin{equation}[MOD Dictionary Update]
 D = X A^T (A A^T)^{-1}
 \end{equation}
 
@@ -636,11 +636,11 @@ Online Dictionary Learning solves this by processing the data in small batches, 
 instead of waiting to see the whole dataset \cite{10.1145/1553374.1553463}. At each step $t$, a new sample $x_t$ is drawn,
 its sparse code $\alpha_t$ is computed using the current dictionary, and then the dictionary is updated using accumulated statistics from all samples seen so far:
 
-\begin{equation}
+\begin{equation}[ODL Accumulated Statistics]
 A_t = A_{t-1} + \alpha_t \alpha_t^T, \qquad B_t = B_{t-1} + x_t \alpha_t^T
 \end{equation}
 
-\begin{equation}
+\begin{equation}[ODL Dictionary Update]
 D_t = \arg\min_{D} \ \frac{1}{t}\sum_{i=1}^{t} \left( \frac{1}{2}\|x_i - D\alpha_i\|_2^2 \right)
 \end{equation}
 
@@ -681,7 +681,7 @@ The method comes in two main variants. LC-KSVD1 incorporates a label consistency
 term that aligns the sparse codes with an ideal discriminative structure through 
 a linear transformation:
 
-\begin{equation}
+\begin{equation}[LC-KSVD1 Objective]
 \min_{D, A, A_c} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T \ \forall i.
 \end{equation}
 
@@ -690,7 +690,7 @@ Here, \(Q\) is a target matrix encoding class specific indicator patterns, and
 adding a classifier learning term. The dictionary, sparse codes, label consistency 
 transformation, and classifier are jointly optimized:
 
-\begin{equation}
+\begin{equation}[LC-KSVD2 Objective]
 \min_{D, A, A_c, W} \|X - D A\|_F^2 + \alpha \|Q - A_c A\|_F^2 + \beta \|H - W A\|_F^2 \quad \text{s.t.} \quad \|a_i\|_0 \leq T,
 \end{equation}
 
@@ -714,7 +714,7 @@ The core objective combines a discriminative fidelity term \(r(\cdot)\)
 (ensuring good reconstruction within class and poor reconstruction across classes) 
 with a Fisher discrimination penalty on coefficients:
 
-\begin{equation}
+\begin{equation}[FDDL Objective]
 \min_{D, X} \sum_i r(A_i, D, X_i) + \lambda_1 \|X\|_1 + \lambda_2 \Big( \operatorname{tr}(S_W(X)) - \operatorname{tr}(S_B(X)) + \eta \|X\|_F^2 \Big),
 \end{equation}
 
