@@ -142,22 +142,22 @@ Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
 
 The joined 12096-atom dictionary was evaluated on the full test split, achieving an overall mean mutual incoherence of 0.7414 (max pairwise value $\approx 0.99$).
 
-\paragraph{Sparsity and Atom Utilisation}
+% \paragraph{Sparsity and Atom Utilisation}
 
-Each patch was allowed at most 10 active atoms during sparse coding. Most patches used close to
-this limit, meaning a fairly large number of atoms was usually needed to represent a single patch
-well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
-dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
-drop in reconstruction quality.
+% Each patch was allowed at most 10 active atoms during sparse coding. Most patches used close to
+% this limit, meaning a fairly large number of atoms was usually needed to represent a single patch
+% well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
+% dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
+% drop in reconstruction quality.
 
-\paragraph{Atom Co-occurrence and Clustering}
+% \paragraph{Atom Co-occurrence and Clustering}
 
-Atoms belonging to the same class tended to be activated together on patches from that class,
-which is expected since the three dictionaries were trained separately on their own patch groups.
-Some overlap in activation was still seen between the Normal and GGO dictionaries, which fits
-with the higher mutual incoherence measured for those two blocks in Table~\ref{tab:ksvd-reconstruction}.
+% Atoms belonging to the same class tended to be activated together on patches from that class,
+% which is expected since the three dictionaries were trained separately on their own patch groups.
+% Some overlap in activation was still seen between the Normal and GGO dictionaries, which fits
+% with the higher mutual incoherence measured for those two blocks in Table~\ref{tab:ksvd-reconstruction}.
 
-\paragraph{Dictionary Coherence}
+\subsubsection{Dictionary Coherence}
 
 The Normal block has the highest mutual incoherence of the three (0.868), while the Nodules block
 is the lowest (0.511). This is likely because the Normal dictionary has to cover a much wider
@@ -165,13 +165,13 @@ range of healthy lung texture, so many atoms end up looking similar to each othe
 dictionary is smaller and each atom can specialise on a more specific local pattern, so there is
 less redundancy between atoms.
 
-\paragraph{Visual Inspection of Atoms and Reconstructions}
+% \paragraph{Visual Inspection of Atoms and Reconstructions}
 
-A visual check of a sample of dictionary atoms showed mostly small blocks of intensity and edge
-patterns typical of lung CT texture, rather than clearly interpretable shapes. Reconstructed
-patches looked visually close to the originals for most Normal and GGO patches, but nodule patches
-were harder to reconstruct cleanly, which lines up with the higher reconstruction error reported
-for that class in Table~\ref{tab:ksvd-reconstruction}.
+% A visual check of a sample of dictionary atoms showed mostly small blocks of intensity and edge
+% patterns typical of lung CT texture, rather than clearly interpretable shapes. Reconstructed
+% patches looked visually close to the originals for most Normal and GGO patches, but nodule patches
+% were harder to reconstruct cleanly, which lines up with the higher reconstruction error reported
+% for that class in Table~\ref{tab:ksvd-reconstruction}.
 
 \subsubsection{Classification and Localisation Performance}
 
@@ -217,7 +217,7 @@ reports the mutual incoherence within each class block.
 \textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence\textsuperscript{\textdagger}} \\
 \hline
 Normal   & 864 & 0.193 \\
-2b       & 864 & 0.247 \\
+2c       & 864 & 0.247 \\
 2d       & 864 & 0.261 \\
 \hline
 \end{tabular}
@@ -260,9 +260,6 @@ The externally-trained LinearSVC outperforms every other head, including LC-KSVD
 plain logistic regression, maybe because LC-KSVD learns to fit a linear classifier during training itself.
 This suggests that the sparse-code feature space is already close to linearly separable for this task
 and additional model capacity does not help.
-
-The sparse code analysis described in Section~\ref{sec:sparse-code-analysis} was performed on the LC-KSVD derived sparse codes,
-and the results are presented in Section~\ref{sec:lcksvd2-sparse-code-analysis}.
 
 \subsubsection{Whole-Volume Localisation}
 
@@ -585,71 +582,6 @@ specific downstream task than relying on text prompts alone.
 
 \subsection{Merlin}
 
-\subsection{BiomedParse}
-
-\section{Grad-CAM}
-
-The token-based Grad-CAM variant described in Section~\ref{sec:grad-cam}, using the predicted abnormality
-logit as the target score, was evaluated on the full test set using the metrics:
-Dice, IoU, Attribution IoU, pointing-game hit rate, and energy inside the ground-truth mask.
-Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard deviation.
-
-\begin{table}[ht]
-    \centering
-    \caption{CT-CLIP Grad-CAM localisation metrics evaluated on the full test set
-    (mean $\pm$ std).}
-    \label{tab:ctclip-gradcam-metrics}
-    \begin{tabular}{lc}
-        \toprule
-        \textbf{Metric} & \textbf{Value} \\
-        \midrule
-        Dice                    & 0.0019 $\pm$ 0.0034 \\
-        IoU                     & 0.0009 $\pm$ 0.0017 \\
-        Attribution IoU         & 0.0009 $\pm$ 0.0017 \\
-        Pointing-game hit rate  & 0.0000 $\pm$ 0.0000 \\
-        Energy inside mask      & 0.0008 $\pm$ 0.0018 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-Every metric is close to zero meaning that the voxel with the highest heatmap value did not fall inside the
-annotated lesion in any case in the test set.
-The ground-truth annotations cover an average of 59{,}443 voxels out of 55{,}296{,}000 voxels in a volume.
-In comparison, even the most selective of the four candidate thresholds
-($95^{\text{th}}$ percentile) marks 2{,}764{,}800 voxels, corresponding to
-5\% of the volume. Several cases achieved their best Dice score at the
-$70^{\text{th}}$ or $80^{\text{th}}$ percentile, resulting in 20--30\% of the
-volume being marked as positive.
-
-Therefore, the thresholded Grad-CAM explanation is often much larger than the
-small lesion it is intended to localise. This large size difference strongly
-reduces the overlap-based metrics and contributes to the very low Dice and IoU
-scores. However, the zero pointing-game hit rate also indicates that the
-strongest individual activation did not reliably fall within the annotated
-lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
-not sufficiently precise for localising the small target lesions.
-Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the Grad-CAM heatmap for a single nodule case from the test set.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/gradcam-nodule-example.png}
-    \caption{Grad-CAM for 3 example cases: CT slice (left), ground-truth
-    nodules (centre), and Grad-CAM heatmap (right).}
-    \label{fig:ctclip-gradcam-nodule-example}
-\end{figure}
-
-We can observe, the strongest heatmap activations were spread broadly across
-the chest wall and even outside the lung rather than being concentrated around the three
-annotated nodule boundaries. The single highest-valued voxel also fell outside
-all three ground-truth annotations, resulting in a pointing-game miss.
-
-This example is consistent with the overall evaluation: the Grad-CAM heatmap
-generally focuses on the lung region rather than the image background, but it
-is not precise enough to localise a specific small lesion within the surrounding
-lung tissue.
-
-\subsection{Merlin}
-
 Merlin was the strongest model in this study across every axis we measured. Table~\ref{tab:merlin-classification}
 gives its classification performance on the test split.
 
@@ -714,6 +646,66 @@ pointing-game accuracy of 0.85. This gap suggests that BiomedParse's attention i
 somewhere near the correct lesion even when the predicted mask itself does not overlap it well,
 similar to the pattern seen with LC-KSVD2 earlier in this chapter.
 
+\section{Grad-CAM}
+
+The token-based Grad-CAM variant described in Section~\ref{sec:grad-cam}, using the predicted abnormality
+logit as the target score, was evaluated on the full test set using the metrics:
+Dice, IoU, Attribution IoU, pointing-game hit rate, and energy inside the ground-truth mask.
+Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard deviation.
+
+\begin{table}[ht]
+    \centering
+    \caption{CT-CLIP Grad-CAM localisation metrics evaluated on the full test set
+    (mean $\pm$ std).}
+    \label{tab:ctclip-gradcam-metrics}
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Metric} & \textbf{Value} \\
+        \midrule
+        Dice                    & 0.0019 $\pm$ 0.0034 \\
+        IoU                     & 0.0009 $\pm$ 0.0017 \\
+        Attribution IoU         & 0.0009 $\pm$ 0.0017 \\
+        Pointing-game hit rate  & 0.0000 $\pm$ 0.0000 \\
+        Energy inside mask      & 0.0008 $\pm$ 0.0018 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Every metric is close to zero meaning that the voxel with the highest heatmap value did not fall inside the
+annotated lesion in any case in the test set.
+The ground-truth annotations cover an average of 59{,}443 voxels out of 55{,}296{,}000 voxels in a volume.
+In comparison, even the most selective of the four candidate thresholds
+($95^{\text{th}}$ percentile) marks 2{,}764{,}800 voxels, corresponding to
+5\% of the volume. Several cases achieved their best Dice score at the
+$70^{\text{th}}$ or $80^{\text{th}}$ percentile, resulting in 20--30\% of the
+volume being marked as positive.
+
+Therefore, the thresholded Grad-CAM explanation is often much larger than the
+small lesion it is intended to localise. This large size difference strongly
+reduces the overlap-based metrics and contributes to the very low Dice and IoU
+scores. However, the zero pointing-game hit rate also indicates that the
+strongest individual activation did not reliably fall within the annotated
+lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
+not sufficiently precise for localising the small target lesions.
+Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the Grad-CAM heatmap for a single nodule case from the test set.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/gradcam-nodule-example.png}
+    \caption{Grad-CAM for 3 example cases: CT slice (left), ground-truth
+    nodules (centre), and Grad-CAM heatmap (right).}
+    \label{fig:ctclip-gradcam-nodule-example}
+\end{figure}
+
+We can observe, the strongest heatmap activations were spread broadly across
+the chest wall and even outside the lung rather than being concentrated around the three
+annotated nodule boundaries. The single highest-valued voxel also fell outside
+all three ground-truth annotations, resulting in a pointing-game miss.
+
+This example is consistent with the overall evaluation: the Grad-CAM heatmap
+generally focuses on the lung region rather than the image background, but it
+is not precise enough to localise a specific small lesion within the surrounding
+lung tissue.
 
 \section{Qualitative Analysis}
 
