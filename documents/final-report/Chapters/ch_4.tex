@@ -416,6 +416,42 @@ Visually, the abnormality maps picked up the general region of GGO and nodule fi
 scans, though the boundaries were noticeably coarser than the original lesion outlines, which is
 expected given the patches were classified independently of one another.
 
+Figure~\ref{fig:nodule-reconstruction} shows the patch-level output of the class-restricted
+reconstruction described in Section~\ref{sec:class-Specific-reconstruction} for a single patch
+classified as a nodule: $\hat{\mathbf{x}}_c = \mathbf{D}_c\alpha_c$, reshaped back into its
+$12\times12\times6$ patch volume and viewed along its three anatomical planes. The reconstruction is
+a smooth, roughly spherical blob of high intensity concentrated near the patch centre and fading
+towards the edges, consistent with a nodule's dense, well-bounded appearance, rather than the
+generic speckled texture seen when the same patch is reconstructed from the full dictionary or from
+a different class's block.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/NoduleReconstruction.jpeg}
+    \caption[Class-restricted reconstruction of a single nodule patch]
+    {Class-restricted reconstruction $\hat{\mathbf{x}}_c = \mathbf{D}_c\alpha_c$ of a single patch
+    classified as a nodule, shown in axial, coronal, and sagittal views.}
+    \label{fig:nodule-reconstruction}
+\end{figure}
+
+Assembling these per-patch, class-restricted reconstructions into the predicted coverage mask for a
+full scan and overlaying it on the original volume gives the kind of result shown in
+Figure~\ref{fig:3dslicer-visualization}, viewed in 3D Slicer across the axial, coronal, and sagittal
+planes. The predicted nodule regions (green) cluster around the visually denser structures in the
+left lung in this case, showing that the per-patch reconstructions combine into a spatially coherent
+whole-volume localisation rather than isolated, unrelated patch predictions, even though, as noted
+above, the resulting regions are coarser than the original lesion boundaries.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/ReconstructedVisualizationin3dslicer.jpeg}
+    \caption[Whole-volume localisation overlay viewed in 3D Slicer]
+    {Whole-volume nodule localisation, assembled from per-patch class-restricted reconstructions and
+    overlaid (green) on the original CT volume, viewed in 3D Slicer across axial, coronal, and
+    sagittal planes.}
+    \label{fig:3dslicer-visualization}
+\end{figure}
+
 \section{Machine Learning}
 
 The raw-patch baselines described in Section~\ref{sec:ml-baseline-methods} were evaluated on the
