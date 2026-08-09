@@ -354,7 +354,7 @@ relevant header fields used in this study.
 The CT volumes preserve the scanner-space affine transformation, which maps voxel indices to physical coordinates in millimetres.
 In general, the affine matrix can be represented as:
 
-\[
+\begin{equation}[Scanner-Space Affine Matrix]
 \mathbf{A} =
 \begin{bmatrix}
 -\Delta_x & 0 & 0 & t_x \\
@@ -362,7 +362,7 @@ In general, the affine matrix can be represented as:
 0 & 0 & \Delta_z & t_z \\
 0 & 0 & 0 & 1
 \end{bmatrix},
-\]
+\end{equation}
 
 \noindent where $\Delta_x$, $\Delta_y$, and $\Delta_z$ denote the voxel spacing along the $x$-, $y$-, and $z$-axes, respectively,
 and $(t_x,t_y,t_z)$ denotes the translation of the image origin in scanner coordinates. The negative scaling factors along the
@@ -376,9 +376,9 @@ the mask metadata is updated to match the corresponding CT volume's metadata.
 
 Volumes were loaded using the nibabel Python library and converted into float32 HU arrays, with each scan represented as:
 
-\[
+\begin{equation}[CT Volume Representation]
 I(x,y,z) \in \mathbb{R}^{H \times W \times D}
-\]
+\end{equation}
 
 \noindent where $H$, $W$ and $D$ denote the height, width and depth of the volume.
 
@@ -416,19 +416,19 @@ nodules due to excessive downsampling. Furthermore, chest CTs naturally often ha
 than axial slice thickness (Z). Setting a 1.5 mm Z-spacing respects this clinical reality while reduces the number of voxels by approximately 50\%
 compared to isotropic 0.75 mm 3D grids:
 
-\[
+\begin{equation}[Isotropic Voxel Volume]
 V_{\text{voxel, iso}}
 = 0.75 \times 0.75 \times 0.75
 = 0.421875\ \text{mm}^3,
-\]
+\end{equation}
 
-\[
+\begin{equation}[Anisotropic Voxel Volume]
 V_{\text{voxel, anisotropic}}
 = 0.75 \times 0.75 \times 1.5
 = 0.84375\ \text{mm}^3.
-\]
+\end{equation}
 
-\[
+\begin{equation}[Voxel Count Reduction Ratio]
 \frac{N_{\text{anisotropic}}}{N_{\text{iso}}}
 =
 \frac{V_{\text{voxel, iso}}}
@@ -437,13 +437,13 @@ V_{\text{voxel, anisotropic}}
 \frac{0.421875}{0.84375}
 =
 0.5.
-\]
+\end{equation}
 
 
 The resampling was performed using trilinear interpolation for the CT volumes and
 nearest-neighbour interpolation for the segmentation masks. The zoom factors were calculated as:
 
-\begin{equation}
+\begin{equation}[Resampling Zoom Factors]
 \text{zoom}_x = \frac{\Delta_x}{0.75}, \quad
 \text{zoom}_y = \frac{\Delta_y}{0.75}, \quad
 \text{zoom}_z = \frac{\Delta_z}{1.5}
@@ -491,7 +491,7 @@ is normally well separated from surrounding structures in intensity. Each volume
 was first thresholded to keep only voxels between $-900$ and $-200$ HU, the range
 typically associated with aerated lung parenchyma:
 
-\begin{equation}
+\begin{equation}[HU Threshold Lung Mask]
 M_{thresh}(x,y,z) = \begin{cases} 1, & -900 \leq I(x,y,z) \leq -200 \\ 0, & \text{otherwise} \end{cases}
 \end{equation}
 
@@ -700,22 +700,22 @@ of the dictionary and the underlying sparse coding problem. The uniqueness of sp
 dictionary's \textit{mutual coherence}, which is the maximum absolute inner product between any pair of normalized columns.
 This provides a practical condition for the sparsity level:
 
-\[
+\begin{equation}[Sparsity Uniqueness Condition]
 s < \frac{1}{2}\left(1+\frac{1}{\mu(D)}\right),
-\]
+\end{equation}
 
 \noindent where:
 
-\[
+\begin{equation}[Welch Bound]
 \mu(D) \ge \sqrt{\frac{K-d}{d(K-1)}}.
-\]
+\end{equation}
 
 This is known as the Welch Bound \citep{welch1974lower}. As K increases, the bound approaches $(\mu(D)\approx1/\sqrt{d})$,
 yielding the asymptotic sparsity ceiling:
 
-\[
+\begin{equation}[Asymptotic Sparsity Ceiling]
 s \lesssim \frac{\sqrt{d}}{2},
-\]
+\end{equation}
 
 \noindent which is independent of K. For d=864, this gives $s_{\max}\approx14$.
 From this, we decided that the sparsity level of s=10 is well within the uniqueness region.
@@ -723,9 +723,9 @@ From this, we decided that the sparsity level of s=10 is well within the uniquen
 The original K-SVD work reports stable atom recovery when each atom is supported by approximately 100-300 training samples
 \citep{aharon2006ksvd}. This gives a range of values for the dictionary size $K$:
 
-\[
+\begin{equation}[Dictionary Size Range]
 K \lesssim \frac{100,000}{100 \text{ to } 300} \approx 333 \text{ to } 1,000
-\]
+\end{equation}
 
 This is considerably smaller than the typical 2-4x overcomplete dictionaries used in image processing. Even at $K=1,000$,
 $K/d \approx 1.2$, which is barely overcomplete. To achieve desirable overcompleteness, we would have to tradeoff the
@@ -771,47 +771,47 @@ together in the normalised space, even though this density difference is often t
 However, sending the raw patches has its own drawbacks. Consider a patch where
 $N=12\times12\times12=1728$. The energy of a signal is proportional to the squared $\ell_2$ norm:
 
-\[
+\begin{equation}[Patch Signal Energy]
 E = \|\mathbf{x}\|_2^2 = \sum_{i=1}^{N} x_i^2.
-\]
+\end{equation}
 
 For a typical normal lung patch, the normalized voxel values are approximately constant at $-0.85$. Thus,
 
-\[
+\begin{equation}[DC Component Magnitude]
 \|\mathbf{x}_{\mathrm{DC}}\|_2
 = \sqrt{N(0.85)^2}
 = 0.85\sqrt{1728}
 \approx 35,
-\]
+\end{equation}
 
 \noindent giving an energy of
 
-\[
+\begin{equation}[DC Component Energy]
 E_{\mathrm{DC}} \approx 35^2 = 1225.
-\]
+\end{equation}
 
 Let's assume that the remaining texture variations have a normalized magnitude of approximately $0.05$--$0.1$, giving
 
-\[
+\begin{equation}[Texture Component Magnitude]
 \|\mathbf{x}_{\mathrm{tex}}\|_2
 \approx (0.05\text{--}0.1)\sqrt{1728}
 \approx 4,
-\]
+\end{equation}
 
 \noindent and
 
-\[
+\begin{equation}[Texture Component Energy]
 E_{\mathrm{tex}} \approx 4^2 = 16.
-\]
+\end{equation}
 
 Therefore, the Direct Current (DC) component accounts for approximately
 
-\[
+\begin{equation}[DC Energy Fraction]
 \frac{E_{\mathrm{DC}}}{E_{\mathrm{DC}} + E_{\mathrm{tex}}}
 =
 \frac{1225}{1225+16}
 \approx 98.7\%
-\]
+\end{equation}
 
 \noindent of the total signal energy, meaning that the HU intensity dominates the sparse coding process as a feature.
 
@@ -819,22 +819,22 @@ We also tested an alternative approach that combines the benefits of both method
 information before sparse coding. Instead of removing the patch mean entirely or encoding it implicitly through a DC atom, each
 patch $\mathbf{x}$ is represented as
 
-\[
+\begin{equation}[Mean-Texture Patch Decomposition]
 \mathbf{x} \rightarrow \left(\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right),
-\]
+\end{equation}
 
 \noindent where $\mu$ is the mean attenuation, $\|\mathbf{x}-\mu\|_2$ represents the texture magnitude, and
 $\boldsymbol{\alpha}_{\mathrm{tex}}$ is the sparse code of the normalized zero-mean texture,
 
-\[
+\begin{equation}[Normalized Zero-Mean Texture]
 \tilde{\mathbf{x}}=\frac{\mathbf{x}-\mu}{\|\mathbf{x}-\mu\|_2}.
-\]
+\end{equation}
 
 \noindent The classifier is then trained using the combined feature vector
 
-\[
+\begin{equation}[Combined Feature Vector]
 \left[\mu,\; \|\mathbf{x}-\mu\|_2,\; \boldsymbol{\alpha}_{\mathrm{tex}}\right].
-\]
+\end{equation}
 
 This preserves the highly interpretable mean attenuation as an explicit scalar feature while allowing the dictionary to learn only
 texture, preventing the sparse coding process from being dominated by the DC component.
@@ -968,7 +968,7 @@ In the case of LC-KSVD, the dictionary does not divide into class-specific sub-d
 learned over the sparse codes, with the classifier weights indicating the importance of each atom for each class.
 For a sparse code $\alpha \in \mathbb{R}^{K}$, the class scores can be expressed as
 
-\begin{equation}
+\begin{equation}[Linear Classifier Class Scores]
 \mathbf{s} = \mathbf{W}\alpha,
 \end{equation}
 
@@ -978,7 +978,7 @@ prediction of class $c$.
 
 In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is divided into class-specific sub-dictionaries,
 
-\begin{equation}
+\begin{equation}[Class-Specific Sub-Dictionaries]
 \mathbf{D}
 =
 \left[
@@ -993,7 +993,7 @@ In contrast, for K-SVD, Frozen Dictionary Learning, and FDDL, the dictionary is 
 \noindent where $\mathbf{D}_{c}$ contains the atoms associated with class $c$.
 The sparse code can consequently be partitioned in the same manner,
 
-\begin{equation}
+\begin{equation}[Partitioned Sparse Code]
 \alpha
 =
 \left[
@@ -1010,7 +1010,7 @@ with each class, while a non-linear classifier can be used to classify the resul
 In addition, we can analyze the sparse codes to find atoms that are class-exclusive. For each atom $j$ and class $c$,
 the mean absolute sparse coefficient is first calculated as
 
-\begin{equation}
+\begin{equation}[Mean Absolute Sparse Coefficient]
 \mu_{j,c}
 =
 \frac{1}{N_c}
@@ -1033,7 +1033,7 @@ We can see that some atoms are activated for all classes, while others are activ
 This indicates that some atoms are class-exclusive, while others are shared across classes. The class selectivity of an atom $j$
 can be quantified by comparing its mean activation for a given class $c$ to its mean activation across all other classes:
 
-\begin{equation}
+\begin{equation}[Atom Class Selectivity]
 S_{j,c}
 =
 \frac{\mu_{j,c}}
@@ -1275,7 +1275,7 @@ description. This is the same text-image similarity used for zero-shot
 localisation in Merlin (see Section~\ref{sec:merlin-method}. It allows Grad-CAM to
 produce a heatmap for a specific abnormality instead of only highlighting generally important regions.
 
-\begin{equation}
+\begin{equation}[Image-Text Cosine Similarity]
 y = \frac{z_i^{\top} z_t}{\lVert z_i \rVert \lVert z_t \rVert},
 \end{equation}
 
@@ -1292,7 +1292,7 @@ were averaged over all spatial locations to obtain one importance weight for
 each feature channel. These weights were then used to calculate a weighted
 sum of the corresponding activation maps:
 
-\begin{equation}
+\begin{equation}[Grad-CAM Heatmap]
 L = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A^{k}\right), \qquad
 \alpha_{k} = \frac{1}{Z}\sum_{d,h,w} \frac{\partial y}{\partial A_{d,h,w}^{k}}
 \end{equation}
@@ -1346,7 +1346,7 @@ The transformer encoder calculates token importance in a similar way to the
 convolutional encoder. However, instead of averaging the gradients over spatial
 locations, the gradients are averaged across all tokens:
 
-\begin{equation}
+\begin{equation}[Token-Level Grad-CAM]
 \alpha_{k} = \frac{1}{N}\sum_{i=1}^{N} \frac{\partial y}{\partial A_{i}^{k}},
 \qquad
 T_{i} = \mathrm{ReLU}\left(\sum_{k} \alpha_{k} A_{i}^{k}\right)
@@ -1478,7 +1478,7 @@ label present in the evaluated set, since the metric is simply undefined there.
 ECE divides the unit interval into ten equal-width confidence bins and compares each bin's mean
 predicted confidence against its observed accuracy,
 
-\begin{equation}
+\begin{equation}[Expected Calibration Error]
 \mathrm{ECE} = \sum_{m=1}^{10} \frac{|B_m|}{N}\,\bigl|\mathrm{acc}(B_m) - \mathrm{conf}(B_m)\bigr|,
 \label{eq:ece}
 \end{equation}
@@ -1513,7 +1513,7 @@ Localization is scored for BiomedParse and nnU-Net on the deep-learning side and
 LC-KSVD, and Frozen Dictionary Learning on the dictionary-learning side. Voxel-level
 agreement between a predicted mask $P$ and a ground-truth mask $G$ is measured by the Dice
 coefficient and Intersection-over-Union,
-\begin{equation}
+\begin{equation}[Dice and IoU]
 \mathrm{Dice}(P,G) = \frac{2|P \cap G|}{|P| + |G|}, \qquad
 \mathrm{IoU}(P,G) = \frac{|P \cap G|}{|P \cup G|},
 \label{eq:dice-iou}
@@ -1532,7 +1532,7 @@ protocol of the ReXGroundingCT benchmark
 \url{https://rexrank.ai/ReXGroundingCT/}. A predicted instance counts as a true positive
 when its Dice against some ground-truth instance reaches at least $0.2$, matched greedily
 and one-to-one:
-\begin{equation}
+\begin{equation}[Instance-Level True Positives]
 \mathrm{TP} = \bigl|\{(p,g) : \mathrm{Dice}(p,g) \ge 0.2,\ p \leftrightarrow g \text{ under greedy matching}\}\bigr|.
 \label{eq:instance-tp}
 \end{equation}
@@ -1543,7 +1543,7 @@ ground-truth instances cannot dominate the result.
 
 At whole-set level the Global Hit Rate defined by ReXGroundingCT is also reported, that is,
 the fraction of the $F$ evaluated findings whose Dice clears $0.10$,
-\begin{equation}
+\begin{equation}[Global Hit Rate]
 \mathrm{HitRate} = \frac{1}{F}\sum_{i=1}^{F} \mathbb{1}\!\left[\mathrm{Dice}_i \ge 0.10\right],
 \label{eq:hit-rate}
 \end{equation}
@@ -1574,7 +1574,7 @@ The attribution map is min-max normalised to $[0,1]$, binarised at a fixed thres
 (default $0.5$), and its IoU against the ground-truth mask computed exactly as in
 Section~\ref{sec:eval-localization}. The pointing game is stricter and asks only whether the
 single highest-attribution voxel lands inside the ground-truth region,
-\begin{equation}
+\begin{equation}[Pointing Game]
 \mathrm{PointingGame} = \mathbb{1}\!\left[\arg\max_{v} A(v) \in G\right],
 \label{eq:pointing-game}
 \end{equation}
@@ -1582,7 +1582,7 @@ which has the advantage of being threshold-free and the disadvantage of ignoring
 about the map except its peak. Energy inside mask uses the whole map instead: attribution
 values are clipped to non-negative and the share of total positive energy falling inside the
 ground-truth region is reported,
-\begin{equation}
+\begin{equation}[Energy Inside Mask]
 \mathrm{EnergyInsideMask} = \frac{\sum_{v \in G} \max(A(v),0)}{\sum_{v} \max(A(v),0)}.
 \label{eq:energy-inside-mask}
 \end{equation}
