@@ -1638,6 +1638,28 @@ and through the oracle-threshold procedure of Section~\ref{sec:explainability-me
 rather than through the fixed-threshold metrics of Section~\ref{sec:eval-explainability}.
 Extending them to the fixed-threshold definitions is left as further work.
 
+\section{Sub-Class Cluster Analysis}
+\label{sec:statistical-analysis}
+
+The ``2c'' (GGO) and ``2d'' (nodule) labels each group together patches that can vary considerably in
+size, shape and density, so we checked whether their sparse codes form one cluster in code space or
+separate into sub-populations that a single classifier would blur together. This was done for the GGO
+and nodule codes from the LC-KSVD2 dictionary and Frozen dictionary, to compare separability
+across the two dictionary-learning strategies.
+
+For each class/dictionary combination, the sparse codes were $\ell_2$-normalised and clustered with
+K-Means ($\texttt{random\_state}=42$, $\texttt{n\_init}=10$). The number of clusters $K$ was chosen
+using the elbow method (inertia for $K=1$–$7$) together with the mean silhouette score ($K=2$–$7$,
+computed on a random 5,000-sample subset for tractability); $K=4$ was selected in every case and used
+for the results in Section~\ref{sec:cluster-results}.
+
+Clusters were visualised via 2-D and 3-D PCA projections of the sparse codes and centroids, with convex
+hulls marking each cluster's extent and per-sample silhouette coefficients plotted to check for
+unevenly-separated clusters. To interpret the clusters, the $K$ centroids were compared atom-by-atom:
+the 30 atoms with the highest variance across centroids were taken as most discriminative between
+sub-clusters and visualised as a heatmap, linking each sub-cluster to the specific dictionary atoms
+responsible for distinguishing it.
+
 \section{Qualitative Analysis}
 
 While the above evaluation framework provides a quantitative assessment of model performance,
