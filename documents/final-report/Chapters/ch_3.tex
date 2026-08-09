@@ -953,6 +953,7 @@ We trained three classifiers for each dictionary learning algorithm:
 The performance of each classifier was evaluated on the same dataset, and the best-performing classifier was selected for each algorithm.
 
 \section{Projecting back to voxel space}
+\label{sec:statistical-analysis}
 
 This is the most important part of our study as it allows us to find the specific voxels in a patch that belong to a particular
 class. To reconstruct the specific voxels in a patch that belong to a particular class,
@@ -1569,9 +1570,8 @@ binarisation, which is a useful upper bound but not a deployable one, since a sy
 inference time has no ground truth to search over. The metric layer described here fixes a
 threshold in advance instead, with no oracle involved. This fixed-threshold treatment is
 currently applied to CT-CLIP; the dictionary-learning models are covered on the
-explainability axis through the oracle-threshold and atom-based procedures of
-Section~\ref{sec:explainability-methods}, and their numbers are therefore not interchangeable
-with CT-CLIP's.
+explainability axis through the oracle-threshold and atom-based procedures,
+and their numbers are therefore not interchangeable with CT-CLIP's.
 
 The attribution map is min-max normalised to $[0,1]$, binarised at a fixed threshold
 (default $0.5$), and its IoU against the ground-truth mask computed exactly as in
@@ -1632,11 +1632,6 @@ Frozen Dictionary Learning  & \checkmark & \checkmark & \checkmark \\
 \hline
 \end{tabular}
 \end{table}
-
-Explainability for the dictionary-learning models is assessed qualitatively
-and through the oracle-threshold procedure of Section~\ref{sec:explainability-methods},
-rather than through the fixed-threshold metrics of Section~\ref{sec:eval-explainability}.
-Extending them to the fixed-threshold definitions is left as further work.
 
 \section{Qualitative Analysis}
 
