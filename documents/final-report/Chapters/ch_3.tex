@@ -935,6 +935,25 @@ bookkeeping is later used when inspecting which atoms are used for
 which class, as described in Section~\ref{sec:statistical-analysis}'s
 discussion of atom activation.
 
+Figure~\ref{fig:frozen-atom-visualization} shows a sample of atoms from
+each stage, reshaped back into patch form and tiled into a grid, with
+the base, GGO, and nodule atoms shown as separate panels. Because each
+panel is learned by K-SVD on only that class's own patches, the three
+panels are visually distinct rather than interchangeable. 
+This confirms that each stage's residual atoms
+are genuinely specialising to their own class's texture statistics
+rather than simply re-learning generic lung-CT patterns, and it does so
+with every atom's class of origin known exactly, since it is fixed by
+which stage produced it, rather than inferred after the fact from a
+classifier weight or activation statistic.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/Chapter 3/FrozenAtomVisualization.jpeg}
+    \caption{Frozen dictionary atom visualization per class.}
+    \label{fig:frozen-atom-visualization}
+\end{figure}
+
 \section{Sparse Code Classification}
 \label{sec:classification}
 
