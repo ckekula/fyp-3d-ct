@@ -10,7 +10,7 @@
 % ties back to the lung-segmentation methodology discussion in Chapter 3
 % (classical HU-threshold vs LungMask) as a third data point.
 
-\section{Sparse-Coding Dictionary Learning (K-SVD Family)}
+\section{Sparse-Coding Dictionary Learning}
 % Four dictionary-learning variants are supported by main.py's
 % --algorithm flag: ksvd (plain, unsupervised), fddl (Fisher
 % Discrimination Dictionary Learning), frozen (IncrementalFrozenDictionary
@@ -19,18 +19,61 @@
 % (the original joint LC-KSVD2, trained over all classes at once). Each
 % is covered below to the extent it actually has saved results.
 
-\subsection{K-SVD (Unsupervised)}
+\subsection{K-SVD}
 % No local saved evaluation output found -- state as trained/available
 % via main.py --algorithm ksvd but not yet evaluated locally, rather than
 % omitting it silently.
 
-\subsection{FDDL (Fisher Discrimination Dictionary Learning)}
+\paragraph{Sparsity and Atom Utilisation}
+\paragraph{Atom Co-occurrence and Clustering}
+\paragraph{Dictionary Coherence}
+\paragraph{Visual Inspection of Atoms and Reconstructions}
+% (eda.ipynb-derived figures/numbers -- analysed unified_frozen.pkl /
+% train_sparse_codes_frozen.npz specifically, i.e. this variant, not
+% LC-KSVD2; same material already summarised methodologically in
+% Chapter 3's Statistical Analysis)
+
+\subsection{LC-KSVD}
+
+The jointly-trained LC-KSVD2 model was evaluated on a 69,571-patch test split
+(58,764 normal / 8,019 ``2c'' / 2,788 ``2d'' patches), with five classifier
+heads trained on the same sparse-code representation to compare against the
+model's own built-in discriminative classifier. Table
+\ref{tab:lcksvd2-classifiers} summarises patch-level performance across all
+five.
+
+\begin{table}[ht]
+    \centering
+    \caption{LC-KSVD2 classifier-head comparison (test split, $n=69{,}571$: 58,764 normal / 8,019 ``2c'' / 2,788 ``2d'').}
+    \label{tab:lcksvd2-classifiers}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
+        \midrule
+        LinearSVC (SVM)              & \textbf{0.852} & \textbf{0.69} & 0.44 & \textbf{0.70} \\
+        Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
+        Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
+        HistGradientBoosting         & 0.689 & 0.51 & 0.35 & 0.36 \\
+        XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The externally-trained LinearSVC clearly outperforms every other head,
+including LC-KSVD2's own built-in discriminative classifier $W$ (85.2\% vs.\
+62.1\% accuracy) -- the label-consistency term learned jointly with the
+dictionary does not transfer as well as simply fitting a fresh linear
+classifier on the resulting sparse codes afterwards. The non-linear heads
+(HistGradientBoosting, XGBoost) do not improve on this either, both trailing
+plain logistic regression, which suggests the sparse-code feature space is
+already close to linearly separable for this task and additional model
+capacity does not help. LinearSVC is therefore used as the reference
+classifier for LC-KSVD2 throughout the rest of this chapter.
+
+\subsection{FDDL}
 % No local saved evaluation output found -- same caveat as K-SVD above.
 
 \subsection{Frozen Dictionary Learning}
-
-\subsubsection{Test-Set Classification Performance}
-\label{sec:frozen-classification}
 
 The Frozen (IncrementalFrozenDictionary) model was evaluated on a 44,384-patch
 test split (14,150 normal / 14,884 ``2c'' / 15,350 ``2d'' patches). A linear
@@ -87,63 +130,16 @@ adding each abnormality as a residual dictionary on top -- generalises to
 unseen scans better than training a single dictionary jointly across all
 three classes at once.
 
-\subsubsection{Sparse Dictionary Interpretability}
-
-\paragraph{Sparsity and Atom Utilisation}
-\paragraph{Atom Co-occurrence and Clustering}
-\paragraph{Dictionary Coherence}
-\paragraph{Visual Inspection of Atoms and Reconstructions}
-% (eda.ipynb-derived figures/numbers -- analysed unified_frozen.pkl /
-% train_sparse_codes_frozen.npz specifically, i.e. this variant, not
-% LC-KSVD2; same material already summarised methodologically in
-% Chapter 3's Statistical Analysis)
-
-\subsection{LC-KSVD2 (Joint, Single-Shot)}
-
 \subsubsection{Test-Set Classification Performance}
-\label{sec:lcksvd2-classification}
+\label{sec:frozen-classification}
 
-The jointly-trained LC-KSVD2 model was evaluated on a 69,571-patch test split
-(58,764 normal / 8,019 ``2c'' / 2,788 ``2d'' patches), with five classifier
-heads trained on the same sparse-code representation to compare against the
-model's own built-in discriminative classifier. Table
-\ref{tab:lcksvd2-classifiers} summarises patch-level performance across all
-five.
 
-\begin{table}[ht]
-    \centering
-    \caption{LC-KSVD2 classifier-head comparison (test split, $n=69{,}571$: 58,764 normal / 8,019 ``2c'' / 2,788 ``2d'').}
-    \label{tab:lcksvd2-classifiers}
-    \begin{tabular}{lcccc}
-        \toprule
-        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
-        \midrule
-        LinearSVC (SVM)              & \textbf{0.852} & \textbf{0.69} & 0.44 & \textbf{0.70} \\
-        Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
-        Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
-        HistGradientBoosting         & 0.689 & 0.51 & 0.35 & 0.36 \\
-        XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-The externally-trained LinearSVC clearly outperforms every other head,
-including LC-KSVD2's own built-in discriminative classifier $W$ (85.2\% vs.\
-62.1\% accuracy) -- the label-consistency term learned jointly with the
-dictionary does not transfer as well as simply fitting a fresh linear
-classifier on the resulting sparse codes afterwards. The non-linear heads
-(HistGradientBoosting, XGBoost) do not improve on this either, both trailing
-plain logistic regression, which suggests the sparse-code feature space is
-already close to linearly separable for this task and additional model
-capacity does not help. LinearSVC is therefore used as the reference
-classifier for LC-KSVD2 throughout the rest of this chapter.
 
 \subsubsection{Whole-Volume Localisation}
 % Qualitative results only -- overlay figures / NIfTI exports from
 % inference.py's per-voxel abnormality map (no Dice/IoU computed)
 
-\subsection{Raw-Patch Machine Learning Baseline}
-\label{sec:raw-patch-baseline}
+\section{Machine Learning}
 
 The raw-patch baselines described in Section~\ref{sec:ml-baseline-methods} were evaluated on the
 same test split used for LC-KSVD2 Table~\ref{tab:raw-patch-classifiers}
@@ -193,21 +189,23 @@ abnormality classes from each other, particularly the smaller and rarer
 nodule class consistent with the dictionary learning and sparse coding
 stages contributing meaningfully beyond what raw intensity alone provides.
 
-\section{nnU-Net Segmentation Results}
+\section{Deep Learning}
+
+\subsection{nnU-Net Segmentation Results}
 % Dice / IoU / precision / recall / specificity, GGO model only
 % (fold 3 + fold 4 ensemble; no nodule-model run completed --
 %  state this explicitly rather than omitting it silently)
 
-\section{CT-CLIP Results}
+\subsection{CT-CLIP Results}
 
-\subsection{Linear-Probe (LiPro) Classification Performance}
+\subsubsection{Linear-Probe (LiPro) Classification Performance}
 % Full-dataset run, 2,465 scans (ct_clip_lipro_classification_metrics.json)
 
-\subsection{Zero-Shot Text-Prompt Pilot}
+\subsubsection{Zero-Shot Text-Prompt Pilot}
 % Small pilot only (outputs/ctclip_rex_eval) -- flag as pilot-scale,
 % not a full comparison run
 
-\subsection{Explainability (Grad-CAM)}
+\subsection{Grad-CAM}
 
 The token-based Grad-CAM variant described in Section~\ref{sec:explainability-methods}, 
 using the predicted abnormality
@@ -300,64 +298,7 @@ generally focuses on the lung region rather than the image background, but it
 is not precise enough to localise a specific small lesion within the surrounding
 lung tissue.
 
-\section{Merlin Results}
+\subsection{Merlin}
 
-\subsection{Zero-Shot Classification Performance}
-% merlin_classification_metrics.json
+\subsection{BiomedParse}
 
-\subsection{Zero-Shot Localisation Performance}
-% merlin_localization_summary.csv / per_case.csv -- soft similarity maps,
-% not a trained segmentation head
-
-
-\section{BiomedParse Results}
-
-\subsection{Presence Detection (Classification) Performance}
-% biomed_parse_rexgroundingct_classification_metrics.json
-
-\subsection{Segmentation/Localisation Performance}
-% biomed_parse_localization_summary.csv / per_case.csv
-
-\section{MedSAM2 Results}
-% results/train_6_a_2/{metrics.json, lesion_bboxes.json} -- single-case
-% pilot only (dice 0.0 on that case), from a box-prompted, SAM2
-% video-tracking-based lesion segmentation pipeline designed for the full
-% 163-case test subset (models/med-sam2/notebooks/
-% MedSAM2_RexGroundingCT_Inference.ipynb) but not yet run at that scale.
-% Report as a proof-of-concept that the pipeline runs end-to-end, not as
-% a comparable evaluation result; note the RECIST-style metric set
-% (Hausdorff-95, volume error \%, lesion counts) differs from the
-% Dice/IoU used elsewhere.
-
-\section{Cross-Model Comparison}
-
-\subsection{Classification Performance Comparison}
-% Shared table/plot: LC-KSVD vs CT-CLIP vs Merlin vs BiomedParse
-% (model_comparison_summary.json) -- note LC-KSVD's Atelectasis caveat
-% (reuses its Consolidation numbers) if kept in the writeup.
-% IMPORTANT: the "LC-KSVD" entry here is sourced from
-% models/lc-ksvd/lcksvd_metrics.json, which is a set of separate
-% per-abnormality binary LC-KSVD2 dictionaries (e.g. "Lung nodule_lcksvd2.pkl",
-% n_components=128) with their own train/val AUROC/F1/AP -- a different
-% training setup from the unified 3-class dictionary + shared LinearSVC
-% reported under LC-KSVD2 (Joint, Single-Shot) above. Do not conflate the
-% two when writing this up; state clearly which one is being compared here.
-
-\subsection{Localisation/Segmentation Performance Comparison}
-% nnU-Net vs Merlin vs BiomedParse (LC-KSVD excluded -- no Dice output;
-% classical image-processing baseline and MedSAM2 excluded from the main
-% table too -- too few cases each to be a fair comparison point, but
-% worth a one-line callback to their Results sections above)
-
-\subsection{Explainability Comparison}
-% Grad-CAM based: dice / iou / attribution_iou / pointing_game /
-% energy_inside_mask. Real computed numbers currently exist only for
-% CT-CLIP (~20-case pilot); Merlin's explainability code has not yet been
-% run to produce comparable numbers, and BiomedParse has no Grad-CAM
-% pipeline (it outputs masks directly rather than a classifier +
-% attribution map). Scope this subsection to what's actually comparable,
-% and state the gap explicitly rather than presenting an uneven comparison
-% as if it were complete.
-
-\section{Chapter Summary}
-% One paragraph tying the comparison back to the aims stated in Chapter 1
