@@ -15,7 +15,7 @@ of an object from many angles and computationally reconstructing them into a sta
 such as filtered backprojection \cite{withers2021x}. Figure \ref{fig:ct} shows the Backprojection reconstruction process for a
 single CT slice.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/CT.png}
     \caption[Backprojection process in CT imaging]{Backprojection reconstruction method for a single slice \cite{withers2021x}.
@@ -127,7 +127,7 @@ Finally, they continuously outperform classical CAD methods in pivotal studies.
 The subsequent sections review some of the popular deep learning models used in medical imaging research, and also used in this study.
 
 \subsection{nnU-Net}
-The nnU-Net addresses a persistent problem in biomedical image segmentation. Even well-established architectures
+The nnU-Net \cite{isensee2021nnu} addresses a persistent problem in biomedical image segmentation. Even well-established architectures
 like the U-Net require extensive, dataset-specific manual tuning of preprocessing, network topology, and training parameters.
 Small misconfigurations can cause large performance drops. Rather than proposing a new architecture, nnU-Net systematizes this
 configuration process itself. It decomposes design decisions into three categories:
@@ -138,25 +138,30 @@ configuration process itself. It decomposes design decisions into three categori
     \item A small set of empirical parameters selected via cross-validation (choice among 2D, 3D, and 3D cascade configurations, and whether to apply post-processing such as largest-component suppression).
 \end{enumerate}
 
-Figure \ref{fig:nnunet} shows the nnU-Net configuration method:
+Figure \ref{fig:nnunet} shows the nnU-Net configuration method. Given a new segmentation task, dataset properties are summarized as
+a ''dataset fingerprint'' (pink). Heuristic rules use this fingerprint to determine data-dependent rule-based parameters (green),
+complemented by predefined fixed parameters (blue). Up to three configurations are trained using five-fold cross-validation,
+after which nnU-Net empirically selects the optimal ensemble and determines whether post-processing is required (yellow).
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/nnunet.png}
-    \caption{nnU-Net configuration method}
+    \caption[Overview of nnU-Net configuration method]
+    {nnU-Net configuration method \cite{isensee2021nnu}}
     \label{fig:nnunet}
 \end{figure}
 
 Evaluated across 23 public datasets and 53 segmentation tasks spanning MRI, CT, electron microscopy, and fluorescence microscopy,
 nnU-Net outperformed most specialized, task-tuned pipelines without any manual intervention, setting a new state of the art on
 33 of 53 target structures. Notably, the authors' analysis of the KiTS 2019 leaderboard showed that configuration choices
-such as patch size, spacing, normalization affected performance more than architectural modifications.
+such as patch size, spacing, normalization affected performance more than architectural modifications \cite{isensee2021nnu}.
 Figure \ref{fig:nnunet-examples} shows example segmentations produced by nnU-Net on different datasets:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/nnunet-examples.png}
-    \caption{Example segmentations by nnU-Net}
+    \caption[Example segmentations by nnU-Net]
+    {Example segmentations by nnU-Net \cite{isensee2021nnu}. a, Heart, aorta, trachea, and esophagus in CT. b, A549 lung cancer cells in fluorescence microscopy (FM). c, Lung nodules in CT. d, Liver, spleen, and kidneys in T1 in-phase MRI. e, Synaptic clefts in electron microscopy (EM). f, Edema, enhancing tumor, and necrosis in multimodal MRI. g, Kidneys and kidney tumors in CT. h, Thirteen abdominal organs in CT. i, Hepatic vessels and liver tumors in CT. j, Left ventricle in MRI. k, Right ventricle, left ventricular cavity, and myocardium in cine MRI. l, HL60 cell nuclei with one color per instance in FM.}
     \label{fig:nnunet-examples}
 \end{figure}
 
@@ -173,21 +178,20 @@ This makes BiomedParse especially useful in settings where the structures of int
 advance, or described differently across institutions and reports.
 
 The model combines image encoding with language understanding and uses a transformer based decoder to align the prompt with the visual
-features extracted from the scan \cite{zhao2025foundation}. Figure \ref{fig:biomedparse-flowchart} shows the flowchart of the architecture:
+features extracted from the scan \cite{zhao2025foundation}. Figure \ref{fig:biomedparse-flowchart} shows the flowchart of the model architecture.
+The output is a segmentation mask, as shown in Figure \ref{fig:biomedparse-output}.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-flowchart.png}
-    \caption{BiomedParse architecture}
+    \caption[BiomedParse model architecture]{BiomedParse model architecture \cite{zhao2025foundation}}
     \label{fig:biomedparse-flowchart}
 \end{figure}
 
-The output is a segmentation mask, as shown in Figure \ref{fig:biomedparse-output}.
-
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/biomedparse-output.png}
-    \caption{Example outputs of BiomedParse}
+    \caption[Example outputs of BiomedParse]{Example outputs of BiomedParse \cite{zhao2025foundation}}
     \label{fig:biomedparse-output}
 \end{figure}
 
@@ -204,7 +208,8 @@ which include 27 organs, 59 bones, 10 muscles, 8 vessels.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/totalsegmentator.png}
-    \caption{Main classes of TotalSegmentator}
+    \caption[Main classes of the TotalSegmentator model]
+    {Main classes of the TotalSegmentator model \cite{wasserthal2023totalsegmentator}}
     \label{fig:totalsegmentator-output}
 \end{figure}
 
@@ -267,7 +272,7 @@ MedSAM-3 takes this a step further and fine-tunes the architecture on
 medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
 artery'' for 3D lung CT \cite{liu2025medsam3}. Even so, the authors' own ablations make clear that text
 alone does not remove the need for a geometric anchor. On the 3D Parse2022 lung CT benchmark, raw SAM 3
-given nothing but the phrase ``pulmonary artery'' managed a Dice of only 0.53, well short of nn-U-Net's
+given nothing but the phrase ``pulmonary artery'' managed a dice score of only 0.53, well short of nn-U-Net's
 0.83; on 2D benchmarks such as BUSI, text-only prompting scored 0 for SAM 3 and just 0.27 after MedSAM-3
 fine-tuning, jumping to 0.78 only once a bounding box was added alongside the text \cite{liu2025medsam3}.
 It is also worth noting that MedSAM-3's fine-tuning was limited to four 2D datasets, and its 3D lung CT
@@ -277,8 +282,8 @@ chest CT.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.85\textwidth]{Images/Chapter 2/ArchitectureMEDSAM3.png}
-    \caption{Architecture of MedSAM-3}
+    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/ArchitectureMEDSAM3.png}
+    \caption[Architecture of MedSAM-3]{Architecture of MedSAM-3 \cite{liu2025medsam3}}
     \label{fig:medsam3-architecture}
 \end{figure}
 
@@ -293,12 +298,12 @@ and their corresponding radiology reports using contrastive learning.
 This allows the model to learn meaningful image and text representations without task-specific annotations.
 
 CT-CLIP consists of a 3D image encoder and a text encoder. The image encoder extracts features from CT volumes,
-while the text encoder processes the corresponding radiology reports. Figure \ref{fig:ct-clip} shows the architecture of CT-CLIP.
+while the text encoder processes the corresponding radiology reports. Figure \ref{fig:ct-clip} shows this architecture.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/CT-CLIP.png}
-    \caption{CT-CLIP architecture}
+    \caption[CT-CLIP model architecture]{CT-CLIP model architecture \cite{hamamci2024ctclip}}
     \label{fig:ct-clip}
 \end{figure}
 
@@ -318,23 +323,22 @@ outcomes. XAI methods aim to solve this issue.
 
 \subsection{LIME}
 
-Local Interpretable Model-agnostic Explanations (LIME), proposed by Ribeiro et al. \cite{ribeiro2016should}, is a model-agnostic
+Local Interpretable Model-agnostic Explanations (LIME) \cite{ribeiro2016should}, is a model-agnostic
 technique for explaining the predictions of any classifier or regressor by locally approximating its behavior with an interpretable
-surrogate model. The core idea is to treat the original model f as a black box and, for a given prediction on instance x, learn a
-simple explanation model g (typically a sparse linear model) that is faithful to f in the vicinity of x, even if g cannot
-approximate f well globally. Formally, LIME finds an explanation by minimizing an objective:
+surrogate model. Formally, LIME finds an explanation by minimizing an objective:
 
 \begin{equation}[LIME Explanation Objective]
 \xi(x) = \operatorname*{arg\,min}_g L(f, g, \pi_x) + \omega(g)
 \end{equation}
 
-where $L$ measures how unfaithful $g$ is to $f$ within a local neighborhood weighted by a proximity function $\pi_x$, and
+where $L$ measures how unfaithful the explanation model $g$ is to the original model $f$ within a local neighborhood for a given
+prediction on instance $x$. This is weighted by a proximity function $\pi_x$, and
 $\Omega(g)$ penalizes the complexity of the explanation to keep it human-interpretable. To ensure explanations are understandable
 regardless of the model's actual features, LIME operates over an interpretable representation such as a set of super pixels for
-images rather than the model's raw internal features (pixel tensors).
+images rather than the model's raw internal features.
 
-Through simulated experiments and studies, the authors demonstrate that LIME explanations are faithful to the underlying model,
-recovering $>90\%$ of known important features \cite{ribeiro2016should}. It helps users select the
+Through simulated experiments, the authors demonstrate that LIME explanations are faithful to the underlying model,
+recovering $\gg90\%$ of known important features \cite{ribeiro2016should}. It helps users select the
 better-generalizing classifier between two competing models even when held-out accuracy is misleading, enables non-experts to
 perform effective feature engineering to improve an untrustworthy classifier, and allow users to detect models that rely on
 spurious correlations.
@@ -343,10 +347,9 @@ spurious correlations.
 
 SHapley Additive exPlanations (SHAP) is a unified framework for interpreting the predictions of complex machine learning models,
 proposed by Lundberg and Lee \cite{lundberg2017unified}. It builds on the observation that many existing interpretability
-methods including Local Interpretable Model-agnostic Explanations (LIME), Deep Learning Important FeaTures (DeepLIFT),
-layer-wise relevance propagation, and classical Shapley value approaches—can all be framed as instances of a
-single class called additive feature attribution methods, in which an explanation model $g$ approximates the original model $f$
-as a linear function of binary "presence/absence" indicator variables:
+methods—including LIME, Deep Learning Important FeaTures (DeepLIFT), layer-wise relevance propagation, and classical Shapley value
+approaches can all be framed as instances of a single class called additive feature attribution methods, in which an explanation
+model $g$ approximates the original model $f$ as a linear function of binary "presence/absence" indicator variables:
 
 \begin{equation}[SHAP Additive Feature Attribution]
 g(z') = \phi_0 + \sum \phi_i z'_i
@@ -360,46 +363,44 @@ Within this class, the authors show that only one explanation satisfies three de
 \end{enumerate}
 
 This unique solution fairly distribute a prediction's output among input features by averaging each feature's marginal
-contribution across all possible orderings/subsets of the other features—giving rise to the name SHAP values.
+contribution across all possible subsets of the other features.
 
 Because exact Shapley value computation is combinatorially expensive, the paper introduces several practical estimation methods.
-Kernel SHAP is a model-agnostic approach that computes SHAP values via specially weighted linear regression, connecting the LIME
+Kernel SHAP is a model-agnostic approach that computes SHAP values through specially weighted linear regression, connecting the LIME
 framework to Shapley values by deriving the specific loss function, weighting kernel, and regularization needed to make LIME's
 regression-based estimate satisfy the above three properties \cite{lundberg2017unified}.
 
-For deep neural networks specifically, the authors introduce Deep SHAP, which combines the compositional, layer-by-laye
-propagation style of DeepLIFT with Shapley value theory to more efficiently approximate feature attributions, and Max SHAP, which
-computes Shapley values for max-pooling operations in polynomial rather than exponential time. Empirically, the authors
-demonstrate that SHAP values align more closely with human-generated explanations than LIME or DeepLIFT, and that Kernel SHAP
+For deep neural networks specifically, the authors introduce Deep SHAP, which combines the compositional, layer-by-layer
+propagation style of DeepLIFT with Shapley value theory to more efficiently approximate feature attributions.
+The authors demonstrate that SHAP values align more closely with human-generated explanations than LIME or DeepLIFT, and that Kernel SHAP
 achieves comparable accuracy to sampling-based Shapley estimation with substantially fewer model evaluations, establishing SHAP
 as a theoretically grounded and practically efficient tool for model interpretability \cite{lundberg2017unified}.
 
 \subsection{Grad-CAM}
 
-Gradient Class Activation Mapping (Grad-CAM), proposed by Selvaraju et al. \cite{selvaraju2017grad}, is a technique for producing
+Gradient Class Activation Mapping (Grad-CAM) \cite{selvaraju2017grad}, is a technique for producing
 visual explanations from CNNs by using gradient information to identify which regions of an input image are important for a given
-prediction. Unlike its predecessor, Class Activation Mapping (CAM), Grad-CAM works with any CNN-based architecture without changes
+prediction. Unlike regular Class Activation Mapping (CAM), Grad-CAM works with any CNN-based architecture without changes
 or retraining. The method computes the gradient of a target class score with respect to the feature maps of the
-last convolutional layer, then global-average-pools these gradients across the spatial dimensions to obtain a set of neuron
-importance weights $\alpha_k^c$. A weighted combination of the forward activation maps using these weights are passed through a
+last convolutional layer. Then, it pools these gradients by global average across the spatial dimensions to obtain a set of neuron
+importance weights $\alpha_k^c$ where $k$ and $c$  are the neurons and the target class  indexes respectively.
+A weighted combination of the forward activation maps using these weights are passed through a
 ReLU to retain only features with a positive influence on the target class. This produces a coarse heatmap highlighting
-class-discriminative regions of the image. The authors formally prove that Grad-CAM is a strict generalization of CAM, reducing to
-the same weights when applied to CAM-compatible architectures.
+class-discriminative regions of the image.
 
 Through extensive evaluation, the authors demonstrate that Grad-CAM achieves superior weakly-supervised localization performance
 compared to prior methods without sacrificing classification accuracy \cite{selvaraju2017grad}. They further showed that
 Grad-CAM's localizations correlate more strongly
 with occlusion-based faithfulness measures than competing visualization techniques, indicating it is more faithful to the
 underlying model. Beyond diagnostic use for uncovering CNN failure modes and robustness to adversarial perturbations, the authors
-demonstrate Grad-CAM's utility for identifying and mitigating dataset bias, famously showing that a biased "doctor vs. nurse"
+demonstrate Grad-CAM's utility for identifying and mitigating dataset bias, famously showing that a biased ''doctor vs. nurse''
 classifier had learned to rely on gender-correlated cues such as hairstyle, rather than clinically relevant features.
 
 \subsection{Other CAM Methods}
 
 \subsubsection{Grad-CAM++}
 
-Chattopadhyay et al. propose Grad-CAM++ \cite{chattopadhay2018grad} as a generalization of Grad-CAM that addresses two of its key
-limitations:
+Grad-CAM++ \cite{chattopadhay2018grad} is a generalization of Grad-CAM that addresses two of its key limitations:
 \begin{enumerate}
     \item Degraded localization when multiple instances of the same class appear in a single image
     \item Incomplete coverage of an object's extent in single-object images
@@ -409,64 +410,55 @@ While gradient-based methods like Grad-CAM provide fine-grained explanations, th
 occurrences of the same class, and Grad-CAM heatmaps often fail to capture the entire object \cite{chattopadhay2018grad}.
 Grad-CAM++ uses a weighted combination of the positive partial derivatives of the last convolutional
 layer's feature maps with respect to a specific class score as pixel-wise weights, producing a visual explanation for the class of
-interest. By deriving closed-form higher-order gradient weighting coefficients rather than Grad-CAM's simple global-average-pooled
+interest. By deriving closed-form higher-order gradient weighting coefficients rather than it's own simple global-average-pooled
 gradients, Grad-CAM++ generates explanation maps that better localize multiple object instances and cover objects more completely.
 
 \subsubsection{Score-CAM}
 
-Score-CAM proposed by Wang et al. \cite{wang2020scorecam} removes the dependence on gradients entirely. Unlike previous CAM approaches, Score-CAM obtains
-the weight of each activation map through its forward-passing score on the target class rather than through gradients, with the
-final saliency map obtained as a linear combination of these weights and the activation maps. Concretely, each channel of the final
-convolutional layer's activation map is upsampled to input resolution and used as a mask over the original image; the resulting
+Score-CAM \cite{wang2020scorecam} removes the dependence on gradients entirely by obtaining
+the weight of each activation map through its forward-passing score on the target class rather than through gradients.
+It obtains the final saliency map as a linear combination of these weights and the activation maps. Each channel of the final
+convolutional layer's activation map is upsampled to input resolution and used as a mask over the original image. The resulting
 masked images are forward-passed through the network, and the change in the target class's confidence score serves as that
-channel's importance weight. Because it dispenses with backpropagated gradients—which can be noisy or saturate—Score-CAM was shown to
-produce better visual quality and fairness in explanation than gradient-based CAM variants, at the cost of requiring multiple
-forward passes.
+channel's importance weight. Because it dispenses with noisy backpropagated gradients Score-CAM was shown to produce
+better visual quality and fairness in explanation than gradient-based CAM variants, at the cost of requiring multiple forward passes.
 
 \subsubsection{LayerCAM}
 
-Jiang et al. introduced LayerCAM \cite{jiang2021layercam} to address the coarse spatial resolution of standard CAM/Grad-CAM maps,
+LayerCAM \cite{jiang2021layercam} was introduced to address the coarse spatial resolution of Grad-CAM maps,
 which are typically generated only from the final convolutional layer. Because such maps have low spatial resolution, they often
 only locate coarse regions of target objects, limiting performance on tasks needing pixel-accurate localization. By rethinking the
 relationship between feature maps and their corresponding gradients, LayerCAM produces reliable class activation maps at different
 layers of the CNN, using element-wise gradient weighting, rather than globally pooled gradients, so that shallower layers—which
 retain finer spatial detail—can also contribute meaningful, class-discriminative localization. These layer-wise maps can then be
 fused into a single higher-resolution activation map, better capturing fine object boundaries than Grad-CAM's coarse,
-final-layer-only heatmap. 
+final-layer-only heatmap.
 
 \subsection{Limitations of XAI Methods}
 
-Despite substantial progress, XAI continues to face a fundamental accuracy-interpretability tradeoff: highly interpretable models
-such as decision trees, linear regression, and rule-based learners are intrinsically limited in their ability to model non-linear,
-high-dimensional relationships. Deep neural networks that achieve state-of-the-art performance remain the least interpretable
-\cite{hassija2024interpreting}. Model extraction and distillation techniques, which attempt to approximate black-box behavior with
-a simpler surrogate model, partially address this but reduces fidelity to the original model's decision
-boundaries. Post-hoc explanation methods such as LIME offer only local fidelity and provide an unsatisfactory global approximation,
-and saliency maps such as Grad-CAM can produce noisy uninterpretable outputs.
-Furthermore, saliency maps assume that all model-relevant features are
-inherently human-interpretable, which does not always hold \cite{ribeiro2024explainable}.
-Explanation techniques are
-also vulnerable to manipulation and adversarial perturbation; LIME has been shown to develop self-learned patterns that produce
-misleading explanations under such conditions, raising concerns about the robustness and trustworthiness of the interpretations
-themselves \cite{ribeiro2024explainable}.
+Despite its progress, XAI continues to face a fundamental tradeoff between accuracy and interpretability.
+Highly interpretable models
+such as decision trees, linear regression, and rule-based learners are limited in their ability to model non-linear,
+high-dimensional relationships. Deep neural networks that achieve high performance remain the least interpretable
+\cite{hassija2024interpreting}. Post-hoc explanation methods such as LIME offer only local fidelity and provide an
+unsatisfactory global approximation, and saliency maps such as Grad-CAM can produce noisy uninterpretable outputs.
+Furthermore, saliency maps assume that all model-relevant features are inherently human-interpretable, which does
+not always hold \cite{ribeiro2024explainable}. Explanation techniques are also vulnerable to manipulation and
+adversarial perturbation. Specifically, LIME has been shown to develop self-learned patterns that produce misleading
+explanations under such conditions, raising concerns about the trustworthiness of the interpretations themselves \cite{ribeiro2024explainable}.
 
 Beyond technical constraints, XAI suffers from a lack of standardized, universally accepted evaluation frameworks, since
 interpretability and explainability are frequently conflated and no consensus exists on how to rigorously quantify explanation
 quality \cite{doshi2017towards, guidotti2024counterfactual}. Existing evaluation paradigms: application-grounded, human-grounded,
-and functionally grounded, each carry tradeoffs between cost, human involvement, and validity.
-The subjective, user-dependent nature of what
-constitutes a "good" explanation makes benchmarking especially difficult \cite{hassija2024interpreting}.
-Additional challenges include the computational expense of methods like Model Class Reliance, the difficulty such methods have
-scaling to complex, high-dimensional, or strongly feature-correlated models, and the broader absence of a unified theoretical
-framework connecting the disparate strands of explanation research \cite{van2004explainable}.
+and functionally grounded, each carry tradeoffs between cost, human involvement, and validity. The subjective,
+user-dependent nature of what constitutes a "good" explanation makes benchmarking especially difficult \cite{hassija2024interpreting}.
+Additional challenges include the computational expense of methods like Model Class Reliance, and the difficulty such methods have
+scaling to complex, high-dimensional, or strongly feature-correlated models \cite{van2004explainable}.
 
 \section{Sparse Coding}
-Why is sparsity useful?
-
-How is sparse representation learned?
 
 Sparse coding is a signal representation framework in which a signal is expressed as a linear combination of only a small number
-of elements ("atoms") drawn from a dictionary, rather than as a dense combination over an orthogonal basis. Formally, given a
+of elements ''atoms'' drawn from a dictionary, rather than as a dense combination over an orthogonal basis. Formally, given a
 signal x and a dictionary D whose columns are atoms, sparse coding seeks a coefficient vector $\alpha$ such that:
 
 \begin{equation}[Sparse Coding Approximation]
@@ -479,7 +471,7 @@ is deliberate: it gives the representation greater flexibility to match the unde
 signals to be well-approximated by different small subsets of atoms, which improves representational power, robustness to noise,
 and the ability to capture diverse structural patterns compared to a complete (non-redundant) basis. The trade-off is that recovering
 $\alpha$ becomes an underdetermined and generally NP-hard combinatorial problem, since many possible coefficient vectors could
-reconstruct x, and one must impose sparsity as a constraint or penalty to select a meaningful solution.
+reconstruct x, and sparsity must be imposed as a constraint to select a meaningful solution.
 
 Because exact sparsest-solution search is computationally intractable, two main families of practical algorithms are used:
 
@@ -492,10 +484,10 @@ Greedy methods iteratively select the atom most correlated with the current resi
 and update the coefficients, repeating until a stopping criterion (sparsity level or residual error) is met; these methods are
 fast and simple but only approximate the optimal solution.
 
-Convex relaxation methods instead replace the intractable $\ell0$-norm (which counts nonzero entries) with the $\ell1$-norm,
-yielding a convex optimization problem—as in Basis Pursuit or the Lasso—that can be solved reliably and, under certain conditions
-on the dictionary (e.g., restricted isometry or incoherence properties), provably recovers the same sparse solution as the
-original $\ell0$ problem. In practice, greedy methods are often preferred for speed and low-sparsity regimes, while convex
+Convex relaxation methods instead replace the intractable $\ell_0$-norm (which counts nonzero entries) with the $\ell_1$-norm,
+yielding a convex optimization problem that can be solved reliably. Under certain conditions
+on the dictionary (e.g., restricted isometry or incoherence properties), it provably recovers the same sparse solution as the
+original $\ell_0$ problem. In practice, greedy methods are often preferred for speed and low-sparsity regimes, while convex
 relaxation approaches tend to offer stronger theoretical guarantees and more stable solutions in noisier or higher-sparsity settings.
 
 \subsection{Matching Pursuit (MP)}
@@ -522,7 +514,7 @@ moderate sparsity levels.
 
 LARS is an efficient algorithm for computing the entire regularization path of the Lasso ($\ell1$-penalized least squares) problem.
 Rather than fixing a penalty parameter $\lambda$ and solving a single optimization, LARS starts with all coefficients at zero and
-iteratively identifies the predictor (atom) most correlated with the current residual, moving the coefficient in that predictor's
+iteratively identifies the atom most correlated with the current residual, moving the coefficient in that predictor's
 direction. Instead of moving all the way to the least-squares solution as in stepwise regression, LARS moves only until another
 predictor becomes equally correlated with the residual, at which point that predictor is added to the active set and the direction
 is updated to remain equiangular between all active predictors. With a simple modification (allowing coefficients to be dropped
@@ -530,7 +522,7 @@ from the active set when they cross zero), LARS exactly reproduces the full Lass
 comparable to ordinary least squares, making it a popular and efficient tool for convex-relaxation-based sparse coding,
 particularly when the full path of solutions across sparsity levels is of interest.
 
-\subsection{Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)}
+\subsection{Fast Iterative Shrinkage-Thresholding Algorithm}
 
 FISTA solves $\ell1$-regularized sparse coding problems, where the goal is to minimize:
 
@@ -790,7 +782,7 @@ so that corresponding patches share the same sparse code. This allows high-resol
 low-resolution inputs. This has been used to enhance cardiac MRI slabs and single-image brain MRI without requiring accurate
 subpixel alignment \cite{rueda2013single}.
 
-\subsection{Detection, Classification and Segmentation}
+\subsection{Detection and Classification}
 
 Since standard reconstructive dictionaries lack discriminative power, DDL techniques can be used for detection,
 classification and segmentation. DDL incorporates class labels during training, either by learning separate class-specific
@@ -802,8 +794,7 @@ Class-specific dictionary learning has been directly applied to CAD for cancer d
 proposed a sparse representation-based classification framework for colorectal polyp and lung nodule detection.
 The approach learned separate overcomplete dictionaries per class via K-SVD and classifying test samples either by the class
 whose dictionary yields the most non-zero coefficients when pooled into a global dictionary, or by the class-specific dictionary
-that achieves the sparsest reconstruction.
-This generative approach naturally extended to multi-class problems and,
+that achieves the sparsest reconstruction. This generative approach naturally extended to multi-class problems and,
 when fused with a relevance vector machine baseline through a gated decision tree, achieved consistent sensitivity gains at
 clinically acceptable false-positive rates on large multi-site colon and lung datasets.
 
@@ -826,14 +817,42 @@ manual labels. On a clinical liver metastases dataset, this combined FCN-plus-sp
 2.9 false positives per case, outperforming the FCN alone, U-Net, a superpixel-only sparse classifier, and a patch-based CNN,
 with particularly strong performance maintained on small lesions.
 
+% Alzheimer's
+
+Discriminative dictionary learning has also been extended to multi-modal neuroimaging classification of Alzheimer's disease (AD) and
+mild cognitive impairment (MCI) \cite{li2018classification}. Li et al. built on their previously introduced supervised within-class-similarity discriminative
+dictionary learning (SCDDL) algorithm by adding a within-class-similarity term to the standard discriminative dictionary objective.
+This penalizes deviation of each sample's sparse code from its class mean, alongside the usual reconstruction and linear classification
+error terms. Using ROI-averaged features from 113 AD, 110 MCI, and 117 normal-control subjects, their approach achieved 97.4\%
+accuracy for AD versus normal and 77.7\% accuracy for MCI versus normal, outperforming 
+other established methods, while requiring substantially less computation time, demonstrating that a compact learned
+dictionary of just 20 atoms can rival methods that use the entire training set as an implicit dictionary.
+
+% sir
+
+Most relevant to our study, Liyanage et al.\cite{liyanage2022covid} tackle COVID-19 detection from
+chest CT by combining two complementary DL strategies rather than a single dictionary. The first, frozen dictionary
+learning, addresses class imbalance in the training data, where normal lung-field patches vastly outnumber abnormal patches by learning
+dictionary atoms hierarchically. The second, LC-KSVD, learns a discriminative dictionary directly from patient-level class labels
+(normal, common pneumonia, novel coronavirus pneumonia). The two dictionaries are concatenated into a single augmented
+dictionary, patches are sparse-coded against it via OMP, and simple per-scan statistics (mean, variance,
+non-zero count) of the sparse coefficients associated with each class-relevant dictionary segment are then fed to an SVM classifier.
+On the cleaned CC-CCII CT dataset, this patch-based sparse-coding pipeline
+achieved 89\% accuracy for binary NCP-vs-other classification and 82.6\% accuracy for the three-class problem, matching
+or slightly exceeding a benchmark ResNet3D-34 deep learning baseline on the same data.
+The authors emphasize that because dictionary atoms live in the same domain as the input patches, the resulting classifier offers a more
+interpretable link between learned features and diagnostic categories than an end-to-end deep network.
+
+\subsection{Segmentation}
+
 % Brain Tumors
 Al-Shaikhli et al.\cite{alshaikhli2016brain} extended dictionary learning to a unified multi-class classification and multi-label segmentation framework
-for brain tumors. It is built around two distinct K-SVD dictionaries learned from a single Flair-MRI modality.
+for brain tumors. It is built around two distinct K-SVD dictionaries learned from MRI.
 A feature dictionary, learned from global topological features combined with gray-level co-occurrence texture features,
 is used for classification of the volume as normal or abnormal. If abnormal, it is further classified by
 finding which class-specific dictionary yields the sparsest representation of the test features.
 Separately, coupled data-label dictionaries are learned jointly from voxel-wise gray-scale patches and their corresponding
-ground-truth segmentation labels, 
+ground-truth segmentation labels,
 so that each atom in the image dictionary has an associated atom in the label dictionary; at test time, sparse similarity between
 test patches and the data dictionary retrieves the matching label-dictionary atoms, which supply foreground/background costs for
 multi-label graph-cut segmentation of necrosis, edema, and enhancing/non-enhancing tumor. This decoupling of global
@@ -861,16 +880,12 @@ CT and MRI patches against the learned CT/MRI dictionaries and projecting the re
 dictionary. This joint approach outperformed single-modality dictionary learning (DSC of 76.87\% vs. 65.36\% for CT-only and 74.94\%
 for MRI-only) and achieved segmentation accuracy comparable to prior specialized NPC methods.
 
-% segmentation
-
 Dong et al.\cite{dong2018joint} proposed a simultaneous CT reconstruction and segmentation (SRS) framework that uses a discriminative dictionary
 pair, one for representing image intensity patches and one for representing the corresponding class-probability patches, learned
 jointly via an extension of K-SVD.
 The two dictionaries share the same sparse codes for each patch, so that during reconstruction the sparse coding step simultaneously
 constrains both the intensity reconstruction and the segmentation. The segmentation acts as a built-in regularizer for the
-otherwise ill-posed inverse problem. Their optimization alternates between sparse coding, an intensity reconstruction update solved
-via CGLS, and a class-probability update solved with a Frank-Wolfe algorithm, with total-variation regularization on the class
-probabilities to encourage piecewise-constant, smooth class interfaces. Tested on textured Brodatz-based phantoms and simulated
+otherwise ill-posed inverse problem. Tested on textured Brodatz-based phantoms and simulated
 fibrous material samples under varying numbers of projection angles, the method outperformed a non-dictionary SRS baseline and two
 weaker dictionary-based pipelines, with the gap widening as the number of projections decreased. The authors note the method's
 reliance on training data that adequately spans the class-interface geometries expected in the target images, since interfaces not
@@ -884,10 +899,7 @@ target patch can be mapped, via the learned classifier, directly to a probabilis
 This produces a subject-specific probabilistic atlas that is then refined with a graph-cuts post-processing step.
 A central contribution is a voxel-wise local atlas selection strategy (L-DDLS), which selects different subsets of atlases at different
 spatial locations based on local similarity, rather than relying on one globally selected atlas set (G-DDLS) or a fixed
-offline-trained dictionary (F-DDLS). This addresses the high inter-subject anatomical variability of abdominal organs, particularly the
-pancreas, which is poorly served by whole-image similarity measures dominated by large organs like the liver.
-A multi-resolution Gaussian-pyramid scheme was also incorporated to keep the patch-based approach computationally tractable for
-large 3D organs.
+offline-trained dictionary (F-DDLS). This addresses the high inter-subject anatomical variability of abdominal organs.
 Evaluated on 150 abdominal CT scans, L-DDLS achieved Dice overlaps of 94.9\%, 93.6\%, 71.1\%, and 92.5\% for liver, kidneys, pancreas,
 and spleen respectively, consistently outperforming majority-voting label fusion, non-local patch-based segmentation, and both
 G-DDLS and F-DDLS variants, with the largest relative gains for the anatomically variable pancreas. Notably, these results were
@@ -898,52 +910,10 @@ Farhangi's\cite{farhangi2017scots} doctoral thesis develops a shape-based segmen
 of previously delineated nodule shapes rather than intensity patches. The method, called Sparse Combination of Training
 Shapes (SCoTS), embeds nodule boundaries as zero level sets of signed distance functions (SDFs) and builds a dictionary by vectorizing
 SDFs from a training set of expert-delineated nodules. The evolving segmentation surface is then approximated at each iteration
-as a sparse linear combination of these dictionary atoms, solved via an l1-penalized least-squares formulation using
-a coordinate-wise "shooting" algorithm. The key contribution is coupling this sparse shape prior with a Chan-Vese region-based
-active contour. The relative influence of the shape prior versus the low-level image-intensity energy is adjusted dynamically at
-each iteration based on the sparsity of the reconstruction coefficients, so that as the evolving surface approaches a plausible
+as a sparse linear combination of these dictionary atoms, solved via an $\ell_1$-penalized least-squares formulation.
+With their approach, as the evolving surface approaches a plausible
 nodule shape and its representation becomes sparser, the shape prior is trusted more, preventing the contour from leaking into
 adjacent tissues of similar density. Validated on 542 3D nodules from the LIDC-IDRI database against four independent radiologists,
-SCoTS achieved a mean DSC of about
-0.71-0.72 across radiologist delineations, with the primary failure mode occurring for nodules whose shapes were poorly represented
-in the training dictionary.
+SCoTS achieved a mean DSC of about 0.71-0.72 across radiologist delineations, with the primary failure mode occurring for nodules
+whose shapes were poorly represented in the training dictionary.
 
-% Alzheimer's
-
-Discriminative dictionary learning has also been extended to multi-modal neuroimaging classification of Alzheimer's disease (AD) and
-mild cognitive impairment (MCI). \cite{li2018classification} built on their previously introduced supervised within-class-similarity discriminative
-dictionary learning (SCDDL) algorithm by adding a within-class-similarity term to the standard discriminative dictionary objective,
-which penalizes deviation of each sample's sparse code from its class mean, alongside the usual reconstruction and linear classification
-error terms. To handle multiple imaging modalities, they extended SCDDL into a multi-modality version (mSCDDL) that learns a separate
-dictionary and classifier per modality and fuses per-modality classifier outputs through a weighted combination, with weights optimized
-by grid search. Using ROI-averaged features from 113 AD, 110 MCI, and 117 normal-control subjects from ADNI, mSCDDL achieved 97.4\%
-accuracy for AD versus normal and 77.7\% accuracy for MCI versus normal, outperforming each single-modality SCDDL variant as well as
-other established multi-modal fusion methods, while requiring substantially less computation time, demonstrating that a compact learned
-dictionary of just 20 atoms can rival methods that use the entire training set as an implicit dictionary.
-
-The same research group subsequently pushed this framework into a kernelized setting to better exploit cross-modal complementarity.
-Li et al. introduced multi-feature kernel SCDDL (MKSCDDL), which maps each modality's features into a higher-dimensional space via
-Mercer kernels before applying the SCDDL objective, expressing the dictionary implicitly
-as a linear combination of kernel-mapped training samples. This allows the same reconstruction, classification-error, and
-within-class-similarity terms can be optimized without explicitly forming the high-dimensional mapping. Sub-kernels for each modality
-are then combined, extending the earlier weighted-combination scheme of mSCDDL into a single unified kernel objective.
-Evaluated on the same three-modality ADNI cohort, MKSCDDL
-improved classification accuracy over mSCDDL and other multi-modal baselines across all three diagnostic contrasts: 98.2\% for AD vs.
-cognitively unimpaired (CU), 78.5\% for MCI vs. CU, and 74.5\% for AD vs. MCI, while also reducing test time.
-
-% sir
-
-Most relevant to our study, Liyanage et al.\cite{liyanage2022covid} tackle COVID-19 detection from
-chest CT by combining two complementary DL strategies rather than a single dictionary. The first, frozen dictionary
-learning, addresses class imbalance in the training data, where normal lung-field patches vastly outnumber abnormal patches by learning
-dictionary atoms hierarchically. The second, LC-KSVD, learns a discriminative dictionary directly from patient-level class labels
-(normal, common pneumonia, novel coronavirus pneumonia). The two dictionaries are concatenated into a single augmented
-dictionary, patches are sparse-coded against it via OMP, and simple per-scan statistics (mean, variance,
-non-zero count) of the sparse coefficients associated with each class-relevant dictionary segment are then fed to an SVM classifier.
-On the cleaned CC-CCII CT dataset, this patch-based sparse-coding pipeline
-achieved 89\% accuracy for binary NCP-vs-other classification and 82.6\% accuracy for the three-class problem, matching
-or slightly exceeding a benchmark ResNet3D-34 deep learning baseline on the same data.
-The authors emphasize that because dictionary atoms live in the same domain as the input patches, the resulting classifier offers a more
-interpretable link between learned features and diagnostic categories than an end-to-end deep network
-directly echoing the discriminative-dictionary theme seen
-in Dong et al.\cite{dong2018joint} and Tong et al. \cite{tong2015discriminative}, but here applied to whole-scan disease classification rather than pixel-wise segmentation.
