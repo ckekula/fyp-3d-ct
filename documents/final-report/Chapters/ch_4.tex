@@ -360,20 +360,12 @@ Figure \ref{fig:frozen-confusion}.
     Accuracy = 0.640
 \end{table}
 
-\begin{table}[ht]
+\begin{figure}[ht]
     \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FrozenDictionaryLearningConfusionMatrix.png}
     \caption{Frozen dictionary confusion matrix (rows = actual, columns = predicted).}
-    \label{tab:frozen-confusion}
-    \begin{tabular}{lccc}
-        \toprule
-         & \textbf{Normal} & \textbf{2c} & \textbf{2d} \\
-        \midrule
-        Normal & 12{,}256 & 1{,}434 & 460 \\
-        2c     & 4{,}512  & 5{,}894 & 4{,}478 \\
-        2d     & 1{,}685  & 3{,}401 & 10{,}264 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \label{fig:frozen-confusion}
+\end{figure}
 
 This test split has the same class composition (14,150 / 14,884 / 15,350) as
 one of the LC-KSVD2 evaluation runs reported in Section
@@ -391,8 +383,8 @@ three classes at once.
 \subsubsection{Test-Set Classification Performance}
 \label{sec:frozen-classification}
 
-The patch-level results and confusion matrix reported above (Tables~\ref{tab:frozen-classification}
-and \ref{tab:frozen-confusion}) already cover the Frozen model's classification performance on the
+The patch-level results and confusion matrix reported above (Table~\ref{tab:frozen-classification}
+and Figure~\ref{fig:frozen-confusion}) already cover the Frozen model's classification performance on the
 44,384-patch test split. Frozen Dictionary Learning was the strongest of the four dictionary
 methods on this task, reaching 85\% accuracy and an F1 score of 0.83, ahead of FDDL and well ahead
 of plain K-SVD.
