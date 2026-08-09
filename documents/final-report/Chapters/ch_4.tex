@@ -73,7 +73,7 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
 
         & BiomedParse
         & -- & -- & -- & -- & --
-        & 0.06 & 0.09 & 0.03 & 0.85 & 0.81 \\
+        & 0.06 & 0.09 & 0.03 & 0.67 & 0.81 \\
 
         & nnU-Net
         & -- & -- & -- & -- & --
@@ -437,7 +437,7 @@ full 864-dimension raw patch.
 \end{table}
 
 Overall accuracy for the best raw-patch model, LinearSVC at 85.4\%, is close
-to LC-KSVD2's sparse-code LinearSVC at 85.2\% (Table
+to LC-KSVD2's sparse-code LinearSVC at 88.5\% (Table
 \ref{tab:lcksvd2-classifiers}) .However, accuracy on this test split is dominated by the
 majority normal class, so this comparison is misleading. 
 Computing the same macro F1 used to evaluate LC-KSVD2 gives a
@@ -516,10 +516,10 @@ summarises the resulting scores, which match the CT-CLIP row of Table~\ref{tab:r
 \hline
 \textbf{Metric} & \textbf{Value} \\
 \hline
-Accuracy   & 0.64 \\
-Precision  & 0.63 \\
-Recall     & 0.60 \\
-F1         & 0.61 \\
+Accuracy   & 0.60 \\
+Precision  & 0.59 \\
+Recall     & 0.58 \\
+F1         & 0.59 \\
 AU-ROC     & 0.68 \\
 \hline
 \end{tabular}
@@ -715,7 +715,7 @@ responses by the radiologist for the three sections of the questionnaire.
 As our model was trained on a limited number of abnormality classes, the radiologist noticed instances where the model predicted
 different abnormalities than what she could infer from the images. Due to this limitation, the radiologist suggested that the model
 should be trained on a larger number of abnormality classes to improve its clinical utility and provide more accurate predictions.
-This is resulted in her free-text comments, which are discussed in the following section.
+This is reflected in her free-text comments, which are discussed in the following section.
 
 \subsection{Recommendations and Verbal feedback}
 
@@ -746,6 +746,9 @@ lung parenchyma in addition to the abnormality. This example is shown in figure~
     {Axial, Sagittal, Coronal and 3D views of the example wrong ground truth in RexGroundingCT dataset. Dictionary Learning prediction (Red) overlayed on top of Ground Truth (Blue).}
     \label{fig:wrong-ground-trut}
 \end{figure}
+
+This further suggests that, the scores recieved for the segmentation metrics such as dice coefficient and IoU may be misleading.
+This is a limitation of the dataset itself and cannot be avoided.
 
 \section{Discussion}
 
