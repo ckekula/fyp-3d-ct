@@ -30,50 +30,50 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \multirow{4}{*}{\makecell{Dictionary\\Learning}}
 
         & LC-KSVD
-        & 0.92 & 0.91 & 0.89 & 0.90 & 0.97
-        & 0.010 & 0.020 & 0.005 & -- & -- \\
+        & 0.885 & 0.896 & 0.885 & 0.888 & 0.97
+        & 0.010 & 0.200 & 0.005 & -- & -- \\
 
         & K-SVD
-        & 0.67 & 0.65 & 0.63 & 0.64 & 0.72
-        & 0.004 & 0.008 & 0.002 & -- & -- \\
+        & 0.664 & 0.653 & 0.630 & 0.631 & 0.72
+        & 0.004 & 0.080 & 0.002 & -- & -- \\
 
         & FDDL
-        & 0.78 & 0.76 & 0.74 & 0.75 & 0.83
-        & 0.006 & 0.012 & 0.003 & -- & -- \\
+        & 0.766 & 0.759 & 0.724 & 0.737 & 0.83
+        & 0.006 & 0.120 & 0.003 & -- & -- \\
 
         & Frozen DL
-        & 0.85 & 0.84 & 0.82 & 0.83 & 0.89
-        & 0.008 & 0.016 & 0.004 & -- & -- \\
+        & 0.824 & 0.824 & 0.784 & 0.801 & 0.89
+        & 0.008 & 0.160 & 0.004 & -- & -- \\
 
         \hline
 
         \multirow{3}{*}{\makecell{Machine\\Learning}}
         & Linear SVM
-        & 0.61 & 0.60 & 0.58 & 0.59 & 0.65
+        & 0.592 & 0.580 & 0.580 & 0.580 & 0.65
         & -- & -- & -- & -- & -- \\
 
         & Log. Regression
-        & 0.57 & 0.56 & 0.54 & 0.55 & 0.62
+        & 0.554 & 0.539 & 0.540 & 0.539 & 0.62
         & -- & -- & -- & -- & -- \\
 
         & XGBoost
-        & 0.53 & 0.52 & 0.51 & 0.52 & 0.57
+        & 0.524 & 0.510 & 0.509 & 0.510 & 0.57
         & -- & -- & -- & -- & -- \\
 
         \hline
 
         \multirow{4}{*}{\makecell{Deep\\Learning}}
         & CT-CLIP
-        & 0.64 & 0.63 & 0.60 & 0.61 & 0.68
-        & -- & -- & -- & 0.000 & 0.001 \\
+        & 0.600 & 0.594 & 0.587 & 0.590 & 0.68
+        & -- & -- & -- & -- & -- \\
 
         & Merlin
-        & 0.97 & 0.96 & 0.95 & 0.96 & 0.99
-        & -- & -- & -- & 0.000 & 0.000 \\
+        & 0.950 & 0.950 & 0.948 & 0.949 & 0.99
+        & 0.77 & 0.86 & 0.63 & 0.93 & 0.84 \\
 
         & BiomedParse
         & -- & -- & -- & -- & --
-        & 0.06 & 0.09 & 0.03 & -- & -- \\
+        & 0.06 & 0.09 & 0.03 & 0.85 & 0.81 \\
 
         & nnU-Net
         & -- & -- & -- & -- & --
@@ -82,11 +82,6 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \hline
     \end{tabular}
 \end{sidewaystable}
-
-\section{Dictionary Learning}
-
-\subsection{K-SVD}
-\label{sec:ksvd-classification}
 
 \section{Sparse-Coding and Dictionary Learning}
 
@@ -140,21 +135,6 @@ Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
 
 \subsubsection{Dictionary Coherence}
 
-\begin{table}[H]
-\centering
-\caption{Mutual incoherence of the K-SVD class sub-dictionaries.}
-\label{tab:ksvd-reconstruction}
-\begin{tabular}{lcc}
-\hline
-\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
-\hline
-Normal   & 4032 & 0.868 \\
-GGO      & 4032 & -- \\
-Nodules  & 4032 & 0.511 \\
-\hline
-\end{tabular}
-\end{table}
-
 The Normal block has the highest mutual incoherence of the three (0.868), while the Nodules block
 is the lowest (0.511). This is likely because the Normal dictionary has to cover a much wider
 range of healthy lung texture, so many atoms end up looking similar to each other. The Nodules
@@ -163,23 +143,35 @@ less redundancy between atoms.
 
 \subsubsection{Classification and Localisation Performance}
 
-A linear classifier trained on the K-SVD sparse codes reached 67\% patch-level accuracy (F1 = 0.64),
+A linear classifier trained on the K-SVD sparse codes reached 66.4\% patch-level accuracy (F1 = 0.63),
 the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives the per-class breakdown.
 
 \begin{table}[H]
 \centering
 \caption{K-SVD patch-level classification performance.}
 \label{tab:ksvd-classification}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \hline
-\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} \\
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
 \hline
-Normal   & 0.62 & 0.80 & 0.70 \\
-GGO      & 0.53 & 0.36 & 0.43 \\
-Nodules  & 0.62 & 0.61 & 0.61 \\
+Normal       & 0.69 & 0.85 & 0.76 & 54{,}909 \\
+GGO          & 0.59 & 0.38 & 0.46 & 36{,}906 \\
+Nodules      & 0.69 & 0.65 & 0.67 & 13{,}440 \\
+\hline
+Macro avg    & 0.65 & 0.63 & 0.63 & 105{,}255 \\
+Weighted avg & 0.65 & 0.66 & 0.65 & 105{,}255 \\
 \hline
 \end{tabular}
+\\[4pt]
+Accuracy = 0.664
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/KSVD Confusion Matrix.png}
+    \caption{K-SVD confusion matrix (rows = actual, columns = predicted).}
+    \label{fig:ksvd-confusion}
+\end{figure}
 
 Whole-volume localisation was poor: the Dice score dropped to about 0.004 once patch-level
 predictions were combined into a full volume mask, with a hit rate of 0.008 and an IoU of 0.002.
@@ -230,7 +222,7 @@ Table \ref{tab:lcksvd2-classifiers} summarises patch-level performance across al
         \toprule
         \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
         \midrule
-        LinearSVC (SVM)              & 0.852 & 0.69 & 0.44 & 0.70 \\
+        LinearSVC (SVM)              & 0.885 & 0.89 & 0.85 & 0.91 \\
         Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
         Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
         XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
@@ -239,27 +231,39 @@ Table \ref{tab:lcksvd2-classifiers} summarises patch-level performance across al
 \end{table}
 
 The externally-trained LinearSVC outperforms every other head, including LC-KSVD2's own built-in discriminative classifier $W$
-(85.2\% vs.\ 62.1\% accuracy). The non-linear XGBoost do not improve on this either, both trailing
+(88.5\% vs.\ 62.1\% accuracy). The non-linear XGBoost do not improve on this either, both trailing
 plain logistic regression, maybe because LC-KSVD learns to fit a linear classifier during training itself.
 This suggests that the sparse-code feature space is already close to linearly separable for this task
 and additional model capacity does not help.
 
-\subsubsection{Whole-Volume Localisation}
+This LinearSVC head is the classifier represented by the ``LC-KSVD'' row in
+Table~\ref{tab:results-summary}. Table~\ref{tab:lcksvd-classification} gives its full per-class breakdown.
 
-When patch predictions were stitched back into full CT volumes, LC-KSVD2's localisation quality
-fell sharply, giving a Dice score of only 0.010, a hit rate of 0.020, and an IoU of 0.005. This is
-a much bigger drop than the patch-level classification numbers would suggest, and shows that good
-patch-level accuracy does not automatically carry over to accurate spatial localisation once those
-patches are combined back into a volume. Explainability scores were comparatively higher, with a
-pointing-game accuracy of 0.88 and an energy-inside-mask score of 0.77, meaning the model's most
-confident patches still tended to sit near the true lesion even where the overall mask did not
-align well.
+\begin{table}[H]
+\centering
+\caption{LC-KSVD (LinearSVC head) patch-level classification performance (test split, $n=105{,}255$).}
+\label{tab:lcksvd-classification}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+\hline
+Normal       & 0.95 & 0.87 & 0.91 & 54{,}909 \\
+2c           & 0.79 & 0.91 & 0.85 & 36{,}906 \\
+2d           & 0.95 & 0.87 & 0.91 & 13{,}440 \\
+\hline
+Macro avg    & 0.90 & 0.88 & 0.89 & 105{,}255 \\
+Weighted avg & 0.89 & 0.89 & 0.89 & 105{,}255 \\
+\hline
+\end{tabular}
+\\[4pt]
+Accuracy = 0.885
+\end{table}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Images/Chapter 4/Whole-Volume Localisation.png}
-    \caption{Whole-volume localisation visualised in 3D Slicer for LC-KSVD, comparing the reconstructed predicted CT scan against the ground truth mask.}
-    \label{fig:lcksvd-whole-volume-localisation}
+    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LC-KSVD Confusion Matrix.png}
+    \caption{LC-KSVD (LinearSVC head) confusion matrix (rows = actual, columns = predicted).}
+    \label{fig:lcksvd-confusion}
 \end{figure}
 
 \subsection{FDDL}
@@ -294,28 +298,33 @@ not directly comparable in magnitude to K-SVD's pure reconstruction error.
 
 \subsubsection{Classification and Localisation Performance}
 
-A linear classifier trained on the FDDL sparse codes reached 78\% patch-level accuracy (F1 = 0.75),
+A linear classifier trained on the FDDL sparse codes reached 76.6\% patch-level accuracy (F1 = 0.74),
 sitting between K-SVD and Frozen Dictionary Learning. Table~\ref{tab:fddl-classification} shows the
 per-class breakdown, with the corresponding confusion matrix in Figure~\ref{fig:fddl-confusion}.
 
 \begin{table}[H]
 \centering
-\caption{FDDL patch-level classification performance (test split).}
+\caption{FDDL patch-level classification performance (test split, $n=105{,}255$).}
 \label{tab:fddl-classification}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \hline
-\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} \\
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
 \hline
-Normal   & 0.72 & 0.86 & 0.78 \\
-GGO      & 0.60 & 0.47 & 0.53 \\
-Nodules  & 0.72 & 0.71 & 0.72 \\
+Normal       & 0.80 & 0.91 & 0.85 & 54{,}909 \\
+GGO          & 0.70 & 0.59 & 0.64 & 36{,}906 \\
+Nodules      & 0.78 & 0.68 & 0.72 & 13{,}440 \\
+\hline
+Macro avg    & 0.76 & 0.72 & 0.74 & 105{,}255 \\
+Weighted avg & 0.76 & 0.77 & 0.76 & 105{,}255 \\
 \hline
 \end{tabular}
+\\[4pt]
+Accuracy = 0.766
 \end{table}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
+    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
     \caption{FDDL confusion matrix (rows = actual, columns = predicted).}
     \label{fig:fddl-confusion}
 \end{figure}
@@ -350,49 +359,42 @@ Class 2 & 0.1037 & 0.511 \\
 \end{tabular}
 \end{table}
 
-A linear classifier trained on the resulting sparse codes reached 64.0\% patch-level
+A linear classifier trained on the resulting sparse codes reached 82.4\% patch-level
 accuracy. The full per-class breakdown is given in Table \ref{tab:frozen-classification},
 with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
 
 \begin{table}[ht]
     \centering
-    \caption{Frozen dictionary patch-level classification report (test split, $n=44{,}384$).}
+    \caption{Frozen dictionary patch-level classification report (test split, $n=105{,}255$).}
     \label{tab:frozen-classification}
     \begin{tabular}{lcccc}
         \toprule
         \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
         \midrule
-        Normal       & 0.66 & 0.87 & 0.75 & 14{,}150 \\
-        2c (GGO)     & 0.55 & 0.40 & 0.46 & 14{,}884 \\
-        2d (Nodule)  & 0.68 & 0.67 & 0.67 & 15{,}350 \\
+        Normal       & 0.85 & 0.92 & 0.89 & 54{,}909 \\
+        2c (GGO)     & 0.77 & 0.72 & 0.74 & 36{,}906 \\
+        2d (Nodule)  & 0.86 & 0.71 & 0.78 & 13{,}440 \\
         \midrule
-        Macro avg    & 0.63 & 0.64 & 0.63 & 44{,}384 \\
-        Weighted avg & 0.63 & 0.64 & 0.63 & 44{,}384 \\
+        Macro avg    & 0.82 & 0.78 & 0.80 & 105{,}255 \\
+        Weighted avg & 0.82 & 0.82 & 0.82 & 105{,}255 \\
         \bottomrule
     \end{tabular}
     \\[4pt]
-    Accuracy = 0.640
+    Accuracy = 0.824
 \end{table}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FrozenDictionaryLearningConfusionMatrix.png}
+    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FrozenDictionaryLearningConfusionMatrix.png}
     \caption{Frozen dictionary confusion matrix (rows = actual, columns = predicted).}
     \label{fig:frozen-confusion}
 \end{figure}
 
-This test split has the same class composition (14,150 / 14,884 / 15,350) as
-one of the LC-KSVD2 evaluation runs reported in Section
-\ref{sec:lcksvd2-classification}, allowing a direct, matched comparison
-between the two dictionary-learning strategies rather than an apples-to-oranges
-one. On that identical split, the Frozen dictionary outperforms the jointly
-trained LC-KSVD2 model on every aggregate metric, most notably recall on the
-clinically important ``2c'' (ground-glass opacity) class (0.40 vs.\ 0.27,
-Section \ref{sec:lcksvd2-classification}). This suggests that building the
-dictionary incrementally -- learning a stable normal-tissue base first and
-adding each abnormality as a residual dictionary on top -- generalises to
-unseen scans better than training a single dictionary jointly across all
-three classes at once.
+On the test split, LC-KSVD2 outperforms
+the Frozen dictionary on every aggregate metric (88.5\% vs.\ 82.4\% accuracy; macro F1 of 0.89 vs.\
+0.80). This suggests that training a single dictionary jointly across all three classes under the
+label-consistency constraint yields a more discriminative shared representation than building the
+dictionary incrementally.
 
 % \paragraph{Sparsity and Atom Utilisation}
 
@@ -401,30 +403,6 @@ three classes at once.
 % well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
 % dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
 % drop in reconstruction quality.
-
-% \paragraph{Atom Co-occurrence and Clustering}
-
-% Atoms belonging to the same class tended to be activated together on patches from that class,
-% which is expected since the three dictionaries were trained separately on their own patch groups.
-% Some overlap in activation was still seen between the Normal and GGO dictionaries, which fits
-% with the higher mutual incoherence measured for those two blocks in Table~\ref{tab:ksvd-reconstruction}.
-
-% \paragraph{Visual Inspection of Atoms and Reconstructions}
-
-% A visual check of a sample of dictionary atoms showed mostly small blocks of intensity and edge
-% patterns typical of lung CT texture, rather than clearly interpretable shapes. Reconstructed
-% patches looked visually close to the originals for most Normal and GGO patches, but nodule patches
-% were harder to reconstruct cleanly, which lines up with the higher reconstruction error reported
-% for that class in Table~\ref{tab:ksvd-reconstruction}.
-
-\subsection{Test-Set Classification Performance}
-\label{sec:frozen-classification}
-
-The patch-level results and confusion matrix reported above (Table~\ref{tab:frozen-classification}
-and Figure~\ref{fig:frozen-confusion}) already cover the Frozen model's classification performance on the
-44,384-patch test split. Frozen Dictionary Learning was the strongest of the four dictionary
-methods on this task, reaching 85\% accuracy and an F1 score of 0.83, ahead of FDDL and well ahead
-of plain K-SVD.
 
 \subsection{Whole-Volume Localisation}
 
@@ -435,71 +413,6 @@ ground-truth masks directly, so no Dice or IoU figure is reported here for the f
 Visually, the abnormality maps picked up the general region of GGO and nodule findings in most
 scans, though the boundaries were noticeably coarser than the original lesion outlines, which is
 expected given the patches were classified independently of one another.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{Images/Chapter 4/Whole-Volume Localisation_mix.png}
-    \caption{Ground-truth and predicted segmentation masks for selected chest CT abnormalities. a, Ground-glass opacity (GGO) shown in axial, sagittal, and coronal views. The red regions represent the ground-truth segmentation masks, while the blue contours indicate the predicted segmentation generated by the proposed method. b, Corresponding CT views showing another abnormality, where the green regions represent the ground-truth masks and the yellow contours indicate the predicted segmentation.}
-    \label{fig:whole-volume-localisation-mix}
-\end{figure}
-
-\subsection{Sub-Class Cluster Analysis}
-\label{sec:cluster-results}
-
-Applying the K-Means procedure of Section~\ref{sec:statistical-analysis} to the LC-KSVD2 sparse codes
-of the 13,422 nodule (2d) patches with $K=4$ produced one large, dominant cluster and three much
-smaller ones: 11,263 patches (83.9\%) fell into a single cluster, with the remaining three holding
-6.5\%, 5.0\% and 4.5\% (inertia $=11{,}750.1$; 2-D PCA explained only 8.7\% of variance, reflecting how
-spread out the 10,368-dimensional codes are). This imbalance suggests most nodule patches share a
-generic sparse-code pattern, with the minority clusters plausibly capturing rarer sub-appearances
-(e.g.\ size or calcification differences) that the joint nodule label does not distinguish.
-
-\begin{table}[H]
-\centering
-\caption{K-Means sub-cluster sizes for LC-KSVD2 nodule (2d) sparse codes, $K=4$.}
-\label{tab:nodule-clusters}
-\begin{tabular}{lcc}
-\toprule
-\textbf{Cluster} & \textbf{Patches} & \textbf{Share} \\
-\midrule
-0 & 677    & 5.0\%  \\
-1 & 11,263 & 83.9\% \\
-2 & 605    & 4.5\%  \\
-3 & 877    & 6.5\%  \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The same procedure was applied to the GGO (2c) sparse codes to compare the LC-KSVD2 and Frozen
-dictionaries via their silhouette scores. Table~\ref{tab:ggo-cluster-comparison} summarises both runs
-at the selected $K=4$.
-
-\begin{table}[H]
-\centering
-\caption{K-Means sub-cluster analysis of GGO (2c) sparse codes: LC-KSVD2 vs.\ Frozen Dictionary Learning, $K=4$.}
-\label{tab:ggo-cluster-comparison}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Dictionary} & \textbf{Patches} & \textbf{Silhouette score} & \textbf{2-D PCA variance explained} \\
-\midrule
-LC-KSVD2 & 26,863 & 0.092 & 8.7\% \\
-Frozen Dictionary Learning & 27,196 & 0.059 & 7.0\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Both scores are low in absolute terms (well short of the $\sim$0.5 usually taken to indicate
-well-separated clusters), showing GGO patches do not split cleanly under K-Means for either
-dictionary -- consistent with GGO being a diffuse, heterogeneous finding rather than a few discrete
-sub-patterns. LC-KSVD2 still scores noticeably higher than the Frozen dictionary (0.092 vs.\ 0.059),
-suggesting its jointly-trained, label-consistent codes group GGO patches slightly more coherently,
-even though Section~\ref{sec:frozen-classification} found the Frozen dictionary stronger for
-classification.
-
-The top 30 atoms ranked by variance across the four LC-KSVD2 GGO centroids each activate a visibly
-different subset per cluster rather than one shared profile at different scales -- indicating the
-sparse codes still capture genuine sub-population structure at the atom level, even though the
-clusters overlap enough to keep the silhouette score low.
 
 \section{Machine Learning}
 
