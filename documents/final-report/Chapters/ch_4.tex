@@ -111,7 +111,7 @@ LC-KSVD and FDDL's reconstruction error columns are their joint-training objecti
 combined with a label-consistency or Fisher-discrimination term) rather than a pure reconstruction
 error, so those two values are not directly comparable to K-SVD and Frozen DL.
 The Frozen DL error and mutual incoherence terms shown are the average values of its three per-stage errors.
-The per-class values are shown in table~\ref{tab:frozen-reconstruction}.
+The per-class values are shown in table~\ref{tab:ksvd-reconstruction}.
 
 \subsection{K-SVD}
 
@@ -240,7 +240,6 @@ and additional model capacity does not help.
 This LinearSVC head is the classifier represented by the ``LC-KSVD'' row in
 Table~\ref{tab:results-summary}. Table~\ref{tab:lcksvd-classification} gives its full per-class breakdown,
 with the corresponding confusion matrix in Figure~\ref{fig:lcksvd-confusion}.
-
 \begin{table}[H]
 \centering
 \caption{LC-KSVD (LinearSVC head) patch-level classification performance (test split, $n=105{,}255$).}
@@ -341,7 +340,7 @@ in quite different ways.
 \subsection{Frozen Dictionary Learning}
 
 The Frozen model's dictionary is built by the same incremental base-plus-residual K-SVD
-stages summarised in Table~\ref{tab:ksvd-reconstruction}, where a stable normal-tissue base dictionary
+stages summarised in Table~\ref{tab:frozen-reconstruction}, where a stable normal-tissue base dictionary
 learned first, with each abnormality class then added as a residual K-SVD dictionary on top.
 its per-class reconstruction error and mutual incoherence figures are identical to that table and
 are not repeated here.
@@ -828,3 +827,39 @@ This is a limitation of the dataset itself and cannot be avoided.
 
 \section{Discussion}
 
+This chapter has presented four dictionary learning methods, three classical machine learning baselines, and
+four deep learning models across three evaluation axes. This section interprets the results, the next assesses
+their validity, and the following chapter concludes the study.
+
+Accuracy ranged from 66.4\% (K-SVD) to 88.5\% (LC-KSVD2), tracking how directly each method's objective
+targets discrimination rather than reconstruction.
+Every dictionary learning method's whole-volume Dice (0.004--0.010) collapsed relative to its patch-level
+accuracy (66--89\%). This directly reflects the
+literature gap in Table~\ref{tab:lit_comparison}: classification and segmentation-oriented dictionary
+learning have largely been separate lines of work, and this result shows why that separation matters.
+
+A linear SVM on just mean and std.\ HU matched the full 864-D raw patch on every class
+(Table~\ref{tab:patch-classification}), suggesting intensity statistics alone explain most of the
+normal-vs-abnormal signal. Since
+intensity dominates raw voxel energy ($\approx$98.7\%, Section~\ref{sec:patch-normalization}), raw features
+are effectively blind to the finer texture that matters for small, textured lesions like nodules. Sparse
+coding is therefore not uniformly necessary, it is specifically what earns discriminative power on the
+hardest, rarest class.
+
+The results of this study should be read alongside several limitations.
+The evaluation scope was narrowed to two of the five abnormalities originally
+recommended by the consulting radiologist. The
+$12\times12\times6$ patch size, chosen as a trade-off between nodule size, dictionary size, and context,
+discarded over 75\% of candidate nodule patches and biased the retained set toward larger masses, so reported
+nodule performance likely does not generalise to small, sub-centimetre nodules.
+The qualitative evaluation reflects the judgement
+of a single radiologist without a second reader, and suggested that
+some ground-truth masks may themselves be imperfect references, meaning the absolute Dice and hit-rate figures
+reported throughout this thesis are plausibly a lower bound on true clinical usefulness rather than a precise
+estimate of it.
+
+The radiologist judged several ReXGroundingCT ground-truth masks to be over-inclusive, with the model's own
+predictions more tightly localised to the true abnormality (Figure~\ref{fig:wrong-ground-trut}). If this
+generalises, reported Dice/IoU figures throughout this chapter are a lower bound on true localisation quality,
+not an accurate estimate of it. This does not change relative rankings between models, since all are scored
+against the same annotations, but it is a material caveat on any absolute claim.
