@@ -73,7 +73,7 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
 
         & BiomedParse
         & -- & -- & -- & -- & --
-        & 0.06 & 0.09 & 0.03 & 0.85 & 0.81 \\
+        & 0.06 & 0.09 & 0.03 & 0.67 & 0.81 \\
 
         & nnU-Net
         & -- & -- & -- & -- & --
@@ -144,7 +144,8 @@ less redundancy between atoms.
 \subsubsection{Classification and Localisation Performance}
 
 A linear classifier trained on the K-SVD sparse codes reached 66.4\% patch-level accuracy (F1 = 0.63),
-the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives the per-class breakdown.
+the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives the per-class
+breakdown, with the corresponding confusion matrix in Figure~\ref{fig:ksvd-confusion}.
 
 \begin{table}[H]
 \centering
@@ -168,8 +169,8 @@ Accuracy = 0.664
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/KSVD Confusion Matrix.png}
-    \caption{K-SVD confusion matrix (rows = actual, columns = predicted).}
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/KSVD Confusion Matrix.png}
+    \caption{K-SVD confusion matrix.}
     \label{fig:ksvd-confusion}
 \end{figure}
 
@@ -237,7 +238,8 @@ This suggests that the sparse-code feature space is already close to linearly se
 and additional model capacity does not help.
 
 This LinearSVC head is the classifier represented by the ``LC-KSVD'' row in
-Table~\ref{tab:results-summary}. Table~\ref{tab:lcksvd-classification} gives its full per-class breakdown.
+Table~\ref{tab:results-summary}. Table~\ref{tab:lcksvd-classification} gives its full per-class breakdown,
+with the corresponding confusion matrix in Figure~\ref{fig:lcksvd-confusion}.
 
 \begin{table}[H]
 \centering
@@ -261,8 +263,8 @@ Accuracy = 0.885
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LC-KSVD Confusion Matrix.png}
-    \caption{LC-KSVD (LinearSVC head) confusion matrix (rows = actual, columns = predicted).}
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LC-KSVD Confusion Matrix.png}
+    \caption{LC-KSVD confusion matrix.}
     \label{fig:lcksvd-confusion}
 \end{figure}
 
@@ -324,8 +326,8 @@ Accuracy = 0.766
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
-    \caption{FDDL confusion matrix (rows = actual, columns = predicted).}
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
+    \caption{FDDL confusion matrix.}
     \label{fig:fddl-confusion}
 \end{figure}
 
@@ -385,8 +387,8 @@ with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
 
 \begin{figure}[ht]
     \centering
-    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FrozenDictionaryLearningConfusionMatrix.png}
-    \caption{Frozen dictionary confusion matrix (rows = actual, columns = predicted).}
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Frozen Confusion Matrix.png}
+    \caption{Frozen dictionary confusion matrix.}
     \label{fig:frozen-confusion}
 \end{figure}
 
@@ -419,7 +421,8 @@ expected given the patches were classified independently of one another.
 The raw-patch baselines described in Section~\ref{sec:ml-baseline-methods} were evaluated on the
 same test split used for LC-KSVD2 Table~\ref{tab:raw-patch-classifiers}
 summarises per-class performance for the three classifiers trained on the
-full 864-dimension raw patch.
+full 864-dimension raw patch, with the corresponding confusion matrices in
+Figures~\ref{fig:logreg-confusion}, \ref{fig:linearsvm-confusion} and \ref{fig:xgboost-confusion}.
 
 \begin{table}[ht]
     \centering
@@ -436,8 +439,29 @@ full 864-dimension raw patch.
     \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Logistic Regression Confusion Matrix.png}
+    \caption{Logistic Regression (raw-patch) confusion matrix.}
+    \label{fig:logreg-confusion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LInear SVM Confusion Matrix.png}
+    \caption{LinearSVC (raw-patch) confusion matrix.}
+    \label{fig:linearsvm-confusion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/XGBoost Confusion Matrix.png}
+    \caption{XGBoost (raw-patch) confusion matrix.}
+    \label{fig:xgboost-confusion}
+\end{figure}
+
 Overall accuracy for the best raw-patch model, LinearSVC at 85.4\%, is close
-to LC-KSVD2's sparse-code LinearSVC at 85.2\% (Table
+to LC-KSVD2's sparse-code LinearSVC at 88.5\% (Table
 \ref{tab:lcksvd2-classifiers}) .However, accuracy on this test split is dominated by the
 majority normal class, so this comparison is misleading. 
 Computing the same macro F1 used to evaluate LC-KSVD2 gives a
@@ -506,7 +530,8 @@ limited amount of GGO training data available and the small number of training f
 
 A linear probe was trained on top of the frozen CT-CLIP image encoder and evaluated on the CT-RATE
 test scans, following the setup described in Section~\ref{sec:eval-framework}. Table~\ref{tab:ctclip-lipro}
-summarises the resulting scores, which match the CT-CLIP row of Table~\ref{tab:results-summary}.
+summarises the resulting scores, which match the CT-CLIP row of Table~\ref{tab:results-summary}, with the
+corresponding confusion matrix in Figure~\ref{fig:ctclip-confusion}.
 
 \begin{table}[H]
 \centering
@@ -516,14 +541,21 @@ summarises the resulting scores, which match the CT-CLIP row of Table~\ref{tab:r
 \hline
 \textbf{Metric} & \textbf{Value} \\
 \hline
-Accuracy   & 0.64 \\
-Precision  & 0.63 \\
-Recall     & 0.60 \\
-F1         & 0.61 \\
+Accuracy   & 0.60 \\
+Precision  & 0.59 \\
+Recall     & 0.58 \\
+F1         & 0.59 \\
 AU-ROC     & 0.68 \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/CT-CLIP Confusion Matrix.png}
+    \caption{CT-CLIP linear-probe confusion matrix.}
+    \label{fig:ctclip-confusion}
+\end{figure}
 
 These numbers sit a little below the zero-shot figures reported in the original CT-CLIP paper, as
 noted below Table~\ref{tab:results-summary}, which is not unexpected given differences in
@@ -559,7 +591,8 @@ specific downstream task than relying on text prompts alone.
 \subsection{Merlin}
 
 Merlin was the strongest model in this study across every axis we measured. Table~\ref{tab:merlin-classification}
-gives its classification performance on the test split.
+gives its classification performance on the test split, with the corresponding confusion matrix in
+Figure~\ref{fig:merlin-confusion}.
 
 \begin{table}[H]
 \centering
@@ -577,6 +610,13 @@ AU-ROC     & 0.99 \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Merlin Confusion Matrix.png}
+    \caption{Merlin confusion matrix.}
+    \label{fig:merlin-confusion}
+\end{figure}
 
 Localisation and explainability scores followed the same pattern, with Merlin comfortably ahead of
 every other model tested. Table~\ref{tab:merlin-localisation} shows the full set of scores.
@@ -715,7 +755,7 @@ responses by the radiologist for the three sections of the questionnaire.
 As our model was trained on a limited number of abnormality classes, the radiologist noticed instances where the model predicted
 different abnormalities than what she could infer from the images. Due to this limitation, the radiologist suggested that the model
 should be trained on a larger number of abnormality classes to improve its clinical utility and provide more accurate predictions.
-This is resulted in her free-text comments, which are discussed in the following section.
+This is reflected in her free-text comments, which are discussed in the following section.
 
 \subsection{Recommendations and Verbal feedback}
 
@@ -746,6 +786,9 @@ lung parenchyma in addition to the abnormality. This example is shown in figure~
     {Axial, Sagittal, Coronal and 3D views of the example wrong ground truth in RexGroundingCT dataset. Dictionary Learning prediction (Red) overlayed on top of Ground Truth (Blue).}
     \label{fig:wrong-ground-trut}
 \end{figure}
+
+This further suggests that, the scores recieved for the segmentation metrics such as dice coefficient and IoU may be misleading.
+This is a limitation of the dataset itself and cannot be avoided.
 
 \section{Discussion}
 
