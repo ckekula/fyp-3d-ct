@@ -170,8 +170,8 @@ were coded independently without any spatial smoothing between neighbours.
 \subsection{LC-KSVD}
 \label{sec:lcksvd2-classification}
 
-LC-KSVD2 trains a single 2592-atom dictionary jointly across classes, but the label-consistency
-term partitions it into equally-sized, class-specific sub-dictionaries (864 atoms each) so that
+LC-KSVD2 trains a single dictionary jointly across classes, but the label-consistency
+term partitions it into equally-sized, class-specific sub-dictionaries of 864 atoms each. So,
 each class's patches are preferentially coded by its own block. Table~\ref{tab:lcksvd2-reconstruction}
 reports the mutual incoherence within each class block.
 
@@ -674,7 +674,7 @@ lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
 not sufficiently precise for localising the small target lesions.
 Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the Grad-CAM heatmap for a single nodule cases from the test set.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{Images/Chapter 4/gradcam-nodule-example.png}
     \caption[Grad-CAM heatmap visualization]{Grad-CAM for 3 example cases: CT slice (left), ground-truth
@@ -694,8 +694,18 @@ lung tissue.
 
 \section{Qualitative Analysis}
 
-The detailed review, questionnaire and verbatim responses by the radiologist during our second consultation are presented in this
-section. Figures~\ref{fig:qualitative-review-1} and \ref{fig:qualitative-review-2}, show the
+During our second consultation with the radiologist, we provided example outputs of different lesions visualized using the 3D-Slicer
+software. The detailed review, questionnaire and verbatim responses by the radiologist are presented in this section.
+Figure~\ref{fig:second-consultation} shows some images taken during the consultation.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/feedback.png}
+    \caption{Second consultation with Radiologist.}
+    \label{fig:feedback}
+\end{figure}
+
+Figures~\ref{fig:qualitative-review-1} and \ref{fig:qualitative-review-2}, show the
 responses by the radiologist for the three sections of the questionnaire.
 
 \begin{figure}
@@ -733,3 +743,18 @@ annotations or a radiologist-driven refinement loop to produce a higher-fidelity
     \caption{Radiologist's responses to the third section of the questionnaire.}
     \label{fig:qualitative-feedback}
 \end{figure}
+
+Although the classification accuracy was not satisfactory, the radiologist noted that our model's localizations were more
+explanatory than even the ground truth. This was a major insight received from the consultation.
+The radiologist noted that one of the ground truths that were shown covered a portion of the surrounding
+lung parenchyma in addition to the abnormality. This example is shown in figure~\ref{fig:wrong-ground-trut}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/wrong-ground-truth.jpeg}
+    \caption{Dictionary Learning prediction (Yellow) overlayed on top of Ground Truth (Green).}
+    \label{fig:wrong-ground-trut}
+\end{figure}
+
+\section{Discussion}
+
