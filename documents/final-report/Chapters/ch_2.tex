@@ -897,3 +897,67 @@ nodule shape and its representation becomes sparser, the shape prior is trusted 
 adjacent tissues of similar density. Validated on 542 3D nodules from the LIDC-IDRI database against four independent radiologists,
 SCoTS achieved a mean dice score of about 0.72, with the primary failure mode occurring for nodules
 whose shapes were poorly represented in the training dictionary.
+
+\subsection{Research Gaps}
+
+Despite the breadth of dictionary learning applications reviewed above, three gaps remain unaddressed for chest CT CAD.
+First, no existing DDL work unifies multi-class classification and voxel-level segmentation within a single interpretable
+pipeline for pulmonary abnormalities; classification-oriented methods (e.g. \cite{wu2016dictionary,liyanage2022covid})
+and segmentation-oriented methods (e.g. \cite{tong2015discriminative,wang2018tumor}) remain largely separate lines of work,
+with unified frameworks confined to brain tumor imaging \cite{alshaikhli2016brain,anitha2024brain}. Second, none of the
+reviewed studies benchmark dictionary learning approaches directly against SotA deep learning models across classification,
+segmentation, and explainability simultaneously, making it difficult to quantify the interpretability-performance trade-off.
+Third, most CT-based DDL studies validate on narrow, often single-institution cohorts, leaving open how these methods
+generalize on larger, standardized datasets such as CT-RATE. Our work addresses these gaps by proposing a unified,
+inherently interpretable dictionary learning framework for joint classification and segmentation of pulmonary abnormalities,
+paired with an open-source benchmarking framework that directly compares dictionary learning methods against SotA models
+on a common, large-scale dataset. Table~\ref{tab:lit_comparison} summarizes these limitations and positions our contributions relative to prior work.
+
+\begin{table}[h]
+\centering
+\caption{Comparison of representative dictionary learning approaches for CT-based CAD}
+\label{tab:lit_comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{2.2cm}p{2.5cm}p{4cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{Study} & \textbf{Task} & \textbf{Method} & \textbf{Limitations} & \makecell[l]{\textbf{Relation to Our}\\\textbf{Approach}} \\
+\midrule
+Liu et al. \cite{liu2011sparse} &
+Detection (colon polyp, lung nodule) &
+Class-specific K-SVD dictionaries; reconstruction residual classification &
+Classification only, no segmentation; generative approach lacks discriminative power; no interpretability evaluation &
+We add joint segmentation and a formal explainability benchmark rather than only detection \\
+\addlinespace
+Wu et al. \cite{wu2016dictionary} &
+Nodule classification &
+DL-COPAR class-specific + shared dictionaries; SVM on pooled coefficients &
+Avoids segmentation entirely; relies on ROI patches, not full-volume; single abnormality type &
+We perform simultaneous classification and voxel-level localization on full 3D volumes across multiple abnormality classes \\
+\addlinespace
+Ben-Cohen et al. \cite{ben2018fully} &
+Lesion detection (false-positive reduction) &
+FCN probability map + LC-KSVD dictionary for FP reduction; per-case online fine-tuning &
+Dictionary used only as a downstream filter on top of a black-box FCN; localization still driven by non-interpretable network &
+Our atoms drive the primary prediction, giving direct traceability rather than post-hoc FP filtering \\
+\addlinespace
+Liyanage et al. \cite{liyanage2022covid} &
+Classification (COVID-19 CT) &
+Frozen dictionary (class imbalance) + LC-KSVD, concatenated; SVM on sparse-coefficient statistics &
+Patch-level classification only, no segmentation output; evaluated on binary/three-class labels without spatial localization &
+We extend this patch-based sparse-coding paradigm to also produce voxel-level segmentation masks, benchmarked against SotA \\
+\addlinespace
+Al-Shaikhli et al. \cite{alshaikhli2016brain} &
+Joint classification + segmentation (brain tumor) &
+Separate K-SVD feature dictionary (classification) and coupled data-label dictionaries (segmentation) &
+Two independent dictionary systems rather than a single unified model; domain limited to MRI brain tumors; no benchmarking against deep SotA &
+We unify classification and segmentation within one framework and directly benchmark against SotA deep learning models on chest CT \\
+\addlinespace
+Tong et al. \cite{tong2015discriminative} &
+Multi-organ segmentation (abdominal CT) &
+Discriminative dictionary + linear classifier mapping sparse codes to label probabilities &
+Segmentation only, no classification stage; no comparison to deep learning baselines; atlas-dependent &
+We combine this discriminative segmentation strategy with classification and evaluate against SotA deep learning models \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
