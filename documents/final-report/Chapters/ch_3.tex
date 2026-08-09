@@ -1,6 +1,11 @@
 \chapter{Methodology}
 
 Figure \ref{fig:methodology} gives a visual overview of the full framework presented in this study.
+The scan, its mask and JSON metadata are loaded and resampled to a common voxel spacing, followed by lung
+segmentation and normalizing, before patch extraction splits the result into train and test sets. Frozen K-SVD,
+LC-KSVD and FDDL then train a dictionary from the train set, which is used to sparse-code both the train and test
+patches. A linear classifier turns the train sparse codes into predictions, which combine with the dictionary to
+form a class-specific sparse code used for pixel-level reconstruction.
 
 \begin{figure}[H]
     \centering
@@ -8,14 +13,6 @@ Figure \ref{fig:methodology} gives a visual overview of the full framework prese
     \caption{Overall Methodology Diagram.}
     \label{fig:methodology}
 \end{figure}
-
-\small
-The scan, its mask and JSON metadata are loaded and resampled to a common voxel spacing, followed by lung
-segmentation and normalizing, before patch extraction splits the result into train and test sets. Frozen K-SVD,
-LC-KSVD and FDDL then train a dictionary from the train set, which is used to sparse-code both the train and test
-patches. A linear classifier turns the train sparse codes into predictions, which combine with the dictionary to
-form a class-specific sparse code used for pixel-level reconstruction.
-\normalsize
 
 \section{Data Acquisition}
 
@@ -45,7 +42,7 @@ Rad-ChestCT was also used as the external validation set for training the CT-CLI
 trained on the CT-RATE dataset \cite{hamamci2024ctclip}.
 RadGenome-Chest CT extends the CT-RATE dataset with with 197 category organ-level masks and 665,000 grounded text reports for
 vision-language AI models. However, neither of these provides the necessary spatially localized annotations to train a 3D lung
-segmentation model. Fortunately, ReXGroundingCT\cite{rajpurkar2024rexgroundingct} was released very close to the start of this
+segmentation model. Fortunately, ReXGroundingCT \cite{rajpurkar2024rexgroundingct} was released very close to the start of this
 project, and it provides per-finding voxel-level segmentation masks for a subset of the CT-RATE dataset.
 Figure \ref{fig:rexgroundingct_example} shows an example CT scan with ReXGroundingCT mask overlaid over a scan from CT-RATE.
 
@@ -452,15 +449,15 @@ nearest-neighbour interpolation for the segmentation masks. The zoom factors wer
 \text{zoom}_z = \frac{\Delta_z}{1.5}
 \end{equation}
 
-This was further confirmed by analysing the distribution of voxel spacings
-across the dataset. Figure \ref{fig:spacing-distribution} shows this distribution along each axis.
+This was further confirmed by analysing the distribution of voxel spacings across the dataset.
+% Figure \ref{fig:spacing-distribution} shows this distribution along each axis.
 
-\begin{figure}[H]
-    \centering
-    % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/spacing_distribution.png}
-    \caption{Distribution of voxel spacings across the dataset}
-    \label{fig:spacing-distribution}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     % \includegraphics[width=0.85\textwidth]{Images/Chapter 3/spacing_distribution.png}
+%     \caption{Distribution of voxel spacings across the dataset}
+%     \label{fig:spacing-distribution}
+% \end{figure}
 
 After resampling, all volumes and masks were resized to a fixed matrix size of $ 480 \times 480 \times 240 $ voxels across the
 coronal, sagittal and axial axes respectively, using center-cropping for oversized volumes or padding for undersized volumes.
@@ -537,7 +534,7 @@ proposed pipeline requires a single lung mask for the subsequent processing
 steps, this representation was less suitable for the project. Therefore,
 TotalSegmentator was not selected for the final pipeline.
 
-\subsubsection{LungMask Library - LMInferer  }
+\subsubsection{LungMask Library}
 
 The method that was ultimately adopted is the LungMask library, which uses a U-net (R231) model pretrained on diverse
 CT scan data for general lung mask generation. Unlike the classical pipeline, LungMask
