@@ -279,7 +279,7 @@ chest CT.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{Images/Chapter 2/ArchitectureMEDSAM3.png}
+    % \includegraphics[width=0.85\textwidth]{Images/Chapter 2/ArchitectureMEDSAM3.png}
     \caption{Architecture of MedSAM-3}
     \label{fig:medsam3-architecture}
 \end{figure}
@@ -829,7 +829,7 @@ manual labels. On a clinical liver metastases dataset, this combined FCN-plus-sp
 with particularly strong performance maintained on small lesions.
 
 % Brain Tumors
-Al-Shaikhli et al. extended dictionary learning to a unified multi-class classification and multi-label segmentation framework
+Al-Shaikhli et al.\cite{alshaikhli2016brain} extended dictionary learning to a unified multi-class classification and multi-label segmentation framework
 for brain tumors. It is built around two distinct K-SVD dictionaries learned from a single Flair-MRI modality.
 A feature dictionary, learned from global topological features combined with gray-level co-occurrence texture features,
 is used for classification of the volume as normal or abnormal. If abnormal, it is further classified by
@@ -843,7 +843,7 @@ topological/textural features for classification from local voxel-wise coupled d
 MRI channel, achieved 94.26\% classification accuracy and segmentation performance competitive with or exceeding multi-channel
 BraTS-2013 methods requiring four MRI modalities.
 
-Anitha's more recent hybrid framework similarly separates dictionary-based segmentation from a distinct classification stage, but replaces
+Anitha's\cite{anitha2024brain} more recent hybrid framework similarly separates dictionary-based segmentation from a distinct classification stage, but replaces
 reconstruction-residual dictionary classification with a downstream regression-based classifier and shifts from pure MRI to fused
 3D MRI-CT input: a Sparse Mahalanobis Dictionary learns class-discriminative atoms for tumor versus non-tumor tissue using a
 Mahalanobis-distance nonlinearity rather than plain Euclidean sparse coding. These dictionary-derived features feed a
@@ -853,7 +853,7 @@ computing Spearman-correlation-based co-occurrence features, and passing them to
 combined CT-hemorrhage and MRI tumor datasets this pipeline reported 99.7\% accuracy, 98.9\% sensitivity, and 98.7\% specificity,
 outperforming CNN, CapsNet, ELM, and SVM-based baselines.
 
-Wang et al. extended coupled dictionary learning to a multi-modality setting for nasopharyngeal carcinoma (NPC) segmentation,
+Wang et al.\cite{wang2018tumor} extended coupled dictionary learning to a multi-modality setting for nasopharyngeal carcinoma (NPC) segmentation,
 addressing the practical constraint that clinical datasets often mix multi-modality patients (with both CT and MRI) and
 single-modality patients. Building on local coordinate coding, their method jointly learns three coupled
 dictionaries (CT, MRI, and label) by sharing sparse coefficients across CT and MRI patches for multi-modality samples while
@@ -865,7 +865,7 @@ for MRI-only) and achieved segmentation accuracy comparable to prior specialized
 
 % segmentation
 
-Dong et al. proposed a simultaneous CT reconstruction and segmentation (SRS) framework that uses a discriminative dictionary
+Dong et al.\cite{dong2018joint} proposed a simultaneous CT reconstruction and segmentation (SRS) framework that uses a discriminative dictionary
 pair, one for representing image intensity patches and one for representing the corresponding class-probability patches, learned
 jointly via an extension of K-SVD.
 The two dictionaries share the same sparse codes for each patch, so that during reconstruction the sparse coding step simultaneously
@@ -879,7 +879,7 @@ reliance on training data that adequately spans the class-interface geometries e
 represented in the dictionary tend to be oversmoothed or straightened in the output.
 
 A related work applies DDL to the segmentation problem, once images are already reconstructed.
-Tong et al. extended their earlier hippocampus-labeling framework into a discriminative dictionary learning
+Tong et al.\cite{tong2015discriminative} extended their earlier hippocampus-labeling framework into a discriminative dictionary learning
 for segmentation (DDLS) method capable of handling multiple structures simultaneously. Their approach jointly learns a reconstructive
 dictionary and a linear classifier from patches extracted out of a pool of selected atlas images, so that the sparse code of a
 target patch can be mapped, via the learned classifier, directly to a probabilistic label vector.
@@ -896,7 +896,7 @@ G-DDLS and F-DDLS variants, with the largest relative gains for the anatomically
 obtained using only affine (not deformable) registration, underscoring how a learned discriminative dictionary can substitute for
 some of the burden typically placed on accurate non-rigid registration in multi-atlas segmentation pipelines.
 
-Farhangi's doctoral thesis develops a shape-based segmentation framework for lung nodules in thoracic CT that relies on a dictionary
+Farhangi's\cite{farhangi2017scots} doctoral thesis develops a shape-based segmentation framework for lung nodules in thoracic CT that relies on a dictionary
 of previously delineated nodule shapes rather than intensity patches. The method, called Sparse Combination of Training
 Shapes (SCoTS), embeds nodule boundaries as zero level sets of signed distance functions (SDFs) and builds a dictionary by vectorizing
 SDFs from a training set of expert-delineated nodules. The evolving segmentation surface is then approximated at each iteration
@@ -913,7 +913,7 @@ in the training dictionary.
 % Alzheimer's
 
 Discriminative dictionary learning has also been extended to multi-modal neuroimaging classification of Alzheimer's disease (AD) and
-mild cognitive impairment (MCI). Li et al. built on their previously introduced supervised within-class-similarity discriminative
+mild cognitive impairment (MCI). \cite{li2018classification} built on their previously introduced supervised within-class-similarity discriminative
 dictionary learning (SCDDL) algorithm by adding a within-class-similarity term to the standard discriminative dictionary objective,
 which penalizes deviation of each sample's sparse code from its class mean, alongside the usual reconstruction and linear classification
 error terms. To handle multiple imaging modalities, they extended SCDDL into a multi-modality version (mSCDDL) that learns a separate
@@ -935,7 +935,7 @@ cognitively unimpaired (CU), 78.5\% for MCI vs. CU, and 74.5\% for AD vs. MCI, w
 
 % sir
 
-Most relevant to our study, Liyanage et al. tackle COVID-19 detection from
+Most relevant to our study, Liyanage et al.\cite{liyanage2022covid} tackle COVID-19 detection from
 chest CT by combining two complementary DL strategies rather than a single dictionary. The first, frozen dictionary
 learning, addresses class imbalance in the training data, where normal lung-field patches vastly outnumber abnormal patches by learning
 dictionary atoms hierarchically. The second, LC-KSVD, learns a discriminative dictionary directly from patient-level class labels
@@ -948,4 +948,4 @@ or slightly exceeding a benchmark ResNet3D-34 deep learning baseline on the same
 The authors emphasize that because dictionary atoms live in the same domain as the input patches, the resulting classifier offers a more
 interpretable link between learned features and diagnostic categories than an end-to-end deep network
 directly echoing the discriminative-dictionary theme seen
-in Dong et al. and Tong et al., but here applied to whole-scan disease classification rather than pixel-wise segmentation.
+in Dong et al.\cite{dong2018joint} and Tong et al. \cite{tong2015discriminative}, but here applied to whole-scan disease classification rather than pixel-wise segmentation.
