@@ -102,7 +102,7 @@ Table~\ref{tab:dictionary_comparison} compares the reconstruction error and mutu
 \hline
 K-SVD                       & 0.1037     & 0.7414 \\
 LC-KSVD                     & 3.1457     & 0.2318 \\
-FDDL                        & 153820.15  & 0.0190 \\
+FDDL                        & 1.2958     & 0.0190 \\
 Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
 \hline
 \end{tabular}
@@ -110,12 +110,12 @@ Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
 
 Mutual incoherence here is the mean absolute off-diagonal value of the normalised Gram matrix
 between dictionary atoms, so a lower number means the atoms are more distinct from each other.
-LC-KSVD and FDDL's reconstruction error columns are their full joint-training objective, which
-combines reconstruction with a label-consistency or Fisher-discrimination term, so those two
-numbers are on a different scale to the pure reconstruction error reported for K-SVD and Frozen DL
-and should not be compared directly against them. The Frozen DL error shown is the average of its
-three per-stage errors (base 0.0730, class 1 0.0875, class 2 0.1037), and its incoherence value is
-likewise the average across the three stages (base 0.868, class 1 0.632, class 2 0.511).
+LC-KSVD and FDDL's reconstruction error columns are their joint-training objective (reconstruction
+combined with a label-consistency or Fisher-discrimination term) rather than a pure reconstruction
+error, so those two numbers are still not directly comparable to K-SVD and Frozen DL's. 
+The Frozen DL error shown is the average of its three per-stage
+errors (base 0.0730, class 1 0.0875, class 2 0.1037), and its incoherence value is likewise the
+average across the three stages (base 0.868, class 1 0.632, class 2 0.511).
 
 \subsection{K-SVD}
 
