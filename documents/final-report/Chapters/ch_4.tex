@@ -63,7 +63,7 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \hline
 
         \multirow{4}{*}{\makecell{Deep\\Learning}}
-        & CT-CLIP\textsuperscript{\textdagger}
+        & CT-CLIP
         & 0.64 & 0.63 & 0.60 & 0.61 & 0.68
         & 0.54 & 0.60 & 0.37 & 0.59 & 0.53 \\
 
@@ -83,9 +83,8 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
     \end{tabular}
 \end{sidewaystable}
 
-\vspace{0.5em}
-\footnotesize
-\textsuperscript{\textdagger}CT-CLIP was evaluated on the CT-RATE dataset, not on our RexGroundingCT test split.
+CT-CLIP was evaluated on the CT-RATE dataset rather than our RexGroundingCT test split, so its
+row is not directly comparable to the other models above.
 
 \section{Sparse-Coding and Dictionary Learning}
 
@@ -101,20 +100,22 @@ Table~\ref{tab:dictionary_comparison} compares the reconstruction error and mutu
 \hline
 \textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
 \hline
-K-SVD                       & 0.1037                       & 0.7414\textsuperscript{\textdagger} \\
-LC-KSVD                     & 3.1457\textsuperscript{*}    & 0.2318\textsuperscript{\textdagger} \\
-FDDL                        & 153820.15\textsuperscript{*} & 0.0190\textsuperscript{\textdagger} \\
-Frozen Dictionary Learning  & 0.0880\textsuperscript{***}  & 0.6702\textsuperscript{\textdagger,\textdaggerdbl} \\
+K-SVD                       & 0.1037     & 0.7414 \\
+LC-KSVD                     & 3.1457     & 0.2318 \\
+FDDL                        & 153820.15  & 0.0190 \\
+Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
 \hline
 \end{tabular}
-
-\vspace{0.5em}
-\footnotesize
-\textsuperscript{*}LC-KSVD's and FDDL's values are their final joint-objective values (reconstruction + label-consistency/Fisher-discrimination + coefficient terms), each on its own scale, so neither is directly comparable in magnitude to the pure reconstruction error reported for K-SVD and Frozen DL. \\
-\textsuperscript{***}Frozen Dictionary Learning trains incrementally per class; the value shown is the average of the final per-stage errors (base: 0.0730, class 1: 0.0875, class 2: 0.1037). \\
-\textsuperscript{\textdagger}Mutual incoherence is reported as the mean absolute off-diagonal value of the normalized Gram matrix $\mu_{\text{mean}} = \text{mean}_{i \neq j} |\langle d_i, d_j \rangle|$; the maximum pairwise value is $\approx 0.99$--$1.00$ for K-SVD, LC-KSVD, and Frozen DL, and $\approx 0.23$ for FDDL, due to a small number of near-duplicate atoms in the highly overcomplete K-SVD-family dictionaries; the mean is used for a more discriminating comparison. \\
-\textsuperscript{\textdaggerdbl}Frozen Dictionary Learning value is the average of the final per-stage mean incoherences (base: 0.868, class 1: 0.632, class 2: 0.511).
 \end{table}
+
+Mutual incoherence here is the mean absolute off-diagonal value of the normalised Gram matrix
+between dictionary atoms, so a lower number means the atoms are more distinct from each other.
+LC-KSVD and FDDL's reconstruction error columns are their full joint-training objective, which
+combines reconstruction with a label-consistency or Fisher-discrimination term, so those two
+numbers are on a different scale to the pure reconstruction error reported for K-SVD and Frozen DL
+and should not be compared directly against them. The Frozen DL error shown is the average of its
+three per-stage errors (base 0.0730, class 1 0.0875, class 2 0.1037), and its incoherence value is
+likewise the average across the three stages (base 0.868, class 1 0.632, class 2 0.511).
 
 \subsection{K-SVD}
 
@@ -127,20 +128,18 @@ class-specific dictionary on its corresponding test split. The results are summa
 \label{tab:ksvd-reconstruction}
 \begin{tabular}{lccc}
 \hline
-\textbf{Class} & \textbf{Atoms} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence\textsuperscript{\textdagger}} \\
+\textbf{Class} & \textbf{Atoms} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
 \hline
 Normal                        & 6912 & 0.0730 & 0.868 \\
 GGO (2c)                      & 3456 & 0.0875 & 0.632 \\
 Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
 \hline
 \end{tabular}
-
-\vspace{0.5em}
-\footnotesize
-\textsuperscript{\textdagger}Mean absolute off-diagonal value of the normalized Gram matrix restricted to that class's atom block.
 \end{table}
 
-The joined 12096-atom dictionary was evaluated on the full test split, achieving an overall mean mutual incoherence of 0.7414 (max pairwise value $\approx 0.99$).
+Incoherence here is again the mean absolute off-diagonal value of the normalised Gram matrix,
+restricted to each class's own atom block. The joined 12096-atom dictionary was evaluated on the
+full test split as a whole, giving an overall mean mutual incoherence of 0.7414.
 
 \paragraph{Sparsity and Atom Utilisation}
 
@@ -214,17 +213,13 @@ reports the mutual incoherence within each class block.
 \label{tab:lcksvd2-reconstruction}
 \begin{tabular}{lcc}
 \hline
-\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence\textsuperscript{\textdagger}} \\
+\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
 \hline
 Normal   & 864 & 0.193 \\
 2b       & 864 & 0.247 \\
 2d       & 864 & 0.261 \\
 \hline
 \end{tabular}
-
-\vspace{0.5em}
-\footnotesize
-\textsuperscript{\textdagger}Mean absolute off-diagonal value of the normalized Gram matrix restricted to that class's atom block.
 \end{table}
 
 Class-block incoherence is noticeably lower than K-SVD's per-class blocks
@@ -287,17 +282,13 @@ reports the mutual incoherence of each class block.
 \label{tab:fddl-reconstruction}
 \begin{tabular}{lcc}
 \hline
-\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence\textsuperscript{\textdagger}} \\
+\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
 \hline
 Normal   & 4032 & 0.0182 \\
 2c       & 4032 & 0.0186 \\
 2d       & 4032 & 0.0186 \\
 \hline
 \end{tabular}
-
-\vspace{0.5em}
-\footnotesize
-\textsuperscript{\textdagger}Mean absolute off-diagonal value of the normalized Gram matrix restricted to that class's atom block.
 \end{table}
 
 FDDL's class blocks are an order of magnitude less mutually coherent than either K-SVD's
@@ -369,7 +360,7 @@ Figure \ref{fig:frozen-confusion}.
         \bottomrule
     \end{tabular}
     \\[4pt]
-    \small Accuracy = 0.640
+    Accuracy = 0.640
 \end{table}
 
 \begin{table}[ht]
@@ -435,8 +426,8 @@ full 864-dimension raw patch.
         \textbf{Classifier} & \textbf{Accuracy} & \textbf{Normal F1} & \textbf{2c F1} & \textbf{2d F1} \\
         \midrule
         Logistic Regression         & 0.780 & 0.90 & 0.49 & 0.13 \\
-        LinearSVC (MaxAbsScaler)    & \textbf{0.854} & \textbf{0.93} & 0.53 & 0.12 \\
-        XGBoost                     & 0.832 & 0.92 & \textbf{0.54} & 0.31 \\
+        LinearSVC (MaxAbsScaler)    & 0.854 & 0.93 & 0.53 & 0.12 \\
+        XGBoost                     & 0.832 & 0.92 & 0.54 & 0.31 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -552,9 +543,9 @@ AU-ROC     & 0.68 \\
 \end{tabular}
 \end{table}
 
-These numbers sit a little below the zero-shot figures reported in the original CT-CLIP paper
-(see the footnote under Table~\ref{tab:results-summary}), which is not unexpected given differences
-in preprocessing and the smaller scale of our own evaluation run.
+These numbers sit a little below the zero-shot figures reported in the original CT-CLIP paper, as
+noted below Table~\ref{tab:results-summary}, which is not unexpected given differences in
+preprocessing and the smaller scale of our own evaluation run.
 
 \subsubsection{Zero-Shot Text-Prompt Pilot}
 
