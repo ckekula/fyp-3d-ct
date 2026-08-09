@@ -151,7 +151,7 @@ a ``dataset fingerprint'' (pink). Heuristic rules use this fingerprint to determ
 complemented by predefined fixed parameters (blue). Up to three configurations are trained using five-fold cross-validation,
 after which nnU-Net empirically selects the optimal ensemble and determines whether post-processing is required (yellow).
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{Images/Chapter 2/nnunet.png}
     \caption[Overview of nnU-Net configuration method]
@@ -277,7 +277,7 @@ pathway, only a geometric one. Meta's SAM 3 is aimed exactly at this gap through
 Promptable Concept Segmentation. Specifically, that prompt is purely spatial, 
 a box(two corner points), a point(roughly inside the target), or a mask(rough/full segmentation on that one slice)t \cite{meta2025sam3}. 
 MedSAM-3 takes this a step further and fine-tunes the architecture on
-medical images paired with concept phrases, things like ``lung infection'' for chest X-ray or ``pulmonary
+medical images paired with concept phrases, Figure \ref{fig:medsam3-architecture} shows things like ``lung infection'' for chest X-ray or ``pulmonary
 artery'' for 3D lung CT \cite{liu2025medsam3}. Even so, the authors' own ablations make clear that text
 alone does not remove the need for a geometric anchor. On the 3D Parse2022 lung CT benchmark, raw SAM 3
 given nothing but the phrase ``pulmonary artery'' managed a dice score of only 0.53, well short of nn-U-Net's
