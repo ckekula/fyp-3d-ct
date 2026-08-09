@@ -803,19 +803,18 @@ dictionary learning to pulmonary nodule detection in CT, addressing the practica
 often unreliable due to irregular shapes and low contrast. Rather than relying on precisely segmented ROIs, they learned two
 classification-oriented sub-dictionaries (nodule and non-nodule) together with a shared background dictionary, following the
 DL-COPAR formulation \cite{kong2012dictionary}. Sparse coefficients from the class-specific sub-dictionaries were pooled into feature vectors,
-refined using DX-score-based feature selection, and passed to an SVM classifier, yielding good classification performance on the
+and passed to an SVM classifier, yielding good classification performance on the
 LIDC-IDRI dataset without requiring accurate nodule segmentation, and demonstrating that discriminative dictionary learning can
 substitute for precise localization as a prerequisite for feature extraction.
 
 Ben-Cohen et al. \cite{ben2018fully} extended dictionary learning-based approaches from classification into a full lesion detection pipeline,
 combining a global fully convolutional network (FCN) that generates a lesion probability map across the CT volume with a local,
-discriminative dictionary-based module for false-positive reduction. Candidate regions from the FCN were partitioned into SLIC 
-uperpixels, each represented by a 125-dimensional textural feature vector, and classified using LC-KSVD.
+discriminative dictionary-based module for false-positive reduction. Candidate regions from the FCN were classified using LC-KSVD.
 A further innovation was online, per-case fine-tuning of the dictionary and linear classifier using high and low-confidence
-superpixels drawn from each test case's own FCN probability map, personalizing the discriminative dictionary without additional
-manual labels. On a clinical liver metastases dataset, this combined FCN-plus-sparsity framework achieved 94.6\% sensitivity at
+superpixels drawn from each test case's own FCN probability map. This personalizes the discriminative dictionary without additional
+manual labels. On a clinical liver metastases dataset, this framework achieved 94.6\% sensitivity at
 2.9 false positives per case, outperforming the FCN alone, U-Net, a superpixel-only sparse classifier, and a patch-based CNN,
-with particularly strong performance maintained on small lesions.
+with strong performance maintained on small lesions.
 
 % Alzheimer's
 
@@ -853,19 +852,18 @@ is used for classification of the volume as normal or abnormal. If abnormal, it 
 finding which class-specific dictionary yields the sparsest representation of the test features.
 Separately, coupled data-label dictionaries are learned jointly from voxel-wise gray-scale patches and their corresponding
 ground-truth segmentation labels,
-so that each atom in the image dictionary has an associated atom in the label dictionary; at test time, sparse similarity between
+so that each atom in the image dictionary has an associated atom in the label dictionary. At test time, sparse similarity between
 test patches and the data dictionary retrieves the matching label-dictionary atoms, which supply foreground/background costs for
 multi-label graph-cut segmentation of necrosis, edema, and enhancing/non-enhancing tumor. This decoupling of global
 topological/textural features for classification from local voxel-wise coupled dictionaries for segmentation, using only a single
-MRI channel, achieved 94.26\% classification accuracy and segmentation performance competitive with or exceeding multi-channel
-BraTS-2013 methods requiring four MRI modalities.
+MRI channel, achieved 94.26\% classification accuracy and segmentation performance exceeding multi-channel methods requiring four MRI modalities.
 
-Anitha's\cite{anitha2024brain} more recent hybrid framework similarly separates dictionary-based segmentation from a distinct classification stage, but replaces
+Anitha's \cite{anitha2024brain} hybrid framework similarly separates dictionary-based segmentation from a distinct classification stage, but replaces
 reconstruction-residual dictionary classification with a downstream regression-based classifier and shifts from pure MRI to fused
 3D MRI-CT input: a Sparse Mahalanobis Dictionary learns class-discriminative atoms for tumor versus non-tumor tissue using a
 Mahalanobis-distance nonlinearity rather than plain Euclidean sparse coding. These dictionary-derived features feed a
-Multimodal Markov Random Forest that labels mutually exclusive and exhaustive tissue regions to avoid the tissue loss common in
-multi-decomposition fusion pipelines. The segmented tumor regions are then classified further by extracting nested 3x3 patches,
+Multimodal Markov Random Forest that labels mutually exclusive and exhaustive tissue regions to avoid the tissue loss
+The segmented tumor regions are then classified further by extracting nested 3x3 patches,
 computing Spearman-correlation-based co-occurrence features, and passing them to a Lagrangian neural network. On
 combined CT-hemorrhage and MRI tumor datasets this pipeline reported 99.7\% accuracy, 98.9\% sensitivity, and 98.7\% specificity,
 outperforming CNN, CapsNet, ELM, and SVM-based baselines.
@@ -880,31 +878,14 @@ CT and MRI patches against the learned CT/MRI dictionaries and projecting the re
 dictionary. This joint approach outperformed single-modality dictionary learning (DSC of 76.87\% vs. 65.36\% for CT-only and 74.94\%
 for MRI-only) and achieved segmentation accuracy comparable to prior specialized NPC methods.
 
-Dong et al.\cite{dong2018joint} proposed a simultaneous CT reconstruction and segmentation (SRS) framework that uses a discriminative dictionary
-pair, one for representing image intensity patches and one for representing the corresponding class-probability patches, learned
-jointly via an extension of K-SVD.
-The two dictionaries share the same sparse codes for each patch, so that during reconstruction the sparse coding step simultaneously
-constrains both the intensity reconstruction and the segmentation. The segmentation acts as a built-in regularizer for the
-otherwise ill-posed inverse problem. Tested on textured Brodatz-based phantoms and simulated
-fibrous material samples under varying numbers of projection angles, the method outperformed a non-dictionary SRS baseline and two
-weaker dictionary-based pipelines, with the gap widening as the number of projections decreased. The authors note the method's
-reliance on training data that adequately spans the class-interface geometries expected in the target images, since interfaces not
-represented in the dictionary tend to be oversmoothed or straightened in the output.
-
 A related work applies DDL to the segmentation problem, once images are already reconstructed.
 Tong et al.\cite{tong2015discriminative} extended their earlier hippocampus-labeling framework into a discriminative dictionary learning
 for segmentation (DDLS) method capable of handling multiple structures simultaneously. Their approach jointly learns a reconstructive
 dictionary and a linear classifier from patches extracted out of a pool of selected atlas images, so that the sparse code of a
 target patch can be mapped, via the learned classifier, directly to a probabilistic label vector.
-This produces a subject-specific probabilistic atlas that is then refined with a graph-cuts post-processing step.
-A central contribution is a voxel-wise local atlas selection strategy (L-DDLS), which selects different subsets of atlases at different
-spatial locations based on local similarity, rather than relying on one globally selected atlas set (G-DDLS) or a fixed
-offline-trained dictionary (F-DDLS). This addresses the high inter-subject anatomical variability of abdominal organs.
 Evaluated on 150 abdominal CT scans, L-DDLS achieved Dice overlaps of 94.9\%, 93.6\%, 71.1\%, and 92.5\% for liver, kidneys, pancreas,
 and spleen respectively, consistently outperforming majority-voting label fusion, non-local patch-based segmentation, and both
-G-DDLS and F-DDLS variants, with the largest relative gains for the anatomically variable pancreas. Notably, these results were
-obtained using only affine (not deformable) registration, underscoring how a learned discriminative dictionary can substitute for
-some of the burden typically placed on accurate non-rigid registration in multi-atlas segmentation pipelines.
+G-DDLS and F-DDLS variants, with the largest relative gains for the anatomically variable pancreas.
 
 Farhangi's\cite{farhangi2017scots} doctoral thesis develops a shape-based segmentation framework for lung nodules in thoracic CT that relies on a dictionary
 of previously delineated nodule shapes rather than intensity patches. The method, called Sparse Combination of Training
@@ -914,6 +895,5 @@ as a sparse linear combination of these dictionary atoms, solved via an $\ell_1$
 With their approach, as the evolving surface approaches a plausible
 nodule shape and its representation becomes sparser, the shape prior is trusted more, preventing the contour from leaking into
 adjacent tissues of similar density. Validated on 542 3D nodules from the LIDC-IDRI database against four independent radiologists,
-SCoTS achieved a mean DSC of about 0.71-0.72 across radiologist delineations, with the primary failure mode occurring for nodules
+SCoTS achieved a mean dice score of about 0.72, with the primary failure mode occurring for nodules
 whose shapes were poorly represented in the training dictionary.
-
