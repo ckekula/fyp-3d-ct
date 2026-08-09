@@ -298,7 +298,7 @@ whereas a nodule is frequently small enough that a patch covering its bounding b
 surrounding normal parenchyma. This is somewhat offset by the use of a 50\% lesion-voxel-fraction threshold during patch extraction
 (see Section \ref{subsec:patch-extraction}), but still results in more than 75\% of nodule patches being discarded, even when using
 a patch size is reduced to $12\times12\times12$ (1,728 voxels). This is another limitation of our study and may discard small
-nodules and only include larger masses which are typically larger than 30mm.
+nodules and only include larger masses which are typically larger than 30mm. 
 
 \subsection{CT Volume and Mask Loading}
 
@@ -1727,7 +1727,7 @@ Frozen Dictionary Learning  & \checkmark & \checkmark & \checkmark \\
 \section{Qualitative Analysis}
 
 While the above evaluation framework provides a quantitative assessment of model performance,
-we also carried out a qualitative review of our results. This was done by having another consultation
+we also carried out a qualitative review of our results. Figure \ref{fig:radiologist-evaluation-visit} shows the radiologist for the qualitative review. This was done by having another consultation
 with the same consultant radiologist we had worked with previously. Each model's predicted masks
 and Grad-CAM heatmaps were loaded into the 3D Slicer software alongside the corresponding CT volume
 and its ground-truth annotation, so that the radiologist could inspect predictions overlaid on the original scan
