@@ -1402,11 +1402,21 @@ from any prediction threshold used by the classification model.
 \section{Evaluation Framework}
 \label{sec:eval-framework}
 
-The ten models compared in this study cover a range of approaches spannning sparse
+The ten models compared in this study cover a range of approaches spanning sparse
 dictionary learning, dense voxel-wise segmentation, and promptable foundation models.
-Their outputs at the end of a forward pass ranges from a calibrated probability, to a bare
+Their outputs at the end of a forward pass range from a calibrated probability, to a bare
 class label, to a folder of binary volumes. To design an evaluation framework, all of
-these outputs has to be pushed through one common representation.
+these outputs have to be pushed through one common representation.
+
+Figure~\ref{fig:eval-axes-overview} summarizes the three evaluation axes used throughout
+this framework and the metrics computed for each.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/Chapter 3/Evaluation Framework Architecture.png}
+    \caption{Overview of the three evaluation axes (classification, localization, interpretability), their comparison targets, and associated metrics.}
+    \label{fig:eval-axes-overview}
+\end{figure}
 
 \subsection{Architecture}
 \label{sec:eval-architecture}
@@ -1420,13 +1430,13 @@ The shared framework is built using three components:
 
 An adapter handles the single responsibility of reading whatever a
 given model actually writes to disk, whether that is a spreadsheet of scores, a directory of
-mask volumes, or an array of sparse codes, and restate it as a case matching the common
+mask volumes, or an array of sparse codes, and restates it as a case matching the common
 schema. An adapter computes nothing and acts solely as a translation layer.
-Therefore, adding a eleventh model later costs only this conversion step.
+Therefore, adding an eleventh model later costs only this conversion step.
 
 The core is a single model-agnostic library of metric definitions spanning classification, localization, and explainability.
 It sits on the far side of an adapter and it operates only on cases already in the common schema.
-It is unaware of the adapter, which architecture produced a case, or what a native prediction file looks like.
+It is unaware of the adapter, which model produced a case, or what a native prediction file looks like.
 Because it is fixed, every result reported in the subsequent chapter comes from the same
 calculations, keeping results consistent.
 
