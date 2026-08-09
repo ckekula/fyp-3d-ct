@@ -179,10 +179,17 @@ intervention, making them good candidates for a proof-of-concept CAD system:
 The radiologist provided valuable insights into the clinical significance of each abnormality,
 their typical appearance in CT scans, and the challenges associated with their detection.
 For the initial phase of our study, we decided to narrow down the target abnormalities further, as the radiologist's recommendations
-were quite broad.
+were quite broad. For this purpose, we considered the representation of each class in our dataset which is discussed in
+Section~\ref{subsec:eda}. We finally decided on three target abnormalities for the initial phase of the study:
 
-We also observed discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
-Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ``Opacities", which contains
+\begin{enumerate}
+    \item GGO
+    \item Nodules/masses
+    \item Atelectasis/Consolidation
+\end{enumerate}
+
+However, we observed that there are discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
+Firstly, CT-RATE does not have a class for GGO explicitly. Instead, it has a broader class called ''Opacities'', which contains
 various generalized density increases, non-specific haziness, and explicit GGOs grouped together under this broader class.
 This is offset by the fact that ReXGrounding-CT treats GGO as an independent, dedicated focal category.
 
@@ -225,14 +232,7 @@ This taxonomy was developed by 7 senior radiologists with at least 10-year exper
 Through consultation with our own radiologist, it was confirmed that Atelectasis and Consolidation should be distinct categories
 as they represent different pathological processes as noted in Section~\ref{subsec:abnormalities}.
 Because there are practical constraints in dividing the already-grouped Atelectasis/Consolidation category in ReXGrounding-CT,
-we decided consider it as a limitation and remove them from the initial phase of the study.
-To further reduce the target abnormalities, we considered the representation of each class in our dataset which is discussed in
-Section \ref{subsec:eda}. We finally decided on 2 target abnormalities for the initial phase of the study:
-
-\begin{enumerate}
-    \item GGO
-    \item Nodules/masses
-\end{enumerate}
+we decided consider it as a limitation of the study.
 
 % IMPORTANT
 % In addition to target abnormality selection, the radiologist also provided guidance on the standard radiology workflow.
