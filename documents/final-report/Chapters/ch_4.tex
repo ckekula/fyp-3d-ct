@@ -1,7 +1,7 @@
 \chapter{Results}
 \label{cha:results}
 
-This chapter presents the results of the evaluation of the 10 models assessed in this study covering classification, localization,
+This chapter presents the results of the evaluation of all of the models assessed in this study covering classification, localization,
 and explainability. The evaluation framework developed for this, is described in Section~\ref{sec:eval-framework}, while
 table~\ref{tab:eval-coverage} summarizes the evaluation coverage of each model across the three axes. 
 The results are presented in the following sections. Table~\ref{tab:results-summary} provides a summary of the results across all models and evaluation axes.
@@ -83,24 +83,55 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
     \end{tabular}
 \end{sidewaystable}
 
-Incoherence here is again the mean absolute off-diagonal value of the normalised Gram matrix,
-restricted to each class's own atom block. The joined 12096-atom dictionary was evaluated on the
-full test split as a whole, giving an overall mean mutual incoherence of 0.7414.
+\section{Sparse-Coding and Dictionary Learning}
 
-% \paragraph{Sparsity and Atom Utilisation}
+Our study included four dictionary-learning methods: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary Learning.
+Each method was evaluated on the same test split of patches, and their reconstruction quality was assessed.
+Table~\ref{tab:dictionary_comparison} compares the reconstruction error and mutual incoherence of each method.
 
-% Each patch was allowed at most 10 active atoms during sparse coding. Most patches used close to
-% this limit, meaning a fairly large number of atoms was usually needed to represent a single patch
-% well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
-% dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
-% drop in reconstruction quality.
+\begin{table}[H]
+\centering
+\caption{Comparison of dictionary learning methods for reconstruction quality.}
+\label{tab:dictionary_comparison}
+\begin{tabular}{lcc}
+\hline
+\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+K-SVD                       & 0.1037     & 0.7414 \\
+LC-KSVD                     & 3.1457     & 0.2318 \\
+FDDL                        & 1.2958     & 0.0190 \\
+Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
+\hline
+\end{tabular}
+\end{table}
 
-% \paragraph{Atom Co-occurrence and Clustering}
+Here, a lower Mutual incoherence means that the atoms are more distinct from each other and thus,
+uniqeuly contribute to the reconstruction process.
+LC-KSVD and FDDL's reconstruction error columns are their joint-training objective (reconstruction
+combined with a label-consistency or Fisher-discrimination term) rather than a pure reconstruction
+error, so those two values are not directly comparable to K-SVD and Frozen DL.
+The Frozen DL error and mutual incoherence terms shown are the average values of its three per-stage errors.
+The per-class values are shown in table~\ref{tab:frozen-reconstruction}.
 
-% Atoms belonging to the same class tended to be activated together on patches from that class,
-% which is expected since the three dictionaries were trained separately on their own patch groups.
-% Some overlap in activation was still seen between the Normal and GGO dictionaries, which fits
-% with the higher mutual incoherence measured for those two blocks in Table~\ref{tab:ksvd-reconstruction}.
+\subsection{K-SVD}
+
+Since separate KSVD dictionaries were trained for each class and concatenated, we evaluated the reconstruction quality of each
+class-specific dictionary on its corresponding test split. The results are summarised in Table~\ref{tab:ksvd-reconstruction}.
+
+\begin{table}
+\centering
+\caption{Reconstruction quality of K-SVD dictionaries.}
+\label{tab:ksvd-reconstruction}
+\begin{tabular}{lccc}
+\hline
+\textbf{Class} & \textbf{Atoms} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+Normal                        & 6912 & 0.0730 & 0.868 \\
+GGO (2c)                      & 3456 & 0.0875 & 0.632 \\
+Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsubsection{Dictionary Coherence}
 
@@ -110,23 +141,14 @@ range of healthy lung texture, so many atoms end up looking similar to each othe
 dictionary is smaller and each atom can specialise on a more specific local pattern, so there is
 less redundancy between atoms.
 
-% \paragraph{Visual Inspection of Atoms and Reconstructions}
-
-% A visual check of a sample of dictionary atoms showed mostly small blocks of intensity and edge
-% patterns typical of lung CT texture, rather than clearly interpretable shapes. Reconstructed
-% patches looked visually close to the originals for most Normal and GGO patches, but nodule patches
-% were harder to reconstruct cleanly, which lines up with the higher reconstruction error reported
-% for that class in Table~\ref{tab:ksvd-reconstruction}.
-
 \subsubsection{Classification and Localisation Performance}
 
 A linear classifier trained on the K-SVD sparse codes reached 67\% patch-level accuracy (F1 = 0.64),
-the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives a
-rough per-class breakdown.
+the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives the per-class breakdown.
 
 \begin{table}[H]
 \centering
-\caption{K-SVD patch-level classification performance (test split).}
+\caption{K-SVD patch-level classification performance.}
 \label{tab:ksvd-classification}
 \begin{tabular}{lccc}
 \hline
@@ -274,17 +296,29 @@ in quite different ways.
 \subsection{Frozen Dictionary Learning}
 
 The Frozen model's dictionary is built by the same incremental base-plus-residual K-SVD
-stages summarised in Table~\ref{tab:ksvd-reconstruction} (a stable normal-tissue base dictionary
-learned first, with each abnormality class then added as a residual K-SVD dictionary on top), so
+stages summarised in Table~\ref{tab:ksvd-reconstruction}, where a stable normal-tissue base dictionary
+learned first, with each abnormality class then added as a residual K-SVD dictionary on top.
 its per-class reconstruction error and mutual incoherence figures are identical to that table and
 are not repeated here.
 
-The Frozen (IncrementalFrozenDictionary) model was evaluated on a 44,384-patch
-test split (14,150 normal / 14,884 ``2c'' / 15,350 ``2d'' patches). A linear
-classifier trained on the resulting sparse codes reached 64.0\% patch-level
-accuracy; the full per-class breakdown is given in Table 
-\ref{tab:frozen-classification}, with the corresponding confusion matrix in
-Figure \ref{fig:frozen-confusion}.
+\begin{table}
+\centering
+\caption{Reconstruction quality metrics of Frozen Dictionary Learning.}
+\label{tab:frozen-reconstruction}
+\begin{tabular}{lcc}
+\hline
+\textbf{Dictionary} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+Base    & 0.0730 & 0.868 \\
+Class 1 & 0.0875 & 0.632 \\
+Class 2 & 0.1037 & 0.511 \\
+\hline
+\end{tabular}
+\end{table}
+
+A linear classifier trained on the resulting sparse codes reached 64.0\% patch-level
+accuracy. The full per-class breakdown is given in Table \ref{tab:frozen-classification},
+with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
 
 \begin{table}[ht]
     \centering
@@ -326,7 +360,30 @@ adding each abnormality as a residual dictionary on top -- generalises to
 unseen scans better than training a single dictionary jointly across all
 three classes at once.
 
-\subsubsection{Test-Set Classification Performance}
+% \paragraph{Sparsity and Atom Utilisation}
+
+% Each patch was allowed at most 10 active atoms during sparse coding. Most patches used close to
+% this limit, meaning a fairly large number of atoms was usually needed to represent a single patch
+% well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
+% dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
+% drop in reconstruction quality.
+
+% \paragraph{Atom Co-occurrence and Clustering}
+
+% Atoms belonging to the same class tended to be activated together on patches from that class,
+% which is expected since the three dictionaries were trained separately on their own patch groups.
+% Some overlap in activation was still seen between the Normal and GGO dictionaries, which fits
+% with the higher mutual incoherence measured for those two blocks in Table~\ref{tab:ksvd-reconstruction}.
+
+% \paragraph{Visual Inspection of Atoms and Reconstructions}
+
+% A visual check of a sample of dictionary atoms showed mostly small blocks of intensity and edge
+% patterns typical of lung CT texture, rather than clearly interpretable shapes. Reconstructed
+% patches looked visually close to the originals for most Normal and GGO patches, but nodule patches
+% were harder to reconstruct cleanly, which lines up with the higher reconstruction error reported
+% for that class in Table~\ref{tab:ksvd-reconstruction}.
+
+\subsection{Test-Set Classification Performance}
 \label{sec:frozen-classification}
 
 The patch-level results and confusion matrix reported above (Table~\ref{tab:frozen-classification}
@@ -335,7 +392,7 @@ and Figure~\ref{fig:frozen-confusion}) already cover the Frozen model's classifi
 methods on this task, reaching 85\% accuracy and an F1 score of 0.83, ahead of FDDL and well ahead
 of plain K-SVD.
 
-\subsubsection{Whole-Volume Localisation}
+\subsection{Whole-Volume Localisation}
 
 Whole-volume outputs were also produced by running the trained classifier over every patch
 position in a scan and stitching the predictions back into a per-voxel abnormality map. These maps
