@@ -1,7 +1,7 @@
 \chapter{Results}
 \label{cha:results}
 
-This chapter presents the results of the evaluation of the 10 models assessed in this study covering classification, localization,
+This chapter presents the results of the evaluation of all of the models assessed in this study covering classification, localization,
 and explainability. The evaluation framework developed for this, is described in Section~\ref{sec:eval-framework}, while
 table~\ref{tab:eval-coverage} summarizes the evaluation coverage of each model across the three axes. 
 The results are presented in the following sections. Table~\ref{tab:results-summary} provides a summary of the results across all models and evaluation axes.
@@ -333,12 +333,9 @@ learned first, with each abnormality class then added as a residual K-SVD dictio
 its per-class reconstruction error and mutual incoherence figures are identical to that table and
 are not repeated here.
 
-The Frozen (IncrementalFrozenDictionary) model was evaluated on a 44,384-patch
-test split (14,150 normal / 14,884 ``2c'' / 15,350 ``2d'' patches). A linear
-classifier trained on the resulting sparse codes reached 64.0\% patch-level
-accuracy; the full per-class breakdown is given in Table 
-\ref{tab:frozen-classification}, with the corresponding confusion matrix in
-Figure \ref{fig:frozen-confusion}.
+A linear classifier trained on the resulting sparse codes reached 64.0\% patch-level
+accuracy. The full per-class breakdown is given in Table \ref{tab:frozen-classification},
+with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
 
 \begin{table}[ht]
     \centering
