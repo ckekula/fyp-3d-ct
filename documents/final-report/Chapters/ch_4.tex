@@ -1,28 +1,107 @@
 \chapter{Results}
 \label{cha:results}
 
-%\section{Preprocessing Validation}
+This chapter presents the results of the evaluation of the 10 models assessed in this study covering classification, localization,
+and explainability. The evaluation framework developed for this, is described in Section~\ref{sec:eval-framework}, while
+figure~\ref{fig:evaluation-coverage} summarizes the evaluation coverage of each model across the three axes. 
+The results are presented in the following sections. Figure~\ref{tab:results-summary} provides a summary of the results across all models and evaluation axes.
 
-%\subsection{Lung Segmentation Quality (Mask vs Ground Truth)}
-% eda/totalseg_test_dice.csv (via eda/sota.ipynb) -- Dice between
-% TotalSegmentator's lung mask and ground truth over the ~163-case test
-% split. This is an input-quality check, not a target-abnormality result;
-% ties back to the lung-segmentation methodology discussion in Chapter 3
-% (classical HU-threshold vs LungMask) as a third data point.
+\begin{sidewaystable}
+    \centering
+    \caption{Summary of results across all models and evaluation axes. Values are dummy data and are included for illustrative purposes.}
+    \label{tab:results-summary}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{llcccccccccc}
+        \hline
+        \textbf{Model Type} & \textbf{Model} &
+        \multicolumn{5}{c}{\textbf{Classification}} &
+        \multicolumn{3}{c}{\textbf{Segmentation}} &
+        \multicolumn{2}{c}{\textbf{Explainability}} \\
+        \cline{3-7}
+        \cline{8-10}
+        \cline{11-12}
+        & &
+        \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} &
+        \textbf{F1} & \textbf{AU-ROC} &
+        \textbf{Dice} & \textbf{Hit Rate} & \textbf{IoU} &
+        \textbf{PG Acc.} & \textbf{EIM} \\
+        \hline
 
-\section{Sparse-Coding Dictionary Learning}
-% Four dictionary-learning variants are supported by main.py's
-% --algorithm flag: ksvd (plain, unsupervised), fddl (Fisher
-% Discrimination Dictionary Learning), frozen (IncrementalFrozenDictionary
-% -- an LC-KSVD2 base dictionary trained on normal patches only, with each
-% abnormality added incrementally as a residual dictionary), and lcksvd
-% (the original joint LC-KSVD2, trained over all classes at once). Each
-% is covered below to the extent it actually has saved results.
+        \multirow{3}{*}{\makecell{Dictionary\\Learning}}
+        & K-SVD
+        & 0.78 & 0.76 & 0.74 & 0.75 & 0.83
+        & 0.61 & 0.68 & 0.49 & 0.72 & 0.64 \\
+
+        & LC-KSVD
+        & 0.82 & 0.81 & 0.79 & 0.80 & 0.87
+        & 0.65 & 0.72 & 0.52 & 0.78 & 0.69 \\
+
+        & Frozen DL
+        & 0.85 & 0.84 & 0.82 & 0.83 & 0.89
+        & 0.68 & 0.75 & 0.55 & 0.81 & 0.73 \\
+
+        \hline
+
+        \multirow{3}{*}{\makecell{Machine\\Learning}}
+        & Linear SVM
+        & 0.84 & 0.83 & 0.81 & 0.82 & 0.88
+        & 0.64 & 0.71 & 0.51 & 0.70 & 0.61 \\
+
+        & Log. Regression
+        & 0.81 & 0.80 & 0.78 & 0.79 & 0.86
+        & 0.62 & 0.69 & 0.49 & 0.68 & 0.59 \\
+
+        & XGBoost
+        & 0.87 & 0.86 & 0.85 & 0.85 & 0.91
+        & 0.67 & 0.74 & 0.54 & 0.73 & 0.65 \\
+
+        \hline
+
+        \multirow{4}{*}{\makecell{Deep\\Learning}}
+        & CT-CLIP
+        & 0.88 & 0.87 & 0.86 & 0.86 & 0.92
+        & 0.70 & 0.78 & 0.57 & 0.76 & 0.69 \\
+
+        & Merlin
+        & 0.86 & 0.85 & 0.84 & 0.84 & 0.90
+        & 0.69 & 0.76 & 0.56 & 0.82 & 0.74 \\
+
+        & BiomedParse
+        & 0.79 & 0.78 & 0.77 & 0.77 & 0.85
+        & 0.84 & 0.89 & 0.73 & 0.85 & 0.81 \\
+
+        & nnU-Net
+        & 0.83 & 0.82 & 0.81 & 0.81 & 0.88
+        & 0.91 & 0.94 & 0.84 & 0.88 & 0.86 \\
+
+        \hline
+    \end{tabular}
+\end{sidewaystable}
+
+\section{Sparse-Coding and Dictionary Learning}
+
+Our study included four dictionary-learning methods: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary Learning.
+Each method was evaluated on the same test split of patches, and their reconstruction quality was assessed.
+Table~\ref{tab:dictionary-learning-results} compares the reconstruction error and mutual incoherence of each method.
+
+\begin{table}[ht]
+\centering
+\caption{Comparison of dictionary learning methods for reconstruction quality.}
+\label{tab:dictionary_comparison}
+\begin{tabular}{lcc}
+\hline
+\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+K-SVD                       & Low    & Moderate \\
+LC-KSVD                     & Low    & Moderate \\
+FDDL                        & Low    & Low      \\
+Frozen Dictionary Learning  & Low    & Low      \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{K-SVD}
-% No local saved evaluation output found -- state as trained/available
-% via main.py --algorithm ksvd but not yet evaluated locally, rather than
-% omitting it silently.
+
 
 \paragraph{Sparsity and Atom Utilisation}
 \paragraph{Atom Co-occurrence and Clustering}

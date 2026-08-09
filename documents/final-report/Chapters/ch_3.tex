@@ -1400,12 +1400,11 @@ The shared framework is built using three components:
     \item Adapter -- A per-model conversion step that handles the different output formats
 \end{enumerate}
 
-Adding a eleventh model later costs only one conversion step.
-
 An adapter handles the single responsibility of reading whatever a
 given model actually writes to disk, whether that is a spreadsheet of scores, a directory of
 mask volumes, or an array of sparse codes, and restate it as a case matching the common
-schema. An adapter computes nothing and judges nothing. It acts as a translation layer.
+schema. An adapter computes nothing and acts solely as a translation layer.
+Therefore, adding a eleventh model later costs only this conversion step.
 
 The core is a single model-agnostic library of metric definitions spanning classification, localization, and explainability.
 It sits on the far side of an adapter and it operates only on cases already in the common schema.
@@ -1570,8 +1569,8 @@ not the interesting failure when the prediction was already wrong.
 
 \subsection{Model Coverage}
 
-Table~\ref{tab:eval-coverage} records which evaluation axes each model is evaluated on. The coverage is uneven by design,
-not by omission. BiomedParse carries no classification-style output to score, being a promptable segmentation model, and
+Table~\ref{tab:eval-coverage} records which evaluation axes each model is evaluated on. The coverage is uneven by design.
+BiomedParse carries no classification-style output to score, being a promptable segmentation model, and
 so appears on localization only. Merlin on the other hand, is a vision-language embedding model with no segmentation capability,
 and its published classification modes, phenotype classification and five-year disease prediction, are not the
 ones exercised here either, since this project uses its raw image-text similarity for zero-shot matching.
