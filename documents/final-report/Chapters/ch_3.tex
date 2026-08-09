@@ -1021,10 +1021,20 @@ the mean absolute sparse coefficient is first calculated as
 \left|\alpha_{j,i}\right|,
 \end{equation}
 
-\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for
-sample $i$, $y_i$ is the class label of sample $i$, and $N_c$ is
-the number of samples in class $c$. The class selectivity of atom
-$j$ for class $c$ is then measured by
+\noindent where $\alpha_{j,i}$ is the sparse coefficient of atom $j$ for sample $i$, $y_i$ is the class label of sample $i$,
+and $N_c$ is the number of samples in class $c$. Figure~\ref{fig:atom-activation} shows the mean absolute sparse coefficients
+for each atom across all classes for the LC-KSVD dictionary.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/Chapter 3/lcksvd-sparse-codes.png}
+    \caption{Mean absolute sparse coefficients for each atom across all classes in the LC-KSVD dictionary.}
+    \label{fig:atom-activation}
+\end{figure}
+
+We can see that some atoms are activated for all classes, while others are activated for only one or two classes.
+This indicates that some atoms are class-exclusive, while others are shared across classes. The class selectivity of an atom $j$
+can be quantified by comparing its mean activation for a given class $c$ to its mean activation across all other classes:
 
 \begin{equation}
 S_{j,c}
@@ -1239,6 +1249,7 @@ both prompts, and a softmax function was used to calculate the probability
 of the abnormality being present.
 
 \section{Grad-CAM for Explainability}
+\label{sec:grad-cam}
 
 In addition to the segmentation and classification methods, we also experimented with Grad-CAM to understand
 what features affect the above deep learning models to make a prediction. Grad-CAM creates a heatmap
@@ -1316,7 +1327,6 @@ inference (Section~\ref{sec:merlin-method}), including the same intensity
 windowing and spatial downsampling. This ensured that Grad-CAM explained the
 same input that the model actually used for prediction.
 
-
 \subsection{Transformer encoder}
 
 For the transformer encoder, Grad-CAM was applied to an intermediate
@@ -1357,6 +1367,7 @@ be directly compared with the convolutional encoder heatmap, even though the
 two encoders use different internal feature representations.
 
 \subsection{Quantitative evaluation}
+\label{subsec:gradcam-eval}
 
 The quantitative evaluation focused on the transformer-based Grad-CAM,
 for which the predicted abnormality logit was used as the target score.

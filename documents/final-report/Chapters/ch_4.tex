@@ -90,7 +90,7 @@ Table~\ref{tab:dictionary-learning-results} compares the reconstruction error an
 \label{tab:dictionary_comparison}
 \begin{tabular}{lcc}
 \hline
-\textbf{Method} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
 \hline
 K-SVD                       & Low    & Moderate \\
 LC-KSVD                     & Low    & Moderate \\
@@ -111,7 +111,7 @@ class-specific dictionary on its corresponding test split. The results are summa
 \label{tab:ksvd-reconstruction}
 \begin{tabular}{lcc}
 \hline
-\textbf{Method} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
 \hline
 Normal                      & Low    & Moderate \\
 GGO                         & Low    & Moderate \\
@@ -121,7 +121,15 @@ Atelectasis/Consolidation   & Low    & Low      \\
 \end{tabular}
 \end{table}
 
-The joined dictionary was evaluated on the full test split, which achieved a 
+The joined dictionary was evaluated on the full test split, which achieved an accuracy of 0.58. Figure \ref{fig:ksvd-confusion}
+shows the confusion matrix.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.7\textwidth]{Images/Chapter 4/ksvd_confusion_matrix.png}
+    \caption{Confusion matrix for K-SVD classification on the test split.}
+    \label{fig:ksvd-confusion}
+\end{figure}
 
 \paragraph{Sparsity and Atom Utilisation}
 \paragraph{Atom Co-occurrence and Clustering}
@@ -142,7 +150,7 @@ Table \ref{tab:lcksvd2-classifiers} summarises patch-level performance across al
         \toprule
         \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
         \midrule
-        LinearSVC (SVM)              & \textbf{0.852} & \textbf{0.69} & 0.44 & \textbf{0.70} \\
+        LinearSVC (SVM)              & 0.852 & 0.69 & 0.44 & 0.70 \\
         Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
         Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
         XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
@@ -152,21 +160,23 @@ Table \ref{tab:lcksvd2-classifiers} summarises patch-level performance across al
 
 The externally-trained LinearSVC outperforms every other head, including LC-KSVD2's own built-in discriminative classifier $W$
 (85.2\% vs.\ 62.1\% accuracy). The non-linear XGBoost do not improve on this either, both trailing
-plain logistic regression, which suggests the sparse-code feature space is already close to linearly separable for this task
-and additional model capacity does not help. LinearSVC is therefore used as the reference
-classifier for LC-KSVD2 throughout the rest of this chapter.
+plain logistic regression, maybe because LC-KSVD learns to fit a linear classifier during training itself.
+This suggests that the sparse-code feature space is already close to linearly separable for this task
+and additional model capacity does not help.
+
+The sparse code analysis described in Section~\ref{sec:sparse-code-analysis} was performed on the LC-KSVD derived sparse codes,
+and the results are presented in Section~\ref{sec:lcksvd2-sparse-code-analysis}.
 
 \subsection{FDDL}
-% No local saved evaluation output found -- same caveat as K-SVD above.
+
 
 \subsection{Frozen Dictionary Learning}
 
-The Frozen (IncrementalFrozenDictionary) model was evaluated on a 44,384-patch
-test split (14,150 normal / 14,884 ``2c'' / 15,350 ``2d'' patches). A linear
+The Frozen model was evaluated on a 44,384-patch test split. A linear
 classifier trained on the resulting sparse codes reached 64.0\% patch-level
-accuracy (macro F1 = 0.63); the full per-class breakdown is given in Table
+accuracy; the full per-class breakdown is given in Table 
 \ref{tab:frozen-classification}, with the corresponding confusion matrix in
-Table \ref{tab:frozen-confusion}.
+Figure \ref{fig:frozen-confusion}.
 
 \begin{table}[ht]
     \centering
@@ -291,28 +301,17 @@ stages contributing meaningfully beyond what raw intensity alone provides.
 % Small pilot only (outputs/ctclip_rex_eval) -- flag as pilot-scale,
 % not a full comparison run
 
-\subsection{Grad-CAM}
 
-The token-based Grad-CAM variant described in Section~\ref{sec:explainability-methods}, 
-using the predicted abnormality
-logit as the target score, was evaluated on the full test set of
-ReXGroundingCT-annotated CT-RATE cases containing nodule and/or
-ground-glass-opacity findings. A forward pass
-was first performed for every case to obtain the classifier's predicted nodule
-and opacity logits. These logits were also used to rank the cases according to
-the model's confidence for each target abnormality. However, Grad-CAM heatmaps
-were generated for all cases in the test set, and the resulting heatmaps were
-quantitatively evaluated against the corresponding ground-truth lesion masks.
+\subsection{Merlin}
 
-For every test case, four candidate percentile thresholds
-($70^{\text{th}}$, $80^{\text{th}}$, $90^{\text{th}}$, and $95^{\text{th}}$) were
-evaluated. The threshold that produced the highest Dice overlap with the
-ground-truth lesion mask was selected separately for each case, following the
-evaluation procedure described in Section~\ref{sec:explainability-methods}.
-The resulting Dice, IoU, Attribution IoU, pointing-game hit rate, and energy
-inside the ground-truth mask were then calculated across the full test set.
-Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard
-deviation.
+\subsection{BiomedParse}
+
+\section{Grad-CAM}
+
+The token-based Grad-CAM variant described in Section~\ref{sec:grad-cam}, using the predicted abnormality
+logit as the target score, was evaluated on the full test set using the metrics:
+Dice, IoU, Attribution IoU, pointing-game hit rate, and energy inside the ground-truth mask.
+Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard deviation.
 
 \begin{table}[ht]
     \centering
@@ -332,21 +331,13 @@ deviation.
     \end{tabular}
 \end{table}
 
-Every metric is close to zero, and the pointing-game hit rate is exactly zero.
-This means that the voxel with the highest heatmap value did not fall inside the
-annotated lesion in any case in the test set. One important factor contributing
-to the very low overlap scores is the large difference between the size of the
-Grad-CAM explanation and the size of the annotated lesion.
-
-The ground-truth annotations cover an average of 59{,}443 voxels (median
-33{,}099) out of a $480\times480\times240$ volume containing
-55{,}296{,}000 voxels, corresponding to only about $0.1\%$ of the full volume.
+Every metric is close to zero meaning that the voxel with the highest heatmap value did not fall inside the
+annotated lesion in any case in the test set.
+The ground-truth annotations cover an average of 59{,}443 voxels out of 55{,}296{,}000 voxels in a volume.
 In comparison, even the most selective of the four candidate thresholds
 ($95^{\text{th}}$ percentile) marks 2{,}764{,}800 voxels, corresponding to
 5\% of the volume. Several cases achieved their best Dice score at the
 $70^{\text{th}}$ or $80^{\text{th}}$ percentile, resulting in 20--30\% of the
-volume being marked as positive. In one case, none of the four candidate
-thresholds separated the heatmap from the background, resulting in the entire
 volume being marked as positive.
 
 Therefore, the thresholded Grad-CAM explanation is often much larger than the
@@ -356,6 +347,7 @@ scores. However, the zero pointing-game hit rate also indicates that the
 strongest individual activation did not reliably fall within the annotated
 lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
 not sufficiently precise for localising the small target lesions.
+Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the Grad-CAM heatmap for a single nodule case from the test set.
 
 \begin{figure}[h]
     \centering
@@ -365,39 +357,24 @@ not sufficiently precise for localising the small target lesions.
     \label{fig:ctclip-gradcam-nodule-example}
 \end{figure}
 
-While the table above summarises the quantitative results for the full test
-set, Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the same behaviour
-qualitatively for a single case from the test set. This nodule case contains
-three annotated nodules, with a total of 89{,}757 ground-truth voxels. At the
-selected threshold ($90^{\text{th}}$ percentile), 5{,}529{,}608 voxels were
-marked as positive. The case achieved a Dice score of 0.0054 and an IoU of
-0.0027, which was the highest Dice score among the test-set cases and therefore
-represents a relatively favourable example rather than a worst-case example.
-
-Even in this case, the strongest heatmap activations were spread broadly across
-the right lung and chest wall rather than being concentrated around the three
+We can observe, the strongest heatmap activations were spread broadly across
+the chest wall and even outside the lung rather than being concentrated around the three
 annotated nodule boundaries. The single highest-valued voxel also fell outside
 all three ground-truth annotations, resulting in a pointing-game miss.
-
-This example is consistent with the overall evaluation: the Grad-CAM heatmap
-generally focuses on the lung region rather than the image background, but it
-is not precise enough to localise a specific small lesion within the surrounding
-lung tissue.
-
-\subsection{Merlin}
-
-\subsection{BiomedParse}
-
+These examples are consistent with the overall evaluation that, the Grad-CAM heatmap
+is not precise enough to localise a specific small lesion within the surrounding lung tissue.
 
 \section{Qualitative Analysis}
 
-The detailed radiologist review, questionnaire and verbatim responses are presented in this section. 
-The radiologist completed the following questionnaire during the review session. Where the reviewer provided a clear response,
-the selected answer is shown below; verbatim free-text comments are reproduced in the following subsection.
+The detailed review, questionnaire and verbatim responses by the radiologist during our second consultation are presented in this
+section. Figures~\ref{fig:qualitative-review-1}, \ref{fig:qualitative-review-2}, and \ref{fig:qualitative-review-3} show the
+responses by the radiologist for the three sections of the questionnaire.
 
 
-\subsection{Radiologist Conclusion and Implications}
 
+\subsection{Recommendations and Verbal feedback}
+
+In addition to standard questions, the radiologist provided verbatim free-text comments which are shown in Figure~\ref{fig:qualitative-feedback}.
 The consulting radiologist emphasised two practical points: (1) the dataset's ground-truth masks are sometimes annotated conservatively as
 broader regions that include adjacent tissue, and (2) the model's predicted masks were, in many inspected cases, more tightly localised to the
 visually apparent abnormality. Taken together, these observations suggest that simple overlap metrics (Dice/IoU against the provided masks)
