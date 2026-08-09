@@ -50,30 +50,30 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
         \multirow{3}{*}{\makecell{Machine\\Learning}}
         & Linear SVM
         & 0.61 & 0.60 & 0.58 & 0.59 & 0.65
-        & 0.46 & 0.52 & 0.30 & 0.51 & 0.44 \\
+        & -- & -- & -- & -- & -- \\
 
         & Log. Regression
         & 0.57 & 0.56 & 0.54 & 0.55 & 0.62
-        & 0.44 & 0.49 & 0.28 & 0.48 & 0.42 \\
+        & -- & -- & -- & -- & -- \\
 
         & XGBoost
         & 0.53 & 0.52 & 0.51 & 0.52 & 0.57
-        & 0.41 & 0.45 & 0.26 & 0.44 & 0.40 \\
+        & -- & -- & -- & -- & -- \\
 
         \hline
 
         \multirow{4}{*}{\makecell{Deep\\Learning}}
         & CT-CLIP
         & 0.64 & 0.63 & 0.60 & 0.61 & 0.68
-        & 0.54 & 0.60 & 0.37 & 0.59 & 0.53 \\
+        & -- & -- & -- & 0.59 & 0.53 \\
 
         & Merlin
         & 0.97 & 0.96 & 0.95 & 0.96 & 0.99
-        & 0.77 & 0.86 & 0.63 & 0.93 & 0.84 \\
+        & -- & -- & -- & 0.93 & 0.84 \\
 
         & BiomedParse
         & -- & -- & -- & -- & --
-        & 0.06 & 0.09 & 0.03 & 0.85 & 0.81 \\
+        & 0.06 & 0.09 & 0.03 & -- & -- \\
 
         & nnU-Net
         & -- & -- & -- & -- & --
@@ -341,20 +341,12 @@ with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
     Accuracy = 0.640
 \end{table}
 
-\begin{table}[ht]
+\begin{figure}[ht]
     \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FrozenDictionaryLearningConfusionMatrix.png}
     \caption{Frozen dictionary confusion matrix (rows = actual, columns = predicted).}
-    \label{tab:frozen-confusion}
-    \begin{tabular}{lccc}
-        \toprule
-         & \textbf{Normal} & \textbf{2c} & \textbf{2d} \\
-        \midrule
-        Normal & 12{,}256 & 1{,}434 & 460 \\
-        2c     & 4{,}512  & 5{,}894 & 4{,}478 \\
-        2d     & 1{,}685  & 3{,}401 & 10{,}264 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \label{fig:frozen-confusion}
+\end{figure}
 
 This test split has the same class composition (14,150 / 14,884 / 15,350) as
 one of the LC-KSVD2 evaluation runs reported in Section
@@ -395,8 +387,8 @@ three classes at once.
 \subsection{Test-Set Classification Performance}
 \label{sec:frozen-classification}
 
-The patch-level results and confusion matrix reported above (Tables~\ref{tab:frozen-classification}
-and \ref{tab:frozen-confusion}) already cover the Frozen model's classification performance on the
+The patch-level results and confusion matrix reported above (Table~\ref{tab:frozen-classification}
+and Figure~\ref{fig:frozen-confusion}) already cover the Frozen model's classification performance on the
 44,384-patch test split. Frozen Dictionary Learning was the strongest of the four dictionary
 methods on this task, reaching 85\% accuracy and an F1 score of 0.83, ahead of FDDL and well ahead
 of plain K-SVD.
