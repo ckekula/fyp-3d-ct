@@ -67,13 +67,14 @@
 \addcontentsline{toc}{chapter}{List of Tables} % add line to the table of contents
 
 \input{Front_matters/acronyms}
-\addcontentsline{toc}{chapter}{Acronyms: SOTA -- State of the Art} % add line to the table of contents
+\addcontentsline{toc}{chapter}{Acronyms} % add line to the table of contents
 
 
 %%%%%%%%%%%%%%%%%%%%%%% The main matters %%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\thepage}{\arabic{page}} % Start page numbering in arabic
-\setcounter{page}{1} % start page numbering from 1
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 \input{Chapters/ch_1}
 \input{Chapters/ch_2}
@@ -92,10 +93,11 @@
 % _____Add Bibiliography using BibTex file_____
 \bibliography{bibliography} 
 
-\begin{appendix}
-\include{End_matters/appendix_02}
-\end{appendix}
-
 \addcontentsline{toc}{chapter}{APPENDIX}
+
+\begin{appendix}
+    \include{End_matters/appendix_01}
+    \include{End_matters/appendix_02}
+\end{appendix}
 
 \end{document}
