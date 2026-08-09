@@ -533,6 +533,13 @@ affected voxels are not registered as lung parenchyma under the initial $-900$ t
 Since the lung segmentation fails at the very first thresholding step, we were motivated to move away
 from purely intensity-based segmentation and towards a learned segmentation model.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 3/lung-segmentation-failure-consolidation.png}
+    \caption{Failure case of the HU-threshold pipeline on a scan with lung consolidation. The elevated tissue density in the affected region causes it to fall outside the HU threshold window (step 1), so it is excluded from all subsequent stages and is missing from the final mask (step 7) relative to the ground truth.}
+    \label{fig:classical-lung-segmentation-failure}
+\end{figure}
+
 \subsubsection{Deep Learning-based Segmentation}
 
 First, TotalSegmentator
