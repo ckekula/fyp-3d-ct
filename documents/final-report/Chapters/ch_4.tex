@@ -83,6 +83,11 @@ The results are presented in the following sections. Table~\ref{tab:results-summ
     \end{tabular}
 \end{sidewaystable}
 
+\section{Dictionary Learning}
+
+\subsection{K-SVD}
+\label{sec:ksvd-classification}
+
 \section{Sparse-Coding and Dictionary Learning}
 
 Our study included four dictionary-learning methods: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary Learning.
@@ -134,6 +139,21 @@ Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
 \end{table}
 
 \subsubsection{Dictionary Coherence}
+
+\begin{table}[H]
+\centering
+\caption{Mutual incoherence of the K-SVD class sub-dictionaries.}
+\label{tab:ksvd-reconstruction}
+\begin{tabular}{lcc}
+\hline
+\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
+\hline
+Normal   & 4032 & 0.868 \\
+GGO      & 4032 & -- \\
+Nodules  & 4032 & 0.511 \\
+\hline
+\end{tabular}
+\end{table}
 
 The Normal block has the highest mutual incoherence of the three (0.868), while the Nodules block
 is the lowest (0.511). This is likely because the Normal dictionary has to cover a much wider
@@ -258,7 +278,7 @@ not directly comparable in magnitude to K-SVD's pure reconstruction error.
 
 A linear classifier trained on the FDDL sparse codes reached 78\% patch-level accuracy (F1 = 0.75),
 sitting between K-SVD and Frozen Dictionary Learning. Table~\ref{tab:fddl-classification} shows the
-per-class breakdown.
+per-class breakdown, with the corresponding confusion matrix in Figure~\ref{fig:fddl-confusion}.
 
 \begin{table}[H]
 \centering
@@ -274,6 +294,13 @@ Nodules  & 0.72 & 0.71 & 0.72 \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
+    \caption{FDDL confusion matrix (rows = actual, columns = predicted).}
+    \label{fig:fddl-confusion}
+\end{figure}
 
 The low mutual incoherence of the FDDL blocks (Table~\ref{tab:fddl-reconstruction}) did not
 translate into strong whole-volume localisation. Dice fell to 0.006, hit rate to 0.012 and IoU to
