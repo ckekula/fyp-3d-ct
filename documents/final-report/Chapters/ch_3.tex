@@ -149,7 +149,7 @@ intervention, making them good candidates for a proof-of-concept CAD system:
 \begin{itemize}
     \item Ground-glass opacity
     \item Pulmonary nodules/masses
-    \item Consolidation
+    \item Atelectasis/Consolidation
     \item Bronchiectasis
     \item Emphysema
 \end{itemize}
@@ -158,12 +158,11 @@ The radiologist provided valuable insights into the clinical significance of eac
 their typical appearance in CT scans, and the challenges associated with their detection.
 For the initial phase of our study, we decided to narrow down the target abnormalities further, as the radiologist's recommendations
 were quite broad. For this purpose, we considered the representation of each class in our dataset which is discussed in
-Section~\ref{subsec:eda}. We finally decided on three target abnormalities for the initial phase of the study:
+Section~\ref{subsec:eda}. We finally decided on two target abnormalities for the initial phase of the study:
 
 \begin{enumerate}
     \item GGO
     \item Nodules/masses
-    \item Atelectasis/Consolidation
 \end{enumerate}
 
 However, we observed that there are discrepancies between the abnormality classes in the CT-RATE and ReXGrounding-CT datasets.
@@ -953,7 +952,38 @@ We trained three classifiers for each dictionary learning algorithm:
 
 The performance of each classifier was evaluated on the same dataset, and the best-performing classifier was selected for each algorithm.
 
+\subsection{Sparse Code Clustering}
+
+Eventhough the class labels separate abnormalities to strict categories such as GGO, nodule, etc. in practice,
+there may be multiple types of the same abnormality (e.g., Nodules dividing to GGN, solid, and part solid).
+The current labels group together patches that can vary considerably in
+size, shape and density. Therefore, we checked whether sparse codes within the same class
+form clusters. This would confirm whether a class separates into sub-populations that a single classifier would blur together.
+The experimentation was done using the LC-KSVD2 dictionary and Frozen dictionary.
+
+For each class/dictionary combination, the sparse codes were $\ell_2$-normalised and clustered using
+K-Means Clustering. The number of clusters $K$ was chosen using the elbow method together with the mean silhouette score,
+computed on a random 5,000-sample subset.
+
+Clusters were visualised via 2-D and 3-D PCA projections of the sparse codes and centroids, with convex
+hulls marking each cluster's extent and per-sample silhouette coefficients plotted to check for
+unevenly-separated clusters. To interpret the clusters, the $K$ centroids were compared atom-by-atom:
+the 30 atoms with the highest variance across centroids were taken as most discriminative between
+sub-clusters and visualised as a heatmap, linking each sub-cluster to the specific dictionary atoms
+responsible for distinguishing it.
+However, the clustering was unable to clearly separate any meaningful sub-groups and consistently showed one cluster as dominant.
+Figure~\ref{fig:clustering} shows example results of clustering sparse codes for classes GGO and nodule.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Images/Chapter 3/clustering.png}
+    \caption[Results of clustering per-class sparse codes]
+    {Example results of clustering per-class sparse codes using LC-KSVD model for classes GGO (top) and nodule (bottom)}
+    \label{fig:clustering}
+\end{figure}
+
 \section{Projecting back to voxel space}
+\label{sec:statistical-analysis}
 
 This is the most important part of our study as it allows us to find the specific voxels in a patch that belong to a particular
 class. To reconstruct the specific voxels in a patch that belong to a particular class,
@@ -1514,11 +1544,13 @@ Localization is scored for BiomedParse and nnU-Net on the deep-learning side and
 LC-KSVD, and Frozen Dictionary Learning on the dictionary-learning side. Voxel-level
 agreement between a predicted mask $P$ and a ground-truth mask $G$ is measured by the Dice
 coefficient and Intersection-over-Union,
+
 \begin{equation}[Dice and IoU]
 \mathrm{Dice}(P,G) = \frac{2|P \cap G|}{|P| + |G|}, \qquad
 \mathrm{IoU}(P,G) = \frac{|P \cap G|}{|P \cup G|},
 \label{eq:dice-iou}
 \end{equation}
+
 each returned as not-a-number when both masks are empty rather than smoothed with a small
 additive constant, so that \emph{found nothing} is never confused with \emph{found something
 with negligible overlap}.
@@ -1570,9 +1602,8 @@ binarisation, which is a useful upper bound but not a deployable one, since a sy
 inference time has no ground truth to search over. The metric layer described here fixes a
 threshold in advance instead, with no oracle involved. This fixed-threshold treatment is
 currently applied to CT-CLIP; the dictionary-learning models are covered on the
-explainability axis through the oracle-threshold and atom-based procedures of
-Section~\ref{sec:explainability-methods}, and their numbers are therefore not interchangeable
-with CT-CLIP's.
+explainability axis through the oracle-threshold and atom-based procedures,
+and their numbers are therefore not interchangeable with CT-CLIP's.
 
 The attribution map is min-max normalised to $[0,1]$, binarised at a fixed threshold
 (default $0.5$), and its IoU against the ground-truth mask computed exactly as in
@@ -1633,11 +1664,6 @@ Frozen Dictionary Learning  & \checkmark & \checkmark & \checkmark \\
 \hline
 \end{tabular}
 \end{table}
-
-Explainability for the dictionary-learning models is assessed qualitatively
-and through the oracle-threshold procedure of Section~\ref{sec:explainability-methods},
-rather than through the fixed-threshold metrics of Section~\ref{sec:eval-explainability}.
-Extending them to the fixed-threshold definitions is left as further work.
 
 \section{Qualitative Analysis}
 
