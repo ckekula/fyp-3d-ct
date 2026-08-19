@@ -1,0 +1,115 @@
+{
+  "model_name": "lcksvd2_native_w",
+  "split": "test",
+  "timestamp": "20260808_204836",
+  "class_order": [
+    "normal",
+    "2b",
+    "2d"
+  ],
+  "model_config": {
+    "dict_model_path": "outputs/models/unified_lcksvd2.pkl",
+    "n_nonzero_coefs": 10,
+    "alpha": 0.1
+  },
+  "patch_classification_report": {
+    "normal": {
+      "precision": 0.8923917090728559,
+      "recall": 0.2718079576599565,
+      "f1-score": 0.4166968515915907,
+      "support": 52905.0
+    },
+    "2b": {
+      "precision": 0.09318030995042355,
+      "recall": 0.4445893089960887,
+      "f1-score": 0.1540695798102369,
+      "support": 5369.0
+    },
+    "2d": {
+      "precision": 0.0017998560115190785,
+      "recall": 0.24,
+      "f1-score": 0.0035729172869648066,
+      "support": 125.0
+    },
+    "accuracy": 0.2876247880956866,
+    "macro avg": {
+      "precision": 0.32912395834493285,
+      "recall": 0.3187990888853484,
+      "f1-score": 0.1914464495629308,
+      "support": 58399.0
+    },
+    "weighted avg": {
+      "precision": 0.8170087404685819,
+      "recall": 0.2876247880956866,
+      "f1-score": 0.3916675477682005,
+      "support": 58399.0
+    }
+  },
+  "patch_confusion_matrix": [
+    [
+      14380,
+      23174,
+      15351
+    ],
+    [
+      1695,
+      2387,
+      1287
+    ],
+    [
+      39,
+      56,
+      30
+    ]
+  ],
+  "scan_classification_report": {
+    "normal": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 8.0
+    },
+    "2b": {
+      "precision": 0.5806451612903226,
+      "recall": 0.6,
+      "f1-score": 0.5901639344262295,
+      "support": 30.0
+    },
+    "2d": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 7.0
+    },
+    "accuracy": 0.4,
+    "macro avg": {
+      "precision": 0.19354838709677422,
+      "recall": 0.19999999999999998,
+      "f1-score": 0.19672131147540983,
+      "support": 45.0
+    },
+    "weighted avg": {
+      "precision": 0.38709677419354843,
+      "recall": 0.4,
+      "f1-score": 0.39344262295081966,
+      "support": 45.0
+    }
+  },
+  "scan_confusion_matrix": [
+    [
+      0,
+      8,
+      0
+    ],
+    [
+      10,
+      18,
+      2
+    ],
+    [
+      2,
+      5,
+      0
+    ]
+  ]
+}

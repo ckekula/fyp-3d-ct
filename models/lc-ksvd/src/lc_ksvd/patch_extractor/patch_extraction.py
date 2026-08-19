@@ -9,6 +9,7 @@ concatenates them back together in CLASS_ORDER, so downstream callers see the
 same (X, H, scan_ids) contract as before.
 """
 
+import json
 import logging
 import os
 from collections.abc import Callable
@@ -28,13 +29,64 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
 # Signature shared by collect_normal_patches / collect_abnormal_patches.
+OnScanDone = Callable[[str, list[int], list[tuple[int, int, int]]], None]
 PatchCollector = Callable[
-    [list[str], ScanLoader, _PatchStreamWriter],
+    [list[str], ScanLoader, _PatchStreamWriter, "OnScanDone | None"],
     tuple[list[int], list[str], list[tuple[int, int, int]]],
 ]
 
 def _class_out_path(split: str, class_name: str) -> Path:
     return PATCHES_DIR / f"unified_{split}_{class_name}.npz"
+
+
+class _Checkpoint:
+    """Per-scan checkpoint for a single build_patch_matrix pass, so a crash
+    mid-run (e.g. a native-library segfault) only loses progress since the
+    last completed scan instead of the whole pass. Written atomically
+    (write-tmp + os.replace) after every scan."""
+
+    def __init__(self, path: Path):
+        self.path = path
+        if path.exists():
+            data = json.loads(path.read_text())
+            self.done_scan_ids: set[str] = set(data["done_scan_ids"])
+            self.labels: list[int] = data["labels"]
+            self.scan_ids: list[str] = data["scan_ids"]
+            self.coords: list[list[int]] = data["coords"]
+        else:
+            self.done_scan_ids = set()
+            self.labels = []
+            self.scan_ids = []
+            self.coords = []
+
+    @property
+    def n_patches(self) -> int:
+        return len(self.labels)
+
+    def record_scan(
+        self,
+        scan_id: str,
+        labels: list[int],
+        coords: list[tuple[int, int, int]],
+    ) -> None:
+        self.done_scan_ids.add(scan_id)
+        self.labels.extend(labels)
+        self.scan_ids.extend([scan_id] * len(labels))
+        self.coords.extend([list(c) for c in coords])
+        self._save()
+
+    def _save(self) -> None:
+        tmp = self.path.with_suffix(".tmp")
+        tmp.write_text(json.dumps({
+            "done_scan_ids": sorted(self.done_scan_ids),
+            "labels": self.labels,
+            "scan_ids": self.scan_ids,
+            "coords": self.coords,
+        }))
+        os.replace(tmp, self.path)
+
+    def clear(self) -> None:
+        self.path.unlink(missing_ok=True)
 
 
 def build_patch_matrix(
@@ -46,15 +98,33 @@ def build_patch_matrix(
     """
     Run a single collector (normal or abnormal) over `ids` and return the
     resulting (X, H, scan_ids, coords).
+
+    Progress is checkpointed per scan (see _Checkpoint), so if the process
+    crashes or is killed partway through, re-running with the same
+    scratch_tag resumes from the last completed scan instead of starting
+    over. The scratch filename intentionally excludes the pid so it can be
+    found again across separate process runs.
     """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
-    scratch_path = PATCHES_DIR / f"_patch_scratch_{os.getpid()}_{scratch_tag}.bin"
-    writer = _PatchStreamWriter(scratch_path)
+    scratch_path = PATCHES_DIR / f"_patch_scratch_{scratch_tag}.bin"
+    checkpoint_path = PATCHES_DIR / f"_patch_checkpoint_{scratch_tag}.json"
+    checkpoint = _Checkpoint(checkpoint_path)
+
+    if checkpoint.done_scan_ids:
+        logger.info(
+            f"[{scratch_tag}] Resuming from checkpoint: "
+            f"{len(checkpoint.done_scan_ids)} scans / {checkpoint.n_patches} patches already done."
+        )
+    remaining_ids = [i for i in ids if i not in checkpoint.done_scan_ids]
+
+    writer = _PatchStreamWriter(scratch_path, resume_count=checkpoint.n_patches)
 
     try:
-        labels, scan_ids, coords = collector(ids, loader, writer)
-        n_patches = len(labels)
+        collector(remaining_ids, loader, writer, on_scan_done=checkpoint.record_scan)
         writer.close()
+
+        labels, scan_ids, coords = checkpoint.labels, checkpoint.scan_ids, checkpoint.coords
+        n_patches = len(labels)
 
         X = np.empty((N_FEATURES, n_patches), dtype=np.float64)
         if n_patches:
@@ -64,7 +134,9 @@ def build_patch_matrix(
             del patch_mm
     finally:
         writer.close()
-        scratch_path.unlink(missing_ok=True)
+
+    scratch_path.unlink(missing_ok=True)
+    checkpoint.clear()
 
     H = np.array(labels, dtype=np.int64)
     scan_ids_arr = np.array(scan_ids, dtype=object)

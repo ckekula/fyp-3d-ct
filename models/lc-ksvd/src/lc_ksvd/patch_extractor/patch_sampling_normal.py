@@ -7,7 +7,7 @@ Phase 1 — Normal scans:
 """
 
 import logging
-from collections.abc import Generator
+from collections.abc import Callable, Generator
 
 import numpy as np
 from tqdm import tqdm
@@ -58,6 +58,7 @@ def collect_normal_patches(
     normal_ids: list[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
+    on_scan_done: Callable[[str, list[int], list[tuple[int, int, int]]], None] | None = None,
 ) -> tuple[list[int], list[str], list[tuple[int, int, int]]]:
     normal_class_idx = CLASS_ORDER.index("normal")
     all_labels: list[int] = []
@@ -70,12 +71,20 @@ def collect_normal_patches(
             scan = loader.load(scan_id)
         except Exception as exc:
             logger.warning(f"Skipping {scan_id}: {exc}")
+            if on_scan_done is not None:
+                on_scan_done(scan_id, [], [])
             continue
 
         n = sample_normal_patches(scan["volume"], writer)
-        all_labels.extend([normal_class_idx] * n)
+        scan_labels = [normal_class_idx] * n
+        all_labels.extend(scan_labels)
         all_scan_ids.extend([scan_id] * n)
         logger.info(f"  {scan_id}: {n} normal patches")
+
+        if on_scan_done is not None:
+            writer.flush_scan()
+            scan_coords = writer.coords[-n:] if n else []
+            on_scan_done(scan_id, scan_labels, scan_coords)
 
     logger.info(f"  → {len(all_labels)} total normal patches collected.")
     return all_labels, all_scan_ids, writer.coords

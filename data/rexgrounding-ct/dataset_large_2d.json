@@ -1,35 +1,6 @@
 {
     "train": [
         {
-            "name": "train_1742_c_2.nii.gz",
-            "findings": {
-                "0": "Nodular lesions with ground glass opacity in the upper and middle lobes of the right lung",
-                "1": "A few subcentimeter nodules in both lungs",
-                "2": "Minimal emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 3,
-                "2": 3
-            },
-            "shape": [
-                512,
-                512,
-                448
-            ],
-            "pixels": {
-                "0": 10915,
-                "1": 1449,
-                "2": 1399913
-            },
-            "categories": {
-                "0": "2c",
-                "1": "2d",
-                "2": "1c"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_1741_c_2.nii.gz",
             "findings": {
                 "0": "Nodule or nodular consolidation at the junction of the posterobasal and anterobasal segments in the lower lobe of the right lung, 30x22 mm with surrounding ground-glass appearance",
@@ -474,31 +445,6 @@
             },
             "categories": {
                 "0": "2d",
-                "1": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_1592_b_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central parts of both lungs",
-                "1": "Several subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                273
-            ],
-            "pixels": {
-                "0": 94681,
-                "1": 823
-            },
-            "categories": {
-                "0": "1b",
                 "1": "2d"
             },
             "protocol": "protocol1"
@@ -1392,31 +1338,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_2245_a_2.nii.gz",
-            "findings": {
-                "0": "6 mm nonspecific nodule located in the posterior part of the left upper lobe near the fissure, likely representing a subpleural lymph node",
-                "1": "Minimal centriacinar emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 2
-            },
-            "shape": [
-                512,
-                512,
-                421
-            ],
-            "pixels": {
-                "0": 577,
-                "1": 3273
-            },
-            "categories": {
-                "0": "2d",
-                "1": "1c"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_1780_a_1.nii.gz",
             "findings": {
                 "0": "Several subcentimeter nonspecific nodules in both lungs"
@@ -1434,39 +1355,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_1525_b_1.nii.gz",
-            "findings": {
-                "0": "Mild emphysematous changes in both lungs",
-                "1": "Subcentimeter non-specific parenchymal nodules in both lungs",
-                "2": "Areas of atelectasis with mild volume loss",
-                "3": "Newly emerged focal nodular infiltration area in the lower lobe of the left lung"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 1,
-                "3": 3
-            },
-            "shape": [
-                512,
-                512,
-                325
-            ],
-            "pixels": {
-                "0": 239276,
-                "1": 741,
-                "2": 14048,
-                "3": 1601
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2b",
-                "3": "2d"
             },
             "protocol": "protocol1"
         },
@@ -1776,47 +1664,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_2826_a_2.nii.gz",
-            "findings": {
-                "0": "Paraseptal emphysematous changes in the apex of both lungs",
-                "1": "Paraseptal emphysematous changes in the anterior segment of the right upper lobe",
-                "2": "Subpleural nonspecific nodules in both lungs, more prominent on the right",
-                "3": "Intrapulmonary nonspecific nodules in both lungs, more prominent on the right",
-                "4": "Largest nodule is 7 mm with a pleural base in the superior segment of the right lower lobe",
-                "5": "4.5 mm nodule with a pleural base in the posterobasal segment of the left lower lobe"
-            },
-            "entity_counts": {
-                "0": 4,
-                "1": 1,
-                "2": 2,
-                "3": 2,
-                "4": 1,
-                "5": 1
-            },
-            "shape": [
-                512,
-                512,
-                509
-            ],
-            "pixels": {
-                "0": 3772,
-                "1": 2718,
-                "2": 947,
-                "3": 2292,
-                "4": 320,
-                "5": 2616
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1c",
-                "2": "2d",
-                "3": "2d",
-                "4": "2d",
-                "5": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_2504_a_2.nii.gz",
             "findings": {
                 "0": "Increase in nodular density in the posterobasal segment of the right lower lobe",
@@ -1930,31 +1777,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_2773_a_1.nii.gz",
-            "findings": {
-                "0": "A few subcentimeter non-specific nodules in the right lung ortholobe",
-                "1": "Mild paraseptal emphysema at apical levels"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1
-            },
-            "shape": [
-                512,
-                512,
-                214
-            ],
-            "pixels": {
-                "0": 1131,
-                "1": 1428
-            },
-            "categories": {
-                "0": "2d",
-                "1": "1c"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_2752_a_2.nii.gz",
             "findings": {
                 "0": "Subcentimeter nodules in the peripheral areas of the lower lobes of both lungs",
@@ -1976,31 +1798,6 @@
             "categories": {
                 "0": "2d",
                 "1": "2c"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_2957_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs",
-                "1": "Subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                373
-            ],
-            "pixels": {
-                "0": 8786708,
-                "1": 2289
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -2318,31 +2115,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_4788_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal emphysematous changes in both lungs",
-                "1": "Subcentimeter nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                185
-            ],
-            "pixels": {
-                "0": 2685325,
-                "1": 681
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_2514_a_2.nii.gz",
             "findings": {
                 "0": "Nonspecific nodules measuring approximately 7.5 mm in diameter, the largest in the right middle lobe, in both lungs"
@@ -2360,31 +2132,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_2809_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal emphysematous changes in both lungs",
-                "1": "Subcentimeter nonspecific nodules in the right lung"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1
-            },
-            "shape": [
-                512,
-                512,
-                459
-            ],
-            "pixels": {
-                "0": 6612482,
-                "1": 1347
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -2812,76 +2559,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_7557_a_1.nii.gz",
-            "findings": {
-                "0": "Ground-glass opacity in the peripheral subpleural area of the posterobasal segment in the lower lobe of the right lung",
-                "1": "Small semisolid nodule in the apicoposterior segment of the upper lobe of the left lung",
-                "2": "Nodule measuring 12x7 mm in the peripheral subpleural area of the posterior segment of the right upper lobe",
-                "3": "Emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 1,
-                "3": 3
-            },
-            "shape": [
-                768,
-                768,
-                224
-            ],
-            "pixels": {
-                "0": 41658,
-                "1": 1370,
-                "2": 1105,
-                "3": 9552
-            },
-            "categories": {
-                "0": "2c",
-                "1": "2d",
-                "2": "2d",
-                "3": "1c"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_5574_c_1.nii.gz",
-            "findings": {
-                "0": "Thick band of atelectasis in the right upper lobe",
-                "1": "7 mm opacity in the paracardiac area at the anteromedial junction of the right lower lobe",
-                "2": "Atelectatic change in the paracardiac area at the anteromedial junction of the right lower lobe",
-                "3": "Bronchiectasis at the posterobasal level of the left lower lobe showing regression",
-                "4": "Atelectatic changes at the posterobasal level of the left lower lobe showing regression"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 1,
-                "3": 1,
-                "4": 1
-            },
-            "shape": [
-                512,
-                512,
-                362
-            ],
-            "pixels": {
-                "0": 29622,
-                "1": 2099,
-                "2": 8745,
-                "3": 27630,
-                "4": 72932
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2d",
-                "2": "2b",
-                "3": "1b",
-                "4": "2b"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_5212_a_2.nii.gz",
             "findings": {
                 "0": "9 mm calcified nodule on the diaphragmatic side of the lower lobe of the left lung"
@@ -3125,43 +2802,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_7250_f_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central parts of both lungs",
-                "1": "Nodule measuring 22 mm in the peripheral area of the medial superior segment of the right lower lobe",
-                "2": "Subcentimeter nodule in the superior segment of the right lower lobe",
-                "3": "Subcentimeter nonspecific nodules in both lungs",
-                "4": "Minimal emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 4,
-                "1": 1,
-                "2": 1,
-                "3": 1,
-                "4": 2
-            },
-            "shape": [
-                512,
-                512,
-                194
-            ],
-            "pixels": {
-                "0": 11174,
-                "1": 5281,
-                "2": 282,
-                "3": 282,
-                "4": 11185
-            },
-            "categories": {
-                "0": "1b",
-                "1": "2d",
-                "2": "2d",
-                "3": "2d",
-                "4": "1c"
             },
             "protocol": "protocol2"
         },
@@ -3540,39 +3180,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_7731_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central parts of both lungs",
-                "1": "Minimal emphysematous changes in both lungs",
-                "2": "Calcific nodules in both lungs, largest measuring approximately 8 mm in diameter in the anterior segment of the upper lobe of the right lung",
-                "3": "Noncalcified nodules measuring approximately 4.5 mm in diameter in both lungs, largest in the laterobasal segment of the lower lobe of the left lung"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 2,
-                "2": 1,
-                "3": 2
-            },
-            "shape": [
-                512,
-                512,
-                512
-            ],
-            "pixels": {
-                "0": 1110,
-                "1": 1460,
-                "2": 477,
-                "3": 205
-            },
-            "categories": {
-                "0": "1b",
-                "1": "1c",
-                "2": "2d",
-                "3": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_5231_a_2.nii.gz",
             "findings": {
                 "0": "Peripheral and central consolidations in the upper and lower lobes of both lungs and the middle lobe of the right lung",
@@ -3702,35 +3309,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_7145_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lung parenchyma",
-                "1": "Consolidation with tree-in-bud appearance in the superior, anterobasal, mediobasal, and laterobasal segments of the left lower lobe",
-                "2": "Thin-walled, well-circumscribed air cyst measuring 2.3x2.4 cm in the superior segment of the left lower lobe"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                236
-            ],
-            "pixels": {
-                "0": 3930,
-                "1": 40437,
-                "2": 13117
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2b",
-                "2": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_7013_a_2.nii.gz",
             "findings": {
                 "0": "Several nonspecific nodules in the left lung, largest measuring 4 mm in diameter"
@@ -3794,39 +3372,6 @@
             "categories": {
                 "0": "2d",
                 "1": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_7250_b_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs",
-                "1": "Nodule with irregular borders in the peripheral-subpleural area in the mediobasal segment of the lower lobe of the right lung",
-                "2": "Nodule measuring 2.4x1.2 cm at its widest point",
-                "3": "A few subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1,
-                "2": 1,
-                "3": 1
-            },
-            "shape": [
-                512,
-                512,
-                442
-            ],
-            "pixels": {
-                "0": 23650,
-                "1": 8579,
-                "2": 8579,
-                "3": 1218
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2d",
-                "3": "2d"
             },
             "protocol": "protocol2"
         },
@@ -3965,105 +3510,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_5428_c_2.nii.gz",
-            "findings": {
-                "0": "Subsegmental atelectatic changes in the lower lobes of both lungs",
-                "1": "Subsegmental atelectatic changes in the inferior lingular segment of the left lung",
-                "2": "Subsegmental atelectatic changes in the middle lobe of the right lung",
-                "3": "Mild emphysematous changes in both lungs",
-                "4": "Subpleural nodule measuring 3.3 mm in diameter in the apicoposterior segment of the left upper lobe"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 1,
-                "3": 2,
-                "4": 1
-            },
-            "shape": [
-                512,
-                512,
-                452
-            ],
-            "pixels": {
-                "0": 66385,
-                "1": 10921,
-                "2": 37634,
-                "3": 68845,
-                "4": 661
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2b",
-                "2": "2b",
-                "3": "1c",
-                "4": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_7453_a_2.nii.gz",
-            "findings": {
-                "0": "Nonspecific 5 mm nodule in the lateral segment of the lower lobe of the left lung",
-                "1": "Centrilobular emphysematous changes in both lungs, more prominent at the apical levels"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                451
-            ],
-            "pixels": {
-                "0": 453,
-                "1": 190314
-            },
-            "categories": {
-                "0": "2d",
-                "1": "1c"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_6719_a_2.nii.gz",
-            "findings": {
-                "0": "Faintly circumscribed ground-glass opacity in the paravertebral mediobasal area in the superior segment of the lower lobe of the right lung",
-                "1": "Bronchiectatic changes in the lower lobe bronchi of both lungs",
-                "2": "Traction bronchiectasis and fibrotic band formations more prominent in the lower lobe of the left lung",
-                "3": "Pulmonary nodules in both lungs",
-                "4": "Largest pulmonary nodule measuring 5 mm in diameter in the posterobasal segment of the lower lobe of the right lung"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 2,
-                "2": 3,
-                "3": 3,
-                "4": 1
-            },
-            "shape": [
-                512,
-                512,
-                511
-            ],
-            "pixels": {
-                "0": 1225,
-                "1": 55230,
-                "2": 3969,
-                "3": 474,
-                "4": 244
-            },
-            "categories": {
-                "0": "2c",
-                "1": "1b",
-                "2": "1b",
-                "3": "2d",
-                "4": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_6207_a_1.nii.gz",
             "findings": {
                 "0": "Subsegmental band atelectasis in the lateral segment of the right middle lobe",
@@ -4130,43 +3576,6 @@
                 "2": "2c",
                 "3": "2d",
                 "4": "2b"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_6368_a_2.nii.gz",
-            "findings": {
-                "0": "Tubular bronchiectatic changes with significant bronchial wall thickening in the upper lobe of the right lung",
-                "1": "Associated volume loss in the upper lobe of the right lung",
-                "2": "Calcified nonspecific pleural nodules measuring 12x8 mm in the left upper lobe",
-                "3": "Calcified nonspecific pleural nodules in the right middle lobe lateral segment",
-                "4": "Largest calcified nonspecific pleural nodule in the anterior segment of the left upper lobe"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 1,
-                "3": 1,
-                "4": 1
-            },
-            "shape": [
-                512,
-                512,
-                365
-            ],
-            "pixels": {
-                "0": 150557,
-                "1": 24026,
-                "2": 1547,
-                "3": 298,
-                "4": 1653
-            },
-            "categories": {
-                "0": "1b",
-                "1": "2b",
-                "2": "2d",
-                "3": "2d",
-                "4": "2d"
             },
             "protocol": "protocol2"
         },
@@ -4500,43 +3909,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_7910_b_2.nii.gz",
-            "findings": {
-                "0": "Increased aeration consistent with panlobular emphysema in both lungs",
-                "1": "Bullae in the upper lobes of both lungs",
-                "2": "Consolidations in the right hilar region",
-                "3": "Minimal reduction in surrounding ground-glass areas",
-                "4": "Nonspecific parenchymal nodules, largest measuring 5 mm in diameter, in both lungs"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 2,
-                "2": 1,
-                "3": 2,
-                "4": 2
-            },
-            "shape": [
-                512,
-                512,
-                401
-            ],
-            "pixels": {
-                "0": 41994,
-                "1": 26309,
-                "2": 8179,
-                "3": 3712,
-                "4": 507
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1c",
-                "2": "2b",
-                "3": "2c",
-                "4": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_7331_a_2.nii.gz",
             "findings": {
                 "0": "Centriacinar nodular infiltrates in the right lower lobe basal segment",
@@ -4712,97 +4084,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_6784_b_1.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes more prominent in the upper lobes of both lungs",
-                "1": "Stable pulmonary nodules in both lungs",
-                "2": "Largest pulmonary nodule measuring 5 mm in diameter located subpleurally in the superior segment of the right lower lobe"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                305
-            ],
-            "pixels": {
-                "0": 3441,
-                "1": 970,
-                "2": 566
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_5343_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysema in the posterobasal area of the upper lobe of the right lung",
-                "1": "5 mm pleural-based pulmonary nodule in the laterobasal segment of the right lower lobe"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 1
-            },
-            "shape": [
-                512,
-                512,
-                500
-            ],
-            "pixels": {
-                "0": 8045,
-                "1": 604
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_6335_b_1.nii.gz",
-            "findings": {
-                "0": "Two adjacent nodules with irregular borders in the peripheral area of the anterior segment of the left upper lobe",
-                "1": "Nodule with a longest diameter of 13 mm in the anterior segment of the left upper lobe",
-                "2": "Nodule with a longest diameter of approximately 9 mm in the anterior segment of the left upper lobe",
-                "3": "Nodule with a longest diameter of 24 mm in the anterior segment of the left upper lobe, which has shrunk and fragmented following radiotherapy",
-                "4": "Emphysematous changes in both lungs, more prominent in the upper lobes"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1,
-                "2": 1,
-                "3": 2,
-                "4": 3
-            },
-            "shape": [
-                512,
-                512,
-                326
-            ],
-            "pixels": {
-                "0": 2757,
-                "1": 1915,
-                "2": 842,
-                "3": 2757,
-                "4": 12213
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "2d",
-                "3": "2d",
-                "4": "1c"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_7993_a_2.nii.gz",
             "findings": {
                 "0": "Calcific nodules up to 9 mm in diameter in the laterobasal segment of the right lower lobe"
@@ -4853,35 +4134,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_6144_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central segments of both lungs",
-                "1": "Subcentimeter nodules in both lungs",
-                "2": "Largest nodule in medial portion of posterior segment of right upper lobe, 2.7 cm"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 3,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                440
-            ],
-            "pixels": {
-                "0": 9264,
-                "1": 355,
-                "2": 551
-            },
-            "categories": {
-                "0": "1b",
-                "1": "2d",
-                "2": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_7880_a_1.nii.gz",
             "findings": {
                 "0": "12 mm nodule in the posterior segment of the right upper lobe"
@@ -4928,35 +4180,6 @@
                 "0": "2c",
                 "1": "2c",
                 "2": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
-            "name": "train_10320_a_2.nii.gz",
-            "findings": {
-                "0": "3-4 nonspecific nodules in the right lung parenchyma",
-                "1": "Largest nodule measuring 5.8 mm in the right lung upper lobe anterior segment",
-                "2": "Paraseptal emphysematous changes in the upper lobes of both lungs"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 1,
-                "2": 3
-            },
-            "shape": [
-                512,
-                512,
-                425
-            ],
-            "pixels": {
-                "0": 828,
-                "1": 461,
-                "2": 5953
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "1c"
             },
             "protocol": "protocol2"
         },
@@ -5804,35 +5027,6 @@
             "protocol": "protocol2"
         },
         {
-            "name": "train_11073_c_2.nii.gz",
-            "findings": {
-                "0": "Mild patchy ground-glass opacities in the inferior lingula of the left upper lobe",
-                "1": "Mild bronchiectasis in both lungs, particularly in the lower lobes",
-                "2": "Several subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 3,
-                "2": 3
-            },
-            "shape": [
-                512,
-                512,
-                471
-            ],
-            "pixels": {
-                "0": 47906,
-                "1": 12360,
-                "2": 529
-            },
-            "categories": {
-                "0": "2c",
-                "1": "1b",
-                "2": "2d"
-            },
-            "protocol": "protocol2"
-        },
-        {
             "name": "train_11343_a_2.nii.gz",
             "findings": {
                 "0": "5.5 mm subpleural nodule in the anterior basal segment of the left lower lobe"
@@ -6091,60 +5285,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_13697_a_2.nii.gz",
-            "findings": {
-                "0": "Significant centrilobular emphysema in the upper and middle zones of both lungs",
-                "1": "Stable nonspecific nodules in both lungs, some of which are calcified",
-                "2": "Largest nodule measuring 5 mm in diameter in the right lung laterobasal segment"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 4,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                460
-            ],
-            "pixels": {
-                "0": 2384760,
-                "1": 1538,
-                "2": 342
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_115_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs, more pronounced in the left upper lobe",
-                "1": "Subcentimeter nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 5,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                487
-            ],
-            "pixels": {
-                "0": 316779,
-                "1": 507
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_122_b_1.nii.gz",
             "findings": {
                 "0": "Stable mass in the upper lobe of the right lung",
@@ -6191,31 +5331,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_80_a_1.nii.gz",
-            "findings": {
-                "0": "Bilateral emphysematous changes within the lungs",
-                "1": "Multiple nonspecific pulmonary nodules present bilaterally"
-            },
-            "entity_counts": {
-                "0": 5,
-                "1": 4
-            },
-            "shape": [
-                512,
-                512,
-                247
-            ],
-            "pixels": {
-                "0": 7066,
-                "1": 1023
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_398_a_1.nii.gz",
             "findings": {
                 "0": "Subtle ground-glass opacities in the basal segments of both lungs",
@@ -6236,31 +5351,6 @@
             },
             "categories": {
                 "0": "2c",
-                "1": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_327_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal emphysematous changes in both lungs",
-                "1": "Subcentimeter nodules in bilateral lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 4
-            },
-            "shape": [
-                512,
-                512,
-                488
-            ],
-            "pixels": {
-                "0": 693,
-                "1": 1101
-            },
-            "categories": {
-                "0": "1c",
                 "1": "2d"
             },
             "protocol": "protocol1"
@@ -6324,51 +5414,6 @@
                 "0": "2b",
                 "1": "2b",
                 "2": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_122_a_1.nii.gz",
-            "findings": {
-                "0": "Mass in the right upper lobe's posterior segment, measuring 11.5 cm in craniocaudal dimension and 9 cm in transverse diameter",
-                "1": "Air-filled cavities within the mass",
-                "2": "Central necrosis within the mass",
-                "3": "Areas of ground glass opacities and consolidation adjacent to the mass",
-                "4": "Subsegmental area of atelectasis in the posterobasal segment of the right lower lobe",
-                "5": "Mild emphysematous changes in both lungs",
-                "6": "Stable parenchymal nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 2,
-                "2": 2,
-                "3": 3,
-                "4": 2,
-                "5": 2,
-                "6": 4
-            },
-            "shape": [
-                512,
-                512,
-                329
-            ],
-            "pixels": {
-                "0": 911000,
-                "1": 16293,
-                "2": 47749,
-                "3": 127554,
-                "4": 5680,
-                "5": 1486,
-                "6": 348
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "2d",
-                "3": "2c",
-                "4": "2b",
-                "5": "1c",
-                "6": "2d"
             },
             "protocol": "protocol1"
         },
@@ -6518,35 +5563,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "valid_21_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs",
-                "1": "Multiple subcentimeter nodules within both lungs",
-                "2": "Largest nodule measuring 6 mm in the longest diameter within the lower lobe of the right lung"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                211
-            ],
-            "pixels": {
-                "0": 38817,
-                "1": 909,
-                "2": 412
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_340_a_1.nii.gz",
             "findings": {
                 "0": "Mass in the left upper lobe and lingular segments causing obstruction of the upper lobe bronchus",
@@ -6613,31 +5629,6 @@
                 "1": "2b",
                 "2": "2c",
                 "3": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_97_a_1.nii.gz",
-            "findings": {
-                "0": "Diffuse emphysematous changes in the lungs",
-                "1": "Multiple nonspecific pulmonary nodules, largest measuring 7 mm, pleural-based in the medial segment of the right middle lobe"
-            },
-            "entity_counts": {
-                "0": 4,
-                "1": 5
-            },
-            "shape": [
-                512,
-                512,
-                330
-            ],
-            "pixels": {
-                "0": 1321512,
-                "1": 816
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -6787,43 +5778,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "valid_254_a_2.nii.gz",
-            "findings": {
-                "0": "Diffuse pleuroparenchymal density increases in the right lung upper lobe posteriorly, the middle lobe laterally, and the lower lobes, as well as the left lung upper lobe anteriorly, and the lower lobe posterobasal and mediobasal segments",
-                "1": "Atelectatic changes in the right lung upper lobe posteriorly, the middle lobe laterally, and the lower lobes, as well as the left lung upper lobe anteriorly, and the lower lobe posterobasal and mediobasal segments",
-                "2": "Superimposed ground glass densities in the right lung upper lobe posteriorly, the middle lobe laterally, and the lower lobes, as well as the left lung upper lobe anteriorly, and the lower lobe posterobasal and mediobasal segments",
-                "3": "Bronchiectatic changes with associated fibrosis in the anterior segment of the left upper lobe",
-                "4": "Subcentimeter pulmonary nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 3,
-                "3": 1,
-                "4": 3
-            },
-            "shape": [
-                512,
-                512,
-                146
-            ],
-            "pixels": {
-                "0": 44653,
-                "1": 44653,
-                "2": 44653,
-                "3": 18724,
-                "4": 1361
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2b",
-                "2": "2c",
-                "3": "1b",
-                "4": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "valid_68_a_1.nii.gz",
             "findings": {
                 "0": "Multiple subcentimeter nonspecific nodules in the right lung"
@@ -6841,76 +5795,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_345_a_2.nii.gz",
-            "findings": {
-                "0": "Consolidation with air bronchograms in the central portion of the left lower lobe",
-                "1": "Bilateral ground glass opacities, more pronounced in the lower lobes with involvement of the upper lobe of the left lung",
-                "2": "Bilateral emphysematous changes",
-                "3": "Bilateral lungs show multiple subcentimeter nodules, the largest approximately 9 mm in the longest diameter, located in the lower lobe of the right lung"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 3,
-                "2": 2,
-                "3": 3
-            },
-            "shape": [
-                512,
-                512,
-                482
-            ],
-            "pixels": {
-                "0": 165122,
-                "1": 542967,
-                "2": 20606,
-                "3": 1889
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2c",
-                "2": "1c",
-                "3": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_163_d_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in the apical segments of both lungs",
-                "1": "Subpleural focal cystic emphysematous change at the level of the lateral lingular segment of the left lung",
-                "2": "Solid pulmonary nodules in both lungs, largest measuring approximately 6 mm in diameter in the anterior upper lobe of the right lung",
-                "3": "Small area of ground glass opacity in the posterobasal segment of the left lower lobe",
-                "4": "Scattered, small-sized faint ground glass opacities in the right lung"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1,
-                "2": 5,
-                "3": 1,
-                "4": 5
-            },
-            "shape": [
-                512,
-                512,
-                509
-            ],
-            "pixels": {
-                "0": 18949,
-                "1": 3767,
-                "2": 1473,
-                "3": 2166,
-                "4": 175474
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1c",
-                "2": "2d",
-                "3": "2c",
-                "4": "2c"
             },
             "protocol": "protocol1"
         },
@@ -6961,39 +5845,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_80_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in the apical segments of both lungs",
-                "1": "Bronchial dilatation consistent with bronchiectasis",
-                "2": "Several nonspecific pulmonary nodules in both lungs",
-                "3": "Largest pulmonary nodule measuring 3.5 mm located adjacent to the minor fissure in the right lung"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 2,
-                "2": 4,
-                "3": 1
-            },
-            "shape": [
-                512,
-                512,
-                541
-            ],
-            "pixels": {
-                "0": 20199,
-                "1": 8171,
-                "2": 1247,
-                "3": 189
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1b",
-                "2": "2d",
-                "3": "2d"
             },
             "protocol": "protocol1"
         },
@@ -7057,39 +5908,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_24_a_2.nii.gz",
-            "findings": {
-                "0": "Widespread emphysematous changes in the upper lobes of both lungs",
-                "1": "Panacinar and centriacinar patterns in both lungs",
-                "2": "Areas of atelectasis in the posterobasal segments of both lower lobes",
-                "3": "Increased nodular density in the medial segment of the right middle lobe"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 3,
-                "2": 2,
-                "3": 1
-            },
-            "shape": [
-                512,
-                512,
-                528
-            ],
-            "pixels": {
-                "0": 448286,
-                "1": 448286,
-                "2": 16165,
-                "3": 7741
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1c",
-                "2": "2b",
-                "3": "2d"
             },
             "protocol": "protocol1"
         },
@@ -7578,39 +6396,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "valid_676_a_2.nii.gz",
-            "findings": {
-                "0": "Bilateral pulmonary nodules",
-                "1": "Largest pleural-based nodule measuring approximately 5x4.5 mm in the left lower lobe posterobasal segment",
-                "2": "Largest pleural-based nodule measuring approximately 7x3 mm in the right lower lobe posterobasal segment",
-                "3": "Minimal emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1,
-                "2": 1,
-                "3": 1
-            },
-            "shape": [
-                512,
-                512,
-                207
-            ],
-            "pixels": {
-                "0": 1354,
-                "1": 605,
-                "2": 1165,
-                "3": 87903
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "2d",
-                "3": "1c"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_759_a_1.nii.gz",
             "findings": {
                 "0": "Subcentimeter nonspecific parenchymal nodules in both lungs"
@@ -7733,35 +6518,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_409_a_2.nii.gz",
-            "findings": {
-                "0": "Nonspecific pulmonary nodule measuring 4.4 mm adjacent to the fissure in the posterior segment of the left lower lobe",
-                "1": "Subcentimeter parenchymal nodules in both lungs",
-                "2": "Tubular bronchiectasis with central predominance in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 2,
-                "2": 2
-            },
-            "shape": [
-                512,
-                512,
-                440
-            ],
-            "pixels": {
-                "0": 942,
-                "1": 599,
-                "2": 273695
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "1b"
             },
             "protocol": "protocol1"
         },
@@ -7999,39 +6755,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "valid_516_a_1.nii.gz",
-            "findings": {
-                "0": "Nodules in the posterior segment of the left upper lobe, 4 mm",
-                "1": "Nodules in the anterior segment of the right upper lobe, 3 mm",
-                "2": "Nodules in the medial segment of the right middle lobe, 4 mm",
-                "3": "Centriacinar emphysematous changes in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 2,
-                "2": 1,
-                "3": 3
-            },
-            "shape": [
-                768,
-                768,
-                223
-            ],
-            "pixels": {
-                "0": 480,
-                "1": 904,
-                "2": 959,
-                "3": 1002994
-            },
-            "categories": {
-                "0": "2d",
-                "1": "2d",
-                "2": "2d",
-                "3": "1c"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "train_825_b_2.nii.gz",
             "findings": {
                 "0": "7 mm nonspecific subpleural nodule superiorly in the lower lobe of the left lung"
@@ -8049,64 +6772,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_791_a_2.nii.gz",
-            "findings": {
-                "0": "Atelectasis in the medial segment of the right middle lobe",
-                "1": "Atelectasis in the lingular segment of the left upper lobe",
-                "2": "Minimal emphysematous changes in both lungs",
-                "3": "Multiple subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 2,
-                "3": 2
-            },
-            "shape": [
-                512,
-                512,
-                529
-            ],
-            "pixels": {
-                "0": 30584,
-                "1": 24828,
-                "2": 32185,
-                "3": 639
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2b",
-                "2": "1c",
-                "3": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_557_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central portions of both lungs",
-                "1": "Bilateral subcentimeter nonspecific nodules"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                541
-            ],
-            "pixels": {
-                "0": 184716,
-                "1": 1503
-            },
-            "categories": {
-                "0": "1b",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -8195,31 +6860,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_512_a_1.nii.gz",
-            "findings": {
-                "0": "Minimal emphysematous changes within both lungs",
-                "1": "Several indeterminate subcentimeter nodules"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 1
-            },
-            "shape": [
-                512,
-                512,
-                262
-            ],
-            "pixels": {
-                "0": 680154,
-                "1": 1454
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -8403,31 +7043,6 @@
                 "1": "2c",
                 "2": "2c",
                 "3": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_428_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs",
-                "1": "Subcentimeter nonspecific nodules in both lungs"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 3
-            },
-            "shape": [
-                512,
-                512,
-                446
-            ],
-            "pixels": {
-                "0": 220199,
-                "1": 3256
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d"
             },
             "protocol": "protocol1"
         },
@@ -8741,39 +7356,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "train_841_a_1.nii.gz",
-            "findings": {
-                "0": "Minimal emphysematous changes in both lungs",
-                "1": "Atelectasis in the medial segment of the right middle lobe",
-                "2": "Atelectasis in the lingular segment of the left upper lobe",
-                "3": "Subcentimeter nodules in both lungs, largest measuring approximately 6x4 mm in the lower lobe of the left lung"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 1,
-                "2": 1,
-                "3": 3
-            },
-            "shape": [
-                512,
-                512,
-                240
-            ],
-            "pixels": {
-                "0": 64421,
-                "1": 3367,
-                "2": 910,
-                "3": 694
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2b",
-                "2": "2b",
-                "3": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "valid_1119_a_1.nii.gz",
             "findings": {
                 "0": "Subcentimeter nonspecific nodules in both lungs"
@@ -8791,35 +7373,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "train_835_a_2.nii.gz",
-            "findings": {
-                "0": "Emphysematous changes in both lungs with blebs",
-                "1": "Paraseptal emphysematous changes more pronounced at the apexes",
-                "2": "Multiple pulmonary nodules bilaterally, largest 5 mm in diameter"
-            },
-            "entity_counts": {
-                "0": 2,
-                "1": 2,
-                "2": 3
-            },
-            "shape": [
-                512,
-                512,
-                512
-            ],
-            "pixels": {
-                "0": 237689,
-                "1": 237689,
-                "2": 4012
-            },
-            "categories": {
-                "0": "1c",
-                "1": "1c",
-                "2": "2d"
             },
             "protocol": "protocol1"
         },
@@ -8958,55 +7511,6 @@
             "protocol": "protocol1"
         },
         {
-            "name": "valid_1078_a_2.nii.gz",
-            "findings": {
-                "0": "Consolidations in the posterior part of the lower lobe of the right lung",
-                "1": "Ground-glass opacities in the posterior part of the lower lobe of the right lung",
-                "2": "Consolidations in the lower lobe of the left lung",
-                "3": "Ground-glass opacities in the lower lobe of the left lung",
-                "4": "Consolidations in the apicoposterior segment of the upper lobe",
-                "5": "Ground-glass opacities in the apicoposterior segment of the upper lobe",
-                "6": "Bilateral emphysematous changes within the aerated lung parenchyma",
-                "7": "Multiple subcentimeter nonspecific nodules scattered throughout both lungs"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 2,
-                "3": 2,
-                "4": 1,
-                "5": 1,
-                "6": 2,
-                "7": 3
-            },
-            "shape": [
-                512,
-                512,
-                226
-            ],
-            "pixels": {
-                "0": 144424,
-                "1": 144424,
-                "2": 99204,
-                "3": 99204,
-                "4": 17761,
-                "5": 71273,
-                "6": 258102,
-                "7": 631
-            },
-            "categories": {
-                "0": "2b",
-                "1": "2c",
-                "2": "2b",
-                "3": "2c",
-                "4": "2b",
-                "5": "2c",
-                "6": "1c",
-                "7": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
             "name": "valid_915_c_2.nii.gz",
             "findings": {
                 "0": "Subcentimeter indeterminate nodule in the lower lobe of the left lung"
@@ -9128,35 +7632,6 @@
             },
             "categories": {
                 "0": "2d"
-            },
-            "protocol": "protocol1"
-        },
-        {
-            "name": "valid_970_a_2.nii.gz",
-            "findings": {
-                "0": "Minimal bronchiectasis in the central regions of both lungs",
-                "1": "Mild emphysematous changes in both lungs, more pronounced in the upper lobes",
-                "2": "Multiple subcentimeter nonspecific nodules scattered throughout both lungs"
-            },
-            "entity_counts": {
-                "0": 3,
-                "1": 2,
-                "2": 2
-            },
-            "shape": [
-                512,
-                512,
-                400
-            ],
-            "pixels": {
-                "0": 247195,
-                "1": 84033,
-                "2": 473
-            },
-            "categories": {
-                "0": "1b",
-                "1": "1c",
-                "2": "2d"
             },
             "protocol": "protocol1"
         },
@@ -9626,35 +8101,6 @@
     ],
     "val": [
         {
-            "name": "train_13189_a_1.nii.gz",
-            "findings": {
-                "0": "Hyperaeration in the mediobasal and posterobasal segments of the right lower lobe",
-                "1": "Vascular structure extending to the right lower lobe from the aorta, consistent with pulmonary sequestration",
-                "2": "Nonspecific ground glass opacities anterior to the sequestration in the lung parenchyma"
-            },
-            "entity_counts": {
-                "0": 1,
-                "1": 1,
-                "2": 1
-            },
-            "shape": [
-                512,
-                512,
-                302
-            ],
-            "pixels": {
-                "0": 579594,
-                "1": 3154,
-                "2": 50503
-            },
-            "categories": {
-                "0": "1c",
-                "1": "2d",
-                "2": "2c"
-            },
-            "protocol": "val"
-        },
-        {
             "name": "train_13316_a_2.nii.gz",
             "findings": {
                 "0": "Multiple parenchymal nodules in both lungs",
@@ -9679,6 +8125,5 @@
             },
             "protocol": "val"
         }
-    ],
-    "test": []
+    ]
 }
