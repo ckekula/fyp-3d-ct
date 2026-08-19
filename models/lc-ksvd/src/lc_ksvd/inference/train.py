@@ -22,10 +22,9 @@ from reppi.sparse.fista.utils import soft_threshold
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-MODEL = "lcksvd"
+MODEL = "lcksvd2"
 DICT_MODEL_PATH = MODELS_DIR / f"unified_{MODEL}.pkl"
 SVM_MODEL_PATH = MODELS_DIR / f"{MODEL}_svm_model.pkl"
-GBM_MODEL_PATH = MODELS_DIR / f"{MODEL}_gbm_model.pkl"
 XGB_MODEL_PATH = MODELS_DIR / f"{MODEL}_xgb_model.pkl"
 LOGREG_MODEL_PATH = MODELS_DIR / f"{MODEL}_logreg_model.pkl"
 
@@ -269,15 +268,6 @@ def main() -> None:
         logger.info(f"Native LC-KSVD2 classifier (W_) train accuracy: {train_acc_w:.4f}")
     else:
         logger.info("Loaded model has no W_ (not lcksvd2) -- skipping native-classifier check.")
-
-    # -- Train non-linear diagnostic classifier (HistGradientBoostingClassifier) ----
-    logger.info("Training HistGradientBoostingClassifier...")
-    if(GBM_MODEL_PATH.exists()):
-        logger.info(f"GBM model exists at: {GBM_MODEL_PATH}")
-    else:
-        gbm_clf = train_gbm(Gamma, labels)
-        joblib.dump(gbm_clf, GBM_MODEL_PATH)
-        logger.info(f"Saved GBM model -> {GBM_MODEL_PATH}")
 
     # -- Train non-linear diagnostic classifier (XGBoost) ----------------------------
     logger.info("Training XGBoost...")

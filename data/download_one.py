@@ -9,7 +9,7 @@ from huggingface_hub import hf_hub_download
 # Paths
 # -------------------------------------------------------
 
-json_path = "/home/chest_ct/code/data/rexgrounding-ct/dataset_anthima.json"
+json_path = "/home/chest_ct/code/data/rexgrounding-ct/dataset_filtered.json"
 
 existing_ct_dir = Path(
     "/home/chest_ct/code/data/data_volumes/dataset/train_fixed"
@@ -86,28 +86,18 @@ failed = []
 
 
 for scan_name in scan_names:
-
     local_file = existing_ct_dir / scan_name
 
-
-    # -----------------------------------------------
-    # 1. Check existing flat directory
-    # -----------------------------------------------
     if local_file.exists():
         already_exist.append(scan_name)
         continue
 
-
-    # -----------------------------------------------
-    # 2. Download from CT-RATE
-    # -----------------------------------------------
     hf_path = get_ct_rate_path(scan_name)
 
     print(f"Downloading: {scan_name}")
     print(f"HF path: {hf_path}")
 
     try:
-
         downloaded_path = hf_hub_download(
             repo_id=repo_id,
             repo_type="dataset",
@@ -115,23 +105,14 @@ for scan_name in scan_names:
             local_dir="ct_rate_cache"
         )
 
-
-        # Move/copy into flat directory
-        shutil.copy(
-            downloaded_path,
-            local_file
-        )
-
+        shutil.copy(downloaded_path, local_file)
         downloaded.append(scan_name)
-
 
     except Exception as e:
 
         print(f"FAILED: {scan_name}")
         print(e)
-
         failed.append(scan_name)
-
 
 
 # -------------------------------------------------------

@@ -10,7 +10,7 @@ Phase 2 — Abnormal scans:
 """
 
 import logging
-from collections.abc import Generator
+from collections.abc import Callable, Generator
 
 import numpy as np
 from tqdm import tqdm
@@ -140,6 +140,7 @@ def collect_abnormal_patches(
     positive_ids: list[str],
     loader: ScanLoader,
     writer: _PatchStreamWriter,
+    on_scan_done: Callable[[str, list[int], list[tuple[int, int, int]]], None] | None = None,
 ) -> tuple[list[int], list[str], list[tuple[int, int, int]]]:
     all_labels: list[int] = []
     all_scan_ids: list[str] = []
@@ -152,28 +153,41 @@ def collect_abnormal_patches(
             scan = loader.load(scan_id)
         except Exception as exc:
             logger.warning(f"Skipping {scan_id}: {exc}")
+            if on_scan_done is not None:
+                on_scan_done(scan_id, [], [])
             continue
 
         if scan["mask"] is None or not scan["finding_map"]:
             logger.info(f"  {scan_id}: no mask or finding_map, skipping.")
+            if on_scan_done is not None:
+                on_scan_done(scan_id, [], [])
             continue
 
         category_masks = _build_category_masks(scan["mask"], scan["finding_map"])
         if not category_masks:
             logger.info(f"  {scan_id}: no valid category masks, skipping.")
+            if on_scan_done is not None:
+                on_scan_done(scan_id, [], [])
             continue
 
         scan_patch_count = 0
+        scan_labels: list[int] = []
         for category, cat_mask in category_masks.items():
             labels = sample_abnormal_patches(
                 scan["volume"], cat_mask, category, class_to_idx, writer
             )
             all_labels.extend(labels)
             all_scan_ids.extend([scan_id] * len(labels))
+            scan_labels.extend(labels)
             scan_patch_count += len(labels)
             logger.info(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
 
         logger.info(f"  {scan_id}: {scan_patch_count} total patches across all categories")
+
+        if on_scan_done is not None:
+            writer.flush_scan()
+            scan_coords = writer.coords[-scan_patch_count:] if scan_patch_count else []
+            on_scan_done(scan_id, scan_labels, scan_coords)
 
     label_arr = np.array(all_labels, dtype=np.int64) if all_labels else np.array([], dtype=np.int64)
     for category in [k for k in CLASS_ORDER if k != "normal"]:

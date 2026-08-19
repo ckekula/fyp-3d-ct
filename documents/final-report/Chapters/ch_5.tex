@@ -1,1 +1,34 @@
-\chapter{Conclusion}\label{cha:conclusion}
+\chapter{Conclusion}
+\label{cha:conclusion}
+
+This study addressed two gaps in dictionary learning for CT-based CAD: the lack of a framework unifying
+multi-class classification and voxel-level localisation, and the lack of any study benchmarking dictionary
+learning against deep learning across classification, localisation, and explainability simultaneously. Four
+dictionary learning methods (K-SVD, LC-KSVD2, FDDL, Frozen Dictionary Learning) were implemented in an
+open-source package and evaluated, alongside three ML baselines and four SotA deep learning models, using a
+shared, model-agnostic evaluation framework.
+
+LC-KSVD outperformed all other dictionary learning models, reaching 88.5\% patch accuracy. Patch-level accuracy did not
+transfer to whole-volume localisation for any dictionary learning method, a gap
+driven by the extreme size imbalance between lesions and full volumes rather than by the sparse codes
+themselves. Dictionary learning trails SotA deep learning substantially on raw performance, confirming a
+interpretability-performance trade-off.
+
+The study only covers two of five radiologist-recommended abnormalities and excludes the ambiguous
+atelectasis/consolidation category. The fixed $12\times12\times6$ patch size discarded most candidate nodule
+patches and biased the retained set toward larger masses.
+
+Priority directions: spatially-aware post-processing to close the patch-to-volume localisation gap; extending
+to the remaining radiologist-recommended abnormalities, including a properly disambiguated
+atelectasis/consolidation split; domain-specific hyperparameter tuning (particularly LC-KSVD2's $\alpha/\beta$)
+against a held-out validation set; a second independent radiologist review with inter-rater reliability
+reporting, ideally with refined ground-truth masks; and confidence intervals or paired significance tests over
+the closer method comparisons in Chapter~4.
+
+Dictionary learning is not yet competitive with state-of-the-art deep learning on raw classification or
+localisation accuracy for pulmonary abnormality detection, but the interpretability it offers is qualitatively
+different from, and more reliable than, Grad-CAM's post-hoc
+explanations on a leading vision-language model. A CAD system built on class-attributable atoms can show
+exactly which learned pattern drove a prediction and where it is located.
+The open-source benchmarking framework developed here is intended to make
+that trade-off measurable for future work.
