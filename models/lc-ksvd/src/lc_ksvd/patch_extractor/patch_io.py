@@ -51,6 +51,14 @@ class _PatchStreamWriter:
             self._fh.close()
             self._closed = True
 
+    def write_batch(self, patches: np.ndarray, coords: list[tuple[int, int, int]]) -> None:
+        """Append a batch of patches (n, *PATCH_SIZE) at once — used when
+        patches arrive pre-computed from a worker subprocess rather than
+        one at a time in-process."""
+        self._fh.write(np.ascontiguousarray(patches, dtype=np.float32).tobytes())
+        self.coords.extend(coords)
+        self.count += len(coords)
+
 def extract_patch(
     volume: np.ndarray,
     x0: int,
