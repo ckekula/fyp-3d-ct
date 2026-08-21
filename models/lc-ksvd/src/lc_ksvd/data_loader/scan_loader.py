@@ -4,6 +4,8 @@ High-level convenience wrapper that combines volume + mask loading,
 resampling, and HU windowing into one call per scan.
 """
 
+import numpy as np
+
 from lc_ksvd.config import LOWER_HU, TARGET_SHAPE
 from lc_ksvd.data_loader.metadata_registry import MetadataRegistry
 from lc_ksvd.data_loader.nifti_io import (
@@ -57,3 +59,11 @@ class ScanLoader:
             "mask":        mask,
             "finding_map": finding_map,
         }
+
+    def write_batch(self, patches: np.ndarray, coords: list[tuple[int, int, int]]) -> None:
+        """Append a batch of patches (n, *PATCH_SIZE) at once — used when
+        patches arrive pre-computed from a worker subprocess rather than
+        one at a time in-process."""
+        self._fh.write(np.ascontiguousarray(patches, dtype=np.float32).tobytes())
+        self.coords.extend(coords)
+        self.count += len(coords)

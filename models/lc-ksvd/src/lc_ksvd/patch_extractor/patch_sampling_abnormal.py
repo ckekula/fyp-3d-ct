@@ -10,10 +10,9 @@ Phase 2 — Abnormal scans:
 """
 
 import logging
-from collections.abc import Callable, Generator
+from collections.abc import Generator
 
 import numpy as np
-from tqdm import tqdm
 
 from lc_ksvd.config import (
     ABNORMAL_PATCH_STRIDE,
@@ -23,7 +22,7 @@ from lc_ksvd.config import (
     PATCH_SIZE,
 )
 from lc_ksvd.data_loader.scan_loader import ScanLoader
-from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter, extract_patch
+from lc_ksvd.patch_extractor.patch_io import extract_patch
 from lc_ksvd.patch_extractor.patch_sampling_normal import is_background
 
 logger = logging.getLogger(__name__)
@@ -108,14 +107,17 @@ def _bbox_origins(
                 yield x0, y0, z0
 
 
-def sample_abnormal_patches(
+def _sample_abnormal_patches(
     volume: np.ndarray,
     category_mask: np.ndarray,
     category: str,
     class_to_idx: dict[str, int],
-    writer: _PatchStreamWriter,
-) -> list[int]:
+) -> tuple[list[int], list[tuple[int, int, int]], list[np.ndarray]]:
+    """Same sampling logic as before, but returns patches instead of
+    writing them — writing is the parent process's job, not the worker's."""
     labels: list[int] = []
+    coords: list[tuple[int, int, int]] = []
+    patches: list[np.ndarray] = []
     label_idx = class_to_idx[category]
     bbox = _foreground_bbox(category_mask)
 
@@ -125,75 +127,58 @@ def sample_abnormal_patches(
             continue
 
         mask_patch = extract_patch(category_mask, x0, y0, z0)
-
         threshold = LESION_THRESHOLDS.get(category, LESION_FRACTION_THRESHOLD)
         if mask_patch is None or not has_sufficient_lesion(mask_patch, threshold) or is_background(patch):
             continue
 
-        writer.write(patch, (x0, y0, z0))
         labels.append(label_idx)
+        coords.append((x0, y0, z0))
+        patches.append(patch)
 
-    return labels
+    return labels, coords, patches
 
 
 def collect_abnormal_patches(
-    positive_ids: list[str],
+    scan_id: str,
     loader: ScanLoader,
-    writer: _PatchStreamWriter,
-    on_scan_done: Callable[[str, list[int], list[tuple[int, int, int]]], None] | None = None,
-) -> tuple[list[int], list[str], list[tuple[int, int, int]]]:
+    class_to_idx: dict[str, int],
+) -> tuple[list[int], list[tuple[int, int, int]], np.ndarray]:
+    """
+    Bbox-sample one scan. Runs inside a worker subprocess (see
+    scan_worker.py) — raises on loader/model failure so the pool can
+    detect and retry it; does not touch any shared state.
+    """
+    empty = ([], [], np.empty((0, *PATCH_SIZE), dtype=np.float32))
+
+    scan = loader.load(scan_id)
+
+    if scan["mask"] is None or not scan["finding_map"]:
+        logger.info(f"  {scan_id}: no mask or finding_map, skipping.")
+        return empty
+
+    category_masks = _build_category_masks(scan["mask"], scan["finding_map"])
+    if not category_masks:
+        logger.info(f"  {scan_id}: no valid category masks, skipping.")
+        return empty
+
     all_labels: list[int] = []
-    all_scan_ids: list[str] = []
-    class_to_idx = {cls: i for i, cls in enumerate(CLASS_ORDER)}
+    all_coords: list[tuple[int, int, int]] = []
+    all_patches: list[np.ndarray] = []
 
-    logger.info(f"Phase 2 — bbox-sampling {len(positive_ids)} abnormal scans…")
+    for category, cat_mask in category_masks.items():
+        labels, coords, patches = _sample_abnormal_patches(
+            scan["volume"], cat_mask, category, class_to_idx
+        )
+        all_labels.extend(labels)
+        all_coords.extend(coords)
+        all_patches.extend(patches)
+        logger.info(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
 
-    for scan_id in tqdm(positive_ids, desc="abnormal scans"):
-        try:
-            scan = loader.load(scan_id)
-        except Exception as exc:
-            logger.warning(f"Skipping {scan_id}: {exc}")
-            if on_scan_done is not None:
-                on_scan_done(scan_id, [], [])
-            continue
+    logger.info(f"  {scan_id}: {len(all_labels)} total patches across all categories")
 
-        if scan["mask"] is None or not scan["finding_map"]:
-            logger.info(f"  {scan_id}: no mask or finding_map, skipping.")
-            if on_scan_done is not None:
-                on_scan_done(scan_id, [], [])
-            continue
-
-        category_masks = _build_category_masks(scan["mask"], scan["finding_map"])
-        if not category_masks:
-            logger.info(f"  {scan_id}: no valid category masks, skipping.")
-            if on_scan_done is not None:
-                on_scan_done(scan_id, [], [])
-            continue
-
-        scan_patch_count = 0
-        scan_labels: list[int] = []
-        for category, cat_mask in category_masks.items():
-            labels = sample_abnormal_patches(
-                scan["volume"], cat_mask, category, class_to_idx, writer
-            )
-            all_labels.extend(labels)
-            all_scan_ids.extend([scan_id] * len(labels))
-            scan_labels.extend(labels)
-            scan_patch_count += len(labels)
-            logger.info(f"  {scan_id} [{category}]: {len(labels)} patches from bbox")
-
-        logger.info(f"  {scan_id}: {scan_patch_count} total patches across all categories")
-
-        if on_scan_done is not None:
-            writer.flush_scan()
-            scan_coords = writer.coords[-scan_patch_count:] if scan_patch_count else []
-            on_scan_done(scan_id, scan_labels, scan_coords)
-
-    label_arr = np.array(all_labels, dtype=np.int64) if all_labels else np.array([], dtype=np.int64)
-    for category in [k for k in CLASS_ORDER if k != "normal"]:
-        idx = class_to_idx[category]
-        count = int((label_arr == idx).sum())
-        logger.info(f"  → {count} patches for '{category}'")
-
-    logger.info(f"  → {len(all_labels)} total abnormal patches collected.")
-    return all_labels, all_scan_ids, writer.coords
+    patch_arr = (
+        np.stack(all_patches).astype(np.float32)
+        if all_patches
+        else np.empty((0, *PATCH_SIZE), dtype=np.float32)
+    )
+    return all_labels, all_coords, patch_arr

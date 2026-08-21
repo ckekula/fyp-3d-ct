@@ -16,6 +16,7 @@ from collections.abc import Callable
 from pathlib import Path
 
 import numpy as np
+from tqdm import tqdm
 
 from lc_ksvd.config import CLASS_ORDER, N_FEATURES, PATCHES_DIR
 from lc_ksvd.data_loader.metadata_registry import LabelRegistry, MetadataRegistry
@@ -24,40 +25,73 @@ from lc_ksvd.data_loader.scan_loader import ScanLoader
 from lc_ksvd.patch_extractor.patch_io import _PatchStreamWriter
 from lc_ksvd.patch_extractor.patch_sampling_abnormal import collect_abnormal_patches
 from lc_ksvd.patch_extractor.patch_sampling_normal import collect_normal_patches
+from lc_ksvd.patch_extractor.scan_worker import ScanWorkerPool
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-# Signature shared by collect_normal_patches / collect_abnormal_patches.
 OnScanDone = Callable[[str, list[int], list[tuple[int, int, int]]], None]
 PatchCollector = Callable[
     [list[str], ScanLoader, _PatchStreamWriter, "OnScanDone | None"],
     tuple[list[int], list[str], list[tuple[int, int, int]]],
 ]
 
+
 def _class_out_path(split: str, class_name: str) -> Path:
     return PATCHES_DIR / f"unified_{split}_{class_name}.npz"
 
 
+def _scratch_path(scratch_tag: str) -> Path:
+    return PATCHES_DIR / f"_patch_scratch_{scratch_tag}.bin"
+
+
+def _checkpoint_path(scratch_tag: str) -> Path:
+    return PATCHES_DIR / f"_patch_checkpoint_{scratch_tag}.jsonl"
+
+
 class _Checkpoint:
-    """Per-scan checkpoint for a single build_patch_matrix pass, so a crash
-    mid-run (e.g. a native-library segfault) only loses progress since the
-    last completed scan instead of the whole pass. Written atomically
-    (write-tmp + os.replace) after every scan."""
+    """
+    Per-scan checkpoint, appended one line per completed scan
+    (JSONL: {"scan_id": ..., "labels": [...], "coords": [[x,y,z],...]}).
+
+    A truncated/corrupt final line (from a crash mid-write) is dropped on
+    load; that scan is simply treated as not-yet-done and reprocessed —
+    never silently accepted with mismatched label/coord counts.
+    """
 
     def __init__(self, path: Path):
         self.path = path
+        self.done_scan_ids: set[str] = set()
+        self.labels: list[int] = []
+        self.scan_ids: list[str] = []
+        self.coords: list[list[int]] = []
         if path.exists():
-            data = json.loads(path.read_text())
-            self.done_scan_ids: set[str] = set(data["done_scan_ids"])
-            self.labels: list[int] = data["labels"]
-            self.scan_ids: list[str] = data["scan_ids"]
-            self.coords: list[list[int]] = data["coords"]
-        else:
-            self.done_scan_ids = set()
-            self.labels = []
-            self.scan_ids = []
-            self.coords = []
+            self._load()
+        self._fh = open(path, "a", buffering=1)
+
+    def _load(self) -> None:
+        lines = self.path.read_text().splitlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                if i == len(lines) - 1:
+                    logger.warning(f"{self.path}: dropping truncated final checkpoint line.")
+                    break
+                raise
+            labels, coords = rec["labels"], rec["coords"]
+            if len(labels) != len(coords):
+                raise ValueError(
+                    f"{self.path}: checkpoint line for scan_id={rec['scan_id']!r} has "
+                    f"{len(labels)} labels but {len(coords)} coords — corrupt checkpoint."
+                )
+            self.done_scan_ids.add(rec["scan_id"])
+            self.labels.extend(labels)
+            self.scan_ids.extend([rec["scan_id"]] * len(labels))
+            self.coords.extend(coords)
 
     @property
     def n_patches(self) -> int:
@@ -72,21 +106,26 @@ class _Checkpoint:
         self.done_scan_ids.add(scan_id)
         self.labels.extend(labels)
         self.scan_ids.extend([scan_id] * len(labels))
-        self.coords.extend([list(c) for c in coords])
-        self._save()
+        coords_list = [list(c) for c in coords]
+        self.coords.extend(coords_list)
+        self._fh.write(json.dumps({"scan_id": scan_id, "labels": list(labels), "coords": coords_list}) + "\n")
+        self._fh.flush()
+        os.fsync(self._fh.fileno())
 
-    def _save(self) -> None:
-        tmp = self.path.with_suffix(".tmp")
-        tmp.write_text(json.dumps({
-            "done_scan_ids": sorted(self.done_scan_ids),
-            "labels": self.labels,
-            "scan_ids": self.scan_ids,
-            "coords": self.coords,
-        }))
-        os.replace(tmp, self.path)
+    def close(self) -> None:
+        if self._fh is not None:
+            self._fh.close()
+            self._fh = None
 
-    def clear(self) -> None:
-        self.path.unlink(missing_ok=True)
+
+def finalize_pass(scratch_tag: str) -> None:
+    """Delete the scratch + checkpoint files for a pass. Only call after
+    every output file that depends on this pass is confirmed saved —
+    never before, or a crash between deletion and save loses the pass's
+    work irrecoverably."""
+    _scratch_path(scratch_tag).unlink(missing_ok=True)
+    _checkpoint_path(scratch_tag).unlink(missing_ok=True)
+    logger.info(f"[{scratch_tag}] Pass finalized — scratch/checkpoint cleared.")
 
 
 def build_patch_matrix(
@@ -96,19 +135,14 @@ def build_patch_matrix(
     scratch_tag: str,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
-    Run a single collector (normal or abnormal) over `ids` and return the
-    resulting (X, H, scan_ids, coords).
-
-    Progress is checkpointed per scan (see _Checkpoint), so if the process
-    crashes or is killed partway through, re-running with the same
-    scratch_tag resumes from the last completed scan instead of starting
-    over. The scratch filename intentionally excludes the pid so it can be
-    found again across separate process runs.
+    In-process pass (used for the normal/grid-sampling phase, which hasn't
+    shown the crash pattern the abnormal phase has). Does NOT delete the
+    scratch/checkpoint files — call finalize_pass(scratch_tag) once the
+    output .npz is confirmed saved.
     """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
-    scratch_path = PATCHES_DIR / f"_patch_scratch_{scratch_tag}.bin"
-    checkpoint_path = PATCHES_DIR / f"_patch_checkpoint_{scratch_tag}.json"
-    checkpoint = _Checkpoint(checkpoint_path)
+    scratch_path = _scratch_path(scratch_tag)
+    checkpoint = _Checkpoint(_checkpoint_path(scratch_tag))
 
     if checkpoint.done_scan_ids:
         logger.info(
@@ -121,7 +155,6 @@ def build_patch_matrix(
 
     try:
         collector(remaining_ids, loader, writer, on_scan_done=checkpoint.record_scan)
-        writer.close()
 
         labels, scan_ids, coords = checkpoint.labels, checkpoint.scan_ids, checkpoint.coords
         n_patches = len(labels)
@@ -134,14 +167,70 @@ def build_patch_matrix(
             del patch_mm
     finally:
         writer.close()
-
-    scratch_path.unlink(missing_ok=True)
-    checkpoint.clear()
+        checkpoint.close()
 
     H = np.array(labels, dtype=np.int64)
     scan_ids_arr = np.array(scan_ids, dtype=object)
     coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
     return X, H, scan_ids_arr, coords_arr
+
+
+def build_patch_matrix_isolated(
+    ids: list[str],
+    metadata: MetadataRegistry,
+    scratch_tag: str,
+    timeout_s: float = 60.0,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Worker-isolated counterpart to build_patch_matrix, used for the
+    abnormal (bbox-sampling) pass. Each scan runs in a persistent
+    subprocess (see scan_worker.ScanWorkerPool); a crash or hang on one
+    scan costs at most one restart + one retry, never the whole pass.
+
+    Does NOT delete the scratch/checkpoint files — call finalize_pass
+    once every dependent output .npz is confirmed saved.
+    """
+    PATCHES_DIR.mkdir(parents=True, exist_ok=True)
+    scratch_path = _scratch_path(scratch_tag)
+    checkpoint = _Checkpoint(_checkpoint_path(scratch_tag))
+
+    if checkpoint.done_scan_ids:
+        logger.info(
+            f"[{scratch_tag}] Resuming from checkpoint: "
+            f"{len(checkpoint.done_scan_ids)} scans / {checkpoint.n_patches} patches already done."
+        )
+    remaining_ids = [i for i in ids if i not in checkpoint.done_scan_ids]
+
+    writer = _PatchStreamWriter(scratch_path, resume_count=checkpoint.n_patches)
+
+    try:
+        with ScanWorkerPool(metadata, collect_abnormal_patches, timeout_s=timeout_s) as pool:
+            logger.info(f"Phase 2 — bbox-sampling {len(remaining_ids)} abnormal scans (worker-isolated)…")
+            for scan_id in tqdm(remaining_ids, desc="abnormal scans"):
+                labels, coords, patches = pool.process(scan_id)
+                if len(patches):
+                    writer.write_batch(patches, coords)
+                writer.flush_scan()
+                checkpoint.record_scan(scan_id, labels, coords)
+
+        labels, scan_ids, coords = checkpoint.labels, checkpoint.scan_ids, checkpoint.coords
+        n_patches = len(labels)
+
+        X = np.empty((N_FEATURES, n_patches), dtype=np.float64)
+        if n_patches:
+            patch_mm = np.memmap(scratch_path, dtype=np.float32, mode="r",
+                                  shape=(n_patches, N_FEATURES))
+            X[:] = patch_mm.T
+            del patch_mm
+    finally:
+        writer.close()
+        checkpoint.close()
+
+    H = np.array(labels, dtype=np.int64)
+    scan_ids_arr = np.array(scan_ids, dtype=object)
+    coords_arr = np.array(coords, dtype=np.int64).reshape(n_patches, 3)
+    return X, H, scan_ids_arr, coords_arr
+
 
 def _filter_existing(ids: list[str], class_name: str = "") -> list[str]:
     valid, missing = [], []
@@ -153,10 +242,9 @@ def _filter_existing(ids: list[str], class_name: str = "") -> list[str]:
             missing.append(vid)
     if missing:
         tag = f"[{class_name}] " if class_name else ""
-        logger.info(
-            f"_filter_existing: {tag}{len(missing)}/{len(ids)} missing volumes: {missing}"
-        )
+        logger.info(f"_filter_existing: {tag}{len(missing)}/{len(ids)} missing volumes: {missing}")
     return valid
+
 
 def _split_and_save_by_class(
     split: str,
@@ -180,12 +268,6 @@ def _split_and_save_by_class(
 
 
 def extract_unified(split: str = "train") -> None:
-    """
-    Run patch extraction once per phase (normal grid-sampling, abnormal
-    bbox-sampling over the union of abnormal scans) and save one compressed
-    .npz per class in CLASS_ORDER:
-        patches/unified_{split}_{class_name}.npz
-    """
     PATCHES_DIR.mkdir(parents=True, exist_ok=True)
 
     metadata = MetadataRegistry(split=split)
@@ -200,10 +282,7 @@ def extract_unified(split: str = "train") -> None:
     raw_normals = labels.get_normal_volume_names()
     logger.info(f"Raw normal IDs from metadata: {len(raw_normals)}")
     if not raw_normals:
-        logger.warning(
-            "No normal volumes found in metadata — "
-            "dataset may contain only abnormal scans."
-        )
+        logger.warning("No normal volumes found in metadata — dataset may contain only abnormal scans.")
     class_ids["normal"] = _filter_existing(raw_normals, class_name="normal")
 
     seen = set()
@@ -239,15 +318,16 @@ def extract_unified(split: str = "train") -> None:
         )
         np.savez_compressed(normal_path, X=X, H=H, scan_ids=scan_ids, coords=coords)
         logger.info(f"Saved → {normal_path}  (X: {X.shape}, H: {H.shape})")
+        finalize_pass("normal")
 
-    # --- Abnormal classes: single pass, then split by label ---
+    # --- Abnormal classes: single worker-isolated pass, then split by label ---
     missing_abnormal = [c for c in abnormality_keys if not _class_out_path(split, c).exists()]
     if not missing_abnormal:
         logger.info("All abnormal class files already exist — skipping extraction.")
         return
 
-    X, H, scan_ids, coords = build_patch_matrix(
-        union_abnormal_ids, loader, collect_abnormal_patches, scratch_tag="abnormal"
+    X, H, scan_ids, coords = build_patch_matrix_isolated(
+        union_abnormal_ids, metadata, scratch_tag="abnormal"
     )
 
     for class_name in abnormality_keys:
@@ -256,15 +336,12 @@ def extract_unified(split: str = "train") -> None:
             continue
         _split_and_save_by_class(split, class_name, class_to_idx[class_name], X, H, scan_ids, coords)
 
+    if all(_class_out_path(split, c).exists() for c in abnormality_keys):
+        finalize_pass("abnormal")
 
 def load_unified_patch_matrix(
     split: str = "train",
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """
-    Load each per-class .npz (in CLASS_ORDER) and concatenate them into
-        X: (n_features, n_patches), H: (n_patches,), scan_ids: (n_patches,),
-        coords: (n_patches, 3)
-    """
     X_parts, H_parts, scan_id_parts, coord_parts = [], [], [], []
 
     for class_name in CLASS_ORDER:
