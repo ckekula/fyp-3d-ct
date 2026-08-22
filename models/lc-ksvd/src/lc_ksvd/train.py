@@ -1,8 +1,7 @@
 """
 train.py
-Training pipeline: load the unified patch matrix, normalise columns, fit the
-chosen algorithm (frozen or lcksvd), evaluate at scan level, and persist the
-resulting model + metadata to disk.
+Training pipeline: load the unified patch matrix, normalise columns, fit the chosen
+algorithm, evaluate at scan level, and persist the resulting model + metadata to disk.
 """
 
 import logging
@@ -14,10 +13,9 @@ import numpy as np
 from lc_ksvd.config import (
     CLASS_ORDER,
     FDDL_CONFIG,
-    UPPER_HU,
-    LOWER_HU,
     KSVD_CONFIG,
     LCKSVD_CONFIG,
+    LOWER_HU,
     MODELS_DIR,
     N_FEATURES,
     NORMAL_CLASS_IDX,
@@ -26,6 +24,7 @@ from lc_ksvd.config import (
     RANDOM_SEED,
     SHUFFLE_PATCHES,
     TARGET_SPACING_MM,
+    UPPER_HU,
 )
 from lc_ksvd.metrics import log_class_distribution
 from lc_ksvd.model_fitting import _fit_fddl, _fit_frozen, _fit_ksvd, _fit_lcksvd
@@ -33,6 +32,15 @@ from lc_ksvd.patch_extractor.patch_extraction import load_unified_patch_matrix
 
 logger = logging.getLogger(__name__)
 
+
+def _build_ksvd_n_components_by_class() -> dict[str, int]:
+    sizes: dict[str, int] = {}
+    for cls_name in CLASS_ORDER:
+        if cls_name == CLASS_ORDER[3]: # 2d
+            sizes[cls_name] = N_FEATURES
+        else:
+            sizes[cls_name] = N_FEATURES * 2
+    return sizes
 
 def _build_residual_n_components_by_class() -> dict[str, int]:
     """
@@ -107,7 +115,10 @@ def train(algorithm: str) -> dict:
         model = _fit_fddl(X, H, fddl_cfg)
     elif algorithm == 'ksvd':
         cfg = ksvd_cfg
-        model = _fit_ksvd(X, H, ksvd_cfg)
+        model = _fit_ksvd(
+            X, H, ksvd_cfg,
+            n_components_by_class=_build_ksvd_n_components_by_class(),
+        )
     else:
         raise ValueError(f"Unknown algorithm: {algorithm!r}")
 
