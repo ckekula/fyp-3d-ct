@@ -393,7 +393,7 @@ def load_unified_patch_matrix(
         )
 
     # -- Pass 2: allocate final arrays once, fill in place ----------------
-    X = np.empty((n_features, n_total), dtype=x_dtype)
+    X = np.empty((n_features, n_total), dtype=np.float32)
     H = np.empty((n_total,), dtype=h_dtype)
     scan_ids = np.empty((n_total,), dtype=scan_id_dtype)
     coords = np.empty((n_total, coord_ndim1), dtype=coord_dtype)
