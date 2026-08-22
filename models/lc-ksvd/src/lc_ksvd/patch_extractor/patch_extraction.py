@@ -342,26 +342,75 @@ def extract_unified(split: str = "train") -> None:
 def load_unified_patch_matrix(
     split: str = "train",
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    X_parts, H_parts, scan_id_parts, coord_parts = [], [], [], []
+    """
+    Load and concatenate per-class patch matrices without holding
+    duplicate copies in memory.
 
+    Peak memory is ~= size(final X) + size(largest single class X),
+    versus ~2x size(final X) (plus every intermediate) for the naive
+    list-then-concatenate approach.
+    """
+    paths = []
     for class_name in CLASS_ORDER:
         path = _class_out_path(split, class_name)
         if not path.exists():
             raise FileNotFoundError(
                 f"Patch matrix not found: {path}. Run extract_unified() first."
             )
-        data = np.load(path, allow_pickle=True)
-        X_parts.append(data["X"])
-        H_parts.append(data["H"])
-        scan_id_parts.append(data["scan_ids"])
-        coord_parts.append(data["coords"])
+        paths.append(path)
 
-    X = np.concatenate(X_parts, axis=1)
-    H = np.concatenate(H_parts, axis=0)
-    scan_ids = np.concatenate(scan_id_parts, axis=0)
-    coords = np.concatenate(coord_parts, axis=0)
+    # -- Pass 1: read shapes/dtypes only, don't retain array data --------
+    n_features = None
+    n_total = 0
+    x_dtype = h_dtype = scan_id_dtype = coord_dtype = None
+    coord_ndim1 = None
+    per_class_n: list[int] = []
 
-    logger.info(f"Loaded matrix: X={X.shape}, H={H.shape}, scan_ids={scan_ids.shape}, coords={coords.shape}")
+    for path in paths:
+        with np.load(path, allow_pickle=True) as data:
+            X_shape = data["X"].shape
+            if n_features is None:
+                n_features = X_shape[0]
+                x_dtype = data["X"].dtype
+                h_dtype = data["H"].dtype
+                scan_id_dtype = data["scan_ids"].dtype
+                coord_dtype = data["coords"].dtype
+                coord_ndim1 = data["coords"].shape[1]
+            elif X_shape[0] != n_features:
+                raise ValueError(
+                    f"{path} has {X_shape[0]} features, expected {n_features}."
+                )
+            n_class = X_shape[1]
+            per_class_n.append(n_class)
+            n_total += n_class
+
+    if x_dtype != np.float32:
+        logger.warning(
+            "Patch matrices are stored as %s, not float32 — this doubles "
+            "(or worse) memory versus expected. Consider re-saving "
+            "extract_unified() output as float32.",
+            x_dtype,
+        )
+
+    # -- Pass 2: allocate final arrays once, fill in place ----------------
+    X = np.empty((n_features, n_total), dtype=x_dtype)
+    H = np.empty((n_total,), dtype=h_dtype)
+    scan_ids = np.empty((n_total,), dtype=scan_id_dtype)
+    coords = np.empty((n_total, coord_ndim1), dtype=coord_dtype)
+
+    offset = 0
+    for path, n_class in zip(paths, per_class_n):
+        with np.load(path, allow_pickle=True) as data:
+            X[:, offset:offset + n_class] = data["X"]
+            H[offset:offset + n_class] = data["H"]
+            scan_ids[offset:offset + n_class] = data["scan_ids"]
+            coords[offset:offset + n_class] = data["coords"]
+        offset += n_class
+
+    logger.info(
+        "Loaded matrix: X=%s, H=%s, scan_ids=%s, coords=%s",
+        X.shape, H.shape, scan_ids.shape, coords.shape,
+    )
     return X, H, scan_ids, coords
 
 if __name__ == "__main__":
