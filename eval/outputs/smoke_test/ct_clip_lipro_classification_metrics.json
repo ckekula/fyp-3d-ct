@@ -1,0 +1,68 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "ct_clip_lipro",
+  "dataset": "rexgroundingct",
+  "num_samples": 2,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "accuracy": 0.5,
+      "ece": 0.4926117807626724,
+      "support": 2
+    },
+    "lung_opacity": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "consolidation": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "atelectasis": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "macro": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "ece": 0.4926117807626724,
+      "score_type": "probabilistic"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CT Scan Viewer &amp; Disease Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>🫁 CT Scan Viewer &amp; Disease Detector</h1>
+      <p class="subtitle">LC-KSVD abnormality detection, from upload to 3D Slicer.</p>
+    </header>
+
+    <main class="steps">
+      <!-- Step 1 -->
+      <section class="card" id="step1">
+        <div class="card-head">
+          <span class="step-badge" id="step1-badge">1</span>
+          <h2>Upload &amp; Run Model</h2>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="file-input" accept=".nii,.nii.gz,.gz,application/gzip" hidden>
+          <div class="dropzone-inner">
+            <span class="dropzone-icon">📁</span>
+            <p id="dropzone-text">Click to choose a CT scan (.nii / .nii.gz)</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-ghost" id="gt-btn" type="button" disabled>
+            📎 Attach ground-truth mask (optional)
+          </button>
+          <input type="file" id="gt-file-input" accept=".nii,.nii.gz,.gz,application/gzip" hidden>
+          <span class="inline-status" id="gt-status"></span>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-primary" id="run-btn" disabled>▶ Run Model</button>
+          <span class="inline-status" id="upload-status"></span>
+        </div>
+
+        <div class="progress-wrap" id="progress-wrap" hidden>
+          <div class="progress-steps" id="progress-steps"></div>
+          <div class="log-panel" id="log-panel"></div>
+        </div>
+
+        <div class="alert alert-error" id="run-error" hidden></div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="card card-disabled" id="step2">
+        <div class="card-head">
+          <span class="step-badge" id="step2-badge">2</span>
+          <h2>Open in 3D Slicer</h2>
+        </div>
+
+        <div class="result-summary" id="result-summary" hidden>
+          <div class="result-row"><span class="result-label">Scan</span><span id="result-scan-name">—</span></div>
+          <div class="result-row"><span class="result-label">CT volume</span><span id="result-ct-path" class="mono">—</span></div>
+          <div class="result-row"><span class="result-label">Boundary label map</span><span id="result-labelmap-path" class="mono">—</span></div>
+          <div class="result-row" id="result-gt-row" hidden>
+            <span class="result-label">Ground-truth mask</span><span id="result-gt-path" class="mono">—</span>
+          </div>
+        </div>
+
+        <div class="findings-panel" id="abnormality-panel" hidden>
+          <h3>Detected Abnormalities</h3>
+          <ul id="abnormality-list"></ul>
+        </div>
+
+        <div class="findings-panel" id="findings-panel" hidden>
+          <h3>Reported Findings</h3>
+          <ul id="findings-list"></ul>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-accent" id="slicer-btn" disabled>🧊 Open in 3D Slicer</button>
+          <span class="inline-status" id="slicer-status"></span>
+        </div>
+
+        <p class="hint">
+          Opens the resampled CT as a volume and the boundary label map as a segmentation
+          in a new 3D Slicer window. Requires 3D Slicer installed locally.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

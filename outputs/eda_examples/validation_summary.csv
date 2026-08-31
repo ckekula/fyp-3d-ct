@@ -1,0 +1,7 @@
+ct,gt,dice_no_resample,jaccard_no_resample,dice_resample_1mm,jaccard_resample_1mm
+..\data\data_volumes\train_102\train_102_b\train_102_b_1.nii.gz,..\data\segmentations\train_102_b_1.nii.gz,0.10951063841772901,0.057927138149072986,0.10178541907753348,0.05362166116544595
+..\data\data_volumes\train_102\train_102_c\train_102_c_1.nii.gz,..\data\segmentations\train_102_c_1.nii.gz,0.14260301590052818,0.07677573352455232,0.13394062633028042,0.07177725865542961
+..\data\data_volumes\train_106\train_106_a\train_106_a_1.nii.gz,..\data\segmentations\train_106_a_1.nii.gz,0.04935169814706806,0.025300151800910806,0.06358870285810925,0.03283842794759825
+..\data\data_volumes\train_107\train_107_a\train_107_a_1.nii.gz,..\data\segmentations\train_107_a_1.nii.gz,0.0,0.0,0.0,0.0
+..\data\data_volumes\train_107\train_107_b\train_107_b_2.nii.gz,..\data\segmentations\train_107_b_2.nii.gz,0.11292915475585018,0.05984362221506282,0.12768712264143875,0.06819753481671202
+..\data\data_volumes\train_107\train_107_c\train_107_c_2.nii.gz,..\data\segmentations\train_107_c_2.nii.gz,0.16315552125477314,0.08882380797215171,0.16536815030869775,0.09013696689966591

@@ -12,6 +12,12 @@ class ClassificationSample:
     y_score: Dict[str, float]
     dataset: str
     metadata: Optional[dict] = None
+    # "probabilistic": y_score is a real continuous confidence in [0, 1].
+    # "hard_label": y_score is a 0/1 decision with no underlying confidence
+    # (e.g. an LLM/VLM category classifier with no numeric score). Rank-based
+    # metrics (AUROC, AP, ECE) are not meaningful for hard_label samples and
+    # must be reported as N/A rather than computed.
+    score_type: str = "probabilistic"
 
 
 @dataclass
@@ -26,6 +32,13 @@ class LocalizationSample:
     existence_score: Optional[float] = None
     morphology: Optional[str] = None
     dataset: str = "rexgroundingct"
+    # False when pred_mask is already a hard 0/1 decision (e.g. MedSAM2,
+    # Merlin, LC-KSVD) rather than a continuous confidence map (BiomedParse).
+    # Binarizing a hard mask at different thresholds always yields the same
+    # result, so threshold-sweep evaluation must skip these samples instead
+    # of reporting a fake "sensitivity" that's really just the same number
+    # repeated at every threshold.
+    is_soft_mask: bool = True
 
 
 @dataclass

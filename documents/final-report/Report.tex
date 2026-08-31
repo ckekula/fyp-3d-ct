@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% Document class and package options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{graphicx} % graphics
+\usepackage{subcaption} %sub-caption styles
+\usepackage{amsmath} % equations and spacings
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphics}
+\usepackage{rotating}
+\usepackage{makecell}
+\usepackage{tocloft}
+% \usepackage{array}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include page set-up options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{pagesetup.cfg}
+
+%% ____Bibliography____%%
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{chapterbib}
+\usepackage[breaklinks]{hyperref}
+\hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue}
+
+\newlistof[chapter]{equations}{loe}{List of Equations}
+\setlength{\cftequationsnumwidth}{3.5em}
+\setlength{\cftequationsindent}{0em}
+\let\oldequation\equation
+\let\endoldequation\endequation
+\renewenvironment{equation}[1][]
+  {\phantomsection\oldequation\def\eq@name{#1}%
+   \ifx\eq@name\@empty
+     \addcontentsline{loe}{equations}{\protect\numberline{\theequation}Equation~\theequation}%
+   \else
+     \addcontentsline{loe}{equations}{\protect\numberline{\theequation}#1}%
+   \fi}
+  {\endoldequation}
+
+%% ____Nicely format and linebreak URLs in the bibliography (and elsewhere)____%%
+\usepackage{url} 
+\def\UrlBreaks{\do/} 
+\usepackage{breakurl}
+
+
+\begin{document}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% The Front Matter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+\include{Front_matters/cover}
+
+\renewcommand{\thepage}{\roman{page}} % Start page numbering in roman
+
+% Abstract, Acknowledgements, Preface, list of tables, list of figures and Acronyms
+\input{Front_matters/abstract}
+\addcontentsline{toc}{chapter}{Abstract} % add line to the table of contents
+
+\input{Front_matters/acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements} % add line to the table of contents
+\input{Front_matters/preface}
+\addcontentsline{toc}{chapter}{Preface} % add line to the table of contents
+
+\clearpage
+\tableofcontents
+\addcontentsline{toc}{chapter}{Contents} % add line to the table of contents
+
+\clearpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures} % add line to the table of contents
+
+\clearpage
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables} % add line to the table of contents
+
+\clearpage
+\listofequations
+\addcontentsline{toc}{chapter}{List of Equations} % add line to the table of contents
+
+\input{Front_matters/acronyms}
+\addcontentsline{toc}{chapter}{Acronyms} % add line to the table of contents
+
+
+%%%%%%%%%%%%%%%%%%%%%%% The main matters %%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{Chapters/ch_1}
+\input{Chapters/ch_2}
+\input{Chapters/ch_3}
+\input{Chapters/ch_4}
+\input{Chapters/ch_5}
+
+
+%%%%%%%%%%%%%%%%%%%%% The End matters %%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% Bibiliography %%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
+\bibliographystyle{ieeetr}
+\refstepcounter{chapter}
+\addcontentsline {toc}{chapter}{\bibname}
+% _____Add Bibiliography using BibTex file_____
+\bibliography{bibliography} 
+
+\addcontentsline{toc}{chapter}{APPENDIX}
+
+\begin{appendix}
+    \include{End_matters/appendix_01}
+    \include{End_matters/appendix_02}
+\end{appendix}
+
+\end{document}

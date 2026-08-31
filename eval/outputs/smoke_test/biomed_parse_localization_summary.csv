@@ -1,0 +1,8 @@
+dataset,distance_f1,distance_fn,distance_fp,distance_precision,distance_recall,distance_tp,frac_dice_gt_0.05,frac_dice_gt_0.25,global_hit_rate,group_name,group_type,instance_dice_threshold,instance_f1,instance_fn,instance_fp,instance_precision,instance_recall,instance_tp,mean_dice,mean_iou,model_name,num_cases
+rexgroundingct,0.005291005291005291,3,373,0.00267379679144385,0.25,1,0.25,0.25,0.25,all,overall,0.2,0.005291005291005291,3,373,0.00267379679144385,0.25,1,0.18900321325993888,0.15086313353171157,biomed_parse,4
+rexgroundingct,0.09523809523809523,0,19,0.05,1.0,1,1.0,1.0,1.0,lung_nodule,class,0.2,0.09523809523809523,0,19,0.05,1.0,1,0.7505665618831786,0.6007255280557018,biomed_parse,1
+rexgroundingct,nan,1,184,0.0,0.0,0,0.0,0.0,0.0,lung_opacity,class,0.2,nan,1,184,0.0,0.0,0,0.002180790973263956,0.0010915857468035645,biomed_parse,1
+rexgroundingct,nan,1,156,0.0,0.0,0,0.0,0.0,0.0,consolidation,class,0.2,nan,1,156,0.0,0.0,0,0.0032655001833129405,0.0016354203243409348,biomed_parse,1
+rexgroundingct,nan,1,14,0.0,0.0,0,0.0,0.0,0.0,atelectasis,class,0.2,nan,1,14,0.0,0.0,0,0.0,0.0,biomed_parse,1
+rexgroundingct,0.09523809523809523,0,19,0.05,1.0,1,1.0,1.0,1.0,focal,morphology,0.2,0.09523809523809523,0,19,0.05,1.0,1,0.7505665618831786,0.6007255280557018,biomed_parse,1
+rexgroundingct,nan,3,354,0.0,0.0,0,0.0,0.0,0.0,non_focal,morphology,0.2,nan,3,354,0.0,0.0,0,0.001815430385525632,0.0009090020237148331,biomed_parse,3

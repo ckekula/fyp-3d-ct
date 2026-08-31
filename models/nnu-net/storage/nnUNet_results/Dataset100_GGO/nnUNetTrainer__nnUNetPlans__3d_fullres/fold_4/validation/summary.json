@@ -1,0 +1,58 @@
+{
+    "foreground_mean": {
+        "Dice": 0.03341763081038067,
+        "FN": 161503.5,
+        "FP": 2230.0,
+        "IoU": 0.017286488909578367,
+        "TN": 73494720.0,
+        "TP": 4010.5,
+        "n_pred": 6240.5,
+        "n_ref": 165514.0
+    },
+    "mean": {
+        "1": {
+            "Dice": 0.03341763081038067,
+            "FN": 161503.5,
+            "FP": 2230.0,
+            "IoU": 0.017286488909578367,
+            "TN": 73494720.0,
+            "TP": 4010.5,
+            "n_pred": 6240.5,
+            "n_ref": 165514.0
+        }
+    },
+    "metric_per_case": [
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.0,
+                    "FN": 101288,
+                    "FP": 2198,
+                    "IoU": 0.0,
+                    "TN": 37383106,
+                    "TP": 0,
+                    "n_pred": 2198,
+                    "n_ref": 101288
+                }
+            },
+            "prediction_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_results/Dataset100_GGO/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_4/validation/train_1445_a_2.nii.gz",
+            "reference_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_preprocessed/Dataset100_GGO/gt_segmentations/train_1445_a_2.nii.gz"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.06683526162076134,
+                    "FN": 221719,
+                    "FP": 2262,
+                    "IoU": 0.03457297781915673,
+                    "TN": 109606334,
+                    "TP": 8021,
+                    "n_pred": 10283,
+                    "n_ref": 229740
+                }
+            },
+            "prediction_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_results/Dataset100_GGO/nnUNetTrainer__nnUNetPlans__3d_fullres/fold_4/validation/train_1822_b_2.nii.gz",
+            "reference_file": "/home/chest_ct/code/models/nnu-net/storage/nnUNet_preprocessed/Dataset100_GGO/gt_segmentations/train_1822_b_2.nii.gz"
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "merlin",
+  "dataset": "rexgroundingct",
+  "num_samples": 50,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "lung_opacity": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "consolidation": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "atelectasis": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "macro": {
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "auroc": null,
+      "average_precision": null,
+      "ece": null,
+      "score_type": "hard_label",
+      "note": "auroc/average_precision/ece are N/A: model produces hard 0/1 decisions, not calibrated probabilities, so rank-based metrics are not computable and are excluded from the macro average."
+    }
+  }
+}

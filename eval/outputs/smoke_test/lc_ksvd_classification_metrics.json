@@ -1,0 +1,68 @@
+{
+  "task": "classification_accuracy",
+  "axis": "Axis A",
+  "model_name": "lc_ksvd",
+  "dataset": "rexgroundingct",
+  "num_samples": 38,
+  "classes": [
+    "lung_nodule",
+    "lung_opacity",
+    "consolidation",
+    "atelectasis"
+  ],
+  "threshold": 0.5,
+  "results": {
+    "lung_nodule": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571,
+      "accuracy": 0.9473684210526315,
+      "ece": NaN,
+      "support": 8
+    },
+    "lung_opacity": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": 0.75,
+      "recall": 0.6666666666666666,
+      "f1": 0.7058823529411765,
+      "accuracy": 0.868421052631579,
+      "ece": NaN,
+      "support": 9
+    },
+    "consolidation": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "atelectasis": {
+      "auroc": NaN,
+      "average_precision": NaN,
+      "precision": NaN,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": NaN,
+      "ece": NaN,
+      "support": 0,
+      "not_evaluated": true
+    },
+    "macro": {
+      "precision": 0.875,
+      "recall": 0.7083333333333333,
+      "f1": 0.7815126050420168,
+      "auroc": null,
+      "average_precision": null,
+      "ece": null,
+      "score_type": "hard_label",
+      "note": "auroc/average_precision/ece are N/A: model produces hard 0/1 decisions, not calibrated probabilities, so rank-based metrics are not computable and are excluded from the macro average."
+    }
+  }
+}

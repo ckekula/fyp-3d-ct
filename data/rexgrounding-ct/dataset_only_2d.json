@@ -1,0 +1,41 @@
+{
+    "train": [
+
+    ],
+    "val": [
+        {
+            "name": "train_13189_a_1.nii.gz",
+            "findings": {
+                "1": "Vascular structure extending to the right lower lobe from the aorta, consistent with pulmonary sequestration"
+            },
+            "entity_counts": {
+                "1": 1
+            },
+            "pixels": {
+                "1": 3154
+            },
+            "categories": {
+                "1": "2d"
+            }
+        },
+        {
+            "name": "train_13316_a_2.nii.gz",
+            "findings": {
+                "0": "Multiple parenchymal nodules in both lungs",
+                "1": "Largest nodule in the anterobasal segment of the lower lobe of the left lung, measuring 18x15 mm"
+            },
+            "entity_counts": {
+                "0": 9,
+                "1": 1
+            },
+            "pixels": {
+                "0": 946,
+                "1": 3688
+            },
+            "categories": {
+                "0": "2d",
+                "1": "2d"
+            }
+        }
+    ]
+}

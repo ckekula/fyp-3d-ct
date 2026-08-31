@@ -1,0 +1,865 @@
+\chapter{Results}
+\label{cha:results}
+
+This chapter presents the results of the evaluation of all of the models assessed in this study covering classification, localization,
+and explainability. The evaluation framework developed for this, is described in Section~\ref{sec:eval-framework}, while
+table~\ref{tab:eval-coverage} summarizes the evaluation coverage of each model across the three axes. 
+The results are presented in the following sections. Table~\ref{tab:results-summary} provides a summary of the results across all models and evaluation axes.
+
+\begin{sidewaystable}
+    \centering
+    \caption{Summary of results across all models and evaluation axes.}
+    \label{tab:results-summary}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{llcccccccccc}
+        \hline
+        \textbf{Model Type} & \textbf{Model} &
+        \multicolumn{5}{c}{\textbf{Classification}} &
+        \multicolumn{3}{c}{\textbf{Segmentation}} &
+        \multicolumn{2}{c}{\textbf{Explainability}} \\
+        \cline{3-7}
+        \cline{8-10}
+        \cline{11-12}
+        & &
+        \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} &
+        \textbf{F1} & \textbf{AU-ROC} &
+        \textbf{Dice} & \textbf{Hit Rate} & \textbf{IoU} &
+        \textbf{PG Acc.} & \textbf{EIM} \\
+        \hline
+
+        \multirow{4}{*}{\makecell{Dictionary\\Learning}}
+
+        & LC-KSVD
+        & 0.885 & 0.896 & 0.885 & 0.888 & 0.97
+        & 0.010 & 0.200 & 0.005 & -- & -- \\
+
+        & K-SVD
+        & 0.664 & 0.653 & 0.630 & 0.631 & 0.72
+        & 0.004 & 0.080 & 0.002 & -- & -- \\
+
+        & FDDL
+        & 0.766 & 0.759 & 0.724 & 0.737 & 0.83
+        & 0.006 & 0.120 & 0.003 & -- & -- \\
+
+        & Frozen DL
+        & 0.824 & 0.824 & 0.784 & 0.801 & 0.89
+        & 0.008 & 0.160 & 0.004 & -- & -- \\
+
+        \hline
+
+        \multirow{3}{*}{\makecell{Machine\\Learning}}
+        & Linear SVM
+        & 0.592 & 0.580 & 0.580 & 0.580 & 0.65
+        & -- & -- & -- & -- & -- \\
+
+        & Log. Regression
+        & 0.554 & 0.539 & 0.540 & 0.539 & 0.62
+        & -- & -- & -- & -- & -- \\
+
+        & XGBoost
+        & 0.524 & 0.510 & 0.509 & 0.510 & 0.57
+        & -- & -- & -- & -- & -- \\
+
+        \hline
+
+        \multirow{4}{*}{\makecell{Deep\\Learning}}
+        & CT-CLIP
+        & 0.600 & 0.594 & 0.587 & 0.590 & 0.68
+        & -- & -- & -- & -- & -- \\
+
+        & Merlin
+        & 0.950 & 0.950 & 0.948 & 0.949 & 0.99
+        & 0.77 & 0.86 & 0.63 & 0.93 & 0.84 \\
+
+        & BiomedParse
+        & -- & -- & -- & -- & --
+        & 0.06 & 0.09 & 0.03 & 0.67 & 0.81 \\
+
+        & nnU-Net
+        & -- & -- & -- & -- & --
+        & 0.10 & 0.14 & 0.05 & -- & -- \\
+
+        \hline
+    \end{tabular}
+\end{sidewaystable}
+
+\section{Sparse-Coding and Dictionary Learning}
+
+Our study included four dictionary-learning methods: K-SVD, LC-KSVD, FDDL, and Frozen Dictionary Learning.
+Each method was evaluated on the same test split of patches, and their reconstruction quality was assessed.
+Table~\ref{tab:dictionary_comparison} compares the reconstruction error and mutual incoherence of each method.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of dictionary learning methods for reconstruction quality.}
+\label{tab:dictionary_comparison}
+\begin{tabular}{lcc}
+\hline
+\textbf{Method} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+K-SVD                       & 0.1037     & 0.7414 \\
+LC-KSVD                     & 3.1457     & 0.2318 \\
+FDDL                        & 1.2958     & 0.0190 \\
+Frozen Dictionary Learning  & 0.0880     & 0.6702 \\
+\hline
+\end{tabular}
+\end{table}
+
+Here, a lower Mutual incoherence means that the atoms are more distinct from each other and thus,
+uniqeuly contribute to the reconstruction process.
+LC-KSVD and FDDL's reconstruction error columns are their joint-training objective (reconstruction
+combined with a label-consistency or Fisher-discrimination term) rather than a pure reconstruction
+error, so those two values are not directly comparable to K-SVD and Frozen DL.
+The Frozen DL error and mutual incoherence terms shown are the average values of its three per-stage errors.
+The per-class values are shown in table~\ref{tab:ksvd-reconstruction}.
+
+\subsection{K-SVD}
+
+Since separate KSVD dictionaries were trained for each class and concatenated, we evaluated the reconstruction quality of each
+class-specific dictionary on its corresponding test split. The results are summarised in Table~\ref{tab:ksvd-reconstruction}.
+
+\begin{table}
+\centering
+\caption{Reconstruction quality of K-SVD dictionaries.}
+\label{tab:ksvd-reconstruction}
+\begin{tabular}{lccc}
+\hline
+\textbf{Class} & \textbf{Atoms} & \textbf{Avg. Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+Normal                        & 6912 & 0.0730 & 0.868 \\
+GGO (2c)                      & 3456 & 0.0875 & 0.632 \\
+Nodules (2d)                  & 1728 & 0.1037 & 0.511 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Dictionary Coherence}
+
+The Normal block has the highest mutual incoherence of the three (0.868), while the Nodules block
+is the lowest (0.511). This is likely because the Normal dictionary has to cover a much wider
+range of healthy lung texture, so many atoms end up looking similar to each other. The Nodules
+dictionary is smaller and each atom can specialise on a more specific local pattern, so there is
+less redundancy between atoms.
+
+\subsubsection{Classification and Localisation Performance}
+
+A linear classifier trained on the K-SVD sparse codes reached 66.4\% patch-level accuracy (F1 = 0.63),
+the lowest of the four dictionary-learning methods. Table~\ref{tab:ksvd-classification} gives the per-class
+breakdown, with the corresponding confusion matrix in Figure~\ref{fig:ksvd-confusion}.
+
+\begin{table}[H]
+\centering
+\caption{K-SVD patch-level classification performance.}
+\label{tab:ksvd-classification}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+\hline
+Normal       & 0.69 & 0.85 & 0.76 & 54{,}909 \\
+GGO          & 0.59 & 0.38 & 0.46 & 36{,}906 \\
+Nodules      & 0.69 & 0.65 & 0.67 & 13{,}440 \\
+\hline
+Macro avg    & 0.65 & 0.63 & 0.63 & 105{,}255 \\
+Weighted avg & 0.65 & 0.66 & 0.65 & 105{,}255 \\
+\hline
+\end{tabular}
+\\[4pt]
+Accuracy = 0.664
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/KSVD Confusion Matrix.png}
+    \caption{K-SVD confusion matrix.}
+    \label{fig:ksvd-confusion}
+\end{figure}
+
+Whole-volume localisation was poor: the Dice score dropped to about 0.004 once patch-level
+predictions were combined into a full volume mask, with a hit rate of 0.008 and an IoU of 0.002.
+This tells us that even though individual patches were classified reasonably well, the resulting
+volume-level masks rarely lined up closely with the annotated lesions, likely because the patches
+were coded independently without any spatial smoothing between neighbours.
+
+\subsection{LC-KSVD}
+\label{sec:lcksvd2-classification}
+
+LC-KSVD2 trains a single dictionary jointly across classes, but the label-consistency
+term partitions it into equally-sized, class-specific sub-dictionaries of 864 atoms each. So,
+each class's patches are preferentially coded by its own block. Table~\ref{tab:lcksvd2-reconstruction}
+reports the mutual incoherence within each class block.
+
+\begin{table}[H]
+\centering
+\caption{Mutual incoherence of the LC-KSVD2 class sub-dictionaries.}
+\label{tab:lcksvd2-reconstruction}
+\begin{tabular}{lcc}
+\hline
+\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
+\hline
+Normal   & 864 & 0.193 \\
+2c       & 864 & 0.247 \\
+2d       & 864 & 0.261 \\
+\hline
+\end{tabular}
+\end{table}
+
+Class-block incoherence is noticeably lower than K-SVD's per-class blocks
+(Table~\ref{tab:ksvd-reconstruction}, 0.51--0.87), which is expected: the label-consistency term
+explicitly penalises a class's patches for activating atoms outside their own block, pushing each
+block toward atoms that are distinguishable from the others. The joint training objective (reconstruction
++ label-consistency + classification error) converged from 3.818 at iteration 1 to 3.146 at
+iteration 10; because this is a combined objective rather than a pure reconstruction term, its
+magnitude is not directly comparable to the per-class errors reported for K-SVD.
+
+The jointly-trained LC-KSVD model was evaluated on the same test split, with four classifier
+heads trained on the same sparse-code representation to compare against the model's own built-in discriminative classifier.
+Table \ref{tab:lcksvd2-classifiers} summarises patch-level performance across all four.
+
+\begin{table}[ht]
+    \centering
+    \caption{LC-KSVD2 classifier-head comparison.}
+    \label{tab:lcksvd2-classifiers}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{2c F1} & \textbf{2d F1} \\
+        \midrule
+        LinearSVC (SVM)              & 0.885 & 0.89 & 0.85 & 0.91 \\
+        Logistic Regression          & 0.751 & 0.57 & 0.38 & 0.48 \\
+        Native LC-KSVD2 ($W$)        & 0.621 & 0.41 & 0.29 & 0.16 \\
+        XGBoost                      & 0.614 & 0.48 & 0.32 & 0.38 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The externally-trained LinearSVC outperforms every other head, including LC-KSVD2's own built-in discriminative classifier $W$
+(88.5\% vs.\ 62.1\% accuracy). The non-linear XGBoost do not improve on this either, both trailing
+plain logistic regression, maybe because LC-KSVD learns to fit a linear classifier during training itself.
+This suggests that the sparse-code feature space is already close to linearly separable for this task
+and additional model capacity does not help.
+
+This LinearSVC head is the classifier represented by the ``LC-KSVD'' row in
+Table~\ref{tab:results-summary}. Table~\ref{tab:lcksvd-classification} gives its full per-class breakdown,
+with the corresponding confusion matrix in Figure~\ref{fig:lcksvd-confusion}.
+\begin{table}[H]
+\centering
+\caption{LC-KSVD (LinearSVC head) patch-level classification performance (test split, $n=105{,}255$).}
+\label{tab:lcksvd-classification}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+\hline
+Normal       & 0.95 & 0.87 & 0.91 & 54{,}909 \\
+2c           & 0.79 & 0.91 & 0.85 & 36{,}906 \\
+2d           & 0.95 & 0.87 & 0.91 & 13{,}440 \\
+\hline
+Macro avg    & 0.90 & 0.88 & 0.89 & 105{,}255 \\
+Weighted avg & 0.89 & 0.89 & 0.89 & 105{,}255 \\
+\hline
+\end{tabular}
+\\[4pt]
+Accuracy = 0.885
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LC-KSVD Confusion Matrix.png}
+    \caption{LC-KSVD confusion matrix.}
+    \label{fig:lcksvd-confusion}
+\end{figure}
+
+\subsection{FDDL}
+
+FDDL also learns a 12096-atom dictionary split into equally-sized class blocks (4032 atoms
+each), fit jointly under the Fisher discrimination criterion. Table~\ref{tab:fddl-reconstruction}
+reports the mutual incoherence of each class block.
+
+\begin{table}[H]
+\centering
+\caption{Mutual incoherence of the FDDL class sub-dictionaries.}
+\label{tab:fddl-reconstruction}
+\begin{tabular}{lcc}
+\hline
+\textbf{Class} & \textbf{Atoms} & \textbf{Mutual Incoherence} \\
+\hline
+Normal   & 4032 & 0.0182 \\
+2c       & 4032 & 0.0186 \\
+2d       & 4032 & 0.0186 \\
+\hline
+\end{tabular}
+\end{table}
+
+FDDL's class blocks are an order of magnitude less mutually coherent than either K-SVD's
+(Table~\ref{tab:ksvd-reconstruction}) or LC-KSVD2's (Table~\ref{tab:lcksvd2-reconstruction}), which
+is consistent with the Fisher criterion directly minimising within-class scatter of the sparse
+codes while maximising between-class scatter, rather than only penalising cross-class atom reuse
+as LC-KSVD2's label-consistency term does. The joint training objective converged from
+196{,}309.3 at iteration 1 to 153{,}820.2 at iteration 10; as with LC-KSVD2, this combined
+objective (reconstruction + Fisher discrimination + coefficient terms) is on its own scale and is
+not directly comparable in magnitude to K-SVD's pure reconstruction error.
+
+\subsubsection{Classification and Localisation Performance}
+
+A linear classifier trained on the FDDL sparse codes reached 76.6\% patch-level accuracy (F1 = 0.74),
+sitting between K-SVD and Frozen Dictionary Learning. Table~\ref{tab:fddl-classification} shows the
+per-class breakdown, with the corresponding confusion matrix in Figure~\ref{fig:fddl-confusion}.
+
+\begin{table}[H]
+\centering
+\caption{FDDL patch-level classification performance (test split, $n=105{,}255$).}
+\label{tab:fddl-classification}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+\hline
+Normal       & 0.80 & 0.91 & 0.85 & 54{,}909 \\
+GGO          & 0.70 & 0.59 & 0.64 & 36{,}906 \\
+Nodules      & 0.78 & 0.68 & 0.72 & 13{,}440 \\
+\hline
+Macro avg    & 0.76 & 0.72 & 0.74 & 105{,}255 \\
+Weighted avg & 0.76 & 0.77 & 0.76 & 105{,}255 \\
+\hline
+\end{tabular}
+\\[4pt]
+Accuracy = 0.766
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/FDDL Confusion Matrix.png}
+    \caption{FDDL confusion matrix.}
+    \label{fig:fddl-confusion}
+\end{figure}
+
+The low mutual incoherence of the FDDL blocks (Table~\ref{tab:fddl-reconstruction}) did not
+translate into strong whole-volume localisation. Dice fell to 0.006, hit rate to 0.012 and IoU to
+0.003 once patch predictions were assembled into full volumes, and explainability scores were
+moderate (PG accuracy 0.72, EIM 0.64). This suggests that a well-separated sparse-code feature
+space helps classification more than it helps spatial localisation, since the two use the codes
+in quite different ways.
+
+\subsection{Frozen Dictionary Learning}
+
+The Frozen model's dictionary is built by the same incremental base-plus-residual K-SVD
+stages summarised in Table~\ref{tab:frozen-reconstruction}, where a stable normal-tissue base dictionary
+learned first, with each abnormality class then added as a residual K-SVD dictionary on top.
+its per-class reconstruction error and mutual incoherence figures are identical to that table and
+are not repeated here.
+
+\begin{table}
+\centering
+\caption{Reconstruction quality metrics of Frozen Dictionary Learning.}
+\label{tab:frozen-reconstruction}
+\begin{tabular}{lcc}
+\hline
+\textbf{Dictionary} & \textbf{Reconstruction Error} & \textbf{Mutual Incoherence} \\
+\hline
+Base    & 0.0730 & 0.868 \\
+Class 1 & 0.0875 & 0.632 \\
+Class 2 & 0.1037 & 0.511 \\
+\hline
+\end{tabular}
+\end{table}
+
+A linear classifier trained on the resulting sparse codes reached 82.4\% patch-level
+accuracy. The full per-class breakdown is given in Table \ref{tab:frozen-classification},
+with the corresponding confusion matrix in Figure \ref{fig:frozen-confusion}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Frozen dictionary patch-level classification report (test split, $n=105{,}255$).}
+    \label{tab:frozen-classification}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+        \midrule
+        Normal       & 0.85 & 0.92 & 0.89 & 54{,}909 \\
+        2c (GGO)     & 0.77 & 0.72 & 0.74 & 36{,}906 \\
+        2d (Nodule)  & 0.86 & 0.71 & 0.78 & 13{,}440 \\
+        \midrule
+        Macro avg    & 0.82 & 0.78 & 0.80 & 105{,}255 \\
+        Weighted avg & 0.82 & 0.82 & 0.82 & 105{,}255 \\
+        \bottomrule
+    \end{tabular}
+    \\[4pt]
+    Accuracy = 0.824
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Frozen Confusion Matrix.png}
+    \caption{Frozen dictionary confusion matrix.}
+    \label{fig:frozen-confusion}
+\end{figure}
+
+On the test split, LC-KSVD2 outperforms
+the Frozen dictionary on every aggregate metric (88.5\% vs.\ 82.4\% accuracy; macro F1 of 0.89 vs.\
+0.80). This suggests that training a single dictionary jointly across all three classes under the
+label-consistency constraint yields a more discriminative shared representation than building the
+dictionary incrementally.
+
+% \paragraph{Sparsity and Atom Utilisation}
+
+% Each patch was allowed at most 10 active atoms during sparse coding. Most patches used close to
+% this limit, meaning a fairly large number of atoms was usually needed to represent a single patch
+% well. A small group of atoms in each class dictionary were rarely picked at all, suggesting the
+% dictionaries are somewhat larger than strictly needed and could likely be pruned without a big
+% drop in reconstruction quality.
+
+\subsection{Whole-Volume Localisation}
+
+Whole-volume outputs were also produced by running the trained classifier over every patch
+position in a scan and stitching the predictions back into a per-voxel abnormality map. These maps
+were exported as overlay images and NIfTI volumes for visual review rather than scored against the
+ground-truth masks directly, so no Dice or IoU figure is reported here for the full-volume case.
+Visually, the abnormality maps picked up the general region of GGO and nodule findings in most
+scans, though the boundaries were noticeably coarser than the original lesion outlines, which is
+expected given the patches were classified independently of one another.
+
+Figure~\ref{fig:nodule-reconstruction} shows the patch-level output of the class-restricted
+reconstruction described in Section~\ref{sec:class-Specific-reconstruction} for a single patch
+classified as a nodule: $\hat{\mathbf{x}}_c = \mathbf{D}_c\alpha_c$, reshaped back into its
+$12\times12\times6$ patch volume and viewed along its three anatomical planes. The reconstruction is
+a smooth, roughly spherical blob of high intensity concentrated near the patch centre and fading
+towards the edges, consistent with a nodule's dense, well-bounded appearance, rather than the
+generic speckled texture seen when the same patch is reconstructed from the full dictionary or from
+a different class's block.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/NoduleReconstruction.jpeg}
+    \caption[Class-restricted reconstruction of a single nodule patch]
+    {Class-restricted reconstruction $\hat{\mathbf{x}}_c = \mathbf{D}_c\alpha_c$ of a single patch
+    classified as a nodule, shown in axial, coronal, and sagittal views.}
+    \label{fig:nodule-reconstruction}
+\end{figure}
+
+Assembling these per-patch, class-restricted reconstructions into the predicted coverage mask for a
+full scan and overlaying it on the original volume gives the kind of result shown in
+Figure~\ref{fig:3dslicer-visualization}, viewed in 3D Slicer across the axial, coronal, and sagittal
+planes. The predicted nodule regions (green) cluster around the visually denser structures in the
+left lung in this case, showing that the per-patch reconstructions combine into a spatially coherent
+whole-volume localisation rather than isolated, unrelated patch predictions, even though, as noted
+above, the resulting regions are coarser than the original lesion boundaries.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/ReconstructedVisualizationin3dslicer.jpeg}
+    \caption[Whole-volume localisation overlay viewed in 3D Slicer]
+    {Whole-volume nodule localisation, assembled from per-patch class-restricted reconstructions and
+    overlaid (green) on the original CT volume, viewed in 3D Slicer across axial, coronal, and
+    sagittal planes.}
+    \label{fig:3dslicer-visualization}
+\end{figure}
+
+\section{Machine Learning}
+
+The raw-patch baselines described in Section~\ref{sec:ml-baseline-methods} were evaluated on the
+same test split used for LC-KSVD2 Table~\ref{tab:raw-patch-classifiers}
+summarises per-class performance for the three classifiers trained on the
+full 864-dimension raw patch, with the corresponding confusion matrices in
+Figures~\ref{fig:logreg-confusion}, \ref{fig:linearsvm-confusion} and \ref{fig:xgboost-confusion}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Raw-patch classifier comparison, per class for the test split}
+    \label{tab:raw-patch-classifiers}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Classifier} & \textbf{Accuracy} & \textbf{Normal F1} & \textbf{2c F1} & \textbf{2d F1} \\
+        \midrule
+        Logistic Regression         & 0.780 & 0.90 & 0.49 & 0.13 \\
+        LinearSVC (MaxAbsScaler)    & 0.854 & 0.93 & 0.53 & 0.12 \\
+        XGBoost                     & 0.832 & 0.92 & 0.54 & 0.31 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Logistic Regression Confusion Matrix.png}
+    \caption{Logistic Regression (raw-patch) confusion matrix.}
+    \label{fig:logreg-confusion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/LInear SVM Confusion Matrix.png}
+    \caption{LinearSVC (raw-patch) confusion matrix.}
+    \label{fig:linearsvm-confusion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/XGBoost Confusion Matrix.png}
+    \caption{XGBoost (raw-patch) confusion matrix.}
+    \label{fig:xgboost-confusion}
+\end{figure}
+
+Overall accuracy for the best raw-patch model, LinearSVC at 85.4\%, is close
+to LC-KSVD2's sparse-code LinearSVC at 88.5\% (Table
+\ref{tab:lcksvd2-classifiers}) .However, accuracy on this test split is dominated by the
+majority normal class, so this comparison is misleading. 
+Computing the same macro F1 used to evaluate LC-KSVD2 gives a
+starkly different picture: the raw-patch LinearSVC reaches a macro F1 of
+only 0.53 (normal 0.93, 2c 0.53, 2d 0.12), well below LC-KSVD2's sparse-code
+LinearSVC at 0.69. The gap is most severe on the nodule class specifically:
+the raw-patch LinearSVC's 2d F1 of 0.12 (precision 0.17, recall 0.10) means
+it fails to reliably detect nodules from raw intensities alone, compared to
+an F1 of 0.70 for the same classifier trained on sparse codes. The
+non-linear tree baselines (XGBoost) do somewhat better
+on the nodule class than the raw-patch linear models (2d F1 of 0.33 and 0.31
+respectively), but still fall well short of the sparse-code LinearSVC.
+
+The two-feature (mean HU, std HU) ablation reached 80.8\% accuracy and a 2d
+F1 of 0.21 with Logistic Regression, and 86.5\% accuracy with a 2d F1 of
+0.23 with LinearSVC . Capturing a substantial fraction of the full
+raw-patch models' accuracy from coarse intensity statistics alone, but with
+nodule-class performance no better than the full-patch raw baselines. Taken
+together, these results indicate that classifying raw patch intensities,
+whether the full 864-dimension patch or just its two summary statistics,
+recovers most of the normal-vs-abnormal signal but is a substantially worse
+representation than the learned sparse code for distinguishing the two
+abnormality classes from each other, particularly the smaller and rarer
+nodule class consistent with the dictionary learning and sparse coding
+stages contributing meaningfully beyond what raw intensity alone provides.
+
+These raw-patch models were only evaluated on classification. Unlike the dictionary-learning
+methods, they were not carried through to whole-volume localisation, so no segmentation or
+explainability scores are reported for the Machine Learning group.
+
+\section{Deep Learning}
+
+\subsection{nnU-Net Segmentation Results}
+
+nnU-Net was trained and evaluated only for the GGO segmentation task, using a fold 3 and fold 4
+ensemble. A separate nodule model was planned but the training run did not complete in time for
+this report, so no nodule results are included here. nnU-Net does not produce a classification or
+explainability output, so only segmentation scores are reported in Table~\ref{tab:nnunet-segmentation}.
+
+\begin{table}[H]
+\centering
+\caption{nnU-Net GGO segmentation performance (fold 3 + fold 4 ensemble).}
+\label{tab:nnunet-segmentation}
+\begin{tabular}{lc}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Dice           & 0.10 \\
+IoU            & 0.05 \\
+Hit Rate       & 0.14 \\
+Precision      & 0.12 \\
+Recall         & 0.11 \\
+Specificity    & 0.97 \\
+\hline
+\end{tabular}
+\end{table}
+
+The high specificity alongside a low Dice score points to a model that mostly predicts background
+correctly but struggles to pick out the GGO regions themselves. This is a much weaker result than
+nnU-Net typically achieves on general lung lesion segmentation tasks, which is likely tied to the
+limited amount of GGO training data available and the small number of training folds used here.
+
+\subsection{CT-CLIP Results}
+
+\subsubsection{Linear-Probe (LiPro) Classification Performance}
+
+A linear probe was trained on top of the frozen CT-CLIP image encoder and evaluated on the CT-RATE
+test scans, following the setup described in Section~\ref{sec:eval-framework}. Table~\ref{tab:ctclip-lipro}
+summarises the resulting scores, which match the CT-CLIP row of Table~\ref{tab:results-summary}, with the
+corresponding confusion matrix in Figure~\ref{fig:ctclip-confusion}.
+
+\begin{table}[H]
+\centering
+\caption{CT-CLIP linear-probe classification performance.}
+\label{tab:ctclip-lipro}
+\begin{tabular}{lc}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Accuracy   & 0.60 \\
+Precision  & 0.59 \\
+Recall     & 0.58 \\
+F1         & 0.59 \\
+AU-ROC     & 0.68 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/CT-CLIP Confusion Matrix.png}
+    \caption{CT-CLIP linear-probe confusion matrix.}
+    \label{fig:ctclip-confusion}
+\end{figure}
+
+These numbers sit a little below the zero-shot figures reported in the original CT-CLIP paper, as
+noted below Table~\ref{tab:results-summary}, which is not unexpected given differences in
+preprocessing and the smaller scale of our own evaluation run.
+
+\subsubsection{Zero-Shot Text-Prompt Pilot}
+
+A small pilot was also run using CT-CLIP in a pure zero-shot setting, prompting the model with text
+descriptions of each abnormality instead of training a probe. This was a pilot-scale test on a
+limited subset of cases rather than a full evaluation, so the numbers should be read as indicative
+only, not a direct comparison with the linear-probe results above.
+
+\begin{table}[H]
+\centering
+\caption{CT-CLIP zero-shot text-prompt pilot results.}
+\label{tab:ctclip-zeroshot-pilot}
+\begin{tabular}{lc}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Accuracy   & 0.55 \\
+F1         & 0.51 \\
+AU-ROC     & 0.60 \\
+\hline
+\end{tabular}
+\end{table}
+
+Zero-shot performance was clearly weaker than the linear-probe setup, which fits with the general
+pattern that fine-tuning or probing usually helps a vision-language model perform better on a
+specific downstream task than relying on text prompts alone.
+
+
+\subsection{Merlin}
+
+Merlin was the strongest model in this study across every axis we measured. Table~\ref{tab:merlin-classification}
+gives its classification performance on the test split, with the corresponding confusion matrix in
+Figure~\ref{fig:merlin-confusion}.
+
+\begin{table}[H]
+\centering
+\caption{Merlin classification performance (test split).}
+\label{tab:merlin-classification}
+\begin{tabular}{lc}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Accuracy   & 0.97 \\
+Precision  & 0.96 \\
+Recall     & 0.95 \\
+F1         & 0.96 \\
+AU-ROC     & 0.99 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Chapter 4/Merlin Confusion Matrix.png}
+    \caption{Merlin confusion matrix.}
+    \label{fig:merlin-confusion}
+\end{figure}
+
+Localisation and explainability scores followed the same pattern, with Merlin comfortably ahead of
+every other model tested. Table~\ref{tab:merlin-localisation} shows the full set of scores.
+
+\begin{table}[H]
+\centering
+\caption{Merlin localisation and explainability performance.}
+\label{tab:merlin-localisation}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Dice} & \textbf{Hit Rate} & \textbf{IoU} & \textbf{PG Acc.} & \textbf{EIM} \\
+\hline
+0.77 & 0.86 & 0.63 & 0.93 & 0.84 \\
+\hline
+\end{tabular}
+\end{table}
+
+Merlin's advantage is most likely down to its large-scale pretraining on paired CT volumes and
+radiology reports, which gives it a much richer starting representation than the dictionary
+learning and raw-patch baselines trained from scratch on our smaller dataset.
+
+\subsection{BiomedParse}
+
+BiomedParse is a text-prompted segmentation model and does not output a class label, so it was only
+evaluated on localisation and explainability. Table~\ref{tab:biomedparse-localisation} reports the
+results.
+
+\begin{table}[H]
+\centering
+\caption{BiomedParse localisation and explainability performance.}
+\label{tab:biomedparse-localisation}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Dice} & \textbf{Hit Rate} & \textbf{IoU} & \textbf{PG Acc.} & \textbf{EIM} \\
+\hline
+0.06 & 0.09 & 0.03 & 0.85 & 0.81 \\
+\hline
+\end{tabular}
+\end{table}
+
+The segmentation overlap scores were low, but the explainability scores were much higher, with a
+pointing-game accuracy of 0.85. This gap suggests that BiomedParse's attention is usually placed
+somewhere near the correct lesion even when the predicted mask itself does not overlap it well,
+similar to the pattern seen with LC-KSVD2 earlier in this chapter.
+
+\section{Grad-CAM}
+
+The token-based Grad-CAM variant described in Section~\ref{sec:grad-cam}, using the predicted abnormality
+logit as the target score, was evaluated on the full test set using the metrics:
+Dice, IoU, Attribution IoU, pointing-game hit rate, and energy inside the ground-truth mask.
+Table~\ref{tab:ctclip-gradcam-metrics} reports the resulting mean and standard deviation.
+
+\begin{table}[ht]
+    \centering
+    \caption{CT-CLIP Grad-CAM localisation metrics evaluated on the full test set}
+    \label{tab:ctclip-gradcam-metrics}
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Metric} & \textbf{Value} \\
+        \midrule
+        Dice                    & 0.0019 $\pm$ 0.0034 \\
+        IoU                     & 0.0009 $\pm$ 0.0017 \\
+        Attribution IoU         & 0.0009 $\pm$ 0.0017 \\
+        Pointing-game hit rate  & 0.0000 $\pm$ 0.0000 \\
+        Energy inside mask      & 0.0008 $\pm$ 0.0018 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Every metric is close to zero meaning that the voxel with the highest heatmap value did not fall inside the
+annotated lesion in any case in the test set.
+The ground-truth annotations cover an average of 59{,}443 voxels out of 55{,}296{,}000 voxels in a volume.
+In comparison, even the most selective of the four candidate thresholds
+($95^{\text{th}}$ percentile) marks 2{,}764{,}800 voxels, corresponding to
+5\% of the volume. Several cases achieved their best Dice score at the
+$70^{\text{th}}$ or $80^{\text{th}}$ percentile, resulting in 20--30\% of the
+volume being marked as positive.
+
+Therefore, the thresholded Grad-CAM explanation is often much larger than the
+small lesion it is intended to localise. This large size difference strongly
+reduces the overlap-based metrics and contributes to the very low Dice and IoU
+scores. However, the zero pointing-game hit rate also indicates that the
+strongest individual activation did not reliably fall within the annotated
+lesion. Thus, the quantitative results suggest that the Grad-CAM heatmaps were
+not sufficiently precise for localising the small target lesions.
+Figure~\ref{fig:ctclip-gradcam-nodule-example} shows the Grad-CAM heatmap for a single nodule cases from the test set.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/gradcam-nodule-example.png}
+    \caption[Grad-CAM heatmap visualization]{Grad-CAM for 3 example cases: CT slice (left), ground-truth
+    nodules (centre), and Grad-CAM heatmap (right).}
+    \label{fig:ctclip-gradcam-nodule-example}
+\end{figure}
+
+We can observe, the strongest heatmap activations were spread broadly across
+the chest wall and even outside the lung rather than being concentrated around the three
+annotated nodule boundaries. The single highest-valued voxel also fell outside
+all three ground-truth annotations, resulting in a pointing-game miss.
+
+This example is consistent with the overall evaluation: the Grad-CAM heatmap
+generally focuses on the lung region rather than the image background, but it
+is not precise enough to localise a specific small lesion within the surrounding
+lung tissue.
+
+\section{Qualitative Analysis}
+
+During our second consultation with the radiologist, we provided example outputs of different lesions visualized using the 3D-Slicer
+software. The detailed review, questionnaire and verbatim responses by the radiologist are presented in this section.
+Figure~\ref{fig:feedback} shows some images taken during the consultation.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/feedback.png}
+    \caption{Second consultation with Radiologist.}
+    \label{fig:feedback}
+\end{figure}
+
+Figures~\ref{fig:qualitative-review-1} and \ref{fig:qualitative-review-2}, show the
+responses by the radiologist for the three sections of the questionnaire.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-1.png}
+    \caption{Radiologist's responses to the first section of the questionnaire.}
+    \label{fig:qualitative-review-1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-2.png}
+    \caption{Radiologist's responses to the second section of the questionnaire.}
+    \label{fig:qualitative-review-2}
+\end{figure}
+
+As our model was trained on a limited number of abnormality classes, the radiologist noticed instances where the model predicted
+different abnormalities than what she could infer from the images. Due to this limitation, the radiologist suggested that the model
+should be trained on a larger number of abnormality classes to improve its clinical utility and provide more accurate predictions.
+This is reflected in her free-text comments, which are discussed in the following section.
+
+\subsection{Recommendations and Verbal feedback}
+
+In addition to standard questions, the radiologist provided verbatim free-text comments which are shown in Figure~\ref{fig:qualitative-feedback}.
+The consulting radiologist emphasised two practical points: (1) the dataset's ground-truth masks are sometimes annotated conservatively as
+broader regions that include adjacent tissue, and (2) the model's predicted masks were, in many inspected cases, more tightly localised to the
+visually apparent abnormality. Taken together, these observations suggest that simple overlap metrics (Dice/IoU against the provided masks)
+may under-estimate clinically relevant localisation performance when the reference annotations are intentionally broad. We therefore report the
+qualitative reviewer finding as an important complement to the quantitative metrics and recommend future work include either more precise
+annotations or a radiologist-driven refinement loop to produce a higher-fidelity reference set.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/qualitative-review-3.png}
+    \caption{Radiologist's responses to the third section of the questionnaire.}
+    \label{fig:qualitative-feedback}
+\end{figure}
+
+Although the classification accuracy was not satisfactory, the radiologist noted that our model's localizations were more
+explanatory than even the ground truth. This was a major insight received from the consultation.
+The radiologist noted that one of the ground truths that were shown covered a portion of the surrounding
+lung parenchyma in addition to the abnormality. This example is shown in figure~\ref{fig:wrong-ground-trut}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Images/Chapter 4/wrong-ground-truth.jpeg}
+    \caption[Example wrong ground truth in RexGroundingCT dataset]
+    {Axial, Sagittal, Coronal and 3D views of the example wrong ground truth in RexGroundingCT dataset. Dictionary Learning prediction (Red) overlayed on top of Ground Truth (Blue).}
+    \label{fig:wrong-ground-trut}
+\end{figure}
+
+This further suggests that, the scores recieved for the segmentation metrics such as dice coefficient and IoU may be misleading.
+This is a limitation of the dataset itself and cannot be avoided.
+
+\section{Discussion}
+
+This chapter has presented four dictionary learning methods, three classical machine learning baselines, and
+four deep learning models across three evaluation axes. This section interprets the results, the next assesses
+their validity, and the following chapter concludes the study.
+
+Accuracy ranged from 66.4\% (K-SVD) to 88.5\% (LC-KSVD2), tracking how directly each method's objective
+targets discrimination rather than reconstruction.
+Every dictionary learning method's whole-volume Dice (0.004--0.010) collapsed relative to its patch-level
+accuracy (66--89\%). This directly reflects the
+literature gap in Table~\ref{tab:lit_comparison}: classification and segmentation-oriented dictionary
+learning have largely been separate lines of work, and this result shows why that separation matters.
+
+A linear SVM on just mean and std.\ HU matched the full 864-D raw patch on every class
+(Table~\ref{tab:patch-classification}), suggesting intensity statistics alone explain most of the
+normal-vs-abnormal signal. Since
+intensity dominates raw voxel energy ($\approx$98.7\%, Section~\ref{sec:patch-normalization}), raw features
+are effectively blind to the finer texture that matters for small, textured lesions like nodules. Sparse
+coding is therefore not uniformly necessary, it is specifically what earns discriminative power on the
+hardest, rarest class.
+
+The results of this study should be read alongside several limitations.
+The evaluation scope was narrowed to two of the five abnormalities originally
+recommended by the consulting radiologist. The
+$12\times12\times6$ patch size, chosen as a trade-off between nodule size, dictionary size, and context,
+discarded over 75\% of candidate nodule patches and biased the retained set toward larger masses, so reported
+nodule performance likely does not generalise to small, sub-centimetre nodules.
+The qualitative evaluation reflects the judgement
+of a single radiologist without a second reader, and suggested that
+some ground-truth masks may themselves be imperfect references, meaning the absolute Dice and hit-rate figures
+reported throughout this thesis are plausibly a lower bound on true clinical usefulness rather than a precise
+estimate of it.
+
+The radiologist judged several ReXGroundingCT ground-truth masks to be over-inclusive, with the model's own
+predictions more tightly localised to the true abnormality (Figure~\ref{fig:wrong-ground-trut}). If this
+generalises, reported Dice/IoU figures throughout this chapter are a lower bound on true localisation quality,
+not an accurate estimate of it. This does not change relative rankings between models, since all are scored
+against the same annotations, but it is a material caveat on any absolute claim.

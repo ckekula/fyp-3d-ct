@@ -41,6 +41,7 @@ def load_localization_samples(
     gt_mask_root: Path,
     metadata_json: Path | None,
     model_name: str,
+    class_name: str | None = None,
 ):
     model = normalize_class_name(model)
 
@@ -77,10 +78,10 @@ def load_localization_samples(
         )
         return adapter.load()
 
-    if model == "nnunet":
-        from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter  # type: ignore
+    if model == "medsam2":
+        from eval.adapters.medsam2_adapter import MedSAM2LocalizationAdapter
 
-        adapter = NNUNetLocalizationAdapter(
+        adapter = MedSAM2LocalizationAdapter(
             output_dir=predictions_dir,
             gt_mask_root=gt_mask_root,
             metadata_json=metadata_json,
@@ -88,10 +89,29 @@ def load_localization_samples(
         )
         return adapter.load()
 
+    if model == "nnunet":
+        from eval.adapters.nnunet_adapter import NNUNetLocalizationAdapter
+
+        if not class_name:
+            raise ValueError(
+                "--class-name is required for model=nnunet: each nnU-Net "
+                "checkpoint is a single-class binary segmenter, so the "
+                "predictions directory doesn't carry a class label."
+            )
+
+        adapter = NNUNetLocalizationAdapter(
+            output_dir=predictions_dir,
+            gt_mask_root=gt_mask_root,
+            class_name=class_name,
+            metadata_json=metadata_json,
+            model_name=model_name,
+        )
+        return adapter.load()
+
     raise ValueError(
         f"Unsupported localization model: {model}. "
-        "Supported now: biomed_parse, lc_ksvd. "
-        "Add more adapters for medsam2, segvol, nnunet, swin_unetr."
+        "Supported now: biomed_parse, lc_ksvd, merlin, medsam2, nnunet. "
+        "Add more adapters for segvol, swin_unetr."
     )
 
 
@@ -118,12 +138,21 @@ def compute_threshold_sweep(
     thresholds: List[float],
     normalize_masks: bool,
 ) -> Dict[str, dict]:
+    # Samples with an already-binarized pred_mask (is_soft_mask=False, e.g.
+    # MedSAM2/Merlin/LC-KSVD) give an identical result at every threshold --
+    # sweeping them would misleadingly present "no sensitivity" as if it were
+    # a measured property of the model, when it's really just thresholding a
+    # 0/1 array. Exclude them from the sweep; only genuinely soft-scored
+    # samples (e.g. BiomedParse) are meaningfully swept.
+    soft_samples = [s for s in samples if getattr(s, "is_soft_mask", True)]
+    n_excluded = len(samples) - len(soft_samples)
+
     sweep_results = {}
 
     for threshold in thresholds:
         thresholded_samples = []
 
-        for sample in samples:
+        for sample in soft_samples:
             pred = np.asarray(sample.pred_mask)
 
             if normalize_masks:
@@ -136,6 +165,14 @@ def compute_threshold_sweep(
             )
 
         sweep_results[str(threshold)] = compute_localization_metrics(thresholded_samples)
+
+    if n_excluded:
+        sweep_results["_note"] = (
+            f"{n_excluded} sample(s) excluded from the threshold sweep because "
+            "their pred_mask is already a hard 0/1 decision (is_soft_mask=False) "
+            "-- thresholding it at different values would always give the same "
+            "result, which is not real threshold sensitivity."
+        )
 
     return sweep_results
 
@@ -218,6 +255,14 @@ def parse_args() -> argparse.Namespace:
         help="Normalize soft masks to [0, 1] before thresholding.",
     )
 
+    parser.add_argument(
+        "--class-name",
+        type=str,
+        default=None,
+        help="Finding class this run evaluates (required for model=nnunet, "
+        "since one nnU-Net checkpoint is a single-class binary segmenter).",
+    )
+
     return parser.parse_args()
 
 
@@ -234,6 +279,7 @@ def main() -> None:
         gt_mask_root=args.gt_mask_root,
         metadata_json=args.metadata_json,
         model_name=model_name,
+        class_name=args.class_name,
     )
 
     if not samples:

@@ -27,12 +27,21 @@ class MerlinClassificationAdapter:
 
     def _load_metadata_index(self) -> Dict[str, Dict]:
         if not self.metadata_json.exists():
+            # Every sample's y_true will silently come out all-zero without
+            # this file (no ground truth to match case_id against) -- warn
+            # loudly rather than let that look like a real "no findings"
+            # result.
+            print(
+                f"[WARN] Merlin metadata_json not found at {self.metadata_json}: "
+                "ground truth cannot be loaded, all y_true will be 0 for every class/case."
+            )
             return {}
         try:
             raw = json.loads(self.metadata_json.read_text(encoding="utf-8"))
-        except Exception:
+        except Exception as exc:
+            print(f"[WARN] Failed to parse Merlin metadata_json {self.metadata_json}: {exc}")
             return {}
-        
+
         index = {}
         for split in ["train", "valid", "test"]:
             if split in raw:
@@ -80,6 +89,9 @@ class MerlinClassificationAdapter:
 
     def load(self) -> List[ClassificationSample]:
         samples = []
+        n_no_findings_file = 0
+        n_parse_failed = 0
+
         if not self.predictions_path.exists():
             print(f"Warning: Merlin predictions dir {self.predictions_path} not found.")
             return samples
@@ -89,11 +101,14 @@ class MerlinClassificationAdapter:
                 continue
             findings_file = item / "findings.json"
             if not findings_file.exists():
+                n_no_findings_file += 1
                 continue
-            
+
             try:
                 data = json.loads(findings_file.read_text())
-            except Exception:
+            except Exception as exc:
+                n_parse_failed += 1
+                print(f"[WARN] Failed to parse {findings_file}: {exc}")
                 continue
 
             case_id = data.get("name", "").replace(".nii.gz", "")
@@ -134,8 +149,20 @@ class MerlinClassificationAdapter:
                     y_true=y_true,
                     y_score=y_score,
                     dataset="rexgroundingct",
-                    metadata={"volume_path": str(item)}
+                    metadata={"volume_path": str(item)},
+                    # Merlin's findings.json only carries a category label per
+                    # finding (see classified_findings[*].category), no numeric
+                    # confidence -- y_score above is a 0/1 decision, not a
+                    # probability, so rank-based metrics don't apply to it.
+                    score_type="hard_label",
                 )
+            )
+
+        if n_no_findings_file or n_parse_failed:
+            print(
+                f"[INFO] Merlin classification: loaded {len(samples)} samples, "
+                f"skipped {n_no_findings_file} dirs with no findings.json, "
+                f"{n_parse_failed} with unparseable findings.json."
             )
 
         return samples
@@ -165,18 +192,25 @@ class MerlinLocalizationAdapter(BiomedParseLocalizationAdapter):
             return []
 
         samples = []
+        n_no_mask_file = 0
+        n_mask_load_failed = 0
+        n_findings_parse_failed = 0
+
         for item in self.output_dir.iterdir():
             if not item.is_dir():
                 continue
-                
+
             case_id = item.name
             pred_mask_file = item / "localization_masks.npz"
             if not pred_mask_file.exists():
+                n_no_mask_file += 1
                 continue
-                
+
             try:
                 pred_npz = np.load(str(pred_mask_file))
-            except Exception:
+            except Exception as exc:
+                n_mask_load_failed += 1
+                print(f"[WARN] Failed to load {pred_mask_file}: {exc}")
                 continue
 
             findings_file = item / "findings.json"
@@ -188,9 +222,10 @@ class MerlinLocalizationAdapter(BiomedParseLocalizationAdapter):
                     for v in classified.values():
                         for cls_name in self._class_names_for_finding(v.get("text", "")):
                             classes_to_eval.add(cls_name)
-                except Exception:
-                    pass
-            
+                except Exception as exc:
+                    n_findings_parse_failed += 1
+                    print(f"[WARN] Failed to parse {findings_file}: {exc}")
+
             # If no classes found, use GT findings
             if not classes_to_eval:
                 gt_texts = self._get_case_findings(case_id)
@@ -235,7 +270,16 @@ class MerlinLocalizationAdapter(BiomedParseLocalizationAdapter):
                         existence_score=1.0,
                         morphology=self._get_morphology(class_name),
                         dataset="rexgroundingct",
+                        is_soft_mask=False,
                     )
                 )
+
+        if n_no_mask_file or n_mask_load_failed or n_findings_parse_failed:
+            print(
+                f"[INFO] Merlin localization: loaded {len(samples)} samples, "
+                f"skipped {n_no_mask_file} dirs with no localization_masks.npz, "
+                f"{n_mask_load_failed} with unloadable npz, "
+                f"{n_findings_parse_failed} with unparseable findings.json (fell back to GT findings)."
+            )
 
         return samples

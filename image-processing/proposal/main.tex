@@ -1,0 +1,130 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Formatting
+\setstretch{1.15}
+\titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{cite}
+
+%----------------------------------------
+\begin{document}
+
+% --------- First Page (Cover Page) ---------
+\begin{titlepage}
+    \centering
+    \includegraphics[width=3cm]{Logo.jpeg}\par\vspace{1cm} % <-- Add your logo file (logo.png)
+    {\LARGE \textbf{Department of Electrical and Information Engineering}}\\[0.4cm]
+    {\Large \textbf{University of Ruhuna}}\\[1.5cm]
+    {\Large \textbf{Mini Project Proposal}}\\[0.2cm]
+    {\large \textbf{Image Processing and Computer Vision}}\\[0.2cm]
+    {\large \textbf{EE7204 / EC7205}}\\[1.5cm]
+    
+   % Centered student and project info
+    {\large \textbf{Visualization and Highlighting of Ground-Glass Opacities in Chest CT}}\\[0.8cm]
+    {\large \textbf{K.R.C.S Kekulawala - EG/2021/4609}}\\[0.4cm]
+    {\large \textbf{M.D.Y.B.Kularathne - EG/2021/4620}}\\[0.4cm]
+    {\large \textbf{B.G.P.U Thilakshana - EG/2021/4831}}\\[0.4cm]
+    {\large \textbf{B.P.G.L. Thejana - EG/2021/4828}}\\[2cm]
+    {\large \textbf{2026/01/23}}\\[2cm]
+    
+    \vfill
+    Department of Electrical and Information Engineering\\
+    University of Ruhuna\\[0.5cm]
+    \vfill
+    
+\end{titlepage}
+% --------- Table of Contents (Clickable) ---------
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Contents}
+\label{contents}
+\tableofcontents
+\clearpage
+
+% --------- Sections ---------
+
+\section{Problem Statement}
+Ground Glass Opacities (GGOs) appear as faint cloudy areas seen in lung CT scans\cite{Bankier2024}. They can be early signs of diseases such as pneumonia,
+lung infections, or even cancer. Finding these areas by hand is difficult and consumes a large amount of time because GGOs are low contrast areas
+and spread out gradually in the lungs. This could result in different radiologists interpreting the same CT scan differently, which may affect diagnosis accuracy.
+Without a well organized preprocessing pipeline, steps like segmenting the lungs, detecting GGOs, and measuring their size can
+cause inconsistent results, which makes it hard to perform reliable automated analysis.
+
+\newpage
+\section{Objectives}
+The main objectives of this project are:
+\begin{itemize}
+    \item Improve the quality of the original chest CT scans by using various image processing techniques.
+    \item Accurately segment lung regions using HU based thresholding and morphological operations while removing noise.
+    \item Detect Ground Glass Opacity regions within the segmented lung area using HU based thresholding criteria.
+    \item Evaluate the effectiveness of the proposed image processing pipeline using a publicly available chest CT dataset.
+    \item Design a simple prototype application which focuses on clear GGO visualization.
+\end{itemize}
+
+\hyperref[contents]{\small Back to Table of Contents}
+
+\include{chapters/literature-review}
+\include{chapters/methodology}
+
+\newpage
+\section{Dataset / Data Collection}
+This project utilizes the LIDC-IDRI dataset obtained from The Cancer Imaging Archive (TCIA). 
+The dataset consists of over 1,000 chest CT scans stored in DICOM format. 
+The key statistics of the dataset are summarized as follows:
+
+\begin{itemize}
+    \item \textbf{Total cases:} 1,018 patients
+    \item \textbf{Total lesions:} 7,371 lesions marked as ``nodule'' by at least one radiologist
+    \item \textbf{Nodules $\geq 3$ mm:} 2,669 lesions identified as clinically significant nodules
+\end{itemize}
+
+\noindent\textbf{Images:} Clinical thoracic CT scans in DICOM format.
+
+\noindent\textbf{Annotations:} Provided in XML files containing the coordinates of nodule boundaries (contours) and associated radiological characteristic ratings.
+
+\noindent\textbf{Tools:} The Python library \texttt{pylidc} is used to query, process, and visualize the LIDC-IDRI dataset.
+
+\hyperref[contents]{\small Back to Table of Contents}
+\newpage
+\section{Expected Outcomes }
+
+The expected outcomes of this project include:
+\begin{itemize}
+    \item A Python based image processing pipeline for lung CT analysis
+    \item A GUI application for loading, visualizing, and navigating CT slices
+    \item Accurate lung segmentation masks
+    \item Highlighted Ground Glass Opacity (GGO) regions with color overlays
+    \item Quantitative outputs such as GGO count, area, and estimated volume
+    \item Adjustable HU threshold controls for experimentation
+    \item Side by side visualization of original and processed images
+\end{itemize}
+
+\hyperref[contents]{\small Back to Table of Contents}
+\newpage
+\section{Percentage of Image Processing \& Computer Vision Involvement}
+Dataset preprocessing and visualization parts of the pipeline are the only components that do not involve image processing or
+computer vision techniques.
+Core components include:
+\begin{itemize}
+    \item DICOM loading and metadata extraction
+    \item Image windowing, resampling, and normalization
+    \item Noise reduction using filtering techniques
+    \item Threshold-based lung segmentation, morphological operations
+    \item GGO detection using HU ranges
+    \item Vessel suppression using structural morphology and region-based filtering
+\end{itemize}
+
+\hyperref[contents]{\small Back to Table of Contents}
+\newpage
+
+\bibliographystyle{ieeetr} 
+\bibliography{references}
+
+\end{document}
