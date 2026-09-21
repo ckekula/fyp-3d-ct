@@ -1,0 +1,5 @@
+case_id,lung_nodule,lung_opacity,consolidation,atelectasis,score_type
+test_case_001,0.9420,0.1250,0.0410,0.0820,probabilistic
+test_case_002,0.0510,0.8950,0.8120,0.1100,probabilistic
+test_case_003,0.1200,0.9450,0.1120,0.0980,probabilistic
+test_case_004,1.0000,0.0000,0.0000,0.0000,hard_label

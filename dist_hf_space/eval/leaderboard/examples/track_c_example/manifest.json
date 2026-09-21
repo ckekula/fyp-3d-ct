@@ -1,0 +1,30 @@
+{
+  "model_name": "Example-Unified-3D",
+  "axis_order": "ZYX",
+  "spacing_mm": [
+    1.25,
+    0.75,
+    0.75
+  ],
+  "is_soft_mask": true,
+  "classes": {
+    "lung_nodule": {
+      "morphology": "focal",
+      "is_soft_mask": true
+    },
+    "lung_opacity": {
+      "morphology": "non_focal",
+      "is_soft_mask": true
+    },
+    "consolidation": {
+      "morphology": "non_focal",
+      "is_soft_mask": true
+    },
+    "atelectasis": {
+      "morphology": "non_focal",
+      "is_soft_mask": true
+    }
+  },
+  "predictions_csv_path": "predictions.csv",
+  "masks_dir": "masks"
+}

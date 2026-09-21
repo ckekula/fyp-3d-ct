@@ -1,0 +1,13 @@
+{
+  "train_10000_a_1.nii.gz": {"lung_nodule": 1, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0},
+  "train_10017_a_2.nii.gz": {"lung_nodule": 1, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0},
+  "train_10033_a_2.nii.gz": {"lung_nodule": 0, "lung_opacity": 1, "consolidation": 0, "atelectasis": 0},
+  "train_10083_a_2.nii.gz": {"lung_nodule": 1, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0},
+  "train_10083_b_2.nii.gz": {"lung_nodule": 1, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0},
+  "train_10094_a_2.nii.gz": {"lung_nodule": 0, "lung_opacity": 1, "consolidation": 1, "atelectasis": 0},
+  "train_10104_a_1.nii.gz": {"lung_nodule": 1, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0},
+  "train_10118_a_2.nii.gz": {"lung_nodule": 0, "lung_opacity": 0, "consolidation": 0, "atelectasis": 1},
+  "train_10125_a_1.nii.gz": {"lung_nodule": 0, "lung_opacity": 1, "consolidation": 0, "atelectasis": 0},
+  "train_10135_a_1.nii.gz": {"lung_nodule": 0, "lung_opacity": 0, "consolidation": 0, "atelectasis": 0}
+}
+
