@@ -1,0 +1,2 @@
+Place ksvd_checkpoint.npz, unified_train_2d.npz, and dataset_filtered.json here.
+Place per-scan segmentation files in segmentations/<scan_id>.nii.gz
